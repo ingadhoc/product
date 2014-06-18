@@ -8,7 +8,10 @@
             <field name="arch" type="xml">
                 <notebook position="inside">
                     <page string="Intercompany" groups="base.group_no_one">
-                        <field name="intercompany_document_ids"/>
+                        <group>
+                            <field name="invoice_move_type"/>
+                            <field name="invoice_move_company_id"/>
+                        </group>
                     </page>
                 </notebook>
             </field>

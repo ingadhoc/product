@@ -18,26 +18,26 @@
 ##############################################################################
 
 {
-    'name': 'Intercompany Document',
+    'name': 'Inter Company Move',
     'version': '1.0',
     'category': 'Accounting',
     'sequence': 14,
-    'summary': 'Company, Multicompany,',
+    'summary': 'Moves documents around companies in a multicompany environment,',
     'description': """
-Intercompany Document
-=====================
+Inter Company Move
+==================
     """,
     'author':  '',
     'website': '',
     'images': [
     ],
     'depends': [
-        'base',
         'account',
     ],
     'data': [
-        'res_company_view.xml',
-        'intercompany_view.xml',
+        'views/res_company_view.xml',
+        'views/account_invoice_view.xml',
+        # 'views/intercompany_view.xml'
     ],
     'demo': [
     ],

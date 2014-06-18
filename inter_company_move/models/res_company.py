@@ -25,6 +25,13 @@ class res_company(osv.osv):
 
     _columns = {
         # 'allow_intercompany': fields.boolean('Allow Intercompany',),
-        'intercompany_document_ids': fields.one2many('intercompany.document', 'company_id', string='Intercompany Document', ),
+        # 'intercompany_document_ids': fields.one2many('intercompany.document', 'company_id', string='Intercompany Document', ),
+        'invoice_move_type': fields.selection([('not_available','Not Available'),('move_auto','Move Automatically')], string='Invoice Move Type', required=True),
+        # TODO add move with wizard
+		# 'invoice_move_type': fields.selection([('not_available','Not Available'),('move_auto','Move Automatically'),('move_wizard','Move With Wizard')], string='Invoice Move Type', required=True),
+		'invoice_move_company_id': fields.many2one('res.company', 'Destiny Company',),
     }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+
+    _defaults = {
+    	'invoice_move_type': 'not_available', 
+    }
