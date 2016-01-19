@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Reference Requiered',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.0.1',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -40,10 +40,11 @@ Product Reference Requiered
     'data': [
     ],
     'demo': [
+        'demo/product.product.csv',
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
