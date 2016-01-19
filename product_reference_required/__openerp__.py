@@ -38,9 +38,11 @@ Product Reference Requiered
         'product',
     ],
     'data': [
+        'data/default_code_data.xml',
     ],
     'demo': [
-        'demo/product.product.csv',
+        # 'demo/product.product.csv',
+        'demo/default_code_sequence_demo.xml',
     ],
     'test': [
     ],

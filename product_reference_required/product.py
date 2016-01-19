@@ -28,6 +28,11 @@ class product_template(models.Model):
 class product_product(models.Model):
     _inherit = "product.product"
 
+    @api.model
+    def _get_default_code(self):
+        return self.env['ir.sequence'].get('product.default_code')
+
     default_code = fields.Char(
         required=True,
+        default=_get_default_code,
         )
