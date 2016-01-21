@@ -29,7 +29,7 @@ class ProductTemplate(models.Model):
     replenishment_cost = fields.Float(
         compute='_get_replenishment_cost',
         string='Replenishment Cost',
-        store=True,
+        store=False,
         digits=dp.get_precision('Product Price'),
         help="The cost that you have to support in order to produce or "
              "acquire the goods. Depending on the modules installed, "
@@ -92,4 +92,5 @@ class ProductProduct(models.Model):
     # on prod template
     replenishment_cost = fields.Float(
         related='product_tmpl_id.replenishment_cost',
+        store=False,
         )
