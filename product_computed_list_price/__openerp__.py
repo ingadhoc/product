@@ -19,14 +19,14 @@
 #
 ##############################################################################
 {
-    'name': 'Product Price Currency and Sale Price By Margin Integration',
-    'version': '8.0.0.2.0',
+    'name': 'Product Computed List Price',
+    'version': '8.0.0.0.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
     'description': """
-Product Price Currency and Sale Price By Margin Integration
-===========================================================
+Product Computed List Price
+===========================
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
@@ -34,17 +34,17 @@ Product Price Currency and Sale Price By Margin Integration
     'images': [
     ],
     'depends': [
-        'product_price_currency',
-        'product_sale_price_by_margin',
+        'product',
     ],
     'data': [
-        'product_view.xml'
+        'product_view.xml',
+        'data.xml',
              ],
     'demo': [
     ],
     'test': [
     ],
     'installable': True,
-    'auto_install': True,
+    'auto_install': False,
     'application': False,
 }

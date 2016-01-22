@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="price_type_computed_list_price" model="product.price.type">
+            <field name="name">Computed List Price</field> 
+            <field name="field">computed_list_price</field> 
+        </record>
+    </data>
+</openerp>
