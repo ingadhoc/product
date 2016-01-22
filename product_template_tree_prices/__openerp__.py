@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Template Tree Prices',
-    'version': '8.0.0.4.0',
+    'version': '8.0.0.0.0',
     'category': 'base.module_category_knowledge_management',
     'description': """
 Product Template Tree Prices
