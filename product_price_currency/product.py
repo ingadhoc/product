@@ -17,7 +17,8 @@ class product_template(models.Model):
         selection_add=[('other_currency', 'Other Currency')],
         )
     other_currency_id = fields.Many2one(
-        'res.currency', 'Other Currency',
+        'res.currency',
+        'Other Currency',
         help="Currency used for the Currency List Price.",
         oldname='sale_price_currency_id',
         )
@@ -27,15 +28,6 @@ class product_template(models.Model):
         help="Sale Price on Other Currency",
         oldname='sale_price_currency_id',
         )
-
-    @api.model
-    def _get_price_type(self, price_type):
-        price_type = self.env['product.price.type'].search(
-            [('field', '=', price_type)], limit=1)
-        if not price_type:
-            raise Warning(_('No Price type defined for field %s' % (
-                'computed_list_price')))
-        return price_type
 
     @api.multi
     @api.depends(
@@ -65,9 +57,12 @@ class product_template(models.Model):
     @api.multi
     def get_computed_list_price(self):
         self.ensure_one()
-        if self.list_price_type == 'other_currency' and self.other_currency_id:
+        if self.list_price_type == 'other_currency':
             _logger.info('Get computed_list_price for "other_currency" type')
-            return self.other_currency_id.compute(
-                self.other_currency_list_price, self._get_price_type(
-                    'computed_list_price').currency_id)
+            if self.other_currency_id:
+                return self.other_currency_id.compute(
+                    self.other_currency_list_price, self._get_price_type(
+                        'computed_list_price').currency_id)
+            else:
+                return False
         return super(product_template, self).get_computed_list_price()

@@ -19,33 +19,27 @@
 #
 ##############################################################################
 {
-    'name': 'Product Price Currency',
-    'version': '8.0.1.1.1',
-    'category': 'Product',
-    'sequence': 14,
-    'summary': '',
+    'name': 'Product Template Tree Prices',
+    'version': '8.0.0.4.0',
+    'category': 'base.module_category_knowledge_management',
     'description': """
-Product Price Currency
-======================
-    """,
-    'author':  'ADHOC SA',
+Product Template Tree Prices
+============================
+Add prices on product tempalte tree view
+""",
+    'author': 'ADHOC SA.',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
-    'images': [
-    ],
     'depends': [
-        'product_computed_list_price',
-    ],
+        'product',
+        ],
+    'test': [],
+    'demo': [],
     'data': [
         'product_view.xml',
-        'data.xml',
-    ],
-    'demo': [
-    ],
-    'test': [
     ],
     'installable': True,
-    'auto_install': False,
-    'application': False,
-}
+    'auto_install': True,
+    }
+
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

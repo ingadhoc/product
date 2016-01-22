@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data noupdate="1">
-        <record id="price_type_computed_list_price" model="product.price.type">
+        <record id="computed_list_price" model="product.price.type">
             <field name="name">Computed List Price</field> 
             <field name="field">computed_list_price</field> 
         </record>
+
+        <!-- Configure pricelist to use computed list price -->
+        <record id="product.item0" forcecreate="False" model="product.pricelist.item">
+            <field name="base" ref="computed_list_price"/>
+        </record>
+
     </data>
 </openerp>

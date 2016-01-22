@@ -19,11 +19,19 @@ class product_uom_price(models.Model):
 
     product_tmpl_id = fields.Many2one(
         'product.template',
-        string='Product Template')
-    uom_id = fields.Many2one('product.uom', string='UOM', required=True,)
+        string='Product Template'
+        )
+    uom_id = fields.Many2one(
+        'product.uom',
+        string='UOM',
+        required=True,
+        )
     price = fields.Float(
-        'Price', digits=dp.get_precision('Price'),
-        help="Sale Price for this UOM.", required=True)
+        'Price',
+        digits=dp.get_precision('Price'),
+        help="Sale Price for this UOM.",
+        required=True
+        )
 
     _sql_constraints = [
         ('price_uniq', 'unique(product_tmpl_id, uom_id)',
@@ -41,8 +49,8 @@ class product_template(models.Model):
         selection_add=[('by_uom', 'By Uom')],
         )
     uom_category_id = fields.Many2one(
-        'product.uom.categ',
-        string='UOM Category', related='uom_id.category_id')
+        related='uom_id.category_id'
+        )
     uom_price_ids = fields.One2many(
         'product.uom.price',
         'product_tmpl_id',

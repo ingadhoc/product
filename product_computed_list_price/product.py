@@ -3,7 +3,8 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import models, fields, api
+from openerp import models, fields, api, _
+from openerp.exceptions import Warning
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -60,6 +61,26 @@ class product_template(models.Model):
         required=True,
         default='manual',
         )
+    computed_list_price_currency_id = fields.Many2one(
+        'res.currency',
+        string='Computed List Price Currency',
+        compute='get_computed_list_price_currency',
+        )
+
+    @api.model
+    def _get_price_type(self, price_type):
+        price_type = self.env['product.price.type'].search(
+            [('field', '=', price_type)], limit=1)
+        if not price_type:
+            raise Warning(_('No Price type defined for field %s' % (
+                price_type)))
+        return price_type
+
+    @api.multi
+    def get_computed_list_price_currency(self):
+        price_type = self._get_price_type('computed_list_price')
+        for product in self:
+            product.computed_list_price_currency_id = price_type.currency_id
 
     @api.multi
     @api.depends(
