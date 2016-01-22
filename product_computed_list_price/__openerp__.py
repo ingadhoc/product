@@ -41,6 +41,7 @@ Product Computed List Price
         'data.xml',
              ],
     'demo': [
+        'demo/product_demo.xml',
     ],
     'test': [
     ],

@@ -41,6 +41,7 @@ Product Price Currency
         'data.xml',
     ],
     'demo': [
+        'demo/product_demo.xml',
     ],
     'test': [
     ],
