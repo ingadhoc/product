@@ -4,6 +4,7 @@
 # directory
 ##############################################################################
 from openerp import fields, models, api, _
+from openerp.exceptions import Warning
 import openerp.addons.decimal_precision as dp
 import logging
 _logger = logging.getLogger(__name__)
@@ -16,7 +17,7 @@ class product_template(models.Model):
         selection_add=[('other_currency', 'Other Currency')],
         )
     other_currency_id = fields.Many2one(
-        'res.currency', 'Sale Price Currency',
+        'res.currency', 'Other Currency',
         help="Currency used for the Currency List Price.",
         oldname='sale_price_currency_id',
         )
@@ -37,9 +38,22 @@ class product_template(models.Model):
         return price_type
 
     @api.multi
+    @api.depends(
+        'other_currency_list_price',
+        'other_currency_id',
+        )
+    def _get_computed_list_price(self):
+        """Only to update depends"""
+        return super(product_template, self)._get_computed_list_price()
+
+    @api.multi
     def set_prices(self):
         self.ensure_one()
         if self.list_price_type == 'other_currency':
+            if not self.other_currency_id:
+                raise Warning(_(
+                    'You must configure "Other Currency" for product %s' % (
+                        self.name)))
             _logger.info(
                 'Set Prices from "computed_list_price" type "other_currency"')
             self.other_currency_list_price = self._get_price_type(

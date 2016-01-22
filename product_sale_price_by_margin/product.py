@@ -24,8 +24,19 @@ class product_template(models.Model):
         selection_add=[('by_margin', 'By Margin')],
         )
     replenishment_cost_copy = fields.Float(
-        related='product_variant_ids.replenishment_cost'
+        related='replenishment_cost'
+        # related='product_variant_ids.replenishment_cost'
         )
+
+    @api.multi
+    @api.depends(
+        'sale_margin',
+        'sale_surcharge',
+        'replenishment_cost',
+        )
+    def _get_computed_list_price(self):
+        """Only to update depends"""
+        return super(product_template, self)._get_computed_list_price()
 
     @api.multi
     def set_prices(self):
