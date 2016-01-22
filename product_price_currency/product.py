@@ -3,72 +3,63 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import fields, models, api
+from openerp import fields, models, api, _
 import openerp.addons.decimal_precision as dp
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class product_template(models.Model):
     _inherit = 'product.template'
 
-    @api.model
-    def get_currency_id(self):
-        price_type_obj = self.env['product.price.type']
-        price_type_ids = price_type_obj.search([('field', '=', 'list_price')])
-        if not price_type_ids.currency_id:
-            return self.env.user.company_id.currency_id
-        return price_type_ids.currency_id
-
-    sale_price_currency_id = fields.Many2one(
+    list_price_type = fields.Selection(
+        selection_add=[('other_currency', 'Other Currency')],
+        )
+    other_currency_id = fields.Many2one(
         'res.currency', 'Sale Price Currency',
-        required=True, default=get_currency_id,
-        help="Currency used for the Currency List Price."
+        help="Currency used for the Currency List Price.",
+        oldname='sale_price_currency_id',
         )
-    sale_price_on_list_price_type_currency = fields.Float(
-        'Sale Price on List Price Currency',
+    other_currency_list_price = fields.Float(
+        'Sale Price on Other Currency',
         digits=dp.get_precision('Product Price'),
-        compute='get_sale_price_on_list_price_type_currency',
-        help="Base price on List Price Type currency at actual exchange rate",
-        )
-    list_price_type_currency_id = fields.Many2one(
-        'res.currency',
-        'List Price Type Currency',
-        compute='get_sale_price_on_list_price_type_currency',
+        help="Sale Price on Other Currency",
+        oldname='sale_price_currency_id',
         )
 
-    @api.one
-    @api.depends('list_price', 'sale_price_currency_id')
-    def get_sale_price_on_list_price_type_currency(self):
+    @api.model
+    def _get_price_type(self, price_type):
         price_type = self.env['product.price.type'].search(
-            [('field', '=', 'list_price')], limit=1)
-        to_currency = price_type.currency_id
-        self.list_price_type_currency_id = to_currency
-        for product in self:
-            if (
-                    product.sale_price_currency_id and
-                    product.sale_price_currency_id != to_currency
-                    ):
-                to_price = (
-                    product.sale_price_currency_id.compute(
-                        product.list_price, to_currency))
-            else:
-                to_price = product.list_price
-            product.sale_price_on_list_price_type_currency = to_price
+            [('field', '=', price_type)], limit=1)
+        if not price_type:
+            raise Warning(_('No Price type defined for field %s' % (
+                'computed_list_price')))
+        return price_type
 
-    def _price_get(self, cr, uid, products, ptype='list_price', context=None):
-        if not context:
-            context = {}
-        res = super(product_template, self)._price_get(
-            cr, uid, products, ptype=ptype, context=context)
-        if ptype == 'list_price':
-            pricetype_obj = self.pool.get('product.price.type')
-            price_type_id = pricetype_obj.search(
-                cr, uid, [('field', '=', ptype)])[0]
-            price_type_currency_id = pricetype_obj.browse(
-                cr, uid, price_type_id).currency_id.id
-            for product in products:
-                if product.sale_price_currency_id.id != price_type_currency_id:
-                    res[product.id] = self.pool.get('res.currency').compute(
-                        cr, uid, product.sale_price_currency_id.id,
-                        price_type_currency_id, res[product.id],
-                        context=context)
-        return res
+    @api.multi
+    def set_prices(self):
+        self.ensure_one()
+        if self.list_price_type == 'other_currency':
+            _logger.info(
+                'Set Prices from "computed_list_price" type "other_currency"')
+            self.other_currency_list_price = self._get_price_type(
+                'computed_list_price').currency_id.compute(
+                self.computed_list_price, self.other_currency_id)
+        else:
+            return super(product_template, self).set_prices()
+
+    @api.multi
+    @api.depends(
+        'list_price_type',
+        'list_price',
+        'other_currency_id',
+        'other_currency_list_price',
+        )
+    def get_computed_list_price(self):
+        self.ensure_one()
+        if self.list_price_type == 'other_currency' and self.other_currency_id:
+            _logger.info('Get computed_list_price for "other_currency" type')
+            return self.other_currency_id.compute(
+                self.other_currency_list_price, self._get_price_type(
+                    'computed_list_price').currency_id)
+        return super(product_template, self).get_computed_list_price()

@@ -34,7 +34,7 @@ Product Price Currency
     'images': [
     ],
     'depends': [
-        'sale',
+        'product_computed_list_price',
     ],
     'data': [
         'product_view.xml',

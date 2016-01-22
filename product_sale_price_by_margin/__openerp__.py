@@ -40,6 +40,7 @@ Product Sale Price By Margin
         # product_replenishment_cost module
         'product_replenishment_cost_currency',
         # 'product_replenishment_cost',
+        'product_computed_list_price',
     ],
     'data': ['product_view.xml'
              ],
