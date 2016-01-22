@@ -45,6 +45,7 @@ Product Sale Price By Margin
     'data': ['product_view.xml'
              ],
     'demo': [
+        'demo/product_demo.xml',
     ],
     'test': [
     ],

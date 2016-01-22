@@ -41,7 +41,9 @@ Video TUTORIAL: https://www.youtube.com/watch?v=-jGsbEZDOJE
         # 'product_price_currency',
         ],
     'test': [],
-    'demo': [],
+    'demo': [
+        'demo/product_demo.xml',
+    ],
     'data': [
         'view/product_view.xml',
         'view/res_company_view.xml',

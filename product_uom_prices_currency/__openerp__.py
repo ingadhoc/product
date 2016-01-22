@@ -34,7 +34,9 @@ Product UOM Prices / Product Currency Integration
         'product_price_currency',
         ],
     'test': [],
-    'demo': [],
+    'demo': [
+        'demo/product_demo.xml',
+    ],
     'data': [
         'product_view.xml',
     ],
