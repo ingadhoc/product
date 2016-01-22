@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
+
         <!-- template form -->
         <record id="product_template_only_form_view" model="ir.ui.view">
             <field name="name">product_computed_list_price.form</field>
             <field name="model">product.template</field>
-            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="inherit_id" ref="product_computed_list_price.product_template_only_form_view"/>
             <field name="arch" type="xml">
                 <field name="list_price" position="attributes">
                     <attribute name="invisible">1</attribute>
@@ -13,18 +14,9 @@
                 <field name="list_price" position="before">
                     <field name="list_price_type"/>
                     <field name="computed_list_price"/>
-<!--                     <label for="list_price" attrs="{'invisible': [('list_price_type', '=', 'manual')]}"/>
-                    <div attrs="{'invisible': [('list_price_type', '=', 'manual')]}">
-                        <field name="replenishment_cost_copy" class="oe_inline"/>* ( 1 +
-                        <field name="sale_margin" class="oe_inline"/>%) + 
-                        <field name="sale_surcharge" class="oe_inline"/> = 
-                        <field name="price" class="oe_inline"/>
-                    </div> -->
                 </field>
-<!--                 <field name="list_price" position="attributes">
-                    <attribute name="attrs">{'invisible': [('list_price_type', '!=', 'manual')]}</attribute>
-                </field> -->
             </field>
         </record>
+
     </data>
 </openerp>

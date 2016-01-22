@@ -8,14 +8,49 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
+class product_product(models.Model):
+    _inherit = "product.product"
+
+    # lst_price now cames from computed_list_price
+    lst_price = fields.Float(
+        compute='_product_lst_price',
+        inverse='_set_product_lst_price',
+        )
+
+    @api.multi
+    def _product_lst_price(self):
+        for product in self:
+            if 'uom' in self._context:
+                uom = product.uos_id or product.uom_id
+                lst_price = self.env['product.uom']._compute_price(
+                    uom.id, product.computed_list_price, self._context['uom'])
+            else:
+                lst_price = product.computed_list_price
+            product.lst_price = lst_price + product.price_extra
+
+    @api.multi
+    def _set_product_lst_price(self):
+        for product in self:
+            lst_price = product.lst_price
+            if 'uom' in self._context:
+                uom = product.uos_id or product.uom_id
+                lst_price = self.env['product.uom']._compute_price(
+                    self._context['uom'], lst_price, uom.id)
+            product.computed_list_price = lst_price - product.price_extra
+
+
 class product_template(models.Model):
     _inherit = "product.template"
 
+    # lst_price now cames from computed_list_price
+    lst_price = fields.Float(
+        related='computed_list_price',
+        )
     computed_list_price = fields.Float(
-        string='Computed Sale Price',
+        string='Sale Price',
         compute='_get_computed_list_price',
         inverse='_set_prices',
-        help='This value depends on "Sale Price Type" an '
+        help='Computed Sale Price. This value depends on "Sale Price Type" an '
         'other parameters. If you set this value, other fields will be '
         'computed automatically.',
         )

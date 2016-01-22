@@ -79,21 +79,32 @@ class product_template(models.Model):
             return super(product_template, self).set_prices()
 
     @api.multi
+    def get_uom_price(self):
+        self.ensure_one()
+        """
+        If 'uom' in context we try to find a uom prices
+        If we don't found or 'uom' not in context, we return false
+        """
+        uom_prices = False
+        if 'uom' in self._context:
+            uom_prices = self.env['product.uom.price'].search([
+                        ('uom_id', '=', self._context['uom']),
+                        ('product_tmpl_id', '=', self.id)])
+        if uom_prices:
+            product_uom = self.uom_id or self.uos_id
+            # we convert from context uom to product uom because later
+            # _price_get function convert it in the other side
+            return self.env['product.uom']._compute_price(
+                self._context['uom'], uom_prices.price, product_uom.id)
+        else:
+            return False
+
+    @api.multi
     def get_computed_list_price(self):
         self.ensure_one()
-        if self.list_price_type == 'by_uom' and 'uom' in self._context:
+        if self.list_price_type == 'by_uom':
             _logger.info('Get computed_list_price for "by_uom" type')
-            uom_prices = self.env['product.uom.price'].search([
-                    ('uom_id', '=', self._context['uom']),
-                    ('product_tmpl_id', '=', self.id)])
-            product_uom = self.uom_id or self.uos_id
-            if uom_prices:
-                # we convert from context uom to product uom because later
-                # _price_get function convert it in the other side
-                return self.env['product.uom']._compute_price(
-                    self._context['uom'], uom_prices.price, product_uom.id)
-            else:
-                return self.list_price
+            return self.get_uom_price() or self.list_price
         return super(product_template, self).get_computed_list_price()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
