@@ -56,3 +56,16 @@ class product_template(models.Model):
         _logger.info('Get computed_list_price')
         self.ensure_one()
         return self.list_price
+
+    @api.model
+    def _price_get(self, products, ptype='list_price'):
+        """
+        For price type "computed_list_price" we also add variants price_extra
+        """
+        res = super(product_template, self)._price_get(products, ptype)
+        if ptype == 'computed_list_price':
+            for product in products:
+                res[product.id] += (
+                    product._name == "product.product" and
+                    product.price_extra or 0.0)
+        return res

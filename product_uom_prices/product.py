@@ -6,6 +6,8 @@
 from openerp import models, fields, _, api
 import openerp.addons.decimal_precision as dp
 from openerp.exceptions import Warning
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class product_uom_price(models.Model):
@@ -35,9 +37,9 @@ class product_template(models.Model):
 
     _inherit = 'product.template'
 
-    use_uom_prices = fields.Boolean(
-        'Use UOM Prices?',
-        help='Use different prices for different UOMs?')
+    list_price_type = fields.Selection(
+        selection_add=[('by_uom', 'By Uom')],
+        )
     uom_category_id = fields.Many2one(
         'product.uom.categ',
         string='UOM Category', related='uom_id.category_id')
@@ -45,7 +47,9 @@ class product_template(models.Model):
         'product.uom.price',
         'product_tmpl_id',
         string='UOM Prices',
-        help="Only uoms in this list will be available in sale order lines.Set a diferent price for this uom. Set the price as 0 and the price will be calculated as sale price * uom ratio")
+        help="Only uoms in this list will be available in sale order lines. "
+        "Set a diferent price for this uom. Set the price as 0 and the price "
+        "will be calculated as sale price * uom ratio")
 
     @api.one
     @api.constrains('uom_price_ids')
@@ -56,53 +60,40 @@ class product_template(models.Model):
         if self.uom_id.id in uom_ids:
             raise Warning(_('UOM %s is the default product uom, \
                 you can not se it in UOM prices') % (self.uom_id.name))
-        if len(uom_categ_ids) > 1 or (uom_categ_ids and uom_categ_ids[0] != self.uom_id.category_id.id):
+        if (
+                len(uom_categ_ids) > 1 or
+                (uom_categ_ids and
+                    uom_categ_ids[0] != self.uom_id.category_id.id)
+                ):
             raise Warning(_('UOM Prices Category must be of the same \
                 UOM Category as Product Unit of Measure'))
 
-    def _price_get(self, cr, uid, products, ptype='list_price', context=None):
-        if not context:
-            context = {}
-        # Just for information we say in context that this module is installed
-        # We make this way becouse if not we have an error with frozendict
-        context = context.copy()
-        context['product_uom_prices'] = True
-        # context['product_uom_prices'] = True
-        res = super(product_template, self)._price_get(
-            cr, uid, products, ptype=ptype, context=context)
-        product_uom_price_obj = self.pool['product.uom.price']
-        for product in products:
-            if ptype == 'list_price' and product.use_uom_prices and 'uom' in context:
-                product_uom_price_ids = product_uom_price_obj.search(
-                    cr, uid, [
-                        ('uom_id', '=', context['uom']),
-                        ('product_tmpl_id', '=', product.product_tmpl_id.id)],
-                    context=context)
-                if product_uom_price_ids:
-                    res[product.id] = product_uom_price_obj.browse(
-                        cr, uid, product_uom_price_ids[0],
-                        context=context).price
-                    # TODO mejorar
-                    # Antes intenamos hacer idependinete este modulo de
-                    # price_currency pero no pudimos, por eso el if de bajo
-                    # esta comentadosolo el calculo de currency
+    @api.multi
+    def set_prices(self):
+        self.ensure_one()
+        if self.list_price_type == 'by_uom':
+            _logger.info(
+                'Set Prices from "computed_list_price" type "by_uom"')
+            self.list_price = self.computed_list_price
+        else:
+            return super(product_template, self).set_prices()
 
-                    # If product price currency is insatalled then we update
-                    # price in the correct currency
-                    # if 'product_price_currency' in context:
-                    if res[product.id] == 0.0:
-                        res[product.id] = product.list_price * product_uom_price_obj.browse(
-                            cr, uid, product_uom_price_ids[0],
-                            context=context).uom_id.factor_inv
-                    pricetype_obj = self.pool.get('product.price.type')
-                    price_type_id = pricetype_obj.search(
-                        cr, uid, [('field', '=', ptype)])[0]
-                    price_type_currency_id = pricetype_obj.browse(
-                        cr, uid, price_type_id).currency_id.id
-                    res[product.id] = self.pool['res.currency'].compute(
-                        cr, uid, product.sale_price_currency_id.id,
-                        price_type_currency_id, res[product.id],
-                        context=context)
-        return res
+    @api.multi
+    def get_computed_list_price(self):
+        self.ensure_one()
+        if self.list_price_type == 'by_uom' and 'uom' in self._context:
+            _logger.info('Get computed_list_price for "by_uom" type')
+            uom_prices = self.env['product.uom.price'].search([
+                    ('uom_id', '=', self._context['uom']),
+                    ('product_tmpl_id', '=', self.id)])
+            product_uom = self.uom_id or self.uos_id
+            if uom_prices:
+                # we convert from context uom to product uom because later
+                # _price_get function convert it in the other side
+                return self.env['product.uom']._compute_price(
+                    self._context['uom'], uom_prices.price, product_uom.id)
+            else:
+                return self.list_price
+        return super(product_template, self).get_computed_list_price()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
