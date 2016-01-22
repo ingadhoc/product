@@ -37,6 +37,7 @@ Video TUTORIAL: https://www.youtube.com/watch?v=-jGsbEZDOJE
     'license': 'AGPL-3',
     'depends': [
         'sale',
+        # 'product_computed_list_price',
         'product_price_currency',
         ],
     'test': [],

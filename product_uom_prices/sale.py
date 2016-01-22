@@ -46,7 +46,7 @@ class sale_order_line(models.Model):
                 context_partner).browse(
                 product)
             if (
-                    not uom and product.use_uom_prices and
+                    not uom and product.list_price_type == 'by_uom' and
                     self.env.user.company_id.default_uom_prices
                     ):
                 uom_id = product.uom_price_ids[0].uom_id.id

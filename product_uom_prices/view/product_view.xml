@@ -2,7 +2,7 @@
 <openerp>
     <data> 
         <!-- INHERITED PRODUCT PRODUCT FORM -->
-        <record id="product_normal_form_view" model="ir.ui.view">
+<!--         <record id="product_normal_form_view" model="ir.ui.view">
             <field name="name">product.uom.prices.form</field>
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product.product_normal_form_view"/>
@@ -22,14 +22,23 @@
                     </div>
                 </xpath>
             </field>
-        </record>
+        </record> -->
         <!-- INHERITED PRODUCT TEMPLATE FORM -->
         <record id="product_template_only_form_view" model="ir.ui.view">
             <field name="name">product.uom.prices.form</field>
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_only_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//page[@string='Information']/group/group" position="inside">
+                <field name="list_price_type" position="after">
+                    <field name="uom_category_id" invisible="1"/>
+                    <field name="uom_price_ids" context="{'uom_category_id': uom_category_id}" attrs="{'invisible': [('list_price_type', '!=', 'by_uom')]}">
+                        <tree editable="top">
+                            <field name="uom_id" domain="[('category_id', '=', uom_category_id)]"/>
+                            <field name="price"/>
+                        </tree>
+                    </field>
+                </field>
+<!--                 <xpath expr="//page[@string='Information']/group/group" position="inside">
                     <field name="use_uom_prices"/>
                     <field name="uom_category_id" invisible="1"/>
                     <field name="uom_price_ids" context="{'uom_category_id': uom_category_id}" attrs="{'invisible':[('use_uom_prices','=',False)]}">
@@ -38,11 +47,11 @@
                             <field name="price"/>
                         </tree>
                     </field>
-                </xpath>
+                </xpath> -->
             </field>
         </record>
 
-        <record id="product_uom_form_view" model="ir.ui.view">
+<!--         <record id="product_uom_form_view" model="ir.ui.view">
             <field name="name">product.uom.price.form</field>
             <field name="model">product.uom.price</field>
             <field name="arch" type="xml">
@@ -53,7 +62,7 @@
                     </group>
                 </form>
             </field>
-        </record>
+        </record> -->
     </data>
 </openerp>
 <!-- vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4
