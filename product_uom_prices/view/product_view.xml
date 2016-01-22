@@ -8,7 +8,7 @@
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product_computed_list_price.product_template_only_form_view"/>
             <field name="arch" type="xml">
-                <field name="computed_list_price" position="before">
+                <div name="computed_list_price" position="after">
                     <field name="uom_category_id" invisible="1"/>
                     <field name="uom_price_ids" context="{'uom_category_id': uom_category_id}" attrs="{'invisible': [('list_price_type', '!=', 'by_uom')]}">
                         <tree editable="top">
@@ -16,8 +16,7 @@
                             <field name="price"/>
                         </tree>
                     </field>
-                </field>
-
+                </div>
             </field>
         </record>
 
