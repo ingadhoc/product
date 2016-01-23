@@ -26,7 +26,6 @@ class product_template(models.Model):
         'Sale Price on Other Currency',
         digits=dp.get_precision('Product Price'),
         help="Sale Price on Other Currency",
-        oldname='sale_price_currency_id',
         )
 
     @api.multi
