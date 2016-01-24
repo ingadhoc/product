@@ -25,13 +25,26 @@ def migrate(cr, version):
     if not version:
         return
     registry = RegistryManager.get(cr.dbname)
+
+    # install product_uom_prices_currency
+    install_product_uom_prices_currency(cr, registry['ir.module.module'])
+
+    # get list_price currency
+    cr.execute(
+        "SELECT currency_id FROM product_price_type WHERE field = 'list_price'")
+    currency_id = cr.fetchall()[0][0]
+    print 'currency_id', currency_id
+
     model = 'product.template'
     table = 'product_template'
     field = "list_price_type"
+
+    # set value for "by_uom"
     value = "by_uom"
     use_uom_prices_columns = get_legacy_name('use_uom_prices', version)
     print 'use_uom_prices_columns', use_uom_prices_columns
-    condition = "WHERE %s" % use_uom_prices_columns
+    condition = "WHERE %s and other_currency_id = %s" % (
+        use_uom_prices_columns, currency_id)
     set_value(
         cr,
         registry[model],
@@ -40,3 +53,26 @@ def migrate(cr, version):
         value,
         condition,
     )
+
+    # set value for "by_uom_currency"
+    value = "by_uom_currency"
+    use_uom_prices_columns = get_legacy_name('use_uom_prices', version)
+    print 'use_uom_prices_columns', use_uom_prices_columns
+    vals = "SET %s = '%s'" % (field, value)
+    condition = "WHERE %s and other_currency_id != %s" % (
+        use_uom_prices_columns, currency_id)
+
+    cr.execute("UPDATE product_template %s %s" % (vals, condition))
+
+
+def install_product_uom_prices_currency(cr, model):
+    # we intall this because previous version requires price_currency so we
+    # need to install this auto_install module
+    module_ids = model.search(
+        cr, SUPERUSER_ID,
+        [('name', '=', 'product_uom_prices_currency')], {})
+    print 'install module product_uom_prices_currency'
+    print 'ids for module: %s' % module_ids
+    model.button_install(
+        cr, SUPERUSER_ID, module_ids, {})
+    print 'module installed'
