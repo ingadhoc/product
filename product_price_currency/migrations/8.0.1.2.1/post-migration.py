@@ -24,7 +24,9 @@ def migrate(cr, version):
     print 'Migrating product_uom_prices'
     if not version:
         return
-    install_module(cr, 'product_template_tree_prices')
+    # no lo podemos auto instalar porque nos da une error hasta que no se
+    # termine de actualziar todo
+    # install_module(cr, 'product_template_tree_prices')
 
     registry = RegistryManager.get(cr.dbname)
 
