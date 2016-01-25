@@ -26,8 +26,9 @@ def migrate(cr, version):
         return
     registry = RegistryManager.get(cr.dbname)
 
-    # install product_uom_prices_currency
-    install_product_uom_prices_currency(cr, registry['ir.module.module'])
+    # we intall this because previous version requires price_currency so we
+    # need to install this auto_install module
+    install_module(cr, 'product_uom_prices_currency')
 
     # get list_price currency
     cr.execute(
@@ -65,13 +66,13 @@ def migrate(cr, version):
     cr.execute("UPDATE product_template %s %s" % (vals, condition))
 
 
-def install_product_uom_prices_currency(cr, model):
-    # we intall this because previous version requires price_currency so we
-    # need to install this auto_install module
+def install_module(cr, module):
+    registry = RegistryManager.get(cr.dbname)
+    model = registry['ir.module.module']
     module_ids = model.search(
         cr, SUPERUSER_ID,
-        [('name', '=', 'product_uom_prices_currency')], {})
-    print 'install module product_uom_prices_currency'
+        [('name', '=', module)], {})
+    print 'install module %s' % module
     print 'ids for module: %s' % module_ids
     model.button_install(
         cr, SUPERUSER_ID, module_ids, {})

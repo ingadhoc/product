@@ -24,7 +24,10 @@ def migrate(cr, version):
     print 'Migrating product_uom_prices'
     if not version:
         return
+    install_module(cr, 'product_template_tree_prices')
+
     registry = RegistryManager.get(cr.dbname)
+
     cr.execute(
         "SELECT currency_id FROM product_price_type WHERE field = 'list_price'")
     currency_id = cr.fetchall()[0][0]
@@ -43,3 +46,16 @@ def migrate(cr, version):
         value,
         condition,
     )
+
+
+def install_module(cr, module):
+    registry = RegistryManager.get(cr.dbname)
+    model = registry['ir.module.module']
+    module_ids = model.search(
+        cr, SUPERUSER_ID,
+        [('name', '=', module)], {})
+    print 'install module %s' % module
+    print 'ids for module: %s' % module_ids
+    model.button_install(
+        cr, SUPERUSER_ID, module_ids, {})
+    print 'module installed'
