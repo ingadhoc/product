@@ -6,6 +6,11 @@
             <field name="field">computed_list_price</field> 
         </record>
 
+        <!-- desactivamos list_price type -->
+        <record id="product.list_price" model="product.price.type">
+            <field name="active" eval="False"/>
+        </record>
+
         <!-- Configure pricelist to use computed list price -->
         <record id="product.item0" forcecreate="False" model="product.pricelist.item">
             <field name="base" ref="computed_list_price"/>
