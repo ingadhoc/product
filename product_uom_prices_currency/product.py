@@ -35,7 +35,9 @@ class product_uom_price(models.Model):
         template = self.product_tmpl_id
         if template.other_currency_id:
             self.price_on_base_currency = template.other_currency_id.compute(
-                self.price, template.computed_list_price_currency_id)
+                self.price,
+                template.computed_list_price_currency_id,
+                round=False)
         else:
             self.price_on_base_currency
 
@@ -65,7 +67,7 @@ class product_template(models.Model):
                 'Set Prices from "computed_list_price" type "by_uom_currency"')
             self.other_currency_list_price = self._get_price_type(
                 'computed_list_price').currency_id.compute(
-                self.computed_list_price, self.other_currency_id)
+                self.computed_list_price, self.other_currency_id, round=False)
         else:
             return super(product_template, self).set_prices()
 
@@ -79,7 +81,8 @@ class product_template(models.Model):
             if self.other_currency_id:
                 return self.other_currency_id.compute(
                     uom_price,
-                    self._get_price_type('computed_list_price').currency_id)
+                    self._get_price_type('computed_list_price').currency_id,
+                    round=False)
             else:
                 return False
         return super(product_template, self).get_computed_list_price()

@@ -81,7 +81,7 @@ class ProductTemplate(models.Model):
             replenishment_cost = self.replenishment_base_cost
             if from_currency != to_currency:
                 replenishment_cost = from_currency.compute(
-                        replenishment_cost, to_currency)
+                        replenishment_cost, to_currency, round=False)
         return replenishment_cost
 
 
