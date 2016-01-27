@@ -4,10 +4,7 @@
 # directory
 ##############################################################################
 import time
-from openerp.tools.translate import _
-
 from openerp.report import report_sxw
-from openerp.report.report_sxw import rml_parse
 
 
 class Parser(report_sxw.rml_parse):
