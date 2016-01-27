@@ -52,7 +52,15 @@ class product_template(models.Model):
         selection_add=[('by_uom_currency', 'By UOM and Currency')],
         )
     other_currency_uom_price_ids = fields.One2many(
-        related='uom_price_ids'
+        # related='uom_price_ids'
+        # we dont use related becuase with onchange it changes this field
+        # and try to create two times the same record
+        'product.uom.price',
+        'product_tmpl_id',
+        string='UOM Prices',
+        help="Only uoms in this list will be available in sale order lines. "
+        "Set a diferent price for this uom. Set the price as 0 and the price "
+        "will be calculated as sale price * uom ratio"
         )
 
     @api.multi
