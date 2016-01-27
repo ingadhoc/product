@@ -5,6 +5,7 @@
 ##############################################################################
 from openerp import models, fields, api
 import openerp.addons.decimal_precision as dp
+from openerp.exceptions import Warning
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -44,6 +45,10 @@ class product_template(models.Model):
         if self.list_price_type == 'by_margin':
             _logger.info(
                 'Set Prices from "computed_list_price" type "by_margin"')
+            if not self.replenishment_cost:
+                raise Warning((
+                    'You can not set Computed Price with margin if '
+                    'Replenishment Cost is 0'))
             self.sale_margin = ((
                 (self.computed_list_price - self.sale_surcharge) /
                 self.replenishment_cost) - 1) * 100.0
