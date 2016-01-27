@@ -45,6 +45,7 @@ Video TUTORIAL: https://www.youtube.com/watch?v=-jGsbEZDOJE
         'demo/product_demo.xml',
     ],
     'data': [
+        'data.xml',
         'view/product_view.xml',
         'view/res_company_view.xml',
         'view/sale_view.xml',

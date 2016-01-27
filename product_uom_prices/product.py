@@ -57,7 +57,8 @@ class product_template(models.Model):
         string='UOM Prices',
         help="Only uoms in this list will be available in sale order lines. "
         "Set a diferent price for this uom. Set the price as 0 and the price "
-        "will be calculated as sale price * uom ratio")
+        "will be calculated as sale price * uom ratio"
+        )
 
     @api.one
     @api.constrains('uom_price_ids')
