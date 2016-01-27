@@ -36,6 +36,7 @@ class product_template(models.Model):
         'lst_price': fields.function(
             _product_lst_price, type='float',
             string='Public Price',
+            readonly=True,
             digits_compute=dp.get_precision('Product Price')),
         }
 
