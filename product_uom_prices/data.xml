@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+        <!-- Set Manage Multiple Units of Measure if not already configured -->
+        <record id="base.group_user" model="res.groups">
+            <field eval="[(4, ref('product.group_uom'))]" name="implied_ids"/>
+        </record>
+
+    </data>
+</openerp>
+
