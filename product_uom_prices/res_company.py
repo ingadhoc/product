@@ -14,4 +14,5 @@ class res_company(models.Model):
 
     default_uom_prices = fields.Boolean(
         string="Default uom price",
-        help="When choosing a product , brings the default measurement unit list price UOM")
+        help="When choosing a product , brings the default measurement unit "
+        "list price UOM")
