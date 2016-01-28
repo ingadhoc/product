@@ -18,7 +18,6 @@ class product_pricelist(models.Model):
     def _price_rule_get_multi(self, pricelist, products_by_qty_by_partner):
         res = super(product_pricelist, self)._price_rule_get_multi(
             pricelist, products_by_qty_by_partner)
-        print 'res', res
         if self._context.get('taxes_included'):
             company_id = (
                 self._context.get('company_id') or self.env.user.company_id.id)
