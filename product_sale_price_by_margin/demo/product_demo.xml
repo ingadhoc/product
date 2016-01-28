@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+
+<record id="computed_by_margin" model="product.product">
+    <field name="name">Computed by Margin Product</field>
+    <field name="categ_id" ref="product.product_category_4"/>
+    <field name="replenishment_base_cost">50</field>
+    <field name="replenishment_base_cost_currency_id" ref="base.USD"/>
+    <field name="standard_price">60</field>
+    <field name="sale_margin">50</field>
+    <field name="sale_surcharge">10</field>
+    <field name="list_price_type">by_margin</field>
+    <field name="type">service</field>
+</record>
+
+    </data>
+</openerp>
