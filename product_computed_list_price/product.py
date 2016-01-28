@@ -19,7 +19,12 @@ class product_product(models.Model):
         )
 
     @api.multi
+    @api.depends('price_extra', 'computed_list_price', 'uom_id', 'uos_id')
     def _computed_get_product_lst_price(self):
+        company_id = (
+            self._context.get('company_id') or self.env.user.company_id.id)
+        taxes_included = self._context.get('taxes_included')
+
         for product in self:
             if 'uom' in self._context:
                 uom = product.uos_id or product.uom_id
@@ -27,10 +32,23 @@ class product_product(models.Model):
                     uom.id, product.computed_list_price, self._context['uom'])
             else:
                 lst_price = product.computed_list_price
+
+            # for compatibility with product_prices_taxes_included module
+            if taxes_included:
+                lst_price = product.taxes_id.filtered(
+                    lambda x: x.company_id.id == company_id).compute_all(
+                    lst_price, 1.0, product=product)['total_included']
+
             product.lst_price = lst_price + product.price_extra
 
     @api.multi
     def _computed_set_product_lst_price(self):
+        # for compatibility with product_prices_taxes_included module
+        if self._context.get('taxes_included'):
+            raise Warning(_(
+                "You can not set list price if you are working with 'Taxes "
+                "Included' in the context"))
+
         for product in self:
             lst_price = product.lst_price
             if 'uom' in self._context:
@@ -43,9 +61,29 @@ class product_product(models.Model):
 class product_template(models.Model):
     _inherit = "product.template"
 
+    @api.multi
+    @api.depends('computed_list_price')
+    def _computed_get_product_lst_price(self):
+        company_id = (
+            self._context.get('company_id') or self.env.user.company_id.id)
+        taxes_included = self._context.get('taxes_included')
+
+        for product in self:
+            lst_price = product.computed_list_price
+            if taxes_included:
+                lst_price = product.taxes_id.filtered(
+                    lambda x: x.company_id.id == company_id).compute_all(
+                    lst_price, 1.0, product=product)['total_included']
+
+            product.lst_price = lst_price
+
     # lst_price now cames from computed_list_price
     lst_price = fields.Float(
-        related='computed_list_price',
+        # for compatibility with product_prices_taxes_included module, if not
+        # we can use related field directly
+        # related='computed_list_price',
+        compute='_computed_get_product_lst_price',
+        readonly=True,
         )
     computed_list_price = fields.Float(
         string='Sale Price',
@@ -88,10 +126,10 @@ class product_template(models.Model):
         'list_price',
         )
     def _get_computed_list_price(self):
+        _logger.info('Getting Compute List Price for products: "%s"' % (
+            self.ids))
         for template in self:
             computed_list_price = template.get_computed_list_price()
-            _logger.info('Compute Lis Price calculated = "%s"' % (
-                computed_list_price))
             template.computed_list_price = computed_list_price
 
     @api.multi
@@ -104,12 +142,10 @@ class product_template(models.Model):
     def set_prices(self):
         self.ensure_one()
         if self.list_price_type == 'manual':
-            _logger.info('Set Prices from "computed_list_price" type "manual"')
             self.list_price = self.computed_list_price
 
     @api.multi
     def get_computed_list_price(self):
-        _logger.info('Get computed_list_price')
         self.ensure_one()
         return self.list_price
 
