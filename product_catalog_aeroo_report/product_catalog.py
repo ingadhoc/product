@@ -13,35 +13,40 @@ class product_catalog_report(models.Model):
     name = fields.Char(
         'Name',
         required=True
-    )
+        )
     products_order = fields.Char(
         'Products Order Sintax',
         help='for eg. name desc', required=False
-    )
+        )
     categories_order = fields.Char(
         'Categories Order Sintax',
         help='for eg. name desc',
-    )
+        )
     include_sub_categories = fields.Boolean(
         'Include Subcategories?',
-    )
+        )
     only_with_stock = fields.Boolean(
         'Only With Stock Products?',
-    )
+        )
+    taxes_included = fields.Boolean(
+        'Taxes Included?',
+        help='Export prices with taxes included by default? This value will be'
+        ' used as default on print catalog wizard'
+        )
     print_product_uom = fields.Boolean(
         'Print Product UOM?',
-    )
+        )
     product_type = fields.Selection(
         [('product.template', 'Product Template'),
          ('product.product', 'Product')], 'Product Type',
         required=True
-    )
+        )
     prod_display_type = fields.Selection(
         [('prod_per_line', 'One Product Per Line'),
          ('prod_list', 'Product List'),
          ('variants', 'Variants'),
          ], 'Product Display Type',
-    )
+        )
     report_xml_id = fields.Many2one(
         'ir.actions.report.xml',
         'Report XML',
@@ -50,27 +55,31 @@ class product_catalog_report(models.Model):
         context={'default_report_type': 'aeroo',
                  'default_model': 'product.product'},
         required=True
-    )
+        )
     category_ids = fields.Many2many(
         'product.category',
         'product_catalog_report_categories',
         'product_catalog_report_id',
         'category_id',
         'Product Categories',
-    )
+        )
     pricelist_ids = fields.Many2many(
         'product.pricelist',
         'product_catalog_report_pricelists',
         'product_catalog_report_id',
         'pricelist_id',
         'Pricelist',
-    )
+        )
 
     @api.multi
     def prepare_report(self):
         context = self._context.copy()
         categories = self.category_ids
 
+        # because this value usually cames from wizard, if we call report from
+        # this model, we add taxes_included parameter
+        if 'taxes_included' not in context:
+            context['taxes_included'] = self.taxes_included
         if self.include_sub_categories and categories:
             categories = self.env['product.category'].search(
                 [('id', 'child_of', categories.ids)])
