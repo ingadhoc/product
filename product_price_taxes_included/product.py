@@ -3,7 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import models, api, _
+from openerp import models, _
 from openerp.osv import fields
 from openerp.exceptions import Warning
 import openerp.addons.decimal_precision as dp
@@ -76,27 +76,3 @@ class product_product(models.Model):
             string='Public Price',
             digits_compute=dp.get_precision('Product Price')),
         }
-
-
-class product_pricelist(models.Model):
-    _inherit = "product.pricelist"
-
-    @api.model
-    def _price_get_multi(self, pricelist, products_by_qty_by_partner):
-        res = super(product_pricelist, self)._price_get_multi(
-            pricelist, products_by_qty_by_partner)
-        if self._context.get('taxes_included'):
-            company_id = (
-                self._context.get('company_id') or self.env.user.company_id.id)
-            for product, qty, partner in products_by_qty_by_partner:
-                if pricelist.type == 'purchase':
-                    res[product.id] = product.supplier_taxes_id.filtered(
-                        lambda x: x.company_id.id == company_id).compute_all(
-                        res[product.id], qty, product=product,
-                        partner=partner)['total_included']
-                else:
-                    res[product.id] = product.taxes_id.filtered(
-                        lambda x: x.company_id.id == company_id).compute_all(
-                        res[product.id], qty, product=product,
-                        partner=partner)['total_included']
-        return res
