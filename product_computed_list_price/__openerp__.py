@@ -19,39 +19,33 @@
 #
 ##############################################################################
 {
-    'name': 'Product UOM Prices',
-    'version': '8.0.0.5.0',
-    'category': 'base.module_category_knowledge_management',
+    'name': 'Product Computed List Price',
+    'version': '8.0.0.0.0',
+    'category': 'Product',
+    'sequence': 14,
+    'summary': '',
     'description': """
-Product UOM Prices
-==================
-* Add a o2m field on products to allow defining prices in different uoms
-* Add a new type of price calculation on pricelists (for the new o2m field
-    on products)
-* Change domain on sale order lines so that only defined uoms can be choosen.
-
-Video TUTORIAL: https://www.youtube.com/watch?v=-jGsbEZDOJE
-""",
-    'author': 'ADHOC SA.',
+Product Computed List Price
+===========================
+    """,
+    'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
+    'images': [
+    ],
     'depends': [
-        'sale',
-        'product_computed_list_price',
-        # 'product_price_currency',
-        ],
-    'test': [],
+        'product',
+    ],
+    'data': [
+        'product_view.xml',
+        'data.xml',
+             ],
     'demo': [
         'demo/product_demo.xml',
     ],
-    'data': [
-        'data.xml',
-        'view/product_view.xml',
-        'view/res_company_view.xml',
-        'view/sale_view.xml',
-        'security/ir.model.access.csv',
+    'test': [
     ],
-    'installable': True
-    }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    'installable': True,
+    'auto_install': False,
+    'application': False,
+}

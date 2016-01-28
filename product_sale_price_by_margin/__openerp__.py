@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Sale Price By Margin',
-    'version': '8.0.0.2.0',
+    'version': '8.0.0.3.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -40,10 +40,12 @@ Product Sale Price By Margin
         # product_replenishment_cost module
         'product_replenishment_cost_currency',
         # 'product_replenishment_cost',
+        'product_computed_list_price',
     ],
     'data': ['product_view.xml'
              ],
     'demo': [
+        'demo/product_demo.xml',
     ],
     'test': [
     ],

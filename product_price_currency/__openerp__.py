@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Price Currency',
-    'version': '8.0.1.1.1',
+    'version': '8.0.1.2.1',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -34,12 +34,14 @@ Product Price Currency
     'images': [
     ],
     'depends': [
-        'sale',
+        'product_computed_list_price',
     ],
     'data': [
         'product_view.xml',
+        'data.xml',
     ],
     'demo': [
+        'demo/product_demo.xml',
     ],
     'test': [
     ],
