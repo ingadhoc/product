@@ -21,10 +21,11 @@ class product_template(models.Model):
         company_id = (
             context.get('company_id') or
             self.pool['res.users'].browse(cr, uid, uid, context).company_id.id)
+        taxes_included = context.get('taxes_included')
 
         for product in self.browse(cr, uid, ids, context=context):
             lst_price = product.list_price
-            if context.get('taxes_included'):
+            if taxes_included:
                 lst_price = self.pool['account.tax'].compute_all(
                     cr, uid, product.taxes_id.filtered(
                         lambda x: x.company_id.id == company_id),
