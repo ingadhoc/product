@@ -14,12 +14,12 @@ class product_product(models.Model):
 
     # lst_price now cames from computed_list_price
     lst_price = fields.Float(
-        compute='_product_lst_price',
-        inverse='_set_product_lst_price',
+        compute='_computed_get_product_lst_price',
+        inverse='_computed_set_product_lst_price',
         )
 
     @api.multi
-    def _product_lst_price(self):
+    def _computed_get_product_lst_price(self):
         for product in self:
             if 'uom' in self._context:
                 uom = product.uos_id or product.uom_id
@@ -30,7 +30,7 @@ class product_product(models.Model):
             product.lst_price = lst_price + product.price_extra
 
     @api.multi
-    def _set_product_lst_price(self):
+    def _computed_set_product_lst_price(self):
         for product in self:
             lst_price = product.lst_price
             if 'uom' in self._context:
