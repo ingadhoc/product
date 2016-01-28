@@ -71,8 +71,6 @@ class product_template(models.Model):
                 raise Warning(_(
                     'You must configure "Other Currency" for product %s' % (
                         self.name)))
-            _logger.info(
-                'Set Prices from "computed_list_price" type "by_uom_currency"')
             self.other_currency_list_price = self._get_price_type(
                 'computed_list_price').currency_id.compute(
                 self.computed_list_price, self.other_currency_id, round=False)
@@ -83,8 +81,6 @@ class product_template(models.Model):
     def get_computed_list_price(self):
         self.ensure_one()
         if self.list_price_type == 'by_uom_currency':
-            _logger.info(
-                'Get computed_list_price "by_uom_currency"')
             uom_price = self.get_uom_price() or self.other_currency_list_price
             if self.other_currency_id:
                 return self.other_currency_id.compute(

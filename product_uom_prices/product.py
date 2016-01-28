@@ -81,8 +81,6 @@ class product_template(models.Model):
     def set_prices(self):
         self.ensure_one()
         if self.list_price_type == 'by_uom':
-            _logger.info(
-                'Set Prices from "computed_list_price" type "by_uom"')
             self.list_price = self.computed_list_price
         else:
             return super(product_template, self).set_prices()
@@ -112,7 +110,6 @@ class product_template(models.Model):
     def get_computed_list_price(self):
         self.ensure_one()
         if self.list_price_type == 'by_uom':
-            _logger.info('Get computed_list_price for "by_uom" type')
             return self.get_uom_price() or self.list_price
         return super(product_template, self).get_computed_list_price()
 
