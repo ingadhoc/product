@@ -9,6 +9,7 @@
                 <form string="Product Catalog Report">
                     <group>
                         <field name="product_catalog_report_id"/>
+                        <field name="taxes_included"/>
                     </group>
                     <footer>
                         <button name="generate_report" string="Print" type="object" class="oe_highlight"/>

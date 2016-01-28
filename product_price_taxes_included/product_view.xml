@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    <!-- Product Product Views -->
+
+    <!-- Product Template Views -->
+        <record id="product_template_search_view" model="ir.ui.view">
+            <field name="name">product.template.filter</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"></field>
+            <field name="arch" type="xml">
+                <field name="pricelist_id" position="after">
+                    <filter string="Taxes Included" name="taxes_included" context="{'taxes_included': True}"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>
