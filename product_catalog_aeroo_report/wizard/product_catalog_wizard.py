@@ -3,33 +3,28 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp.osv import fields, osv
+from openerp import fields, api, models
 
 
-class product_catalog(osv.osv_memory):
+class product_catalog(models.TransientModel):
     _name = 'product_catalog'
     _description = 'Wizard to generate the Product Catalog Report with Aeroo'
 
-    _columns = {
-        'product_catalog_report_id': fields.many2one(
-            'product.product_catalog_report',
-            'Product Catalog',
-            required=True),
-        'taxes_included': fields.boolean('Taxes Included'),
-    }
+    product_catalog_report_id = fields.Many2one(
+        'product.product_catalog_report',
+        'Product Catalog',
+        required=True
+        )
+    taxes_included = fields.Boolean(
+        'Taxes Included',
+        )
 
-    _defaults = {
-    }
+    @api.onchange('product_catalog_report_id')
+    def change_product_catalog_report(self):
+        self.taxes_included = self.product_catalog_report_id.taxes_included
 
-    def generate_report(self, cr, uid, ids, context=None):
-        if not context:
-            context = {}
-        wizard = self.browse(cr, uid, ids)[0]
-
-        catalog = wizard.product_catalog_report_id
-        if not catalog:
-            return {'type': 'ir.actions.act_window_close'}
-        context['taxes_included'] = wizard.taxes_included
-        return self.pool.get(
-            'product.product_catalog_report').generate_report(
-                cr, uid, [catalog.id], context)
+    @api.multi
+    def generate_report(self):
+        self.ensure_one()
+        return self.product_catalog_report_id.with_context(
+            taxes_included=self.taxes_included).generate_report()
