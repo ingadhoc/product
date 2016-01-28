@@ -19,15 +19,14 @@
 #
 ##############################################################################
 {
-    'name': 'Product Catalog Aeroo Report',
-    'version': '8.0.1.1.0',
-    'category': 'Aeroo Reporting',
+    'name': 'Product Price Taxes Included or Not',
+    'version': '8.0.0.0.0',
+    'category': 'Product',
     'sequence': 14,
     'summary': '',
     'description': """
-Product Catalog Aeroo Report
-============================
-# TODO add check on report if stock module is installed
+Product Price Taxes Included or Not
+===================================
     """,
     'author':  'ADHOC SA',
     'website': 'www.adhoc.com.ar',
@@ -35,23 +34,16 @@ Product Catalog Aeroo Report
     'images': [
     ],
     'depends': [
-        # 'product',
-        'product_price_taxes_included',
-        'report_aeroo',
+        'account',
     ],
     'data': [
-        'wizard/product_catalog_wizard.xml',
-        'security/ir.model.access.csv',
-        'product_catalog.xml',
-        'report/product_catalog_view.xml'
+        'product_view.xml',
     ],
     'demo': [
-        'demo/demo_data.xml',
     ],
     'test': [
     ],
     'installable': True,
     'auto_install': False,
-    'application': True,
+    'application': False,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
