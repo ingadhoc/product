@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<openerp>
+<data>
+    <record id="product.product_template_action" model="ir.actions.act_window">
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+</data>
+</openerp>
+
