@@ -57,6 +57,13 @@ class product_product(models.Model):
                     self._context['uom'], lst_price, uom.id)
             product.computed_list_price = lst_price - product.price_extra
 
+    @api.multi
+    def price_get(self, ptype='computed_list_price'):
+        """
+        Use computed price as default
+        """
+        return super(product_product, self).price_get(ptype)
+
 
 class product_template(models.Model):
     _inherit = "product.template"

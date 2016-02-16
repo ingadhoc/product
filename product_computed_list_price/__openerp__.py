@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Computed List Price',
-    'version': '8.0.0.0.0',
+    'version': '8.0.0.0.1',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
