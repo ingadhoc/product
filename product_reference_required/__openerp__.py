@@ -43,7 +43,6 @@ Product Reference Requiered
     'demo': [
         # 'demo/product.product.csv',
         'demo/default_code_sequence_demo.xml',
-        'demo/reference_required_demo.yml',
     ],
     'test': [
     ],
