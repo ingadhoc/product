@@ -3,43 +3,26 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import models, fields, _, api
+from openerp import models, fields, api
 import openerp.addons.decimal_precision as dp
-from openerp.exceptions import Warning
+# from openerp.exceptions import Warning
 import logging
 _logger = logging.getLogger(__name__)
 
 
-class product_uom_price(models.Model):
+class ProductSaleUom(models.Model):
 
-    """"""
+    _inherit = 'product.sale.uom'
 
-    _name = 'product.uom.price'
-    _description = 'Product Uom Price'
-
-    product_tmpl_id = fields.Many2one(
-        'product.template',
-        string='Product Template'
-        )
-    uom_id = fields.Many2one(
-        'product.uom',
-        string='UOM',
-        required=True,
-        )
     price = fields.Float(
         'Price',
         digits=dp.get_precision('Price'),
         help="Sale Price for this UOM.",
-        required=True
+        required=False
         )
 
-    _sql_constraints = [
-        ('price_uniq', 'unique(product_tmpl_id, uom_id)',
-            'UOM mast be unique per Product Template!'),
-    ]
 
-
-class product_template(models.Model):
+class ProductTemplate(models.Model):
 
     """"""
 
@@ -52,65 +35,74 @@ class product_template(models.Model):
         related='uom_id.category_id'
         )
     uom_price_ids = fields.One2many(
-        'product.uom.price',
+        'product.sale.uom',
         'product_tmpl_id',
+        copy=True,
         string='UOM Prices',
         help="Only uoms in this list will be available in sale order lines. "
         "Set a diferent price for this uom. Set the price as 0 and the price "
         "will be calculated as sale price * uom ratio"
         )
 
-    @api.one
-    @api.constrains('uom_price_ids')
-    def _check_uoms(self):
-        uom_categ_ids = [x.uom_id.category_id.id for x in self.uom_price_ids]
-        uom_categ_ids = list(set(uom_categ_ids))
-        uom_ids = [x.uom_id.id for x in self.uom_price_ids]
-        if self.uom_id.id in uom_ids:
-            raise Warning(_('UOM %s is the default product uom, \
-                you can not se it in UOM prices') % (self.uom_id.name))
-        if (
-                len(uom_categ_ids) > 1 or
-                (uom_categ_ids and
-                    uom_categ_ids[0] != self.uom_id.category_id.id)
-                ):
-            raise Warning(_('UOM Prices Category must be of the same \
-                UOM Category as Product Unit of Measure'))
-
     @api.multi
-    def set_prices(self):
+    def set_prices(self, computed_list_price):
         self.ensure_one()
         if self.list_price_type == 'by_uom':
-            self.list_price = self.computed_list_price
+            # self.uom_price_ids.filtered(lambda x: x.)
+            # we update or create a uom line
+            uom_price = self.env['product.sale.uom'].search([
+                ('uom_id', '=', self.uom_id.id),
+                ('product_tmpl_id', '=', self.id),
+                ], limit=1)
+            if uom_price:
+                uom_price.price = computed_list_price
+            else:
+                self.env['product.sale.uom'].create({
+                    'sequence': 10,
+                    'uom_id': self.uom_id.id,
+                    'product_tmpl_id': self.id,
+                    'price': computed_list_price,
+                    })
         else:
-            return super(product_template, self).set_prices()
+            return super(ProductTemplate, self).set_prices(
+                computed_list_price)
 
     @api.multi
     def get_uom_price(self):
         self.ensure_one()
         """
-        If 'uom' in context we try to find a uom prices
-        If we don't found or 'uom' not in context, we return false
+        If 'uom' in context we try to find a uom price
+        If not we try to return a product price for product uom
+        If not, we convert the first one to product uom
         """
-        uom_prices = False
         if 'uom' in self._context:
-            uom_prices = self.env['product.uom.price'].search([
+            uom_price = self.env['product.sale.uom'].search([
                         ('uom_id', '=', self._context['uom']),
-                        ('product_tmpl_id', '=', self.id)])
-        if uom_prices:
-            product_uom = self.uom_id or self.uos_id
-            # we convert from context uom to product uom because later
-            # _price_get function convert it in the other side
-            return self.env['product.uom']._compute_price(
-                self._context['uom'], uom_prices.price, product_uom.id)
+                        ('product_tmpl_id', '=', self.id)], limit=1)
         else:
+            uom_price = self.env['product.sale.uom'].search([
+                        ('product_tmpl_id', '=', self.id),
+                        ('uom_id', '=', self.uom_id.id),
+                        ], limit=1)
+            if not uom_price:
+                uom_price = self.env['product.sale.uom'].search([
+                            ('product_tmpl_id', '=', self.id)], limit=1)
+        if not uom_price:
             return False
+        # we convert from context uom to product uom because later
+        # _price_get function convert it in the other side
+        product_uom = self.uom_id or self.uos_id
+        if uom_price.uom_id != uom_price:
+            return self.env['product.uom']._compute_price(
+                uom_price.uom_id.id, uom_price.price, product_uom.id)
+        else:
+            return uom_price.price
 
     @api.multi
     def get_computed_list_price(self):
         self.ensure_one()
         if self.list_price_type == 'by_uom':
-            return self.get_uom_price() or self.list_price
-        return super(product_template, self).get_computed_list_price()
+            return self.get_uom_price()
+        return super(ProductTemplate, self).get_computed_list_price()
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
