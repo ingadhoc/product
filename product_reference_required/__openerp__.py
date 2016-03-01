@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Reference Requiered',
-    'version': '8.0.1.0.1',
+    'version': '8.0.1.0.2',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -43,11 +43,13 @@ Product Reference Requiered
     'demo': [
         # 'demo/product.product.csv',
         'demo/default_code_sequence_demo.xml',
+        'demo/reference_required_demo.yml',
     ],
     'test': [
     ],
     'installable': True,
     'auto_install': False,
     'application': False,
+    'pre_init_hook': 'set_default_code',
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
