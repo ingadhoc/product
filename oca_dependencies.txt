@@ -1,2 +1,2 @@
-aeroo_reports https://github.com/aeroo/aeroo_reports.git
+adhoc-aeroo_reports https://github.com/ingadhoc/aeroo_reports.git
 margin-analysis https://github.com/OCA/margin-analysis.git
