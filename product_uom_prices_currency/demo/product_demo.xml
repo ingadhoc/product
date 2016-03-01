@@ -6,16 +6,22 @@
     <field name="name">Computed by UOM and Currency Product</field>
     <field name="categ_id" ref="product.product_category_4"/>
     <field name="standard_price">60</field>
-    <field name="other_currency_list_price">10</field>
-    <field name="other_currency_id" ref="base.USD"/>
     <field name="list_price_type">by_uom_currency</field>
+    <field name="other_currency_id" ref="base.USD"/>
     <field name="type">service</field>
 </record>
-    <record id="computed_by_uom_currency_line_1" model="product.uom.price">
+
+    <record id="computed_by_uom_currency_line_1" model="product.sale.uom">
         <field name="product_tmpl_id" ref="computed_by_uom_currency_product_template"/>
         <field name="uom_id" ref="product.product_uom_dozen"/>
         <field name="price">110</field>
+        <field name="sequence" eval="10"/>
     </record>
-
+    <record id="computed_by_uom_line_1" model="product.sale.uom">
+        <field name="product_tmpl_id" ref="computed_by_uom_currency_product_template"/>
+        <field name="uom_id" ref="product.product_uom_unit"/>
+        <field name="price">10</field>
+        <field name="sequence" eval="20"/>
+    </record>
     </data>
 </openerp>

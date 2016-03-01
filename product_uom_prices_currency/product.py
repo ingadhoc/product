@@ -10,15 +10,12 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class product_uom_price(models.Model):
+class ProductSaleUom(models.Model):
 
     """"""
 
-    _inherit = 'product.uom.price'
+    _inherit = 'product.sale.uom'
 
-    product_tmpl_id = fields.Many2one(
-        'product.template',
-        string='Product Template')
     price_on_base_currency = fields.Float(
         'Price',
         digits=dp.get_precision('Product Price'),
@@ -55,16 +52,17 @@ class product_template(models.Model):
         # related='uom_price_ids'
         # we dont use related becuase with onchange it changes this field
         # and try to create two times the same record
-        'product.uom.price',
+        'product.sale.uom',
         'product_tmpl_id',
         string='UOM Prices',
+        copy=True,
         help="Only uoms in this list will be available in sale order lines. "
         "Set a diferent price for this uom. Set the price as 0 and the price "
         "will be calculated as sale price * uom ratio"
         )
 
     @api.multi
-    def set_prices(self):
+    def set_prices(self, computed_list_price):
         self.ensure_one()
         if self.list_price_type == 'by_uom_currency':
             if not self.other_currency_id:
@@ -73,16 +71,17 @@ class product_template(models.Model):
                         self.name)))
             self.other_currency_list_price = self._get_price_type(
                 'computed_list_price').currency_id.compute(
-                self.computed_list_price, self.other_currency_id, round=False)
+                computed_list_price, self.other_currency_id, round=False)
         else:
-            return super(product_template, self).set_prices()
+            return super(product_template, self).set_prices(
+                computed_list_price)
 
     @api.multi
     def get_computed_list_price(self):
         self.ensure_one()
         if self.list_price_type == 'by_uom_currency':
-            uom_price = self.get_uom_price() or self.other_currency_list_price
-            if self.other_currency_id:
+            uom_price = self.get_uom_price()
+            if self.other_currency_id and uom_price:
                 return self.other_currency_id.compute(
                     uom_price,
                     self._get_price_type('computed_list_price').currency_id,
