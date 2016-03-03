@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Price Currency',
-    'version': '8.0.1.2.1',
+    'version': '8.0.1.2.2',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
