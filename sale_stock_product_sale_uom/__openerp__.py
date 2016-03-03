@@ -19,19 +19,19 @@
 #
 ##############################################################################
 {
-    'name': 'Sale Stock Product UOM Prices Integration',
+    'name': 'Sale Stock Product Sale Uoms Integration',
     'version': '8.0.0.0.0',
     'category': 'base.module_category_knowledge_management',
     'description': """
-Sale Stock Product UOM Prices Integration
-=========================================
+Sale Stock Product Sale Uoms Integration
+========================================
 """,
     'author': 'ADHOC SA.',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'depends': [
         'sale_stock',
-        'product_uom_prices',
+        'product_sale_uom',
         ],
     'test': [],
     'demo': [],
