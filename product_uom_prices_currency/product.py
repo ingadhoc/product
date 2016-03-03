@@ -21,22 +21,16 @@ class ProductSaleUom(models.Model):
         digits=dp.get_precision('Product Price'),
         compute='get_price_on_base_currency'
         )
-    price = fields.Float(
-        string='Price on Other Currency',
-        help='This will be the stored price',
-        )
 
     @api.one
     @api.depends('price', 'product_tmpl_id.other_currency_id')
     def get_price_on_base_currency(self):
         template = self.product_tmpl_id
-        if template.other_currency_id:
+        if template.other_currency_id and self.price:
             self.price_on_base_currency = template.other_currency_id.compute(
                 self.price,
                 template.computed_list_price_currency_id,
                 round=False)
-        else:
-            self.price_on_base_currency
 
 
 class product_template(models.Model):
@@ -64,14 +58,27 @@ class product_template(models.Model):
     @api.multi
     def set_prices(self, computed_list_price):
         self.ensure_one()
-        if self.list_price_type == 'by_uom_currency':
+        if self.list_price_type == 'by_uom_currency' and computed_list_price:
             if not self.other_currency_id:
                 raise Warning(_(
                     'You must configure "Other Currency" for product %s' % (
                         self.name)))
-            self.other_currency_list_price = self._get_price_type(
-                'computed_list_price').currency_id.compute(
-                computed_list_price, self.other_currency_id, round=False)
+            uom_price = self.env['product.sale.uom'].search([
+                ('uom_id', '=', self.uom_id.id),
+                ('product_tmpl_id', '=', self.id),
+                ], limit=1)
+            other_currency_price = (
+                self.computed_list_price_currency_id.compute(
+                    computed_list_price, self.other_currency_id, round=False))
+            if uom_price:
+                uom_price.price = other_currency_price
+            else:
+                self.env['product.sale.uom'].create({
+                    'sequence': 5,
+                    'uom_id': self.uom_id.id,
+                    'product_tmpl_id': self.id,
+                    'price': other_currency_price,
+                    })
         else:
             return super(product_template, self).set_prices(
                 computed_list_price)
@@ -80,11 +87,11 @@ class product_template(models.Model):
     def get_computed_list_price(self):
         self.ensure_one()
         if self.list_price_type == 'by_uom_currency':
-            uom_price = self.get_uom_price()
-            if self.other_currency_id and uom_price:
+            price = self.get_uom_price()
+            if self.other_currency_id and price:
                 return self.other_currency_id.compute(
-                    uom_price,
-                    self._get_price_type('computed_list_price').currency_id,
+                    price,
+                    self.computed_list_price_currency_id,
                     round=False)
             else:
                 return False

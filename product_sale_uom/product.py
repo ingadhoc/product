@@ -17,6 +17,7 @@ class ProductSaleUom(models.Model):
 
     sequence = fields.Integer(
         'Sequence',
+        default=10,
         )
     product_tmpl_id = fields.Many2one(
         'product.template',
