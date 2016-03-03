@@ -17,7 +17,7 @@ def create_product_sale_uom(cr):
         [('list_price_type', '=', 'by_uom_currency')], {})
     for template_id in by_uom_template_ids:
         template_read = registry['product.template'].read(
-            cr, SUPERUSER_ID, template_id, ['uom_id', 'list_price'])
+            cr, SUPERUSER_ID, template_id, ['uom_id', 'other_currency_list_price'])
         uom_id = template_read['uom_id'][0]
         price = template_read['other_currency_list_price']
         print 'template_id', template_id
