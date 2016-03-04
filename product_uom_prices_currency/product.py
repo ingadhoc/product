@@ -10,36 +10,27 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class product_uom_price(models.Model):
+class ProductSaleUom(models.Model):
 
     """"""
 
-    _inherit = 'product.uom.price'
+    _inherit = 'product.sale.uom'
 
-    product_tmpl_id = fields.Many2one(
-        'product.template',
-        string='Product Template')
     price_on_base_currency = fields.Float(
         'Price',
         digits=dp.get_precision('Product Price'),
         compute='get_price_on_base_currency'
-        )
-    price = fields.Float(
-        string='Price on Other Currency',
-        help='This will be the stored price',
         )
 
     @api.one
     @api.depends('price', 'product_tmpl_id.other_currency_id')
     def get_price_on_base_currency(self):
         template = self.product_tmpl_id
-        if template.other_currency_id:
+        if template.other_currency_id and self.price:
             self.price_on_base_currency = template.other_currency_id.compute(
                 self.price,
                 template.computed_list_price_currency_id,
                 round=False)
-        else:
-            self.price_on_base_currency
 
 
 class product_template(models.Model):
@@ -55,37 +46,52 @@ class product_template(models.Model):
         # related='uom_price_ids'
         # we dont use related becuase with onchange it changes this field
         # and try to create two times the same record
-        'product.uom.price',
+        'product.sale.uom',
         'product_tmpl_id',
         string='UOM Prices',
+        copy=True,
         help="Only uoms in this list will be available in sale order lines. "
         "Set a diferent price for this uom. Set the price as 0 and the price "
         "will be calculated as sale price * uom ratio"
         )
 
     @api.multi
-    def set_prices(self):
+    def set_prices(self, computed_list_price):
         self.ensure_one()
-        if self.list_price_type == 'by_uom_currency':
+        if self.list_price_type == 'by_uom_currency' and computed_list_price:
             if not self.other_currency_id:
                 raise Warning(_(
                     'You must configure "Other Currency" for product %s' % (
                         self.name)))
-            self.other_currency_list_price = self._get_price_type(
-                'computed_list_price').currency_id.compute(
-                self.computed_list_price, self.other_currency_id, round=False)
+            uom_price = self.env['product.sale.uom'].search([
+                ('uom_id', '=', self.uom_id.id),
+                ('product_tmpl_id', '=', self.id),
+                ], limit=1)
+            other_currency_price = (
+                self.computed_list_price_currency_id.compute(
+                    computed_list_price, self.other_currency_id, round=False))
+            if uom_price:
+                uom_price.price = other_currency_price
+            else:
+                self.env['product.sale.uom'].create({
+                    'sequence': 5,
+                    'uom_id': self.uom_id.id,
+                    'product_tmpl_id': self.id,
+                    'price': other_currency_price,
+                    })
         else:
-            return super(product_template, self).set_prices()
+            return super(product_template, self).set_prices(
+                computed_list_price)
 
     @api.multi
     def get_computed_list_price(self):
         self.ensure_one()
         if self.list_price_type == 'by_uom_currency':
-            uom_price = self.get_uom_price() or self.other_currency_list_price
-            if self.other_currency_id:
+            price = self.get_uom_price()
+            if self.other_currency_id and price:
                 return self.other_currency_id.compute(
-                    uom_price,
-                    self._get_price_type('computed_list_price').currency_id,
+                    price,
+                    self.computed_list_price_currency_id,
                     round=False)
             else:
                 return False

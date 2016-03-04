@@ -40,7 +40,7 @@ class product_template(models.Model):
         return super(product_template, self)._get_computed_list_price()
 
     @api.multi
-    def set_prices(self):
+    def set_prices(self, computed_list_price):
         self.ensure_one()
         if self.list_price_type == 'by_margin':
             _logger.info(
@@ -50,10 +50,11 @@ class product_template(models.Model):
                     'You can not set Computed Price with margin if '
                     'Replenishment Cost is 0'))
             self.sale_margin = ((
-                (self.computed_list_price - self.sale_surcharge) /
+                (computed_list_price - self.sale_surcharge) /
                 self.replenishment_cost) - 1) * 100.0
         else:
-            return super(product_template, self).set_prices()
+            return super(product_template, self).set_prices(
+                computed_list_price)
 
     @api.multi
     def get_computed_list_price(self):

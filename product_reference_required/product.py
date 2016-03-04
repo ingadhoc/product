@@ -9,8 +9,13 @@ from openerp import models, fields, api
 class product_template(models.Model):
     _inherit = "product.template"
 
+    @api.model
+    def _get_default_code(self):
+        return self.env['ir.sequence'].get('product.default_code')
+
     default_code = fields.Char(
         required=True,
+        default=_get_default_code,
         )
 
     @api.model

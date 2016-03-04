@@ -38,7 +38,7 @@ class product_template(models.Model):
         return super(product_template, self)._get_computed_list_price()
 
     @api.multi
-    def set_prices(self):
+    def set_prices(self, computed_list_price):
         self.ensure_one()
         if self.list_price_type == 'other_currency':
             if not self.other_currency_id:
@@ -47,11 +47,12 @@ class product_template(models.Model):
                         self.name)))
             self.other_currency_list_price = self._get_price_type(
                 'computed_list_price').currency_id.compute(
-                self.computed_list_price,
+                computed_list_price,
                 self.other_currency_id,
                 round=False)
         else:
-            return super(product_template, self).set_prices()
+            return super(product_template, self).set_prices(
+                computed_list_price)
 
     @api.multi
     def get_computed_list_price(self):

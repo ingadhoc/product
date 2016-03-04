@@ -19,34 +19,26 @@
 #
 ##############################################################################
 {
-    'name': 'Product UOM Prices',
-    'version': '8.0.0.6.0',
+    'name': 'Sale Stock Product Sale Uoms Integration',
+    'version': '8.0.0.0.0',
     'category': 'base.module_category_knowledge_management',
     'description': """
-Product UOM Prices
-==================
-* Add a o2m field on products to allow defining prices in different uoms
-* Add a new type of price calculation on pricelists (for the new o2m field
-    on products)
-* Change domain on sale order lines so that only defined uoms can be choosen.
-
-Video TUTORIAL: https://www.youtube.com/watch?v=-jGsbEZDOJE
+Sale Stock Product Sale Uoms Integration
+========================================
 """,
     'author': 'ADHOC SA.',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'depends': [
+        'sale_stock',
         'product_sale_uom',
-        'product_computed_list_price',
         ],
     'test': [],
-    'demo': [
-        'demo/product_demo.xml',
-    ],
+    'demo': [],
     'data': [
-        'view/product_view.xml',
     ],
-    'installable': True
+    'installable': True,
+    'auto_install': True,
     }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

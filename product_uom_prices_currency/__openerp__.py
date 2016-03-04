@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product UOM Prices / Product Currency Integration',
-    'version': '8.0.0.4.0',
+    'version': '8.0.0.5.0',
     'category': 'base.module_category_knowledge_management',
     'description': """
 Product UOM Prices / Product Currency Integration
