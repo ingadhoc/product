@@ -142,14 +142,15 @@ class product_template(models.Model):
     @api.multi
     def _set_prices(self):
         _logger.info('Set Prices from "computed_list_price"')
+        # send coputed list price because it is lost
         for template in self:
-            template.set_prices()
+            template.set_prices(self.computed_list_price)
 
     @api.multi
-    def set_prices(self):
+    def set_prices(self, computed_list_price):
         self.ensure_one()
         if self.list_price_type == 'manual':
-            self.list_price = self.computed_list_price
+            self.list_price = computed_list_price
 
     @api.multi
     def get_computed_list_price(self):
