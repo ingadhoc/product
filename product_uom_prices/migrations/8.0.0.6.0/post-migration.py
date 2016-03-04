@@ -31,7 +31,7 @@ def create_product_sale_uom(cr):
 
         registry['product.sale.uom'].create(
             cr, SUPERUSER_ID, {
-                'sequence': 0,
+                'sequence': 15,
                 'product_tmpl_id': template_id,
                 'uom_id': uom_id,
                 'price': price,
