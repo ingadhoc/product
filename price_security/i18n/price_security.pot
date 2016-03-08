@@ -1,179 +1,164 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* price_security
+#	* price_security
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-08 14:18+0000\n"
-"PO-Revision-Date: 2016-03-08 11:23-0300\n"
+"POT-Creation-Date: 2016-03-08 14:17+0000\n"
+"PO-Revision-Date: 2016-03-08 14:17+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 1.5.4\n"
 
 #. module: price_security
 #: field:product.template,can_modify_prices:0
 msgid "Can modify prices"
-msgstr "Puede modificar precios"
+msgstr ""
 
 #. module: price_security
 #: field:res.users.discount_restriction,create_uid:0
 msgid "Created by"
-msgstr "Created by"
+msgstr ""
 
 #. module: price_security
 #: field:res.users.discount_restriction,create_date:0
 msgid "Created on"
-msgstr "Created on"
+msgstr ""
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_res_users_discount_restriction
 msgid "Discount Restriction"
-msgstr "Restriccion de Descuento"
+msgstr ""
 
 #. module: price_security
 #: field:res.users,discount_restriction_ids:0
 msgid "Discount Restrictions"
-msgstr "Restricciones de Descuento"
+msgstr ""
 
 #. module: price_security
 #: view:res.users:price_security.view_price_security_users_form
 msgid "Discounts Permissions"
-msgstr "Discounts Permissions"
+msgstr ""
 
 #. module: price_security
 #: field:res.users.discount_restriction,id:0
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: price_security
 #: help:product.template,can_modify_prices:0
-msgid ""
-"If checked all users can modify the        price of this product in a sale "
-"order or invoice."
+msgid "If checked all users can modify the        price of this product in a sale order or invoice."
 msgstr ""
-"If checked all users can modify the        price of this product in a sale "
-"order or invoice."
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_account_invoice_line
 msgid "Invoice Line"
-msgstr "Línea de factura"
+msgstr ""
 
 #. module: price_security
 #: field:res.users.discount_restriction,write_uid:0
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr ""
 
 #. module: price_security
 #: field:res.users.discount_restriction,write_date:0
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr ""
 
 #. module: price_security
 #: field:res.users.discount_restriction,max_discount:0
 msgid "Max. Discount"
-msgstr "Max. Descuento"
+msgstr ""
 
 #. module: price_security
 #: field:res.users.discount_restriction,min_discount:0
 msgid "Min. Discount"
-msgstr "Min. Descuento"
+msgstr ""
 
 #. module: price_security
 #: view:account.payment.term:price_security.view_payment_term_tree
 #: model:ir.model,name:price_security.model_account_payment_term
 msgid "Payment Term"
-msgstr "Términos de Pago"
+msgstr ""
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_product_pricelist
 #: field:res.users.discount_restriction,pricelist_id:0
 msgid "Pricelist"
-msgstr "Lista de Precios"
+msgstr ""
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_product_template
 msgid "Product Template"
-msgstr "Plantilla de Producto"
+msgstr ""
 
 #. module: price_security
 #: model:res.groups,name:price_security.group_restrict_prices
 msgid "Restrict Prices"
-msgstr "Restringir Precios"
+msgstr ""
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_sale_order
 msgid "Sales Order"
-msgstr "Orden de Ventas"
+msgstr ""
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Línea pedido de venta"
+msgstr ""
 
 #. module: price_security
 #: code:addons/price_security/models/sale.py:44
 #: code:addons/sources/adhoc-product/price_security/models/sale.py:44
 #, python-format
-msgid ""
-"Selected payment term priority can not be higher than payment term "
-"configured on partner"
+msgid "Selected payment term priority can not be higher than payment term configured on partner"
 msgstr ""
-"Prioridad seleccionada de plazo de pago no puede ser superior a plazo de "
-"pago configurado en cliente"
 
 #. module: price_security
 #: code:addons/price_security/models/sale.py:39
 #: code:addons/sources/adhoc-product/price_security/models/sale.py:39
 #, python-format
-msgid ""
-"Selected pricelist priority can not be higher than pircelist configured on "
-"partner"
+msgid "Selected pricelist priority can not be higher than pircelist configured on partner"
 msgstr ""
-"Prioridad de lista de precios seleccionada no puede ser superior a lista de "
-"precios configurado en cliente"
 
 #. module: price_security
-#: field:account.payment.term,sequence:0 field:product.pricelist,sequence:0
+#: field:account.payment.term,sequence:0
+#: field:product.pricelist,sequence:0
 msgid "Sequence"
-msgstr "Secuencia"
+msgstr ""
 
 #. module: price_security
 #: code:addons/price_security/models/res_users.py:63
 #: code:addons/sources/adhoc-product/price_security/models/res_users.py:63
 #, python-format
-msgid ""
-"The applied discount is out of range with respect to the allowed. The "
-"discount can be between %s and %s for the current price list"
+msgid "The applied discount is out of range with respect to the allowed. The discount can be between %s and %s for the current price list"
 msgstr ""
-"The applied discount is out of range with respect to the allowed. The "
-"discount can be between %s and %s for the current price list"
 
 #. module: price_security
 #: field:res.users.discount_restriction,user_id:0
 msgid "User"
-msgstr "Usuario"
+msgstr ""
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_res_users
 msgid "Users"
-msgstr "Usuarios"
+msgstr ""
 
 #. module: price_security
 #: code:addons/price_security/models/res_users.py:54
 #: code:addons/sources/adhoc-product/price_security/models/res_users.py:54
 #, python-format
 msgid "You can not give any discount greater than pricelist discounts"
-msgstr "You can not give any discount greater than pricelist discounts"
+msgstr ""
 
 #. module: price_security
 #: view:account.invoice:price_security.invoice_form
 #: view:sale.order:price_security.view_price_security_order_form
 msgid "{'readonly':[('product_can_modify_prices','=', False)]}"
-msgstr "{'readonly':[('product_can_modify_prices','=', False)]}"
+msgstr ""
+

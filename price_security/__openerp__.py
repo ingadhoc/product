@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Price Security',
-    'version': '8.0.2.2.1',
+    'version': '8.0.2.3.1',
     'description': """
 Price Security
 ==============
@@ -56,6 +56,7 @@ For users with price restriction, it restricts:
         'views/sale_view.xml',
         'views/invoice_view.xml',
         'views/partner_view.xml',
+        'views/account_view.xml',
     ],
     'demo_xml': [],
     'test': [],
