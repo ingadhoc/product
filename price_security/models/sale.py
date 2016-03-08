@@ -3,7 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import fields, models, api
+from openerp import fields, models, api, _
 
 
 class sale_order_line(models.Model):
@@ -21,7 +21,27 @@ class sale_order_line(models.Model):
         if (
                 self.user_has_groups('price_security.group_restrict_prices')
                 and not self.product_can_modify_prices
-                ):
+        ):
             self.env.user.check_discount(
                 self.discount,
                 self.order_id.pricelist_id.id)
+
+
+class sale_order(models.Model):
+    _inherit = 'sale.order'
+
+    @api.one
+    @api.constrains(
+        'pricelist_id',
+        'payment_term')
+    def check_priority(self):
+        if self.partner_id.property_product_pricelist.sequence < self.pricelist_id.sequence:
+            raise Warning(_(
+                'Selected pricelist priority can not be higher than pircelist '
+                'configured on partner'
+            ))
+        if self.partner_id.property_payment_term.sequence < self.payment_term.sequence:
+            raise Warning(_(
+                'Selected payment term priority can not be higher than '
+                'payment term configured on partner'
+            ))
