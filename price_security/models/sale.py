@@ -33,7 +33,8 @@ class sale_order(models.Model):
     @api.one
     @api.constrains(
         'pricelist_id',
-        'payment_term')
+        'payment_term',
+        'partner_id')
     def check_priority(self):
         if self.partner_id.property_product_pricelist.sequence < self.pricelist_id.sequence:
             raise Warning(_(
