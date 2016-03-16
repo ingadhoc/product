@@ -57,12 +57,17 @@ class product_product(models.Model):
                     self._context['uom'], lst_price, uom.id)
             product.computed_list_price = lst_price - product.price_extra
 
-    @api.multi
-    def price_get(self, ptype='computed_list_price'):
+    def price_get(
+            self, cr, uid, ids, ptype='computed_list_price', context=None):
         """
-        Use computed price as default
+        Use computed price as default.
+        We use old api because somewhere we get wrong convertion between \
+        old/new api with context. For eg. with timesheets
         """
-        return super(product_product, self).price_get(ptype)
+        if context is None:
+            context = {}
+        return super(product_product, self).price_get(
+            cr, uid, ids, ptype, context)
 
 
 class product_template(models.Model):
