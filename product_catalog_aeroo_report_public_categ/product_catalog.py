@@ -24,6 +24,16 @@ class product_catalog_report(models.Model):
         'Product Categories Public',
     )
 
+    # TODO remove this
+    # @api.one
+    # @api.onchange('category_type')
+    # def change_category_type(self):
+    #     if (
+    #             self.category_type == 'public_category' and
+    #             not self.categories_order
+    #             ):
+    #         self.categories_order = 'parent_left, sequence, name'
+
     @api.multi
     def prepare_report(self):
         self = super(product_catalog_report, self).prepare_report()
