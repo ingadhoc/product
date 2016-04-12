@@ -46,7 +46,7 @@
             <field name="inherit_id" ref="product_normal_form_view"/>
             <field name="groups_id" eval="[(6, 0, [ref('group_restrict_prices')])]"/>
             <field name="arch" type="xml">
-                <field name="list_price" position="attributes">
+                <field name="lst_price" position="attributes">
                     <attribute name="readonly">1</attribute>
                 </field>
                 <field name="can_modify_prices" position="attributes">
