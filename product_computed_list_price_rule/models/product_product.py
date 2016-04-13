@@ -16,14 +16,35 @@ class ProductTemplate(models.Model):
         )
 
     @api.multi
-    def get_computed_list_price(self):
-        self.ensure_one()
-        price = super(ProductTemplate, self).get_computed_list_price()
-        if self.computed_list_price_rule_id and price:
+    @api.depends(
+        'computed_list_price_rule_id.item_ids.sequence',
+        'computed_list_price_rule_id.item_ids.percentage_amount',
+        'computed_list_price_rule_id.item_ids.fixed_amount',
+        )
+    def _get_computed_list_price(self):
+        """Only to update depends"""
+        return super(ProductTemplate, self)._get_computed_list_price()
+
+    @api.multi
+    def _other_computed_rules(self, computed_list_price):
+        computed_list_price = super(
+            ProductTemplate, self)._other_computed_rules(computed_list_price)
+        if self.computed_list_price_rule_id and computed_list_price:
             for line in self.computed_list_price_rule_id.item_ids:
-                price = price * \
+                computed_list_price = computed_list_price * \
                     (1 + line.percentage_amount / 100.0) + line.fixed_amount
-            return price
+        return computed_list_price
+
+    # @api.multi
+    # def set_prices(self, computed_list_price):
+    #     self.ensure_one()
+    #     if self.computed_list_price_rule_id:
+    #         raise Warning(
+    #             'You can not change the Computed price if you set a Sale '
+    #             'Price Rule')
+    #     else:
+    #         return super(ProductTemplate, self).set_prices(
+    #             computed_list_price)
 
     # @api.multi
     # def get_computed_list_price_with_rule(self):
