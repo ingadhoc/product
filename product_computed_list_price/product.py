@@ -142,7 +142,14 @@ class product_template(models.Model):
             self.ids))
         for template in self:
             computed_list_price = template.get_computed_list_price()
+            computed_list_price = template._other_computed_rules(
+                computed_list_price)
             template.computed_list_price = computed_list_price
+
+    @api.multi
+    def _other_computed_rules(self, computed_list_price):
+        self.ensure_one()
+        return computed_list_price
 
     @api.multi
     def _set_prices(self):

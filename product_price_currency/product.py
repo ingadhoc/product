@@ -59,9 +59,12 @@ class product_template(models.Model):
         self.ensure_one()
         if self.list_price_type == 'other_currency':
             if self.other_currency_id:
+                print 'bbbbbbbb'
                 return self.other_currency_id.compute(
                     self.other_currency_list_price, self._get_price_type(
                         'computed_list_price').currency_id, round=False)
             else:
+                print 'ccccccc'
                 return False
+        print 'ddddddddd'
         return super(product_template, self).get_computed_list_price()
