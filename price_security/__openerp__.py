@@ -40,6 +40,7 @@ For users with price restriction, it restricts:
 * on invoices: change unit price
 * on product: change price
 
+NEW: sequence field on pricelist and payment term (you can only assigne pricelests or terms of lower priority than partner default one)
 """,
     'category': 'Sales Management',
     'author': 'ADHOC SA',
