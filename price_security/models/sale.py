@@ -36,12 +36,20 @@ class sale_order(models.Model):
         'payment_term',
         'partner_id')
     def check_priority(self):
-        if self.partner_id.property_product_pricelist.sequence < self.pricelist_id.sequence:
+        if (
+                self.partner_id.property_product_pricelist and
+                self.pricelist_id and
+                self.partner_id.property_product_pricelist.sequence <
+                self.pricelist_id.sequence):
             raise Warning(_(
                 'Selected pricelist priority can not be higher than pircelist '
                 'configured on partner'
             ))
-        if self.partner_id.property_payment_term.sequence < self.payment_term.sequence:
+        if (
+                self.partner_id.property_payment_term and
+                self.payment_term and
+                self.partner_id.property_payment_term.sequence <
+                self.payment_term.sequence):
             raise Warning(_(
                 'Selected payment term priority can not be higher than '
                 'payment term configured on partner'
