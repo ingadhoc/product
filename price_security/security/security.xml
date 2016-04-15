@@ -6,6 +6,22 @@
         <field name="name">Restrict Prices</field>
     </record>
 
+    <record id="restrict_price_read_only_payment_term" model="ir.rule">
+        <field name="name">Restrict Price Read Only on Payment Term</field>
+        <field name="model_id" ref="account.model_account_payment_term" />
+        <field name="domain_force">[('name', '=', False)]</field>
+        <field name="groups" eval="[(4, ref('price_security.group_restrict_prices'))]"/>
+        <field name="perm_read" eval="False"/>
+    </record>
+
+    <record id="restrict_price_read_only_pricelist" model="ir.rule">
+        <field name="name">Restrict Price Read Only on Pricelist</field>
+        <field name="model_id" ref="account_sale_different_currency.model_product_pricelist" />
+        <field name="domain_force">[('name', '=', False)]</field>
+        <field name="groups" eval="[(4, ref('price_security.group_restrict_prices'))]"/>
+        <field name="perm_read" eval="False"/>
+    </record>
+
     </data>
 </openerp>
 
