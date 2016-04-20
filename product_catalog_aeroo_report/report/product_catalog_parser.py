@@ -50,6 +50,7 @@ class Parser(report_sxw.rml_parse):
             'pricelists': pricelists,
             'today': time.localtime(),
             'get_price': self.get_price,
+            'get_description': self.get_description,
             'get_products': self.get_products,
             'context': context,
             'field_value_get': self.field_value_get,
@@ -72,9 +73,33 @@ class Parser(report_sxw.rml_parse):
             context = {}
         context['pricelist'] = pricelist.id
         product_obj = self.pool[self.product_type]
+        sale_uom = self.pool['product.template'].fields_get(
+            self.cr, self.uid, ['sale_uom_ids'])
+        if sale_uom and product.sale_uom_ids:
+                context['uom'] = product.sale_uom_ids[0].uom_id.id
         price = product_obj.browse(
             self.cr, self.uid, [product.id], context=context).price
         return price
+
+    def get_description(self, product, print_product_uom, context=None):
+
+        sale_uom = self.pool['product.template'].fields_get(
+            self.cr, self.uid, ['sale_uom_ids'])
+        name_uoms = ''
+        if not print_product_uom:
+            return product.name
+
+        if sale_uom and product.sale_uom_ids:
+            for x in product.sale_uom_ids:
+                name_uoms = name_uoms + x.uom_id.name
+            description = product.name + \
+                ' (' + product.sale_uom_ids[0].uom_id.name + ')' + \
+                ' Also available in ' + \
+                '[' + name_uoms + ',' + product.uom_id.name + ']'
+        else:
+            description = product.name + '(' + product.uom_id.name + ')'
+
+        return description
 
     def get_products(self, category_ids, context=None):
         if not isinstance(category_ids, list):
