@@ -5,6 +5,7 @@
 ##############################################################################
 import time
 from openerp.report import report_sxw
+from openerp import _
 
 
 class Parser(report_sxw.rml_parse):
@@ -76,7 +77,7 @@ class Parser(report_sxw.rml_parse):
         sale_uom = self.pool['product.template'].fields_get(
             self.cr, self.uid, ['sale_uom_ids'])
         if sale_uom and product.sale_uom_ids:
-                context['uom'] = product.sale_uom_ids[0].uom_id.id
+            context['uom'] = product.sale_uom_ids[0].uom_id.id
         price = product_obj.browse(
             self.cr, self.uid, [product.id], context=context).price
         return price
@@ -85,19 +86,16 @@ class Parser(report_sxw.rml_parse):
 
         sale_uom = self.pool['product.template'].fields_get(
             self.cr, self.uid, ['sale_uom_ids'])
-        name_uoms = ''
         if not print_product_uom:
             return product.name
-
         if sale_uom and product.sale_uom_ids:
-            for x in product.sale_uom_ids:
-                name_uoms = name_uoms + x.uom_id.name
-            description = product.name + \
-                ' (' + product.sale_uom_ids[0].uom_id.name + ')' + \
-                ' Also available in ' + \
-                '[' + name_uoms + ',' + product.uom_id.name + ']'
+            main_uom = product.sale_uom_ids[0].uom_id
         else:
-            description = product.name + '(' + product.uom_id.name + ')'
+            main_uom = product.uom_id
+        description = _('%s (%s)' % (product.name, main_uom.name))
+        if len(product.sale_uom_ids) > 1:
+            description = _('%s. Also available in %s') % (
+                description, ', '.join(product.sale_uom_ids.mapped('uom_id.name')))
 
         return description
 
