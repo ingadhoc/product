@@ -44,18 +44,18 @@ class users(models.Model):
             disc_restriction_env = self.env['res.users.discount_restriction']
             domain = [
                 ('pricelist_id', '=', pricelist_id), ('user_id', '=', self.id)]
-            disc_restrictions = disc_restriction_env.search(domain)
-            if not disc_restrictions.ids:
+            disc_restriction = disc_restriction_env.search(domain, limit=1)
+            print 'disc_restriction', disc_restriction
+            if not disc_restriction:
                 domain = [
                     ('user_id', '=', self.id)]
-                disc_restrictions = disc_restriction_env.search(domain)
-                # User can not make any discount
-                if not disc_restrictions.ids:
-                    error = _(
-                        'You can not give any discount greater than pricelist '
-                        'discounts')
+                disc_restriction = disc_restriction_env.search(domain, limit=1)
+            # User can not make any discount
+            if not disc_restriction:
+                error = _(
+                    'You can not give any discount greater than pricelist '
+                    'discounts')
             else:
-                disc_restriction = disc_restrictions[0]
                 if (
                         discount < disc_restriction.min_discount or
                         discount > disc_restriction.max_discount
