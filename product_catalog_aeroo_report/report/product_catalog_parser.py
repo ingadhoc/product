@@ -93,9 +93,11 @@ class Parser(report_sxw.rml_parse):
         else:
             main_uom = product.uom_id
         description = _('%s (%s)' % (product.name, main_uom.name))
-        if len(product.sale_uom_ids) > 1:
+        if sale_uom and len(product.sale_uom_ids) > 1:
             description = _('%s. Also available in %s') % (
-                description, ', '.join(product.sale_uom_ids.mapped('uom_id.name')))
+                description, ', '.join(
+                    product.sale_uom_ids.filtered(
+                        lambda x: x.uom_id != main_uom).mapped('uom_id.name')))
 
         return description
 

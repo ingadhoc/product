@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Sale UOMS',
-    'version': '8.0.0.1.0',
+    'version': '8.0.0.2.0',
     'category': 'base.module_category_knowledge_management',
     'description': """
 Product Sale UOMS
@@ -33,7 +33,7 @@ orders
     'license': 'AGPL-3',
     'depends': [
         'sale',
-        ],
+    ],
     'test': [],
     'demo': [
         'demo/product_demo.xml',
@@ -46,6 +46,6 @@ orders
     ],
     'installable': True,
     'pre_init_hook': 'pre_init_hook',
-    }
+}
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
