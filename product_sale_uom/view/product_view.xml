@@ -22,8 +22,7 @@
             <field name="arch" type="xml">
                 <field name="list_price" position="after">
                     <field name="uom_category_id" invisible="1"/>
-                    <!-- we add attrs for compatibility with others modules -->
-                    <field name="sale_uom_ids" context="{'uom_category_id': uom_category_id}" attrs="{'invisible': [('list_price_type', 'in', ['by_uom', 'by_uom_currency'])]}">
+                    <field name="sale_uom_ids" context="{'uom_category_id': uom_category_id}">
                         <tree editable="top">
                             <field name="sequence" widget="handle"/>
                             <field name="uom_id" domain="[('category_id', '=', uom_category_id)]"/>
