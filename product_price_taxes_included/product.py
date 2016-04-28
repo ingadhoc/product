@@ -3,7 +3,8 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import models, _
+from openerp import models, api, _
+from openerp import fields as new_fields
 from openerp.osv import fields
 from openerp.exceptions import Warning
 import openerp.addons.decimal_precision as dp
@@ -39,7 +40,30 @@ class product_template(models.Model):
             string='Public Price',
             readonly=True,
             digits_compute=dp.get_precision('Product Price')),
-        }
+    }
+
+    taxed_lst_price = new_fields.Float(
+        string='Taxed Sale Price',
+        compute='get_taxed_lst_price'
+    )
+
+    @api.multi
+    @api.depends('taxes_id', 'lst_price')
+    def get_taxed_lst_price(self):
+        company_id = (
+            self._context.get('company_id') or
+            self.env.user.company_id.id)
+        taxes_included = self._context.get('taxes_included')
+        for product in self:
+            # if taxes_included lst_price already has taxes included
+            if taxes_included:
+                product.taxed_lst_price = product.lst_price
+            else:
+                product.taxed_lst_price = product.taxes_id.filtered(
+                    lambda x: x.company_id.id == company_id).compute_all(
+                        product.lst_price,
+                        1.0,
+                        product=product)['total_included']
 
 
 class product_product(models.Model):
@@ -76,4 +100,4 @@ class product_product(models.Model):
             _product_lst_price, fnct_inv=_set_product_lst_price, type='float',
             string='Public Price',
             digits_compute=dp.get_precision('Product Price')),
-        }
+    }

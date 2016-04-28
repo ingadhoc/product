@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Price Taxes Included or Not',
-    'version': '8.0.0.0.1',
+    'version': '8.0.0.1.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
