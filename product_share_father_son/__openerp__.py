@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Share Between Father and Son',
-    'version': '8.0.1.0.0',
+    'version': '8.0.1.1.0',
     'category': 'Aeroo Reporting',
     'sequence': 14,
     'summary': '',
@@ -28,7 +28,7 @@
 Product Share Between Father and Son
 ====================================
     """,
-    'author':  'ADHOC SA',
+    'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'images': [
