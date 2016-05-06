@@ -5,6 +5,9 @@
     <record id="product.product_template_action" model="ir.actions.act_window">
         <field name="auto_search"></field>
     </record>
+    <record id="product.product_normal_action_sell" model="ir.actions.act_window">
+        <field name="auto_search"></field>
+    </record>
 
 </data>
 </openerp>
