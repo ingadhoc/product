@@ -23,7 +23,7 @@
                 <field name="list_price" position="after">
                     <field name="uom_category_id" invisible="1"/>
                     <field name="sale_uom_ids" context="{'uom_category_id': uom_category_id}">
-                        <tree editable="top">
+                        <tree editable="bottom">
                             <field name="sequence" widget="handle"/>
                             <field name="uom_id" domain="[('category_id', '=', uom_category_id)]"/>
                         </tree>

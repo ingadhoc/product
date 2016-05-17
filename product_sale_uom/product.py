@@ -18,16 +18,16 @@ class ProductSaleUom(models.Model):
     sequence = fields.Integer(
         'Sequence',
         default=10,
-        )
+    )
     product_tmpl_id = fields.Many2one(
         'product.template',
         string='Product Template'
-        )
+    )
     uom_id = fields.Many2one(
         'product.uom',
         string='UOM',
         required=True,
-        )
+    )
 
     _sql_constraints = [
         ('uom_uniq', 'unique(product_tmpl_id, uom_id)',
@@ -43,7 +43,7 @@ class product_template(models.Model):
 
     uom_category_id = fields.Many2one(
         related='uom_id.category_id'
-        )
+    )
     sale_uom_ids = fields.One2many(
         'product.sale.uom',
         'product_tmpl_id',
@@ -52,7 +52,7 @@ class product_template(models.Model):
         help="Only uoms in this list will be available in sale order lines. "
         "If none is specified, then all uoms of product uom category will be "
         "available."
-        )
+    )
 
     @api.one
     @api.constrains('sale_uom_ids', 'uom_id')
@@ -62,7 +62,7 @@ class product_template(models.Model):
                 len(sale_uom_categories) > 1 or
                 (sale_uom_categories and
                     sale_uom_categories != self.uom_id.category_id)
-                ):
+        ):
             raise Warning(_('Sale UOMs Category must be of the same \
                 UOM Category as Product Unit of Measure'))
 

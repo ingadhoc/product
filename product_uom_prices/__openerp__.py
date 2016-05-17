@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product UOM Prices',
-    'version': '8.0.0.7.0',
+    'version': '8.0.0.8.0',
     'category': 'base.module_category_knowledge_management',
     'description': """
 Product UOM Prices
