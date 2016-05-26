@@ -36,6 +36,8 @@ class sale_order(models.Model):
         'payment_term',
         'partner_id')
     def check_priority(self):
+        if not self.user_has_groups('price_security.group_restrict_prices'):
+            return True
         if (
                 self.partner_id.property_product_pricelist and
                 self.pricelist_id and
