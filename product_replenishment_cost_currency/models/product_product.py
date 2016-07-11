@@ -55,6 +55,8 @@ class ProductTemplate(models.Model):
         self.standard_price_currency_id = price_type.currency_id
 
     @api.one
+    # dummy depends to compute value on create
+    @api.depends('company_id')
     def get_replenishment_cost_currency_id(self):
         price_type = self.env['product.price.type'].search(
             [('field', '=', 'replenishment_cost')], limit=1)
@@ -62,6 +64,7 @@ class ProductTemplate(models.Model):
 
     @api.one
     @api.depends(
+        'replenishment_cost_currency_id',
         'replenishment_base_cost',
         # because of being stored
         'replenishment_base_cost_currency_id.rate_ids.rate',

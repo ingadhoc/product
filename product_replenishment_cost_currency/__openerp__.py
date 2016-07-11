@@ -20,7 +20,7 @@
 ##############################################################################
 {
     "name": "Product Cost Currency",
-    'version': '8.0.1.2.0',
+    'version': '8.0.1.2.1',
     'category': 'Product',
     'sequence': 14,
     'author':  'ADHOC SA',
