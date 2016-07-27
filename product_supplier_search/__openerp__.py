@@ -38,5 +38,5 @@ Add search by main supplier and suppliers on product and product template
     'data': [
         'product_view.xml',
     ],
-    'installable': True
+    'installable': False
 }
