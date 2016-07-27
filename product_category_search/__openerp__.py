@@ -20,10 +20,10 @@
 ##############################################################################
 {
     "name": "Product Public Category Search",
-    'version': '8.0.0.0.0',
+    'version': '9.0.1.0.0',
     'category': 'Sales & Purchases',
     'sequence': 14,
-    'author':  'ADHOC SA',
+    'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'summary': '',
@@ -45,7 +45,7 @@ This module adds to the product search function the possibility to search with "
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }

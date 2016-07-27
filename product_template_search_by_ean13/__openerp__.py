@@ -27,7 +27,7 @@
 Product Template Search by EAN 13
 ==================================
 """,
-    'installable': True,
+    'installable': False,
     'license': 'AGPL-3',
     'name': 'Product Template Search by EAN 13',
     'test': [],

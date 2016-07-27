@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Unique',
-    'version': '8.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -29,7 +29,7 @@ Product Unique
 ==============
 Module to made "ean13" and "default_code" fields to be unique for products on the same company.
     """,
-    'author':  'ADHOC SA',
+    'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'images': [
@@ -43,7 +43,7 @@ Module to made "ean13" and "default_code" fields to be unique for products on th
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }

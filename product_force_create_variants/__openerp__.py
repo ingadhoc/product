@@ -27,7 +27,7 @@
 Product Force Create Variants
 =============================
 """,
-    'installable': True,
+    'installable': False,
     'license': 'AGPL-3',
     'name': u'Product Force Create Variants',
     'test': [],

@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Prices Update',
-    'version': '8.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -28,7 +28,7 @@
 Product Prices Update
 ======================
     """,
-    'author':  'ADHOC SA',
+    'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'images': [
@@ -43,7 +43,7 @@ Product Prices Update
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }

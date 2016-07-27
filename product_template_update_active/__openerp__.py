@@ -31,7 +31,7 @@ Update active field of product template in this way:
 * If any related product product to this template has active = True, set True
 * If all related product product to this template has active = False, set False
 """,
-    'installable': True,
+    'installable': False,
     'license': 'AGPL-3',
     'name': u'Product Template Update Active Field',
     'test': [],

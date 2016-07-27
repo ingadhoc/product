@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Sale Stock Product Sale Uoms Integration',
-    'version': '8.0.0.0.0',
+    'version': '9.0.1.0.0',
     'category': 'base.module_category_knowledge_management',
     'description': """
 Sale Stock Product Sale Uoms Integration
@@ -37,7 +37,7 @@ Sale Stock Product Sale Uoms Integration
     'demo': [],
     'data': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     }
 

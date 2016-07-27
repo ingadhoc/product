@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Catalog Aeroo Report with public Category',
-    'version': '8.0.1.1.0',
+    'version': '9.0.1.0.0',
     'category': 'Aeroo Reporting',
     'sequence': 14,
     'summary': '',
@@ -28,7 +28,7 @@
 Product Catalog Aeroo Report with Public Category
 =================================================
     """,
-    'author':  'ADHOC SA',
+    'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'images': [
@@ -44,7 +44,7 @@ Product Catalog Aeroo Report with Public Category
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     'application': False,
 }

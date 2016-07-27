@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Share Between Father and Son',
-    'version': '8.0.1.1.0',
+    'version': '9.0.1.0.0',
     'category': 'Aeroo Reporting',
     'sequence': 14,
     'summary': '',
@@ -43,7 +43,7 @@ Product Share Between Father and Son
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }

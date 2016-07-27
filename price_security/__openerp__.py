@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Price Security',
-    'version': '8.0.2.4.2',
+    'version': '9.0.1.0.0',
     'description': """
 Price Security
 ==============
@@ -61,6 +61,6 @@ NEW: sequence field on pricelist and payment term (you can only assigne priceles
     ],
     'demo_xml': [],
     'test': [],
-    'installable': True,
+    'installable': False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

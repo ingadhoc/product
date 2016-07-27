@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Sale Price By Margin',
-    'version': '8.0.0.3.1',
+    'version': '9.0.1.0.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -29,7 +29,7 @@ Product Sale Price By Margin
 ============================
 
     """,
-    'author':  'ADHOC SA',
+    'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'images': [
@@ -49,7 +49,7 @@ Product Sale Price By Margin
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }

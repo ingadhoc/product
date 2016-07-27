@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Bookstore',
-    'version': '8.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'Gestión de ventas',
     'description': """
     """,
@@ -33,7 +33,7 @@
         'product_view.xml',
     ],
     'test': [],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

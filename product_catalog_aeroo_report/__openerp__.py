@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Catalog Aeroo Report',
-    'version': '8.0.1.2.0',
+    'version': '9.0.1.0.0',
     'category': 'Aeroo Reporting',
     'sequence': 14,
     'summary': '',
@@ -29,7 +29,7 @@ Product Catalog Aeroo Report
 ============================
 # TODO add check on report if stock module is installed
     """,
-    'author':  'ADHOC SA',
+    'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'images': [
@@ -50,7 +50,7 @@ Product Catalog Aeroo Report
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': True,
 }

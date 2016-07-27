@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Reference Requiered',
-    'version': '8.0.1.0.2',
+    'version': '9.0.1.0.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -29,7 +29,7 @@ Product Reference Requiered
 ===========================
 
     """,
-    'author':  'ADHOC SA',
+    'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'images': [
@@ -46,7 +46,7 @@ Product Reference Requiered
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
     'pre_init_hook': 'set_default_code',
