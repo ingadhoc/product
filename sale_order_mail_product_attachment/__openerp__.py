@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Sale Order Mail Product Attachment',
-    'version': '8.0.1.1.1',
+    'version': '9.0.1.0.0',
     'category': 'Sales Management',
     'sequence': 14,
     'description': """
@@ -29,7 +29,7 @@ Sale Order Mail Product Attachment
 It adds a new field called "Send Product Attachments?" in email_template for object "sale.order". 
 If Send Product Attachments? == True, when sending this email_template from sale order, all attachments of the products of this sale order will be attached to the email.
     """,
-    'author':  'ADHOC SA',
+    'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'images': [
@@ -45,7 +45,7 @@ If Send Product Attachments? == True, when sending this email_template from sale
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }

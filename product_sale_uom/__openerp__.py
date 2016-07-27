@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Sale UOMS',
-    'version': '8.0.0.3.0',
+    'version': '9.0.1.0.0',
     'category': 'base.module_category_knowledge_management',
     'description': """
 Product Sale UOMS
@@ -44,7 +44,7 @@ orders
         'view/sale_view.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': True,
+    'installable': False,
     'pre_init_hook': 'pre_init_hook',
 }
 

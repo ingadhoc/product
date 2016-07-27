@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Price Currency',
-    'version': '8.0.1.2.2',
+    'version': '9.0.1.0.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -28,7 +28,7 @@
 Product Price Currency
 ======================
     """,
-    'author':  'ADHOC SA',
+    'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'images': [
@@ -45,7 +45,7 @@ Product Price Currency
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }

@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product No Auto Search',
-    'version': '8.0.0.1.0',
+    'version': '9.0.1.0.0',
     'category': 'Sales Management',
     'sequence': 14,
     'summary': 'Product',
@@ -43,7 +43,7 @@ Product No Auto Search
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }

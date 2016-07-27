@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Sale Order Mail Product Attachment Product Pack',
-    'version': '8.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'Sales Management',
     'sequence': 14,
     'description': """
@@ -28,7 +28,7 @@ Sale Order Mail Product Attachment with Product pack
 ==================================
 Autoinstallable module for product pack with sale order mail product attachment.
     """,
-    'author':  'ADHOC SA',
+    'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'images': [
@@ -43,7 +43,7 @@ Autoinstallable module for product pack with sale order mail product attachment.
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     'application': False,
 }

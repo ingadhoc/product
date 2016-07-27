@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Template Tree Prices',
-    'version': '8.0.0.1.0',
+    'version': '9.0.1.0.0',
     'category': 'base.module_category_knowledge_management',
     'description': """
 Product Template Tree Prices
@@ -38,7 +38,7 @@ Add prices on product tempalte tree view
     'data': [
         'product_view.xml',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     }
 

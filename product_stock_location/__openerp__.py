@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Stock Location',
-    'version': '8.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'Sales Management',
     'sequence': 14,
     'summary': 'Sales, Product, Category, Clasification',
@@ -28,7 +28,7 @@
 Product Stock Location
 ======================
     """,
-    'author':  'ADHOC SA',
+    'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'images': [
@@ -43,7 +43,7 @@ Product Stock Location
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }

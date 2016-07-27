@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Search Supplier Code',
-    'version': '8.0.0.0.0',
+    'version': '9.0.1.0.0',
     'category': 'Inventory, Logistic',
     'sequence': 14,
     'summary': 'Allow to search product by its suppliers code',
@@ -28,7 +28,7 @@
 Product Search Supplier Code
 ============================
     """,
-    'author':  'ADHOC SA',
+    'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'images': [
@@ -43,7 +43,7 @@ Product Search Supplier Code
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }

@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Computed List Price',
-    'version': '8.0.0.1.1',
+    'version': '9.0.1.0.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -35,7 +35,7 @@ estás viendo del producto.
 Una alternativa sería hacer lst_price readonly para que no pase este error en
 la vista form de productos, esto se podría mejorar
     """,
-    'author':  'ADHOC SA',
+    'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'images': [
@@ -52,7 +52,7 @@ la vista form de productos, esto se podría mejorar
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }

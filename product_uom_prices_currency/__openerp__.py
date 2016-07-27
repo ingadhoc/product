@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product UOM Prices / Product Currency Integration',
-    'version': '8.0.0.6.0',
+    'version': '9.0.1.0.0',
     'category': 'base.module_category_knowledge_management',
     'description': """
 Product UOM Prices / Product Currency Integration
@@ -40,7 +40,7 @@ Product UOM Prices / Product Currency Integration
     'data': [
         'product_view.xml',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     }
 
