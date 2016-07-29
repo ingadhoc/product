@@ -28,10 +28,6 @@
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'summary': '',
-    "description": """
-Product Internal Code
-=====================
-    """,
     "depends": [
         "product",
     ],
@@ -46,7 +42,7 @@ Product Internal Code
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }

@@ -35,7 +35,7 @@ class product(models.Model):
                 not vals.get('internal_code', False) and
                 not self._context.get('default_internal_code', False)):
             vals['internal_code'] = self.env[
-                'ir.sequence'].get('product.internal.code') or '/'
+                'ir.sequence'].next_by_code('product.internal.code') or '/'
         return super(product, self).create(vals)
 
     _sql_constraints = {
