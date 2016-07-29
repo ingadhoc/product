@@ -7,7 +7,7 @@
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product.product_normal_form_view" />
             <field name="arch" type="xml">
-                <field name="ean13" position="after">
+                <field name="barcode" position="after">
                     <field name="isbn"/>
                 </field>
             </field>
@@ -19,7 +19,7 @@
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_only_form_view" />
             <field name="arch" type="xml">
-                <field name="ean13" position="after">
+                <field name="barcode" position="after">
                     <field name="isbn"/>
                 </field>
             </field>
@@ -30,7 +30,7 @@
             <field name="inherit_id" ref="product.product_template_search_view"></field>
             <field name="arch" type="xml">
                 <field name="name" position="attributes">
-                    <attribute name="filter_domain">['|','|','|',('isbn','ilike',   self),('ean13','ilike',   self),('default_code','ilike',   self),('name','ilike',self)]</attribute>
+                    <attribute name="filter_domain">['|','|','|',('isbn','ilike',   self),('barcode','ilike',   self),('default_code','ilike',   self),('name','ilike',self)]</attribute>
                 </field>
             </field>
         </record>
