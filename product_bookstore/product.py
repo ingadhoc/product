@@ -13,15 +13,19 @@ class product_template(models.Model):
     _inherit = 'product.template'
 
     @api.one
-    @api.depends('ean13')
+    @api.depends('barcode')
     def _calculate_isbn(self):
         isbn = False
-        if self.ean13:
-            ean13 = self.ean13.replace(' ', '').replace('-', '')
-            if len(ean13) == 13 and ean13[0:3] == '978':
-                isbn = self.ean13[3:12]
+        if self.barcode:
+            barcode = self.barcode.replace(' ', '').replace('-', '')
+            if len(barcode) == 13 and barcode[0:3] == '978':
+                # isbn = self.barcode[3:12]
+                isbn = barcode[3:12]
                 check_digit = self.calculate_control_digit_isbn(isbn)
-                isbn += check_digit
+                if check_digit is None:
+                    isbn = False
+                else:
+                    isbn += check_digit
         self.isbn = isbn
 
     def calculate_control_digit_isbn(self, str_partial_isbn):
