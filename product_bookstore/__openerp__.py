@@ -22,8 +22,6 @@
     'name': 'Product Bookstore',
     'version': '9.0.1.0.0',
     'category': 'Gestión de ventas',
-    'description': """
-    """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
@@ -33,7 +31,7 @@
         'product_view.xml',
     ],
     'test': [],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
