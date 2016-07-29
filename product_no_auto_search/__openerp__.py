@@ -24,10 +24,6 @@
     'category': 'Sales Management',
     'sequence': 14,
     'summary': 'Product',
-    'description': """
-Product No Auto Search
-======================
-    """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
@@ -43,7 +39,7 @@ Product No Auto Search
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
