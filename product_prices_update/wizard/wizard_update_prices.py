@@ -25,8 +25,8 @@ class prices_update_wizard(models.TransientModel):
                                                       "of this value.\n"
                                "Rounding is applied after the discount and "
                                                       "before the surcharge.\n"
-                               "To have prices that end in 9.99,"
-                                                      " set rounding 10, surcharge -0.01"
+                               "To have prices that end in 9.99, set rounding "
+                                                      "10, surcharge -0.01"
                                )
     check = fields.Boolean('Check before changing')
 
