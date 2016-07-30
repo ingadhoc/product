@@ -28,10 +28,6 @@
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'summary': '',
-    "description": """
-Product Sales ABC
-=================
-    """,
     "depends": [
         "product",
     ],
@@ -44,7 +40,7 @@ Product Sales ABC
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
