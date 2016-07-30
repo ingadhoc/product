@@ -21,8 +21,8 @@ class product_template(models.Model):
     @api.one
     def _get_abc_total(self):
         if self.abc_sales_quantity and self.abc_sales_amount:
-            self.abc_sales_combined = self.abc_sales_quantity + \
-                                      self.abc_sales_amount
+            self.abc_sales_combined = \
+                self.abc_sales_quantity + self.abc_sales_amount
         elif self.abc_sales_quantity and not self.abc_sales_amount:
             self.abc_sales_combined = self.abc_sales_quantity
         elif self.abc_sales_amount and not self.abc_sales_quantity:
