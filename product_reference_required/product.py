@@ -35,7 +35,7 @@ class product_product(models.Model):
 
     @api.model
     def _get_default_code(self):
-        return self.env['ir.sequence'].get('product.default_code')
+        return self.env['ir.sequence'].next_by_code('product.default_code')
 
     default_code = fields.Char(
         required=True,
