@@ -23,17 +23,13 @@
     'category': 'base.module_category_knowledge_management',
     'demo_xml': [],
     'depends': ['product'],
-    'description': """
-Product Template Search by EAN 13
-==================================
-""",
-    'installable': False,
+    'installable': True,
     'license': 'AGPL-3',
     'name': 'Product Template Search by EAN 13',
     'test': [],
     'data': [
         'product_view.xml',
     ],
-    'website': 'www.adhoc.com.ar'}
-
+    'website': 'www.adhoc.com.ar'
+}
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
