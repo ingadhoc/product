@@ -2,12 +2,11 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-==============================
-Product Public Category Search
-==============================
+===================================
+Product Category Search by Full Name
+====================================
 
-This module adds to the product search function the possibility to search with "name/"
- and all children of  the category name are displayed.
+Search by Full Name on Product Categories
 
 Installation
 ============
