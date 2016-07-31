@@ -68,7 +68,7 @@
         <menuitem action="sale_salesman_group_action"
             groups="base.group_no_one"
             id="type_menu"
-            parent="base.menu_base_config" sequence="18"/>
+            parent="base.menu_base_partner" sequence="18"/>
 
     </data>
 </openerp>
