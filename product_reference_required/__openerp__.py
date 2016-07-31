@@ -24,11 +24,6 @@
     'category': 'Product',
     'sequence': 14,
     'summary': '',
-    'description': """
-Product Reference Requiered
-===========================
-
-    """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
@@ -46,7 +41,7 @@ Product Reference Requiered
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
     'pre_init_hook': 'set_default_code',

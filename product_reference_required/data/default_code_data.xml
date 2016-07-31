@@ -2,7 +2,12 @@
 <openerp>
     <data noupdate="1">
 
-        <record id="sequence_type" model="ir.sequence.type">
+        <!--<record id="sequence_type" model="ir.sequence.type">-->
+            <!--<field name="name">Product Default Code</field>-->
+            <!--<field name="code">product.default_code</field>-->
+        <!--</record>-->
+
+        <record id="sequence" model="ir.sequence">
             <field name="name">Product Default Code</field>
             <field name="code">product.default_code</field>
         </record>
