@@ -3,17 +3,24 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp.osv import fields, osv
+from openerp import models, api, fields
 
 
-class product_template(osv.osv):
+class product_template(models.Model):
 
     _inherit = 'product.template'
 
-    _columns = {
-        'salesman_group_ids': fields.many2many(
-            'sale.salesman.group', 'prod_template_salesgroup_rel',
-            'template_id', 'section_id', string='Salesman Group', ),
-    }
+    salesman_group_ids = fields.Many2many(
+        'sale.salesman.group', 'prod_template_salesgroup_rel',
+        'template_id', 'section_id', string='Salesman Group', )
+
+class product_product(models.Model):
+
+    _inherit = 'product.product'
+
+    salesman_group_ids = fields.Many2many(
+        'sale.salesman.group', 'prod_template_salesgroup_rel',
+        'template_id', 'section_id', string='Salesman Group', ),
+
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
