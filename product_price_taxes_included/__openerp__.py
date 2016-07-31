@@ -24,10 +24,6 @@
     'category': 'Product',
     'sequence': 14,
     'summary': '',
-    'description': """
-Product Price Taxes Included or Not
-===================================
-    """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
@@ -43,7 +39,7 @@ Product Price Taxes Included or Not
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }

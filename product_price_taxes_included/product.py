@@ -21,7 +21,8 @@ class product_template(models.Model):
         res = {}
         company_id = (
             context.get('company_id') or
-            self.pool['res.users'].browse(cr, uid, uid, context).company_id.id)
+            self.pool['res.users'].browse(cr, uid, uid, context).
+            company_id.id)
         taxes_included = context.get('taxes_included')
 
         for product in self.browse(cr, uid, ids, context=context):
@@ -62,6 +63,7 @@ class product_template(models.Model):
                 product.taxed_lst_price = product.taxes_id.filtered(
                     lambda x: x.company_id.id == company_id).compute_all(
                         product.lst_price,
+                        self.env.user.company_id.currency_id,
                         1.0,
                         product=product)['total_included']
 
@@ -78,7 +80,8 @@ class product_product(models.Model):
             return res
         company_id = (
             context.get('company_id') or
-            self.pool['res.users'].browse(cr, uid, uid, context).company_id.id)
+            self.pool['res.users'].browse(cr, uid, uid, context).
+            company_id.id)
         for product in self.browse(cr, uid, ids, context=context):
             res[product.id] = self.pool['account.tax'].compute_all(
                 cr, uid, product.taxes_id.filtered(
