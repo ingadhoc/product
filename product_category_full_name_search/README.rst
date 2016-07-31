@@ -2,11 +2,11 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-===================================
-Product Category Search by Full Name
-====================================
+===========================================
+Product Public Category Search by Full Name
+===========================================
 
-Search by Full Name on Product Categories
+Search by Full Name on Product Public Categories
 
 Installation
 ============
