@@ -24,10 +24,6 @@
     'category': 'Inventory, Logistic',
     'sequence': 14,
     'summary': 'Allow to search product by its suppliers code',
-    'description': """
-Product Search Supplier Code
-============================
-    """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
