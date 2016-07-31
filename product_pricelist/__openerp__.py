@@ -27,17 +27,6 @@
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'summary': '',
-    "description": """
-Pricelists information on Products
-==================================
-
-TODO:
------
-* Get right domain to pricelist items
-* Enable button to pricelist items
-* Send by default product or product template if you create a item from the
-product pricelist items button
-    """,
     "depends": [
         "product",
     ],
@@ -45,13 +34,12 @@ product pricelist items button
     },
     "data": [
         'views/product_view.xml',
-        'views/pricelist_view.xml',
     ],
     'demo': [
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
