@@ -28,15 +28,11 @@
         'product',
         ],
     'category': 'Product',
-    'description': '''
-Product Supplier Search
-=======================
-Add search by main supplier and suppliers on product and product template
-    ''',
     'demo': [
     ],
     'data': [
         'product_view.xml',
     ],
-    'installable': False
+    'installable': True
 }
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
