@@ -27,13 +27,6 @@
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'summary': '',
-    "description": """
-Product Public Category Search
-==============================
-This module adds to the product search function the possibility to search with "name/"
- and all children of  the category name are displayed. 
-
-    """,
     "depends": [
         "product_website_categ_search",
     ],
@@ -45,7 +38,8 @@ This module adds to the product search function the possibility to search with "
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
