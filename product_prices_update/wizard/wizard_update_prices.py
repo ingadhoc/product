@@ -17,10 +17,16 @@ class prices_update_wizard(models.TransientModel):
         string='Price Type')
     price_discount = fields.Float('Price Discoun')
     price_surcharge = fields.Float(
-        'Price Surcharge', help='Specify the fixed amount to add or substract(if negative) to the amount calculated with the discount.')
-    price_round = fields.Float('Price Rounding', help="Sets the price so that it is a multiple of this value.\n"
-                               "Rounding is applied after the discount and before the surcharge.\n"
-                               "To have prices that end in 9.99, set rounding 10, surcharge -0.01"
+        'Price Surcharge', help='Specify the fixed amount to add'
+                                ' or substract(if negative) to the'
+                                ' amount calculated with the discount.')
+    price_round = fields.Float('Price Rounding', help="Sets the price so "
+                                                      "that it is a multiple "
+                                                      "of this value.\n"
+                               "Rounding is applied after the discount and "
+                                                      "before the surcharge.\n"
+                               "To have prices that end in 9.99, set rounding "
+                                                      "10, surcharge -0.01"
                                )
     check = fields.Boolean('Check before changing')
 
@@ -52,7 +58,8 @@ class prices_update_wizard(models.TransientModel):
                     old_price = prodct.standard_price
                 else:
                     raise Warning(
-                        _('Price type "%s" is not implemented') % (self.price_type))
+                        _('Price type "%s" is not '
+                          'implemented') % (self.price_type))
                 new_price = self.calc_new_price(
                     old_price, self.price_discount,
                     self.price_surcharge, self.price_round)
