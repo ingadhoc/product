@@ -3,19 +3,17 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import models
+from openerp import models, api
 from openerp.osv import expression
 
 
 class product_public_category(models.Model):
     _inherit = "product.public.category"
 
-    def name_search(self, cr, uid, name, args=None,
-                    operator='ilike', context=None, limit=100):
-        if not args:
-            args = []
-        if not context:
-            context = {}
+    @api.model
+    def name_search(self, name, args=None, operator='ilike', limit=100):
+        args = args or []
+        domain = []
         if name:
             # Be sure name_search is symetric to name_get
             categories = name.split('/')
@@ -24,12 +22,12 @@ class product_public_category(models.Model):
             domain = [('name', operator, child)]
             if parents:
                 names_ids = self.name_search(
-                    cr, uid, '/'.join(parents), args=args,
-                    operator='ilike', context=context, limit=limit)
+                    '/'.join(parents), args=args,
+                    operator='ilike', limit=limit)
                 category_ids = [name_id[0] for name_id in names_ids]
                 if operator in expression.NEGATIVE_TERM_OPERATORS:
                     category_ids = self.search(
-                        cr, uid, [('id', 'not in', category_ids)])
+                        [('id', 'not in', category_ids)])
                     domain = expression.OR(
                         [[('parent_id', 'in', category_ids)], domain])
                 else:
@@ -44,16 +42,16 @@ class product_public_category(models.Model):
                     else:
                         domain = expression.OR(domain)
             ids = self.search(
-                cr, uid, expression.AND([domain, args]),
-                limit=limit, context=context)
+                expression.AND([domain, args]),
+                limit=limit)
         else:
-            ids = self.search(cr, uid, args, limit=limit,
-                              context=context)
-        return self.name_get(cr, uid, ids, context)
+            ids = self.search([])
+        return self.name_get()
 
-    def name_get(self, cr, uid, ids, context=None):
+    @api.multi
+    def name_get(self):
         res = []
-        for cat in self.browse(cr, uid, ids, context=context):
+        for cat in self:
             names = [cat.name]
             pcat = cat.parent_id
             while pcat:

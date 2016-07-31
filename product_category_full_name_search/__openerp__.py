@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {
-    "name": "Product Category Search by Full Name",
+    "name": "Product Public Category Search by Full Name",
     'version': '9.0.1.0.0',
     'category': 'Sales & Purchases',
     'sequence': 14,
@@ -28,7 +28,7 @@
     'license': 'AGPL-3',
     'summary': '',
     "depends": [
-        "product",
+        "website_sale"
     ],
     'external_dependencies': {
     },
