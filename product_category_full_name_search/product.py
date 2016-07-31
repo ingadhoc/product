@@ -46,7 +46,7 @@ class product_public_category(models.Model):
                 limit=limit)
         else:
             ids = self.search([])
-        return self.name_get()
+        return ids.name_get()
 
     @api.multi
     def name_get(self):
