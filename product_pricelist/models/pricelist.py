@@ -4,7 +4,6 @@
 # directory
 ##############################################################################
 from openerp import models, fields, api, _
-from openerp.exceptions import Warning
 import openerp.addons.decimal_precision as dp
 import logging
 _logger = logging.getLogger(__name__)
