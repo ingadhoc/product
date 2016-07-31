@@ -24,10 +24,6 @@
     'category': 'Inventory, Logistic',
     'sequence': 14,
     'summary': 'Allow to search product by its suppliers code',
-    'description': """
-Product Search Supplier Code
-============================
-    """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
@@ -43,7 +39,8 @@ Product Search Supplier Code
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
