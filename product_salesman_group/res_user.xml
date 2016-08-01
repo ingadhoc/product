@@ -8,11 +8,11 @@
             <field name="model">res.users</field>
             <field name="inherit_id" ref="base.view_users_form"/>
             <field name="arch" type="xml">
-                <group string="Allowed Companies" position="before">
+                <xpath expr="//form/sheet/notebook/page[1]/group[1]" position="before">
                     <group string="Salesman Group">
                         <field name="salesman_group_id"/>
                     </group>
-                </group>
+                </xpath>
             </field>
         </record>
 
