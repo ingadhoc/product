@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {
-    "name": "Product Public Category Search",
+    "name": "Product Public Category Search by Full Name",
     'version': '9.0.1.0.0',
     'category': 'Sales & Purchases',
     'sequence': 14,
@@ -27,15 +27,8 @@
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'summary': '',
-    "description": """
-Product Public Category Search
-==============================
-This module adds to the product search function the possibility to search with "name/"
- and all children of  the category name are displayed. 
-
-    """,
     "depends": [
-        "product_website_categ_search",
+        "website_sale"
     ],
     'external_dependencies': {
     },
@@ -45,7 +38,8 @@ This module adds to the product search function the possibility to search with "
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
