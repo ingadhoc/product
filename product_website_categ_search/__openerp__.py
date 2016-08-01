@@ -21,10 +21,6 @@
 {
     'name': 'Product Search by Website Category',
     'category': 'base.module_category_knowledge_management',
-    'description': """
-Product Search by Website Category
-==================================
-""",
     'author': 'ADHOC SA.',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
@@ -37,7 +33,6 @@ Product Search by Website Category
     'data': [
         'product_view.xml',
     ],
-    'installable': False,
+    'installable': True,
 }
-
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
