@@ -27,17 +27,11 @@ class product_product(models.Model):
         'product_tmpl_id.attribute_line_ids.value_ids.name',
     )
     def _get_complete_name(self):
-        # TODO habria que ver de mejorar esta funcion porque se corre varias veces
         name = self.product_tmpl_id.name
-        variants = [
-            v.name for v in self.attribute_value_ids if v.attribute_id.add_to_name]
-        attribute_lines = [
-            v for v in self.attribute_line_ids if v.attribute_id.add_to_name and len(v.value_ids) == 1]
-        attributes = [
-            v.value_ids[0].name for v in attribute_lines if v.value_ids]
-        variant_and_attributes = ", ".join(variants + attributes)
-        name = variant_and_attributes and "%s (%s)" % (
-            name, variant_and_attributes) or name
+        attributes_names = self.attribute_value_ids.filtered(
+            lambda x: x.attribute_id.add_to_name).mapped('name')
+        name = attributes_names and "%s (%s)" % (
+            name, ", ".join(attributes_names)) or name
         self.name = name
 
     name = fields.Char(
