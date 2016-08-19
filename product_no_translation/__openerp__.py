@@ -1,8 +1,9 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2015  ADHOC SA  (http://www.adhoc.com.ar)
-#    All Rights Reserved.
+#    Product No Translation module for Odoo
+#    Copyright (C) 2014 Akretion (http://www.akretion.com)
+#    @author Alexis de Lattre <alexis.delattre@akretion.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,33 +19,15 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
+
 {
-    "name": "Product Category Full Name Search",
-    'version': '8.0.0.0.0',
-    'category': 'Sales & Purchases',
-    'sequence': 14,
-    'author':  'ADHOC SA',
-    'website': 'www.adhoc.com.ar',
+    'name': 'Product no Translation',
+    'version': '0.1',
+    'category': 'Sales Management',
     'license': 'AGPL-3',
-    'summary': '',
-    "description": """
-Product Category Full Name Search
-=================================
-With this module you can search categories using full name (parent's categories
-names concatenated)
-    """,
-    "depends": [
-        "product_website_categ_search",
-    ],
-    'external_dependencies': {
-    },
-    "data": [
-    ],
-    'demo': [
-    ],
-    'test': [
-    ],
-    'installable': True,
-    'auto_install': False,
-    'application': False,
+    'summary': 'For companies that work with only one language',
+    'author': 'Akretion,ADHOC SA',
+    'depends': ['product'],
+    'pre_init_hook': 'pre_init_hook',
 }
