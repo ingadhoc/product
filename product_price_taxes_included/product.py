@@ -17,30 +17,35 @@ class product_template(models.Model):
 
     # we do this so that we can show prices with or without taxe without
     # needing a pricelist
-    def _product_lst_price(self, cr, uid, ids, name, arg, context=None):
-        res = {}
+    @api.multi
+    def _product_lst_price(self):
+        # res = {}
+        context = self._context
         company_id = (
-            context.get('company_id') or
-            self.pool['res.users'].browse(cr, uid, uid, context).company_id.id)
+            context.get('company_id') or self.env.user.company_id.id)
         taxes_included = context.get('taxes_included')
 
-        for product in self.browse(cr, uid, ids, context=context):
+        for product in self:
             lst_price = product.list_price
             if taxes_included:
-                lst_price = self.pool['account.tax'].compute_all(
-                    cr, uid, product.taxes_id.filtered(
-                        lambda x: x.company_id.id == company_id),
-                    lst_price, 1.0, product=product)['total_included']
-            res[product.id] = lst_price
-        return res
+                lst_price = product.taxes_id.filtered(
+                    lambda x: x.company_id.id == company_id).compute_all(
+                        lst_price, 1.0, product=product)['total_included']
+            product.lst_price = lst_price
 
-    _columns = {
-        'lst_price': fields.function(
-            _product_lst_price, type='float',
-            string='Public Price',
-            readonly=True,
-            digits_compute=dp.get_precision('Product Price')),
-    }
+    @api.model
+    def _search_products_by_lst_price(self, operator, value):
+        # TODO improove this, for now, at least we return products without
+        # considering taxes
+        return [('list_price', operator, value)]
+
+    lst_price = new_fields.Float(
+        compute='_product_lst_price',
+        search='_search_products_by_lst_price',
+        string='Public Price',
+        # readonly=True,
+        digits=dp.get_precision('Product Price')
+    )
 
     taxed_lst_price = new_fields.Float(
         string='Taxed Sale Price',
