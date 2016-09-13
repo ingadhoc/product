@@ -34,7 +34,8 @@ class product_pricelist(models.Model):
                 #     res[product.id] = (product.supplier_taxes_id.filtered(
                 #         lambda x: x.company_id.id == company_id).compute_all(
                 #         res[product.id][0], 1.0, product=product,
-                #         partner=partner)['total_included'], res[product.id][1])
+                #         partner=partner)['total_included'],
+                # res[product.id][1])
                 # else:
                 res[product.id] = (product.taxes_id.filtered(
                     lambda x: x.company_id.id == company_id).compute_all(
