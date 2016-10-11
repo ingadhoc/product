@@ -47,9 +47,7 @@ class ProductTemplate(models.Model):
     @api.multi
     def set_prices(self, computed_list_price):
         self.ensure_one()
-        # we add check of computed_list_price because on error with integration
-        # with margin
-        if self.list_price_type == 'by_uom' and computed_list_price:
+        if self.list_price_type == 'by_uom':
             # self.uom_price_ids.filtered(lambda x: x.)
             # we update or create a uom line
             uom_price = self.env['product.sale.uom'].search([
