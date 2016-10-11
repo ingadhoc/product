@@ -21,6 +21,9 @@ addons:
       - python-simplejson
       - python-serial
       - python-yaml
+      # for aeroo
+      - cups
+      - libcups2-dev
       - wkhtmltopdf # for odoo pdf reports (tested on sale for eg.)
 #     Search your packages here:
 #       https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-precise
