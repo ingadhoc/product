@@ -20,10 +20,10 @@ class AccountInvoiceLine(models.Model):
     def check_discount(self):
         for invoice_line in self:
             if (invoice_line.user_has_groups(
-                'price_security.group_restrict_prices')
-                    and not invoice_line.product_can_modify_prices and
-                    invoice_line.invoice_id
-                ):
+                    'price_security.group_restrict_prices'
+            ) and not invoice_line.product_can_modify_prices and invoice_line.
+                invoice_id
+            ):
                 invoice_line.env.user.check_discount(
                     invoice_line.discount,
                     invoice_line.invoice_id.partner_id.
