@@ -21,27 +21,6 @@
 {
     'name': 'Price Security',
     'version': '9.0.1.0.0',
-    'description': """
-Price Security
-==============
-Creates a new permission to restrict the users that can modify the prices
-of the products.
-
-Asociate to each user a list of pricelist and the correspoding discounts they
-can apply to sale orders and invoices.
-
-Allow the posibility to mark products so that anyone can modify their price in
-a sale order.
-
-For users with price restriction, it restricts:
-* on sales orders: change payment term or pricelist
-* on sales order lines: change unit price and set limits on discount (limits configured on user)
-* on partners: change payment term or pricelist
-* on invoices: change unit price
-* on product: change price
-
-NEW: sequence field on pricelist and payment term (you can only assigne pricelests or terms of lower priority than partner default one)
-""",
     'category': 'Sales Management',
     'author': 'ADHOC SA',
     'website': 'http://www.adhoc.com.ar/',
@@ -59,8 +38,5 @@ NEW: sequence field on pricelist and payment term (you can only assigne priceles
         'views/partner_view.xml',
         'views/account_view.xml',
     ],
-    'demo_xml': [],
-    'test': [],
-    'installable': False,
+    'installable': True,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

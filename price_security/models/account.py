@@ -6,7 +6,7 @@
 from openerp import fields, models
 
 
-class account_payment_term(models.Model):
+class AccountPaymentTerm(models.Model):
     _inherit = 'account.payment.term'
 
     sequence = fields.Integer(
