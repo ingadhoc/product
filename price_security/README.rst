@@ -15,8 +15,7 @@ can apply to sale orders and invoices.
 Allow the posibility to mark products so that anyone can modify their price in
 a sale order.
 
-
-NEW: sequence field on pricelist and payment term (you can only assigne pricelests or terms of lower priority than partner default one)
+Add a sequence field on pricelist and payment term (you can only assign pricelist or terms of lower priority than partner default one)
 
 Installation
 ============
@@ -31,7 +30,8 @@ Configuration
 
 To configure this module, you need to:
 
-#. No needed configuration.
+#. Set 'Restrict Prices' for users you want to restrict.
+#. For the same users, configure discounts range on "Discounts Permissions" users tab.
 
 
 Usage
@@ -44,6 +44,7 @@ For users with price restriction, it restricts:
 * on sales order lines: change unit price and set limits on discount (limits configured on user)
 * on partners: change payment term or pricelist
 * on invoices: change unit price
+* on invoice lines: change unit price and set limits on discount (limits configured on user)
 * on product: change price
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
