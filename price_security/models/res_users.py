@@ -7,7 +7,7 @@ from openerp import models, api, fields, _
 from openerp.exceptions import Warning
 
 
-class discount_restriction(models.Model):
+class DiscountRestriction(models.Model):
     _name = 'res.users.discount_restriction'
     _description = 'Discount Restriction'
 
@@ -22,10 +22,10 @@ class discount_restriction(models.Model):
         'User',
         required=True,
         ondelete='cascade',
-        )
+    )
 
 
-class users(models.Model):
+class Users(models.Model):
     _inherit = 'res.users'
 
     discount_restriction_ids = fields.One2many(
@@ -45,7 +45,6 @@ class users(models.Model):
             domain = [
                 ('pricelist_id', '=', pricelist_id), ('user_id', '=', self.id)]
             disc_restriction = disc_restriction_env.search(domain, limit=1)
-            print 'disc_restriction', disc_restriction
             if not disc_restriction:
                 domain = [
                     ('user_id', '=', self.id)]
@@ -59,7 +58,7 @@ class users(models.Model):
                 if (
                         discount < disc_restriction.min_discount or
                         discount > disc_restriction.max_discount
-                        ):
+                ):
                     error = _(
                         'The applied discount is out of range with respect to '
                         'the allowed. The discount can be between %s and %s '
