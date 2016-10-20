@@ -6,7 +6,7 @@
 from openerp import fields, models, api
 
 
-class account_invoice_line(models.Model):
+class AccountInvoiceLine(models.Model):
     _inherit = 'account.invoice.line'
 
     product_can_modify_prices = fields.Boolean(
@@ -14,14 +14,17 @@ class account_invoice_line(models.Model):
         readonly=True,
         string='Product Can modify prices')
 
-    @api.one
+    @api.multi
     @api.constrains(
         'discount', 'product_can_modify_prices')
     def check_discount(self):
-        if (
-                self.user_has_groups('price_security.group_restrict_prices')
-                and not self.product_can_modify_prices and self.invoice_id
-                ):
-            self.env.user.check_discount(
-                self.discount,
-                self.invoice_id.partner_id.property_product_pricelist.id)
+        for invoice_line in self:
+            if (invoice_line.user_has_groups(
+                    'price_security.group_restrict_prices'
+            ) and not invoice_line.product_can_modify_prices and invoice_line.
+                invoice_id
+            ):
+                invoice_line.env.user.check_discount(
+                    invoice_line.discount,
+                    invoice_line.invoice_id.partner_id.
+                    property_product_pricelist.id)

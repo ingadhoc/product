@@ -3,10 +3,10 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import fields, models, api
+from openerp import fields, models
 
 
-class product_template(models.Model):
+class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     can_modify_prices = fields.Boolean(
@@ -15,7 +15,7 @@ class product_template(models.Model):
         string='Can modify prices')
 
 
-class product_pricelist(models.Model):
+class ProductPricelist(models.Model):
     _inherit = 'product.pricelist'
 
     sequence = fields.Integer(
