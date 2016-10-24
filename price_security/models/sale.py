@@ -31,7 +31,7 @@ class SaleOrder(models.Model):
     @api.one
     @api.constrains(
         'pricelist_id',
-        'payment_term',
+        'payment_term_id',
         'partner_id')
     def check_priority(self):
         if not self.user_has_groups('price_security.group_restrict_prices'):
@@ -46,10 +46,10 @@ class SaleOrder(models.Model):
                 'configured on partner'
             ))
         if (
-                self.partner_id.property_payment_term and
-                self.payment_term and
-                self.partner_id.property_payment_term.sequence <
-                self.payment_term.sequence):
+                self.partner_id.property_payment_term_id and
+                self.payment_term_id and
+                self.partner_id.property_payment_term_id.sequence <
+                self.payment_term_id.sequence):
             raise Warning(_(
                 'Selected payment term priority can not be higher than '
                 'payment term configured on partner'
