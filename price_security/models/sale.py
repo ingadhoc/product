@@ -46,9 +46,9 @@ class SaleOrder(models.Model):
                 'configured on partner'
             ))
         if (
-                self.partner_id.property_payment_term and
+                self.partner_id.property_payment_term_id and
                 self.payment_term and
-                self.partner_id.property_payment_term.sequence <
+                self.partner_id.property_payment_term_id.sequence <
                 self.payment_term.sequence):
             raise Warning(_(
                 'Selected payment term priority can not be higher than '
