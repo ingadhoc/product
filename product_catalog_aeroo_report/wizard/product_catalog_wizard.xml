@@ -32,7 +32,7 @@
         <menuitem
                 id="menu_product_catalog"
                 action="action_product_catalog"
-                parent="base.menu_product"
+                parent="base.menu_sales"
                 sequence="20"/>
     </data>
 </openerp>
