@@ -31,7 +31,7 @@ class product_template(models.Model):
                 lst_price = self.pool['account.tax'].compute_all(
                     cr, uid, product.taxes_id.filtered(
                         lambda x: x.company_id.id == company_id),
-                    lst_price, 1.0, product=product)['total_included']
+                    lst_price, product_id=product)['total_included']
             res[product.id] = lst_price
         return res
 
@@ -86,7 +86,7 @@ class product_product(models.Model):
             res[product.id] = self.pool['account.tax'].compute_all(
                 cr, uid, product.taxes_id.filtered(
                     lambda x: x.company_id.id == company_id),
-                res[product.id], 1.0, product=product)['total_included']
+                res[product.id], product_id=product)['total_included']
         return res
 
     def _set_product_lst_price(
