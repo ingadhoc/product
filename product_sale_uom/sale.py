@@ -65,6 +65,8 @@ class SaleOrderLine(models.Model):
             lang=lang, update_tax=update_tax, date_order=date_order,
             packaging=packaging, fiscal_position=fiscal_position,
             flag=flag)
+        if uom:
+            res['value']['product_uom'] = uom
         if product_uom_domain:
             if 'domain' not in res:
                 res['domain'] = {}
