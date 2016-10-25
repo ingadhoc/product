@@ -6,7 +6,7 @@
 from openerp import fields, api, models
 
 
-class product_catalog(models.TransientModel):
+class ProductCatalog(models.TransientModel):
     _name = 'product_catalog'
     _description = 'Wizard to generate the Product Catalog Report with Aeroo'
 
@@ -14,10 +14,10 @@ class product_catalog(models.TransientModel):
         'product.product_catalog_report',
         'Product Catalog',
         required=True
-        )
+    )
     taxes_included = fields.Boolean(
         'Taxes Included',
-        )
+    )
 
     @api.onchange('product_catalog_report_id')
     def change_product_catalog_report(self):
