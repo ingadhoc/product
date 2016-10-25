@@ -93,12 +93,14 @@ class Parser(rml_parse):
             main_uom = product.sale_uom_ids[0].uom_id
         else:
             main_uom = product.uom_id
-        description = _('%s (%s)' % (product.display_name, main_uom.display_name))
+        description = _('%s (%s)' % (product.
+                                     display_name, main_uom.display_name))
         if sale_uom and len(product.sale_uom_ids) > 1:
             description = _('%s. Also available in %s') % (
                 description, ', '.join(
                     product.sale_uom_ids.filtered(
-                        lambda x: x.uom_id != main_uom).mapped('uom_id.display_name')))
+                        lambda x: x.uom_id != main_uom).
+                    mapped('uom_id.display_name')))
 
         return description
 
