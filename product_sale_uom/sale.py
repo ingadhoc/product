@@ -44,29 +44,29 @@ class SaleOrderLine(models.Model):
         # add it in context con module 'sale_stock_product_uom_prices'
         if not uom:
             uom = self._context.get('preserve_uom', False)
+        product_uom_domain = None
+        if product:
+            context_partner = {'lang': lang, 'partner_id': partner_id}
+            product_obj = self.env['product.product'].with_context(
+                context_partner).browse(
+                product)
+
+            # we can use line on self but we should use self.ensure_one()
+            sale_product_uoms = self.get_product_uoms(product_obj)
+            if sale_product_uoms:
+                if not uom:
+                    uom = sale_product_uoms[0].id
+
+                # we do this because odoo overwrite view domain
+                product_uom_domain = [('id', 'in', sale_product_uoms.ids)]
         res = super(SaleOrderLine, self).product_id_change(
             pricelist, product, qty=qty, uom=uom,
             qty_uos=qty_uos, uos=uos, name=name, partner_id=partner_id,
             lang=lang, update_tax=update_tax, date_order=date_order,
             packaging=packaging, fiscal_position=fiscal_position,
             flag=flag)
-
-        if product:
-            context_partner = {'lang': lang, 'partner_id': partner_id}
-            product = self.env['product.product'].with_context(
-                context_partner).browse(
-                product)
-
-            # we can use line on self but we should use self.ensure_one()
-            sale_product_uoms = self.get_product_uoms(product)
-            if sale_product_uoms:
-                if not uom:
-                    uom_id = sale_product_uoms[0].id
-                    res['value']['product_uom'] = uom_id
-
-                # we do this because odoo overwrite view domain
-                if 'domain' not in res:
-                    res['domain'] = {}
-                res['domain']['product_uom'] = [
-                    ('id', 'in', sale_product_uoms.ids)]
+        if product_uom_domain:
+            if 'domain' not in res:
+                res['domain'] = {}
+            res['domain']['product_uom'] = product_uom_domain
         return res
