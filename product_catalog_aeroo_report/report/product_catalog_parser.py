@@ -4,12 +4,14 @@
 # directory
 ##############################################################################
 import time
-from openerp.report import report_sxw
 from openerp import _
+from openerp.report.report_sxw import rml_parse
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 
 
-class Parser(report_sxw.rml_parse):
-
+class Parser(rml_parse):
     def __init__(self, cr, uid, name, context):
         super(Parser, self).__init__(cr, uid, name, context)
 
@@ -63,7 +65,6 @@ class Parser(report_sxw.rml_parse):
         # del padre, por ejemplo "categ_id/name"
         if not context:
             context = {}
-
         product_obj = self.pool.get(self.product_type)
         field_value = product_obj.read(
             self.cr, self.uid, [product.id], [field], context=context)
@@ -87,17 +88,19 @@ class Parser(report_sxw.rml_parse):
         sale_uom = self.pool['product.template'].fields_get(
             self.cr, self.uid, ['sale_uom_ids'])
         if not print_product_uom:
-            return product.name
+            return product.display_name
         if sale_uom and product.sale_uom_ids:
             main_uom = product.sale_uom_ids[0].uom_id
         else:
             main_uom = product.uom_id
-        description = _('%s (%s)' % (product.name, main_uom.name))
+        description = _('%s (%s)' % (product.
+                                     display_name, main_uom.display_name))
         if sale_uom and len(product.sale_uom_ids) > 1:
             description = _('%s. Also available in %s') % (
                 description, ', '.join(
                     product.sale_uom_ids.filtered(
-                        lambda x: x.uom_id != main_uom).mapped('uom_id.name')))
+                        lambda x: x.uom_id != main_uom).
+                    mapped('uom_id.display_name')))
 
         return description
 
