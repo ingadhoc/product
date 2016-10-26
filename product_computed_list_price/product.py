@@ -156,7 +156,10 @@ class product_template(models.Model):
         _logger.info('Set Prices from "computed_list_price"')
         # send coputed list price because it is lost
         for template in self:
-            template.set_prices(self.computed_list_price)
+            # fix for integration with margin (if you change replanishment cost
+            # for eg, uom price was set with zero (TODO improove this)
+            if template.computed_list_price:
+                template.set_prices(template.computed_list_price)
 
     @api.multi
     def set_prices(self, computed_list_price):
