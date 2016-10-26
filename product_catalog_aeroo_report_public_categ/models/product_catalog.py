@@ -6,7 +6,7 @@
 from openerp import fields, models, api
 
 
-class product_catalog_report(models.Model):
+class ProductCatalogReport(models.Model):
     _inherit = 'product.product_catalog_report'
 
     category_type = fields.Selection(
@@ -36,7 +36,7 @@ class product_catalog_report(models.Model):
 
     @api.multi
     def prepare_report(self):
-        self = super(product_catalog_report, self).prepare_report()
+        self = super(ProductCatalogReport, self).prepare_report()
         if self.category_type == 'public_category':
             categories = self.public_category_ids
             if self.include_sub_categories and categories:

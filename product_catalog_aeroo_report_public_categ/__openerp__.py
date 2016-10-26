@@ -24,10 +24,6 @@
     'category': 'Aeroo Reporting',
     'sequence': 14,
     'summary': '',
-    'description': """
-Product Catalog Aeroo Report with Public Category
-=================================================
-    """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
@@ -44,8 +40,7 @@ Product Catalog Aeroo Report with Public Category
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': True,
     'application': False,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
