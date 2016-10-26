@@ -3,7 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import models, api, fields
+from openerp import models, fields
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -46,7 +46,8 @@ class ProductPricelistItem(models.Model):
     #     if not res:
     #         for field, operator, value in args:
     #             if field == 'field' and 'list_price' in value:
-    #                 args = ['|', ('field', '=', 'computed_list_price')] + args
+    #                 args = [
+    #                     '|', ('field', '=', 'computed_list_price')] + args
     #                 return super(price_type, self).search(
     #                     cr, uid, args, offset=offset, limit=limit,
     #                     order=order, context=context, count=count)
@@ -74,8 +75,3 @@ class ProductPricelistItem(models.Model):
 #     _defaults = {
 #         'base': _get_default_base,
 #         }
-    # def _price_rule_get_multi(self, cr, uid, pricelist, products_by_qty_by_partner, context=None):
-    #     res = super(ProductPricelist, self)._price_rule_get_multi(
-    #         cr, uid, pricelist, products_by_qty_by_partner, context=None)
-    #     print 'res', res
-    #     return res
