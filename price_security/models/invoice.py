@@ -12,8 +12,8 @@ class AccountInvoiceLine(models.Model):
     # we add this fields instead of making original readonly because we need
     # on change to change values, we make readonly in view because sometimes
     # we want them to be writeable
-    invoice_line_tax_id_readonly = fields.Many2many(
-        related='invoice_line_tax_id',
+    invoice_line_tax_ids_readonly = fields.Many2many(
+        related='invoice_line_tax_ids',
     )
     price_unit_readonly = fields.Float(
         related='price_unit',
