@@ -20,6 +20,7 @@ class AccountInvoiceLine(models.Model):
     )
     product_can_modify_prices = fields.Boolean(
         related='product_id.can_modify_prices',
+        readonly=True,
         string='Product Can modify prices')
 
     @api.multi

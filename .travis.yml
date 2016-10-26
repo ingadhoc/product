@@ -21,9 +21,6 @@ addons:
       - python-simplejson
       - python-serial
       - python-yaml
-      # for aeroo
-      - cups
-      - libcups2-dev
       - wkhtmltopdf # for odoo pdf reports (tested on sale for eg.)
       #for aeroo
       - cups
