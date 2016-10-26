@@ -1,8 +1,9 @@
-# -*- coding: utf-8 -*-
+# -*- encoding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2015  ADHOC SA  (http://www.adhoc.com.ar)
-#    All Rights Reserved.
+#    Product No Translation module for Odoo
+#    Copyright (C) 2014 Akretion (http://www.akretion.com)
+#    @author Alexis de Lattre <alexis.delattre@akretion.com>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,25 +19,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-{
-    'name': 'Price Security',
-    'version': '9.0.1.0.0',
-    'category': 'Sales Management',
-    'author': 'ADHOC SA',
-    'website': 'http://www.adhoc.com.ar/',
-    'license': 'AGPL-3',
-    'depends': [
-        'sale',
-    ],
-    'data': [
-        'security/security.xml',
-        'security/ir.model.access.csv',
-        'views/res_users_view.xml',
-        'views/product_view.xml',
-        'views/sale_view.xml',
-        'views/invoice_view.xml',
-        'views/partner_view.xml',
-        'views/account_view.xml',
-    ],
-    'installable': True,
-}
+
+from . import product
+from .hooks import pre_init_hook

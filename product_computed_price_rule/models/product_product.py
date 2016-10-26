@@ -16,7 +16,8 @@ class ProductTemplate(models.Model):
         )
     computed_list_price_before = fields.Float(
         string='Sale Price Before',
-        compute='_other_computed_rules',
+        compute='_compute_computed_list_price_before',
+        # compute='_other_computed_rules',
         inverse='_set_prices',
         )
     computed_list_price = fields.Float(
@@ -39,6 +40,12 @@ class ProductTemplate(models.Model):
     def _get_computed_list_price(self):
         """Only to update depends"""
         return super(ProductTemplate, self)._get_computed_list_price()
+
+    @api.multi
+    def _compute_computed_list_price_before(self):
+        # TODO mejorar esto, llamamos a este metodo simplemente para que
+        # recalcule
+        self._get_computed_list_price()
 
     @api.multi
     def _other_computed_rules(self, computed_list_price):
