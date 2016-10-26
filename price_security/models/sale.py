@@ -9,6 +9,15 @@ from openerp import fields, models, api, _
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
+    # we add this fields instead of making original readonly because we need
+    # on change to change values, we make readonly in view because sometimes
+    # we want them to be writeable
+    price_unit_readonly = fields.Float(
+        related='price_unit',
+    )
+    tax_id_readonly = fields.Many2many(
+        related='tax_id',
+    )
     product_can_modify_prices = fields.Boolean(
         related='product_id.can_modify_prices',
         readonly=True,

@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {
-    "name": "Product Public Category Search by Full Name",
+    "name": "Product Category Full Name Search",
     'version': '9.0.1.0.0',
     'category': 'Sales & Purchases',
     'sequence': 14,

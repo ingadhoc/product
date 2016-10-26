@@ -8,30 +8,47 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="groups_id" eval="[(6, 0, [ref('group_restrict_prices')])]"/>
             <field name="arch" type="xml">
-<!--                 <field name="pricelist_id" position="attributes">
-                    <attribute name="readonly">1</attribute>
-                </field>
-                <field name="payment_term" position="attributes">
-                    <attribute name="readonly">1</attribute>
-                </field> -->
-                <!-- Make price readonly if user can not modify prices -->
                 <xpath expr="//field[@name='order_line']/form" position="inside">
                     <field name="product_can_modify_prices" invisible="1"/>
                 </xpath>
                 <xpath expr="//field[@name='order_line']/tree" position="inside">
                     <field name="product_can_modify_prices" invisible="1"/>
                 </xpath>
+
+                <!-- add readonly price unit on tree -->
+                <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">
+                    <field name="price_unit_readonly" attrs="{'readonly': [('product_can_modify_prices','=', False)]}"/>
+                </xpath>
+                <!-- make price unit invisible on tree -->
                 <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="attributes">
-                    <attribute name="attrs">{'readonly':[('product_can_modify_prices','=', False)]}</attribute>
+                    <attribute name="invisible">1</attribute>
                 </xpath>
+
+                <!-- add readonly tax on tree -->
+                <xpath expr="//field[@name='order_line']/tree//field[@name='tax_id']" position="after">
+                    <field name="tax_id_readonly" attrs="{'readonly': [('product_can_modify_prices','=', False)]}" domain="[('parent_id','=',False),('type_tax_use','&lt;&gt;','purchase')]" widget="many2many_tags"/>
+                </xpath>
+                <!-- make tax invisible on tree -->
                 <xpath expr="//field[@name='order_line']/tree//field[@name='tax_id']" position="attributes">
-                    <attribute name="attrs">{'readonly':[('product_can_modify_prices','=', False)]}</attribute>
+                    <attribute name="invisible">1</attribute>
                 </xpath>
+
+                <!-- add readonly price unit on form -->
+                <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="after">
+                    <field name="price_unit_readonly" attrs="{'readonly': [('product_can_modify_prices','=', False)]}"/>
+                </xpath>
+                <!-- make price unit invisible on form -->
                 <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="attributes">
-                    <attribute name="attrs">{'readonly':[('product_can_modify_prices','=', False)]}</attribute>
+                    <attribute name="invisible">1</attribute>
                 </xpath>
+
+                <!-- add readonly tax on form -->
+                <xpath expr="//field[@name='order_line']/form//field[@name='tax_id']" position="after">
+                    <field name="tax_id_readonly" attrs="{'readonly': [('product_can_modify_prices','=', False)]}" domain="[('parent_id','=',False),('type_tax_use','&lt;&gt;','purchase')]" widget="many2many_tags"/>
+                </xpath>
+                <!-- make tax invisible on form -->
                 <xpath expr="//field[@name='order_line']/form//field[@name='tax_id']" position="attributes">
-                    <attribute name="attrs">{'readonly':[('product_can_modify_prices','=', False)]}</attribute>
+                    <attribute name="invisible">1</attribute>
                 </xpath>
             </field>
         </record>
