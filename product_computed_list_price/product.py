@@ -16,10 +16,10 @@ class product_product(models.Model):
     lst_price = fields.Float(
         compute='_computed_get_product_lst_price',
         inverse='_computed_set_product_lst_price',
-        )
+    )
 
     @api.multi
-    @api.depends('price_extra', 'computed_list_price', 'uom_id', 'uos_id')
+    @api.depends('price_extra', 'computed_list_price', 'uom_id')
     def _computed_get_product_lst_price(self):
         company_id = (
             self._context.get('company_id') or self.env.user.company_id.id)
@@ -27,7 +27,7 @@ class product_product(models.Model):
 
         for product in self:
             if 'uom' in self._context:
-                uom = product.uos_id or product.uom_id
+                uom = product.uom_id
                 lst_price = self.env['product.uom']._compute_price(
                     uom.id, product.computed_list_price, self._context['uom'])
             else:
@@ -52,7 +52,7 @@ class product_product(models.Model):
         for product in self:
             lst_price = product.lst_price
             if 'uom' in self._context:
-                uom = product.uos_id or product.uom_id
+                uom = product.uom_id
                 lst_price = self.env['product.uom']._compute_price(
                     self._context['uom'], lst_price, uom.id)
             product.computed_list_price = lst_price - product.price_extra
@@ -104,39 +104,41 @@ class product_template(models.Model):
         help='Computed Sale Price. This value depends on "Sale Price Type" an '
         'other parameters. If you set this value, other fields will be '
         'computed automatically.',
-        )
+    )
     list_price_type = fields.Selection([
         ('manual', 'Manual')],
         string='Sale Price Type',
         required=True,
         default='manual',
-        )
-    computed_list_price_currency_id = fields.Many2one(
-        'res.currency',
-        string='Computed List Price Currency',
-        compute='get_computed_list_price_currency',
-        )
+    )
+    # en la v9 no existe mas el price_type y odoo usa el campo currency_id
+    # que en realidad busca la mondeda la cia principal
+    # computed_list_price_currency_id = fields.Many2one(
+    #     'res.currency',
+    #     string='Computed List Price Currency',
+    #     compute='get_computed_list_price_currency',
+    # )
 
-    @api.model
-    def _get_price_type(self, price_type):
-        price_type = self.env['product.price.type'].search(
-            [('field', '=', price_type)], limit=1)
-        if not price_type:
-            raise Warning(_('No Price type defined for field %s' % (
-                price_type)))
-        return price_type
+    # @api.model
+    # def _get_price_type(self, price_type):
+    #     price_type = self.env['product.price.type'].search(
+    #         [('field', '=', price_type)], limit=1)
+    #     if not price_type:
+    #         raise Warning(_('No Price type defined for field %s' % (
+    #             price_type)))
+    #     return price_type
 
-    @api.multi
-    def get_computed_list_price_currency(self):
-        price_type = self._get_price_type('computed_list_price')
-        for product in self:
-            product.computed_list_price_currency_id = price_type.currency_id
+    # @api.multi
+    # def get_computed_list_price_currency(self):
+    #     price_type = self._get_price_type('computed_list_price')
+    #     for product in self:
+    #         product.computed_list_price_currency_id = price_type.currency_id
 
     @api.multi
     @api.depends(
         'list_price_type',
         'list_price',
-        )
+    )
     def _get_computed_list_price(self):
         _logger.info('Getting Compute List Price for products: "%s"' % (
             self.ids))

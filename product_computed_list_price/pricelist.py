@@ -3,14 +3,19 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import models, api
+from openerp import models, api, fields
 import logging
 _logger = logging.getLogger(__name__)
 
 
-class price_type(models.Model):
-    _inherit = "product.price.type"
+class ProductPricelistItem(models.Model):
+    _inherit = "product.pricelist.item"
 
+    base = fields.Selection(
+        selection_add=[('computed_list_price', 'Computed List Price')],
+        # TODO ver porque no toma este valor por defecto
+        default='computed_list_price',
+    )
     # @api.model
     # def _get_field_currency(self, fname):
     #     """
@@ -25,31 +30,31 @@ class price_type(models.Model):
     #             [('field', '=', 'computed_list_price')], limit=1)
     #     return field.currency_id
 
-    def search(
-            self, cr, uid, args, offset=0, limit=None,
-            order=None, context=None, count=False):
-        """
-        Because of bad implementation of many searches of 'list_price', some
-        hardecoded other not, for eg on "on_change_unit_amount" of
-        account_analytic_account, on website_sale.
-        if not price_type found and requested is "list_price" then we search
-        "computed_list_price"
-        """
-        res = super(price_type, self).search(
-            cr, uid, args, offset=offset, limit=limit,
-            order=order, context=context, count=count)
-        if not res:
-            for field, operator, value in args:
-                if field == 'field' and 'list_price' in value:
-                    args = ['|', ('field', '=', 'computed_list_price')] + args
-                    return super(price_type, self).search(
-                        cr, uid, args, offset=offset, limit=limit,
-                        order=order, context=context, count=count)
-        return res
+    # def search(
+    #         self, cr, uid, args, offset=0, limit=None,
+    #         order=None, context=None, count=False):
+    #     """
+    #     Because of bad implementation of many searches of 'list_price', some
+    #     hardecoded other not, for eg on "on_change_unit_amount" of
+    #     account_analytic_account, on website_sale.
+    #     if not price_type found and requested is "list_price" then we search
+    #     "computed_list_price"
+    #     """
+    #     res = super(price_type, self).search(
+    #         cr, uid, args, offset=offset, limit=limit,
+    #         order=order, context=context, count=count)
+    #     if not res:
+    #         for field, operator, value in args:
+    #             if field == 'field' and 'list_price' in value:
+    #                 args = ['|', ('field', '=', 'computed_list_price')] + args
+    #                 return super(price_type, self).search(
+    #                     cr, uid, args, offset=offset, limit=limit,
+    #                     order=order, context=context, count=count)
+    #     return res
 
 
-# class product_pricelist_item(models.Model):
-#     _inherit = "product.pricelist.item"
+# class ProductPricelist(models.Model):
+#     _inherit = "product.pricelist"
 
 #     def _get_default_base(self, cr, uid, fields, context=None):
 #         """
@@ -69,3 +74,8 @@ class price_type(models.Model):
 #     _defaults = {
 #         'base': _get_default_base,
 #         }
+    # def _price_rule_get_multi(self, cr, uid, pricelist, products_by_qty_by_partner, context=None):
+    #     res = super(ProductPricelist, self)._price_rule_get_multi(
+    #         cr, uid, pricelist, products_by_qty_by_partner, context=None)
+    #     print 'res', res
+    #     return res
