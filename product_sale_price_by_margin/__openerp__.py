@@ -24,11 +24,6 @@
     'category': 'Product',
     'sequence': 14,
     'summary': '',
-    'description': """
-Product Sale Price By Margin
-============================
-
-    """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',

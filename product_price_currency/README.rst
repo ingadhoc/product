@@ -1,0 +1,4 @@
+    'description': """
+Product Price Currency
+======================
+    """,
