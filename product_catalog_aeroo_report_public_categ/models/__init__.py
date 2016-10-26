@@ -4,4 +4,5 @@
 # directory
 ##############################################################################
 
-from . import models
+from . import product_catalog
+from . import product
