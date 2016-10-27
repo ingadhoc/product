@@ -100,7 +100,7 @@ class ProductTemplate(models.Model):
     computed_list_price = fields.Float(
         string='Sale Price',
         compute='_get_computed_list_price',
-        inverse='_set_prices',
+        inverse='_inverse_computed_list_price',
         help='Computed Sale Price. This value depends on "Sale Price Type" an '
         'other parameters. If you set this value, other fields will be '
         'computed automatically.',
@@ -154,7 +154,7 @@ class ProductTemplate(models.Model):
         return computed_list_price
 
     @api.multi
-    def _set_prices(self):
+    def _inverse_computed_list_price(self):
         _logger.info('Set Prices from "computed_list_price"')
         # send coputed list price because it is lost
         for template in self:
