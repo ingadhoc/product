@@ -53,6 +53,7 @@ Bugs are tracked on `GitHub Issues
 check there if your issue has already been reported. If you spotted it first,
 help us smashing it by providing a detailed and welcomed feedback.
 
+
 Credits
 =======
 
@@ -69,8 +70,8 @@ Maintainer
 ----------
 
 .. image:: http://fotos.subefotos.com/83fed853c1e15a8023b86b2b22d6145bo.png
-   :alt: Odoo Community Association
-   :target: https://www.adhoc.com.ar
+  :alt: Odoo Community Association
+  :target: https://www.adhoc.com.ar
 
 This module is maintained by the ADHOC SA.
 
