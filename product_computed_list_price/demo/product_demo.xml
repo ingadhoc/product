@@ -2,18 +2,13 @@
 <openerp>
     <data noupdate="1">
 
-<record id="computed_manual" model="product.product">
-    <field name="name">Computed Manual Product</field>
-    <field name="categ_id" ref="product.product_category_4"/>
-    <field name="standard_price">20.5</field>
-    <field name="list_price">100</field>
-    <field name="list_price_type">manual</field>
-    <field name="type">service</field>
-</record>
-
-        <!-- for demo data we activate list price because, for eg. website_sale selects this list type -->
-        <record id="product.list_price" model="product.price.type">
-            <field name="active" eval="True"/>
+        <record id="computed_manual" model="product.product">
+            <field name="name">Computed Manual Product</field>
+            <field name="categ_id" ref="product.product_category_4"/>
+            <field name="standard_price">20.5</field>
+            <field name="list_price">100</field>
+            <field name="list_price_type">manual</field>
+            <field name="type">service</field>
         </record>
 
     </data>

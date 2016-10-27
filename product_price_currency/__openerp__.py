@@ -24,11 +24,7 @@
     'category': 'Product',
     'sequence': 14,
     'summary': '',
-    'description': """
-Product Price Currency
-======================
-    """,
-    'author': 'ADHOC SA',
+    'author': 'ADHOC SA,Odoo Community Association (OCA)',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'images': [
@@ -45,8 +41,7 @@ Product Price Currency
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -12,13 +12,14 @@
                     <attribute name="invisible">1</attribute>
                 </field>
                 <field name="list_price" position="before">
-                    <!-- for easy compatibilty with other modules -->
                     <field name="list_price_type"/>
-                    <label for="computed_list_price" attrs="{'invisible': [('list_price_type', 'in', ['by_uom', 'by_uom_currency'])]}"/>
-                    <div name="computed_list_price" attrs="{'invisible': [('list_price_type', 'in', ['by_uom', 'by_uom_currency'])]}">
-                        <field name="computed_list_price" class="oe_inline"/>
-                        <field name="computed_list_price_currency_id" class="oe_inline" groups="base.group_multi_currency"/>
-                    </div>
+                    <field name="computed_list_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <!-- for easy compatibilty with other modules -->
+                    <!-- <label for="computed_list_price" attrs="{'invisible': [('list_price_type', 'in', ['by_uom', 'by_uom_currency'])]}"/> -->
+                    <!-- <div name="computed_list_price" attrs="{'invisible': [('list_price_type', 'in', ['by_uom', 'by_uom_currency'])]}"> -->
+                        <!-- <field name="computed_list_price" class="oe_inline"/> -->
+                        <!-- <field name="computed_list_price_currency_id" class="oe_inline" groups="base.group_multi_currency"/> -->
+                    <!-- </div> -->
                 </field>
             </field>
         </record>
