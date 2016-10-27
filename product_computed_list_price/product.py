@@ -4,12 +4,12 @@
 # directory
 ##############################################################################
 from openerp import models, fields, api, _
-from openerp.exceptions import Warning
+from openerp.exceptions import UserError
 import logging
 _logger = logging.getLogger(__name__)
 
 
-class product_product(models.Model):
+class ProductProduct(models.Model):
     _inherit = "product.product"
 
     # lst_price now cames from computed_list_price
@@ -45,7 +45,7 @@ class product_product(models.Model):
     def _computed_set_product_lst_price(self):
         # for compatibility with product_prices_taxes_included module
         if self._context.get('taxes_included'):
-            raise Warning(_(
+            raise UserError(_(
                 "You can not set list price if you are working with 'Taxes "
                 "Included' in the context"))
 
@@ -66,11 +66,11 @@ class product_product(models.Model):
         """
         if context is None:
             context = {}
-        return super(product_product, self).price_get(
+        return super(ProductProduct, self).price_get(
             cr, uid, ids, ptype, context)
 
 
-class product_template(models.Model):
+class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     @api.multi
@@ -179,7 +179,7 @@ class product_template(models.Model):
         """
         For price type "computed_list_price" we also add variants price_extra
         """
-        res = super(product_template, self)._price_get(products, ptype)
+        res = super(ProductTemplate, self)._price_get(products, ptype)
         if ptype == 'computed_list_price':
             for product in products:
                 res[product.id] += (

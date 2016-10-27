@@ -4,7 +4,7 @@
 # directory
 ##############################################################################
 from openerp import fields, models, api, _
-from openerp.exceptions import Warning
+from openerp.exceptions import UserError
 import openerp.addons.decimal_precision as dp
 import logging
 _logger = logging.getLogger(__name__)
@@ -41,7 +41,7 @@ class ProductTemplate(models.Model):
         self.ensure_one()
         if self.list_price_type == 'other_currency':
             if not self.other_currency_id:
-                raise Warning(_(
+                raise UserError(_(
                     'You must configure "Other Currency" for product %s' % (
                         self.name)))
             self.other_currency_list_price = self.currency_id.compute(
