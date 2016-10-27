@@ -18,14 +18,14 @@ class ProductTemplate(models.Model):
         string='Sale Price Before',
         compute='_compute_computed_list_price_before',
         # compute='_other_computed_rules',
-        inverse='_set_prices',
+        inverse='_inverse_computed_list_price',
     )
     computed_list_price = fields.Float(
         inverse=False,
     )
 
     @api.multi
-    def _set_prices(self):
+    def _inverse_computed_list_price(self):
         # _logger.info('Set Prices from "computed_list_price"')
         # send coputed list price because it is lost
         for template in self:
