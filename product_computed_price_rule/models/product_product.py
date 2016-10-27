@@ -13,19 +13,20 @@ class ProductTemplate(models.Model):
     computed_list_price_rule_id = fields.Many2one(
         'product.computed_list_price.rule',
         string='Sale Price Rule',
-        )
+    )
     computed_list_price_before = fields.Float(
         string='Sale Price Before',
         compute='_compute_computed_list_price_before',
         # compute='_other_computed_rules',
-        inverse='_set_prices',
-        )
+        inverse='_inverse_computed_list_price',
+    )
     computed_list_price = fields.Float(
+        # TODO arreglar esto que da error con pylint
         inverse=False,
-        )
+    )
 
     @api.multi
-    def _set_prices(self):
+    def _inverse_computed_list_price(self):
         # _logger.info('Set Prices from "computed_list_price"')
         # send coputed list price because it is lost
         for template in self:
@@ -36,7 +37,7 @@ class ProductTemplate(models.Model):
         'computed_list_price_rule_id.item_ids.sequence',
         'computed_list_price_rule_id.item_ids.percentage_amount',
         'computed_list_price_rule_id.item_ids.fixed_amount',
-        )
+    )
     def _get_computed_list_price(self):
         """Only to update depends"""
         return super(ProductTemplate, self)._get_computed_list_price()
