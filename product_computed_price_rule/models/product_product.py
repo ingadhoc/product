@@ -21,6 +21,7 @@ class ProductTemplate(models.Model):
         inverse='_inverse_computed_list_price',
     )
     computed_list_price = fields.Float(
+        # TODO arreglar esto que da error con pylint
         inverse=False,
     )
 
