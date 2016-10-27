@@ -26,19 +26,9 @@
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
-    "description": """
-Product Computed List Price Rule
-================================
-
-How to use?
------------
-TODO
-    """,
     "depends": [
         "product_computed_list_price",
     ],
-    'external_dependencies': {
-    },
     "data": [
         'views/product_view.xml',
         'views/product_computed_list_price_rule_view.xml',
@@ -48,7 +38,7 @@ TODO
     ],
     'test': [
     ],
-    "installable": False,
+    "installable": True,
     'auto_install': False,
     'application': False,
 }

@@ -2,19 +2,18 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-===========================
-Product Computed List Price
-===========================
+================================
+Product Computed List Price Rule
+================================
 
-This module add "Computed List Price" to products, to introduce in pricelist a rule to calculate price based in this field.
-
+This module add rule to sale price in product.
 
 Installation
 ============
 
 To install this module, you need to:
 
-#. Just Install.
+#. Just install the module.
 
 
 Configuration
@@ -22,14 +21,14 @@ Configuration
 
 To configure this module, you need to:
 
-#. Go to Pricelist/Pricelist Items/ config "Base" to "Computed List Price".
+#. Go to Sales/Configuration/Products/Computed List Price Rules.
 
 Usage
 =====
 
 To use this module, you need to:
 
-#. No usege needed.
+#. Just use the module.
 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
@@ -42,11 +41,6 @@ To use this module, you need to:
 
 Bug Tracker
 ===========
-
-#. Known Bugs:
-
-There is a bug Odoo that if you add a product in a sale order, use a product other than the product unit and open, price that shows you is, according to the unit in the sales order and not according to the unit you're seeing the product.
-An alternative would be to lst_price readonly to not pass this error the product form view, this could be improved
 
 Bugs are tracked on `GitHub Issues
 <https://github.com/ingadhoc/product/issues>`_. In case of trouble, please
