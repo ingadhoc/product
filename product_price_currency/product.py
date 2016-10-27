@@ -10,7 +10,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class product_template(models.Model):
+class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     list_price_type = fields.Selection(
@@ -34,7 +34,7 @@ class product_template(models.Model):
     )
     def _get_computed_list_price(self):
         """Only to update depends"""
-        return super(product_template, self)._get_computed_list_price()
+        return super(ProductTemplate, self)._get_computed_list_price()
 
     @api.multi
     def set_prices(self, computed_list_price):
@@ -49,7 +49,7 @@ class product_template(models.Model):
                 self.other_currency_id,
                 round=False)
         else:
-            return super(product_template, self).set_prices(
+            return super(ProductTemplate, self).set_prices(
                 computed_list_price)
 
     @api.multi
@@ -63,4 +63,4 @@ class product_template(models.Model):
                     round=False)
             else:
                 return False
-        return super(product_template, self).get_computed_list_price()
+        return super(ProductTemplate, self).get_computed_list_price()

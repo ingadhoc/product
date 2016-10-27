@@ -96,7 +96,7 @@ class product_template(models.Model):
         # related='computed_list_price',
         compute='_computed_get_product_lst_price',
         readonly=True,
-        )
+    )
     computed_list_price = fields.Float(
         string='Sale Price',
         compute='_get_computed_list_price',
