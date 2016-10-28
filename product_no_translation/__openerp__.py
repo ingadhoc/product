@@ -30,5 +30,5 @@
     'author': 'Akretion,ADHOC SA',
     'depends': ['product'],
     'pre_init_hook': 'pre_init_hook',
-    'installable': False,
+    'installable': True,
 }
