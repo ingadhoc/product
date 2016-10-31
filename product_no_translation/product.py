@@ -60,9 +60,3 @@ class ProductUom(models.Model):
     _inherit = 'product.uom'
 
     name = fields.Char(translate=False)
-
-
-class ProductUl(models.Model):
-    _inherit = 'product.ul'
-
-    name = fields.Char(translate=False)
