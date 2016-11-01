@@ -21,10 +21,6 @@ class product_product(models.Model):
     @api.multi
     @api.depends('price_extra', 'computed_list_price', 'uom_id', 'uos_id')
     def _computed_get_product_lst_price(self):
-        company_id = (
-            self._context.get('company_id') or self.env.user.company_id.id)
-        taxes_included = self._context.get('taxes_included')
-
         for product in self:
             if 'uom' in self._context:
                 uom = product.uos_id or product.uom_id
@@ -32,13 +28,6 @@ class product_product(models.Model):
                     uom.id, product.computed_list_price, self._context['uom'])
             else:
                 lst_price = product.computed_list_price
-
-            # for compatibility with product_prices_taxes_included module
-            if taxes_included:
-                lst_price = product.taxes_id.filtered(
-                    lambda x: x.company_id.id == company_id).compute_all(
-                    lst_price, 1.0, product=product)['total_included']
-
             product.lst_price = lst_price + product.price_extra
 
     @api.multi
@@ -73,28 +62,10 @@ class product_product(models.Model):
 class product_template(models.Model):
     _inherit = "product.template"
 
-    @api.multi
-    @api.depends('computed_list_price')
-    def _computed_get_product_lst_price(self):
-        company_id = (
-            self._context.get('company_id') or self.env.user.company_id.id)
-        taxes_included = self._context.get('taxes_included')
-
-        for product in self:
-            lst_price = product.computed_list_price
-            if taxes_included:
-                lst_price = product.taxes_id.filtered(
-                    lambda x: x.company_id.id == company_id).compute_all(
-                    lst_price, 1.0, product=product)['total_included']
-
-            product.lst_price = lst_price
 
     # lst_price now cames from computed_list_price
     lst_price = fields.Float(
-        # for compatibility with product_prices_taxes_included module, if not
-        # we can use related field directly
-        # related='computed_list_price',
-        compute='_computed_get_product_lst_price',
+        related='computed_list_price',
         readonly=True,
         )
     computed_list_price = fields.Float(
