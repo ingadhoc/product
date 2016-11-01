@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data noupdate="1">
-        <record id="price_type_published_sale_price" model="product.price.type">
-            <field name="name">Published Sale Price</field> 
-            <field name="field">published_sale_price</field> 
-        </record>
-    </data>
-</openerp>
