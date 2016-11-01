@@ -7,7 +7,7 @@ from openerp import models, fields
 import openerp.addons.decimal_precision as dp
 
 
-class product_template(models.Model):
+class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     published_sale_price = fields.Float(
