@@ -38,7 +38,7 @@
         'product_data.xml',
     ],
     'demo': [
-        'demo/product.product.csv'
+        # 'demo/product.product.csv'
     ],
     'test': [
     ],
