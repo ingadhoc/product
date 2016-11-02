@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="account.invoice_form"/>
             <field name="groups_id" eval="[(6, 0, [ref('group_restrict_prices')])]"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='invoice_line']/tree" position="inside">
+                <xpath expr="//field[@name='invoice_line_ids']/tree" position="inside">
                     <field name="product_can_modify_prices" invisible="1"/>
                 </xpath>
 
