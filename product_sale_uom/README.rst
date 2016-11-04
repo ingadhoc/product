@@ -7,8 +7,7 @@
 Product Sale UOMS
 =================
 
-* Add a o2m field on products to allow defining uoms that can be used on sale
-orders
+* Add a o2m field on products to allow defining uoms that can be used on sale orders
 
 
 Installation
