@@ -24,10 +24,6 @@
     'category': 'Aeroo Reporting',
     'sequence': 14,
     'summary': '',
-    'description': """
-Product Share Between Father and Son
-====================================
-    """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
@@ -43,8 +39,7 @@ Product Share Between Father and Son
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
