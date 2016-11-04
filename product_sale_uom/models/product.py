@@ -4,7 +4,7 @@
 # directory
 ##############################################################################
 from openerp import models, fields, _, api
-from openerp.exceptions import Warning
+from openerp.exceptions import UserError
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -35,7 +35,7 @@ class ProductSaleUom(models.Model):
     ]
 
 
-class product_template(models.Model):
+class ProductTemplate(models.Model):
 
     """"""
 
@@ -63,7 +63,5 @@ class product_template(models.Model):
                 (sale_uom_categories and
                     sale_uom_categories != self.uom_id.category_id)
         ):
-            raise Warning(_('Sale UOMs Category must be of the same \
+            raise UserError(_('Sale UOMs Category must be of the same \
                 UOM Category as Product Unit of Measure'))
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
