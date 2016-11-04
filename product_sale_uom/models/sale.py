@@ -31,44 +31,34 @@ class SaleOrderLine(models.Model):
             (product.uom_id + self.env['product.uom'].search([
                 ('category_id', '=', product.uom_id.category_id.id),
                 ('id', '!=', product.uom_id.id),
-                ]))
-            )
+            ]))
+        )
 
     @api.multi
-    def product_id_change(
-            self, pricelist, product, qty=0,
-            uom=False, qty_uos=0, uos=False, name='', partner_id=False,
-            lang=False, update_tax=True, date_order=False, packaging=False,
-            fiscal_position=False, flag=False):
+    @api.onchange('product_id')
+    def product_id_change(self):
         # because sale_stock module delete uom when colling this method, we
         # add it in context con module 'sale_stock_product_uom_prices'
-        if not uom:
+        uom = self.product_uom.id
+        if not self.product_uom.id:
             uom = self._context.get('preserve_uom', False)
         product_uom_domain = None
-        if product:
-            context_partner = {'lang': lang, 'partner_id': partner_id}
-            product_obj = self.env['product.product'].with_context(
-                context_partner).browse(
-                product)
+        if self.product_id:
+            product = self.product_id.with_context(
+                lang=self.order_id.partner_id.lang,
+                partner=self.order_id.partner_id.id)
 
             # we can use line on self but we should use self.ensure_one()
-            sale_product_uoms = self.get_product_uoms(product_obj)
+            sale_product_uoms = self.get_product_uoms(product)
             if sale_product_uoms:
                 if not uom:
                     uom = sale_product_uoms[0].id
 
                 # we do this because odoo overwrite view domain
                 product_uom_domain = [('id', 'in', sale_product_uoms.ids)]
-        res = super(SaleOrderLine, self).product_id_change(
-            pricelist, product, qty=qty, uom=uom,
-            qty_uos=qty_uos, uos=uos, name=name, partner_id=partner_id,
-            lang=lang, update_tax=update_tax, date_order=date_order,
-            packaging=packaging, fiscal_position=fiscal_position,
-            flag=flag)
+        res = super(SaleOrderLine, self).product_id_change()
         if uom:
-            res['value']['product_uom'] = uom
+            self.product_uom = uom
         if product_uom_domain:
-            if 'domain' not in res:
-                res['domain'] = {}
-            res['domain']['product_uom'] = product_uom_domain
+            res = {'domain': {'product_uom': product_uom_domain}}
         return res
