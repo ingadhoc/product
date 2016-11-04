@@ -24,11 +24,6 @@
     'category': 'Product',
     'sequence': 14,
     'summary': '',
-    'description': """
-Product Publichsed Sale Price
-=============================
-
-    """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
@@ -39,13 +34,12 @@ Product Publichsed Sale Price
     ],
     'data': [
         'view/product_view.xml',
-        'data/price_type_data.xml'
     ],
     'demo': [
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
