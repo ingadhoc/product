@@ -22,12 +22,6 @@
     'name': 'Product Sale UOMS',
     'version': '9.0.1.0.0',
     'category': 'base.module_category_knowledge_management',
-    'description': """
-Product Sale UOMS
-=================
-* Add a o2m field on products to allow defining uoms that can be used on sale
-orders
-""",
     'author': 'ADHOC SA.',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
@@ -44,8 +38,8 @@ orders
         'view/sale_view.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': False,
-    'pre_init_hook': 'pre_init_hook',
+    'installable': True,
+    # 'pre_init_hook': 'pre_init_hook',
 }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
