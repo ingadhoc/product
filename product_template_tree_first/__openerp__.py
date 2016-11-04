@@ -24,10 +24,6 @@
     'category': 'Sales Management',
     'sequence': 14,
     'summary': 'Product',
-    'description': """
-Product Template Tree First
-===========================
-    """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
@@ -43,8 +39,7 @@ Product Template Tree First
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
