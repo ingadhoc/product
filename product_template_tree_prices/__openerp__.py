@@ -22,11 +22,6 @@
     'name': 'Product Template Tree Prices',
     'version': '9.0.1.0.0',
     'category': 'base.module_category_knowledge_management',
-    'description': """
-Product Template Tree Prices
-============================
-Add prices on product tempalte tree view
-""",
     'author': 'ADHOC SA.',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
@@ -38,8 +33,6 @@ Add prices on product tempalte tree view
     'data': [
         'product_view.xml',
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': True,
     }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
