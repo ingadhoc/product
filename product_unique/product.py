@@ -4,10 +4,10 @@
 # directory
 ##############################################################################
 from openerp import models, api, _
-from openerp.exceptions import Warning
+from openerp.exceptions import UserError
 
 
-class product_product(models.Model):
+class ProductProduct(models.Model):
     _inherit = "product.product"
 
     @api.one
@@ -19,16 +19,18 @@ class product_product(models.Model):
                        ('active', '=', True)]
             prod_ids = self.search(filters)
             if len(prod_ids) > 1:
-                raise Warning(
-                    _('There can not be two active products with the same Reference ode in the same company.'))
+                raise UserError(
+                    _('There can not be two active products with the \
+                        same Reference ode in the same company.'))
 
     @api.one
-    @api.constrains('company_id', 'ean13', 'active')
-    def check_unique_company_and_ean13(self):
-        if self.active and self.ean13 and self.company_id:
+    @api.constrains('company_id', 'barcode', 'active')
+    def check_unique_company_and_barcode(self):
+        if self.active and self.barcode and self.company_id:
             filters = [('company_id', '=', self.company_id.id),
-                       ('ean13', '=', self.ean13), ('active', '=', True)]
+                       ('barcode', '=', self.barcode), ('active', '=', True)]
             prod_ids = self.search(filters)
             if len(prod_ids) > 1:
-                raise Warning(
-                    _('There can not be two active products with the same EAN code in the same company'))
+                raise UserError(
+                    _('There can not be two active products with the same \
+                        EAN code in the same company'))
