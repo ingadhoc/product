@@ -6,12 +6,12 @@
 from openerp import models, fields, api, SUPERUSER_ID
 
 
-class product_attribute(models.Model):
+class ProductAttribute(models.Model):
     _inherit = "product.attribute"
     add_to_name = fields.Boolean('Add To Name?')
 
 
-class product_product(models.Model):
+class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     @api.one
@@ -45,7 +45,7 @@ class product_product(models.Model):
         if vals.get('name'):
             self = self.with_context(
                 default_name=vals.get('name'))
-        return super(product_product, self).create(vals)
+        return super(ProductProduct, self).create(vals)
 
 # Overwrite of name_get function to avoid joining variants again
     def name_get(self, cr, user, ids, context=None):
@@ -67,7 +67,8 @@ class product_product(models.Model):
         partner_id = context.get('partner_id', False)
         if partner_id:
             partner_ids = [partner_id, self.pool['res.partner'].browse(
-                cr, user, partner_id, context=context).commercial_partner_id.id]
+                cr, user, partner_id, context=context)
+                .commercial_partner_id.id]
         else:
             partner_ids = []
 
@@ -78,8 +79,10 @@ class product_product(models.Model):
 
         result = []
         for product in self.browse(cr, SUPERUSER_ID, ids, context=context):
-            # variant = ", ".join([v.name for v in product.attribute_value_ids])
-            # name = variant and "%s (%s)" % (product.name, variant) or product.name
+            # variant = ", ".join(
+                # [v.name for v in product.attribute_value_ids])
+            # name = variant and "%s (%s)" % (product.name, variant)
+            # or product.name
             name = product.name
             sellers = []
             if partner_ids:
