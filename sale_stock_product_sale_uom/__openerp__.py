@@ -22,23 +22,17 @@
     'name': 'Sale Stock Product Sale Uoms Integration',
     'version': '9.0.1.0.0',
     'category': 'base.module_category_knowledge_management',
-    'description': """
-Sale Stock Product Sale Uoms Integration
-========================================
-""",
     'author': 'ADHOC SA.',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'depends': [
         'sale_stock',
         'product_sale_uom',
-        ],
+    ],
     'test': [],
     'demo': [],
     'data': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': True,
-    }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+}
