@@ -6,12 +6,12 @@
 from openerp import models, fields, api, SUPERUSER_ID
 
 
-class product_attribute(models.Model):
+class ProductAttribute(models.Model):
     _inherit = "product.attribute"
     add_to_name = fields.Boolean('Add To Name?')
 
 
-class product_product(models.Model):
+class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     @api.one
@@ -45,7 +45,7 @@ class product_product(models.Model):
         if vals.get('name'):
             self = self.with_context(
                 default_name=vals.get('name'))
-        return super(product_product, self).create(vals)
+        return super(ProductProduct, self).create(vals)
 
 # Overwrite of name_get function to avoid joining variants again
     def name_get(self, cr, user, ids, context=None):
