@@ -67,7 +67,8 @@ class ProductProduct(models.Model):
         partner_id = context.get('partner_id', False)
         if partner_id:
             partner_ids = [partner_id, self.pool['res.partner'].browse(
-                cr, user, partner_id, context=context).commercial_partner_id.id]
+                cr, user, partner_id, context=context)
+                .commercial_partner_id.id]
         else:
             partner_ids = []
 
@@ -78,8 +79,10 @@ class ProductProduct(models.Model):
 
         result = []
         for product in self.browse(cr, SUPERUSER_ID, ids, context=context):
-            # variant = ", ".join([v.name for v in product.attribute_value_ids])
-            # name = variant and "%s (%s)" % (product.name, variant) or product.name
+            # variant = ", ".join(
+                # [v.name for v in product.attribute_value_ids])
+            # name = variant and "%s (%s)" % (product.name, variant)
+            # or product.name
             name = product.name
             sellers = []
             if partner_ids:
