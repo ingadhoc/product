@@ -22,31 +22,19 @@
     'name': 'Product UOM Prices',
     'version': '9.0.1.0.0',
     'category': 'base.module_category_knowledge_management',
-    'description': """
-Product UOM Prices
-==================
-* Add a o2m field on products to allow defining prices in different uoms
-* Add a new type of price calculation on pricelists (for the new o2m field
-    on products)
-* Change domain on sale order lines so that only defined uoms can be choosen.
-
-Video TUTORIAL: https://www.youtube.com/watch?v=-jGsbEZDOJE
-""",
     'author': 'ADHOC SA.',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'depends': [
         'product_sale_uom',
         'product_computed_list_price',
-        ],
+    ],
     'test': [],
     'demo': [
         'demo/product_demo.xml',
     ],
     'data': [
-        'view/product_view.xml',
+        'views/product_view.xml',
     ],
-    'installable': False
-    }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    'installable': True,
+}
