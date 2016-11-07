@@ -5,7 +5,6 @@
 ##############################################################################
 from openerp import models, fields, api
 import openerp.addons.decimal_precision as dp
-# from openerp.exceptions import Warning
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -19,7 +18,7 @@ class ProductSaleUom(models.Model):
         digits=dp.get_precision('Price'),
         help="Sale Price for this UOM.",
         required=False
-        )
+    )
 
 
 class ProductTemplate(models.Model):
@@ -30,10 +29,10 @@ class ProductTemplate(models.Model):
 
     list_price_type = fields.Selection(
         selection_add=[('by_uom', 'By Uom')],
-        )
+    )
     uom_category_id = fields.Many2one(
         related='uom_id.category_id'
-        )
+    )
     uom_price_ids = fields.One2many(
         'product.sale.uom',
         'product_tmpl_id',
@@ -42,7 +41,7 @@ class ProductTemplate(models.Model):
         help="Only uoms in this list will be available in sale order lines. "
         "Set a diferent price for this uom. Set the price as 0 and the price "
         "will be calculated as sale price * uom ratio"
-        )
+    )
 
     @api.multi
     def set_prices(self, computed_list_price):
@@ -53,7 +52,7 @@ class ProductTemplate(models.Model):
             uom_price = self.env['product.sale.uom'].search([
                 ('uom_id', '=', self.uom_id.id),
                 ('product_tmpl_id', '=', self.id),
-                ], limit=1)
+            ], limit=1)
             if uom_price:
                 uom_price.price = computed_list_price
             else:
@@ -62,7 +61,7 @@ class ProductTemplate(models.Model):
                     'uom_id': self.uom_id.id,
                     'product_tmpl_id': self.id,
                     'price': computed_list_price,
-                    })
+                })
         else:
             return super(ProductTemplate, self).set_prices(
                 computed_list_price)
@@ -77,16 +76,16 @@ class ProductTemplate(models.Model):
         """
         if 'uom' in self._context:
             uom_price = self.env['product.sale.uom'].search([
-                        ('uom_id', '=', self._context['uom']),
-                        ('product_tmpl_id', '=', self.id)], limit=1)
+                ('uom_id', '=', self._context['uom']),
+                ('product_tmpl_id', '=', self.id)], limit=1)
         else:
             uom_price = self.env['product.sale.uom'].search([
-                        ('product_tmpl_id', '=', self.id),
-                        ('uom_id', '=', self.uom_id.id),
-                        ], limit=1)
+                ('product_tmpl_id', '=', self.id),
+                ('uom_id', '=', self.uom_id.id),
+            ], limit=1)
             if not uom_price:
                 uom_price = self.env['product.sale.uom'].search([
-                            ('product_tmpl_id', '=', self.id)], limit=1)
+                    ('product_tmpl_id', '=', self.id)], limit=1)
         if not uom_price:
             return False
         # we convert from context uom to product uom because later
@@ -104,5 +103,3 @@ class ProductTemplate(models.Model):
         if self.list_price_type == 'by_uom':
             return self.get_uom_price()
         return super(ProductTemplate, self).get_computed_list_price()
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
