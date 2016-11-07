@@ -69,11 +69,9 @@ class ProductTemplate(models.Model):
     @api.multi
     def get_uom_price(self):
         self.ensure_one()
-        """
-        If 'uom' in context we try to find a uom price
-        If not we try to return a product price for product uom
-        If not, we convert the first one to product uom
-        """
+        # If 'uom' in context we try to find a uom price
+        # If not we try to return a product price for product uom
+        # If not, we convert the first one to product uom
         if 'uom' in self._context:
             uom_price = self.env['product.sale.uom'].search([
                 ('uom_id', '=', self._context['uom']),
