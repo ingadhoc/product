@@ -20,30 +20,19 @@
 ##############################################################################
 {
     'name': 'Product Variant Improvements',
-    'category': 'base.module_category_knowledge_management',
-    'description': """
-Product Variant Improvements
-============================
-TODO para agregar bien y traducir:
-Ya estaría esto, por favor probarlo (mejor en bd de test primero, aunque no pasaría nada de necesitar desisntalarlo). 
-El modulo se llama "product_variant_imp" y tmb es instlable desde adhoc config (subcategoría productos). 
-
-Para cada atributo se debe marcar si se quiere incluirlo o no en el nombre (por defecto no van incluido). 
-
-Cada vez que marques un atributo y guardes, es probable que tarde un poquito porque a todos los productos que usen ese atributo le va a crear un mobre con eso. 
-
-""",
+    'version': '9.0.1.0.0',
     'author': 'ADHOC SA.',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
-    'depends': ['product'],
+    'category': 'base.module_category_knowledge_management',
+    'depends': [
+        'product'
+    ],
     'demo': [
-        'product_demo.xml',
+        'demo/product_demo.xml',
     ],
     'data': [
-        'product_view.xml',
+        'view/product_view.xml',
     ],
-    'installable': False
+    'installable': True
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
