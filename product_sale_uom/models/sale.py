@@ -37,11 +37,11 @@ class SaleOrderLine(models.Model):
     @api.multi
     @api.onchange('product_id')
     def product_id_change(self):
+        uom = self.product_uom.id
         # because sale_stock module delete uom when colling this method, we
         # add it in context con module 'sale_stock_product_uom_prices'
-        uom = self.product_uom.id
-        if not self.product_uom.id:
-            uom = self._context.get('preserve_uom', False)
+        # if not self.product_uom.id:
+        #     uom = self._context.get('preserve_uom', False)
         product_uom_domain = None
         if self.product_id:
             product = self.product_id.with_context(
