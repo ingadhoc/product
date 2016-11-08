@@ -8,10 +8,10 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class product_pricelist(models.Model):
+class ProductPricelitt(models.Model):
     _inherit = "product.pricelist"
 
-    # porque algun boludo desde website_sale llama a price_rule_get_multi y
+    # se hizo esto porque desde website_sale llama a price_rule_get_multi y
     # no _price_get_multi, entonces modificamos _price_rule_get_multi
     @api.model
     def _price_rule_get_multi(self, pricelist, products_by_qty_by_partner):
@@ -20,12 +20,11 @@ class product_pricelist(models.Model):
         # pricelist recursive)
         if not self._context.get('last_pricelist'):
             self = self.with_context(last_pricelist=pricelist)
-        res = super(product_pricelist, self)._price_rule_get_multi(
+        res = super(ProductPricelitt, self)._price_rule_get_multi(
             pricelist, products_by_qty_by_partner)
         if (
                 self._context.get('taxes_included') and
-                self._context.get('last_pricelist') == pricelist
-                ):
+                self._context.get('last_pricelist') == pricelist):
 
             company_id = (
                 self._context.get('company_id') or self.env.user.company_id.id)
