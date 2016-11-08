@@ -22,26 +22,20 @@
     'name': 'Product UOM Prices / Product Currency Integration',
     'version': '9.0.1.0.0',
     'category': 'base.module_category_knowledge_management',
-    'description': """
-Product UOM Prices / Product Currency Integration
-=================================================
-""",
     'author': 'ADHOC SA.',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'depends': [
         'product_uom_prices',
         'product_price_currency',
-        ],
+    ],
     'test': [],
     'demo': [
         'demo/product_demo.xml',
     ],
     'data': [
-        'product_view.xml',
+        'views/product_view.xml',
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': True,
-    }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+}
