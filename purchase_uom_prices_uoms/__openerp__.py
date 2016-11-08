@@ -27,21 +27,11 @@
         'purchase',
         'product_uom_prices',
     ],
-    'description': """
-Purchase UOM Prices
-==================
-* Add a o2m field on products to allow defining prices in different uoms
-* Add a new type of price calculation on pricelists (for the new o2m field
-    on products)
-* Change domain on purchase order lines so that only defined uoms can be choosen.
-
-""",
     'author': 'ADHOC SA.',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'test': [],
     'data': [
     ],
-    'installable': False}
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+    'installable': True,
+}
