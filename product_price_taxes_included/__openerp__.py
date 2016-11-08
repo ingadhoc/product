@@ -33,7 +33,7 @@
         'account',
     ],
     'data': [
-        'product_view.xml',
+        'views/product_view.xml',
     ],
     'demo': [
     ],
