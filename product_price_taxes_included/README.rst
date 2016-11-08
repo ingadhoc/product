@@ -13,17 +13,23 @@ Installation
 
 To install this module, you need to:
 
+#. Just install module.
+
 
 Configuration
 =============
 
 To configure this module, you need to:
 
+#. No configuration needed.
+
 
 Usage
 =====
 
 To use this module, you need to:
+
+#. In Product or Product Template the field "Taxed Sale Price" show de price with the tax included.
 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
@@ -38,7 +44,7 @@ Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues
-<https://github.com/ingadhoc/{project_repo}/issues>`_. In case of trouble, please
+<https://github.com/ingadhoc/product/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
 help us smashing it by providing a detailed and welcomed feedback.
 

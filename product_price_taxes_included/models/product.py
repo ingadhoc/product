@@ -3,16 +3,15 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import models, api, _
-from openerp import fields as new_fields
-from openerp.osv import fields
-from openerp.exceptions import Warning
+from openerp import models, fields, api, _
+from openerp.osv import fields as old_fields
+from openerp.exceptions import UserError
 import openerp.addons.decimal_precision as dp
 import logging
 _logger = logging.getLogger(__name__)
 
 
-class product_template(models.Model):
+class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     # we do this so that we can show prices with or without taxe without
@@ -39,7 +38,7 @@ class product_template(models.Model):
         # considering taxes
         return [('list_price', operator, value)]
 
-    lst_price = new_fields.Float(
+    lst_price = fields.Float(
         compute='_product_lst_price',
         search='_search_products_by_lst_price',
         string='Public Price',
@@ -47,7 +46,7 @@ class product_template(models.Model):
         digits=dp.get_precision('Product Price')
     )
 
-    taxed_lst_price = new_fields.Float(
+    taxed_lst_price = fields.Float(
         string='Taxed Sale Price',
         compute='get_taxed_lst_price'
     )
@@ -72,13 +71,13 @@ class product_template(models.Model):
                         product=product)['total_included']
 
 
-class product_product(models.Model):
+class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     # we do this so that we can show prices with or without taxe without
     # needing a pricelist
     def _product_lst_price(self, cr, uid, ids, name, arg, context=None):
-        res = super(product_product, self)._product_lst_price(
+        res = super(ProductProduct, self)._product_lst_price(
             cr, uid, ids, name, arg, context=context)
         if not context.get('taxes_included'):
             return res
@@ -96,14 +95,14 @@ class product_product(models.Model):
     def _set_product_lst_price(
             self, cr, uid, id, name, value, args, context=None):
         if context.get('taxes_included'):
-            raise Warning(_(
+            raise UserError(_(
                 "You can not set list price if you are working with 'Taxes "
                 "Included' in the context"))
-        return super(product_product, self)._set_product_lst_price(
+        return super(ProductProduct, self)._set_product_lst_price(
             cr, uid, id, name, value, args, context=context)
 
     _columns = {
-        'lst_price': fields.function(
+        'lst_price': old_fields.function(
             _product_lst_price, fnct_inv=_set_product_lst_price, type='float',
             string='Public Price',
             digits_compute=dp.get_precision('Product Price')),
