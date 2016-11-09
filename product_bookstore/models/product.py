@@ -9,7 +9,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class product_template(models.Model):
+class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     @api.one
@@ -55,7 +55,7 @@ class product_template(models.Model):
     def name_search(
             self, cr, uid, name, args=None, operator='ilike',
             context=None, limit=100):
-        res = super(product_template, self).name_search(
+        res = super(ProductTemplate, self).name_search(
             cr, uid, name, args, operator, context, limit)
         if len(res) < limit:
             product_ids = self.search(
@@ -65,13 +65,13 @@ class product_template(models.Model):
         return res
 
 
-class product_product(models.Model):
+class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     def name_search(
             self, cr, uid, name, args=None, operator='ilike',
             context=None, limit=100):
-        res = super(product_product, self).name_search(
+        res = super(ProductProduct, self).name_search(
             cr, uid, name, args, operator, context, limit)
         if len(res) < limit:
             product_ids = self.search(
