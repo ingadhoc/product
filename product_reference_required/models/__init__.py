@@ -4,13 +4,4 @@
 # directory
 ##############################################################################
 
-from . import models
-
-
-def set_default_code(cr):
-
-    cr.execute("""
-        UPDATE product_product
-        SET default_code='/'
-        WHERE default_code IS NULL
-        """)
+from . import product
