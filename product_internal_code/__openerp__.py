@@ -31,11 +31,9 @@
     "depends": [
         "product",
     ],
-    'external_dependencies': {
-    },
     'data': [
-        'product_view.xml',
-        'product_data.xml',
+        'data/product_data.xml',
+        'views/product_view.xml',
     ],
     'demo': [
         # 'demo/product.product.csv'
