@@ -6,12 +6,10 @@
 from openerp import models, fields
 
 
-class res_users(models.Model):
+class ResUsers(models.Model):
 
     _inherit = "res.users"
 
     salesman_group_id = fields.Many2one(
         'sale.salesman.group',
         string='Salesman Group', )
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
