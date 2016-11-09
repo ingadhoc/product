@@ -7,7 +7,7 @@ from openerp import models, api
 from openerp.osv import expression
 
 
-class product_public_category(models.Model):
+class ProductPublicCategory(models.Model):
     _inherit = "product.public.category"
 
     @api.model
