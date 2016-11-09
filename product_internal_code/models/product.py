@@ -31,7 +31,6 @@ class Product(models.Model):
                 _context.get('default_internal_code', False)):
             vals['internal_code'] = self.env[
                 'ir.sequence'].next_by_code('product.internal.code') or '/'
-            print 'adfasdf', vals
         return super(Product, self).create(vals)
 
     _sql_constraints = {
