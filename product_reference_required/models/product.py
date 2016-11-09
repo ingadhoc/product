@@ -6,7 +6,7 @@
 from openerp import models, fields, api
 
 
-class product_template(models.Model):
+class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     @api.model
@@ -25,12 +25,12 @@ class product_template(models.Model):
         """
         default_code = vals.get('default_code', False)
         if default_code:
-            return super(product_template, self.with_context(
+            return super(ProductTemplate, self.with_context(
                 default_default_code=default_code)).create(vals)
-        return super(product_template, self).create(vals)
+        return super(ProductTemplate, self).create(vals)
 
 
-class product_product(models.Model):
+class ProductProduct(models.Model):
     _inherit = "product.product"
 
     @api.model
