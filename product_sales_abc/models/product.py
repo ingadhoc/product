@@ -6,9 +6,7 @@
 from openerp import fields, models, api
 
 
-class product_template(models.Model):
-
-    """"""
+class ProductTemplate(models.Model):
 
     _inherit = 'product.template'
 
