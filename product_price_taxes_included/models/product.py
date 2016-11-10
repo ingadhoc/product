@@ -29,7 +29,7 @@ class ProductTemplate(models.Model):
             if taxes_included:
                 lst_price = product.taxes_id.filtered(
                     lambda x: x.company_id.id == company_id).compute_all(
-                        lst_price, 1.0, product=product)['total_included']
+                        lst_price, product=product)['total_included']
             product.lst_price = lst_price
 
     @api.model
@@ -67,7 +67,6 @@ class ProductTemplate(models.Model):
                     lambda x: x.company_id.id == company_id).compute_all(
                         product.lst_price,
                         self.env.user.company_id.currency_id,
-                        1.0,
                         product=product)['total_included']
 
 
@@ -88,8 +87,8 @@ class ProductProduct(models.Model):
         for product in self.browse(cr, uid, ids, context=context):
             res[product.id] = self.pool['account.tax'].compute_all(
                 cr, uid, product.taxes_id.filtered(
-                    lambda x: x.company_id.id == company_id),
-                res[product.id], 1.0, product=product)['total_included']
+                    lambda x: x.company_id.id == company_id).ids,
+                res[product.id], product_id=product.id)['total_included']
         return res
 
     def _set_product_lst_price(
