@@ -5,12 +5,16 @@
 ======================
 Product Salesman Group
 ======================
+
 This module add Product Salesman Group.
+
 
 Installation
 ============
 
 To install this module, you need to:
+
+#. Just install this module.
 
 
 Configuration
@@ -18,11 +22,15 @@ Configuration
 
 To configure this module, you need to:
 
+#. In User/Configuration set the Salesman group.
+#. In Prodcut/General Information set the Salesman group.
 
 Usage
 =====
 
 To use this module, you need to:
+
+#. 
 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas

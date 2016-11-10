@@ -65,10 +65,17 @@
             <field name="search_view_id" ref="sale_salesman_group_search_view"/>
             <field name="view_id" ref="sale_salesman_group_list_view"/>
         </record>
-        <menuitem action="sale_salesman_group_action"
+
+
+        <menuitem
             groups="base.group_no_one"
             id="type_menu"
             parent="base.menu_base_partner" sequence="18"/>
+
+
+        <menuitem action="sale_salesman_group_action"
+            id="sale_salesman"
+            parent="type_menu" sequence="18"/>
 
     </data>
 </openerp>
