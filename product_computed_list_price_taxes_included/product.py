@@ -19,7 +19,7 @@ class product_product(models.Model):
     )
 
     @api.multi
-    @api.depends('price_extra', 'computed_list_price', 'uom_id', 'uos_id')
+    @api.depends('price_extra', 'computed_list_price', 'uom_id')
     def _computed_get_product_lst_price(self):
         company_id = (
             self._context.get('company_id') or self.env.user.company_id.id)
@@ -27,7 +27,7 @@ class product_product(models.Model):
 
         for product in self:
             if 'uom' in self._context:
-                uom = product.uos_id or product.uom_id
+                uom = product.uom_id
                 lst_price = self.env['product.uom']._compute_price(
                     uom.id, product.computed_list_price, self._context['uom'])
             else:
@@ -37,7 +37,7 @@ class product_product(models.Model):
             if taxes_included:
                 lst_price = product.taxes_id.filtered(
                     lambda x: x.company_id.id == company_id).compute_all(
-                    lst_price, 1.0, product=product)['total_included']
+                    lst_price, product=product)['total_included']
 
             product.lst_price = lst_price + product.price_extra
 
@@ -52,7 +52,7 @@ class product_product(models.Model):
         for product in self:
             lst_price = product.lst_price
             if 'uom' in self._context:
-                uom = product.uos_id or product.uom_id
+                uom = product.uom_id
                 lst_price = self.env['product.uom']._compute_price(
                     self._context['uom'], lst_price, uom.id)
             product.computed_list_price = lst_price - product.price_extra
@@ -70,11 +70,10 @@ class product_template(models.Model):
 
         for product in self:
             lst_price = product.computed_list_price
-            print 'lst_price', lst_price
             if taxes_included:
                 lst_price = product.taxes_id.filtered(
                     lambda x: x.company_id.id == company_id).compute_all(
-                    lst_price, 1.0, product=product)['total_included']
+                    lst_price, product=product)['total_included']
 
             product.lst_price = lst_price
 
