@@ -2,28 +2,11 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-=================================
-Product Template Search by EAN 13
-=================================
-This module add search by EAN 13 in product template.
+==================================
+Product Template Search by Barcode
+==================================
 
-Installation
-============
-
-To install this module, you need to:
-
-
-Configuration
-=============
-
-To configure this module, you need to:
-
-
-Usage
-=====
-
-To use this module, you need to:
-
+This module extends default search of product template to allow searching by Barcode.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot

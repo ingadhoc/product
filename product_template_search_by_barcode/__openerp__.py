@@ -21,15 +21,14 @@
 {
     'author': 'ADHOC SA',
     'category': 'base.module_category_knowledge_management',
-    'demo_xml': [],
+    'version': '9.0.1.0.0',
     'depends': ['product'],
     'installable': True,
     'license': 'AGPL-3',
-    'name': 'Product Template Search by EAN 13',
+    'name': 'Product Template Search by Barcode',
     'test': [],
     'data': [
         'product_view.xml',
     ],
     'website': 'www.adhoc.com.ar'
 }
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
