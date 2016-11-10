@@ -88,7 +88,7 @@ class ProductTemplate(models.Model):
             return False
         # we convert from context uom to product uom because later
         # _price_get function convert it in the other side
-        product_uom = self.uom_id or self.uos_id
+        product_uom = self.uom_id
         if uom_price.uom_id != product_uom:
             return self.env['product.uom']._compute_price(
                 uom_price.uom_id.id, uom_price.price, product_uom.id)
