@@ -62,7 +62,6 @@ class ProductProduct(models.Model):
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-
     # lst_price now cames from computed_list_price
     lst_price = fields.Float(
         related='computed_list_price',
