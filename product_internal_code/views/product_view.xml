@@ -4,10 +4,13 @@
          <record id="product_template_search_view" model="ir.ui.view">      
            <field name="name">product.user.form</field>       
             <field name="model">product.template</field>       
+            <!-- prioridad 10 para que le gane a product template search barcode -->
+            <field name="priority">10</field>
             <field name="inherit_id" ref="product.product_template_search_view"/>      
             <field name="arch" type="xml">     
                 <field name="name" position="attributes">      
-                    <attribute name="filter_domain">['|','|',('default_code','=',self),('name','ilike',self),('internal_code','=',self)]</attribute>
+                    <!-- como este modulo pisa lo que puede haber definido product_template_search_by_ean_13, agregamos tmb aca la busqqueda por ean_13 -->
+                    <attribute name="filter_domain">['|','|','|',('barcode','=',self),('default_code','=',self),('name','ilike',self),('internal_code','=',self)]</attribute>
                 </field>       
                 <field name="pricelist_id" position="before">
                     <field name="internal_code" filter_domain="[('internal_code','=',self)]"/>     
