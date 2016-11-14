@@ -11,8 +11,8 @@
                 <field name="list_price_type" position="after">
                     <label for="other_currency_list_price" attrs="{'invisible': [('list_price_type', '!=', 'other_currency')]}"/>
                     <div name="other_currency_list_price" attrs="{'invisible': [('list_price_type', '!=', 'other_currency')]}">
-                        <field name="other_currency_list_price" class="oe_inline"/>
-                        <field name="other_currency_id" class="oe_inline" attrs="{'required': [('list_price_type', '=', 'other_currency')]}"/>
+                        <field name="other_currency_list_price" widget="monetary"  class="oe_inline" options="{'currency_field': 'other_currency_id'}"/>
+                        <field name="other_currency_id" class="oe_inline oe_edit_only" attrs="{'required': [('list_price_type', '=', 'other_currency')]}"/>
                     </div>
                 </field>
             </field>
