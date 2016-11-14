@@ -6,7 +6,7 @@
 Product Computed List Price Rule
 ================================
 
-This module add rule to sale price in product.
+This module extends computed list price produle and allows you to define rules that affects sale prices. Each rule can have severa lines and each line can define a percentage and fixed amount.
 
 Installation
 ============
