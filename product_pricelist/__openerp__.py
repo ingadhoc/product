@@ -34,6 +34,7 @@
     },
     "data": [
         'views/product_view.xml',
+        'data/pricelist_group_data.xml',
     ],
     'demo': [
     ],
