@@ -6,7 +6,16 @@
 Product Public Category Search by Full Name
 ===========================================
 
-Search by Full Name on Product Public Categories
+This module allows you to search public categories by parents categories names if you add a "/".
+For eg. If you have a category structure like:
+* Computers
+* Computers / Computers - All In One
+* Computers / Server
+
+By default, if you search "Comp" only "Computers" and "Computers / Computers - All In One" are shown because they contain "Comp" string.
+
+With this module you can search, for eg, "Comp/" and you will all the childs of "Computers", in this eg. "Computers / Computers - All In One" and "Computers / Server"
+
 
 Installation
 ============
