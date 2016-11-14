@@ -29,23 +29,29 @@
             <field name="name">product.template.prices.form</field>
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="priority">8</field>
             <field name="arch" type="xml">
-                <notebook>
-                    <page string="Price Lists" name="pricelists" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}">
-                        <!-- <group> -->
-                            <field name="pricelist_ids" context="{'template_id': id}">
-                                <!-- TODO move this to a low priority view and specify here -->
-                                <tree delete='false' create='false'>
-                                    <field name="name"/>
-                                    <field name="price"/>
-                                    <!-- TODO enable buttons after correcting domain -->
-                                    <!-- <button name="action_related_pricelist_items" type="object" string="Related Product Items" help="See related pricelist items that affect this product" context="{'onle_related_product_items': True}"/> -->
-                                    <!-- <button name="action_related_pricelist_items" type="object" string="All Pricelist Items" help="See related pricelist items"/> -->
-                                </tree>
-                            </field>
-                        <!-- </group> -->
-                    </page>
-                </notebook>
+                <!-- move list_price to icelist_tab -->
+                <field name="list_price" position="replace"/>
+                <div name="pricelist_item" position="after">
+                    <div name="sale_prices">
+                        <separator string="Pricing"/>
+                    <!-- <page string="Price Lists" name="pricelists" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}"> -->
+                        <group>
+                            <field name="list_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <field name="pricelist_ids" context="{'template_id': id}">
+                            <!-- TODO move this to a low priority view and specify here -->
+                            <tree delete='false' create='false'>
+                                <field name="name"/>
+                                <field name="price"/>
+                                <!-- TODO enable buttons after correcting domain -->
+                                <!-- <button name="action_related_pricelist_items" type="object" string="Related Product Items" help="See related pricelist items that affect this product" context="{'onle_related_product_items': True}"/> -->
+                                <!-- <button name="action_related_pricelist_items" type="object" string="All Pricelist Items" help="See related pricelist items"/> -->
+                            </tree>
+                        </field>
+                    </div>
+                </div>
             </field>
         </record>
 

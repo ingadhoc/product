@@ -6,7 +6,7 @@
 Pricelists information on Products
 ==================================
 
-This modules add a new tab on products that shows price for that product for every pricelist
+This modules add a new tab on products that shows price for that product for every pricelist. It also moves sale price related fields to this new tab.
 
 
 Installation
