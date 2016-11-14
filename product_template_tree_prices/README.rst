@@ -7,7 +7,7 @@
 Product Template Tree Prices
 ============================
 
-Add prices on product tempalte tree view.
+Add prices on product template tree view.
 
 Installation
 ============
