@@ -6,7 +6,10 @@
 Product Price Taxes Included or Not
 ===================================
 
-This module create the field taxed_lst_price in product.template.
+This modules allows you to see product prices with or without taxes included.
+In the form view a new field with taxes included is added.
+In the product tree view and kanban if yo add the filter "Taxes Included", then the prices are showed with included taxes.
+
 
 Installation
 ============
@@ -22,14 +25,6 @@ Configuration
 To configure this module, you need to:
 
 #. No configuration needed.
-
-
-Usage
-=====
-
-To use this module, you need to:
-
-#. In Product or Product Template the field "Taxed Sale Price" show de price with the tax included.
 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
