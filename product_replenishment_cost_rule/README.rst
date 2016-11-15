@@ -2,17 +2,17 @@
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
    :alt: License: AGPL-3
 
-===================================
-Product Replenishment Cost Currency
-===================================
+===============================
+Product Replenshiment Cost Rule
+===============================
 
-This module extends the functionality of Product Replenishment Cost to support prices in different currencies.
+This module extends the functionality of Product Replenshiment Cost to support rules.
 
-It also makes some improovements on Product Replenishment Cost that should be proposed to that module. This improovements are:
+Each rule can have several lines, each line can add a percentage and a fixed amount.
 
-#. New Replenishment Cost Last Update
-#. Track changes of RC (Replenishment Cost) Last update, RC Base Cost, RC Base Cost Currency
-#. Update RC Last Update automatically if RC Base Cost or RC Base Cost Currency changes (NOTE: currency exchange changes are not tracked)
+It also update "RC Last Update" automatically if rule or rule lines change
+
+Also changes in rules lines are tracked inside the rules.
 
 
 Installation
