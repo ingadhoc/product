@@ -34,13 +34,16 @@
     ],
     'data': [
         'product_view.xml',
+        'pricelist_view.xml',
+        'data/pricelist_group_data.xml',
     ],
     'demo': [
         'demo/product_demo.xml',
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
+    'post_init_hook': 'post_init_hook',
 }
