@@ -1,0 +1,169 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_computed_list_price
+# 
+# Translators:
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016
+# Javier Diez <jd@adhoc.com.ar>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-14 22:16+0000\n"
+"PO-Revision-Date: 2016-11-14 22:16+0000\n"
+"Last-Translator: Javier Diez <jd@adhoc.com.ar>, 2016\n"
+"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: product_computed_list_price
+#: model:ir.ui.view,arch_db:product_computed_list_price.product_template_only_form_view
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<data><field name=\"list_price\" position=\"attributes\">\n"
+"                    <attribute name=\"invisible\">1</attribute>\n"
+"                </field>\n"
+"                <field name=\"list_price\" position=\"before\">\n"
+"                    <field name=\"list_price_type\"/>\n"
+"                    <field name=\"computed_list_price\" widget=\"monetary\" options=\"{'currency_field': 'currency_id'}\"/>\n"
+"                    <!-- for easy compatibilty with other modules -->\n"
+"                    <!-- <label for=\"computed_list_price\" attrs=\"{'invisible': [('list_price_type', 'in', ['by_uom', 'by_uom_currency'])]}\"/> -->\n"
+"                    <!-- <div name=\"computed_list_price\" attrs=\"{'invisible': [('list_price_type', 'in', ['by_uom', 'by_uom_currency'])]}\"> -->\n"
+"                        <!-- <field name=\"computed_list_price\" class=\"oe_inline\"/> -->\n"
+"                        <!-- <field name=\"computed_list_price_currency_id\" class=\"oe_inline\" groups=\"base.group_multi_currency\"/> -->\n"
+"                    <!-- </div> -->\n"
+"                </field>\n"
+"            </data>"
+msgstr ""
+
+#. module: product_computed_list_price
+#: model:ir.ui.view,arch_db:product_computed_list_price.product_pricelist_view
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<field name=\"item_ids\" position=\"attributes\">\n"
+"                    <attribute name=\"context\">context=\"{'default_base': 'computed_list_price'}\"</attribute>\n"
+"                </field>\n"
+"            "
+msgstr ""
+
+#. module: product_computed_list_price
+#: selection:product.template,list_price_type:0
+msgid "By UOM and Currency"
+msgstr "Por UOM y Moneda"
+
+#. module: product_computed_list_price
+#: selection:product.template,list_price_type:0
+msgid "By Uom"
+msgstr "Por Uom"
+
+#. module: product_computed_list_price
+#: model:ir.model.fields,help:product_computed_list_price.field_product_product_computed_list_price
+#: model:ir.model.fields,help:product_computed_list_price.field_product_template_computed_list_price
+#: help:product.product,computed_list_price:0
+#: help:product.template,computed_list_price:0
+msgid ""
+"Computed Sale Price. This value depends on \"Sale Price Type\" an other "
+"parameters. If you set this value, other fields will be computed "
+"automatically."
+msgstr ""
+"Precio de venta Computado. Este valor depende del \"Tipo de Precio de "
+"Venta\" y otros parámetros. Si establece este valor, otros campos serán "
+"computados automáticamente."
+
+#. module: product_computed_list_price
+#: model:ir.model.fields,field_description:product_computed_list_price.field_product_product_taxes_id
+#: field:product.product,taxes_id:0
+msgid "Customer Taxes"
+msgstr "Impuestos de cliente"
+
+#. module: product_computed_list_price
+#: model:ir.model.fields,field_description:product_computed_list_price.field_product_product_property_account_expense_id
+#: field:product.product,property_account_expense_id:0
+msgid "Expense Account"
+msgstr "Cuenta de gasto"
+
+#. module: product_computed_list_price
+#: model:ir.model.fields,field_description:product_computed_list_price.field_product_product_property_account_income_id
+#: field:product.product,property_account_income_id:0
+msgid "Income Account"
+msgstr "Cuenta de ingreso"
+
+#. module: product_computed_list_price
+#: selection:product.template,list_price_type:0
+msgid "Manual"
+msgstr "Manual"
+
+#. module: product_computed_list_price
+#: selection:product.template,list_price_type:0
+msgid "Other Currency"
+msgstr "Otra Moneda"
+
+#. module: product_computed_list_price
+#: model:ir.model,name:product_computed_list_price.model_product_pricelist_item
+msgid "Pricelist item"
+msgstr "Item de Lista de precios"
+
+#. module: product_computed_list_price
+#: model:ir.model,name:product_computed_list_price.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: product_computed_list_price
+#: model:ir.model,name:product_computed_list_price.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: product_computed_list_price
+#: model:ir.model.fields,field_description:product_computed_list_price.field_product_product_computed_list_price
+#: model:ir.model.fields,field_description:product_computed_list_price.field_product_template_computed_list_price
+#: field:product.product,computed_list_price:0
+#: field:product.template,computed_list_price:0
+msgid "Sale Price"
+msgstr "Precio de Venta"
+
+#. module: product_computed_list_price
+#: model:ir.model.fields,field_description:product_computed_list_price.field_product_product_list_price_type
+#: model:ir.model.fields,field_description:product_computed_list_price.field_product_template_list_price_type
+#: field:product.product,list_price_type:0
+#: field:product.template,list_price_type:0
+msgid "Sale Price Type"
+msgstr "Tipo de Precio de venta"
+
+#. module: product_computed_list_price
+#: model:ir.model.fields,help:product_computed_list_price.field_product_product_property_account_expense_id
+#: help:product.product,property_account_expense_id:0
+msgid ""
+"This account will be used for invoices instead of the default one to value "
+"expenses for the current product."
+msgstr ""
+"Esta cuenta será utilizada para las facturas en vez de la cuenta por defecto"
+" para calcular los gastos para el producto actual."
+
+#. module: product_computed_list_price
+#: model:ir.model.fields,help:product_computed_list_price.field_product_product_property_account_income_id
+#: help:product.product,property_account_income_id:0
+msgid ""
+"This account will be used for invoices instead of the default one to value "
+"sales for the current product."
+msgstr ""
+"Esta cuenta será utilizada para las facturas en vez de la cuenta por defecto"
+" para calcular las ventas para el producto actual."
+
+#. module: product_computed_list_price
+#: model:ir.model.fields,field_description:product_computed_list_price.field_product_product_supplier_taxes_id
+#: field:product.product,supplier_taxes_id:0
+msgid "Vendor Taxes"
+msgstr "Impuestos del proveedor"
+
+#. module: product_computed_list_price
+#: code:addons/product_computed_list_price/product.py:37
+#, python-format
+msgid ""
+"You can not set list price if you are working with 'Taxes Included' in the "
+"context"
+msgstr ""
+"No puede establecer una lista de precios si está trabajando con \"Impuestos "
+"incluídos\" en el contexto."

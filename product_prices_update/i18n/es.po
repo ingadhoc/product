@@ -1,41 +1,82 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* product_prices_update
-#
+# * product_prices_update
+# 
+# Translators:
+# Javier Diez <jd@adhoc.com.ar>, 2016
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-14 16:00+0000\n"
-"PO-Revision-Date: 2015-01-15 11:38-0300\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2016-11-14 22:16+0000\n"
+"PO-Revision-Date: 2016-11-14 22:16+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016\n"
+"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 1.5.4\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: product_prices_update
-#: view:product.prices_update_wizard:product_prices_update.view_prices_update_wizard_form
-msgid "Base Price"
-msgstr "Precio Base"
+#: model:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_form
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<form string=\"Price Computation\">\n"
+"                    <group col=\"4\">\n"
+"                        <field name=\"price_type\"/>\n"
+"                        <field name=\"check\"/>\n"
+"                    </group>\n"
+"                    <group col=\"6\" colspan=\"5\">\n"
+"                        <label string=\"New Price =\"/>\n"
+"                        <label string=\"Base Price\"/>\n"
+"                        <label string=\"* ( 1 + \"/>\n"
+"                        <field name=\"price_discount\" nolabel=\"1\"/>\n"
+"                        <label string=\" ) + \"/>\n"
+"                        <field name=\"price_surcharge\" nolabel=\"1\"/>\n"
+"                        <newline/>\n"
+"                        <field name=\"price_round\" string=\"Rounding Method\"/>\n"
+"                    </group>\n"
+"                    <footer>\n"
+"                        <button name=\"change_prices\" string=\"Confirm\" type=\"object\" class=\"oe_highlight\"/>\n"
+"                        or\n"
+"                        <button string=\"Cancel\" class=\"oe_link\" special=\"cancel\"/>\n"
+"                    </footer>\n"
+"                </form>\n"
+"            "
+msgstr ""
 
 #. module: product_prices_update
-#: view:product.prices_update_wizard:product_prices_update.view_prices_update_wizard_form
-msgid "Cancel"
-msgstr "Cancelar"
+#: model:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_result_form
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<form string=\"Products\">\n"
+"                    <header>\n"
+"                        <button name=\"confirm\" string=\"Confirm\" type=\"object\" class=\"oe_highlight\"/>\n"
+"                    </header>\n"
+"                    <field name=\"detail_ids\"/>\n"
+"                </form> \n"
+"            "
+msgstr ""
 
 #. module: product_prices_update
+#: model:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_result_detail_tree
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<tree string=\"Products\" create=\"false\" editable=\"top\">\n"
+"                    <field name=\"product_tmpl_id\"/>\n"
+"                    <field name=\"old_price\"/>\n"
+"                    <field name=\"new_price\"/>\n"
+"                </tree>\n"
+"            "
+msgstr ""
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_check
 #: field:product.prices_update_wizard,check:0
 msgid "Check before changing"
 msgstr "Verificar antes de cambiar"
-
-#. module: product_prices_update
-#: view:product.prices_update_wizard:product_prices_update.view_prices_update_wizard_form
-#: view:product.prices_update_wizard_result:product_prices_update.view_prices_update_wizard_result_form
-msgid "Confirm"
-msgstr "Confirmar"
 
 #. module: product_prices_update
 #: selection:product.prices_update_wizard,price_type:0
@@ -43,20 +84,39 @@ msgid "Cost Price"
 msgstr "Precio de Costo"
 
 #. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_create_uid
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_create_uid
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail_create_uid
 #: field:product.prices_update_wizard,create_uid:0
 #: field:product.prices_update_wizard_result,create_uid:0
 #: field:product.prices_update_wizard_result_detail,create_uid:0
 msgid "Created by"
-msgstr "Created by"
+msgstr "Creado por"
 
 #. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_create_date
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_create_date
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail_create_date
 #: field:product.prices_update_wizard,create_date:0
 #: field:product.prices_update_wizard_result,create_date:0
 #: field:product.prices_update_wizard_result_detail,create_date:0
 msgid "Created on"
-msgstr "Created on"
+msgstr "Creado el"
 
 #. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_display_name
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail_display_name
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_display_name
+#: field:product.prices_update_wizard,display_name:0
+#: field:product.prices_update_wizard_result,display_name:0
+#: field:product.prices_update_wizard_result_detail,display_name:0
+msgid "Display Name"
+msgstr "Mostrar nombre"
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_id
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail_id
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_id
 #: field:product.prices_update_wizard,id:0
 #: field:product.prices_update_wizard_result,id:0
 #: field:product.prices_update_wizard_result_detail,id:0
@@ -64,84 +124,101 @@ msgid "ID"
 msgstr "ID"
 
 #. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard___last_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result___last_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail___last_update
+#: field:product.prices_update_wizard,__last_update:0
+#: field:product.prices_update_wizard_result,__last_update:0
+#: field:product.prices_update_wizard_result_detail,__last_update:0
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail_write_uid
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_write_uid
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_write_uid
 #: field:product.prices_update_wizard,write_uid:0
 #: field:product.prices_update_wizard_result,write_uid:0
 #: field:product.prices_update_wizard_result_detail,write_uid:0
 msgid "Last Updated by"
-msgstr "Last Updated by"
+msgstr "Última modificación por"
 
 #. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail_write_date
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_write_date
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_write_date
 #: field:product.prices_update_wizard,write_date:0
 #: field:product.prices_update_wizard_result,write_date:0
 #: field:product.prices_update_wizard_result_detail,write_date:0
 msgid "Last Updated on"
-msgstr "Last Updated on"
+msgstr "Última actualización el"
 
 #. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail_new_price
 #: field:product.prices_update_wizard_result_detail,new_price:0
 msgid "New Price"
 msgstr "Precio Nuevo"
 
 #. module: product_prices_update
-#: view:product.prices_update_wizard:product_prices_update.view_prices_update_wizard_form
-msgid "New Price ="
-msgstr " Precio Nuevo ="
-
-#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail_old_price
 #: field:product.prices_update_wizard_result_detail,old_price:0
 msgid "Old Price"
 msgstr "Precio Anterior"
 
 #. module: product_prices_update
-#: view:product.prices_update_wizard:product_prices_update.view_prices_update_wizard_form
-msgid "Price Computation"
-msgstr "Price Computation"
-
-#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_price_discount
 #: field:product.prices_update_wizard,price_discount:0
 msgid "Price Discoun"
 msgstr "Precio con descuento"
 
 #. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_price_round
 #: field:product.prices_update_wizard,price_round:0
 msgid "Price Rounding"
 msgstr "Precio Redondeado"
 
 #. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_price_surcharge
 #: field:product.prices_update_wizard,price_surcharge:0
 msgid "Price Surcharge"
 msgstr "Precio Recargo"
 
 #. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_price_type
 #: field:product.prices_update_wizard,price_type:0
 msgid "Price Type"
 msgstr "Tipo de Precio"
 
 #. module: product_prices_update
+#: code:addons/product_prices_update/wizard/wizard_update_prices.py:61
+#: code:addons/product_prices_update/wizard/wizard_update_prices.py:139
+#, python-format
+msgid "Price type \"%s\" is not implemented"
+msgstr "El Tipo de precio \"%s\" no está implementado."
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail_product_tmpl_id
 #: field:product.prices_update_wizard_result_detail,product_tmpl_id:0
 msgid "Product Template"
 msgstr "Producto"
 
 #. module: product_prices_update
-#: view:product.prices_update_wizard_result:product_prices_update.view_prices_update_wizard_result_form
-#: view:product.prices_update_wizard_result_detail:product_prices_update.view_prices_update_wizard_result_detail_tree
+#: code:addons/product_prices_update/wizard/wizard_update_prices.py:81
+#, python-format
 msgid "Products"
 msgstr "Productos"
 
 #. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail_ids
 #: field:product.prices_update_wizard_result,detail_ids:0
 msgid "Products Detail"
 msgstr "Detalle de Productos"
 
 #. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail_result_id
 #: field:product.prices_update_wizard_result_detail,result_id:0
 msgid "Result"
 msgstr "Resultado"
-
-#. module: product_prices_update
-#: view:product.prices_update_wizard:product_prices_update.view_prices_update_wizard_form
-msgid "Rounding Method"
-msgstr "Valor Para Redondeo"
 
 #. module: product_prices_update
 #: selection:product.prices_update_wizard,price_type:0
@@ -149,17 +226,26 @@ msgid "Sale Price"
 msgstr "Precio de Venta"
 
 #. module: product_prices_update
+#: model:ir.model.fields,help:product_prices_update.field_product_prices_update_wizard_price_round
 #: help:product.prices_update_wizard,price_round:0
 msgid ""
 "Sets the price so that it is a multiple of this value.\n"
 "Rounding is applied after the discount and before the surcharge.\n"
 "To have prices that end in 9.99, set rounding 10, surcharge -0.01"
-msgstr "Establece el precio, así que es un múltiplo de este valor. \ NEl redondeo se aplica después del descuento y antes del pago . \ NPara tener precios que terminan en 9.99 , establezca redondeo 10 , recargo -0,01"
+msgstr ""
+"Establece el precio, así que es un múltiplo de este valor. \\ NEl redondeo "
+"se aplica después del descuento y antes del pago . \\ NPara tener precios "
+"que terminan en 9.99 , establezca redondeo 10 , recargo -0,01"
 
 #. module: product_prices_update
+#: model:ir.model.fields,help:product_prices_update.field_product_prices_update_wizard_price_surcharge
 #: help:product.prices_update_wizard,price_surcharge:0
-msgid "Specify the fixed amount to add or substract(if negative) to the amount calculated with the discount."
-msgstr "Especifique la cantidad fija para añadir o restar ( si es negativo ) al importe calculado con el descuento ."
+msgid ""
+"Specify the fixed amount to add or substract(if negative) to the amount "
+"calculated with the discount."
+msgstr ""
+"Especifique la cantidad fija para añadir o restar ( si es negativo ) al "
+"importe calculado con el descuento ."
 
 #. module: product_prices_update
 #: model:ir.actions.act_window,name:product_prices_update.action_prices_update_wizard_result
@@ -172,13 +258,7 @@ msgid "Update Product Prices"
 msgstr "Actualizar Precios de Productos"
 
 #. module: product_prices_update
-#: code:addons/product_prices_update/wizard/wizard_update_prices.py:27
+#: code:addons/product_prices_update/wizard/wizard_update_prices.py:38
 #, python-format
 msgid "You must select at least one product"
 msgstr "Debe seleccionar al menos un producto"
-
-#. module: product_prices_update
-#: view:product.prices_update_wizard:product_prices_update.view_prices_update_wizard_form
-msgid "or"
-msgstr "o"
-
