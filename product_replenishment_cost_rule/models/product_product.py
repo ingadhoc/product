@@ -13,12 +13,18 @@ class ProductTemplate(models.Model):
     replenishment_cost_rule_id = fields.Many2one(
         'product.replenishment_cost.rule',
         string='Replenishment Cost Rule',
+        track_visibility='onchange',
     )
     replenishment_base_cost_on_currency = fields.Float(
         compute='_get_replenishment_base_cost_on_currency',
         string='Replenishment Base Cost on Currency',
         digits=dp.get_precision('Product Price'),
     )
+
+    @api.one
+    @api.constrains('replenishment_cost_rule_id')
+    def update_replenishment_cost_last_update_by_rule(self):
+        self.update_replenishment_cost_last_update()
 
     @api.one
     @api.depends(

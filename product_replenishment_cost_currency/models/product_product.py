@@ -13,17 +13,20 @@ class ProductTemplate(models.Model):
     # TODO this field should be move to PRC (product_replenishment_cost)
     replenishment_cost_last_update = fields.Datetime(
         'Replenishment Cost Last Update',
+        track_visibility='onchange',
     )
     # TODO this field should be move to PRC (product_replenishment_cost)
     replenishment_base_cost = fields.Float(
         'Replenishment Base Cost',
         digits=dp.get_precision('Product Price'),
+        track_visibility='onchange',
         help="Replanishment Cost expressed in 'Replenishment Base Cost "
         "Currency'."
     )
     replenishment_base_cost_currency_id = fields.Many2one(
         'res.currency',
         'Replenishment Base Cost Currency',
+        track_visibility='onchange',
         help="Currency used for the Replanishment Base Cost."
     )
     # for now we make replenshiment cost field only on template and not in
@@ -39,6 +42,14 @@ class ProductTemplate(models.Model):
              "information, for example Bills of Materials or latest "
              "Purchases."
     )
+
+    @api.one
+    @api.constrains(
+        'replenishment_base_cost',
+        'replenishment_base_cost_currency_id',
+    )
+    def update_replenishment_cost_last_update(self):
+        self.replenishment_cost_last_update = fields.Datetime.now()
 
     @api.one
     @api.depends(
