@@ -28,20 +28,6 @@
     'license': 'AGPL-3',
     'summary': 'Allow to define purchase prices on different currencies using'
     ' replenishment cost field',
-    "description": """
-Product Replenshiment Cost Rule
-===============================
-
-Repository dependencies
------------------------
-Requires repository: https://github.com/OCA/margin-analysis
-
-How to use?
------------
-1. Install
-2. Configure pricelist to use new price_type "Replanishment Cost"
-3. Use the new fields on product "procuerements" tab
-    """,
     "depends": [
         # "product_replenishment_cost",
         "product_replenishment_cost_currency",
