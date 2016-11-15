@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2015  ADHOC SA  (http://www.adhoc.com.ar)
-#    All Rights Reserved.
+#    Author:  Alexandre Fayolle
+#    Copyright 2012 Camptocamp SA
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,43 +19,21 @@
 #
 ##############################################################################
 {
-    "name": "Product Cost Currency",
+    'name': 'Replenishment Cost',
     'version': '9.0.1.0.0',
-    'category': 'Product',
-    'sequence': 14,
-    'author': 'ADHOC SA',
-    'website': 'www.adhoc.com.ar',
+    'author': "Camptocamp,GRAP,Odoo Community Association (OCA)",
     'license': 'AGPL-3',
-    'summary': 'Allow to define purchase prices on different currencies using'
-    'replenishment cost field',
-    "description": """
-Product Cost Currency
-=====================
-Allows to define product cost in differents currencies
-
-Repository dependencies
------------------------
-Requires repository: https://github.com/OCA/margin-analysis
-
-How to use?
------------
-1. Install
-2. Configure pricelist to use new price_type "Replanishment Cost"
-3. Use the new fields on product "procuerements" tab
-    """,
-    "depends": [
-        "product_replenishment_cost",
+    'category': 'Products',
+    'depends': [
+        'product',
     ],
-    'external_dependencies': {
-    },
-    "data": [
+    'website': 'http://www.camptocamp.com/',
+    'data': [
         'views/product_view.xml',
-    ],
-    'demo': [
+        'demo/res_groups.yml',
     ],
     'test': [
+        'test/cost_price_update.yml',
     ],
-    "installable": True,
-    'auto_install': False,
-    'application': False,
+    'installable': True,
 }
