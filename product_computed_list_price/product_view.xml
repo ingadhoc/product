@@ -6,20 +6,46 @@
         <record id="product_template_only_form_view" model="ir.ui.view">
             <field name="name">product_computed_list_price.form</field>
             <field name="model">product.template</field>
-            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <!-- inherit common view -->
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="priority">8</field>
             <field name="arch" type="xml">
-                <field name="list_price" position="attributes">
-                    <attribute name="invisible">1</attribute>
+                <!-- sacamos este campo y lo llevamos a tab sale -->
+                <field name="list_price" position="replace"/>
+                
+                <!-- dejamos visible el pricelist group -->
+                <div name="pricelist_item" position="attributes">
+                    <attribute name="groups"></attribute>
+                </div>
+                <!-- pero ponemos el grupo a los items -->
+                <field name="item_ids" position="attributes">
+                    <attribute name="groups">product.group_product_pricelist</attribute>
                 </field>
-                <field name="list_price" position="before">
-                    <field name="list_price_type"/>
-                    <field name="computed_list_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                    <!-- for easy compatibilty with other modules -->
-                    <!-- <label for="computed_list_price" attrs="{'invisible': [('list_price_type', 'in', ['by_uom', 'by_uom_currency'])]}"/> -->
-                    <!-- <div name="computed_list_price" attrs="{'invisible': [('list_price_type', 'in', ['by_uom', 'by_uom_currency'])]}"> -->
-                        <!-- <field name="computed_list_price" class="oe_inline"/> -->
-                        <!-- <field name="computed_list_price_currency_id" class="oe_inline" groups="base.group_multi_currency"/> -->
-                    <!-- </div> -->
+
+                <field name="item_ids" position="before">
+                    <group name="pricing">
+                        <group name="planned_price">
+                            <field name="list_price_type" string="Planned Price based on"/>
+                            <field name="computed_list_price_manual" widget="monetary" attrs="{'invisible': [('list_price_type', '!=', 'manual')]}" string="Planned Price" options="{'currency_field': 'currency_id'}"/>
+                            <field name="computed_list_price" widget="monetary" attrs="{'invisible': [('list_price_type', '=', 'manual')]}" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <group name="list_price">
+                            <field name="list_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                    </group>
+                </field>
+            </field>
+        </record>
+
+        <!-- tenemos que heredar esta y agregar group a items porque eran sobre escritos -->
+        <record id="product_product_prices_form" model="ir.ui.view">
+            <field name="name">product.product.prices.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <!-- pero ponemos el grupo a los items -->
+                <field name="item_ids" position="attributes">
+                    <attribute name="groups">product.group_product_pricelist</attribute>
                 </field>
             </field>
         </record>

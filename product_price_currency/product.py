@@ -14,17 +14,17 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     list_price_type = fields.Selection(
-        selection_add=[('other_currency', 'Other Currency')],
+        selection_add=[('other_currency', 'Currency exchange')],
     )
     other_currency_id = fields.Many2one(
         'res.currency',
-        'Other Currency',
-        help="Currency used for the Currency List Price.",
+        'Planned Currency',
+        # help="Currency used for the Currency List Price.",
     )
     other_currency_list_price = fields.Float(
-        'Sale Price on Other Currency',
+        'Planned Price on Currency',
         digits=dp.get_precision('Product Price'),
-        help="Sale Price on Other Currency",
+        # help="Sale Price on Other Currency",
     )
 
     @api.multi
@@ -35,22 +35,6 @@ class ProductTemplate(models.Model):
     def _get_computed_list_price(self):
         """Only to update depends"""
         return super(ProductTemplate, self)._get_computed_list_price()
-
-    @api.multi
-    def set_prices(self, computed_list_price):
-        self.ensure_one()
-        if self.list_price_type == 'other_currency':
-            if not self.other_currency_id:
-                raise UserError(_(
-                    'You must configure "Other Currency" for product %s' % (
-                        self.name)))
-            self.other_currency_list_price = self.currency_id.compute(
-                computed_list_price,
-                self.other_currency_id,
-                round=False)
-        else:
-            return super(ProductTemplate, self).set_prices(
-                computed_list_price)
 
     @api.multi
     def get_computed_list_price(self):

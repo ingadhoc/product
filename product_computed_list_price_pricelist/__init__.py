@@ -5,3 +5,4 @@
 ##############################################################################
 from . import product
 from . import pricelist
+from .hooks import post_init_hook

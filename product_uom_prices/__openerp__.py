@@ -36,5 +36,6 @@
     'data': [
         'views/product_view.xml',
     ],
-    'installable': True,
+    # depreciado
+    'installable': False,
 }

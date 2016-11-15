@@ -6,7 +6,7 @@
 Product Computed List Price
 ===========================
 
-This module add "Computed List Price" to products, to introduce in pricelist a rule to calculate price based in this field.
+This module add a new field "Computed List Price" to products that can be extended by other modules to calculte this prices based in different conditions. It also add a wizard to update "List Price" using "Computed List Price" value. Optionally, you can activate a cron to run this update auomatically.
 
 
 Installation
