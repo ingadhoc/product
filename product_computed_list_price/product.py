@@ -12,20 +12,18 @@ class ProductTemplate(models.Model):
     _inherit = "product.template"
 
     computed_list_price_manual = fields.Float(
-        help='Field to store manual computed list price'
+        string='Planned Price Manual',
+        help='Field to store manual planned price'
     )
     computed_list_price = fields.Float(
-        string='Computed Sale Price',
+        string='Planned Price',
         compute='_get_computed_list_price',
-        inverse='_inverse_computed_list_price',
-        help='Computed Sale Price. This value depends on "Sale Price Type" an '
-        'other parameters. If you set this value, other fields will be '
-        'computed automatically.',
+        help='Planned Price. This value depends onPlanned Price Type" an '
+        'other parameters.',
     )
     list_price_type = fields.Selection([
-        ('manual', 'Manual')],
-        # TODO rename to computed_list_price_type
-        string='Computed Sale Price Type',
+        ('manual', 'Fixed value')],
+        string='Planned Price Type',
         required=True,
         default='manual',
     )
@@ -48,22 +46,6 @@ class ProductTemplate(models.Model):
     def _other_computed_rules(self, computed_list_price):
         self.ensure_one()
         return computed_list_price
-
-    @api.multi
-    def _inverse_computed_list_price(self):
-        _logger.info('Set Prices from "computed_list_price"')
-        # send coputed list price because it is lost
-        for template in self:
-            # fix for integration with margin (if you change replanishment cost
-            # for eg, uom price was set with zero (TODO improove this)
-            if template.computed_list_price:
-                template.set_prices(template.computed_list_price)
-
-    @api.multi
-    def set_prices(self, computed_list_price):
-        self.ensure_one()
-        if self.list_price_type == 'manual':
-            self.computed_list_price_manual = computed_list_price
 
     @api.multi
     def get_computed_list_price(self):
