@@ -26,8 +26,8 @@
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
-    'summary': 'Allow to define purchase prices on different currencies using\
- replenishment cost field',
+    'summary': 'Allow to define purchase prices on different currencies using'
+    ' replenishment cost field',
     "description": """
 Product Replenshiment Cost Rule
 ===============================
@@ -43,7 +43,7 @@ How to use?
 3. Use the new fields on product "procuerements" tab
     """,
     "depends": [
-        "product_replenishment_cost",
+        # "product_replenishment_cost",
         "product_replenishment_cost_currency",
     ],
     'external_dependencies': {
@@ -57,7 +57,7 @@ How to use?
     ],
     'test': [
     ],
-    "installable": False,
+    "installable": True,
     'auto_install': False,
     'application': False,
 }
