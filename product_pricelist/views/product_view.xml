@@ -25,33 +25,34 @@
  -->
 
         <!-- haciendo una vista para product y otra para product template -->
+        <!-- heradamos en dos distintas porque necesitamos pasar template_id y product_id y tmb porque los item_ids son sobre escritos en la de product.product -->
         <record id="product_template_prices_form" model="ir.ui.view">
             <field name="name">product.template.prices.form</field>
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_only_form_view"/>
-            <field name="priority">8</field>
             <field name="arch" type="xml">
-                <!-- move list_price to icelist_tab -->
-                <field name="list_price" position="replace"/>
-                <div name="pricelist_item" position="after">
-                    <div name="sale_prices">
-                        <separator string="Pricing"/>
-                    <!-- <page string="Price Lists" name="pricelists" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}"> -->
-                        <group>
-                            <field name="list_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                        </group>
-                        <field name="pricelist_ids" context="{'template_id': id}">
-                            <!-- TODO move this to a low priority view and specify here -->
-                            <tree delete='false' create='false'>
-                                <field name="name"/>
-                                <field name="price"/>
-                                <!-- TODO enable buttons after correcting domain -->
-                                <!-- <button name="action_related_pricelist_items" type="object" string="Related Product Items" help="See related pricelist items that affect this product" context="{'onle_related_product_items': True}"/> -->
-                                <!-- <button name="action_related_pricelist_items" type="object" string="All Pricelist Items" help="See related pricelist items"/> -->
-                            </tree>
-                        </field>
-                    </div>
+                <!-- si instalamos este modulo estos items ya no tienen razon de ser, los desactivamos por grupo y ponemos antes las listas de precios -->
+                <!-- dejamos visible el pricelist group -->
+                <div name="pricelist_item" position="attributes">
+                    <attribute name="groups"></attribute>
                 </div>
+                <!-- pero ponemos el grupo a los items -->
+                <field name="item_ids" position="attributes">
+                    <attribute name="groups">product.group_product_pricelist</attribute>
+                </field>
+
+                <field name="item_ids" position="before">
+                    <field name="pricelist_ids" context="{'template_id': id}">
+                        <!-- TODO move this to a low priority view and specify here -->
+                        <tree delete='false' create='false'>
+                            <field name="name"/>
+                            <field name="price"/>
+                            <!-- TODO enable buttons after correcting domain -->
+                            <!-- <button name="action_related_pricelist_items" type="object" string="Related Product Items" help="See related pricelist items that affect this product" context="{'onle_related_product_items': True}"/> -->
+                            <!-- <button name="action_related_pricelist_items" type="object" string="All Pricelist Items" help="See related pricelist items"/> -->
+                        </tree>
+                    </field>
+                </field>
             </field>
         </record>
 
@@ -61,20 +62,24 @@
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product.product_normal_form_view"/>
             <field name="arch" type="xml">
-                <notebook>
-                    <page string="Price Lists" name="pricelists">
-                        <!-- <group> -->
-                            <field name="pricelist_ids" context="{'product_id': id}">
-                                <tree delete='false' create='false'>
-                                    <field name="name"/>
-                                    <field name="price"/>
-                                    <!-- <button name="action_related_pricelist_items" type="object" string="Related Product Items" help="See related pricelist items that affect this product" context="{'onle_related_product_items': True}"/> -->
-                                    <!-- <button name="action_related_pricelist_items" type="object" string="All Pricelist Items" help="See related pricelist items"/> -->
-                                </tree>
-                            </field>
-                        <!-- </group> -->
-                    </page>
-                </notebook>
+                <div name="pricelist_item" position="attributes">
+                    <attribute name="groups"></attribute>
+                </div>
+                <!-- pero ponemos el grupo a los items -->
+                <field name="item_ids" position="attributes">
+                    <attribute name="groups">product.group_product_pricelist</attribute>
+                </field>
+
+                <field name="item_ids" position="before">
+                    <field name="pricelist_ids" context="{'product_id': id}">
+                        <tree delete='false' create='false'>
+                            <field name="name"/>
+                            <field name="price"/>
+                            <!-- <button name="action_related_pricelist_items" type="object" string="Related Product Items" help="See related pricelist items that affect this product" context="{'onle_related_product_items': True}"/> -->
+                            <!-- <button name="action_related_pricelist_items" type="object" string="All Pricelist Items" help="See related pricelist items"/> -->
+                        </tree>
+                    </field>
+                </field>
             </field>
         </record>
     </data>
