@@ -17,30 +17,28 @@
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_form_view"/>
             <field name="arch" type="xml">
-                <group name="general" position="attributes">
-                    <attribute name="string">Accounting Cost</attribute>
-                </group>
-                <!-- we cant set currency here because this section is also modified by stock module -->
-<!--                 <field name="standard_price" position="replace">
-                    <label for="standard_price"/>
-                    <div>
-                        <field name="standard_price" class="oe_inline"/>
-                        <field name="standard_price_currency_id" class="oe_inline"/>
-                    </div>
-                </field> -->
-                <group name="general" position="after">
-                    <group name="replenishment_cost" string="Replenishment Cost">
-                        <field name="replenishment_cost_last_update"/>
-                        <label for="replenishment_base_cost"/>
-                        <div name="replenishment_base_cost">
-                            <field name="replenishment_base_cost" class="oe_inline"/>
-                            <field name="replenishment_base_cost_currency_id" class="oe_inline"/>
-                        </div>
-                        <label for="replenishment_cost"/>
-                        <div name="replenishment_cost">
-                            <field name="replenishment_cost" class="oe_inline"/>
-                            <field name="replenishment_cost_currency_id" class="oe_inline"/>
-                        </div>
+                <!-- we move standard_price to inventory tab -->
+                <label for="standard_price" position="replace"/>
+                <div name="standard_price_uom" position="replace"/>
+
+                <group name="inventory" position="after">
+                    <group name="costs" string="Costs">
+                        <group name="replenishment_cost">
+                            <field name="replenishment_cost_last_update"/>
+                            <label for="replenishment_base_cost"/>
+                            <div name="replenishment_base_cost">
+                                <field name="replenishment_base_cost" class="oe_inline" widget="monetary" options="{'currency_field': 'replenishment_base_cost_currency_id'}"/>
+                                <field name="replenishment_base_cost_currency_id" class="oe_inline oe_edit_only"/>
+                            </div>
+                            <field name="replenishment_cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        </group>
+                        <group name="accounting_cost">
+                            <!-- we only change label -->
+                            <label for="standard_price" groups="base.group_user" string="Accounting Cost" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}"/>
+                            <div name="standard_price_uom" groups="base.group_user">
+                                <field name="standard_price" widget="monetary" options="{'currency_field': 'currency_id'}" class="oe_inline"/>
+                            </div>
+                        </group>
                     </group>
                 </group>
             </field>

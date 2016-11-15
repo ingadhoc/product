@@ -26,8 +26,8 @@
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
-    'summary': 'Allow to define purchase prices on different currencies using\
- replenishment cost field',
+    'summary': 'Allow to define purchase prices on different currencies using'
+    'replenishment cost field',
     "description": """
 Product Cost Currency
 =====================
@@ -50,13 +50,12 @@ How to use?
     },
     "data": [
         'views/product_view.xml',
-        'data/price_type_data.xml',
     ],
     'demo': [
     ],
     'test': [
     ],
-    "installable": False,
+    "installable": True,
     'auto_install': False,
     'application': False,
 }
