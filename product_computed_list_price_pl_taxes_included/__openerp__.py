@@ -25,10 +25,10 @@
     'sequence': 14,
     'summary': '',
     'description': """
-Product Computed List Price Taxes Included
-==========================================
-Integration between prdocut computed list price and product price taxes
-included
+Product Computed List Price Pricelist Taxes Included
+====================================================
+Integration between prdocut computed list price price list and product price
+taxes included
     """,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
@@ -36,7 +36,7 @@ included
     'images': [
     ],
     'depends': [
-        'product_computed_list_price',
+        'product_computed_list_price_pricelist',
         'product_price_taxes_included',
     ],
     'data': [
@@ -45,7 +45,7 @@ included
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     'application': False,
 }

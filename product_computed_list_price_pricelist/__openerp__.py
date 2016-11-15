@@ -19,27 +19,31 @@
 #
 ##############################################################################
 {
-    "name": "Product Computed List Price Rule",
+    'name': 'Product Computed List Price',
     'version': '9.0.1.0.0',
     'category': 'Product',
     'sequence': 14,
+    'summary': '',
     'author': 'ADHOC SA,Odoo Community Association (OCA)',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
-    "depends": [
-        "product_computed_list_price",
+    'images': [
     ],
-    "data": [
-        'views/product_view.xml',
-        'views/product_computed_list_price_rule_view.xml',
-        'security/ir.model.access.csv',
+    'depends': [
+        'product',
+    ],
+    'data': [
+        'product_view.xml',
+        'pricelist_view.xml',
+        'data/pricelist_group_data.xml',
     ],
     'demo': [
+        'demo/product_demo.xml',
     ],
     'test': [
     ],
-    # a ser depreciado en la v10
-    "installable": False,
+    'installable': False,
     'auto_install': False,
     'application': False,
+    'post_init_hook': 'post_init_hook',
 }

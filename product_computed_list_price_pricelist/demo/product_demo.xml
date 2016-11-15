@@ -6,7 +6,7 @@
             <field name="name">Computed Manual Product</field>
             <field name="categ_id" ref="product.product_category_4"/>
             <field name="standard_price">20.5</field>
-            <field name="computed_list_price">100</field>
+            <field name="list_price">100</field>
             <field name="list_price_type">manual</field>
             <field name="type">service</field>
         </record>
