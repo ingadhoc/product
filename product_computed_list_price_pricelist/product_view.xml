@@ -8,6 +8,9 @@
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_only_form_view"/>
             <field name="arch" type="xml">
+                <field name="list_price" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
                 <field name="list_price" position="before">
                     <field name="list_price_type"/>
                     <field name="computed_list_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
