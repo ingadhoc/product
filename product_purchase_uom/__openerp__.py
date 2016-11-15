@@ -25,7 +25,7 @@
     'demo_xml': [],
     'depends': [
         'purchase',
-        'product_uom_prices',
+        'product_sale_uom',
     ],
     'author': 'ADHOC SA.',
     'website': 'www.adhoc.com.ar',
