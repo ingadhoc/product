@@ -14,17 +14,17 @@ class ProductReplenishmentCostRule(models.Model):
     name = fields.Char(
         'Name',
         required=True,
-        )
+    )
     item_ids = fields.One2many(
         'product.replenishment_cost.rule.item',
         'replenishment_cost_rule_id',
         'Items',
-        )
+    )
     product_ids = fields.One2many(
         'product.template',
         'replenishment_cost_rule_id',
         'Products',
-        )
+    )
 
 
 class ProductReplenishmentCostRuleItem(models.Model):
@@ -37,22 +37,22 @@ class ProductReplenishmentCostRuleItem(models.Model):
         'Rule',
         required=True,
         ondelete='cascade',
-        )
+    )
     sequence = fields.Char(
         'sequence',
         default=10,
-        )
+    )
     name = fields.Char(
         'Name',
         required=True,
-        )
+    )
     percentage_amount = fields.Float(
         'Percentage Amount',
         digits=dp.get_precision('Discount'),
-        )
+    )
     fixed_amount = fields.Float(
         'Fixed Amount',
         digits=dp.get_precision('Product Price'),
         help='Specify the fixed amount to add or substract(if negative) to the'
         ' amount calculated with the percentage amount.'
-        )
+    )
