@@ -1,0 +1,95 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_uom_prices_currency
+# 
+# Translators:
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016
+# Javier Diez <jd@adhoc.com.ar>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-14 22:16+0000\n"
+"PO-Revision-Date: 2016-11-14 22:16+0000\n"
+"Last-Translator: Javier Diez <jd@adhoc.com.ar>, 2016\n"
+"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: product_uom_prices_currency
+#: model:ir.ui.view,arch_db:product_uom_prices_currency.currency_product_template_only_form_view
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<data><!-- make visible currency fields but invisible list price in ohter currency -->\n"
+"                <field name=\"other_currency_list_price\" position=\"attributes\">\n"
+"                    <attribute name=\"attrs\">{'invisible': [('list_price_type', 'not in', ['other_currency'])]}</attribute>\n"
+"                </field>\n"
+"\n"
+"                <label for=\"other_currency_list_price\" position=\"attributes\">\n"
+"                    <attribute name=\"attrs\">{'invisible': [('list_price_type', 'not in', ['other_currency', 'by_uom_currency'])]}</attribute>\n"
+"                </label>\n"
+"                <div name=\"other_currency_list_price\" position=\"attributes\">\n"
+"                    <attribute name=\"attrs\">{'invisible': [('list_price_type', 'not in', ['other_currency', 'by_uom_currency'])]}</attribute>\n"
+"                </div>\n"
+"            </data>"
+msgstr ""
+
+#. module: product_uom_prices_currency
+#: model:ir.ui.view,arch_db:product_uom_prices_currency.uom_product_template_only_form_view
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<field name=\"uom_price_ids\" position=\"after\">\n"
+"                    <field name=\"other_currency_uom_price_ids\" context=\"{'uom_category_id': uom_category_id}\" attrs=\"{'invisible': [('list_price_type', '!=', 'by_uom_currency')]}\">\n"
+"                        <tree editable=\"bottom\">\n"
+"                            <field name=\"sequence\" widget=\"handle\"/>\n"
+"                            <field name=\"uom_id\" domain=\"[('category_id', '=', uom_category_id)]\"/>\n"
+"                            <field name=\"price\" string=\"Price on Other Currency\"/>\n"
+"                            <field name=\"price_on_base_currency\" string=\"Price\"/>\n"
+"                        </tree>\n"
+"                    </field>\n"
+"                </field>\n"
+"            "
+msgstr ""
+
+#. module: product_uom_prices_currency
+#: model:ir.model.fields,help:product_uom_prices_currency.field_product_template_other_currency_uom_price_ids
+#: help:product.template,other_currency_uom_price_ids:0
+msgid ""
+"Only uoms in this list will be available in sale order lines. Set a diferent"
+" price for this uom. Set the price as 0 and the price will be calculated as "
+"sale price * uom ratio"
+msgstr ""
+"Sola las udm en esta lista estarán disponibles en las líneas del pedido de "
+"venta. Coloque un precio diferente para esta udm. Establezca el precio como "
+"0 y el precio será calculado como el precio de venta * el ratio de la udm"
+
+#. module: product_uom_prices_currency
+#: model:ir.model.fields,field_description:product_uom_prices_currency.field_product_sale_uom_price_on_base_currency
+#: field:product.sale.uom,price_on_base_currency:0
+msgid "Price"
+msgstr "Precio"
+
+#. module: product_uom_prices_currency
+#: model:ir.model,name:product_uom_prices_currency.model_product_sale_uom
+msgid "Product Sale Uom"
+msgstr "Udm de venta del producto."
+
+#. module: product_uom_prices_currency
+#: model:ir.model,name:product_uom_prices_currency.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: product_uom_prices_currency
+#: model:ir.model.fields,field_description:product_uom_prices_currency.field_product_template_other_currency_uom_price_ids
+#: field:product.template,other_currency_uom_price_ids:0
+msgid "UOM Prices"
+msgstr "UOM Prices"
+
+#. module: product_uom_prices_currency
+#: code:addons/product_uom_prices_currency/models/product.py:62
+#, python-format
+msgid "You must configure \"Other Currency\" for product %s"
+msgstr "Usted debe configurar \"Otra Moneda\" para el producto %s"
