@@ -8,7 +8,8 @@ Pricelists information on Products
 
 This modules add a new field on producs sales tab that shows price for that product for every pricelist.
 
-It also moves sale price related fields to this tab.
+On installation it also changes sale pricelist option to "Advanced pricing based on formula
+"
 
 
 Installation
