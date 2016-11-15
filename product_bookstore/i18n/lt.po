@@ -1,0 +1,97 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_bookstore
+# 
+# Translators:
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-11 13:13+0000\n"
+"PO-Revision-Date: 2016-11-11 13:13+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016\n"
+"Language-Team: Lithuanian (https://www.transifex.com/adhoc/teams/46451/lt/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: lt\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. module: product_bookstore
+#: model:ir.ui.view,arch_db:product_bookstore.product_normal_form_view
+#: model:ir.ui.view,arch_db:product_bookstore.product_template_only_form_view
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<field name=\"barcode\" position=\"after\">\n"
+"                    <field name=\"isbn\"/>\n"
+"                </field>\n"
+"            "
+msgstr ""
+
+#. module: product_bookstore
+#: model:ir.ui.view,arch_db:product_bookstore.product_template_search_view
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<field name=\"name\" position=\"attributes\">\n"
+"                    <attribute name=\"filter_domain\">['|','|','|',('isbn','ilike',   self),('barcode','ilike',   self),('default_code','ilike',   self),('name','ilike',self)]</attribute>\n"
+"                </field>\n"
+"            "
+msgstr ""
+
+#. module: product_bookstore
+#: model:ir.model.fields,field_description:product_bookstore.field_product_product_taxes_id
+#: field:product.product,taxes_id:0
+msgid "Customer Taxes"
+msgstr ""
+
+#. module: product_bookstore
+#: model:ir.model.fields,field_description:product_bookstore.field_product_product_property_account_expense_id
+#: field:product.product,property_account_expense_id:0
+msgid "Expense Account"
+msgstr ""
+
+#. module: product_bookstore
+#: model:ir.model.fields,field_description:product_bookstore.field_product_product_isbn
+#: model:ir.model.fields,field_description:product_bookstore.field_product_template_isbn
+#: field:product.product,isbn:0 field:product.template,isbn:0
+msgid "ISBN"
+msgstr ""
+
+#. module: product_bookstore
+#: model:ir.model.fields,field_description:product_bookstore.field_product_product_property_account_income_id
+#: field:product.product,property_account_income_id:0
+msgid "Income Account"
+msgstr ""
+
+#. module: product_bookstore
+#: model:ir.model,name:product_bookstore.model_product_product
+msgid "Product"
+msgstr "Produktas"
+
+#. module: product_bookstore
+#: model:ir.model,name:product_bookstore.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: product_bookstore
+#: model:ir.model.fields,help:product_bookstore.field_product_product_property_account_expense_id
+#: help:product.product,property_account_expense_id:0
+msgid ""
+"This account will be used for invoices instead of the default one to value "
+"expenses for the current product."
+msgstr ""
+
+#. module: product_bookstore
+#: model:ir.model.fields,help:product_bookstore.field_product_product_property_account_income_id
+#: help:product.product,property_account_income_id:0
+msgid ""
+"This account will be used for invoices instead of the default one to value "
+"sales for the current product."
+msgstr ""
+
+#. module: product_bookstore
+#: model:ir.model.fields,field_description:product_bookstore.field_product_product_supplier_taxes_id
+#: field:product.product,supplier_taxes_id:0
+msgid "Vendor Taxes"
+msgstr ""
