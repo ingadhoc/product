@@ -3,8 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import fields, models, api, _
-from openerp.exceptions import UserError
+from openerp import fields, models, api
 import openerp.addons.decimal_precision as dp
 import logging
 _logger = logging.getLogger(__name__)
