@@ -1,37 +1,71 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* product_sale_price_by_margin
-#
+# * product_sale_price_by_margin
+# 
+# Translators:
+# Javier Diez <jd@adhoc.com.ar>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-11 16:43+0000\n"
-"PO-Revision-Date: 2015-09-11 13:45-0300\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2016-11-17 14:08+0000\n"
+"PO-Revision-Date: 2016-11-17 14:08+0000\n"
+"Last-Translator: Javier Diez <jd@adhoc.com.ar>, 2016\n"
+"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 1.5.4\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: product_sale_price_by_margin
-#: model:ir.model,name:product_sale_price_by_margin.model_product_product
-msgid "Product"
-msgstr "Producto"
+#: model:ir.ui.view,arch_db:product_sale_price_by_margin.product_template_only_form_view
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<field name=\"list_price_type\" position=\"after\">\n"
+"                    <label for=\"sale_margin\" string=\"Margin Formula\" attrs=\"{'invisible': [('list_price_type', '!=', 'by_margin')]}\"/>\n"
+"                    <div attrs=\"{'invisible': [('list_price_type', '!=', 'by_margin')]}\">\n"
+"                        <field name=\"replenishment_cost_copy\" class=\"oe_inline\"/>* ( 1 +\n"
+"                        <field name=\"sale_margin\" class=\"oe_inline\"/>%) + \n"
+"                        <field name=\"sale_surcharge\" class=\"oe_inline\"/>\n"
+"                    </div>\n"
+"                </field>\n"
+"            "
+msgstr ""
 
 #. module: product_sale_price_by_margin
-#: view:product.product:product_sale_price_by_margin.product_normal_form_view
-msgid "Sale Price:"
-msgstr "Precio de Venta:"
+#: model:ir.model.fields,field_description:product_sale_price_by_margin.field_product_template_sale_margin
+#: field:product.template,sale_margin:0
+msgid "Planned Price Sale margin %"
+msgstr "Margen de Venta del Precio Planeado"
 
 #. module: product_sale_price_by_margin
-#: field:product.product,sale_margin:0
-msgid "Sale margin"
-msgstr "Margen de Venta"
+#: model:ir.model.fields,field_description:product_sale_price_by_margin.field_product_template_sale_surcharge
+#: field:product.template,sale_surcharge:0
+msgid "Planned Price Sale surcharge"
+msgstr "Recargo de Venta del Precio Planeado"
 
 #. module: product_sale_price_by_margin
-#: field:product.product,sale_surcharge:0
-msgid "Sale surcharge"
-msgstr "Sale surcharge"
+#: model:ir.model,name:product_sale_price_by_margin.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de Producto"
+
+#. module: product_sale_price_by_margin
+#: model:ir.model.fields,field_description:product_sale_price_by_margin.field_product_template_replenishment_cost_copy
+#: field:product.template,replenishment_cost_copy:0
+msgid "Replenishment Cost"
+msgstr "Costo de Reabastecimiento"
+
+#. module: product_sale_price_by_margin
+#: model:ir.model.fields,help:product_sale_price_by_margin.field_product_template_replenishment_cost_copy
+#: help:product.template,replenishment_cost_copy:0
+msgid ""
+"The cost that you have to support in order to produce or acquire the goods. "
+"Depending on the modules installed, this cost may be computed based on "
+"various pieces of information, for example Bills of Materials or latest "
+"Purchases."
+msgstr ""
+"El costo que debes afrontar para producir o conseguir los bienes. "
+"Dependiendo en los módulos instalados, el costo sería computado en base a "
+"varios pedazos de información, por ejemplo Listas de materiales o Compras "
+"recientes. "

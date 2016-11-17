@@ -4,19 +4,20 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016
+# Javier Diez <jd@adhoc.com.ar>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 14:08+0000\n"
 "PO-Revision-Date: 2016-11-17 14:08+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016\n"
-"Language-Team: French (https://www.transifex.com/adhoc/teams/46451/fr/)\n"
+"Last-Translator: Javier Diez <jd@adhoc.com.ar>, 2016\n"
+"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: product_replenishment_cost
 #: model:ir.ui.view,arch_db:product_replenishment_cost.view_product_product_form
@@ -31,13 +32,13 @@ msgstr ""
 #. module: product_replenishment_cost
 #: model:ir.model,name:product_replenishment_cost.model_product_product
 msgid "Product"
-msgstr "Article"
+msgstr "Producto"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product_replenishment_cost
 #: field:product.product,replenishment_cost:0
 msgid "Replenishment Cost"
-msgstr ""
+msgstr "Costo de Reposición"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_product_replenishment_cost
@@ -48,8 +49,8 @@ msgid ""
 "various pieces of information, for example Bills of Materials or latest "
 "Purchases. By default, the Replenishment cost is the same as the Cost Price."
 msgstr ""
-"Le coût que vous devez prendre en charge pour produire ou acquerir la "
-"marchandise. Selon les modules installés, le calcul de ce coût peut "
-"s'appuyer sur diverses informations : par exemple les nomenclatures ou les "
-"derniers achats. Par défaut, le coût de réapprovisionnement est le même que "
-"le Prix de revient."
+"El costo que debes afrontar para producir o conseguir los bienes. "
+"Dependiendo en los módulos instalados, el costo sería computado en base a "
+"varios pedazos de información, por ejemplo Listas de materiales o Compras "
+"recientes. Por defecto, el costo de Reposición es el mismo que el Precio de "
+"Costo."
