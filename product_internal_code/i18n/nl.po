@@ -4,19 +4,18 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016
-# Javier Diez <jd@adhoc.com.ar>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-17 14:08+0000\n"
 "PO-Revision-Date: 2016-11-17 14:08+0000\n"
-"Last-Translator: Javier Diez <jd@adhoc.com.ar>, 2016\n"
-"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016\n"
+"Language-Team: Dutch (https://www.transifex.com/adhoc/teams/46451/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: product_internal_code
@@ -57,25 +56,25 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_internal_code.field_product_product_taxes_id
 #: field:product.product,taxes_id:0
 msgid "Customer Taxes"
-msgstr "Impuestos de cliente"
+msgstr ""
 
 #. module: product_internal_code
 #: model:ir.model.fields,field_description:product_internal_code.field_product_product_property_account_expense_id
 #: field:product.product,property_account_expense_id:0
 msgid "Expense Account"
-msgstr "Cuenta de gasto"
+msgstr ""
 
 #. module: product_internal_code
 #: model:ir.model.fields,help:product_internal_code.field_product_product_computed_list_price_manual
 #: help:product.product,computed_list_price_manual:0
 msgid "Field to store manual planned price"
-msgstr "Campo para guardar el precio planeado manual"
+msgstr ""
 
 #. module: product_internal_code
 #: model:ir.model.fields,field_description:product_internal_code.field_product_product_property_account_income_id
 #: field:product.product,property_account_income_id:0
 msgid "Income Account"
-msgstr "Cuenta de ingreso"
+msgstr ""
 
 #. module: product_internal_code
 #: model:ir.model.fields,field_description:product_internal_code.field_product_product_internal_code
@@ -83,30 +82,30 @@ msgstr "Cuenta de ingreso"
 #: field:product.product,internal_code:0
 #: field:product.template,internal_code:0
 msgid "Internal Code"
-msgstr "Codigo Interno"
+msgstr ""
 
 #. module: product_internal_code
 #: sql_constraint:product.product:0
 msgid "Internal Code mast be unique!"
-msgstr "¡El código interno debe ser único!"
+msgstr ""
 
 #. module: product_internal_code
 #: model:ir.model.fields,field_description:product_internal_code.field_product_product_computed_list_price
 #: field:product.product,computed_list_price:0
 msgid "Planned Price"
-msgstr "Precio Plenado"
+msgstr ""
 
 #. module: product_internal_code
 #: model:ir.model.fields,field_description:product_internal_code.field_product_product_computed_list_price_manual
 #: field:product.product,computed_list_price_manual:0
 msgid "Planned Price Manual"
-msgstr "Precio Planeado Manual"
+msgstr ""
 
 #. module: product_internal_code
 #: model:ir.model.fields,field_description:product_internal_code.field_product_product_list_price_type
 #: field:product.product,list_price_type:0
 msgid "Planned Price Type"
-msgstr "Tipo de Precio Planeado"
+msgstr ""
 
 #. module: product_internal_code
 #: model:ir.model.fields,help:product_internal_code.field_product_product_computed_list_price
@@ -115,18 +114,16 @@ msgid ""
 "Planned Price. This value depends onPlanned Price Type\" an other "
 "parameters."
 msgstr ""
-"Precio Planeado. Este valor depende en el \"Tipo de Precio Planeado\" y "
-"otros parámetros."
 
 #. module: product_internal_code
 #: model:ir.model,name:product_internal_code.model_product_product
 msgid "Product"
-msgstr "Producto"
+msgstr "Product"
 
 #. module: product_internal_code
 #: model:ir.model,name:product_internal_code.model_product_template
 msgid "Product Template"
-msgstr "Plantilla de producto"
+msgstr ""
 
 #. module: product_internal_code
 #: model:ir.model.fields,help:product_internal_code.field_product_product_property_account_expense_id
@@ -135,8 +132,6 @@ msgid ""
 "This account will be used for invoices instead of the default one to value "
 "expenses for the current product."
 msgstr ""
-"Esta cuenta será utilizada para las facturas en vez de la cuenta por defecto"
-" para calcular los gastos para el producto actual."
 
 #. module: product_internal_code
 #: model:ir.model.fields,help:product_internal_code.field_product_product_property_account_income_id
@@ -145,11 +140,9 @@ msgid ""
 "This account will be used for invoices instead of the default one to value "
 "sales for the current product."
 msgstr ""
-"Esta cuenta será utilizada para las facturas en vez de la cuenta por defecto"
-" para calcular las ventas para el producto actual."
 
 #. module: product_internal_code
 #: model:ir.model.fields,field_description:product_internal_code.field_product_product_supplier_taxes_id
 #: field:product.product,supplier_taxes_id:0
 msgid "Vendor Taxes"
-msgstr "Impuestos del proveedor"
+msgstr ""

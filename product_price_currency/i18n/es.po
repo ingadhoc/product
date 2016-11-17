@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-14 22:16+0000\n"
-"PO-Revision-Date: 2016-11-14 22:16+0000\n"
+"POT-Creation-Date: 2016-11-17 14:08+0000\n"
+"PO-Revision-Date: 2016-11-17 14:08+0000\n"
 "Last-Translator: Javier Diez <jd@adhoc.com.ar>, 2016\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
@@ -34,32 +34,18 @@ msgid ""
 msgstr ""
 
 #. module: product_price_currency
-#: model:ir.model.fields,help:product_price_currency.field_product_template_other_currency_id
-#: help:product.template,other_currency_id:0
-msgid "Currency used for the Currency List Price."
-msgstr "Moneda utilizada para el Precio de Lista en Divisa"
-
-#. module: product_price_currency
 #: model:ir.model.fields,field_description:product_price_currency.field_product_template_other_currency_id
 #: field:product.template,other_currency_id:0
-msgid "Other Currency"
-msgstr "Otra Moneda"
+msgid "Planned Currency"
+msgstr "Moneda PLaneada"
+
+#. module: product_price_currency
+#: model:ir.model.fields,field_description:product_price_currency.field_product_template_other_currency_list_price
+#: field:product.template,other_currency_list_price:0
+msgid "Planned Price on Currency"
+msgstr "Precio Planeado en la Moneda"
 
 #. module: product_price_currency
 #: model:ir.model,name:product_price_currency.model_product_template
 msgid "Product Template"
 msgstr "Plantilla de producto"
-
-#. module: product_price_currency
-#: model:ir.model.fields,field_description:product_price_currency.field_product_template_other_currency_list_price
-#: model:ir.model.fields,help:product_price_currency.field_product_template_other_currency_list_price
-#: field:product.template,other_currency_list_price:0
-#: help:product.template,other_currency_list_price:0
-msgid "Sale Price on Other Currency"
-msgstr "Precio de venta en Otra Moneda"
-
-#. module: product_price_currency
-#: code:addons/product_price_currency/product.py:45
-#, python-format
-msgid "You must configure \"Other Currency\" for product %s"
-msgstr "Usted debe configurar \"Otra Moneda\" para el producto %s"
