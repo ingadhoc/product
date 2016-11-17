@@ -7,7 +7,7 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="Product Catalog Report">
-                    Update Accounting Cost with Replenishment Cost for all sellected products with costing method Standard Price (configured on product category).
+                    Update Accounting Cost with Replenishment Cost for all sellected products with costing method Standard Price and with Replenishment Cost different from 0.
                     <footer>
                         <button name="confirm" string="Confirm" type="object" class="oe_highlight"/>
                         or
