@@ -24,19 +24,35 @@ class ProductTemplate(models.Model):
     list_price_type = fields.Selection([
         ('manual', 'Fixed value')],
         string='Planned Price Type',
-        required=True,
+        # we make it optional
+        # required=True,
         default='manual',
     )
+
+    @api.model
+    def cron_update_prices_from_planned(self):
+        return self.search(
+            [('list_price_type', '!=', False)])._update_prices_from_planned()
+
+    @api.multi
+    def _update_prices_from_planned(self):
+        for rec in self:
+            if not rec.list_price_type:
+                continue
+            rec.list_price = rec.computed_list_price
+        return True
 
     @api.multi
     @api.depends(
         'list_price_type',
-        'list_price',
+        'computed_list_price_manual',
     )
     def _get_computed_list_price(self):
         _logger.info('Getting Compute List Price for products: "%s"' % (
             self.ids))
         for template in self:
+            if not template.list_price_type:
+                continue
             computed_list_price = template.get_computed_list_price()
             computed_list_price = template._other_computed_rules(
                 computed_list_price)
