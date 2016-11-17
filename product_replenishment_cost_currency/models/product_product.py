@@ -50,9 +50,7 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def _update_cost_from_replenishment_cost(self):
-        print 'aaaaaaaaa'
         for rec in self:
-            print 'rec.cost_method'
             if rec.cost_method != 'standard' or not rec.replenishment_cost:
                 continue
             rec.standard_price = rec.replenishment_cost
