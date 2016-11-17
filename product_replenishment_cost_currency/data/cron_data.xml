@@ -1,0 +1,16 @@
+<openerp>
+<data noupdate="1">
+        <record id="ir_cron_update_cost_from_replenishment_cost" model="ir.cron">
+            <field name="name">Update Cost from Replenishment Cost</field>
+            <field name="model">product.template</field>
+            <field name="function">cron_update_cost_from_replenishment_cost</field>
+            <field name="interval_type">days</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field eval="-1" name="numbercall"/>
+            <field eval="5" name="priority"/>
+            <field eval="0" name="doall"/>
+            <field eval="0" name="active"/>
+            <field eval="1" name="interval_number"/>
+        </record>
+</data>
+</openerp>

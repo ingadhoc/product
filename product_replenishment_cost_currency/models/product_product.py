@@ -43,6 +43,19 @@ class ProductTemplate(models.Model):
              "Purchases."
     )
 
+    @api.model
+    def cron_update_cost_from_replenishment_cost(self):
+        # como es property no podemos hacer el search
+        return self.search([])._update_cost_from_replenishment_cost()
+
+    @api.multi
+    def _update_cost_from_replenishment_cost(self):
+        for rec in self:
+            if not rec.cost_method != 'standard':
+                continue
+            rec.standard_price = rec.replenishment_cost
+        return True
+
     @api.one
     @api.constrains(
         'replenishment_base_cost',

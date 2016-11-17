@@ -27,7 +27,7 @@
                         <group name="planned_price">
                             <field name="list_price_type" string="Planned Price based on"/>
                             <field name="computed_list_price_manual" widget="monetary" attrs="{'invisible': [('list_price_type', '!=', 'manual')]}" string="Planned Price" options="{'currency_field': 'currency_id'}"/>
-                            <field name="computed_list_price" widget="monetary" attrs="{'invisible': [('list_price_type', '=', 'manual')]}" options="{'currency_field': 'currency_id'}"/>
+                            <field name="computed_list_price" widget="monetary" attrs="{'invisible': [('list_price_type', 'in', ['manual', False])]}" options="{'currency_field': 'currency_id'}"/>
                         </group>
                         <group name="list_price">
                             <field name="list_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
@@ -47,6 +47,19 @@
                 <field name="item_ids" position="attributes">
                     <attribute name="groups">product.group_product_pricelist</attribute>
                 </field>
+            </field>
+        </record>
+
+    <!-- Product Template Views -->
+        <record id="product_template_search_view" model="ir.ui.view">
+            <field name="name">product.template.filter</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_search_view"></field>
+            <field name="arch" type="xml">
+                <filter name="filter_to_sell" position="after">
+                    <filter string="With Planned Price" name="with_planned_price" domain="[('list_price_type', '!=', False)]"/>
+                    <separator/>
+                </filter>
             </field>
         </record>
 
