@@ -31,7 +31,6 @@
     'data': [
         'views/product_view.xml',
         'demo/res_groups.yml',
-        'wizard/product_update_from_replenishment_cost_wizard_view.xml',
     ],
     'test': [
         'test/cost_price_update.yml',
