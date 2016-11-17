@@ -2,11 +2,11 @@
   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
   :alt: License: AGPL-3
 
-===========================
-Product Computed List Price
-===========================
+==========================
+Planned Price for Products
+==========================
 
-This module add a new field "Computed List Price" to products that can be extended by other modules to calculte this prices based in different conditions. It also add a wizard to update "List Price" using "Computed List Price" value. Optionally, you can activate a cron to run this update auomatically.
+This module add a new field "Planned Price" to products that can be extended by other modules to calculte this prices based in different conditions. It also add a wizard to update "List Price" using "Planned Price" value. Optionally, you can activate a cron to run this update auomatically.
 
 
 Installation

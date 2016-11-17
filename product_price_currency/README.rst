@@ -2,11 +2,11 @@
   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
   :alt: License: AGPL-3
 
-======================
-Product Price Currency
-======================
+==================================
+Planned Price by Currency Exchange
+==================================
 
-This module add in products a field to add sale price in other currency. 
+Extends Planned Price and allow to set prices based in other currency.
 
 Installation
 ============
@@ -28,7 +28,7 @@ Usage
 
 To use this module, you need to:
 
-#. Set in product price type in "Other Currency", set de currency and price. 
+#. Set Planned Price base on "Currency Change", set de currency and price.
 
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas

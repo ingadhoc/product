@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {
-    'name': 'Product Price Currency',
+    'name': 'Planned Price by Currency Exchange',
     'version': '9.0.1.0.0',
     'category': 'Product',
     'sequence': 14,

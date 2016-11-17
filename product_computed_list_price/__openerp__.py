@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {
-    'name': 'Product Computed List Price',
+    'name': 'Planned Price for Products',
     'version': '9.0.1.0.0',
     'category': 'Product',
     'sequence': 14,

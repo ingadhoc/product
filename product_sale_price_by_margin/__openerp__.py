@@ -19,7 +19,7 @@
 #
 ##############################################################################
 {
-    'name': 'Product Sale Price By Margin',
+    'name': 'Planned Price By Margin',
     'version': '9.0.1.0.0',
     'category': 'Product',
     'sequence': 14,
