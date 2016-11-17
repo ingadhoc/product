@@ -9,9 +9,10 @@
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_search_view"></field>
             <field name="arch" type="xml">
-                <field name="pricelist_id" position="after">
+                <filter name="filter_to_sell" position="after">
                     <filter string="Taxes Included" name="taxes_included" context="{'taxes_included': True}"/>
-                </field>
+                    <separator/>
+                </filter>
             </field>
         </record>
 
@@ -22,7 +23,7 @@
             <field name="inherit_id" ref="product.product_template_form_view"></field>
             <field name="arch" type="xml">
                 <field name="list_price" position="after">
-                    <field name="taxed_lst_price"/>
+                    <field name="taxed_lst_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                 </field>
             </field>
         </record>

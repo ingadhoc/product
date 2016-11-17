@@ -50,6 +50,8 @@ How to use?
     },
     "data": [
         'views/product_view.xml',
+        'wizard/product_update_from_replenishment_cost_wizard_view.xml',
+        'data/cron_data.xml',
     ],
     'demo': [
     ],
