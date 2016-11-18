@@ -2,9 +2,8 @@
 <openerp>
     <data noupdate="1">
 
-        <!-- Set Manage Multiple Units of Measure if not already configured -->
         <record id="base.group_user" model="res.groups">
-            <field eval="[(4, ref('product.group_uom'))]" name="implied_ids"/>
+            <field eval="[(4, ref('product.group_sale_pricelist')),(4, ref('product.group_pricelist_item')),(3, ref('product.group_product_pricelist'))]" name="implied_ids"/>
         </record>
 
     </data>

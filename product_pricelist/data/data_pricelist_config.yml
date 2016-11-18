@@ -1,0 +1,3 @@
+-
+  !python {model: sale.config.settings} : |
+    self.pool.get('ir.values').set_default(cr, uid, 'sale.config.settings', 'sale_pricelist_setting', 'formula')
