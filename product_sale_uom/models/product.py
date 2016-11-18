@@ -63,5 +63,6 @@ class ProductTemplate(models.Model):
                 (sale_uom_categories and
                     sale_uom_categories != self.uom_id.category_id)
         ):
-            raise UserError(_('Sale UOMs Category must be of the same \
-                UOM Category as Product Unit of Measure'))
+            raise UserError(_(
+                'Sale UOMs Category must be of the same '
+                'UOM Category as Product Unit of Measure'))
