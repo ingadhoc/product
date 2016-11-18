@@ -37,11 +37,7 @@ class SaleOrderLine(models.Model):
     @api.multi
     @api.onchange('product_id')
     def product_id_change(self):
-        uom = self.product_uom.id
-        # because sale_stock module delete uom when colling this method, we
-        # add it in context con module 'sale_stock_product_uom_prices'
-        # if not self.product_uom.id:
-        #     uom = self._context.get('preserve_uom', False)
+        product_uom = None
         product_uom_domain = None
         if self.product_id:
             product = self.product_id.with_context(
@@ -51,14 +47,13 @@ class SaleOrderLine(models.Model):
             # we can use line on self but we should use self.ensure_one()
             sale_product_uoms = self.get_product_uoms(product)
             if sale_product_uoms:
-                if not uom:
-                    uom = sale_product_uoms[0].id
+                product_uom = sale_product_uoms[0]
 
                 # we do this because odoo overwrite view domain
                 product_uom_domain = [('id', 'in', sale_product_uoms.ids)]
         res = super(SaleOrderLine, self).product_id_change()
-        if uom:
-            self.product_uom = uom
+        if product_uom:
+            self.product_uom = product_uom
         if product_uom_domain:
             res = {'domain': {'product_uom': product_uom_domain}}
         return res
