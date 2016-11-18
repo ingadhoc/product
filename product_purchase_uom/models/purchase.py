@@ -10,15 +10,23 @@ class PurchaseOrderLine(models.Model):
 
     _inherit = 'purchase.order.line'
 
+    @api.multi
     @api.onchange('product_id')
     def onchange_product_id(self):
-        res = super(PurchaseOrderLine, self).onchange_product_id()
+        product_uom = None
+        product_uom_domain = None
         if self.product_id:
-            product = self.product_id.with_context(
-                partner_id=self.order_id.partner_id.id)
-            if 'domain' not in res:
-                res['domain'] = {}
-            res['domain']['product_uom'] = [
-                ('id', 'in', [x.uom_id.id for x in product.uom_price_ids] +
-                    [product.uom_id.id] + [product.uom_po_id.id])]
+            product = self.product_id
+
+            sale_product_uoms = product.get_product_uoms(product.uom_id)
+            if sale_product_uoms:
+                product_uom = sale_product_uoms[0]
+
+                # we do this because odoo overwrite view domain
+                product_uom_domain = [('id', 'in', sale_product_uoms.ids)]
+        res = super(PurchaseOrderLine, self).onchange_product_id()
+        if product_uom:
+            self.product_uom = product_uom
+        if product_uom_domain:
+            res = {'domain': {'product_uom': product_uom_domain}}
         return res

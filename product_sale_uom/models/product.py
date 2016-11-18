@@ -66,3 +66,24 @@ class ProductTemplate(models.Model):
             raise UserError(_(
                 'Sale UOMs Category must be of the same '
                 'UOM Category as Product Unit of Measure'))
+
+
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
+
+    @api.multi
+    def get_product_uoms(self, product_uom):
+        """
+        if product has uoms configured, we use them
+        if not, we choose all uoms from uom_id category (first the product uom)
+        We send product uom so it can be send from sale or purchase
+        """
+        self.ensure_one()
+        if self.sale_uom_ids:
+            res = self.env['product.uom'].browse(
+                [x.uom_id.id for x in self.sale_uom_ids])
+        else:
+            res = product_uom + self.env['product.uom'].search([
+                ('category_id', '=', product_uom.category_id.id),
+                ('id', '!=', product_uom.id)])
+        return res
