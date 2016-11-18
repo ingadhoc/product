@@ -34,7 +34,10 @@
     },
     "data": [
         'views/product_view.xml',
+        # set pricelist groups
         'data/pricelist_group_data.xml',
+        # set default formula on sale settings configuration
+        'data/data_pricelist_config.yml',
     ],
     'demo': [
     ],
