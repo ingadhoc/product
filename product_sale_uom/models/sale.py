@@ -15,24 +15,9 @@ class SaleOrderLine(models.Model):
     @api.one
     @api.depends('product_id')
     def _get_units(self):
-        self.uom_unit_ids = self.get_product_uoms(self.product_id)
-
-    @api.model
-    def get_product_uoms(self, product):
-        """
-        if product has uoms configured, we use them
-        if not, we choose all uoms from uom_id category (first the product uom)
-        """
-        # we can not use product.mapped('sale_uom_ids.uom_id') becuase it loose
-        # order of sale_uom_ids
-        return (
-            self.env['product.uom'].browse(
-                [x.uom_id.id for x in product.sale_uom_ids]) or
-            (product.uom_id + self.env['product.uom'].search([
-                ('category_id', '=', product.uom_id.category_id.id),
-                ('id', '!=', product.uom_id.id),
-            ]))
-        )
+        if self.product_id:
+            self.uom_unit_ids = self.product_id.get_product_uoms(
+                self.product_id.uom_id)
 
     @api.multi
     @api.onchange('product_id')
@@ -40,14 +25,11 @@ class SaleOrderLine(models.Model):
         product_uom = None
         product_uom_domain = None
         if self.product_id:
-            product = self.product_id.with_context(
-                lang=self.order_id.partner_id.lang,
-                partner=self.order_id.partner_id.id)
+            product = self.product_id
 
-            # we can use line on self but we should use self.ensure_one()
-            sale_product_uoms = self.get_product_uoms(product)
+            sale_product_uoms = product.get_product_uoms(product.uom_id)
             if sale_product_uoms:
-                product_uom = sale_product_uoms[0]
+                product_uom = sale_product_uoms[0].id
 
                 # we do this because odoo overwrite view domain
                 product_uom_domain = [('id', 'in', sale_product_uoms.ids)]
