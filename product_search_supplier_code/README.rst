@@ -6,7 +6,7 @@
 Product Search Supplier Code
 ============================
 
-This module add seller_ids fields in search product.
+This module allows to search by supplier codes of products on product and product variants.
 
 Installation
 ============

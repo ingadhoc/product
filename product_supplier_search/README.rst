@@ -6,7 +6,7 @@
 Product Supplier Search
 =======================
 
-This module add search by main supplier and suppliers on product and product template.
+This module allows to search by suppliers on product and product variants.
 
 Installation
 ============
@@ -22,15 +22,6 @@ Configuration
 To configure this module, you need to:
 
 #. No configuration needed.
-
-
-Usage
-=====
-
-To use this module, you need to:
-
-#. In products and product template, allows search by supplier.
-
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
