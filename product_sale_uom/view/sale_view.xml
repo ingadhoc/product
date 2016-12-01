@@ -10,7 +10,7 @@
                     <field name="uom_unit_ids" invisible="1"/>
                 </xpath>
                 <xpath expr="//tree//field[@name='product_uom']" position="attributes">
-                    <attribute name="domain">[('id','in',uom_unit_ids[0][2])]</attribute>
+                    <attribute name="domain">[('id','in',uom_unit_ids and uom_unit_ids[0][2] or [])]</attribute>
                 </xpath>
             </field>
         </record>
