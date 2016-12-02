@@ -24,6 +24,16 @@ class account_invoice_line(models.Model):
         string='Product Can modify prices')
 
     @api.one
+    @api.onchange('price_unit_readonly')
+    def onchange_price_unit_readonly(self):
+        self.price_unit = self.price_unit_readonly
+
+    @api.one
+    @api.onchange('invoice_line_tax_id_readonly')
+    def onchange_invoice_line_tax_id_readonly(self):
+        self.invoice_line_tax_id = self.invoice_line_tax_id_readonly
+
+    @api.one
     @api.constrains(
         'discount', 'product_can_modify_prices')
     def check_discount(self):
