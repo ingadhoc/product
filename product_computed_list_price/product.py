@@ -18,7 +18,7 @@ class ProductTemplate(models.Model):
     computed_list_price = fields.Float(
         string='Planned Price',
         compute='_get_computed_list_price',
-        help='Planned Price. This value depends onPlanned Price Type" an '
+        help='Planned Price. This value depends on Planned Price Type" an '
         'other parameters.',
     )
     list_price_type = fields.Selection([
