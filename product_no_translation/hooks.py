@@ -7,21 +7,28 @@
 # import cStringIO
 # from openerp import tools
 from openerp import SUPERUSER_ID
-from openerp.modules.registry import RegistryManager
+# from openerp.modules.registry import RegistryManager
 import logging
 _logger = logging.getLogger(__name__)
 
 
 def pre_init_hook(cr):
-    pool = RegistryManager.get(cr.dbname)
-    lang_read = pool['res.lang'].search_read(
-        cr, SUPERUSER_ID, [
-            '&', ('active', '=', True), ('translatable', '=', True),
-            ('code', '!=', 'en_US')], ['code'], limit=1)
+    # pool = RegistryManager.get(cr.dbname)
+    # lang_read = pool['res.lang'].search_read(
+    #     cr, SUPERUSER_ID, [
+    #         '&', ('active', '=', True), ('translatable', '=', True),
+    #         ('code', '!=', 'en_US')], ['code'], limit=1)
+    query = ("""
+        SELECT code FROM res_lang
+        WHERE
+            active = true and translatable = true and code != 'en_US'
+        """)
+    cr.execute(query)
+    lang_read = cr.fetchall()
     if not lang_read:
         # no need to sync translations, only en_us language
         return True
-    lang_code = lang_read[0]['code']
+    lang_code = lang_read[0][0]
     models_fields = [
         ('product.template', 'description_sale'),
         ('product.template', 'description_purchase'),

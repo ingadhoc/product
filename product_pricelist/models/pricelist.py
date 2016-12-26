@@ -4,7 +4,7 @@
 # directory
 ##############################################################################
 from openerp import models, fields, api
-import openerp.addons.decimal_precision as dp
+# import openerp.addons.decimal_precision as dp
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -12,10 +12,10 @@ _logger = logging.getLogger(__name__)
 class product_pricelist(models.Model):
     _inherit = 'product.pricelist'
 
-    price = fields.Float(
+    price = fields.Monetary(
         string='Price',
         compute='_get_price',
-        digits=dp.get_precision('Product Price'),
+        # digits=dp.get_precision('Product Price'),
         help='Price for product specified on the context',
     )
 

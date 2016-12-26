@@ -47,6 +47,7 @@
                         <tree delete='false' create='false'>
                             <field name="name"/>
                             <field name="price"/>
+                            <field name="currency_id" invisible="1"/>
                             <!-- TODO enable buttons after correcting domain -->
                             <!-- <button name="action_related_pricelist_items" type="object" string="Related Product Items" help="See related pricelist items that affect this product" context="{'onle_related_product_items': True}"/> -->
                             <!-- <button name="action_related_pricelist_items" type="object" string="All Pricelist Items" help="See related pricelist items"/> -->
