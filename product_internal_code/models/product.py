@@ -13,17 +13,19 @@ class Product(models.Model):
     internal_code = fields.Char(
         'Internal Code', copy=False)
 
-    @api.model
-    def name_search(self, name, args=None, operator='ilike', limit=100):
-        args = args or []
-        res = []
-        if name:
-            recs = self.search([('internal_code', operator, name)] + args,
-                               limit=limit)
-            res = recs.name_get()
-        res += super(Product, self).name_search(name=name, args=args,
-                                                operator=operator, limit=limit)
-        return res
+    # we move this to search improoved, if we want to keep we should fix
+    # duplicated searchs
+    # @api.model
+    # def name_search(self, name, args=None, operator='ilike', limit=100):
+    #     args = args or []
+    #     res = []
+    #     if name:
+    #         recs = self.search([('internal_code', operator, name)] + args,
+    #                            limit=limit)
+    #         res = recs.name_get()
+    #     res += super(Product, self).name_search(
+    #         name=name, args=args, operator=operator, limit=limit)
+    #     return res
 
     @api.model
     def create(self, vals):
