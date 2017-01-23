@@ -35,7 +35,11 @@ class AccountInvoiceLine(models.Model):
 
     @api.multi
     @api.constrains(
-        'discount', 'product_can_modify_prices')
+        'discount',
+        'product_id'
+        # this is a related none stored field
+        # 'product_can_modify_prices'
+    )
     def check_discount(self):
         for invoice_line in self:
             if (invoice_line.user_has_groups(

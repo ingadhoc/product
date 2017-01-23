@@ -35,8 +35,13 @@ class SaleOrderLine(models.Model):
 
     @api.one
     @api.constrains(
-        'discount', 'product_can_modify_prices')
+        'discount',
+        'product_id',
+        # this is a related none stored field
+        # 'product_can_modify_prices'
+    )
     def check_discount(self):
+
         if (self.user_has_groups('price_security.group_restrict_prices'
                                  ) and not self.product_can_modify_prices):
             self.env.user.check_discount(
