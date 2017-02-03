@@ -9,6 +9,9 @@
                 <field name="name" position="after">
                     <field name="seller_ids"/>
                 </field>
+                <search>
+                     <filter string="Main Seller" name="groupby_main_seller_id" domain="[]" context="{'group_by' : 'main_seller_id'}"/>
+                </search>
             </field>
         </record>
     </data>

@@ -6,7 +6,7 @@
 Product Supplier Search
 =======================
 
-This module allows to search by suppliers on product and product variants.
+This module allows to search by suppliers and to group by main supplier on product and product variants.
 
 Installation
 ============
