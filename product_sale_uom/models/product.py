@@ -42,7 +42,8 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     uom_category_id = fields.Many2one(
-        related='uom_id.category_id'
+        related='uom_id.category_id',
+        readonly=True,
     )
     sale_uom_ids = fields.One2many(
         'product.sale.uom',

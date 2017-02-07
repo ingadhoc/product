@@ -31,7 +31,8 @@ class ProductTemplate(models.Model):
         selection_add=[('by_uom', 'By Uom')],
     )
     uom_category_id = fields.Many2one(
-        related='uom_id.category_id'
+        related='uom_id.category_id',
+        readonly=True,
     )
     uom_price_ids = fields.One2many(
         'product.sale.uom',
