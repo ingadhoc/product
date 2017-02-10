@@ -61,8 +61,9 @@
             <field name="inherit_id" ref="view_template_stock_by_location_form"/>
             <field name="priority">99</field>
             <field name="arch" type="xml">
-                <form>
-                </form>
+                <field name="location_ids" position="attributes">
+                    <attribute name="context">{'tree_view_ref': 'product_stock_by_location.view_location_stock_tree', 'product_id': id}</attribute>
+                </field>
             </field>
         </record>
 
