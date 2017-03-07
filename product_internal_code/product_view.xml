@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="product.product_template_search_view"/>      
             <field name="arch" type="xml">     
                 <field name="name" position="attributes">      
-                    <attribute name="filter_domain">['|','|',('default_code','=',self),('name','ilike',self),('internal_code','=',self)]</attribute>
+                    <attribute name="filter_domain">['|','|',('default_code','ilike',self),('name','ilike',self),('internal_code','=',self)]</attribute>
                 </field>       
                 <field name="company_id" position="before">        
                     <field name="internal_code" filter_domain="[('internal_code','=',self)]"/>     
