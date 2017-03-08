@@ -20,7 +20,7 @@ class SalesmanGroup(models.Model):
 
     @api.multi
     def name_get(self):
-        if not len(self._ids):
+        if not len(self.ids):
             return []
         reads = self.read(['name', 'parent_id'])
         res = []
