@@ -5,6 +5,8 @@
 ##############################################################################
 from openerp import models, fields, api
 import openerp.addons.decimal_precision as dp
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class ProductTemplate(models.Model):
@@ -56,25 +58,28 @@ class ProductTemplate(models.Model):
             rec.standard_price = rec.replenishment_cost
         return True
 
-    @api.one
+    @api.multi
     @api.constrains(
         'replenishment_base_cost',
         'replenishment_base_cost_currency_id',
     )
     def update_replenishment_cost_last_update(self):
-        self.replenishment_cost_last_update = fields.Datetime.now()
+        self.write({'replenishment_cost_last_update': fields.Datetime.now()})
 
-    @api.one
-    @api.depends(
-        'currency_id',
-        'replenishment_base_cost',
-        # because of being stored
-        'replenishment_base_cost_currency_id.rate_ids.rate',
-        # and this if we change de date (name field)
-        'replenishment_base_cost_currency_id.rate_ids.name',
-    )
+    @api.multi
+    # @api.depends(
+    #     'currency_id',
+    #     'replenishment_base_cost',
+    #     # because of being stored
+    #     'replenishment_base_cost_currency_id.rate_ids.rate',
+    #     # and this if we change de date (name field)
+    #     'replenishment_base_cost_currency_id.rate_ids.name',
+    # )
     def _get_replenishment_cost(self):
-        self.replenishment_cost = self.get_replenishment_cost_currency()
+        _logger.info(
+            'Getting replenishment cost currency for ids %s' % self.ids)
+        for rec in self:
+            rec.replenishment_cost = rec.get_replenishment_cost_currency()
 
     @api.multi
     def get_replenishment_cost_currency(self):

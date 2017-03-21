@@ -43,6 +43,7 @@ class product_template(models.Model):
         self.ensure_one()
         if self.list_price_type == 'by_margin':
             _logger.info('Get computed_list_price for "by_margin" type')
+            print 'bbbbbbbbbb', self
             return self.replenishment_cost * \
                 (1 + self.sale_margin / 100.0) + \
                 self.sale_surcharge

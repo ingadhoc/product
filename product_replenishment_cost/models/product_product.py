@@ -5,17 +5,23 @@
 ##############################################################################
 from openerp import fields, api
 from openerp.models import Model
-
 import openerp.addons.decimal_precision as dp
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class ProductProduct(Model):
     _inherit = 'product.product'
 
-    @api.one
-    @api.depends('product_tmpl_id.standard_price', 'standard_price')
+    @api.multi
+    # @api.depends('product_tmpl_id.standard_price', 'standard_price')
     def _get_replenishment_cost(self):
-        self.replenishment_cost = self.standard_price
+        _logger.info(
+            'Getting replenishment cost for product ids %s' % self.ids)
+        # sacamos esto porque de alguna maenra lo hace recursivo, el rep cost
+        # no lo tomamos mas de standar cost
+        # for rec in self:
+        #     rec.replenishment_cost = rec.standard_price
 
     replenishment_cost = fields.Float(
         compute=_get_replenishment_cost, store=True,
