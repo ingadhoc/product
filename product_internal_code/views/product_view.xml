@@ -21,7 +21,7 @@
             <field name="arch" type="xml">     
                 <field name="name" position="attributes">      
                     <!-- como este modulo pisa lo que puede haber definido product_template_search_by_ean_13, agregamos tmb aca la busqqueda por ean_13 -->
-                    <attribute name="filter_domain">['|','|','|',('barcode','=',self),('default_code','=',self),('name','ilike',self),('internal_code','=',self)]</attribute>
+                    <attribute name="filter_domain">['|','|','|',('barcode','=',self),('default_code','ilike',self),('name','ilike',self),('internal_code','=',self)]</attribute>
                 </field>       
                 <field name="pricelist_id" position="before">
                     <field name="internal_code" filter_domain="[('internal_code','=',self)]"/>     
