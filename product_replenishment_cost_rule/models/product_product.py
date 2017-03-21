@@ -5,6 +5,8 @@
 ##############################################################################
 from openerp import models, fields, api
 import openerp.addons.decimal_precision as dp
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class ProductTemplate(models.Model):
@@ -38,25 +40,29 @@ class ProductTemplate(models.Model):
         self.replenishment_base_cost_on_currency = (
             self.get_replenishment_cost_currency())
 
-    @api.one
-    @api.depends(
-        'replenishment_base_cost',
-        # because of being stored
-        'replenishment_base_cost_currency_id.rate_ids.rate',
-        # and this if we change de date (name field)
-        'replenishment_base_cost_currency_id.rate_ids.name',
-        # rule items
-        'replenishment_cost_rule_id.item_ids.sequence',
-        'replenishment_cost_rule_id.item_ids.percentage_amount',
-        'replenishment_cost_rule_id.item_ids.fixed_amount',
-    )
-    def _get_replenishment_cost(self):
-        self.replenishment_cost = self.get_replenishment_cost_with_rule()
+    # @api.one
+    # @api.depends(
+    #     # 'replenishment_base_cost',
+    #     # # because of being stored
+    #     # 'replenishment_base_cost_currency_id.rate_ids.rate',
+    #     # # and this if we change de date (name field)
+    #     # 'replenishment_base_cost_currency_id.rate_ids.name',
+    #     # # rule items
+    #     # 'replenishment_cost_rule_id.item_ids.sequence',
+    #     # 'replenishment_cost_rule_id.item_ids.percentage_amount',
+    #     # 'replenishment_cost_rule_id.item_ids.fixed_amount',
+    # )
+    # def _get_replenishment_cost(self):
+    #     self.replenishment_cost = self.get_replenishment_cost_with_rule()
 
     @api.multi
     def get_replenishment_cost_with_rule(self):
         # cost = super(ProductTemplate, self).get_replenishment_cost()
+        _logger.info(
+            'Getting replenishment cost with rule for product ids %s' % (
+                self.ids))
         cost = self.get_replenishment_cost_currency()
+        print 'aaa'
         if self.replenishment_cost_rule_id:
             for line in self.replenishment_cost_rule_id.item_ids:
                 cost = cost * \
