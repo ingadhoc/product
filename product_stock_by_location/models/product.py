@@ -24,7 +24,7 @@ class ProductTemplate(models.Model):
                 ('show_stock_on_products', '=', True)])
 
     @api.multi
-    def view_stock_detail(self, vals):
+    def view_stock_detail(self):
         self.ensure_one()
         view = (
             'product_stock_by_location.view_template_stock_by_location_form')
@@ -44,7 +44,7 @@ class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     @api.multi
-    def view_stock_detail(self, vals):
+    def view_stock_detail(self):
         self.ensure_one()
         view = (
             'product_stock_by_location.view_product_stock_by_location_form')
