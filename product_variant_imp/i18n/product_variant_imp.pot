@@ -1,64 +1,60 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* product_variant_imp
+#	* product_variant_imp
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-03 13:21+0000\n"
-"PO-Revision-Date: 2017-04-03 10:25-0300\n"
+"POT-Creation-Date: 2017-04-03 13:20+0000\n"
+"PO-Revision-Date: 2017-04-03 13:20+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
 
 #. module: product_variant_imp
 #: field:product.attribute,add_to_name:0
 msgid "Add To Name?"
-msgstr "Agregar al Nombre"
+msgstr ""
 
 #. module: product_variant_imp
 #: field:product.template,one_variant_per_product:0
 msgid "One variant per product"
-msgstr "Una Variante Por Producto"
+msgstr ""
 
 #. module: product_variant_imp
 #: code:addons/product_variant_imp/product.py:144
 #, python-format
 msgid "Only 1 value for attribute."
-msgstr "Solo una valor por atributo."
+msgstr ""
 
 #. module: product_variant_imp
 #: model:ir.model,name:product_variant_imp.model_product_product
 msgid "Product"
-msgstr "Producto"
+msgstr ""
 
 #. module: product_variant_imp
 #: model:ir.model,name:product_variant_imp.model_product_attribute
 msgid "Product Attribute"
-msgstr "Atributo de producto"
+msgstr ""
 
 #. module: product_variant_imp
 #: model:ir.model,name:product_variant_imp.model_product_template
 msgid "Product Template"
-msgstr "Plantilla de producto"
+msgstr ""
 
 #. module: product_variant_imp
 #: help:product.template,one_variant_per_product:0
-msgid ""
-"Restrict so that only one variant per product can be created (only one attribute value per attribute can be setted). Also change odoo behaviour when changing attribute values:\n"
+msgid "Restrict so that only one variant per product can be created (only one attribute value per attribute can be setted). Also change odoo behaviour when changing attribute values:\n"
 "* False: default odoo behaviour, if you change an attribute or remove it odoo creates a new variant.\n"
 "* True: change attributes wont change variants, it will only update variants attributes"
 msgstr ""
-"Restrict so that only one variant per product can be created (only one attribute value per attribute can be setted). Also change odoo behaviour when changing attribute values:\n"
-"* False: default odoo behaviour, if you change an attribute or remove it odoo creates a new variant.\n"
-"* True: change attributes wont change variants, it will only update variants attributes"
 
 #. module: product_variant_imp
 #: view:product.template:product_variant_imp.product_template_only_form_view
 msgid "{'invisible': [('one_variant_per_product','=',True)]}"
-msgstr "{'invisible': [('one_variant_per_product','=',True)]}"
+msgstr ""
+
