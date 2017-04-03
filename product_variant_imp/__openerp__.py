@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Variant Improvements',
-    'version': '8.0.0.0.0',
+    'version': '8.0.0.1.0',
     'category': 'base.module_category_knowledge_management',
     'description': """
 Product Variant Improvements
