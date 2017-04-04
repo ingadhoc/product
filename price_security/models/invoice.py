@@ -42,11 +42,11 @@ class AccountInvoiceLine(models.Model):
     )
     def check_discount(self):
         for il in self:
-            if (il.user_has_groups(
-                    'price_security.group_restrict_prices'
-            ) and not il.product_can_modify_prices and il.
-                invoice_id
-            ):
+            # only customer invoices
+            if il.invoice_id and il.invoice_id.type in (
+                'out_invoice', 'out_refund') and (il.user_has_groups(
+                    'price_security.group_restrict_prices') and
+                    not il.product_can_modify_prices):
                 # chequeamos si la orden de venta permitió un descuento mayor
                 if any(x.discount >= il.discount for x in il.sale_line_ids):
                     return True
