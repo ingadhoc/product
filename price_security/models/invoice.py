@@ -4,6 +4,7 @@
 # directory
 ##############################################################################
 from openerp import fields, models, api
+from openerp.tools import float_compare
 
 
 class AccountInvoiceLine(models.Model):
@@ -41,6 +42,8 @@ class AccountInvoiceLine(models.Model):
         # 'product_can_modify_prices'
     )
     def check_discount(self):
+        precision = self.env['decimal.precision'].precision_get(
+            'Product Unit of Measure')
         for il in self:
             # only customer invoices
             if il.invoice_id and il.invoice_id.type in (
@@ -48,7 +51,10 @@ class AccountInvoiceLine(models.Model):
                     'price_security.group_restrict_prices') and
                     not il.product_can_modify_prices):
                 # chequeamos si la orden de venta permitió un descuento mayor
-                if any(x.discount >= il.discount for x in il.sale_line_ids):
+                if any(
+                        float_compare(
+                        x.discount, il.discount, precision_digits=precision
+                        ) >= 0 for x in il.sale_line_ids):
                     return True
                 il.env.user.check_discount(
                     il.discount,
