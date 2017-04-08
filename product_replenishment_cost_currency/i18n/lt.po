@@ -1,0 +1,164 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_replenishment_cost_currency
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: product (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-03 14:18+0000\n"
+"PO-Revision-Date: 2017-04-03 14:19+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>\n"
+"Language-Team: Lithuanian (http://www.transifex.com/adhoc/ingadhoc-product-8-0/language/lt/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: lt\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. module: product_replenishment_cost_currency
+#: view:product.template:product_replenishment_cost_currency.product_template_form_view
+msgid "Accounting Cost"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,standard_price_currency_id:0
+#: field:product.template,standard_price_currency_id:0
+msgid "Cost Price Currency"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: help:product.product,other_currency_id:0
+msgid "Currency used for the Currency List Price."
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: help:product.product,replenishment_base_cost_currency_id:0
+#: help:product.template,replenishment_base_cost_currency_id:0
+msgid "Currency used for the Replanishment Base Cost."
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,taxes_id:0
+msgid "Customer Taxes"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,property_account_expense:0
+msgid "Expense Account"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,property_account_income:0
+msgid "Income Account"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,one_variant_per_product:0
+msgid "One variant per product"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,other_currency_id:0
+msgid "Other Currency"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: model:ir.model,name:product_replenishment_cost_currency.model_product_product
+msgid "Product"
+msgstr "Produktas"
+
+#. module: product_replenishment_cost_currency
+#: model:ir.model,name:product_replenishment_cost_currency.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: help:product.product,replenishment_base_cost:0
+#: help:product.template,replenishment_base_cost:0
+msgid "Replanishment Cost expressed in 'Replenishment Base Cost Currency'."
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,replenishment_base_cost:0
+#: field:product.template,replenishment_base_cost:0
+msgid "Replenishment Base Cost"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,replenishment_base_cost_currency_id:0
+#: field:product.template,replenishment_base_cost_currency_id:0
+msgid "Replenishment Base Cost Currency"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: model:product.price.type,name:product_replenishment_cost_currency.price_type_replenishment_cost
+#: view:product.template:product_replenishment_cost_currency.product_template_form_view
+#: field:product.template,replenishment_cost:0
+msgid "Replenishment Cost"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,replenishment_cost_currency_id:0
+#: field:product.template,replenishment_cost_currency_id:0
+msgid "Replenishment Cost Currency"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,replenishment_cost_last_update:0
+#: field:product.template,replenishment_cost_last_update:0
+msgid "Replenishment Cost Last Update"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: help:product.product,one_variant_per_product:0
+msgid ""
+"Restrict so that only one variant per product can be created (only one attribute value per attribute can be setted). Also change odoo behaviour when changing attribute values:\n"
+"* False: default odoo behaviour, if you change an attribute or remove it odoo creates a new variant.\n"
+"* True: change attributes wont change variants, it will only update variants attributes"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,computed_list_price_before:0
+msgid "Sale Price Before"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,computed_list_price_rule_id:0
+msgid "Sale Price Rule"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,other_currency_list_price:0
+#: help:product.product,other_currency_list_price:0
+msgid "Sale Price on Other Currency"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,supplier_taxes_id:0
+msgid "Supplier Taxes"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: help:product.template,replenishment_cost:0
+msgid ""
+"The cost that you have to support in order to produce or acquire the goods. "
+"Depending on the modules installed, this cost may be computed based on "
+"various pieces of information, for example Bills of Materials or latest "
+"Purchases."
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: help:product.product,property_account_expense:0
+msgid ""
+"This account will be used for invoices instead of the default one to value "
+"expenses for the current product."
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: help:product.product,property_account_income:0
+msgid ""
+"This account will be used for invoices instead of the default one to value "
+"sales for the current product."
+msgstr ""

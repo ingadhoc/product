@@ -1,0 +1,51 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_variant_o2o
+# 
+# Translators:
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-03 14:18+0000\n"
+"PO-Revision-Date: 2017-04-03 14:18+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2017\n"
+"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: product_variant_o2o
+#: field:product.template,one_variant_per_product:0
+msgid "One variant per product"
+msgstr "Una Variante Por Producto"
+
+#. module: product_variant_o2o
+#: code:addons/product_variant_o2o/product.py:43
+#, python-format
+msgid "Only 1 value for attribute."
+msgstr "Solo una valor por atributo."
+
+#. module: product_variant_o2o
+#: model:ir.model,name:product_variant_o2o.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: product_variant_o2o
+#: help:product.template,one_variant_per_product:0
+msgid ""
+"Restrict so that only one variant per product can be created (only one attribute value per attribute can be setted). Also change odoo behaviour when changing attribute values:\n"
+"* False: default odoo behaviour, if you change an attribute or remove it odoo creates a new variant.\n"
+"* True: change attributes wont change variants, it will only update variants attributes"
+msgstr ""
+"Restrict so that only one variant per product can be created (only one attribute value per attribute can be setted). Also change odoo behaviour when changing attribute values:\n"
+"* False: default odoo behaviour, if you change an attribute or remove it odoo creates a new variant.\n"
+"* True: change attributes wont change variants, it will only update variants attributes"
+
+#. module: product_variant_o2o
+#: view:product.template:product_variant_o2o.product_template_only_form_view
+msgid "{'invisible': [('one_variant_per_product','=',True)]}"
+msgstr "{'invisible': [('one_variant_per_product','=',True)]}"

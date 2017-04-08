@@ -1,0 +1,24 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_search_supplier_code
+# 
+# Translators:
+# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: product (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-03 14:18+0000\n"
+"PO-Revision-Date: 2016-08-10 15:41+0000\n"
+"Last-Translator: Nicolas Mac Rouillon <nmr@ingadhoc.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/adhoc/ingadhoc-product-8-0/language/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: product_search_supplier_code
+#: view:product.product:product_search_supplier_code.product_custom_search_view
+msgid "Supplier Default Code"
+msgstr "Codigo proveedor por defecto"

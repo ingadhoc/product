@@ -1,0 +1,105 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_computed_list_price
+# 
+# Translators:
+# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: product (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-03 14:18+0000\n"
+"PO-Revision-Date: 2017-04-03 13:48+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/adhoc/ingadhoc-product-8-0/language/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: product_computed_list_price
+#: selection:product.template,list_price_type:0
+msgid "By Margin"
+msgstr "Por Margen"
+
+#. module: product_computed_list_price
+#: selection:product.template,list_price_type:0
+msgid "By UOM and Currency"
+msgstr "por UdM y Moneda"
+
+#. module: product_computed_list_price
+#: selection:product.template,list_price_type:0
+msgid "By Uom"
+msgstr "por UdM"
+
+#. module: product_computed_list_price
+#: model:product.price.type,name:product_computed_list_price.computed_list_price
+msgid "Computed List Price"
+msgstr "Precio de lista computado"
+
+#. module: product_computed_list_price
+#: field:product.product,computed_list_price_currency_id:0
+#: field:product.template,computed_list_price_currency_id:0
+msgid "Computed List Price Currency"
+msgstr "Moneda de precio de lista computado"
+
+#. module: product_computed_list_price
+#: help:product.product,computed_list_price:0
+#: help:product.template,computed_list_price:0
+msgid ""
+"Computed Sale Price. This value depends on \"Sale Price Type\" an other "
+"parameters. If you set this value, other fields will be computed "
+"automatically."
+msgstr "Calcula el precio de venta. Este valor depende del \"tipo de precio de venta\" y un resto de parámetros. Si se establece este valor, otros campos se calculan automáticamente."
+
+#. module: product_computed_list_price
+#: selection:product.template,list_price_type:0
+msgid "Manual"
+msgstr "Manual"
+
+#. module: product_computed_list_price
+#: code:addons/product_computed_list_price/product.py:96
+#, python-format
+msgid "No Price type defined for field %s"
+msgstr "Ningún tipo de precio definido para el campo %s"
+
+#. module: product_computed_list_price
+#: selection:product.template,list_price_type:0
+msgid "Other Currency"
+msgstr "Otra moneda"
+
+#. module: product_computed_list_price
+#: model:ir.model,name:product_computed_list_price.model_product_price_type
+msgid "Price Type"
+msgstr "Tipo de Precio"
+
+#. module: product_computed_list_price
+#: model:ir.model,name:product_computed_list_price.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: product_computed_list_price
+#: model:ir.model,name:product_computed_list_price.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: product_computed_list_price
+#: field:product.product,computed_list_price:0
+#: field:product.template,computed_list_price:0
+msgid "Sale Price"
+msgstr "Precio de venta"
+
+#. module: product_computed_list_price
+#: field:product.product,list_price_type:0
+#: field:product.template,list_price_type:0
+msgid "Sale Price Type"
+msgstr "Tipo de precio venta"
+
+#. module: product_computed_list_price
+#: code:addons/product_computed_list_price/product.py:37
+#, python-format
+msgid ""
+"You can not set list price if you are working with 'Taxes Included' in the "
+"context"
+msgstr "No se puede establecer el precio de lista si se está trabajando con \"impuestos incluidos\" en el contexto"

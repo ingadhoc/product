@@ -3,14 +3,15 @@
 # * product_template_update_active
 # 
 # Translators:
+# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: odoo-addons (8.0)\n"
+"Project-Id-Version: product (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-05 15:03+0000\n"
-"PO-Revision-Date: 2015-09-01 17:59+0000\n"
-"Last-Translator: <>\n"
-"Language-Team: Spanish (http://www.transifex.com/adhoc/ingadhoc-odoo-addons-8-0/language/es/)\n"
+"POT-Creation-Date: 2017-04-03 14:18+0000\n"
+"PO-Revision-Date: 2016-08-11 13:06+0000\n"
+"Last-Translator: Nicolas Mac Rouillon <nmr@ingadhoc.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/adhoc/ingadhoc-product-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -33,14 +34,24 @@ msgid "Created on"
 msgstr "Creadon en"
 
 #. module: product_template_update_active
+#: field:product.template_update_active_field,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: product_template_update_active
 #: view:product.template_update_active_field:product_template_update_active.view_template_update_active_field_form
 msgid "Force Create Variants"
-msgstr ""
+msgstr "Forzar Crear Variantes"
 
 #. module: product_template_update_active
 #: field:product.template_update_active_field,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: product_template_update_active
+#: field:product.template_update_active_field,__last_update:0
+msgid "Last Modified on"
+msgstr "Última Modificación en"
 
 #. module: product_template_update_active
 #: field:product.template_update_active_field,write_uid:0
@@ -55,17 +66,17 @@ msgstr "Last Updated on"
 #. module: product_template_update_active
 #: model:ir.actions.act_window,name:product_template_update_active.action_template_update_active_field
 msgid "Update Active Field"
-msgstr ""
+msgstr "Actualización de campo activo"
 
 #. module: product_template_update_active
 #: view:product.template_update_active_field:product_template_update_active.view_template_update_active_field_form
 msgid "Update All"
-msgstr ""
+msgstr "Actualizar todo"
 
 #. module: product_template_update_active
 #: view:product.template_update_active_field:product_template_update_active.view_template_update_active_field_form
 msgid "Update Selected"
-msgstr ""
+msgstr "Actualización seleccionada"
 
 #. module: product_template_update_active
 #: view:product.template_update_active_field:product_template_update_active.view_template_update_active_field_form

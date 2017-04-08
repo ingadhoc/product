@@ -1,20 +1,22 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* product_prices_update
-#
+# * product_prices_update
+# 
+# Translators:
+# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 8.0\n"
+"Project-Id-Version: product (8.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-14 16:00+0000\n"
-"PO-Revision-Date: 2015-01-15 11:38-0300\n"
-"Last-Translator: <>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2017-04-03 14:18+0000\n"
+"PO-Revision-Date: 2017-04-03 13:48+0000\n"
+"Last-Translator: Nicolas Mac Rouillon <nmr@ingadhoc.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/adhoc/ingadhoc-product-8-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
-"X-Generator: Poedit 1.5.4\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: product_prices_update
 #: view:product.prices_update_wizard:product_prices_update.view_prices_update_wizard_form
@@ -40,21 +42,28 @@ msgstr "Confirmar"
 #. module: product_prices_update
 #: selection:product.prices_update_wizard,price_type:0
 msgid "Cost Price"
-msgstr "Precio de Costo"
+msgstr "Precio de costo"
 
 #. module: product_prices_update
 #: field:product.prices_update_wizard,create_uid:0
 #: field:product.prices_update_wizard_result,create_uid:0
 #: field:product.prices_update_wizard_result_detail,create_uid:0
 msgid "Created by"
-msgstr "Created by"
+msgstr "Creado por"
 
 #. module: product_prices_update
 #: field:product.prices_update_wizard,create_date:0
 #: field:product.prices_update_wizard_result,create_date:0
 #: field:product.prices_update_wizard_result_detail,create_date:0
 msgid "Created on"
-msgstr "Created on"
+msgstr "Creadon en"
+
+#. module: product_prices_update
+#: field:product.prices_update_wizard,display_name:0
+#: field:product.prices_update_wizard_result,display_name:0
+#: field:product.prices_update_wizard_result_detail,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
 
 #. module: product_prices_update
 #: field:product.prices_update_wizard,id:0
@@ -62,6 +71,13 @@ msgstr "Created on"
 #: field:product.prices_update_wizard_result_detail,id:0
 msgid "ID"
 msgstr "ID"
+
+#. module: product_prices_update
+#: field:product.prices_update_wizard,__last_update:0
+#: field:product.prices_update_wizard_result,__last_update:0
+#: field:product.prices_update_wizard_result_detail,__last_update:0
+msgid "Last Modified on"
+msgstr "Última Modificación en"
 
 #. module: product_prices_update
 #: field:product.prices_update_wizard,write_uid:0
@@ -80,12 +96,12 @@ msgstr "Last Updated on"
 #. module: product_prices_update
 #: field:product.prices_update_wizard_result_detail,new_price:0
 msgid "New Price"
-msgstr "Precio Nuevo"
+msgstr "Precio de venta"
 
 #. module: product_prices_update
 #: view:product.prices_update_wizard:product_prices_update.view_prices_update_wizard_form
 msgid "New Price ="
-msgstr " Precio Nuevo ="
+msgstr "Precio de venta ="
 
 #. module: product_prices_update
 #: field:product.prices_update_wizard_result_detail,old_price:0
@@ -95,7 +111,7 @@ msgstr "Precio Anterior"
 #. module: product_prices_update
 #: view:product.prices_update_wizard:product_prices_update.view_prices_update_wizard_form
 msgid "Price Computation"
-msgstr "Price Computation"
+msgstr "Cálculo del precio"
 
 #. module: product_prices_update
 #: field:product.prices_update_wizard,price_discount:0
@@ -118,13 +134,22 @@ msgid "Price Type"
 msgstr "Tipo de Precio"
 
 #. module: product_prices_update
-#: field:product.prices_update_wizard_result_detail,product_tmpl_id:0
-msgid "Product Template"
-msgstr "Producto"
+#: code:addons/product_prices_update/wizard/wizard_update_prices.py:55
+#: code:addons/product_prices_update/wizard/wizard_update_prices.py:132
+#, python-format
+msgid "Price type \"%s\" is not implemented"
+msgstr "Tipo de precio \"%s\" no se ha implementado"
 
 #. module: product_prices_update
+#: field:product.prices_update_wizard_result_detail,product_tmpl_id:0
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: product_prices_update
+#: code:addons/product_prices_update/wizard/wizard_update_prices.py:74
 #: view:product.prices_update_wizard_result:product_prices_update.view_prices_update_wizard_result_form
 #: view:product.prices_update_wizard_result_detail:product_prices_update.view_prices_update_wizard_result_detail_tree
+#, python-format
 msgid "Products"
 msgstr "Productos"
 
@@ -141,12 +166,12 @@ msgstr "Resultado"
 #. module: product_prices_update
 #: view:product.prices_update_wizard:product_prices_update.view_prices_update_wizard_form
 msgid "Rounding Method"
-msgstr "Valor Para Redondeo"
+msgstr "Método redondeo"
 
 #. module: product_prices_update
 #: selection:product.prices_update_wizard,price_type:0
 msgid "Sale Price"
-msgstr "Precio de Venta"
+msgstr "Precio de venta"
 
 #. module: product_prices_update
 #: help:product.prices_update_wizard,price_round:0
@@ -154,11 +179,13 @@ msgid ""
 "Sets the price so that it is a multiple of this value.\n"
 "Rounding is applied after the discount and before the surcharge.\n"
 "To have prices that end in 9.99, set rounding 10, surcharge -0.01"
-msgstr "Establece el precio, así que es un múltiplo de este valor. \ NEl redondeo se aplica después del descuento y antes del pago . \ NPara tener precios que terminan en 9.99 , establezca redondeo 10 , recargo -0,01"
+msgstr "Establece el precio, así que es un múltiplo de este valor.  El redondeo se aplica después del descuento y antes del pago .  Para tener precios que terminan en 9.99 , establezca redondeo 10 , recargo -0,01"
 
 #. module: product_prices_update
 #: help:product.prices_update_wizard,price_surcharge:0
-msgid "Specify the fixed amount to add or substract(if negative) to the amount calculated with the discount."
+msgid ""
+"Specify the fixed amount to add or substract(if negative) to the amount "
+"calculated with the discount."
 msgstr "Especifique la cantidad fija para añadir o restar ( si es negativo ) al importe calculado con el descuento ."
 
 #. module: product_prices_update
@@ -172,7 +199,7 @@ msgid "Update Product Prices"
 msgstr "Actualizar Precios de Productos"
 
 #. module: product_prices_update
-#: code:addons/product_prices_update/wizard/wizard_update_prices.py:27
+#: code:addons/product_prices_update/wizard/wizard_update_prices.py:32
 #, python-format
 msgid "You must select at least one product"
 msgstr "Debe seleccionar al menos un producto"
@@ -180,5 +207,4 @@ msgstr "Debe seleccionar al menos un producto"
 #. module: product_prices_update
 #: view:product.prices_update_wizard:product_prices_update.view_prices_update_wizard_form
 msgid "or"
-msgstr "o"
-
+msgstr "or"
