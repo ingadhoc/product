@@ -3,14 +3,15 @@
 # * product_sale_price_by_margin
 # 
 # Translators:
-# Javier Diez <jd@adhoc.com.ar>, 2016
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016
+# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-17 14:08+0000\n"
-"PO-Revision-Date: 2016-11-17 14:08+0000\n"
-"Last-Translator: Javier Diez <jd@adhoc.com.ar>, 2016\n"
+"POT-Creation-Date: 2017-04-06 12:19+0000\n"
+"PO-Revision-Date: 2017-04-06 12:19+0000\n"
+"Last-Translator: Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,6 +33,16 @@ msgid ""
 "                </field>\n"
 "            "
 msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<field name=\"list_price_type\" position=\"after\">\n"
+"                    <label for=\"sale_margin\" string=\"Margin Formula\" attrs=\"{'invisible': [('list_price_type', '!=', 'by_margin')]}\"/>\n"
+"                    <div attrs=\"{'invisible': [('list_price_type', '!=', 'by_margin')]}\">\n"
+"                        <field name=\"replenishment_cost_copy\" class=\"oe_inline\"/>* ( 1 +\n"
+"                        <field name=\"sale_margin\" class=\"oe_inline\"/>%) + \n"
+"                        <field name=\"sale_surcharge\" class=\"oe_inline\"/>\n"
+"                    </div>\n"
+"                </field>\n"
+"            "
 
 #. module: product_sale_price_by_margin
 #: model:ir.model.fields,field_description:product_sale_price_by_margin.field_product_template_sale_margin
