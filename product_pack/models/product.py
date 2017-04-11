@@ -1,8 +1,8 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp import fields, models, api, _
+from odoo import fields, models, api, _
 from openerp.osv import fields as old_fields
 from openerp.exceptions import UserError
 import math
