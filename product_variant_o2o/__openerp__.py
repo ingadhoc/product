@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Variant Force One Two One',
-    'version': '9.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'Sales',
     'author': 'ADHOC SA.',
     'website': 'www.adhoc.com.ar',
@@ -29,5 +29,5 @@
     'data': [
         'product_view.xml',
     ],
-    'installable': True
+    'installable': False
 }

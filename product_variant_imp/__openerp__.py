@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Variant Improvements',
-    'version': '9.0.1.0.0',
+    'version': '10.0.1.0.0',
     'author': 'ADHOC SA.',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
@@ -34,5 +34,5 @@
     'data': [
         'view/product_view.xml',
     ],
-    'installable': True
+    'installable': False
 }

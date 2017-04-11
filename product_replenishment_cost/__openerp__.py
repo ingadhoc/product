@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Replenishment Cost',
-    'version': '9.0.1.0.0',
+    'version': '10.0.1.0.0',
     'author': "Camptocamp,GRAP,Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'category': 'Products',
@@ -35,5 +35,5 @@
     'test': [
         'test/cost_price_update.yml',
     ],
-    'installable': True,
+    'installable': False,
 }

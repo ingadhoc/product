@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Sale UOMS',
-    'version': '9.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'base.module_category_knowledge_management',
     'author': 'ADHOC SA.',
     'website': 'www.adhoc.com.ar',
@@ -38,5 +38,5 @@
         'view/sale_view.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': True,
+    'installable': False,
 }

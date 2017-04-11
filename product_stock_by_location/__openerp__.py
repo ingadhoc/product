@@ -21,7 +21,7 @@
 
 {
     "name": "Product Stock By Location",
-    'version': '9.0.1.2.0',
+    'version': '10.0.1.0.0',
     'category': 'Tools',
     'sequence': 14,
     'author': 'ADHOC SA',
@@ -40,7 +40,7 @@
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }

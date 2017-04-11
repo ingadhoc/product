@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Template Tree Prices',
-    'version': '9.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'base.module_category_knowledge_management',
     'author': 'ADHOC SA.',
     'website': 'www.adhoc.com.ar',
@@ -33,6 +33,6 @@
     'data': [
         'product_view.xml',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     }

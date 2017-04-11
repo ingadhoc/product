@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Price Taxes Included or Not',
-    'version': '9.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -39,7 +39,7 @@
     ],
     'test': [
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }
