@@ -3,7 +3,6 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 from odoo import fields, models, api, _
-from openerp.osv import fields as old_fields
 from openerp.exceptions import UserError
 import math
 
@@ -11,6 +10,17 @@ import math
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
+    # overwrite ot this fields so that we can modify _product_available
+    # function to support packs
+    # TODO: who the hell knows how works functs to override ? \_(-.-)_/
+    qty_available = fields.Float(
+        compute='_compute_quantities', search='_search_qty_available')
+    virtual_available = fields.Float(
+        compute='_compute_quantities', search='_search_virtual_available')
+    incoming_qty = fields.Float(
+        compute='_compute_quantities', search='_search_incoming_qty')
+    outgoing_qty = fields.Float(
+        compute='_compute_quantities', search='_search_outcoming_qty')
     pack_line_ids = fields.One2many(
         'product.pack.line',
         'parent_product_id',
@@ -67,23 +77,6 @@ class ProductProduct(models.Model):
         """
         return super(ProductProduct, self)._search_product_quantity(
             cr, uid, obj, name, domain, context)
-
-    # overwrite ot this fields so that we can modify _product_available
-    # function to support packs
-    _columns = {
-        'qty_available': old_fields.function(
-            _product_available, multi='qty_available',
-            fnct_search=_search_product_quantity),
-        'virtual_available': old_fields.function(
-            _product_available, multi='qty_available',
-            fnct_search=_search_product_quantity),
-        'incoming_qty': old_fields.function(
-            _product_available, multi='qty_available',
-            fnct_search=_search_product_quantity),
-        'outgoing_qty': old_fields.function(
-            _product_available, multi='qty_available',
-            fnct_search=_search_product_quantity),
-    }
 
     @api.one
     @api.constrains('pack_line_ids')
