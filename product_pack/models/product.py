@@ -1,14 +1,19 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
+# For copyright and license notices, see __manifest__.py file in root directory
 ##############################################################################
-from odoo import fields, models, api, _
-from openerp.exceptions import UserError
 import math
+
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 
 
 class ProductProduct(models.Model):
     _inherit = 'product.product'
+
+    @api.depends('stock_quant_ids', 'stock_move_ids')
+    def _compute_quantities(self):
+        super(ProductProduct, self)._compute_quantities()
 
     # overwrite ot this fields so that we can modify _product_available
     # function to support packs

@@ -3,7 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
 from odoo import api, fields, models
-from oodoo.addons import decimal_precision as dp
+from odoo.addons import decimal_precision as dp
 
 
 class SaleOrderLinePackLine(models.Model):
