@@ -13,19 +13,16 @@ class ProductProduct(models.Model):
 
     @api.depends('stock_quant_ids', 'stock_move_ids')
     def _compute_quantities(self):
-        super(ProductProduct, self)._compute_quantities()
+        if not self.pack:
+            super(ProductProduct, self)._compute_quantities()
+        else:
+            for product in self:
+                pack_qty = [math.floor(p.product_id.qty_available / p.quantity or 1) for p in product.pack_line_ids]
+                product.qty_available = min(pack_qty)
 
-    # overwrite ot this fields so that we can modify _product_available
-    # function to support packs
-    # TODO: who the hell knows how works functs to override ? \_(-.-)_/
     qty_available = fields.Float(
-        compute='_compute_quantities', search='_search_qty_available')
-    virtual_available = fields.Float(
-        compute='_compute_quantities', search='_search_virtual_available')
-    incoming_qty = fields.Float(
-        compute='_compute_quantities', search='_search_incoming_qty')
-    outgoing_qty = fields.Float(
-        compute='_compute_quantities', search='_search_outcoming_qty')
+        compute='_compute_quantities'
+    )
     pack_line_ids = fields.One2many(
         'product.pack.line',
         'parent_product_id',
@@ -38,50 +35,6 @@ class ProductProduct(models.Model):
         'On Packs',
         help='List of packs where product is used.'
     )
-
-    def _product_available(
-            self, cr, uid, ids, field_names=None, arg=False, context=None):
-        """
-        For product packs we get availability in a different way
-        """
-        pack_product_ids = self.search(cr, uid, [
-            ('pack', '=', True),
-            ('id', 'in', ids),
-        ])
-        res = super(ProductProduct, self)._product_available(
-            cr, uid, list(set(ids) - set(pack_product_ids)),
-            field_names, arg, context)
-        for product in self.browse(cr, uid, pack_product_ids, context=context):
-            pack_qty_available = []
-            pack_virtual_available = []
-            for subproduct in product.pack_line_ids:
-                subproduct_stock = self._product_available(
-                    cr, uid, [subproduct.product_id.id], field_names, arg,
-                    context)[subproduct.product_id.id]
-                sub_qty = subproduct.quantity
-                if sub_qty:
-                    pack_qty_available.append(math.floor(
-                        subproduct_stock['qty_available'] / sub_qty))
-                    pack_virtual_available.append(math.floor(
-                        subproduct_stock['virtual_available'] / sub_qty))
-            # TODO calcular correctamente pack virtual available para negativos
-            res[product.id] = {
-                'qty_available': (
-                    pack_qty_available and min(pack_qty_available) or False),
-                'incoming_qty': 0,
-                'outgoing_qty': 0,
-                'virtual_available': (
-                    pack_virtual_available and
-                    max(min(pack_virtual_available), 0) or False),
-            }
-        return res
-
-    def _search_product_quantity(self, cr, uid, obj, name, domain, context):
-        """
-        We use original search function
-        """
-        return super(ProductProduct, self)._search_product_quantity(
-            cr, uid, obj, name, domain, context)
 
     @api.one
     @api.constrains('pack_line_ids')
@@ -144,22 +97,6 @@ class ProductTemplate(models.Model):
                 raise UserError(_(
                     'A "None Detailed - Assisted Price Pack" can not have a '
                     'pack as a child!'))
-
-        # TODO we also should check this
-        # check if we are configuring a pack for a product that is partof a
-        # assited pack
-        # if self.pack:
-        #     for product in self.product_variant_ids
-        #     parent_assited_packs = self.env['product.pack.line'].search([
-        #         ('product_id', '=', self.id),
-        #         ('parent_product_id.pack_price_type', '=',
-        #             'none_detailed_assited_price'),
-        #         ])
-        #     print 'parent_assited_packs', parent_assited_packs
-        #     if parent_assited_packs:
-        #         raise Warning(_(
-        #             'You can not set this product as pack because it is part'
-        #             ' of a "None Detailed - Assisted Price Pack"'))
 
     @api.one
     @api.constrains('company_id', 'product_variant_ids')
