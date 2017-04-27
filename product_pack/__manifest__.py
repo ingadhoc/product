@@ -29,7 +29,7 @@
     'images': [
     ],
     'depends': [
-        'sale',
+        'sale'
     ],
     'data': [
         'security/ir.model.access.csv',
@@ -42,6 +42,4 @@
     'test': [
     ],
     'installable': True,
-    'auto_install': False,
-    'application': False,
 }
