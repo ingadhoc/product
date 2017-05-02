@@ -57,15 +57,15 @@ class ProductTemplate(models.Model):
         'replenishment_cost_rule_id.item_ids.fixed_amount',
     )
     def _get_replenishment_cost(self):
+        _logger.info(
+            'Getting replenishment cost with rule for %s products' % (
+                len(self.ids)))
         for rec in self:
             rec.replenishment_cost = rec.get_replenishment_cost_with_rule()
 
     @api.multi
     def get_replenishment_cost_with_rule(self):
         # cost = super(ProductTemplate, self).get_replenishment_cost()
-        _logger.info(
-            'Getting replenishment cost with rule for product ids %s' % (
-                self.ids))
         cost = self.get_replenishment_cost_currency()
         if self.replenishment_cost_rule_id:
             for line in self.replenishment_cost_rule_id.item_ids:

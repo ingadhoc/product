@@ -38,7 +38,6 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def _other_computed_rules(self, computed_list_price):
-        print '_other_computed_rules', len(self)
         computed_list_price = super(
             ProductTemplate, self)._other_computed_rules(computed_list_price)
         self.computed_list_price_before = computed_list_price

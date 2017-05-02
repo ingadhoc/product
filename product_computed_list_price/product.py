@@ -44,14 +44,14 @@ class ProductTemplate(models.Model):
         # #     product._update_prices_from_planned()
         # #     self._cr.commit()
         # return True
-        return self.search(
-            [('list_price_type', '!=', False)])._update_prices_from_planned()
+        # el search lo hacemos abajo ya que tmb se hace abajo para la vista
+        # lista
+        return self.search([])._update_prices_from_planned()
 
     @api.multi
     def _update_prices_from_planned(self):
-        for rec in self:
-            if not rec.list_price_type:
-                continue
+        # hacemos search de nuevo por si se llama desde vista lista
+        for rec in self.search([('list_price_type', '!=', False)]):
             rec.list_price = rec.computed_list_price
         return True
 
@@ -64,7 +64,6 @@ class ProductTemplate(models.Model):
         _logger.info('Getting Compute List Price for products: "%s"' % (
             self.ids))
         for template in self:
-            print 'template', template
             if not template.list_price_type:
                 continue
             computed_list_price = template.get_computed_list_price()
