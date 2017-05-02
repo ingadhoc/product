@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_supplier_search
+# 
+# Translators:
+# Javier Diez <jd@adhoc.com.ar>, 2017
+# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-06 12:19+0000\n"
+"PO-Revision-Date: 2017-04-06 12:19+0000\n"
+"Last-Translator: Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2017\n"
+"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: product_supplier_search
+#: model:ir.ui.view,arch_db:product_supplier_search.product_template_search_view
+msgid ""
+"<?xml version=\"1.0\"?>\n"
+"<data><field name=\"name\" position=\"after\">\n"
+"                    <field name=\"seller_ids\"/>\n"
+"                </field>\n"
+"                <search>\n"
+"                     <filter string=\"Main Seller\" name=\"groupby_main_seller_id\" domain=\"[]\" context=\"{'group_by' : 'main_seller_id'}\"/>\n"
+"                </search>\n"
+"            </data>"
+msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<data><field name=\"name\" position=\"after\">\n"
+"                    <field name=\"seller_ids\"/>\n"
+"                </field>\n"
+"                <search>\n"
+"                     <filter string=\"Main Seller\" name=\"groupby_main_seller_id\" domain=\"[]\" context=\"{'group_by' : 'main_seller_id'}\"/>\n"
+"                </search>\n"
+"            </data>"
+
+#. module: product_supplier_search
+#: model:ir.model.fields,field_description:product_supplier_search.field_product_template_main_seller_id
+#: field:product.template,main_seller_id:0
+msgid "Main Seller"
+msgstr "Vendedor principal"
+
+#. module: product_supplier_search
+#: model:ir.model,name:product_supplier_search.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de Producto"
+
+#. module: product_supplier_search
+#: model:ir.model.fields,help:product_supplier_search.field_product_template_main_seller_id
+#: help:product.template,main_seller_id:0
+msgid "Vendor of this product"
+msgstr "Vendedor de este Producto"

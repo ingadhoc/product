@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016
-# Javier Diez <jd@adhoc.com.ar>, 2016
+# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-14 22:16+0000\n"
-"PO-Revision-Date: 2016-11-14 22:16+0000\n"
-"Last-Translator: Javier Diez <jd@adhoc.com.ar>, 2016\n"
+"POT-Creation-Date: 2016-11-15 21:13+0000\n"
+"PO-Revision-Date: 2016-11-15 21:13+0000\n"
+"Last-Translator: Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2017\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,6 +29,12 @@ msgid ""
 "                </field>\n"
 "            "
 msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<field name=\"computed_list_price\" position=\"before\">\n"
+"                    <field name=\"computed_list_price_before\"/>\n"
+"                    <field name=\"computed_list_price_rule_id\"/>\n"
+"                </field>\n"
+"            "
 
 #. module: product_computed_price_rule
 #: model:ir.ui.view,arch_db:product_computed_price_rule.product_computed_list_price_rule_form
@@ -54,6 +60,26 @@ msgid ""
 "                </form>\n"
 "            "
 msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<form string=\"Computed List Price Rule\">\n"
+"                    <h1><field name=\"name\" placeholder=\"Name...\"/></h1>\n"
+"                    <notebook>\n"
+"                        <page string=\"Items\">\n"
+"                            <field name=\"item_ids\">\n"
+"                                <tree editable=\"bottom\">\n"
+"                                    <field name=\"sequence\" widget=\"handle\"/>\n"
+"                                    <field name=\"name\"/>\n"
+"                                    <field name=\"percentage_amount\"/>\n"
+"                                    <field name=\"fixed_amount\"/>\n"
+"                                </tree>\n"
+"                            </field>\n"
+"                        </page>\n"
+"                        <page string=\"Products\">\n"
+"                            <field name=\"product_ids\" widget=\"many2many\" context=\"{'search_default_without_rep_rule': 1}\"/>\n"
+"                        </page>\n"
+"                    </notebook>\n"
+"                </form>\n"
+"            "
 
 #. module: product_computed_price_rule
 #: model:ir.ui.view,arch_db:product_computed_price_rule.product_computed_list_price_rule_filter
@@ -66,6 +92,13 @@ msgid ""
 "                </search>\n"
 "            "
 msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<search string=\"Computed List Price Rule\">\n"
+"                    <field name=\"name\"/>\n"
+"                    <field name=\"product_ids\"/>\n"
+"                    <field name=\"item_ids\"/>\n"
+"                </search>\n"
+"            "
 
 #. module: product_computed_price_rule
 #: model:ir.ui.view,arch_db:product_computed_price_rule.product_computed_list_price_rule_tree
@@ -78,6 +111,13 @@ msgid ""
 "                </tree>\n"
 "            "
 msgstr ""
+"<?xml version=\"1.0\"?>\n"
+"<tree string=\"Computed List Price Rule\">\n"
+"                    <field name=\"name\" placeholder=\"Name...\"/>\n"
+"                    <field name=\"product_ids\"/>\n"
+"                    <field name=\"item_ids\"/>\n"
+"                </tree>\n"
+"            "
 
 #. module: product_computed_price_rule
 #: model:ir.actions.act_window,name:product_computed_price_rule.action_product_computed_list_price_rule
