@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-	<!-- Product view modification -->
+    <!-- Product view modification -->
+
+	<record model="ir.ui.view" id="product_template_search_view">
+	    <field name="name">product.template.search.view</field>
+	    <field name="model">product.template</field>
+	    <field name="inherit_id" ref="product.product_template_search_view" />
+	    <field name="arch" type="xml">
+                <xpath expr="//filter[@name='services']" position="before">
+                    <filter string="Packs" name="packs" domain="[('pack','=',True)]"/>
+                </xpath>
+            </field>
+        </record>
+
 	<record model="ir.ui.view" id="product_template_only_form_view">
 		<field name="name">product.template.pack.form</field>
 		<field name="model">product.template</field>

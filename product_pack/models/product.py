@@ -156,7 +156,7 @@ class ProductTemplate(models.Model):
         for template in self:
             if template.pack:
                 pack_qty = [math.floor(p.product_id.qty_available / p.quantity or 1) for p in template.pack_line_ids]
-                template.qty_available = min(pack_qty)
+                template.qty_available = pack_qty and min(pack_qty) or 0
             else:
                 template.qty_available = res[template.id]['qty_available']
                 template.virtual_available = res[template.id]['virtual_available']
