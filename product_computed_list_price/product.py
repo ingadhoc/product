@@ -32,18 +32,20 @@ class ProductTemplate(models.Model):
     @api.model
     def cron_update_prices_from_planned(self, limit=None):
         _logger.info('Running update prices from planned cron')
-        batch_size = 1000
-        product_ids = self.search([('list_price_type', '!=', False)]).ids
-        sliced_product_ids = [
-            product_ids[i:i + batch_size] for i in range(
-                0, len(product_ids), batch_size)]
-        for product_ids in sliced_product_ids:
-            self.browse(product_ids)._update_prices_from_planned()
-        # for product in self.search(
-        #         [('list_price_type', '!=', False)], limit=limit):
-        #     product._update_prices_from_planned()
-        #     self._cr.commit()
-        return True
+        # batch_size = 1000
+        # product_ids = self.search([('list_price_type', '!=', False)]).ids
+        # sliced_product_ids = [
+        #     product_ids[i:i + batch_size] for i in range(
+        #         0, len(product_ids), batch_size)]
+        # for product_ids in sliced_product_ids:
+        #     self.browse(product_ids)._update_prices_from_planned()
+        # # for product in self.search(
+        # #         [('list_price_type', '!=', False)], limit=limit):
+        # #     product._update_prices_from_planned()
+        # #     self._cr.commit()
+        # return True
+        return self.search(
+            [('list_price_type', '!=', False)])._update_prices_from_planned()
 
     @api.multi
     def _update_prices_from_planned(self):

@@ -28,32 +28,48 @@ class ProductTemplate(models.Model):
     replenishment_base_cost_currency_id = fields.Many2one(
         'res.currency',
         'Replenishment Base Cost Currency',
+        auto_join=True,
         track_visibility='onchange',
         help="Currency used for the Replanishment Base Cost."
     )
-    # for now we make replenshiment cost field only on template and not in
-    # product (this should be done in PRC)
+    # TODO borrar, ya lo cambiamos en nustro modulo base de rep cost
+    # lo que si dejamos es sobreescribir el metodo de computar, algo que
+    # deberiamos mejorar tmb
     replenishment_cost = fields.Float(
         compute='_get_replenishment_cost',
-        string='Replenishment Cost',
-        store=False,
-        digits=dp.get_precision('Product Price'),
-        help="The cost that you have to support in order to produce or "
-             "acquire the goods. Depending on the modules installed, "
-             "this cost may be computed based on various pieces of "
-             "information, for example Bills of Materials or latest "
-             "Purchases."
     )
+    # for now we make replenshiment cost field only on template and not in
+    # product (this should be done in PRC)
+    #     string='Replenishment Cost',
+    #     store=False,
+    #     digits=dp.get_precision('Product Price'),
+    #     help="The cost that you have to support in order to produce or "
+    #          "acquire the goods. Depending on the modules installed, "
+    #          "this cost may be computed based on various pieces of "
+    #          "information, for example Bills of Materials or latest "
+    #          "Purchases."
 
     @api.model
     def cron_update_cost_from_replenishment_cost(self):
         # como es property no podemos hacer el search
-        return self.search([])._update_cost_from_replenishment_cost()
+        _logger.info('Running cron update cost from replenishment')
+        domain = [
+            ('replenishment_base_cost', '!=', False),
+            ('replenishment_base_cost_currency_id', '!=', False),
+        ]
+        return self.search(domain)._update_cost_from_replenishment_cost()
 
     @api.multi
     def _update_cost_from_replenishment_cost(self):
+        _logger.info(
+            'Running update cost from replenishment for %s products' % (
+                len(self.ids)))
         for rec in self:
-            if rec.cost_method != 'standard' or not rec.replenishment_cost:
+            # TODO ver si lo storearon o mejoraron para poder incluirlo
+            # no hacemos mas la comparación porque tira la performance muy
+            # abajo porque es campo calculado que a su vez usa properties
+            # if rec.cost_method != 'standard' or not rec.replenishment_cost:
+            if not rec.replenishment_cost:
                 continue
             rec.standard_price = rec.replenishment_cost
         return True
@@ -67,14 +83,17 @@ class ProductTemplate(models.Model):
         self.write({'replenishment_cost_last_update': fields.Datetime.now()})
 
     @api.multi
-    # @api.depends(
-    #     'currency_id',
-    #     'replenishment_base_cost',
-    #     # because of being stored
-    #     'replenishment_base_cost_currency_id.rate_ids.rate',
-    #     # and this if we change de date (name field)
-    #     'replenishment_base_cost_currency_id.rate_ids.name',
-    # )
+    # TODO ver si necesitamos borrar estos depends o no, por ahora
+    # no parecen afectar performance y sirvern para que la interfaz haga
+    # el onchange, pero no son fundamentales porque el campo no lo storeamos
+    @api.depends(
+        'currency_id',
+        'replenishment_base_cost',
+        # because of being stored
+        'replenishment_base_cost_currency_id.rate_ids.rate',
+        # and this if we change de date (name field)
+        'replenishment_base_cost_currency_id.rate_ids.name',
+    )
     def _get_replenishment_cost(self):
         _logger.info(
             'Getting replenishment cost currency for ids %s' % self.ids)
@@ -95,12 +114,14 @@ class ProductTemplate(models.Model):
         return replenishment_cost
 
 
-class ProductProduct(models.Model):
-    _inherit = 'product.product'
+# al final, directamente lo cambiamos en product.template en el modulo
+# base, para mejorar temas de performance
+# class ProductProduct(models.Model):
+#     _inherit = 'product.product'
 
-    # we make it related to prod template because for now we want it only
-    # on prod template
-    replenishment_cost = fields.Float(
-        related='product_tmpl_id.replenishment_cost',
-        store=False,
-    )
+#     # we make it related to prod template because for now we want it only
+#     # on prod template
+#     replenishment_cost = fields.Float(
+#         related='product_tmpl_id.replenishment_cost',
+#         store=False,
+#     )
