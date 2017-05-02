@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Copyright (C) 2015  ADHOC SA  (http://www.adhoc.com.ar)
+#    Copyright (C) 2017  ADHOC SA  (http://www.adhoc.com.ar)
 #    All Rights Reserved.
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -18,29 +18,16 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
 {
-    "name": "Product Stock By Location",
-    'version': '9.0.1.2.0',
-    'category': 'Tools',
-    'sequence': 14,
-    'author': 'ADHOC SA',
+    'name': 'Product Variant Force One Two One',
+    'version': '9.0.1.0.0',
+    'category': 'Sales',
+    'author': 'ADHOC SA.',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
-    'summary': '',
-    "depends": [
-        "stock",
-    ],
+    'depends': ['product'],
     'data': [
-        # 'data/product_data.xml',
-        'views/product_view.xml',
-        'views/stock_location_view.xml',
+        'product_view.xml',
     ],
-    'demo': [
-    ],
-    'test': [
-    ],
-    'installable': True,
-    'auto_install': False,
-    'application': False,
+    'installable': True
 }
