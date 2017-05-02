@@ -20,11 +20,13 @@ class ProductReplenishmentCostRule(models.Model):
         'product.replenishment_cost.rule.item',
         'replenishment_cost_rule_id',
         'Items',
+        auto_join=True,
     )
     product_ids = fields.One2many(
         'product.template',
         'replenishment_cost_rule_id',
         'Products',
+        auto_join=True,
     )
     description = fields.Char(
         compute='_compute_description',
@@ -64,6 +66,7 @@ class ProductReplenishmentCostRuleItem(models.Model):
         'Rule',
         required=True,
         ondelete='cascade',
+        auto_join=True,
     )
     sequence = fields.Char(
         'sequence',

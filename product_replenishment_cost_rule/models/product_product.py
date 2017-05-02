@@ -5,6 +5,8 @@
 ##############################################################################
 from openerp import models, fields, api
 import openerp.addons.decimal_precision as dp
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class ProductTemplate(models.Model):
@@ -12,6 +14,7 @@ class ProductTemplate(models.Model):
 
     replenishment_cost_rule_id = fields.Many2one(
         'product.replenishment_cost.rule',
+        auto_join=True,
         string='Replenishment Cost Rule',
         track_visibility='onchange',
     )
@@ -38,7 +41,10 @@ class ProductTemplate(models.Model):
         self.replenishment_base_cost_on_currency = (
             self.get_replenishment_cost_currency())
 
-    @api.one
+    @api.multi
+    # TODO ver si necesitamos borrar estos depends o no, por ahora
+    # no parecen afectar performance y sirvern para que la interfaz haga
+    # el onchange, pero no son fundamentales porque el campo no lo storeamos
     @api.depends(
         'replenishment_base_cost',
         # because of being stored
@@ -51,7 +57,11 @@ class ProductTemplate(models.Model):
         'replenishment_cost_rule_id.item_ids.fixed_amount',
     )
     def _get_replenishment_cost(self):
-        self.replenishment_cost = self.get_replenishment_cost_with_rule()
+        _logger.info(
+            'Getting replenishment cost with rule for %s products' % (
+                len(self.ids)))
+        for rec in self:
+            rec.replenishment_cost = rec.get_replenishment_cost_with_rule()
 
     @api.multi
     def get_replenishment_cost_with_rule(self):
