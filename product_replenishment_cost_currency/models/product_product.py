@@ -57,7 +57,9 @@ class ProductTemplate(models.Model):
             ('replenishment_base_cost', '!=', False),
             ('replenishment_base_cost_currency_id', '!=', False),
         ]
-        return self.search(domain)._update_cost_from_replenishment_cost()
+        # el prefetch nos dio una mejora de 57 contra 46 segs para 1500 prods
+        return self.with_context({'prefetch_fields': False}).search(
+            domain)._update_cost_from_replenishment_cost()
 
     @api.multi
     def _update_cost_from_replenishment_cost(self):
