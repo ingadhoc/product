@@ -65,6 +65,10 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def get_replenishment_cost_with_rule(self):
+        # TODO tal vez para mejorar perfomance podriamos agrupar por aquellos
+        # que tienen la misma rul y hacerlos juntos. igual no se que tanto
+        # ganariamos ya que seguramente el prefetch de las rules ya hace que
+        # vengan del cache
         # cost = super(ProductTemplate, self).get_replenishment_cost()
         cost = self.get_replenishment_cost_currency()
         if self.replenishment_cost_rule_id:

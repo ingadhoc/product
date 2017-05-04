@@ -32,28 +32,19 @@ class ProductTemplate(models.Model):
     @api.model
     def cron_update_prices_from_planned(self, limit=None):
         _logger.info('Running update prices from planned cron')
-        # batch_size = 1000
-        # product_ids = self.search([('list_price_type', '!=', False)]).ids
-        # sliced_product_ids = [
-        #     product_ids[i:i + batch_size] for i in range(
-        #         0, len(product_ids), batch_size)]
-        # for product_ids in sliced_product_ids:
-        #     self.browse(product_ids)._update_prices_from_planned()
-        # # for product in self.search(
-        # #         [('list_price_type', '!=', False)], limit=limit):
-        # #     product._update_prices_from_planned()
-        # #     self._cr.commit()
-        # return True
-        # el search lo hacemos abajo ya que tmb se hace abajo para la vista
-        # lista
-        return self.search([])._update_prices_from_planned()
+        return self._update_prices_from_planned()
 
     @api.multi
     def _update_prices_from_planned(self):
+        """
+        If we came from tree list, we update only in selected list
+        """
         # hacemos search de nuevo por si se llama desde vista lista
-        for rec in self.search([
-                ('list_price_type', '!=', False),
-                ('id', 'in', self.ids)]):
+        domain = [('list_price_type', '!=', False)]
+        if self:
+            domain.append(('id', 'in', self.ids))
+        recs = self.search(domain, limit=3000)
+        for rec in recs:
             rec.list_price = rec.computed_list_price
         return True
 
@@ -63,8 +54,8 @@ class ProductTemplate(models.Model):
         'computed_list_price_manual',
     )
     def _get_computed_list_price(self):
-        _logger.info('Getting Compute List Price for products: "%s"' % (
-            self.ids))
+        _logger.info('Getting Compute List Price for %s products' % (
+            len(self.ids)))
         for template in self:
             if not template.list_price_type:
                 continue
