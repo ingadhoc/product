@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-17 14:08+0000\n"
-"PO-Revision-Date: 2016-11-17 14:08+0000\n"
+"POT-Creation-Date: 2017-05-02 23:36+0000\n"
+"PO-Revision-Date: 2017-05-02 23:36+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016\n"
 "Language-Team: French (https://www.transifex.com/adhoc/teams/46451/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -37,22 +37,55 @@ msgid "ABC Sales quantity"
 msgstr ""
 
 #. module: product_unique
+#: model:ir.model.fields,field_description:product_unique.field_product_product_main_seller_id
+#: field:product.product,main_seller_id:0
+msgid "Main Seller"
+msgstr ""
+
+#. module: product_unique
 #: model:ir.model,name:product_unique.model_product_product
 msgid "Product"
 msgstr "Article"
 
 #. module: product_unique
-#: code:addons/product_unique/product.py:23
-#, python-format
-msgid ""
-"There can not be two active products with the                         same "
-"Reference ode in the same company."
+#: model:ir.model.fields,field_description:product_unique.field_product_product_replenishment_cost
+#: field:product.product,replenishment_cost:0
+msgid "Replenishment cost"
 msgstr ""
 
 #. module: product_unique
-#: code:addons/product_unique/product.py:35
+#: model:ir.model.fields,help:product_unique.field_product_product_replenishment_cost
+#: help:product.product,replenishment_cost:0
+msgid ""
+"The cost that you have to support in order to produce or acquire the goods. "
+"Depending on the modules installed, this cost may be computed based on "
+"various pieces of information, for example Bills of Materials or latest "
+"Purchases. By default, the Replenishment cost is the same as the Cost Price."
+msgstr ""
+"Le coût que vous devez prendre en charge pour produire ou acquerir la "
+"marchandise. Selon les modules installés, le calcul de ce coût peut "
+"s'appuyer sur diverses informations : par exemple les nomenclatures ou les "
+"derniers achats. Par défaut, le coût de réapprovisionnement est le même que "
+"le Prix de revient."
+
+#. module: product_unique
+#: code:addons/product_unique/product.py:34
 #, python-format
 msgid ""
-"There can not be two active products with the same                         "
-"EAN code in the same company"
+"There can not be two active products with the same EAN code in the same "
+"company"
+msgstr ""
+
+#. module: product_unique
+#: code:addons/product_unique/product.py:22
+#, python-format
+msgid ""
+"There can not be two active products with the same Reference ode in the same"
+" company."
+msgstr ""
+
+#. module: product_unique
+#: model:ir.model.fields,help:product_unique.field_product_product_main_seller_id
+#: help:product.product,main_seller_id:0
+msgid "Vendor of this product"
 msgstr ""
