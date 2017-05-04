@@ -51,7 +51,9 @@ class ProductTemplate(models.Model):
     @api.multi
     def _update_prices_from_planned(self):
         # hacemos search de nuevo por si se llama desde vista lista
-        for rec in self.search([('list_price_type', '!=', False)]):
+        for rec in self.search([
+                ('list_price_type', '!=', False),
+                ('id', 'in', self.ids)]):
             rec.list_price = rec.computed_list_price
         return True
 
