@@ -1,6 +1,8 @@
 Hecho
     Probar correr sin prefetch ctx.update({'prefetch_fields': False})
 
+    3000 sin prefetch 0:44
+
 TODO
     Ver si solo actualizamos con otra moneda que no sea base (cotización 1). Tal vez esto tmb lo podemos usar a la hora de agrupar por productos cuando se calcula el costo, siempre son 3 monedas, esto debería mejorar
 

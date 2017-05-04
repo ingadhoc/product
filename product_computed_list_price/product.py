@@ -43,7 +43,8 @@ class ProductTemplate(models.Model):
         domain = [('list_price_type', '!=', False)]
         if self:
             domain.append(('id', 'in', self.ids))
-        recs = self.search(domain, limit=3000)
+        # for better perfromance, do not prefetch
+        recs = self.with_context({'prefetch_fields': False}).search(domain)
         for rec in recs:
             rec.list_price = rec.computed_list_price
         return True
