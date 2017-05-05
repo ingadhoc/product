@@ -100,16 +100,18 @@ class ProductTemplate(models.Model):
         _logger.info(
             'Getting replenishment cost currency for ids %s' % self.ids)
         for rec in self:
-            rec.replenishment_cost = rec.get_replenishment_cost_currency()
+            rec.replenishment_cost = rec.get_replenishment_cost_currency(
+                rec.replenishment_base_cost_currency_id,
+                rec.currency_id,
+                rec.replenishment_base_cost,
+            )
 
-    @api.multi
-    def get_replenishment_cost_currency(self):
-        self.ensure_one()
-        from_currency = self.replenishment_base_cost_currency_id
-        to_currency = self.currency_id
+    @api.model
+    def get_replenishment_cost_currency(
+            self, from_currency, to_currency, base_cost):
         replenishment_cost = False
         if from_currency and to_currency:
-            replenishment_cost = self.replenishment_base_cost
+            replenishment_cost = base_cost
             if from_currency != to_currency:
                 replenishment_cost = from_currency.compute(
                     replenishment_cost, to_currency, round=False)

@@ -35,15 +35,13 @@ class product_template(models.Model):
         'replenishment_cost',
     )
     def _get_computed_list_price(self):
-        """Only to update depends"""
-        return super(product_template, self)._get_computed_list_price()
-
-    @api.multi
-    def get_computed_list_price(self):
-        self.ensure_one()
-        if self.list_price_type == 'by_margin':
-            _logger.info('Get computed_list_price for "by_margin" type')
-            return self.replenishment_cost * \
-                (1 + self.sale_margin / 100.0) + \
-                self.sale_surcharge
-        return super(product_template, self).get_computed_list_price()
+        by_margin_recs = self.filtered(
+            lambda x: x.list_price_type == 'by_margin')
+        _logger.info('Get computed_list_price for %s "by_margin" products' % (
+            len(by_margin_recs)))
+        for rec in by_margin_recs:
+            rec.computed_list_price = rec.replenishment_cost * \
+                (1 + rec.sale_margin / 100.0) + rec.sale_surcharge
+        other_type_recs = self - by_margin_recs
+        return super(
+            product_template, other_type_recs)._get_computed_list_price()
