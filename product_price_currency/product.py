@@ -33,7 +33,8 @@ class ProductTemplate(models.Model):
     )
     def _get_computed_list_price(self):
         other_currency_recs = self.filtered(
-            lambda x: x.list_price_type == 'other_currency')
+            lambda x: x.list_price_type == 'other_currency' and
+            x.other_currency_id)
         _logger.info(
             'Get computed_list_price for %s "other_currency" products' % (
                 len(other_currency_recs)))
