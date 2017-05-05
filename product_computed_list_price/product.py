@@ -38,6 +38,9 @@ class ProductTemplate(models.Model):
     def _update_prices_from_planned(self):
         """
         If we came from tree list, we update only in selected list
+        Despues de varias pruebas, obtuvimos la mejor pefromance de esta manera
+        Haciendo practicamente lo de ahora pero sin el slice tuvimos une
+        performance basatante peor (casi 2 o 3 veces mas de tiempo)
         """
         # hacemos search de nuevo por si se llama desde vista lista
         domain = [('list_price_type', '!=', False)]
