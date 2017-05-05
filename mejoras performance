@@ -1,40 +1,24 @@
-Hecho
-    Probar correr sin prefetch ctx.update({'prefetch_fields': False})
+TODOS prods: 25 min
+Todos prods: termino a los 9 pero siguió. 
 
-    3000 sin prefetch 0:44
+Hcaer pruebas con 3/5000 primero (ponele). 
+Probar desinstalar delivery!!!!
+Probar hacer update solo del tipo "manual"
+Probar correr haciendo un print y no el write
+si llega a andar bien sacar lo de los batchs
 
-TODO
-    Ver si solo actualizamos con otra moneda que no sea base (cotización 1). Tal vez esto tmb lo podemos usar a la hora de agrupar por productos cuando se calcula el costo, siempre son 3 monedas, esto debería mejorar
+Si no tirar con el debug, algunos menos y ver porque mierda se traba después de temrinarlo (tirar unos 5000)
 
-    Probar en precio de venta con y sin prefetch para una determinada cantidad de productos
+Ver log con debug rpc y probar nuevo que hacemos en los batch
 
-    
-    Ver si hay para mejorar en margin y demas, que solo lo aplique si corresponde. Esto podemos probarlo en local con unos 500 productos e ir viendo
+Probar para lo de performance si podemos hacer stores parciales, al fin y al cabo solo los que estén afectados por tema de moneda joden
 
-    Analizar si podemos actualizar solo los que:
-        replenishment_cost_last_update >= last update (todavía no disponible pero podría ser ultima corrida de cron)
-        y ademas tener en cuenta fecha cotización moneda.
-
-    Podríamos analizar hacer en batch por cotización moneda
+Ver si solo actualizamos con otra moneda que no sea base (cotización 1). Tal vez esto tmb lo podemos usar a la hora de agrupar por productos cuando se calcula el costo, siempre son 3 monedas, esto debería mejorar
 
 
-300 prods: 1:12
-300 prods solo write: 0:15 
-300 prods sin template y con comentarios: 20
-10000 prods sin template y con comentarios: 7:00
-10000 prods sin template y con comentarios y haciendo browse adentro de loop: 7:00 (idem)
+Analizar si podemos actualizar solo los que:
+    replenishment_cost_last_update >= last update (todavía no disponible pero podría ser ultima corrida de cron)
+    y ademas tener en cuenta fecha cotización moneda.
 
-500 prod 0:30
-
-40363
-
-2_35 para tener stock level de todos los prod
-
-
-weg equipamientos - rosario/stock
-
-a los 34 minutos tiro cpu limite exceed
-
-em local tardó unos 40 minutos
-1500 sin prefetch fields: 0:45
+Podríamos analizar hacer en batch por cotización moneda
 
