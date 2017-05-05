@@ -4,6 +4,7 @@
 # directory
 ##############################################################################
 from openerp import models, fields, api
+import openerp.addons.decimal_precision as dp
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -13,11 +14,13 @@ class ProductTemplate(models.Model):
 
     computed_list_price_manual = fields.Float(
         string='Planned Price Manual',
-        help='Field to store manual planned price'
+        digits=dp.get_precision('Product Price'),
+        help='Field to store manual planned price',
     )
     computed_list_price = fields.Float(
         string='Planned Price',
         compute='_get_computed_list_price',
+        digits=dp.get_precision('Product Price'),
         help='Planned Price. This value depends on Planned Price Type" an '
         'other parameters.',
     )
