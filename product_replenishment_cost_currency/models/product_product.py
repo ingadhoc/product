@@ -50,30 +50,64 @@ class ProductTemplate(models.Model):
     #          "Purchases."
 
     @api.model
-    def cron_update_cost_from_replenishment_cost(self):
-        # como es property no podemos hacer el search
+    def cron_update_cost_from_replenishment_cost(self, limit=None):
         _logger.info('Running cron update cost from replenishment')
+        return self._update_cost_from_replenishment_cost()
+
+    @api.multi
+    def _update_cost_from_replenishment_cost(self):
+        """
+        If we came from tree list, we update only in selected list
+        """
+        # hacemos search de nuevo por si se llama desde vista lista
         domain = [
             ('replenishment_base_cost', '!=', False),
             ('replenishment_base_cost_currency_id', '!=', False),
         ]
-        # el prefetch nos dio una mejora de 57 contra 46 segs para 1500 prods
-        return self.with_context({'prefetch_fields': False}).search(
-            domain)._update_cost_from_replenishment_cost()
+        if self:
+            domain.append(('id', 'in', self.ids))
 
-    @api.multi
-    def _update_cost_from_replenishment_cost(self):
-        _logger.info(
-            'Running update cost from replenishment for %s products' % (
-                len(self.ids)))
-        for rec in self:
-            # TODO ver si lo storearon o mejoraron para poder incluirlo
-            # no hacemos mas la comparación porque tira la performance muy
-            # abajo porque es campo calculado que a su vez usa properties
-            # if rec.cost_method != 'standard' or not rec.replenishment_cost:
-            if not rec.replenishment_cost:
-                continue
-            rec.standard_price = rec.replenishment_cost
+        batch_size = 1000
+        product_ids = self.search(domain).ids
+        sliced_product_ids = [
+            product_ids[i:i + batch_size] for i in range(
+                0, len(product_ids), batch_size)]
+        cr = self.env.cr
+        run = 0
+        for product_ids in sliced_product_ids:
+            run += 1
+            # hacemos invalidate cache para que no haga prefetch de todos,
+            # solo los del slice
+            self.invalidate_cache()
+            recs = self.browse(product_ids)
+            _logger.info(
+                'Running update update cost for %s products. Run %s of %s' % (
+                    len(recs), run, len(sliced_product_ids)))
+            for rec in recs:
+                replenishment_cost = rec.replenishment_cost
+                # TODO we should check if standar_price type is standar and
+                # not by quants or similar, we remove that because it makes
+                # it slower
+                if not replenishment_cost:
+                    continue
+                rec.standard_price = replenishment_cost
+                # we can not use sql because standar_price is a property,
+                # perhups we can do it writing directly on the property but
+                # we need to check if record exists, we can copy some code of
+                # def set_multi
+                # tal vez mejor que meter mano en esto hacer que solo se
+                # actualicen los que se tienen que actualizar
+                # seguramente en la v10 se mejoro el metodo de set de property
+                # tmb
+                # cr.execute(
+                #     "UPDATE product_template SET standard_price=%s WHERE "
+                #     "id=%s", (replenishment_cost, rec.id))
+
+            # commit update (fo free memory?) also to have results stored
+            # in the future, if we store the date, we can update only newones
+            cr.commit()
+            _logger.info('Finish updating cost of run %s' % run)
+
         return True
 
     @api.multi
