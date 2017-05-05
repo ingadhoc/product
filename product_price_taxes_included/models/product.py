@@ -48,7 +48,8 @@ class ProductTemplate(models.Model):
 
     taxed_lst_price = fields.Float(
         string='Taxed Sale Price',
-        compute='get_taxed_lst_price'
+        compute='get_taxed_lst_price',
+        digits=dp.get_precision('Product Price'),
     )
 
     @api.multi
