@@ -45,7 +45,7 @@ class ProductTemplate(models.Model):
             domain.append(('id', 'in', self.ids))
 
         batch_size = 1000
-        product_ids = self.search([('list_price_type', '!=', False)]).ids
+        product_ids = self.search(domain).ids
         sliced_product_ids = [
             product_ids[i:i + batch_size] for i in range(
                 0, len(product_ids), batch_size)]
