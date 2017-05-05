@@ -27,7 +27,7 @@ class ProductTemplate(Model):
         compute=_get_replenishment_cost,
         # TODO, activamos store como estaba??
         store=False,
-        digits_compute=dp.get_precision('Product Price'),
+        digits=dp.get_precision('Product Price'),
         help="The cost that you have to support in order to produce or "
              "acquire the goods. Depending on the modules installed, "
              "this cost may be computed based on various pieces of "
