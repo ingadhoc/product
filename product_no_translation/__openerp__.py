@@ -29,6 +29,6 @@
     'summary': 'For companies that work with only one language',
     'author': 'Akretion,ADHOC SA',
     'depends': ['product'],
-    'pre_init_hook': 'pre_init_hook',
+    'post_init_hook': 'post_init_hook',
     'installable': True,
 }
