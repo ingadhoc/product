@@ -2,26 +2,26 @@
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in root directory
 ##############################################################################
-from openerp import fields, models, api, _
+from odoo import fields, models, api, _
 
 
-class SaleOrderLine(models.Model):
+class sale_order_line(models.Model):
     _inherit = 'sale.order.line'
 
     # Fields for sale order pack
     pack_total = fields.Float(
         string='Pack total',
         compute='_get_pack_total'
-    )
+        )
     pack_line_ids = fields.One2many(
         'sale.order.line.pack.line',
         'order_line_id',
         'Pack Lines'
-    )
+        )
     pack_type = fields.Selection(
         related='product_id.pack_price_type',
         readonly=True
-    )
+        )
 
     # Fields for common packs
     pack_depth = fields.Integer(
@@ -56,7 +56,7 @@ class SaleOrderLine(models.Model):
                 existing_subline = self.search([
                     ('product_id', '=', subline.product_id.id),
                     ('pack_parent_line_id', '=', self.id),
-                ], limit=1)
+                    ], limit=1)
                 # if subline already exists we update, if not we create
                 if existing_subline:
                     existing_subline.write(vals)
@@ -118,5 +118,5 @@ class SaleOrderLine(models.Model):
                     'price_unit': price_unit,
                     'discount': pack_line.discount,
                     'price_subtotal': price_unit * quantity,
-                }
+                    }
                 self.pack_line_ids.create(vals)
