@@ -35,7 +35,8 @@ class ProductTemplate(models.Model):
     @api.model
     def cron_update_prices_from_planned(self, limit=None):
         _logger.info('Running update prices from planned cron')
-        return self._update_prices_from_planned()
+        return self.with_context(
+            commit_transaction=True)._update_prices_from_planned()
 
     @api.multi
     def _update_prices_from_planned(self):
@@ -47,6 +48,7 @@ class ProductTemplate(models.Model):
         """
         # hacemos search de nuevo por si se llama desde vista lista
         domain = [('list_price_type', '!=', False)]
+        commit_transaction = self.env.context.get('commit_transaction')
         if self:
             domain.append(('id', 'in', self.ids))
 
@@ -75,7 +77,10 @@ class ProductTemplate(models.Model):
 
             # commit update (fo free memory?) also to have results stored
             # in the future, if we store the date, we can update only newones
-            cr.commit()
+
+            # principalmente agregamos esto por error en migracion
+            if commit_transaction:
+                cr.commit()
             _logger.info('Finish updating prices of run %s' % run)
         # because we have write list_price with sql, this method from delivery
         # module is not called, we call it manually. If other modules depends

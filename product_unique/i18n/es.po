@@ -83,7 +83,7 @@ msgstr ""
 #: code:addons/product_unique/product.py:22
 #, python-format
 msgid ""
-"There can not be two active products with the same Reference ode in the same"
+"There can not be two active products with the same Reference code in the same"
 " company."
 msgstr ""
 "No puede haber dos productos activos con el mismo código de referencia en la"

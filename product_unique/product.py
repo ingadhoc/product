@@ -21,7 +21,7 @@ class ProductProduct(models.Model):
             if len(prod_ids) > 1:
                 raise UserError(_(
                     'There can not be two active products with the '
-                    'same Reference ode in the same company.'))
+                    'same Reference code in the same company.'))
 
     @api.one
     @api.constrains('product_tmpl_id', 'barcode', 'active')

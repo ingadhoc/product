@@ -52,7 +52,8 @@ class ProductTemplate(models.Model):
     @api.model
     def cron_update_cost_from_replenishment_cost(self, limit=None):
         _logger.info('Running cron update cost from replenishment')
-        return self._update_cost_from_replenishment_cost()
+        return self.with_context(
+            commit_transaction=True)._update_cost_from_replenishment_cost()
 
     @api.multi
     def _update_cost_from_replenishment_cost(self):
@@ -60,6 +61,7 @@ class ProductTemplate(models.Model):
         If we came from tree list, we update only in selected list
         """
         # hacemos search de nuevo por si se llama desde vista lista
+        commit_transaction = self.env.context.get('commit_transaction')
         domain = [
             ('replenishment_base_cost', '!=', False),
             ('replenishment_base_cost_currency_id', '!=', False),
@@ -105,7 +107,11 @@ class ProductTemplate(models.Model):
 
             # commit update (fo free memory?) also to have results stored
             # in the future, if we store the date, we can update only newones
-            cr.commit()
+
+            # principalmente agregamos esto por error en migracion pero tmb
+            # para que solo se haga el commit por cron
+            if commit_transaction:
+                cr.commit()
             _logger.info('Finish updating cost of run %s' % run)
 
         return True
