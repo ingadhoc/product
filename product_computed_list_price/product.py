@@ -78,7 +78,8 @@ class ProductTemplate(models.Model):
             # commit update (fo free memory?) also to have results stored
             # in the future, if we store the date, we can update only newones
 
-            # principalmente agregamos esto por error en migracion
+            # principalmente agregamos esto por error en migracion pero tmb
+            # para que solo se haga el commit por cron
             if commit_transaction:
                 cr.commit()
             _logger.info('Finish updating prices of run %s' % run)
