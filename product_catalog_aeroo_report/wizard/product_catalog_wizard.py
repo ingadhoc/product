@@ -18,6 +18,10 @@ class ProductCatalog(models.TransientModel):
     taxes_included = fields.Boolean(
         'Taxes Included',
     )
+    use_planned_price = fields.Boolean(
+        string='Use Planned Price',
+        help="Use planned price instead of list price (if planned price module"
+        " is not installed, nothing is going to change)")
 
     @api.onchange('product_catalog_report_id')
     def change_product_catalog_report(self):
@@ -27,4 +31,5 @@ class ProductCatalog(models.TransientModel):
     def generate_report(self):
         self.ensure_one()
         return self.product_catalog_report_id.with_context(
-            taxes_included=self.taxes_included).generate_report()
+            taxes_included=self.taxes_included,
+            use_planned_price=self.use_planned_price).generate_report()
