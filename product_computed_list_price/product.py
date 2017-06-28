@@ -99,3 +99,14 @@ class ProductTemplate(models.Model):
             len(manual_recs)))
         for rec in manual_recs:
             rec.computed_list_price = rec.computed_list_price_manual
+
+    @api.model
+    def _price_get(self, products, ptype='list_price'):
+        """
+        Hacemos esto para que si alguien quiere forzar que el precio calculado
+        se en base al planeado, lo pueda hacer mandando use_planned_price
+        en el contexto
+        """
+        if self._context.get('use_planned_price') and ptype == 'list_price':
+            ptype = 'computed_list_price'
+        return super(ProductTemplate, self)._price_get(products, ptype=ptype)
