@@ -4,14 +4,13 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016
-# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-06 12:19+0000\n"
-"PO-Revision-Date: 2017-04-06 12:19+0000\n"
-"Last-Translator: Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2017\n"
+"POT-Creation-Date: 2017-06-28 16:11+0000\n"
+"PO-Revision-Date: 2017-06-28 16:11+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,6 +38,7 @@ msgid ""
 "                    <group>\n"
 "                        <field name=\"product_catalog_report_id\"/>\n"
 "                        <field name=\"taxes_included\"/>\n"
+"                        <field name=\"use_planned_price\"/>\n"
 "                    </group>\n"
 "                    <footer>\n"
 "                        <button name=\"generate_report\" string=\"Print\" type=\"object\" class=\"oe_highlight\"/>\n"
@@ -48,19 +48,6 @@ msgid ""
 "                </form>\n"
 "            "
 msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<form string=\"Product Catalog Report\">\n"
-"                    <group>\n"
-"                        <field name=\"product_catalog_report_id\"/>\n"
-"                        <field name=\"taxes_included\"/>\n"
-"                    </group>\n"
-"                    <footer>\n"
-"                        <button name=\"generate_report\" string=\"Print\" type=\"object\" class=\"oe_highlight\"/>\n"
-"                        or\n"
-"                        <button string=\"Cancel\" special=\"cancel\" class=\"oe_link\"/>\n"
-"                    </footer>\n"
-"                </form>\n"
-"            "
 
 #. module: product_catalog_aeroo_report
 #: model:ir.ui.view,arch_db:product_catalog_aeroo_report.view_product_catalog_report_form
@@ -346,6 +333,20 @@ msgstr "Impuestos incluídos"
 #: field:product.product_catalog_report,taxes_included:0
 msgid "Taxes Included?"
 msgstr "¿Impuestos incluídos?"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog_use_planned_price
+#: field:product_catalog,use_planned_price:0
+msgid "Use Planned Price"
+msgstr ""
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,help:product_catalog_aeroo_report.field_product_catalog_use_planned_price
+#: help:product_catalog,use_planned_price:0
+msgid ""
+"Use planned price instead of list price (if planned price module is not "
+"installed, nothing is going to change)"
+msgstr ""
 
 #. module: product_catalog_aeroo_report
 #: selection:product.product_catalog_report,prod_display_type:0
