@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-02 23:36+0000\n"
-"PO-Revision-Date: 2017-05-02 23:36+0000\n"
+"POT-Creation-Date: 2017-07-20 14:44+0000\n"
+"PO-Revision-Date: 2017-07-20 14:44+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2017\n"
 "Language-Team: French (https://www.transifex.com/adhoc/teams/46451/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -20,28 +20,16 @@ msgstr ""
 
 #. module: product_sale_price_by_margin
 #: model:ir.ui.view,arch_db:product_sale_price_by_margin.product_template_only_form_view
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<field name=\"list_price_type\" position=\"after\">\n"
-"                    <label for=\"sale_margin\" string=\"Margin Formula\" attrs=\"{'invisible': [('list_price_type', '!=', 'by_margin')]}\"/>\n"
-"                    <div attrs=\"{'invisible': [('list_price_type', '!=', 'by_margin')]}\">\n"
-"                        <field name=\"replenishment_cost_copy\" class=\"oe_inline\"/>* ( 1 +\n"
-"                        <field name=\"sale_margin\" class=\"oe_inline\"/>%) + \n"
-"                        <field name=\"sale_surcharge\" class=\"oe_inline\"/>\n"
-"                    </div>\n"
-"                </field>\n"
-"            "
+msgid "Margin Formula"
 msgstr ""
 
 #. module: product_sale_price_by_margin
 #: model:ir.model.fields,field_description:product_sale_price_by_margin.field_product_template_sale_margin
-#: field:product.template,sale_margin:0
 msgid "Planned Price Sale margin %"
 msgstr ""
 
 #. module: product_sale_price_by_margin
 #: model:ir.model.fields,field_description:product_sale_price_by_margin.field_product_template_sale_surcharge
-#: field:product.template,sale_surcharge:0
 msgid "Planned Price Sale surcharge"
 msgstr ""
 
@@ -52,13 +40,11 @@ msgstr ""
 
 #. module: product_sale_price_by_margin
 #: model:ir.model.fields,field_description:product_sale_price_by_margin.field_product_template_replenishment_cost_copy
-#: field:product.template,replenishment_cost_copy:0
 msgid "Replenishment cost"
 msgstr ""
 
 #. module: product_sale_price_by_margin
 #: model:ir.model.fields,help:product_sale_price_by_margin.field_product_template_replenishment_cost_copy
-#: help:product.template,replenishment_cost_copy:0
 msgid ""
 "The cost that you have to support in order to produce or acquire the goods. "
 "Depending on the modules installed, this cost may be computed based on "

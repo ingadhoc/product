@@ -4,14 +4,13 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016
-# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-06 12:19+0000\n"
-"PO-Revision-Date: 2017-04-06 12:19+0000\n"
-"Last-Translator: Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2017\n"
+"POT-Creation-Date: 2017-07-20 14:43+0000\n"
+"PO-Revision-Date: 2017-07-20 14:43+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,37 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: product_price_currency
-#: model:ir.ui.view,arch_db:product_price_currency.product_template_only_form_view
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<field name=\"list_price_type\" position=\"after\">\n"
-"                    <label for=\"other_currency_list_price\" attrs=\"{'invisible': [('list_price_type', '!=', 'other_currency')]}\"/>\n"
-"                    <div name=\"other_currency_list_price\" attrs=\"{'invisible': [('list_price_type', '!=', 'other_currency')]}\">\n"
-"                        <field name=\"other_currency_list_price\" widget=\"monetary\" class=\"oe_inline\" options=\"{'currency_field': 'other_currency_id'}\"/>\n"
-"                        <field name=\"other_currency_id\" class=\"oe_inline oe_edit_only\" attrs=\"{'required': [('list_price_type', '=', 'other_currency')]}\"/>\n"
-"                    </div>\n"
-"                </field>\n"
-"            "
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<field name=\"list_price_type\" position=\"after\">\n"
-"                    <label for=\"other_currency_list_price\" attrs=\"{'invisible': [('list_price_type', '!=', 'other_currency')]}\"/>\n"
-"                    <div name=\"other_currency_list_price\" attrs=\"{'invisible': [('list_price_type', '!=', 'other_currency')]}\">\n"
-"                        <field name=\"other_currency_list_price\" widget=\"monetary\" class=\"oe_inline\" options=\"{'currency_field': 'other_currency_id'}\"/>\n"
-"                        <field name=\"other_currency_id\" class=\"oe_inline oe_edit_only\" attrs=\"{'required': [('list_price_type', '=', 'other_currency')]}\"/>\n"
-"                    </div>\n"
-"                </field>\n"
-"            "
-
-#. module: product_price_currency
 #: model:ir.model.fields,field_description:product_price_currency.field_product_template_other_currency_id
-#: field:product.template,other_currency_id:0
 msgid "Planned Currency"
 msgstr "Moneda PLaneada"
 
 #. module: product_price_currency
 #: model:ir.model.fields,field_description:product_price_currency.field_product_template_other_currency_list_price
-#: field:product.template,other_currency_list_price:0
 msgid "Planned Price on Currency"
 msgstr "Precio Planeado en la Moneda"
 
