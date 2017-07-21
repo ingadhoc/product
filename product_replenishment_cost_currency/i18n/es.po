@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-02 23:36+0000\n"
-"PO-Revision-Date: 2017-05-02 23:36+0000\n"
+"POT-Creation-Date: 2017-07-20 14:44+0000\n"
+"PO-Revision-Date: 2017-07-20 14:44+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
@@ -20,144 +20,68 @@ msgstr ""
 
 #. module: product_replenishment_cost_currency
 #: model:ir.ui.view,arch_db:product_replenishment_cost_currency.product_template_form_view
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<data><!-- we move standard_price to inventory tab -->\n"
-"                <label for=\"standard_price\" position=\"replace\"/>\n"
-"                <div name=\"standard_price_uom\" position=\"replace\"/>\n"
-"\n"
-"                <group name=\"inventory\" position=\"after\">\n"
-"                    <group name=\"costing\" string=\"Costing\">\n"
-"                        <group name=\"replenishment_cost\">\n"
-"                            <field name=\"replenishment_cost_last_update\"/>\n"
-"                            <label for=\"replenishment_base_cost\"/>\n"
-"                            <div name=\"replenishment_base_cost\">\n"
-"                                <field name=\"replenishment_base_cost\" class=\"oe_inline\" widget=\"monetary\" options=\"{'currency_field': 'replenishment_base_cost_currency_id'}\"/>\n"
-"                                <field name=\"replenishment_base_cost_currency_id\" class=\"oe_inline oe_edit_only\"/>\n"
-"                            </div>\n"
-"                            <field name=\"replenishment_cost\" widget=\"monetary\" options=\"{'currency_field': 'currency_id'}\"/>\n"
-"                        </group>\n"
-"                        <group name=\"accounting_cost\">\n"
-"                            <!-- we only change label -->\n"
-"                            <label for=\"standard_price\" groups=\"base.group_user\" string=\"Accounting Cost\" attrs=\"{'invisible': [('product_variant_count', '&gt;', 1)]}\"/>\n"
-"                            <div name=\"standard_price_uom\" groups=\"base.group_user\">\n"
-"                                <field name=\"standard_price\" widget=\"monetary\" options=\"{'currency_field': 'currency_id'}\" class=\"oe_inline\"/>\n"
-"                            </div>\n"
-"                        </group>\n"
-"                    </group>\n"
-"                </group>\n"
-"            </data>"
+msgid "Accounting Cost"
 msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<data><!-- we move standard_price to inventory tab -->\n"
-"                <label for=\"standard_price\" position=\"replace\"/>\n"
-"                <div name=\"standard_price_uom\" position=\"replace\"/>\n"
-"\n"
-"                <group name=\"inventory\" position=\"after\">\n"
-"                    <group name=\"costing\" string=\"Costing\">\n"
-"                        <group name=\"replenishment_cost\">\n"
-"                            <field name=\"replenishment_cost_last_update\"/>\n"
-"                            <label for=\"replenishment_base_cost\"/>\n"
-"                            <div name=\"replenishment_base_cost\">\n"
-"                                <field name=\"replenishment_base_cost\" class=\"oe_inline\" widget=\"monetary\" options=\"{'currency_field': 'replenishment_base_cost_currency_id'}\"/>\n"
-"                                <field name=\"replenishment_base_cost_currency_id\" class=\"oe_inline oe_edit_only\"/>\n"
-"                            </div>\n"
-"                            <field name=\"replenishment_cost\" widget=\"monetary\" options=\"{'currency_field': 'currency_id'}\"/>\n"
-"                        </group>\n"
-"                        <group name=\"accounting_cost\">\n"
-"                            <!-- we only change label -->\n"
-"                            <label for=\"standard_price\" groups=\"base.group_user\" string=\"Accounting Cost\" attrs=\"{'invisible': [('product_variant_count', '&gt;', 1)]}\"/>\n"
-"                            <div name=\"standard_price_uom\" groups=\"base.group_user\">\n"
-"                                <field name=\"standard_price\" widget=\"monetary\" options=\"{'currency_field': 'currency_id'}\" class=\"oe_inline\"/>\n"
-"                            </div>\n"
-"                        </group>\n"
-"                    </group>\n"
-"                </group>\n"
-"            </data>"
-
-#. module: product_replenishment_cost_currency
-#: model:ir.ui.view,arch_db:product_replenishment_cost_currency.view_product_product_form
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<field name=\"replenishment_cost\" position=\"replace\"/>\n"
-"            "
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<field name=\"replenishment_cost\" position=\"replace\"/>\n"
-"            "
 
 #. module: product_replenishment_cost_currency
 #: model:ir.ui.view,arch_db:product_replenishment_cost_currency.view_update_from_replenishment_cost_wizard_form
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<form string=\"Product Catalog Report\">\n"
-"                    Update Accounting Cost with Replenishment Cost for all sellected products with costing method Standard Price and with Replenishment Cost different from 0.\n"
-"                    <footer>\n"
-"                        <button name=\"confirm\" string=\"Confirm\" type=\"object\" class=\"oe_highlight\"/>\n"
-"                        or\n"
-"                        <button string=\"Cancel\" special=\"cancel\" class=\"oe_link\"/>\n"
-"                    </footer>\n"
-"                </form>\n"
-"            "
+msgid "Cancel"
 msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<form string=\"Product Catalog Report\">\n"
-"                    Actualizar el Costo Contable con el Costo de Reposición para todos los productos seleccionados con el método de costeo \"Precio Estándar\" y con el Precio de Reposición distinto de 0.\n"
-"                    <footer>\n"
-"                        <button name=\"confirm\" string=\"Confirm\" type=\"object\" class=\"oe_highlight\"/>\n"
-"                        o\n"
-"                        <button string=\"Cancel\" special=\"cancel\" class=\"oe_link\"/>\n"
-"                    </footer>\n"
-"                </form>\n"
-"            "
+
+#. module: product_replenishment_cost_currency
+#: model:ir.ui.view,arch_db:product_replenishment_cost_currency.view_update_from_replenishment_cost_wizard_form
+msgid "Confirm"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: model:ir.ui.view,arch_db:product_replenishment_cost_currency.product_template_form_view
+msgid "Costing"
+msgstr ""
 
 #. module: product_replenishment_cost_currency
 #: model:ir.model.fields,field_description:product_replenishment_cost_currency.field_product_update_from_replenishment_cost_wizard_create_uid
-#: field:product.update_from_replenishment_cost.wizard,create_uid:0
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: product_replenishment_cost_currency
 #: model:ir.model.fields,field_description:product_replenishment_cost_currency.field_product_update_from_replenishment_cost_wizard_create_date
-#: field:product.update_from_replenishment_cost.wizard,create_date:0
 msgid "Created on"
 msgstr "Creado el"
 
 #. module: product_replenishment_cost_currency
 #: model:ir.model.fields,help:product_replenishment_cost_currency.field_product_template_replenishment_base_cost_currency_id
-#: help:product.template,replenishment_base_cost_currency_id:0
 msgid "Currency used for the Replanishment Base Cost."
 msgstr "Moneda utilizada para el Costo Base de Reposición."
 
 #. module: product_replenishment_cost_currency
 #: model:ir.model.fields,field_description:product_replenishment_cost_currency.field_product_update_from_replenishment_cost_wizard_display_name
-#: field:product.update_from_replenishment_cost.wizard,display_name:0
 msgid "Display Name"
 msgstr "Mostrar nombre"
 
 #. module: product_replenishment_cost_currency
 #: model:ir.model.fields,field_description:product_replenishment_cost_currency.field_product_update_from_replenishment_cost_wizard_id
-#: field:product.update_from_replenishment_cost.wizard,id:0
 msgid "ID"
 msgstr "ID"
 
 #. module: product_replenishment_cost_currency
 #: model:ir.model.fields,field_description:product_replenishment_cost_currency.field_product_update_from_replenishment_cost_wizard___last_update
-#: field:product.update_from_replenishment_cost.wizard,__last_update:0
 msgid "Last Modified on"
 msgstr "Última modificación el"
 
 #. module: product_replenishment_cost_currency
 #: model:ir.model.fields,field_description:product_replenishment_cost_currency.field_product_update_from_replenishment_cost_wizard_write_uid
-#: field:product.update_from_replenishment_cost.wizard,write_uid:0
 msgid "Last Updated by"
 msgstr "Última actualización por"
 
 #. module: product_replenishment_cost_currency
 #: model:ir.model.fields,field_description:product_replenishment_cost_currency.field_product_update_from_replenishment_cost_wizard_write_date
-#: field:product.update_from_replenishment_cost.wizard,write_date:0
 msgid "Last Updated on"
 msgstr "Última actualización el"
+
+#. module: product_replenishment_cost_currency
+#: model:ir.ui.view,arch_db:product_replenishment_cost_currency.view_update_from_replenishment_cost_wizard_form
+msgid "Product Catalog Report"
+msgstr ""
 
 #. module: product_replenishment_cost_currency
 #: model:ir.model,name:product_replenishment_cost_currency.model_product_template
@@ -166,28 +90,32 @@ msgstr "Plantilla de Producto"
 
 #. module: product_replenishment_cost_currency
 #: model:ir.model.fields,help:product_replenishment_cost_currency.field_product_template_replenishment_base_cost
-#: help:product.template,replenishment_base_cost:0
 msgid "Replanishment Cost expressed in 'Replenishment Base Cost Currency'."
 msgstr ""
 "Costo de Reposición expresado en la \"Moneda del Costo Base de Reposición\"."
 
 #. module: product_replenishment_cost_currency
 #: model:ir.model.fields,field_description:product_replenishment_cost_currency.field_product_template_replenishment_base_cost
-#: field:product.template,replenishment_base_cost:0
 msgid "Replenishment Base Cost"
 msgstr "Costo Base de Reposición"
 
 #. module: product_replenishment_cost_currency
 #: model:ir.model.fields,field_description:product_replenishment_cost_currency.field_product_template_replenishment_base_cost_currency_id
-#: field:product.template,replenishment_base_cost_currency_id:0
 msgid "Replenishment Base Cost Currency"
 msgstr "Moneda del Costo Base de Reposición"
 
 #. module: product_replenishment_cost_currency
 #: model:ir.model.fields,field_description:product_replenishment_cost_currency.field_product_template_replenishment_cost_last_update
-#: field:product.template,replenishment_cost_last_update:0
 msgid "Replenishment Cost Last Update"
 msgstr "Última actualización del Costo de Reposición"
+
+#. module: product_replenishment_cost_currency
+#: model:ir.ui.view,arch_db:product_replenishment_cost_currency.view_update_from_replenishment_cost_wizard_form
+msgid ""
+"Update Accounting Cost with Replenishment Cost for all sellected products "
+"with costing method Standard Price and with Replenishment Cost different "
+"from 0."
+msgstr ""
 
 #. module: product_replenishment_cost_currency
 #: model:ir.actions.act_window,name:product_replenishment_cost_currency.action_update_from_replenishment_cost_wizard
@@ -206,3 +134,8 @@ msgstr ""
 #: model:ir.model,name:product_replenishment_cost_currency.model_product_update_from_replenishment_cost_wizard
 msgid "Update product cost from replenishment cost"
 msgstr "Actualizar Costo del producto desde el Costo de Reposición"
+
+#. module: product_replenishment_cost_currency
+#: model:ir.ui.view,arch_db:product_replenishment_cost_currency.view_update_from_replenishment_cost_wizard_form
+msgid "or"
+msgstr ""

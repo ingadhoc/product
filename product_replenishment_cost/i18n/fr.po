@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-02 23:36+0000\n"
-"PO-Revision-Date: 2017-05-02 23:36+0000\n"
+"POT-Creation-Date: 2017-07-20 14:43+0000\n"
+"PO-Revision-Date: 2017-07-20 14:43+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016\n"
 "Language-Team: French (https://www.transifex.com/adhoc/teams/46451/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -19,29 +19,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: product_replenishment_cost
-#: model:ir.ui.view,arch_db:product_replenishment_cost.view_product_product_form
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<xpath expr=\"//div[@name=&quot;standard_price_uom&quot;]\" position=\"after\">\n"
-"                    <field name=\"replenishment_cost\"/> \n"
-"                </xpath>\n"
-"            "
-msgstr ""
-
-#. module: product_replenishment_cost
 #: model:ir.model,name:product_replenishment_cost.model_product_template
 msgid "Product Template"
 msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template_replenishment_cost
-#: field:product.template,replenishment_cost:0
 msgid "Replenishment cost"
 msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_template_replenishment_cost
-#: help:product.template,replenishment_cost:0
 msgid ""
 "The cost that you have to support in order to produce or acquire the goods. "
 "Depending on the modules installed, this cost may be computed based on "
