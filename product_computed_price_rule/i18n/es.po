@@ -29,12 +29,6 @@ msgid ""
 "                </field>\n"
 "            "
 msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<field name=\"computed_list_price\" position=\"before\">\n"
-"                    <field name=\"computed_list_price_before\"/>\n"
-"                    <field name=\"computed_list_price_rule_id\"/>\n"
-"                </field>\n"
-"            "
 
 #. module: product_computed_price_rule
 #: model:ir.ui.view,arch_db:product_computed_price_rule.product_computed_list_price_rule_form
@@ -92,13 +86,6 @@ msgid ""
 "                </search>\n"
 "            "
 msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<search string=\"Computed List Price Rule\">\n"
-"                    <field name=\"name\"/>\n"
-"                    <field name=\"product_ids\"/>\n"
-"                    <field name=\"item_ids\"/>\n"
-"                </search>\n"
-"            "
 
 #. module: product_computed_price_rule
 #: model:ir.ui.view,arch_db:product_computed_price_rule.product_computed_list_price_rule_tree
