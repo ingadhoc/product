@@ -71,9 +71,12 @@ class ProductTemplate(models.Model):
             for rec in recs:
                 # by using sql we win lot of performance, from 12minutes to
                 # xx for 40000 products
+
+                # el or 0.0 es porque
+                # en algunos casos computed list price es False y esto da error
                 cr.execute(
                     "UPDATE product_template SET list_price=%s WHERE id=%s",
-                    (rec.computed_list_price, rec.id))
+                    (rec.computed_list_price or 0.0, rec.id))
 
             # commit update (fo free memory?) also to have results stored
             # in the future, if we store the date, we can update only newones
