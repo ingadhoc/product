@@ -4,14 +4,13 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016
-# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-06 12:19+0000\n"
-"PO-Revision-Date: 2017-04-06 12:19+0000\n"
-"Last-Translator: Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2017\n"
+"POT-Creation-Date: 2017-07-20 14:43+0000\n"
+"PO-Revision-Date: 2017-07-20 14:43+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,405 +20,67 @@ msgstr ""
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_sale_order_count
-#: field:res.users,sale_order_count:0
 msgid "# of Sales Order"
 msgstr "Nº de pedido de venta"
 
 #. module: price_security
-#: model:ir.ui.view,arch_db:price_security.product_readonly_template_only_form_view
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<data><field name=\"list_price\" position=\"attributes\">\n"
-"                    <attribute name=\"readonly\">1</attribute>\n"
-"                </field>\n"
-"                <field name=\"can_modify_prices\" position=\"attributes\">\n"
-"                    <attribute name=\"readonly\">1</attribute>\n"
-"                </field>\n"
-"            </data>"
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<data><field name=\"list_price\" position=\"attributes\">\n"
-"                    <attribute name=\"readonly\">1</attribute>\n"
-"                </field>\n"
-"                <field name=\"can_modify_prices\" position=\"attributes\">\n"
-"                    <attribute name=\"readonly\">1</attribute>\n"
-"                </field>\n"
-"            </data>"
-
-#. module: price_security
-#: model:ir.ui.view,arch_db:price_security.product_readonly_normal_form_view
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<data><field name=\"lst_price\" position=\"attributes\">\n"
-"                    <attribute name=\"readonly\">1</attribute>\n"
-"                </field>\n"
-"                <field name=\"can_modify_prices\" position=\"attributes\">\n"
-"                    <attribute name=\"readonly\">1</attribute>\n"
-"                </field>\n"
-"            </data>"
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<data><field name=\"lst_price\" position=\"attributes\">\n"
-"                    <attribute name=\"readonly\">1</attribute>\n"
-"                </field>\n"
-"                <field name=\"can_modify_prices\" position=\"attributes\">\n"
-"                    <attribute name=\"readonly\">1</attribute>\n"
-"                </field>\n"
-"            </data>"
-
-#. module: price_security
-#: model:ir.ui.view,arch_db:price_security.invoice_form
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<data><xpath expr=\"//field[@name='invoice_line_ids']/tree\" position=\"inside\">\n"
-"                    <field name=\"product_can_modify_prices\" invisible=\"1\"/>\n"
-"                </xpath>\n"
-"\n"
-"                <!-- add readonly price unit -->\n"
-"                <xpath expr=\"//field[@name='invoice_line_ids']/tree//field[@name='price_unit']\" position=\"after\">\n"
-"                    <field name=\"price_unit_readonly\" attrs=\"{'readonly': [('product_can_modify_prices','=', False)]}\"/>\n"
-"                </xpath>\n"
-"                <!-- make price unit invisible -->\n"
-"                <xpath expr=\"//field[@name='invoice_line_ids']/tree//field[@name='price_unit']\" position=\"attributes\">\n"
-"                    <attribute name=\"invisible\">1</attribute>\n"
-"                </xpath>\n"
-"\n"
-"                <!-- add tax readonly -->\n"
-"                <xpath expr=\"//field[@name='invoice_line_ids']/tree//field[@name='invoice_line_tax_ids']\" position=\"after\">\n"
-"                    <field name=\"invoice_line_tax_ids_readonly\" attrs=\"{'readonly': [('product_can_modify_prices','=', False)]}\" context=\"{'type':parent.type}\" domain=\"[('parent_id','=',False),('company_id', '=', parent.company_id)]\" widget=\"many2many_tags\"/>\n"
-"                </xpath>\n"
-"                <!-- make tax invisible -->\n"
-"                <xpath expr=\"//field[@name='invoice_line_ids']/tree//field[@name='invoice_line_tax_ids']\" position=\"attributes\">\n"
-"                    <attribute name=\"invisible\">1</attribute>\n"
-"                </xpath>\n"
-"            </data>"
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<data><xpath expr=\"//field[@name='invoice_line_ids']/tree\" position=\"inside\">\n"
-"                    <field name=\"product_can_modify_prices\" invisible=\"1\"/>\n"
-"                </xpath>\n"
-"\n"
-"                <!-- add readonly price unit -->\n"
-"                <xpath expr=\"//field[@name='invoice_line_ids']/tree//field[@name='price_unit']\" position=\"after\">\n"
-"                    <field name=\"price_unit_readonly\" attrs=\"{'readonly': [('product_can_modify_prices','=', False)]}\"/>\n"
-"                </xpath>\n"
-"                <!-- make price unit invisible -->\n"
-"                <xpath expr=\"//field[@name='invoice_line_ids']/tree//field[@name='price_unit']\" position=\"attributes\">\n"
-"                    <attribute name=\"invisible\">1</attribute>\n"
-"                </xpath>\n"
-"\n"
-"                <!-- add tax readonly -->\n"
-"                <xpath expr=\"//field[@name='invoice_line_ids']/tree//field[@name='invoice_line_tax_ids']\" position=\"after\">\n"
-"                    <field name=\"invoice_line_tax_ids_readonly\" attrs=\"{'readonly': [('product_can_modify_prices','=', False)]}\" context=\"{'type':parent.type}\" domain=\"[('parent_id','=',False),('company_id', '=', parent.company_id)]\" widget=\"many2many_tags\"/>\n"
-"                </xpath>\n"
-"                <!-- make tax invisible -->\n"
-"                <xpath expr=\"//field[@name='invoice_line_ids']/tree//field[@name='invoice_line_tax_ids']\" position=\"attributes\">\n"
-"                    <attribute name=\"invisible\">1</attribute>\n"
-"                </xpath>\n"
-"            </data>"
-
-#. module: price_security
-#: model:ir.ui.view,arch_db:price_security.view_price_security_order_form
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<data><xpath expr=\"//field[@name='order_line']/form\" position=\"inside\">\n"
-"                    <field name=\"product_can_modify_prices\" invisible=\"1\"/>\n"
-"                </xpath>\n"
-"                <xpath expr=\"//field[@name='order_line']/tree\" position=\"inside\">\n"
-"                    <field name=\"product_can_modify_prices\" invisible=\"1\"/>\n"
-"                </xpath>\n"
-"\n"
-"                <!-- add readonly price unit on tree -->\n"
-"                <xpath expr=\"//field[@name='order_line']/tree//field[@name='price_unit']\" position=\"after\">\n"
-"                    <field name=\"price_unit_readonly\" attrs=\"{'readonly': [('product_can_modify_prices','=', False)]}\"/>\n"
-"                </xpath>\n"
-"                <!-- make price unit invisible on tree -->\n"
-"                <xpath expr=\"//field[@name='order_line']/tree//field[@name='price_unit']\" position=\"attributes\">\n"
-"                    <attribute name=\"invisible\">1</attribute>\n"
-"                </xpath>\n"
-"\n"
-"                <!-- add readonly tax on tree -->\n"
-"                <xpath expr=\"//field[@name='order_line']/tree//field[@name='tax_id']\" position=\"after\">\n"
-"                    <field name=\"tax_id_readonly\" attrs=\"{'readonly': [('product_can_modify_prices','=', False)]}\" domain=\"[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]\" widget=\"many2many_tags\"/>\n"
-"                </xpath>\n"
-"                <!-- make tax invisible on tree -->\n"
-"                <xpath expr=\"//field[@name='order_line']/tree//field[@name='tax_id']\" position=\"attributes\">\n"
-"                    <attribute name=\"invisible\">1</attribute>\n"
-"                </xpath>\n"
-"\n"
-"                <!-- add readonly price unit on form -->\n"
-"                <xpath expr=\"//field[@name='order_line']/form//field[@name='price_unit']\" position=\"after\">\n"
-"                    <field name=\"price_unit_readonly\" attrs=\"{'readonly': [('product_can_modify_prices','=', False)]}\"/>\n"
-"                </xpath>\n"
-"                <!-- make price unit invisible on form -->\n"
-"                <xpath expr=\"//field[@name='order_line']/form//field[@name='price_unit']\" position=\"attributes\">\n"
-"                    <attribute name=\"invisible\">1</attribute>\n"
-"                </xpath>\n"
-"\n"
-"                <!-- add readonly tax on form -->\n"
-"                <xpath expr=\"//field[@name='order_line']/form//field[@name='tax_id']\" position=\"after\">\n"
-"                    <field name=\"tax_id_readonly\" attrs=\"{'readonly': [('product_can_modify_prices','=', False)]}\" domain=\"[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]\" widget=\"many2many_tags\"/>\n"
-"                </xpath>\n"
-"                <!-- make tax invisible on form -->\n"
-"                <xpath expr=\"//field[@name='order_line']/form//field[@name='tax_id']\" position=\"attributes\">\n"
-"                    <attribute name=\"invisible\">1</attribute>\n"
-"                </xpath>\n"
-"            </data>"
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<data><xpath expr=\"//field[@name='order_line']/form\" position=\"inside\">\n"
-"                    <field name=\"product_can_modify_prices\" invisible=\"1\"/>\n"
-"                </xpath>\n"
-"                <xpath expr=\"//field[@name='order_line']/tree\" position=\"inside\">\n"
-"                    <field name=\"product_can_modify_prices\" invisible=\"1\"/>\n"
-"                </xpath>\n"
-"\n"
-"                <!-- add readonly price unit on tree -->\n"
-"                <xpath expr=\"//field[@name='order_line']/tree//field[@name='price_unit']\" position=\"after\">\n"
-"                    <field name=\"price_unit_readonly\" attrs=\"{'readonly': [('product_can_modify_prices','=', False)]}\"/>\n"
-"                </xpath>\n"
-"                <!-- make price unit invisible on tree -->\n"
-"                <xpath expr=\"//field[@name='order_line']/tree//field[@name='price_unit']\" position=\"attributes\">\n"
-"                    <attribute name=\"invisible\">1</attribute>\n"
-"                </xpath>\n"
-"\n"
-"                <!-- add readonly tax on tree -->\n"
-"                <xpath expr=\"//field[@name='order_line']/tree//field[@name='tax_id']\" position=\"after\">\n"
-"                    <field name=\"tax_id_readonly\" attrs=\"{'readonly': [('product_can_modify_prices','=', False)]}\" domain=\"[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]\" widget=\"many2many_tags\"/>\n"
-"                </xpath>\n"
-"                <!-- make tax invisible on tree -->\n"
-"                <xpath expr=\"//field[@name='order_line']/tree//field[@name='tax_id']\" position=\"attributes\">\n"
-"                    <attribute name=\"invisible\">1</attribute>\n"
-"                </xpath>\n"
-"\n"
-"                <!-- add readonly price unit on form -->\n"
-"                <xpath expr=\"//field[@name='order_line']/form//field[@name='price_unit']\" position=\"after\">\n"
-"                    <field name=\"price_unit_readonly\" attrs=\"{'readonly': [('product_can_modify_prices','=', False)]}\"/>\n"
-"                </xpath>\n"
-"                <!-- make price unit invisible on form -->\n"
-"                <xpath expr=\"//field[@name='order_line']/form//field[@name='price_unit']\" position=\"attributes\">\n"
-"                    <attribute name=\"invisible\">1</attribute>\n"
-"                </xpath>\n"
-"\n"
-"                <!-- add readonly tax on form -->\n"
-"                <xpath expr=\"//field[@name='order_line']/form//field[@name='tax_id']\" position=\"after\">\n"
-"                    <field name=\"tax_id_readonly\" attrs=\"{'readonly': [('product_can_modify_prices','=', False)]}\" domain=\"[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]\" widget=\"many2many_tags\"/>\n"
-"                </xpath>\n"
-"                <!-- make tax invisible on form -->\n"
-"                <xpath expr=\"//field[@name='order_line']/form//field[@name='tax_id']\" position=\"attributes\">\n"
-"                    <attribute name=\"invisible\">1</attribute>\n"
-"                </xpath>\n"
-"            </data>"
-
-#. module: price_security
-#: model:ir.ui.view,arch_db:price_security.product_pricelist_form_view
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<field name=\"active\" position=\"after\">\n"
-"                    <field name=\"sequence\"/>\n"
-"                </field>\n"
-"            "
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<field name=\"active\" position=\"after\">\n"
-"                    <field name=\"sequence\"/>\n"
-"                </field>\n"
-"            "
-
-#. module: price_security
-#: model:ir.ui.view,arch_db:price_security.product_normal_form_view
-#: model:ir.ui.view,arch_db:price_security.product_template_only_form_view
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<field name=\"currency_id\" position=\"after\">\n"
-"                    <field name=\"can_modify_prices\"/>\n"
-"                </field>\n"
-"            "
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<field name=\"currency_id\" position=\"after\">\n"
-"                    <field name=\"can_modify_prices\"/>\n"
-"                </field>\n"
-"            "
-
-#. module: price_security
-#: model:ir.ui.view,arch_db:price_security.view_payment_term_form
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<field name=\"name\" position=\"after\">\n"
-"                    <field name=\"sequence\"/>\n"
-"                </field>\n"
-"            "
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<field name=\"name\" position=\"after\">\n"
-"                    <field name=\"sequence\"/>\n"
-"                </field>\n"
-"            "
-
-#. module: price_security
-#: model:ir.ui.view,arch_db:price_security.product_pricelist_view_tree
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<field name=\"name\" position=\"before\">\n"
-"                    <field name=\"sequence\" widget=\"handle\"/>\n"
-"                </field>\n"
-"            "
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<field name=\"name\" position=\"before\">\n"
-"                    <field name=\"sequence\" widget=\"handle\"/>\n"
-"                </field>\n"
-"            "
-
-#. module: price_security
-#: model:ir.ui.view,arch_db:price_security.view_partner_property_term_form
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<field name=\"property_payment_term_id\" position=\"attributes\">\n"
-"                    <attribute name=\"readonly\">1</attribute>\n"
-"                </field>\n"
-"            "
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<field name=\"property_payment_term_id\" position=\"attributes\">\n"
-"                    <attribute name=\"readonly\">1</attribute>\n"
-"                </field>\n"
-"            "
-
-#. module: price_security
-#: model:ir.ui.view,arch_db:price_security.view_partner_property_price_list_form
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<field name=\"property_product_pricelist\" position=\"attributes\">\n"
-"                    <attribute name=\"readonly\">1</attribute>\n"
-"                </field>\n"
-"            "
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<field name=\"property_product_pricelist\" position=\"attributes\">\n"
-"                    <attribute name=\"readonly\">1</attribute>\n"
-"                </field>\n"
-"            "
-
-#. module: price_security
-#: model:ir.ui.view,arch_db:price_security.view_price_security_users_form
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<notebook>\n"
-"                    <page string=\"Discounts Permissions\">\n"
-"                        <field name=\"discount_restriction_ids\" colspan=\"4\">\n"
-"                            <tree editable=\"top\">\n"
-"                                <field name=\"pricelist_id\"/>\n"
-"                                <field name=\"min_discount\"/>\n"
-"                                <field name=\"max_discount\"/>\n"
-"                            </tree>\n"
-"                        </field>\n"
-"                    </page>\n"
-"                </notebook>\n"
-"            "
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<notebook>\n"
-"                    <page string=\"Discounts Permissions\">\n"
-"                        <field name=\"discount_restriction_ids\" colspan=\"4\">\n"
-"                            <tree editable=\"top\">\n"
-"                                <field name=\"pricelist_id\"/>\n"
-"                                <field name=\"min_discount\"/>\n"
-"                                <field name=\"max_discount\"/>\n"
-"                            </tree>\n"
-"                        </field>\n"
-"                    </page>\n"
-"                </notebook>\n"
-"            "
-
-#. module: price_security
-#: model:ir.ui.view,arch_db:price_security.view_payment_term_tree
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<tree string=\"Payment Term\">\n"
-"                    <field name=\"sequence\" widget=\"handle\"/>\n"
-"                    <field name=\"name\"/>\n"
-"                </tree>\n"
-"            "
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<tree string=\"Payment Term\">\n"
-"                    <field name=\"sequence\" widget=\"handle\"/>\n"
-"                    <field name=\"name\"/>\n"
-"                </tree>\n"
-"            "
-
-#. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_property_account_payable_id
-#: field:res.users,property_account_payable_id:0
 msgid "Account Payable"
 msgstr "Cuenta a pagar"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_property_account_receivable_id
-#: field:res.users,property_account_receivable_id:0
 msgid "Account Receivable"
 msgstr "Cuenta a cobrar"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_bank_account_count
-#: field:res.users,bank_account_count:0
 msgid "Bank"
 msgstr "Banco"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_product_template_can_modify_prices
-#: field:product.template,can_modify_prices:0
 msgid "Can modify prices"
 msgstr "Puede modificar precios"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_ref_company_ids
-#: field:res.users,ref_company_ids:0
 msgid "Companies that refers to partner"
 msgstr "Compañías que hacen referencia al partner"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_contract_ids
 #: model:ir.model.fields,field_description:price_security.field_res_users_contracts_count
-#: field:res.users,contract_ids:0 field:res.users,contracts_count:0
 msgid "Contracts"
 msgstr "Contratos"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_payment_method_count
-#: field:res.users,payment_method_count:0
 msgid "Count Payment Method"
 msgstr "Cuenta de Método de Pago"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_create_uid
-#: field:res.users.discount_restriction,create_uid:0
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_create_date
-#: field:res.users.discount_restriction,create_date:0
 msgid "Created on"
 msgstr "Creado el"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_currency_id
-#: field:res.users,currency_id:0
 msgid "Currency"
 msgstr "Moneda"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_property_stock_customer
-#: field:res.users,property_stock_customer:0
 msgid "Customer Location"
 msgstr "Ubicación del cliente"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_property_payment_term_id
-#: field:res.users,property_payment_term_id:0
 msgid "Customer Payment Term"
 msgstr "Plazo de pago del cliente"
 
@@ -430,41 +91,38 @@ msgstr "Restricción de Descuento"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_ids
-#: field:res.users,discount_restriction_ids:0
 msgid "Discount Restrictions"
 msgstr "Restricciones de Descuento"
 
 #. module: price_security
+#: model:ir.ui.view,arch_db:price_security.view_price_security_users_form
+msgid "Discounts Permissions"
+msgstr ""
+
+#. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_display_name
-#: field:res.users.discount_restriction,display_name:0
 msgid "Display Name"
 msgstr "Mostrar Nombre"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_property_account_position_id
-#: field:res.users,property_account_position_id:0
 msgid "Fiscal Position"
 msgstr "Posición fiscal"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_has_unreconciled_entries
-#: field:res.users,has_unreconciled_entries:0
 msgid "Has unreconciled entries"
 msgstr "Contiene entradas no conciliadas"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_id
-#: field:res.users.discount_restriction,id:0
 msgid "ID"
 msgstr "ID"
 
 #. module: price_security
-#: help:account.invoice.line,product_can_modify_prices:0
 #: model:ir.model.fields,help:price_security.field_account_invoice_line_product_can_modify_prices
 #: model:ir.model.fields,help:price_security.field_product_template_can_modify_prices
 #: model:ir.model.fields,help:price_security.field_sale_order_line_product_can_modify_prices
-#: help:product.template,can_modify_prices:0
-#: help:sale.order.line,product_can_modify_prices:0
 msgid ""
 "If checked all users can modify the        price of this product in a sale "
 "order or invoice."
@@ -479,38 +137,32 @@ msgstr "Línea de factura"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_invoice_ids
-#: field:res.users,invoice_ids:0
 msgid "Invoices"
 msgstr "Facturas"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_issued_total
 #: model:ir.model.fields,field_description:price_security.field_res_users_journal_item_count
-#: field:res.users,issued_total:0 field:res.users,journal_item_count:0
 msgid "Journal Items"
 msgstr "Apuntes Contables"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction___last_update
-#: field:res.users.discount_restriction,__last_update:0
 msgid "Last Modified on"
 msgstr "Última modificación el"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_write_uid
-#: field:res.users.discount_restriction,write_uid:0
 msgid "Last Updated by"
 msgstr "Última actualización realizada por"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_write_date
-#: field:res.users.discount_restriction,write_date:0
 msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: price_security
 #: model:ir.model.fields,help:price_security.field_res_users_last_time_entries_checked
-#: help:res.users,last_time_entries_checked:0
 msgid ""
 "Last time the invoices & payments matching was performed for this partner. "
 "It is set either if there's not at least an unreconciled debit and an "
@@ -522,51 +174,44 @@ msgstr ""
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_last_time_entries_checked
-#: field:res.users,last_time_entries_checked:0
 msgid "Latest Invoices & Payments Matching Date"
 msgstr "Fecha de la última conciliación de facturas y pagos"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_max_discount
-#: field:res.users.discount_restriction,max_discount:0
 msgid "Max. Discount"
 msgstr "Máx. Descuento"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_min_discount
-#: field:res.users.discount_restriction,min_discount:0
 msgid "Min. Discount"
 msgstr "Min. Descuento"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_debit_limit
-#: field:res.users,debit_limit:0
 msgid "Payable Limit"
 msgstr "Límite a pagar"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_payment_method_ids
-#: field:res.users,payment_method_ids:0
 msgid "Payment Methods"
 msgstr "Métodos de Pago"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_account_payment_term
+#: model:ir.ui.view,arch_db:price_security.view_payment_term_tree
 msgid "Payment Term"
 msgstr "Condiciones de pago"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_product_pricelist
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_pricelist_id
-#: field:res.users.discount_restriction,pricelist_id:0
 msgid "Pricelist"
 msgstr "Lista de Precios"
 
 #. module: price_security
-#: field:account.invoice.line,product_can_modify_prices:0
 #: model:ir.model.fields,field_description:price_security.field_account_invoice_line_product_can_modify_prices
 #: model:ir.model.fields,field_description:price_security.field_sale_order_line_product_can_modify_prices
-#: field:sale.order.line,product_can_modify_prices:0
 msgid "Product Can modify prices"
 msgstr "Product Can modify prices"
 
@@ -583,7 +228,6 @@ msgstr "Restringir Precios"
 #. module: price_security
 #: model:ir.model,name:price_security.model_sale_order
 #: model:ir.model.fields,field_description:price_security.field_res_users_sale_order_ids
-#: field:res.users,sale_order_ids:0
 msgid "Sales Order"
 msgstr "Pedido de Venta"
 
@@ -613,18 +257,14 @@ msgstr ""
 "precios configurado en cliente"
 
 #. module: price_security
-#: field:account.payment.term,sequence:0
 #: model:ir.model.fields,field_description:price_security.field_account_payment_term_sequence
 #: model:ir.model.fields,field_description:price_security.field_product_pricelist_sequence
-#: field:product.pricelist,sequence:0
 msgid "Sequence"
 msgstr "Secuencia"
 
 #. module: price_security
-#: field:account.invoice.line,invoice_line_tax_ids_readonly:0
 #: model:ir.model.fields,field_description:price_security.field_account_invoice_line_invoice_line_tax_ids_readonly
 #: model:ir.model.fields,field_description:price_security.field_sale_order_line_tax_id_readonly
-#: field:sale.order.line,tax_id_readonly:0
 msgid "Taxes"
 msgstr "Impuestos"
 
@@ -640,7 +280,6 @@ msgstr ""
 
 #. module: price_security
 #: model:ir.model.fields,help:price_security.field_res_users_property_account_position_id
-#: help:res.users,property_account_position_id:0
 msgid ""
 "The fiscal position will determine taxes and accounts used for the partner."
 msgstr ""
@@ -649,7 +288,6 @@ msgstr ""
 
 #. module: price_security
 #: model:ir.model.fields,help:price_security.field_res_users_has_unreconciled_entries
-#: help:res.users,has_unreconciled_entries:0
 msgid ""
 "The partner has at least one unreconciled debit and credit since last time "
 "the invoices & payments matching was performed."
@@ -659,7 +297,6 @@ msgstr ""
 
 #. module: price_security
 #: model:ir.model.fields,help:price_security.field_res_users_property_account_payable_id
-#: help:res.users,property_account_payable_id:0
 msgid ""
 "This account will be used instead of the default one as the payable account "
 "for the current partner"
@@ -669,7 +306,6 @@ msgstr ""
 
 #. module: price_security
 #: model:ir.model.fields,help:price_security.field_res_users_property_account_receivable_id
-#: help:res.users,property_account_receivable_id:0
 msgid ""
 "This account will be used instead of the default one as the receivable "
 "account for the current partner"
@@ -679,7 +315,6 @@ msgstr ""
 
 #. module: price_security
 #: model:ir.model.fields,help:price_security.field_res_users_property_supplier_payment_term_id
-#: help:res.users,property_supplier_payment_term_id:0
 msgid ""
 "This payment term will be used instead of the default one for purchase "
 "orders and vendor bills"
@@ -689,7 +324,6 @@ msgstr ""
 
 #. module: price_security
 #: model:ir.model.fields,help:price_security.field_res_users_property_payment_term_id
-#: help:res.users,property_payment_term_id:0
 msgid ""
 "This payment term will be used instead of the default one for sale orders "
 "and customer invoices"
@@ -699,7 +333,6 @@ msgstr ""
 
 #. module: price_security
 #: model:ir.model.fields,help:price_security.field_res_users_property_stock_customer
-#: help:res.users,property_stock_customer:0
 msgid ""
 "This stock location will be used, instead of the default one, as the "
 "destination location for goods you send to this partner"
@@ -709,7 +342,6 @@ msgstr ""
 
 #. module: price_security
 #: model:ir.model.fields,help:price_security.field_res_users_property_stock_supplier
-#: help:res.users,property_stock_supplier:0
 msgid ""
 "This stock location will be used, instead of the default one, as the source "
 "location for goods you receive from the current partner"
@@ -720,45 +352,37 @@ msgstr ""
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_total_invoiced
-#: field:res.users,total_invoiced:0
 msgid "Total Invoiced"
 msgstr "Total facturado"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_debit
-#: field:res.users,debit:0
 msgid "Total Payable"
 msgstr "Total a pagar"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_credit
-#: field:res.users,credit:0
 msgid "Total Receivable"
 msgstr "Total a cobrar"
 
 #. module: price_security
 #: model:ir.model.fields,help:price_security.field_res_users_credit
-#: help:res.users,credit:0
 msgid "Total amount this customer owes you."
 msgstr "Importe total que le debe el cliente."
 
 #. module: price_security
 #: model:ir.model.fields,help:price_security.field_res_users_debit
-#: help:res.users,debit:0
 msgid "Total amount you have to pay to this vendor."
 msgstr "Importe total a pagar a este proveedor."
 
 #. module: price_security
-#: field:account.invoice.line,price_unit_readonly:0
 #: model:ir.model.fields,field_description:price_security.field_account_invoice_line_price_unit_readonly
 #: model:ir.model.fields,field_description:price_security.field_sale_order_line_price_unit_readonly
-#: field:sale.order.line,price_unit_readonly:0
 msgid "Unit Price"
 msgstr "Precio unitario"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_user_id
-#: field:res.users.discount_restriction,user_id:0
 msgid "User"
 msgstr "Usuario"
 
@@ -769,19 +393,16 @@ msgstr "Usuarios"
 
 #. module: price_security
 #: model:ir.model.fields,help:price_security.field_res_users_currency_id
-#: help:res.users,currency_id:0
 msgid "Utility field to express amount currency"
 msgstr "Campo útil para expresar importe en divisa."
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_property_stock_supplier
-#: field:res.users,property_stock_supplier:0
 msgid "Vendor Location"
 msgstr "Ubicación del Proveedor"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_property_supplier_payment_term_id
-#: field:res.users,property_supplier_payment_term_id:0
 msgid "Vendor Payment Term"
 msgstr "Condiciones de pago a proveedor"
 

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-02 23:36+0000\n"
-"PO-Revision-Date: 2017-05-02 23:36+0000\n"
+"POT-Creation-Date: 2017-07-20 14:44+0000\n"
+"PO-Revision-Date: 2017-07-20 14:44+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016\n"
 "Language-Team: French (https://www.transifex.com/adhoc/teams/46451/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -20,25 +20,21 @@ msgstr ""
 
 #. module: product_unique
 #: model:ir.model.fields,field_description:product_unique.field_product_product_abc_sales_amount
-#: field:product.product,abc_sales_amount:0
 msgid "ABC Sales amount"
 msgstr ""
 
 #. module: product_unique
 #: model:ir.model.fields,field_description:product_unique.field_product_product_abc_sales_combined
-#: field:product.product,abc_sales_combined:0
 msgid "ABC Sales combined"
 msgstr ""
 
 #. module: product_unique
 #: model:ir.model.fields,field_description:product_unique.field_product_product_abc_sales_quantity
-#: field:product.product,abc_sales_quantity:0
 msgid "ABC Sales quantity"
 msgstr ""
 
 #. module: product_unique
 #: model:ir.model.fields,field_description:product_unique.field_product_product_main_seller_id
-#: field:product.product,main_seller_id:0
 msgid "Main Seller"
 msgstr ""
 
@@ -49,13 +45,11 @@ msgstr "Article"
 
 #. module: product_unique
 #: model:ir.model.fields,field_description:product_unique.field_product_product_replenishment_cost
-#: field:product.product,replenishment_cost:0
 msgid "Replenishment cost"
 msgstr ""
 
 #. module: product_unique
 #: model:ir.model.fields,help:product_unique.field_product_product_replenishment_cost
-#: help:product.product,replenishment_cost:0
 msgid ""
 "The cost that you have to support in order to produce or acquire the goods. "
 "Depending on the modules installed, this cost may be computed based on "
@@ -80,12 +74,11 @@ msgstr ""
 #: code:addons/product_unique/product.py:22
 #, python-format
 msgid ""
-"There can not be two active products with the same Reference ode in the same"
-" company."
+"There can not be two active products with the same Reference code in the "
+"same company."
 msgstr ""
 
 #. module: product_unique
 #: model:ir.model.fields,help:product_unique.field_product_product_main_seller_id
-#: help:product.product,main_seller_id:0
 msgid "Vendor of this product"
 msgstr ""

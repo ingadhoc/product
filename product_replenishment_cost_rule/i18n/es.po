@@ -4,14 +4,13 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016
-# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-06 12:19+0000\n"
-"PO-Revision-Date: 2017-04-06 12:19+0000\n"
-"Last-Translator: Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2017\n"
+"POT-Creation-Date: 2017-07-20 14:44+0000\n"
+"PO-Revision-Date: 2017-07-20 14:44+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,303 +19,142 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: product_replenishment_cost_rule
-#: model:ir.ui.view,arch_db:product_replenishment_cost_rule.product_template_form_view
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<data><div name=\"replenishment_base_cost\" position=\"inside\">\n"
-"                    <label string=\" / \"/>\n"
-"                    <field name=\"replenishment_base_cost_on_currency\" class=\"oe_inline\" widget=\"monetary\" options=\"{'currency_field': 'currency_id'}\"/>\n"
-"                </div>\n"
-"                <field name=\"replenishment_cost\" position=\"before\">\n"
-"                    <field name=\"replenishment_cost_rule_id\"/>\n"
-"                </field>\n"
-"            </data>"
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<data><div name=\"replenishment_base_cost\" position=\"inside\">\n"
-"                    <label string=\" / \"/>\n"
-"                    <field name=\"replenishment_base_cost_on_currency\" class=\"oe_inline\" widget=\"monetary\" options=\"{'currency_field': 'currency_id'}\"/>\n"
-"                </div>\n"
-"                <field name=\"replenishment_cost\" position=\"before\">\n"
-"                    <field name=\"replenishment_cost_rule_id\"/>\n"
-"                </field>\n"
-"            </data>"
-
-#. module: product_replenishment_cost_rule
-#: model:ir.ui.view,arch_db:product_replenishment_cost_rule.product_template_search_view
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<filter name=\"filter_to_sell\" position=\"after\">\n"
-"                    <filter string=\"Without Rep. Rule\" name=\"without_rep_rule\" help=\"Products Without Replenishment Rule\" domain=\"[('replenishment_cost_rule_id', '=', False)]\"/>\n"
-"                    <separator/>\n"
-"                </filter>\n"
-"            "
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<filter name=\"filter_to_sell\" position=\"after\">\n"
-"                    <filter string=\"Without Rep. Rule\" name=\"without_rep_rule\" help=\"Products Without Replenishment Rule\" domain=\"[('replenishment_cost_rule_id', '=', False)]\"/>\n"
-"                    <separator/>\n"
-"                </filter>\n"
-"            "
-
-#. module: product_replenishment_cost_rule
-#: model:ir.ui.view,arch_db:product_replenishment_cost_rule.product_replenshiment_cost_rule_form
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<form string=\"Replenishment Cost Rule\">\n"
-"                    <sheet string=\"Replenishment Cost Rule\">\n"
-"                        <h1><field name=\"name\" placeholder=\"Name...\"/></h1>\n"
-"                        <notebook>\n"
-"                            <page string=\"Items\">\n"
-"                                <field name=\"item_ids\">\n"
-"                                    <tree editable=\"bottom\">\n"
-"                                        <field name=\"sequence\" widget=\"handle\"/>\n"
-"                                        <field name=\"name\"/>\n"
-"                                        <field name=\"percentage_amount\"/>\n"
-"                                        <field name=\"fixed_amount\"/>\n"
-"                                    </tree>\n"
-"                                </field>\n"
-"                            </page>\n"
-"                            <page string=\"Products\">\n"
-"                                <field name=\"product_ids\" widget=\"many2many\" context=\"{'search_default_without_rep_rule': 1}\"/>\n"
-"                            </page>\n"
-"                        </notebook>\n"
-"                    </sheet>\n"
-"                    <div class=\"oe_chatter\">\n"
-"                        <field name=\"message_follower_ids\" widget=\"mail_followers\" groups=\"base.group_user\"/>\n"
-"                        <field name=\"message_ids\" widget=\"mail_thread\"/>\n"
-"                    </div>\n"
-"                </form>\n"
-"            "
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<form string=\"Replenishment Cost Rule\">\n"
-"                    <sheet string=\"Replenishment Cost Rule\">\n"
-"                        <h1><field name=\"name\" placeholder=\"Name...\"/></h1>\n"
-"                        <notebook>\n"
-"                            <page string=\"Items\">\n"
-"                                <field name=\"item_ids\">\n"
-"                                    <tree editable=\"bottom\">\n"
-"                                        <field name=\"sequence\" widget=\"handle\"/>\n"
-"                                        <field name=\"name\"/>\n"
-"                                        <field name=\"percentage_amount\"/>\n"
-"                                        <field name=\"fixed_amount\"/>\n"
-"                                    </tree>\n"
-"                                </field>\n"
-"                            </page>\n"
-"                            <page string=\"Products\">\n"
-"                                <field name=\"product_ids\" widget=\"many2many\" context=\"{'search_default_without_rep_rule': 1}\"/>\n"
-"                            </page>\n"
-"                        </notebook>\n"
-"                    </sheet>\n"
-"                    <div class=\"oe_chatter\">\n"
-"                        <field name=\"message_follower_ids\" widget=\"mail_followers\" groups=\"base.group_user\"/>\n"
-"                        <field name=\"message_ids\" widget=\"mail_thread\"/>\n"
-"                    </div>\n"
-"                </form>\n"
-"            "
-
-#. module: product_replenishment_cost_rule
-#: model:ir.ui.view,arch_db:product_replenishment_cost_rule.product_replenshiment_cost_rule_filter
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<search string=\"Replenishment Cost Rule\">\n"
-"                    <field name=\"name\"/>\n"
-"                    <field name=\"product_ids\"/>\n"
-"                    <field name=\"item_ids\"/>\n"
-"                </search>\n"
-"            "
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<search string=\"Replenishment Cost Rule\">\n"
-"                    <field name=\"name\"/>\n"
-"                    <field name=\"product_ids\"/>\n"
-"                    <field name=\"item_ids\"/>\n"
-"                </search>\n"
-"            "
-
-#. module: product_replenishment_cost_rule
-#: model:ir.ui.view,arch_db:product_replenishment_cost_rule.product_replenshiment_cost_rule_tree
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<tree string=\"Replenishment Cost Rule\">\n"
-"                    <field name=\"name\" placeholder=\"Name...\"/>\n"
-"                    <field name=\"product_ids\"/>\n"
-"                    <field name=\"item_ids\"/>\n"
-"                </tree>\n"
-"            "
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<tree string=\"Replenishment Cost Rule\">\n"
-"                    <field name=\"name\" placeholder=\"Name...\"/>\n"
-"                    <field name=\"product_ids\"/>\n"
-"                    <field name=\"item_ids\"/>\n"
-"                </tree>\n"
-"            "
-
-#. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_message_needaction
-#: field:product.replenishment_cost.rule,message_needaction:0
 msgid "Action Needed"
 msgstr "Acción Necesaria"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_create_uid
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_item_create_uid
-#: field:product.replenishment_cost.rule,create_uid:0
-#: field:product.replenishment_cost.rule.item,create_uid:0
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_create_date
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_item_create_date
-#: field:product.replenishment_cost.rule,create_date:0
-#: field:product.replenishment_cost.rule.item,create_date:0
 msgid "Created on"
 msgstr "Creado el"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,help:product_replenishment_cost_rule.field_product_replenishment_cost_rule_message_last_post
-#: help:product.replenishment_cost.rule,message_last_post:0
 msgid "Date of the last message posted on the record."
 msgstr "Fecha del última mensaje publicado en el registro."
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_description
-#: field:product.replenishment_cost.rule,description:0
 msgid "Description"
 msgstr "Descripción"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_display_name
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_item_display_name
-#: field:product.replenishment_cost.rule,display_name:0
-#: field:product.replenishment_cost.rule.item,display_name:0
 msgid "Display Name"
 msgstr "Mostrar nombre"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_item_fixed_amount
-#: field:product.replenishment_cost.rule.item,fixed_amount:0
 msgid "Fixed Amount"
 msgstr "Importe fijo"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_message_follower_ids
-#: field:product.replenishment_cost.rule,message_follower_ids:0
 msgid "Followers"
 msgstr "Seguidores"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_message_channel_ids
-#: field:product.replenishment_cost.rule,message_channel_ids:0
 msgid "Followers (Channels)"
 msgstr "Seguidores (Canales)"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_message_partner_ids
-#: field:product.replenishment_cost.rule,message_partner_ids:0
 msgid "Followers (Partners)"
 msgstr "Seguidores (Partners)"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_id
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_item_id
-#: field:product.replenishment_cost.rule,id:0
-#: field:product.replenishment_cost.rule.item,id:0
 msgid "ID"
 msgstr "ID"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,help:product_replenishment_cost_rule.field_product_replenishment_cost_rule_message_unread
-#: help:product.replenishment_cost.rule,message_unread:0
 msgid "If checked new messages require your attention."
 msgstr "Si está marcado los mensajes nuevos requieren su atención"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,help:product_replenishment_cost_rule.field_product_replenishment_cost_rule_message_needaction
-#: help:product.replenishment_cost.rule,message_needaction:0
 msgid "If checked, new messages require your attention."
 msgstr "Si está marcado, los mensajes nuevos requieren su atención"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_message_is_follower
-#: field:product.replenishment_cost.rule,message_is_follower:0
 msgid "Is Follower"
 msgstr "Es Seguidor"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_item_ids
-#: field:product.replenishment_cost.rule,item_ids:0
+#: model:ir.ui.view,arch_db:product_replenishment_cost_rule.product_replenshiment_cost_rule_form
 msgid "Items"
 msgstr "Items"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_message_last_post
-#: field:product.replenishment_cost.rule,message_last_post:0
 msgid "Last Message Date"
 msgstr "Fecha del Último Mensaje"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule___last_update
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_item___last_update
-#: field:product.replenishment_cost.rule,__last_update:0
-#: field:product.replenishment_cost.rule.item,__last_update:0
 msgid "Last Modified on"
 msgstr "Última modificación el"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_item_write_uid
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_write_uid
-#: field:product.replenishment_cost.rule,write_uid:0
-#: field:product.replenishment_cost.rule.item,write_uid:0
 msgid "Last Updated by"
 msgstr "Última actualización por"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_item_write_date
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_write_date
-#: field:product.replenishment_cost.rule,write_date:0
-#: field:product.replenishment_cost.rule.item,write_date:0
 msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_message_ids
-#: field:product.replenishment_cost.rule,message_ids:0
 msgid "Messages"
 msgstr "Mensajes"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_item_name
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_name
-#: field:product.replenishment_cost.rule,name:0
-#: field:product.replenishment_cost.rule.item,name:0
 msgid "Name"
 msgstr "Nombre"
 
 #. module: product_replenishment_cost_rule
+#: model:ir.ui.view,arch_db:product_replenishment_cost_rule.product_replenshiment_cost_rule_form
+#: model:ir.ui.view,arch_db:product_replenishment_cost_rule.product_replenshiment_cost_rule_tree
+msgid "Name..."
+msgstr ""
+
+#. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_message_needaction_counter
-#: field:product.replenishment_cost.rule,message_needaction_counter:0
 msgid "Number of Actions"
 msgstr "Número de Acciones"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,help:product_replenishment_cost_rule.field_product_replenishment_cost_rule_message_needaction_counter
-#: help:product.replenishment_cost.rule,message_needaction_counter:0
 msgid "Number of messages which requires an action"
 msgstr "Número de mensajes que requieren una acción"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,help:product_replenishment_cost_rule.field_product_replenishment_cost_rule_message_unread_counter
-#: help:product.replenishment_cost.rule,message_unread_counter:0
 msgid "Number of unread messages"
 msgstr "Número de mensajes no leídos"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_item_percentage_amount
-#: field:product.replenishment_cost.rule.item,percentage_amount:0
 msgid "Percentage Amount"
 msgstr "Monto porcentaje"
 
@@ -327,19 +165,25 @@ msgstr "Plantilla de Producto"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_product_ids
-#: field:product.replenishment_cost.rule,product_ids:0
+#: model:ir.ui.view,arch_db:product_replenishment_cost_rule.product_replenshiment_cost_rule_form
 msgid "Products"
 msgstr "Productos"
 
 #. module: product_replenishment_cost_rule
+#: model:ir.ui.view,arch_db:product_replenishment_cost_rule.product_template_search_view
+msgid "Products Without Replenishment Rule"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_template_replenishment_base_cost_on_currency
-#: field:product.template,replenishment_base_cost_on_currency:0
 msgid "Replenishment Base Cost on Currency"
 msgstr "Costo Base de Reposición en la Moneda"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_template_replenishment_cost_rule_id
-#: field:product.template,replenishment_cost_rule_id:0
+#: model:ir.ui.view,arch_db:product_replenishment_cost_rule.product_replenshiment_cost_rule_filter
+#: model:ir.ui.view,arch_db:product_replenishment_cost_rule.product_replenshiment_cost_rule_form
+#: model:ir.ui.view,arch_db:product_replenishment_cost_rule.product_replenshiment_cost_rule_tree
 msgid "Replenishment Cost Rule"
 msgstr "Regla de Costo de Reposición"
 
@@ -351,13 +195,11 @@ msgstr "Reglas de Costo de Reposición"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_item_replenishment_cost_rule_id
-#: field:product.replenishment_cost.rule.item,replenishment_cost_rule_id:0
 msgid "Rule"
 msgstr "Regla"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,help:product_replenishment_cost_rule.field_product_replenishment_cost_rule_item_fixed_amount
-#: help:product.replenishment_cost.rule.item,fixed_amount:0
 msgid ""
 "Specify the fixed amount to add or substract(if negative) to the amount "
 "calculated with the percentage amount."
@@ -367,30 +209,40 @@ msgstr ""
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_message_unread
-#: field:product.replenishment_cost.rule,message_unread:0
 msgid "Unread Messages"
 msgstr "Mensajes no leídos"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_message_unread_counter
-#: field:product.replenishment_cost.rule,message_unread_counter:0
 msgid "Unread Messages Counter"
 msgstr "Contador de Mensajes no leídos"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_website_message_ids
-#: field:product.replenishment_cost.rule,website_message_ids:0
 msgid "Website Messages"
 msgstr "Mensajes del Sitio web"
 
 #. module: product_replenishment_cost_rule
 #: model:ir.model.fields,help:product_replenishment_cost_rule.field_product_replenishment_cost_rule_website_message_ids
-#: help:product.replenishment_cost.rule,website_message_ids:0
 msgid "Website communication history"
 msgstr "Historial de comunicación del sitio web"
 
 #. module: product_replenishment_cost_rule
+#: model:ir.ui.view,arch_db:product_replenishment_cost_rule.product_template_search_view
+msgid "Without Rep. Rule"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: model:ir.model,name:product_replenishment_cost_rule.model_product_replenishment_cost_rule
+msgid "product.replenishment_cost.rule"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: model:ir.model,name:product_replenishment_cost_rule.model_product_replenishment_cost_rule_item
+msgid "product.replenishment_cost.rule.item"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
 #: model:ir.model.fields,field_description:product_replenishment_cost_rule.field_product_replenishment_cost_rule_item_sequence
-#: field:product.replenishment_cost.rule.item,sequence:0
 msgid "sequence"
 msgstr "secuencia"
