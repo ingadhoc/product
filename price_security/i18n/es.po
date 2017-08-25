@@ -222,8 +222,8 @@ msgstr "Plantilla de Producto"
 
 #. module: price_security
 #: model:res.groups,name:price_security.group_restrict_prices
-msgid "Restrict Prices"
-msgstr "Restringir Precios"
+msgid "Solo ver: precio de venta"
+msgstr "Solo ver: precio de venta"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_sale_order

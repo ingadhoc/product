@@ -1,0 +1,61 @@
+<odoo>
+
+    <record id="view_product_only_view_sale_price_form" model="ir.ui.view">
+        <field name="name">View Only sale price template form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="price_security.view_product_only_view_sale_price_form"/>
+        <field name="groups_id" eval="[(6, 0, [ref('price_security.group_restrict_prices')])]"/>
+        <field name="arch" type="xml">
+
+            <!-- we hide costing -->
+            <group name="costing" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </group>
+            
+            <!-- we hide planned price -->
+            <group name="planned_price" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </group>
+
+            <!-- make planned price fields readonly -->
+            <field name="list_price_type" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="computed_list_price_manual" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="other_currency_list_price" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="other_currency_id" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="sale_margin" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="sale_surcharge" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+
+        </field>
+    </record>
+
+    <record id="view_product_only_view_form" model="ir.ui.view">
+        <field name="name">View Only: sale and cost template form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="price_security.view_product_only_view_form"/>
+        <field name="groups_id" eval="[(6, 0, [ref('price_security.group_only_view')])]"/>
+        <field name="arch" type="xml">
+
+            <group name="costing" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </group>
+
+            <group name="planned_price" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </group>
+
+        </field>
+    </record>
+
+</odoo>
