@@ -2,10 +2,31 @@
 <openerp>
     <data noupdate="1">
 
-    <record model="res.groups" id="group_restrict_prices">
-        <field name="name">Restrict Prices</field>
+<!-- grupos y categoria de grupos-->
+
+    <record model="ir.module.category" id="module_prices_management">
+        <field name="name">Restricción de precios</field>
+        <field name="sequence">1</field>
+        <field name="parent_id" ref="base.module_category_tools"/>
     </record>
 
+        <!-- TODO deberiamos renombrar y migrar id de group_restrict_prices a group_only_view_sale_price -->
+        <!-- <record model="res.groups" id="group_only_view_sale_price"> -->
+        <record model="res.groups" id="group_restrict_prices">
+            <field name="category_id" ref="module_prices_management"/>
+            <field name="name">Solo ver: precio de venta</field>
+        </record>
+
+        <record model="res.groups" id="group_only_view">
+            <field name="category_id" ref="module_prices_management"/>
+            <field name="implied_ids" eval="[(4, ref('group_restrict_prices'))]"/>
+            <!-- <field name="implied_ids" eval="[(4, ref('group_only_view_sale_price'))]"/> -->
+            <field name="name">Solo ver: precio venta y compra</field>
+        </record>
+
+<!-- reglas -->
+
+    <!-- hacemos readonly a lo payment terms -->
     <record id="restrict_price_read_only_payment_term" model="ir.rule">
         <field name="name">Restrict Price Read Only on Payment Term</field>
         <field name="model_id" ref="account.model_account_payment_term" />
@@ -14,6 +35,7 @@
         <field name="perm_read" eval="False"/>
     </record>
 
+    <!-- hacemos readonly a los pricelists -->
     <record id="restrict_price_read_only_pricelist" model="ir.rule">
         <field name="name">Restrict Price Read Only on Pricelist</field>
         <field name="model_id" ref="product.model_product_pricelist" />
