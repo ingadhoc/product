@@ -1,81 +1,103 @@
-<?xml version="1.0"?>
-<openerp>
-    <data>
-    <!-- add can modify pries -->
-        <record id="product_template_only_form_view" model="ir.ui.view">
-            <field name="name">price_security.product.form</field>
-            <field name="model">product.template</field>
-            <field name="inherit_id" ref="product.product_template_only_form_view"/>
-            <field name="arch" type="xml">
-                <field name="currency_id" position="after">
-                    <field name="can_modify_prices"/>
-                </field>
-            </field>
-        </record>
+<odoo>
 
-        <record id="product_normal_form_view" model="ir.ui.view">
-            <field name="name">price_security.product.form</field>
-            <field name="model">product.product</field>
-            <field name="inherit_id" ref="product.product_normal_form_view"/>
-            <field name="arch" type="xml">
-                <field name="currency_id" position="after">
-                    <field name="can_modify_prices"/>
-                </field>
+<!-- add can modify pries -->
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">price_security.product.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <field name="list_price" position="after">
+                <field name="can_modify_prices"/>
             </field>
-        </record>
+        </field>
+    </record>
 
-    <!-- make readonly for group_restrict_prices -->
-        <record id="product_readonly_template_only_form_view" model="ir.ui.view">
-            <field name="name">price_security.product.form</field>
-            <field name="model">product.template</field>
-            <field name="inherit_id" ref="product_template_only_form_view"/>
-            <field name="groups_id" eval="[(6, 0, [ref('group_restrict_prices')])]"/>
-            <field name="arch" type="xml">
-                <field name="list_price" position="attributes">
-                    <attribute name="readonly">1</attribute>
-                </field>
-                <field name="can_modify_prices" position="attributes">
-                    <attribute name="readonly">1</attribute>
-                </field>
+<!-- Solo ver: precio de venta: oculta costos y planned, deja ver list price en readonly -->
+    <record id="view_product_only_view_sale_price_form" model="ir.ui.view">
+        <field name="name">View Only sale price template form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="groups_id" eval="[(6, 0, [ref('group_restrict_prices')])]"/>
+        <field name="priority">30</field>
+        <field name="arch" type="xml">
+            <!-- we make price readonly -->
+            <field name="list_price" position="attributes">
+                <attribute name="readonly">1</attribute>
             </field>
-        </record>
-
-        <record id="product_readonly_normal_form_view" model="ir.ui.view">
-            <field name="name">price_security.product.form</field>
-            <field name="model">product.product</field>
-            <field name="inherit_id" ref="product_normal_form_view"/>
-            <field name="groups_id" eval="[(6, 0, [ref('group_restrict_prices')])]"/>
-            <field name="arch" type="xml">
-                <field name="lst_price" position="attributes">
-                    <attribute name="readonly">1</attribute>
-                </field>
-                <field name="can_modify_prices" position="attributes">
-                    <attribute name="readonly">1</attribute>
-                </field>
+            <field name="uom_id" position="attributes">
+                <attribute name="readonly">1</attribute>
             </field>
-        </record>
 
-        <record id="product_pricelist_form_view" model="ir.ui.view">
-            <field name="name">product.pricelist.form</field>
-            <field name="model">product.pricelist</field>
-            <field name="inherit_id" ref="product.product_pricelist_view"/>
-            <field name="arch" type="xml">
-                <field name="active" position="after">
-                    <field name="sequence"/>
-                </field>
+            <!-- we hide costing -->
+            <label for="standard_price" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </label>
+            <field name="seller_ids" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="invisible">1</attribute>
             </field>
-        </record>
-
-
-        <record id="product_pricelist_view_tree" model="ir.ui.view">
-            <field name="name">product.pricelist.tree</field>
-            <field name="model">product.pricelist</field>
-            <field name="inherit_id" ref="product.product_pricelist_view_tree"/>
-            <field name="arch" type="xml">
-                <field name="name" position="before">
-                    <field name="sequence" widget="handle"/>
-                </field>
+            <field name="uom_po_id" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="invisible">1</attribute>
             </field>
-        </record>
-    </data>
-</openerp>
+            <field name="standard_price" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="invisible">1</attribute>
+            </field>
+
+            <field name="can_modify_prices" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+        </field>
+    </record>
+
+<!-- Solo ver: precio venta y compra: vuelve a hacer visible costo y planeados pero los ahce readonly -->
+    <record id="view_product_only_view_form" model="ir.ui.view">
+        <field name="name">View Only: sale and cost template form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="view_product_only_view_sale_price_form"/>
+        <field name="groups_id" eval="[(6, 0, [ref('group_only_view')])]"/>
+        <field name="priority">30</field>
+        <field name="arch" type="xml">
+
+            <!-- restore cost fields (they remain readonly) -->
+            <field name="seller_ids" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </field>
+            <field name="standard_price" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </field>
+            <label for="standard_price" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </label>
+            <field name="uom_po_id" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </field>
+
+        </field>
+    </record>
+
+    <record id="product_pricelist_form_view" model="ir.ui.view">
+        <field name="name">product.pricelist.form</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view"/>
+        <field name="arch" type="xml">
+            <field name="active" position="after">
+                <field name="sequence"/>
+            </field>
+        </field>
+    </record>
+
+
+    <record id="product_pricelist_view_tree" model="ir.ui.view">
+        <field name="name">product.pricelist.tree</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="sequence" widget="handle"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
