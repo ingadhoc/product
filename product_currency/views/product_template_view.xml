@@ -1,0 +1,19 @@
+<odoo>
+    <!-- template form -->
+    <record id="product_template_only_form_view" model="ir.ui.view">
+        <field name="name">product_computed_list_price.form</field>
+        <field name="model">product.template</field>
+        <!-- inherit common view -->
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="priority">8</field>
+        <field name="arch" type="xml">
+            <!-- to make it clearer, we make currency field visible -->
+            <field name="currency_id" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </field>
+            <field name="currency_id" position="before">
+                <field name="force_currency_id" groups="base.group_multi_currency"/> 
+            </field>
+        </field>
+    </record>
+</odoo>
