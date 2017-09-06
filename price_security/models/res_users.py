@@ -4,7 +4,7 @@
 # directory
 ##############################################################################
 from openerp import models, api, fields, _
-from openerp.exceptions import Warning
+from openerp.exceptions import UserError
 
 
 class DiscountRestriction(models.Model):
@@ -66,5 +66,5 @@ class Users(models.Model):
                         disc_restriction.min_discount,
                         disc_restriction.max_discount)
         if not do_not_raise and error:
-            raise Warning(error)
+            raise UserError(error)
         return error
