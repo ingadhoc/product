@@ -4,7 +4,6 @@
 # directory
 ##############################################################################
 from openerp import fields, models, api, _
-from openerp.exceptions import ValidationError
 
 
 class SaleOrderLine(models.Model):
