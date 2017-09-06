@@ -4,6 +4,7 @@
 # directory
 ##############################################################################
 from openerp import fields, models, api, _
+from openerp.exceptions import ValidationError
 
 
 class SaleOrderLine(models.Model):
@@ -78,3 +79,12 @@ class SaleOrder(models.Model):
                 'Selected payment term priority can not be higher than '
                 'payment term configured on partner'
             ))
+
+    @api.onchange('partner_id')
+    def check_partner_pricelist_change(self):
+        pricelist = self.partner_id.property_product_pricelist
+        if self.order_line and pricelist != self._origin.pricelist_id:
+            self.partner_id = self._origin.partner_id
+            return {'warning': {'title': "Warning", 'message': "You can"
+                                " not change partner if there are sale lines"
+                                " and pricelist is going to be changed"}}
