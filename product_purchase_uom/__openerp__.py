@@ -33,5 +33,5 @@
     'test': [],
     'data': [
     ],
-    'installable': True,
+    'installable': False,
 }
