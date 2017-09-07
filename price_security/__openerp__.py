@@ -22,7 +22,7 @@
     'name': 'Price Security',
     'version': '10.0.1.0.0',
     'category': 'Sales Management',
-    'author': 'ADHOC SA',
+    'author': 'ADHOC SA, Odoo Community Association (OCA)',
     'website': 'http://www.adhoc.com.ar/',
     'license': 'AGPL-3',
     'depends': [

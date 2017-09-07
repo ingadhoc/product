@@ -4,14 +4,13 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016
-# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-06 12:19+0000\n"
-"PO-Revision-Date: 2017-04-06 12:19+0000\n"
-"Last-Translator: Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2017\n"
+"POT-Creation-Date: 2017-07-20 14:43+0000\n"
+"PO-Revision-Date: 2017-07-20 14:43+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,135 +19,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: product_computed_list_price
-#: model:ir.ui.view,arch_db:product_computed_list_price.product_product_prices_form
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<!-- pero ponemos el grupo a los items -->\n"
-"                <field name=\"item_ids\" position=\"attributes\">\n"
-"                    <attribute name=\"groups\">product.group_product_pricelist</attribute>\n"
-"                </field>\n"
-"            "
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<!-- pero ponemos el grupo a los items -->\n"
-"                <field name=\"item_ids\" position=\"attributes\">\n"
-"                    <attribute name=\"groups\">product.group_product_pricelist</attribute>\n"
-"                </field>\n"
-"            "
-
-#. module: product_computed_list_price
-#: model:ir.ui.view,arch_db:product_computed_list_price.product_template_only_form_view
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<data><!-- sacamos este campo y lo llevamos a tab sale -->\n"
-"                <field name=\"list_price\" position=\"replace\"/>\n"
-"                \n"
-"                <!-- dejamos visible el pricelist group -->\n"
-"                <div name=\"pricelist_item\" position=\"attributes\">\n"
-"                    <attribute name=\"groups\"/>\n"
-"                </div>\n"
-"                <!-- pero ponemos el grupo a los items -->\n"
-"                <field name=\"item_ids\" position=\"attributes\">\n"
-"                    <attribute name=\"groups\">product.group_product_pricelist</attribute>\n"
-"                </field>\n"
-"\n"
-"                <field name=\"item_ids\" position=\"before\">\n"
-"                    <group name=\"pricing\">\n"
-"                        <group name=\"planned_price\">\n"
-"                            <field name=\"list_price_type\" string=\"Planned Price based on\"/>\n"
-"                            <field name=\"computed_list_price_manual\" widget=\"monetary\" attrs=\"{'invisible': [('list_price_type', '!=', 'manual')]}\" string=\"Planned Price\" options=\"{'currency_field': 'currency_id'}\"/>\n"
-"                            <field name=\"computed_list_price\" widget=\"monetary\" attrs=\"{'invisible': [('list_price_type', 'in', ['manual', False])]}\" options=\"{'currency_field': 'currency_id'}\"/>\n"
-"                        </group>\n"
-"                        <group name=\"list_price\">\n"
-"                            <field name=\"list_price\" widget=\"monetary\" options=\"{'currency_field': 'currency_id'}\"/>\n"
-"                        </group>\n"
-"                    </group>\n"
-"                </field>\n"
-"            </data>"
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<data><!-- sacamos este campo y lo llevamos a tab sale -->\n"
-"                <field name=\"list_price\" position=\"replace\"/>\n"
-"                \n"
-"                <!-- dejamos visible el pricelist group -->\n"
-"                <div name=\"pricelist_item\" position=\"attributes\">\n"
-"                    <attribute name=\"groups\"/>\n"
-"                </div>\n"
-"                <!-- pero ponemos el grupo a los items -->\n"
-"                <field name=\"item_ids\" position=\"attributes\">\n"
-"                    <attribute name=\"groups\">product.group_product_pricelist</attribute>\n"
-"                </field>\n"
-"\n"
-"                <field name=\"item_ids\" position=\"before\">\n"
-"                    <group name=\"pricing\">\n"
-"                        <group name=\"planned_price\">\n"
-"                            <field name=\"list_price_type\" string=\"Planned Price based on\"/>\n"
-"                            <field name=\"computed_list_price_manual\" widget=\"monetary\" attrs=\"{'invisible': [('list_price_type', '!=', 'manual')]}\" string=\"Planned Price\" options=\"{'currency_field': 'currency_id'}\"/>\n"
-"                            <field name=\"computed_list_price\" widget=\"monetary\" attrs=\"{'invisible': [('list_price_type', 'in', ['manual', False])]}\" options=\"{'currency_field': 'currency_id'}\"/>\n"
-"                        </group>\n"
-"                        <group name=\"list_price\">\n"
-"                            <field name=\"list_price\" widget=\"monetary\" options=\"{'currency_field': 'currency_id'}\"/>\n"
-"                        </group>\n"
-"                    </group>\n"
-"                </field>\n"
-"            </data>"
-
-#. module: product_computed_list_price
-#: model:ir.ui.view,arch_db:product_computed_list_price.product_template_search_view
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<filter name=\"filter_to_sell\" position=\"after\">\n"
-"                    <filter string=\"With Planned Price\" name=\"with_planned_price\" domain=\"[('list_price_type', '!=', False)]\"/>\n"
-"                    <separator/>\n"
-"                </filter>\n"
-"            "
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<filter name=\"filter_to_sell\" position=\"after\">\n"
-"                    <filter string=\"With Planned Price\" name=\"with_planned_price\" domain=\"[('list_price_type', '!=', False)]\"/>\n"
-"                    <separator/>\n"
-"                </filter>\n"
-"            "
-
-#. module: product_computed_list_price
-#: model:ir.ui.view,arch_db:product_computed_list_price.view_update_from_planned_price_wizard_form
-msgid ""
-"<?xml version=\"1.0\"?>\n"
-"<form string=\"Product Catalog Report\">\n"
-"                    Update List Price with Planned Price for all sellected products with planned price.\n"
-"                    <footer>\n"
-"                        <button name=\"confirm\" string=\"Confirm\" type=\"object\" class=\"oe_highlight\"/>\n"
-"                        or\n"
-"                        <button string=\"Cancel\" special=\"cancel\" class=\"oe_link\"/>\n"
-"                    </footer>\n"
-"                </form>\n"
-"            "
-msgstr ""
-"<?xml version=\"1.0\"?>\n"
-"<form string=\"Product Catalog Report\">\n"
-"                    Actualizar lista de precios con el Precio Planeadopara todos los productos seleccionados con precio planeado.\n"
-"                    <footer>\n"
-"                        <button name=\"confirm\" string=\"Confirm\" type=\"object\" class=\"oe_highlight\"/>\n"
-"                        o\n"
-"                        <button string=\"Cancel\" special=\"cancel\" class=\"oe_link\"/>\n"
-"                    </footer>\n"
-"                </form>\n"
-"            "
-
-#. module: product_computed_list_price
 #: selection:product.template,list_price_type:0
 msgid "By Margin"
 msgstr "Por Margen"
 
 #. module: product_computed_list_price
+#: model:ir.ui.view,arch_db:product_computed_list_price.view_update_from_planned_price_wizard_form
+msgid "Cancel"
+msgstr ""
+
+#. module: product_computed_list_price
+#: model:ir.ui.view,arch_db:product_computed_list_price.view_update_from_planned_price_wizard_form
+msgid "Confirm"
+msgstr ""
+
+#. module: product_computed_list_price
 #: model:ir.model.fields,field_description:product_computed_list_price.field_product_update_from_planned_price_wizard_create_uid
-#: field:product.update_from_planned_price.wizard,create_uid:0
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: product_computed_list_price
 #: model:ir.model.fields,field_description:product_computed_list_price.field_product_update_from_planned_price_wizard_create_date
-#: field:product.update_from_planned_price.wizard,create_date:0
 msgid "Created on"
 msgstr "Creado el"
 
@@ -159,13 +50,11 @@ msgstr "Cambio de moneda"
 
 #. module: product_computed_list_price
 #: model:ir.model.fields,field_description:product_computed_list_price.field_product_update_from_planned_price_wizard_display_name
-#: field:product.update_from_planned_price.wizard,display_name:0
 msgid "Display Name"
 msgstr "Mostrar nombre"
 
 #. module: product_computed_list_price
 #: model:ir.model.fields,help:product_computed_list_price.field_product_template_computed_list_price_manual
-#: help:product.template,computed_list_price_manual:0
 msgid "Field to store manual planned price"
 msgstr "Campo para guardar el precio planeado manual"
 
@@ -176,49 +65,47 @@ msgstr "Valor fijo"
 
 #. module: product_computed_list_price
 #: model:ir.model.fields,field_description:product_computed_list_price.field_product_update_from_planned_price_wizard_id
-#: field:product.update_from_planned_price.wizard,id:0
 msgid "ID"
 msgstr "ID"
 
 #. module: product_computed_list_price
 #: model:ir.model.fields,field_description:product_computed_list_price.field_product_update_from_planned_price_wizard___last_update
-#: field:product.update_from_planned_price.wizard,__last_update:0
 msgid "Last Modified on"
 msgstr "Última modificación el"
 
 #. module: product_computed_list_price
 #: model:ir.model.fields,field_description:product_computed_list_price.field_product_update_from_planned_price_wizard_write_uid
-#: field:product.update_from_planned_price.wizard,write_uid:0
 msgid "Last Updated by"
 msgstr "Última actualización por"
 
 #. module: product_computed_list_price
 #: model:ir.model.fields,field_description:product_computed_list_price.field_product_update_from_planned_price_wizard_write_date
-#: field:product.update_from_planned_price.wizard,write_date:0
 msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: product_computed_list_price
 #: model:ir.model.fields,field_description:product_computed_list_price.field_product_template_computed_list_price
-#: field:product.template,computed_list_price:0
+#: model:ir.ui.view,arch_db:product_computed_list_price.product_template_only_form_view
 msgid "Planned Price"
-msgstr "Precio Plenado"
+msgstr "Precio Planeado"
 
 #. module: product_computed_list_price
 #: model:ir.model.fields,field_description:product_computed_list_price.field_product_template_computed_list_price_manual
-#: field:product.template,computed_list_price_manual:0
 msgid "Planned Price Manual"
 msgstr "Precio Planeado Manual"
 
 #. module: product_computed_list_price
 #: model:ir.model.fields,field_description:product_computed_list_price.field_product_template_list_price_type
-#: field:product.template,list_price_type:0
 msgid "Planned Price Type"
 msgstr "Tipo de Precio Planeado"
 
 #. module: product_computed_list_price
+#: model:ir.ui.view,arch_db:product_computed_list_price.product_template_only_form_view
+msgid "Planned Price based on"
+msgstr ""
+
+#. module: product_computed_list_price
 #: model:ir.model.fields,help:product_computed_list_price.field_product_template_computed_list_price
-#: help:product.template,computed_list_price:0
 msgid ""
 "Planned Price. This value depends on Planned Price Type\" an other "
 "parameters."
@@ -227,9 +114,21 @@ msgstr ""
 "parámetros."
 
 #. module: product_computed_list_price
+#: model:ir.ui.view,arch_db:product_computed_list_price.view_update_from_planned_price_wizard_form
+msgid "Product Catalog Report"
+msgstr ""
+
+#. module: product_computed_list_price
 #: model:ir.model,name:product_computed_list_price.model_product_template
 msgid "Product Template"
 msgstr "Plantilla de producto"
+
+#. module: product_computed_list_price
+#: model:ir.ui.view,arch_db:product_computed_list_price.view_update_from_planned_price_wizard_form
+msgid ""
+"Update List Price with Planned Price for all sellected products with planned"
+" price."
+msgstr ""
 
 #. module: product_computed_list_price
 #: model:ir.actions.act_window,name:product_computed_list_price.action_update_from_planned_price_wizard
@@ -248,3 +147,13 @@ msgstr ""
 #: model:ir.model,name:product_computed_list_price.model_product_update_from_planned_price_wizard
 msgid "Update product price from planned price"
 msgstr "Actualizar el precio del producto desde el precio planeado"
+
+#. module: product_computed_list_price
+#: model:ir.ui.view,arch_db:product_computed_list_price.product_template_search_view
+msgid "With Planned Price"
+msgstr ""
+
+#. module: product_computed_list_price
+#: model:ir.ui.view,arch_db:product_computed_list_price.view_update_from_planned_price_wizard_form
+msgid "or"
+msgstr ""

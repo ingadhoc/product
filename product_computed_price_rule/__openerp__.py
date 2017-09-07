@@ -38,7 +38,6 @@
     ],
     'test': [
     ],
-    # a ser depreciado en la v10
     "installable": False,
     'auto_install': False,
     'application': False,

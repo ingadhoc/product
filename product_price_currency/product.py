@@ -32,18 +32,17 @@ class ProductTemplate(models.Model):
         'other_currency_id',
     )
     def _get_computed_list_price(self):
-        """Only to update depends"""
-        return super(ProductTemplate, self)._get_computed_list_price()
-
-    @api.multi
-    def get_computed_list_price(self):
-        self.ensure_one()
-        if self.list_price_type == 'other_currency':
-            if self.other_currency_id:
-                return self.other_currency_id.compute(
-                    self.other_currency_list_price,
-                    self.currency_id,
-                    round=False)
-            else:
-                return False
-        return super(ProductTemplate, self).get_computed_list_price()
+        other_currency_recs = self.filtered(
+            lambda x: x.list_price_type == 'other_currency' and
+            x.other_currency_id)
+        _logger.info(
+            'Get computed_list_price for %s "other_currency" products' % (
+                len(other_currency_recs)))
+        for rec in other_currency_recs:
+            rec.computed_list_price = rec.other_currency_id.compute(
+                rec.other_currency_list_price,
+                rec.currency_id,
+                round=False)
+        other_type_recs = self - other_currency_recs
+        return super(
+            ProductTemplate, other_type_recs)._get_computed_list_price()

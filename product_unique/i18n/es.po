@@ -4,14 +4,13 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016
-# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-06 12:19+0000\n"
-"PO-Revision-Date: 2017-04-06 12:19+0000\n"
-"Last-Translator: Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2017\n"
+"POT-Creation-Date: 2017-07-20 14:44+0000\n"
+"PO-Revision-Date: 2017-07-20 14:44+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,25 +20,21 @@ msgstr ""
 
 #. module: product_unique
 #: model:ir.model.fields,field_description:product_unique.field_product_product_abc_sales_amount
-#: field:product.product,abc_sales_amount:0
 msgid "ABC Sales amount"
 msgstr "ABS Montos de venta"
 
 #. module: product_unique
 #: model:ir.model.fields,field_description:product_unique.field_product_product_abc_sales_combined
-#: field:product.product,abc_sales_combined:0
 msgid "ABC Sales combined"
 msgstr "ABC Ventas combinadas"
 
 #. module: product_unique
 #: model:ir.model.fields,field_description:product_unique.field_product_product_abc_sales_quantity
-#: field:product.product,abc_sales_quantity:0
 msgid "ABC Sales quantity"
 msgstr "ABC Cantidad de ventas"
 
 #. module: product_unique
 #: model:ir.model.fields,field_description:product_unique.field_product_product_main_seller_id
-#: field:product.product,main_seller_id:0
 msgid "Main Seller"
 msgstr "Vendedor principal"
 
@@ -47,6 +42,25 @@ msgstr "Vendedor principal"
 #: model:ir.model,name:product_unique.model_product_product
 msgid "Product"
 msgstr "Producto"
+
+#. module: product_unique
+#: model:ir.model.fields,field_description:product_unique.field_product_product_replenishment_cost
+msgid "Replenishment cost"
+msgstr "Costo de Reposición"
+
+#. module: product_unique
+#: model:ir.model.fields,help:product_unique.field_product_product_replenishment_cost
+msgid ""
+"The cost that you have to support in order to produce or acquire the goods. "
+"Depending on the modules installed, this cost may be computed based on "
+"various pieces of information, for example Bills of Materials or latest "
+"Purchases. By default, the Replenishment cost is the same as the Cost Price."
+msgstr ""
+"El costo que debes afrontar para producir o conseguir los bienes. "
+"Dependiendo en los módulos instalados, el costo sería computado en base a "
+"varios pedazos de información, por ejemplo Listas de materiales o Compras "
+"recientes. Por defecto, el costo de Reposición es el mismo que el Precio de "
+"Costo."
 
 #. module: product_unique
 #: code:addons/product_unique/product.py:34
@@ -62,14 +76,13 @@ msgstr ""
 #: code:addons/product_unique/product.py:22
 #, python-format
 msgid ""
-"There can not be two active products with the same Reference ode in the same"
-" company."
+"There can not be two active products with the same Reference code in the "
+"same company."
 msgstr ""
 "No puede haber dos productos activos con el mismo código de referencia en la"
 " misma empresa."
 
 #. module: product_unique
 #: model:ir.model.fields,help:product_unique.field_product_product_main_seller_id
-#: help:product.product,main_seller_id:0
 msgid "Vendor of this product"
 msgstr "Vendedor de este Producto"
