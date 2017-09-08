@@ -2,20 +2,11 @@
   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
   :alt: License: AGPL-3
 
-==============
-Price Security
-==============
+=======================
+Price Security Purchase
+=======================
 
-Creates a new permission to restrict the users that can modify the prices
-of the products.
-
-Asociate to each user a list of pricelist and the correspoding discounts they
-can apply to sale orders and invoices.
-
-Allow the posibility to mark products so that anyone can modify their price in
-a sale order.
-
-Add a sequence field on pricelist and payment term (you can only assign pricelist or terms of lower priority than partner default one)
+Extend functionality of price security module in purchase.
 
 Installation
 ============
@@ -30,8 +21,7 @@ Configuration
 
 To configure this module, you need to:
 
-#. Set 'Restrict Prices' for users you want to restrict.
-#. For the same users, configure discounts range on "Discounts Permissions" users tab.
+#. The same as Price security
 
 
 Usage
@@ -39,13 +29,7 @@ Usage
 
 To use this module, you need to:
 
-For users with price restriction, it restricts:
-* on sales orders: change payment term or pricelist
-* on sales order lines: change unit price and set limits on discount (limits configured on user)
-* on partners: change payment term or pricelist
-* on invoices: change unit price
-* on invoice lines: change unit price and set limits on discount (limits configured on user)
-* on product: change price
+#. The same as Price security
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
   :alt: Try me on Runbot

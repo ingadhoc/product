@@ -32,10 +32,6 @@
             <label for="standard_price" position="attributes">
                 <attribute name="invisible">1</attribute>
             </label>
-            <field name="seller_ids" position="attributes">
-                <attribute name="readonly">1</attribute>
-                <attribute name="invisible">1</attribute>
-            </field>
             <field name="uom_po_id" position="attributes">
                 <attribute name="readonly">1</attribute>
                 <attribute name="invisible">1</attribute>
@@ -61,9 +57,6 @@
         <field name="arch" type="xml">
 
             <!-- restore cost fields (they remain readonly) -->
-            <field name="seller_ids" position="attributes">
-                <attribute name="invisible">0</attribute>
-            </field>
             <field name="standard_price" position="attributes">
                 <attribute name="invisible">0</attribute>
             </field>
