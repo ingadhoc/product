@@ -3,8 +3,8 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import api, models, _
-from openerp.exceptions import ValidationError
+from odoo import api, models, _
+from odoo.exceptions import ValidationError
 
 
 class ProductUpdateFromPlannedPriceWizard(models.TransientModel):

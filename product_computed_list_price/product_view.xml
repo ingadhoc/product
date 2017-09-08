@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
+<odoo>
     <data>
 
         <!-- template form -->
@@ -8,7 +8,7 @@
             <field name="model">product.template</field>
             <!-- inherit common view -->
             <field name="inherit_id" ref="product.product_template_form_view"/>
-            <field name="priority">8</field>
+            <field name="priority">7</field>
             <field name="arch" type="xml">
                 <!-- sacamos este campo y lo llevamos a tab sale -->
                 <field name="list_price" position="replace"/>
@@ -44,7 +44,7 @@
             <field name="inherit_id" ref="product.product_normal_form_view"/>
             <field name="arch" type="xml">
                 <!-- pero ponemos el grupo a los items -->
-                <field name="item_ids" position="attributes">
+                <field name="pricelist_item_ids" position="attributes">
                     <attribute name="groups">product.group_product_pricelist</attribute>
                 </field>
             </field>
@@ -64,4 +64,4 @@
         </record>
 
     </data>
-</openerp>
+</odoo>

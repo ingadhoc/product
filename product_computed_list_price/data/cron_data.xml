@@ -1,5 +1,5 @@
-<openerp>
-<data noupdate="1">
+<odoo>
+    <data noupdate="1">
         <record id="ir_cron_update_price_from_planned" model="ir.cron">
             <field name="name">Update Prices from Planned</field>
             <field name="model">product.template</field>
@@ -12,5 +12,5 @@
             <field eval="0" name="active"/>
             <field eval="1" name="interval_number"/>
         </record>
-</data>
-</openerp>
+    </data>
+</odoo>
