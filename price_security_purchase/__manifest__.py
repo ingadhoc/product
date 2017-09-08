@@ -19,24 +19,20 @@
 #
 ##############################################################################
 {
-    'name': 'Price Security',
+    'name': 'Price Security Purchase',
     'version': '10.0.1.0.0',
     'category': 'Sales Management',
     'author': 'ADHOC SA, Odoo Community Association (OCA)',
     'website': 'http://www.adhoc.com.ar/',
     'license': 'AGPL-3',
     'depends': [
-        'sale',
+        'purchase',
+        'price_security',
     ],
     'data': [
-        'security/security.xml',
-        'security/ir.model.access.csv',
-        'views/res_users_view.xml',
         'views/product_view.xml',
-        'views/sale_view.xml',
-        'views/invoice_view.xml',
-        'views/partner_view.xml',
-        'views/account_view.xml',
     ],
     'installable': True,
+    'auto_install': True,
+    'application': False,
 }

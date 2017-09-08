@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<openerp>
+<odoo>
     <data>
         <!-- Form -->
         <record id="view_price_security_users_form" model="ir.ui.view">
@@ -20,6 +20,5 @@
                 </notebook>
             </field>
         </record>
-        
     </data>
-</openerp>
+</odoo>
