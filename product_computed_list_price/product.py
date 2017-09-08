@@ -3,8 +3,8 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import models, fields, api
-import openerp.addons.decimal_precision as dp
+from odoo import models, fields, api
+import odoo.addons.decimal_precision as dp
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -19,7 +19,7 @@ class ProductTemplate(models.Model):
     )
     computed_list_price = fields.Float(
         string='Planned Price',
-        compute='_get_computed_list_price',
+        compute='_computed_list_price',
         digits=dp.get_precision('Product Price'),
         help='Planned Price. This value depends on Planned Price Type" an '
         'other parameters.',
@@ -101,7 +101,7 @@ class ProductTemplate(models.Model):
         'list_price_type',
         'computed_list_price_manual',
     )
-    def _get_computed_list_price(self):
+    def _computed_list_price(self):
         manual_recs = self.filtered(
             lambda x: x.list_price_type == 'manual')
         _logger.info('Get computed_list_price for %s "manual" products' % (
