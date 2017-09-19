@@ -3,7 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import models, fields, api
+from odoo import models, fields, api
 # import openerp.addons.decimal_precision as dp
 
 
@@ -26,15 +26,15 @@ class ProductTemplate(models.Model):
         'computed_list_price_rule_id.item_ids.percentage_amount',
         'computed_list_price_rule_id.item_ids.fixed_amount',
     )
-    def _get_computed_list_price(self):
+    def _computed_list_price(self):
         """Only to update depends"""
-        return super(ProductTemplate, self)._get_computed_list_price()
+        return super(ProductTemplate, self)._computed_list_price()
 
     @api.multi
     def _compute_computed_list_price_before(self):
         # TODO mejorar esto, llamamos a este metodo simplemente para que
         # recalcule
-        self._get_computed_list_price()
+        self._computed_list_price()
 
     @api.multi
     def _other_computed_rules(self, computed_list_price):
