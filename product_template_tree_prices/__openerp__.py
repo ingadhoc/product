@@ -20,14 +20,14 @@
 ##############################################################################
 {
     'name': 'Product Template Tree Prices',
-    'version': '9.0.1.0.0',
+    'version': '9.0.1.1.0',
     'category': 'base.module_category_knowledge_management',
     'author': 'ADHOC SA.',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'depends': [
         'product',
-        ],
+    ],
     'test': [],
     'demo': [],
     'data': [
@@ -35,4 +35,4 @@
     ],
     'installable': True,
     'auto_install': True,
-    }
+}
