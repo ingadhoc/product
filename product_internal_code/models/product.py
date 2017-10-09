@@ -3,7 +3,7 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import fields, models, api
+from odoo import fields, models, api
 
 
 class Product(models.Model):
