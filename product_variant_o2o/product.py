@@ -21,15 +21,22 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def create_variant_ids(self):
-        for tmpl_id in self:
-            if tmpl_id.one_variant_per_product:
+        for rec in self:
+            if rec.one_variant_per_product:
                 variant_alone = []
-                for variant_id in tmpl_id.attribute_line_ids:
+                for variant_id in rec.attribute_line_ids:
                     if len(variant_id.value_ids) == 1:
                         variant_alone.append(variant_id.value_ids[0])
-                tmpl_id.product_variant_ids.write(
-                    {'attribute_value_ids': [
-                        (6, 0, [x.id for x in variant_alone])]})
+                if rec.product_variant_ids:
+                    rec.product_variant_ids.write(
+                        {'attribute_value_ids': [
+                            (6, 0, [x.id for x in variant_alone])]})
+                else:
+                    values = {
+                        'product_tmpl_id': rec.id,
+                        'attribute_value_ids': [
+                            (6, 0, [x.id for x in variant_alone])]}
+                    rec.product_variant_ids.create(values)
                 return True
             else:
                 return super(ProductTemplate, self).create_variant_ids()
@@ -41,3 +48,14 @@ class ProductTemplate(models.Model):
             for variant_id in self.attribute_line_ids:
                 if len(variant_id.value_ids) > 1:
                     raise Warning(_("Only 1 value for attribute."))
+
+    @api.multi
+    @api.constrains('one_variant_per_product')
+    def _check_variants(self):
+        for rec in self:
+            if rec.one_variant_per_product:
+                if len(rec.product_variant_ids) > 1:
+                    raise Warning(_(
+                        'To set "One variant per product" product must have '
+                        'only one variant. Deactivate/delete some variants or '
+                        'remove some attributes to achieve that.'))
