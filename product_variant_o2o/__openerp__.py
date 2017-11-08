@@ -22,7 +22,7 @@
     'name': 'Product Variant Force One Two One',
     'version': '9.0.1.0.0',
     'category': 'Sales',
-    'author': 'ADHOC SA.',
+    'author': 'ADHOC SA, Odoo Community Association (OCA)',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'depends': ['product'],
