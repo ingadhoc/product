@@ -54,7 +54,7 @@ class ProductTemplate(models.Model):
     def _check_variants(self):
         for rec in self:
             if rec.one_variant_per_product:
-                if len(self.product_variant_ids) > 1:
+                if len(rec.product_variant_ids) > 1:
                     raise Warning(_(
                         'To set "One variant per product" product must have '
                         'only one variant. Deactivate/delete some variants or '
