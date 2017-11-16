@@ -1,0 +1,150 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_replenishment_cost_rule
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: product (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-03 14:18+0000\n"
+"PO-Revision-Date: 2016-03-03 19:25+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>\n"
+"Language-Team: Macedonian (http://www.transifex.com/adhoc/ingadhoc-product-8-0/language/mk/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: mk\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
+
+#. module: product_replenishment_cost_rule
+#: field:product.replenishment_cost.rule,create_uid:0
+#: field:product.replenishment_cost.rule.item,create_uid:0
+msgid "Created by"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: field:product.replenishment_cost.rule,create_date:0
+#: field:product.replenishment_cost.rule.item,create_date:0
+msgid "Created on"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: field:product.replenishment_cost.rule,display_name:0
+#: field:product.replenishment_cost.rule.item,display_name:0
+msgid "Display Name"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: field:product.replenishment_cost.rule.item,fixed_amount:0
+msgid "Fixed Amount"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: field:product.replenishment_cost.rule,id:0
+#: field:product.replenishment_cost.rule.item,id:0
+msgid "ID"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: view:product.replenishment_cost.rule:product_replenishment_cost_rule.product_replenshiment_cost_rule_form
+#: field:product.replenishment_cost.rule,item_ids:0
+msgid "Items"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: field:product.replenishment_cost.rule,__last_update:0
+#: field:product.replenishment_cost.rule.item,__last_update:0
+msgid "Last Modified on"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: field:product.replenishment_cost.rule,write_uid:0
+#: field:product.replenishment_cost.rule.item,write_uid:0
+msgid "Last Updated by"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: field:product.replenishment_cost.rule,write_date:0
+#: field:product.replenishment_cost.rule.item,write_date:0
+msgid "Last Updated on"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: field:product.replenishment_cost.rule,name:0
+#: field:product.replenishment_cost.rule.item,name:0
+msgid "Name"
+msgstr "Име"
+
+#. module: product_replenishment_cost_rule
+#: view:product.replenishment_cost.rule:product_replenishment_cost_rule.product_replenshiment_cost_rule_form
+#: view:product.replenishment_cost.rule:product_replenishment_cost_rule.product_replenshiment_cost_rule_tree
+msgid "Name..."
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: field:product.replenishment_cost.rule.item,percentage_amount:0
+msgid "Percentage Amount"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: model:ir.model,name:product_replenishment_cost_rule.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: view:product.replenishment_cost.rule:product_replenishment_cost_rule.product_replenshiment_cost_rule_form
+#: field:product.replenishment_cost.rule,product_ids:0
+msgid "Products"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: view:product.template:product_replenishment_cost_rule.product_template_search_view
+msgid "Products Without Replenishment Rule"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: field:product.template,replenishment_cost_currency_id_copy:0
+msgid "Replenishment Cost Currency"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: view:product.replenishment_cost.rule:product_replenishment_cost_rule.product_replenshiment_cost_rule_filter
+#: view:product.replenishment_cost.rule:product_replenishment_cost_rule.product_replenshiment_cost_rule_form
+#: view:product.replenishment_cost.rule:product_replenishment_cost_rule.product_replenshiment_cost_rule_tree
+#: field:product.template,replenishment_cost_rule_id:0
+msgid "Replenishment Cost Rule"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: model:ir.actions.act_window,name:product_replenishment_cost_rule.action_product_replenshiment_cost_rule
+#: model:ir.ui.menu,name:product_replenishment_cost_rule.menu_product_replenshiment_cost_rule
+msgid "Replenishment Cost Rules"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: field:product.template,replenishment_base_cost_on_currency:0
+msgid "Replenishment base cost on currency"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: field:product.replenishment_cost.rule.item,replenishment_cost_rule_id:0
+msgid "Rule"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: help:product.replenishment_cost.rule.item,fixed_amount:0
+msgid ""
+"Specify the fixed amount to add or substract(if negative) to the amount "
+"calculated with the percentage amount."
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: view:product.template:product_replenishment_cost_rule.product_template_search_view
+msgid "Without Rep. Rule"
+msgstr ""
+
+#. module: product_replenishment_cost_rule
+#: field:product.replenishment_cost.rule.item,sequence:0
+msgid "sequence"
+msgstr ""

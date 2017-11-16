@@ -1,0 +1,40 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_pack_pos
+# 
+# Translators:
+# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-03 14:18+0000\n"
+"PO-Revision-Date: 2017-04-03 14:18+0000\n"
+"Last-Translator: Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2016\n"
+"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: product_pack_pos
+#: code:addons/product_pack_pos/models/pos_order.py:42
+#, python-format
+msgid "Error!"
+msgstr "Error!"
+
+#. module: product_pack_pos
+#: code:addons/product_pack_pos/models/pos_order.py:43
+#, python-format
+msgid ""
+"Missing source or destination location for picking type %s. Please configure"
+" those fields and try again."
+msgstr ""
+"Falta el origen o ubicación de destino para el tipo de picking %s. Por "
+"favor, configure los campos y vuelva a intentarlo."
+
+#. module: product_pack_pos
+#: model:ir.model,name:product_pack_pos.model_pos_order
+msgid "Point of Sale"
+msgstr "Terminal Punto de Venta"

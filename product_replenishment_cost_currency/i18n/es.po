@@ -1,0 +1,165 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_replenishment_cost_currency
+# 
+# Translators:
+# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: product (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-03 14:18+0000\n"
+"PO-Revision-Date: 2017-04-03 14:19+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/adhoc/ingadhoc-product-8-0/language/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: product_replenishment_cost_currency
+#: view:product.template:product_replenishment_cost_currency.product_template_form_view
+msgid "Accounting Cost"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,standard_price_currency_id:0
+#: field:product.template,standard_price_currency_id:0
+msgid "Cost Price Currency"
+msgstr "Moneda de Precio de Costo"
+
+#. module: product_replenishment_cost_currency
+#: help:product.product,other_currency_id:0
+msgid "Currency used for the Currency List Price."
+msgstr "Moneda utilizada para el Precio de Lista en Divisa"
+
+#. module: product_replenishment_cost_currency
+#: help:product.product,replenishment_base_cost_currency_id:0
+#: help:product.template,replenishment_base_cost_currency_id:0
+msgid "Currency used for the Replanishment Base Cost."
+msgstr "Moneda utilizada para costo base de reposición."
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,taxes_id:0
+msgid "Customer Taxes"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,property_account_expense:0
+msgid "Expense Account"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,property_account_income:0
+msgid "Income Account"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,one_variant_per_product:0
+msgid "One variant per product"
+msgstr "Una Variante Por Producto"
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,other_currency_id:0
+msgid "Other Currency"
+msgstr "Otra moneda"
+
+#. module: product_replenishment_cost_currency
+#: model:ir.model,name:product_replenishment_cost_currency.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: product_replenishment_cost_currency
+#: model:ir.model,name:product_replenishment_cost_currency.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: product_replenishment_cost_currency
+#: help:product.product,replenishment_base_cost:0
+#: help:product.template,replenishment_base_cost:0
+msgid "Replanishment Cost expressed in 'Replenishment Base Cost Currency'."
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,replenishment_base_cost:0
+#: field:product.template,replenishment_base_cost:0
+msgid "Replenishment Base Cost"
+msgstr "Base de costo de reposición"
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,replenishment_base_cost_currency_id:0
+#: field:product.template,replenishment_base_cost_currency_id:0
+msgid "Replenishment Base Cost Currency"
+msgstr ""
+
+#. module: product_replenishment_cost_currency
+#: model:product.price.type,name:product_replenishment_cost_currency.price_type_replenishment_cost
+#: view:product.template:product_replenishment_cost_currency.product_template_form_view
+#: field:product.template,replenishment_cost:0
+msgid "Replenishment Cost"
+msgstr "Costo de reposición"
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,replenishment_cost_currency_id:0
+#: field:product.template,replenishment_cost_currency_id:0
+msgid "Replenishment Cost Currency"
+msgstr "Moneda de Costo de Reposición"
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,replenishment_cost_last_update:0
+#: field:product.template,replenishment_cost_last_update:0
+msgid "Replenishment Cost Last Update"
+msgstr "Ultima actualizacion del costo de reposición"
+
+#. module: product_replenishment_cost_currency
+#: help:product.product,one_variant_per_product:0
+msgid ""
+"Restrict so that only one variant per product can be created (only one attribute value per attribute can be setted). Also change odoo behaviour when changing attribute values:\n"
+"* False: default odoo behaviour, if you change an attribute or remove it odoo creates a new variant.\n"
+"* True: change attributes wont change variants, it will only update variants attributes"
+msgstr "Restrict so that only one variant per product can be created (only one attribute value per attribute can be setted). Also change odoo behaviour when changing attribute values:\n* False: default odoo behaviour, if you change an attribute or remove it odoo creates a new variant.\n* True: change attributes wont change variants, it will only update variants attributes"
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,computed_list_price_before:0
+msgid "Sale Price Before"
+msgstr "Precio de venta antes"
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,computed_list_price_rule_id:0
+msgid "Sale Price Rule"
+msgstr "Regla precio de venta"
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,other_currency_list_price:0
+#: help:product.product,other_currency_list_price:0
+msgid "Sale Price on Other Currency"
+msgstr "Precio de venta en otra moneda"
+
+#. module: product_replenishment_cost_currency
+#: field:product.product,supplier_taxes_id:0
+msgid "Supplier Taxes"
+msgstr "Impuestos del proveedor"
+
+#. module: product_replenishment_cost_currency
+#: help:product.template,replenishment_cost:0
+msgid ""
+"The cost that you have to support in order to produce or acquire the goods. "
+"Depending on the modules installed, this cost may be computed based on "
+"various pieces of information, for example Bills of Materials or latest "
+"Purchases."
+msgstr "El costo que tiene que soportar con el fin de producir o adquirir los bienes . Dependiendo de los módulos instalados , este costo puede ser calculado sobre la base de varias piezas de información, por ejemplo listas de materiales o últimas compras ."
+
+#. module: product_replenishment_cost_currency
+#: help:product.product,property_account_expense:0
+msgid ""
+"This account will be used for invoices instead of the default one to value "
+"expenses for the current product."
+msgstr "Esta cuenta se utilizará para las facturas en lugar de la opción por defecto para los gastos de valor para el producto actual."
+
+#. module: product_replenishment_cost_currency
+#: help:product.product,property_account_income:0
+msgid ""
+"This account will be used for invoices instead of the default one to value "
+"sales for the current product."
+msgstr "Esta cuenta se utilizará para las facturas en lugar de la opción por defecto para las ventas en valor para el producto actual."

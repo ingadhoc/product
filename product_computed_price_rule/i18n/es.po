@@ -1,0 +1,140 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_computed_price_rule
+# 
+# Translators:
+# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: product (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-03 14:18+0000\n"
+"PO-Revision-Date: 2017-04-03 13:48+0000\n"
+"Last-Translator: Nicolas Mac Rouillon <nmr@ingadhoc.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/adhoc/ingadhoc-product-8-0/language/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: product_computed_price_rule
+#: view:product.computed_list_price.rule:product_computed_price_rule.product_computed_list_price_rule_filter
+#: view:product.computed_list_price.rule:product_computed_price_rule.product_computed_list_price_rule_form
+#: view:product.computed_list_price.rule:product_computed_price_rule.product_computed_list_price_rule_tree
+msgid "Computed List Price Rule"
+msgstr "Regla de precio de lista computado"
+
+#. module: product_computed_price_rule
+#: model:ir.actions.act_window,name:product_computed_price_rule.action_product_computed_list_price_rule
+#: model:ir.ui.menu,name:product_computed_price_rule.menu_product_computed_list_price_rule
+msgid "Computed List Price Rules"
+msgstr "Reglas de precio de lista computado"
+
+#. module: product_computed_price_rule
+#: field:product.computed_list_price.rule,create_uid:0
+#: field:product.computed_list_price.rule.item,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: product_computed_price_rule
+#: field:product.computed_list_price.rule,create_date:0
+#: field:product.computed_list_price.rule.item,create_date:0
+msgid "Created on"
+msgstr "Creadon en"
+
+#. module: product_computed_price_rule
+#: field:product.computed_list_price.rule,display_name:0
+#: field:product.computed_list_price.rule.item,display_name:0
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: product_computed_price_rule
+#: field:product.computed_list_price.rule.item,fixed_amount:0
+msgid "Fixed Amount"
+msgstr "Monto fijo"
+
+#. module: product_computed_price_rule
+#: field:product.computed_list_price.rule,id:0
+#: field:product.computed_list_price.rule.item,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: product_computed_price_rule
+#: view:product.computed_list_price.rule:product_computed_price_rule.product_computed_list_price_rule_form
+#: field:product.computed_list_price.rule,item_ids:0
+msgid "Items"
+msgstr "Items"
+
+#. module: product_computed_price_rule
+#: field:product.computed_list_price.rule,__last_update:0
+#: field:product.computed_list_price.rule.item,__last_update:0
+msgid "Last Modified on"
+msgstr "Última Modificación en"
+
+#. module: product_computed_price_rule
+#: field:product.computed_list_price.rule,write_uid:0
+#: field:product.computed_list_price.rule.item,write_uid:0
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: product_computed_price_rule
+#: field:product.computed_list_price.rule,write_date:0
+#: field:product.computed_list_price.rule.item,write_date:0
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: product_computed_price_rule
+#: field:product.computed_list_price.rule,name:0
+#: field:product.computed_list_price.rule.item,name:0
+msgid "Name"
+msgstr "Nombre"
+
+#. module: product_computed_price_rule
+#: view:product.computed_list_price.rule:product_computed_price_rule.product_computed_list_price_rule_form
+#: view:product.computed_list_price.rule:product_computed_price_rule.product_computed_list_price_rule_tree
+msgid "Name..."
+msgstr "Nombre..."
+
+#. module: product_computed_price_rule
+#: field:product.computed_list_price.rule.item,percentage_amount:0
+msgid "Percentage Amount"
+msgstr "Porcentaje"
+
+#. module: product_computed_price_rule
+#: model:ir.model,name:product_computed_price_rule.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: product_computed_price_rule
+#: view:product.computed_list_price.rule:product_computed_price_rule.product_computed_list_price_rule_form
+#: field:product.computed_list_price.rule,product_ids:0
+msgid "Products"
+msgstr "Productos"
+
+#. module: product_computed_price_rule
+#: field:product.computed_list_price.rule.item,computed_list_price_rule_id:0
+msgid "Rule"
+msgstr "Regla"
+
+#. module: product_computed_price_rule
+#: field:product.template,computed_list_price_before:0
+msgid "Sale Price Before"
+msgstr "Precio de venta antes"
+
+#. module: product_computed_price_rule
+#: field:product.template,computed_list_price_rule_id:0
+msgid "Sale Price Rule"
+msgstr "Regla precio de venta"
+
+#. module: product_computed_price_rule
+#: help:product.computed_list_price.rule.item,fixed_amount:0
+msgid ""
+"Specify the fixed amount to add or substract(if negative) to the amount "
+"calculated with the percentage amount."
+msgstr "Especificar la cantidad fija para sumar o restar (si es negativo) a la cantidad calculada con la cantidad porcentual."
+
+#. module: product_computed_price_rule
+#: field:product.computed_list_price.rule.item,sequence:0
+msgid "sequence"
+msgstr "Secuencia"

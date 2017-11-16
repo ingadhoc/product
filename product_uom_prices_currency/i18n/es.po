@@ -1,0 +1,71 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_uom_prices_currency
+# 
+# Translators:
+# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: product (8.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-03 14:18+0000\n"
+"PO-Revision-Date: 2017-04-03 13:48+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/adhoc/ingadhoc-product-8-0/language/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: product_uom_prices_currency
+#: help:product.template,other_currency_uom_price_ids:0
+msgid ""
+"Only uoms in this list will be available in sale order lines. Set a diferent"
+" price for this uom. Set the price as 0 and the price will be calculated as "
+"sale price * uom ratio"
+msgstr "Sólo UdMS en esta lista estarán disponibles en las líneas de órdenes de venta . Fijar un precio diferente para este UdM . Establecer el precio como 0 y el precio será calculado como precio de venta * UdM"
+
+#. module: product_uom_prices_currency
+#: field:product.sale.uom,price_on_base_currency:0
+#: view:product.template:product_uom_prices_currency.uom_product_template_only_form_view
+msgid "Price"
+msgstr "Precio"
+
+#. module: product_uom_prices_currency
+#: view:product.template:product_uom_prices_currency.uom_product_template_only_form_view
+msgid "Price on Other Currency"
+msgstr "Precio en otra moneda"
+
+#. module: product_uom_prices_currency
+#: model:ir.model,name:product_uom_prices_currency.model_product_sale_uom
+msgid "Product Sale Uom"
+msgstr "UdM de venta"
+
+#. module: product_uom_prices_currency
+#: model:ir.model,name:product_uom_prices_currency.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: product_uom_prices_currency
+#: field:product.template,other_currency_uom_price_ids:0
+msgid "UOM Prices"
+msgstr "UOM Prices"
+
+#. module: product_uom_prices_currency
+#: code:addons/product_uom_prices_currency/product.py:64
+#, python-format
+msgid "You must configure \"Other Currency\" for product %s"
+msgstr "Debe configurar \"Otra Moneda \" para el producto %s"
+
+#. module: product_uom_prices_currency
+#: view:product.template:product_uom_prices_currency.currency_product_template_only_form_view
+msgid ""
+"{'invisible': [('list_price_type', 'not in', ['other_currency', "
+"'by_uom_currency'])]}"
+msgstr "{'invisible': [('list_price_type', 'not in', ['other_currency', 'by_uom_currency'])]}"
+
+#. module: product_uom_prices_currency
+#: view:product.template:product_uom_prices_currency.currency_product_template_only_form_view
+msgid "{'invisible': [('list_price_type', 'not in', ['other_currency'])]}"
+msgstr "{'invisible': [('list_price_type', 'not in', ['other_currency'])]}"

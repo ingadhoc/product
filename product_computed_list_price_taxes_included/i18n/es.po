@@ -1,0 +1,40 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_computed_list_price_taxes_included
+# 
+# Translators:
+# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2016
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-03 14:18+0000\n"
+"PO-Revision-Date: 2017-04-03 14:18+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016\n"
+"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: product_computed_list_price_taxes_included
+#: model:ir.model,name:product_computed_list_price_taxes_included.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: product_computed_list_price_taxes_included
+#: model:ir.model,name:product_computed_list_price_taxes_included.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de Producto"
+
+#. module: product_computed_list_price_taxes_included
+#: code:addons/product_computed_list_price_taxes_included/product.py:48
+#, python-format
+msgid ""
+"You can not set list price if you are working with 'Taxes Included' in the "
+"context"
+msgstr ""
+"No se puede establecer el precio de lista si se está trabajando con "
+"\"impuestos incluidos\" en el contexto"
