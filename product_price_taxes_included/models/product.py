@@ -85,7 +85,6 @@ class ProductProduct(models.Model):
             context.get('company_id') or
             self.pool['res.users'].browse(cr, uid, uid, context).
             company_id.id)
-
         for product in self.browse(cr, uid, ids, context=context):
             res[product.id] = product.taxes_id.filtered(
                 lambda x: x.company_id.id == company_id).compute_all(
