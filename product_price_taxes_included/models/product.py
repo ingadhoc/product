@@ -86,10 +86,9 @@ class ProductProduct(models.Model):
             self.pool['res.users'].browse(cr, uid, uid, context).
             company_id.id)
         for product in self.browse(cr, uid, ids, context=context):
-            res[product.id] = self.pool['account.tax'].compute_all(
-                cr, uid, product.taxes_id.filtered(
-                    lambda x: x.company_id.id == company_id).ids,
-                res[product.id], product_id=product.id)['total_included']
+            res[product.id] = product.taxes_id.filtered(
+                lambda x: x.company_id.id == company_id).compute_all(
+                res[product.id], product=product.id)['total_included']
         return res
 
     def _set_product_lst_price(
