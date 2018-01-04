@@ -38,7 +38,8 @@ class ProductTemplate(models.Model):
         _logger.info(
             'Get computed_list_price for %s "other_currency" products' % (
                 len(other_currency_recs)))
-        for rec in other_currency_recs:
+        # el campo calculado currency_id no se computa hasta guardar
+        for rec in other_currency_recs.filtered('currency_id'):
             rec.computed_list_price = rec.other_currency_id.compute(
                 rec.other_currency_list_price,
                 rec.currency_id,
