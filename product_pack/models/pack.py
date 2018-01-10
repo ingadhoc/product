@@ -1,9 +1,9 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
+# For copyright and license notices, see __manifest__.py file in root directory
 ##############################################################################
-from openerp import fields, models, api
-import openerp.addons.decimal_precision as dp
+from odoo import fields, models, api
+import odoo.addons.decimal_precision as dp
 
 
 class ProductPack(models.Model):
@@ -52,11 +52,14 @@ class ProductPack(models.Model):
             discount = 0.0
         else:
             pricelist = order.pricelist_id.id
-            price = self.env['product.pricelist'].price_get(
-                subproduct.id, quantity,
-                order.partner_id.id, context={
+            price = self.env['product.pricelist'].with_context(
+                context={
                     'uom': subproduct.uom_id.id,
-                    'date': order.date_order})[pricelist]
+                    'date': order.date_order,
+                }
+            ).price_get(
+                subproduct.id, quantity,
+                order.partner_id.id)[pricelist]
             discount = self.discount
 
         # Obtain product name in partner's language

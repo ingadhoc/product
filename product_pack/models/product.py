@@ -1,10 +1,9 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
-# For copyright and license notices, see __openerp__.py file in root directory
+# For copyright and license notices, see __manifest__.py file in root directory
 ##############################################################################
-from openerp import fields, models, api, _
-from openerp.osv import fields as old_fields
-from openerp.exceptions import UserError
+from odoo import fields, models, api, _
+from odoo.exceptions import UserError
 import math
 
 
@@ -24,25 +23,16 @@ class ProductProduct(models.Model):
         help='List of packs where product is used.'
     )
 
-    def _product_available(
-            self, cr, uid, ids, field_names=None, arg=False, context=None):
-        """
-        For product packs we get availability in a different way
-        """
-        pack_product_ids = self.search(cr, uid, [
-            ('pack', '=', True),
-            ('id', 'in', ids),
-        ])
-        res = super(ProductProduct, self)._product_available(
-            cr, uid, list(set(ids) - set(pack_product_ids)),
-            field_names, arg, context)
-        for product in self.browse(cr, uid, pack_product_ids, context=context):
+    @api.depends('stock_quant_ids', 'stock_move_ids')
+    def _compute_quantities(self):
+        packs = self.filtered('pack')
+        no_packs = (self + packs.mapped('pack_line_ids.product_id')) - packs
+        res = super(ProductProduct, no_packs)._compute_quantities()
+        for product in packs:
             pack_qty_available = []
             pack_virtual_available = []
             for subproduct in product.pack_line_ids:
-                subproduct_stock = self._product_available(
-                    cr, uid, [subproduct.product_id.id], field_names, arg,
-                    context)[subproduct.product_id.id]
+                subproduct_stock = res[subproduct.product_id.id]
                 sub_qty = subproduct.quantity
                 if sub_qty:
                     pack_qty_available.append(math.floor(
@@ -61,30 +51,6 @@ class ProductProduct(models.Model):
             }
         return res
 
-    def _search_product_quantity(self, cr, uid, obj, name, domain, context):
-        """
-        We use original search function
-        """
-        return super(ProductProduct, self)._search_product_quantity(
-            cr, uid, obj, name, domain, context)
-
-    # overwrite ot this fields so that we can modify _product_available
-    # function to support packs
-    _columns = {
-        'qty_available': old_fields.function(
-            _product_available, multi='qty_available',
-            fnct_search=_search_product_quantity),
-        'virtual_available': old_fields.function(
-            _product_available, multi='qty_available',
-            fnct_search=_search_product_quantity),
-        'incoming_qty': old_fields.function(
-            _product_available, multi='qty_available',
-            fnct_search=_search_product_quantity),
-        'outgoing_qty': old_fields.function(
-            _product_available, multi='qty_available',
-            fnct_search=_search_product_quantity),
-    }
-
     @api.multi
     @api.constrains('pack_line_ids')
     def check_recursion(self):
@@ -99,6 +65,27 @@ class ProductProduct(models.Model):
                         'Error! You cannot create recursive packs.\n'
                         'Product id: %s') % rec.id)
                 pack_lines = pack_lines.mapped('product_id.pack_line_ids')
+
+    @api.multi
+    def price_compute(self, price_type, uom=False, currency=False,
+                      company=False):
+        packs = self.filtered(lambda p: p.pack and p.pack_price_type in [
+            'totalice_price',
+            'none_detailed_assited_price',
+            'none_detailed_totaliced_price',
+        ])
+        no_packs = (self | self.mapped('pack_line_ids.product_id')) - packs
+        prices = super(ProductProduct, no_packs).price_compute(
+            price_type, uom, currency, company)
+        for product in packs:
+            pack_price = 0.0
+            for pack_line in product.pack_line_ids:
+                product_line_price = prices[
+                    pack_line.product_id.id] * (
+                    1 - (pack_line.discount or 0.0) / 100.0)
+                pack_price += (product_line_price * pack_line.quantity)
+            prices[product.id] = pack_price
+        return prices
 
 
 class ProductTemplate(models.Model):
@@ -193,23 +180,3 @@ class ProductTemplate(models.Model):
             self.product_variant_ids.write(
                 {'pack_line_ids': vals.pop('pack_line_ids')})
         return super(ProductTemplate, self).write(vals)
-
-    @api.model
-    def _price_get(self, products, ptype='list_price'):
-        res = super(ProductTemplate, self)._price_get(
-            products, ptype=ptype)
-        for product in products:
-            if (
-                    product.pack and
-                    product.pack_price_type in [
-                        'totalice_price',
-                        'none_detailed_assited_price',
-                        'none_detailed_totaliced_price']):
-                pack_price = 0.0
-                for pack_line in product.pack_line_ids:
-                    product_line_price = pack_line.product_id.price_get()[
-                        pack_line.product_id.id] * (
-                        1 - (pack_line.discount or 0.0) / 100.0)
-                    pack_price += (product_line_price * pack_line.quantity)
-                res[product.id] = pack_price
-        return res

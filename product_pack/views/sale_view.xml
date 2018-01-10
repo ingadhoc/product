@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
+<odoo>
 
     <!-- sale order line pack line -->
     <record model="ir.ui.view" id="view_sale_line_pack_line_tree">
@@ -59,9 +58,8 @@
             <xpath expr="//field[@name='order_line']/tree//field[@name='price_subtotal']" position="after">
                 <field name="pack_type" invisible="1"/>
                 <button name="action_pack_detail" string="Detail" attrs="{'invisible':[('pack_type', '!=', 'none_detailed_assited_price')]}" type="object"/>
-            </xpath> 
+            </xpath>
         </field>
     </record>
 
-    </data>
-</openerp>
+</odoo>
