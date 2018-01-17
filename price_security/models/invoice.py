@@ -58,5 +58,4 @@ class AccountInvoiceLine(models.Model):
                     return True
                 il.env.user.check_discount(
                     il.discount,
-                    il.invoice_id.partner_id.
-                    property_product_pricelist.id)
+                    il.invoice_id.partner_id.property_product_pricelist.id)

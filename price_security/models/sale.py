@@ -47,7 +47,8 @@ class SaleOrderLine(models.Model):
                                  ) and not self.product_can_modify_prices):
             self.env.user.check_discount(
                 self.discount,
-                self.order_id.pricelist_id.id)
+                self.order_id.pricelist_id.id,
+                so_line=self)
 
 
 class SaleOrder(models.Model):

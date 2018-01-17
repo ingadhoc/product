@@ -34,13 +34,31 @@ class Users(models.Model):
         string='Discount Restrictions')
 
     @api.multi
-    def check_discount(self, discount, pricelist_id, do_not_raise=False):
+    def check_discount(
+            self, discount, pricelist_id,
+            so_line=False, do_not_raise=False):
         """
         We add do_not_raise for compatibility with other modules
         """
         self.ensure_one()
         error = False
-        if discount and discount != 0.0:
+
+        # for compatibility with price_security
+        pricelist = self.env['product.pricelist'].browse(pricelist_id)
+        pricelist_disc = 0.0
+        if so_line and 'discount_policy' in pricelist._fields and \
+                pricelist.discount_policy == 'without_discount':
+            tmp_line = so_line.new({
+                'product_id': so_line.product_id.id,
+                'order_id': so_line.order_id.id,
+                'product_uom': so_line.product_uom.id,
+                'product_uom_qty': so_line.product_uom_qty,
+            })
+            tmp_line.product_id_change()
+            pricelist_disc = tmp_line.discount
+        net_discount = discount - pricelist_disc
+
+        if net_discount and net_discount != 0.0:
             disc_restriction_env = self.env['res.users.discount_restriction']
             domain = [
                 ('pricelist_id', '=', pricelist_id), ('user_id', '=', self.id)]
@@ -54,17 +72,25 @@ class Users(models.Model):
                 error = _(
                     'You can not give any discount greater than pricelist '
                     'discounts')
+                # if pricelist_disc then we have a soline and e product
+                if pricelist_disc:
+                    error += ' (%s%% for product "%s")' % (
+                        pricelist_disc, so_line.product_id.name)
             else:
                 if (
-                        discount < disc_restriction.min_discount or
-                        discount > disc_restriction.max_discount
+                        net_discount < disc_restriction.min_discount or
+                        net_discount > disc_restriction.max_discount
                 ):
                     error = _(
-                        'The applied discount is out of range with respect to '
-                        'the allowed. The discount can be between %s and %s '
-                        'for the current price list') % (
-                        disc_restriction.min_discount,
-                        disc_restriction.max_discount)
+                        'The applied discount is not allowed. Discount must be'
+                        'between %s and %s for pricelist "%s"') % (
+                        disc_restriction.min_discount + pricelist_disc,
+                        disc_restriction.max_discount + pricelist_disc,
+                        pricelist.name)
+                    # if pricelist_disc then we have a soline and e product
+                    if pricelist_disc:
+                        error += ' and product "%s"' % (
+                            so_line.product_id.name)
         if not do_not_raise and error:
             raise UserError(error)
         return error
