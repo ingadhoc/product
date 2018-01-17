@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-20 14:43+0000\n"
-"PO-Revision-Date: 2017-07-20 14:43+0000\n"
+"POT-Creation-Date: 2018-01-17 17:46+0000\n"
+"PO-Revision-Date: 2018-01-17 17:46+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2016\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
@@ -221,9 +221,9 @@ msgid "Product Template"
 msgstr "Plantilla de Producto"
 
 #. module: price_security
-#: model:res.groups,name:price_security.group_restrict_prices
-msgid "Solo ver: precio de venta"
-msgstr "Solo ver: precio de venta"
+#: model:ir.module.category,name:price_security.module_prices_management
+msgid "Restricción de precios"
+msgstr ""
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_sale_order
@@ -237,7 +237,7 @@ msgid "Sales Order Line"
 msgstr "Línea de Pedido de Ventas"
 
 #. module: price_security
-#: code:addons/price_security/models/sale.py:77
+#: code:addons/price_security/models/sale.py:79
 #, python-format
 msgid ""
 "Selected payment term priority can not be higher than payment term "
@@ -247,7 +247,7 @@ msgstr ""
 "pago configurado en cliente"
 
 #. module: price_security
-#: code:addons/price_security/models/sale.py:68
+#: code:addons/price_security/models/sale.py:70
 #, python-format
 msgid ""
 "Selected pricelist priority can not be higher than pircelist configured on "
@@ -263,20 +263,28 @@ msgid "Sequence"
 msgstr "Secuencia"
 
 #. module: price_security
+#: model:res.groups,name:price_security.group_restrict_prices
+msgid "Solo ver: precio de venta"
+msgstr "Solo ver: precio de venta"
+
+#. module: price_security
+#: model:res.groups,name:price_security.group_only_view
+msgid "Solo ver: precio venta y compra"
+msgstr ""
+
+#. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_account_invoice_line_invoice_line_tax_ids_readonly
 #: model:ir.model.fields,field_description:price_security.field_sale_order_line_tax_id_readonly
 msgid "Taxes"
 msgstr "Impuestos"
 
 #. module: price_security
-#: code:addons/price_security/models/res_users.py:62
+#: code:addons/price_security/models/res_users.py:84
 #, python-format
 msgid ""
-"The applied discount is out of range with respect to the allowed. The "
-"discount can be between %s and %s for the current price list"
+"The applied discount is not allowed. Discount must bebetween %s and %s for "
+"pricelist \"%s\""
 msgstr ""
-"El descuento aplicado está fuera del rango respecto a lo permitido. Este "
-"descuento puede estar entre %s y %s para la lista de precios actual."
 
 #. module: price_security
 #: model:ir.model.fields,help:price_security.field_res_users_property_account_position_id
@@ -407,7 +415,7 @@ msgid "Vendor Payment Term"
 msgstr "Condiciones de pago a proveedor"
 
 #. module: price_security
-#: code:addons/price_security/models/res_users.py:54
+#: code:addons/price_security/models/res_users.py:72
 #, python-format
 msgid "You can not give any discount greater than pricelist discounts"
 msgstr ""
