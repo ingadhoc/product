@@ -1,0 +1,395 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * price_security
+# 
+# Translators:
+# Irriep Nala Novram <allannkorh@yahoo.fr>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0c\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-18 13:59+0000\n"
+"PO-Revision-Date: 2018-01-18 13:59+0000\n"
+"Last-Translator: Irriep Nala Novram <allannkorh@yahoo.fr>, 2018\n"
+"Language-Team: French (https://www.transifex.com/adhoc/teams/46451/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_sale_order_count
+msgid "# of Sales Order"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_property_account_payable_id
+msgid "Account Payable"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_property_account_receivable_id
+msgid "Account Receivable"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_bank_account_count
+msgid "Bank"
+msgstr "Banque"
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_product_template_can_modify_prices
+msgid "Can modify prices"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_ref_company_ids
+msgid "Companies that refers to partner"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_contract_ids
+#: model:ir.model.fields,field_description:price_security.field_res_users_contracts_count
+msgid "Contracts"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_payment_method_count
+msgid "Count Payment Method"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_currency_id
+msgid "Currency"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_property_stock_customer
+msgid "Customer Location"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_property_payment_term_id
+msgid "Customer Payment Term"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_res_users_discount_restriction
+msgid "Discount Restriction"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_ids
+msgid "Discount Restrictions"
+msgstr ""
+
+#. module: price_security
+#: model:ir.ui.view,arch_db:price_security.view_price_security_users_form
+msgid "Discounts Permissions"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_property_account_position_id
+msgid "Fiscal Position"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_has_unreconciled_entries
+msgid "Has unreconciled entries"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_id
+msgid "ID"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,help:price_security.field_account_invoice_line_product_can_modify_prices
+#: model:ir.model.fields,help:price_security.field_product_template_can_modify_prices
+#: model:ir.model.fields,help:price_security.field_sale_order_line_product_can_modify_prices
+msgid ""
+"If checked all users can modify the        price of this product in a sale "
+"order or invoice."
+msgstr ""
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_account_invoice_line
+msgid "Invoice Line"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_invoice_ids
+msgid "Invoices"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_issued_total
+#: model:ir.model.fields,field_description:price_security.field_res_users_journal_item_count
+msgid "Journal Items"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,help:price_security.field_res_users_last_time_entries_checked
+msgid ""
+"Last time the invoices & payments matching was performed for this partner. "
+"It is set either if there's not at least an unreconciled debit and an "
+"unreconciled credit or if you click the \"Done\" button."
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_last_time_entries_checked
+msgid "Latest Invoices & Payments Matching Date"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_max_discount
+msgid "Max. Discount"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_min_discount
+msgid "Min. Discount"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_debit_limit
+msgid "Payable Limit"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_payment_method_ids
+msgid "Payment Methods"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_account_payment_term
+#: model:ir.ui.view,arch_db:price_security.view_payment_term_tree
+msgid "Payment Term"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_product_pricelist
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_pricelist_id
+msgid "Pricelist"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_account_invoice_line_product_can_modify_prices
+#: model:ir.model.fields,field_description:price_security.field_sale_order_line_product_can_modify_prices
+msgid "Product Can modify prices"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: price_security
+#: model:ir.module.category,name:price_security.module_prices_management
+msgid "Restricción de precios"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_sale_order
+#: model:ir.model.fields,field_description:price_security.field_res_users_sale_order_ids
+msgid "Sales Order"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: price_security
+#: code:addons/price_security/models/sale.py:79
+#, python-format
+msgid ""
+"Selected payment term priority can not be higher than payment term "
+"configured on partner"
+msgstr ""
+
+#. module: price_security
+#: code:addons/price_security/models/sale.py:70
+#, python-format
+msgid ""
+"Selected pricelist priority can not be higher than pircelist configured on "
+"partner"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_account_payment_term_sequence
+#: model:ir.model.fields,field_description:price_security.field_product_pricelist_sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: price_security
+#: model:res.groups,name:price_security.group_restrict_prices
+msgid "Solo ver: precio de venta"
+msgstr ""
+
+#. module: price_security
+#: model:res.groups,name:price_security.group_only_view
+msgid "Solo ver: precio venta y compra"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_account_invoice_line_invoice_line_tax_ids_readonly
+#: model:ir.model.fields,field_description:price_security.field_sale_order_line_tax_id_readonly
+msgid "Taxes"
+msgstr ""
+
+#. module: price_security
+#: code:addons/price_security/models/res_users.py:84
+#, python-format
+msgid ""
+"The applied discount is not allowed. Discount must bebetween %s and %s for "
+"pricelist \"%s\""
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,help:price_security.field_res_users_property_account_position_id
+msgid ""
+"The fiscal position will determine taxes and accounts used for the partner."
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,help:price_security.field_res_users_has_unreconciled_entries
+msgid ""
+"The partner has at least one unreconciled debit and credit since last time "
+"the invoices & payments matching was performed."
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,help:price_security.field_res_users_property_account_payable_id
+msgid ""
+"This account will be used instead of the default one as the payable account "
+"for the current partner"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,help:price_security.field_res_users_property_account_receivable_id
+msgid ""
+"This account will be used instead of the default one as the receivable "
+"account for the current partner"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,help:price_security.field_res_users_property_supplier_payment_term_id
+msgid ""
+"This payment term will be used instead of the default one for purchase "
+"orders and vendor bills"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,help:price_security.field_res_users_property_payment_term_id
+msgid ""
+"This payment term will be used instead of the default one for sale orders "
+"and customer invoices"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,help:price_security.field_res_users_property_stock_customer
+msgid ""
+"This stock location will be used, instead of the default one, as the "
+"destination location for goods you send to this partner"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,help:price_security.field_res_users_property_stock_supplier
+msgid ""
+"This stock location will be used, instead of the default one, as the source "
+"location for goods you receive from the current partner"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_total_invoiced
+msgid "Total Invoiced"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_debit
+msgid "Total Payable"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_credit
+msgid "Total Receivable"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,help:price_security.field_res_users_credit
+msgid "Total amount this customer owes you."
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,help:price_security.field_res_users_debit
+msgid "Total amount you have to pay to this vendor."
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_account_invoice_line_price_unit_readonly
+#: model:ir.model.fields,field_description:price_security.field_sale_order_line_price_unit_readonly
+msgid "Unit Price"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_user_id
+msgid "User"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_res_users
+msgid "Users"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,help:price_security.field_res_users_currency_id
+msgid "Utility field to express amount currency"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_property_stock_supplier
+msgid "Vendor Location"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_res_users_property_supplier_payment_term_id
+msgid "Vendor Payment Term"
+msgstr ""
+
+#. module: price_security
+#: code:addons/price_security/models/res_users.py:72
+#, python-format
+msgid "You can not give any discount greater than pricelist discounts"
+msgstr ""
