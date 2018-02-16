@@ -17,6 +17,7 @@
                                         <field name="name"/>
                                         <field name="percentage_amount"/>
                                         <field name="fixed_amount"/>
+                                        <field name="expr"/>
                                     </tree>
                                 </field>
                             </page>

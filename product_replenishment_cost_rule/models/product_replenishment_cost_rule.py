@@ -4,6 +4,8 @@
 # directory
 ##############################################################################
 from openerp import models, fields, api
+from openerp import exceptions
+from openerp.tools.safe_eval import safe_eval
 import openerp.addons.decimal_precision as dp
 
 
@@ -46,8 +48,11 @@ class ProductReplenishmentCostRule(models.Model):
         description = "%s: %s" % (
             self.name,
             ', '.join(self.item_ids.mapped(
-                lambda x: "%s %s + %s" % (
-                    x.name, x.percentage_amount, x.fixed_amount))))
+                lambda x: "%s %s + %s%s" % (
+                    x.name,
+                    x.percentage_amount,
+                    x.fixed_amount,
+                    '+ expr' if x.expr else ''))))
         self.description = description
 
     @api.one
@@ -55,11 +60,47 @@ class ProductReplenishmentCostRule(models.Model):
     def update_replenishment_cost_last_update(self):
         self.product_ids.update_replenishment_cost_last_update()
 
-    def compute_rule(self, cost):
+    def _get_eval_context(self, obj=None):
+        """ Prepare the context used when evaluating python code
+        :param obj: the current obj
+        :returns: dict -- evaluation context given to (safe_)eval """
+        env = api.Environment(self.env.cr, self.env.uid, self.env.context)
+        model = env['product.template']
+        obj_pool = self.pool['product.template']
+
+        if not obj:
+            if context.get('active_model') == 'product.template' and context.get('active_id'):
+                obj = model.browse(context['active_id'])
+
+        eval_context = {
+            # orm
+            'env': env,
+            'model': model,
+            # Exceptions
+            'Warning': exceptions.Warning,
+            # record
+            'product': obj,
+        }
+        return eval_context
+
+    def compute_rule(self, cost, product=None):
+        values = {}
         for line in self.item_ids:
-            cost = cost * \
-                (1 + line.percentage_amount / 100.0)\
+            value = cost * \
+                (line.percentage_amount / 100.0) \
                 + line.fixed_amount
+            # Add expr value
+            if line.expr:
+                try:
+                    eval_context = self._get_eval_context(product)
+                    eval_context.update({'lines': values})
+                    res = safe_eval(str(line.expr), eval_context)
+                    if isinstance(res, (int, float)):
+                        value = value + res
+                except:
+                    pass
+            values[line.name] = value
+            cost = cost + value
         return cost
 
 
@@ -93,3 +134,5 @@ class ProductReplenishmentCostRuleItem(models.Model):
         help='Specify the fixed amount to add or substract(if negative) to the'
         ' amount calculated with the percentage amount.'
     )
+    expr = fields.Char('Expression Amount',
+        help='Specify a python expression that returns a float amount.')

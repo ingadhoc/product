@@ -64,4 +64,5 @@ class ProductTemplate(models.Model):
             )
             rec.replenishment_base_cost_on_currency = cost
             if rec.replenishment_cost_rule_id:
-                rec.replenishment_cost = rec.replenishment_cost_rule_id.compute_rule(cost)
+                rec.replenishment_cost = \
+                    rec.replenishment_cost_rule_id.compute_rule(cost, rec)
