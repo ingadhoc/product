@@ -55,6 +55,13 @@ class ProductReplenishmentCostRule(models.Model):
     def update_replenishment_cost_last_update(self):
         self.product_ids.update_replenishment_cost_last_update()
 
+    def compute_rule(self, cost):
+        for line in self.item_ids:
+            cost = cost * \
+                (1 + line.percentage_amount / 100.0)\
+                + line.fixed_amount
+        return cost
+
 
 class ProductReplenishmentCostRuleItem(models.Model):
     _name = 'product.replenishment_cost.rule.item'

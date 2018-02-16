@@ -64,8 +64,4 @@ class ProductTemplate(models.Model):
             )
             rec.replenishment_base_cost_on_currency = cost
             if rec.replenishment_cost_rule_id:
-                for line in rec.replenishment_cost_rule_id.item_ids:
-                    cost = cost * \
-                        (1 + line.percentage_amount / 100.0)\
-                        + line.fixed_amount
-            rec.replenishment_cost = cost
+                rec.replenishment_cost = rec.replenishment_cost_rule_id.compute_rule(cost)
