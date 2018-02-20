@@ -17,7 +17,7 @@
                                         <field name="name"/>
                                         <field name="percentage_amount"/>
                                         <field name="fixed_amount"/>
-                                        <field name="expr"/>
+                                        <field name="expr" groups="product_replenishment_cost_rule.group_replenishment_rule_expr"/>
                                     </tree>
                                 </field>
                             </page>
