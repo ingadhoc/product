@@ -85,22 +85,25 @@ class ProductReplenishmentCostRule(models.Model):
 
     def compute_rule(self, cost, product=None):
         values = {}
+        if any([l.expr for l in self.item_ids]):
+            eval_context = self._get_eval_context(product)
+            eval_context.update({'lines': values})
         for line in self.item_ids:
             value = cost * \
                 (line.percentage_amount / 100.0) \
                 + line.fixed_amount
-            # Add expr value
+            # line expressions
             if line.expr:
                 try:
-                    eval_context = self._get_eval_context(product)
-                    eval_context.update({'lines': values})
                     res = safe_eval(str(line.expr), eval_context)
                     if isinstance(res, (int, float)):
                         value = value + res
                 except:
+                    # TODO: show error msg somewhere!
                     pass
             values[line.name] = value
-            cost = cost + value
+            if line.add_to_cost:
+                cost = cost + value
         return cost
 
 
@@ -136,3 +139,7 @@ class ProductReplenishmentCostRuleItem(models.Model):
     )
     expr = fields.Char('Expression Amount',
         help='Specify a python expression that returns a float amount.')
+
+    add_to_cost = fields.Boolean('Add to Cost', default=True,
+        help='If true, this line value will be added to the cost. '
+             'If not, it\'s just a variable.')
