@@ -12,12 +12,13 @@
                         <notebook>
                             <page string="Items">
                                 <field name="item_ids">
-                                    <tree editable="bottom">
+                                    <tree decoration-muted="add_to_cost==False" editable="bottom">
                                         <field name="sequence" widget="handle"/>
                                         <field name="name"/>
                                         <field name="percentage_amount"/>
                                         <field name="fixed_amount"/>
                                         <field name="expr" groups="product_replenishment_cost_rule.group_replenishment_rule_expr"/>
+                                        <field name="add_to_cost" groups="product_replenishment_cost_rule.group_replenishment_rule_expr"/>
                                     </tree>
                                 </field>
                             </page>
