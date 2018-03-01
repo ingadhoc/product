@@ -24,6 +24,7 @@ class ProductTemplate(Model):
         #     rec.replenishment_cost = rec.standard_price
 
     replenishment_cost = fields.Float(
+        'Replenishment Cost',
         compute=_get_replenishment_cost,
         # TODO, activamos store como estaba??
         store=False,
