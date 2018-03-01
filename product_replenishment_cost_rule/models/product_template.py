@@ -18,8 +18,9 @@ class ProductTemplate(models.Model):
         string='Replenishment Cost Rule',
         track_visibility='onchange',
     )
+
     replenishment_base_cost_on_currency = fields.Float(
-        compute='_get_replenishment_cost',
+        compute='_get_replenishment_base_cost_on_currency',
         string='Replenishment Base Cost on Currency',
         digits=dp.get_precision('Product Price'),
     )
@@ -30,39 +31,31 @@ class ProductTemplate(models.Model):
         self.update_replenishment_cost_last_update()
 
     @api.multi
+    @api.depends(
+        'currency_id',
+        'replenishment_base_cost',
+        'replenishment_base_cost_currency_id.rate_ids.rate',
+        'replenishment_base_cost_currency_id.rate_ids.name',
+    )
+    def _get_replenishment_base_cost_on_currency(self):
+        super(ProductTemplate, self)._get_replenishment_cost()
+        for rec in self:
+            rec.replenishment_base_cost_on_currency = rec.replenishment_cost
+
+    @api.multi
     # TODO ver si necesitamos borrar estos depends o no, por ahora
     # no parecen afectar performance y sirvern para que la interfaz haga
     # el onchange, pero no son fundamentales porque el campo no lo storeamos
     @api.depends(
-        'replenishment_base_cost',
-        # because of being stored
-        'replenishment_base_cost_currency_id.rate_ids.rate',
-        # and this if we change de date (name field)
-        'replenishment_base_cost_currency_id.rate_ids.name',
+        'replenishment_base_cost_on_currency',
         # rule items
         'replenishment_cost_rule_id.item_ids.sequence',
         'replenishment_cost_rule_id.item_ids.percentage_amount',
         'replenishment_cost_rule_id.item_ids.fixed_amount',
     )
     def _get_replenishment_cost(self):
-        """
-        We overwrite rep cost currency method with this new method, no super
-        call
-        """
-        _logger.info(
-            'Getting replenishment cost with rule for %s products' % (
-                len(self.ids)))
-        # TODO tal vez para mejorar perfomance podriamos agrupar por aquellos
-        # que tienen la misma rul y hacerlos juntos. igual no se que tanto
-        # ganariamos ya que seguramente el prefetch de las rules ya hace que
-        # vengan del cache
         for rec in self:
-            cost = rec.get_replenishment_cost_currency(
-                rec.replenishment_base_cost_currency_id,
-                rec.currency_id,
-                rec.replenishment_base_cost,
-            )
-            rec.replenishment_base_cost_on_currency = cost
+            cost = rec.replenishment_base_cost_on_currency
             if rec.replenishment_cost_rule_id:
                 rec.replenishment_cost = \
                     rec.replenishment_cost_rule_id.compute_rule(cost, rec)

@@ -18,23 +18,37 @@ class ProductReplenishmentCostRule(models.Model):
         'Name',
         required=True,
     )
+
     item_ids = fields.One2many(
         'product.replenishment_cost.rule.item',
         'replenishment_cost_rule_id',
         'Items',
         auto_join=True,
     )
+
     product_ids = fields.One2many(
         'product.template',
         'replenishment_cost_rule_id',
         'Products',
         auto_join=True,
     )
+
     description = fields.Char(
         compute='_compute_description',
         store=True,
         track_visibility='onchange',
     )
+
+    # no-op for testing and calculating rule
+    product_id = fields.Many2one(
+        'product.template',
+        'Test Product',
+        compute=lambda x: x,
+        inverse=lambda x: x,
+    )
+
+    demo_cost = fields.Float('Cost', compute=lambda x: x)
+    demo_result = fields.Float('Result', compute=lambda x: x)
 
     @api.one
     @api.depends(
@@ -66,45 +80,57 @@ class ProductReplenishmentCostRule(models.Model):
         :returns: dict -- evaluation context given to (safe_)eval """
         env = api.Environment(self.env.cr, self.env.uid, self.env.context)
         model = env['product.template']
-        obj_pool = self.pool['product.template']
+        # handle id instead of records
+        if not obj and self.env.context.get('active_id') \
+                and self.env.context.get('active_model') == 'product.template':
+            obj = model.browse(self.env.context['active_id'])
 
-        if not obj:
-            if context.get('active_model') == 'product.template' and context.get('active_id'):
-                obj = model.browse(context['active_id'])
-
-        eval_context = {
-            # orm
+        return {
             'env': env,
             'model': model,
-            # Exceptions
             'Warning': exceptions.Warning,
-            # record
             'product': obj,
         }
-        return eval_context
 
     def compute_rule(self, cost, product=None):
+        # prepare context only if we need to eval something
         values = {}
         if any([l.expr for l in self.item_ids]):
             eval_context = self._get_eval_context(product)
-            eval_context.update({'lines': values})
+            eval_context.update({
+                'cost': cost,
+                'cost_sum': cost,
+                'lines': values,
+            })
+
         for line in self.item_ids:
-            value = cost * \
-                (line.percentage_amount / 100.0) \
-                + line.fixed_amount
+            error = False
+            value = cost * (line.percentage_amount / 100.0) + line.fixed_amount
             # line expressions
             if line.expr:
                 try:
                     res = safe_eval(str(line.expr), eval_context)
                     if isinstance(res, (int, float)):
                         value = value + res
-                except:
-                    # TODO: show error msg somewhere!
+                except Exception as e:
+                    error = str(e)
                     pass
-            values[line.name] = value
+
+            values[line.name] = error or value
+            line.value = error or str(value)
+
             if line.add_to_cost:
                 cost = cost + value
+                eval_context.update({'cost_sum': cost})
         return cost
+
+    @api.onchange('product_id', 'item_ids')
+    def _onchange_product_id(self):
+        """ On change to show dynamic results. """
+        if self.product_id:
+            cost = self.product_id.replenishment_base_cost_on_currency
+            self.demo_cost = cost
+            self.demo_result = self.compute_rule(cost, self.product_id)
 
 
 class ProductReplenishmentCostRuleItem(models.Model):
@@ -119,27 +145,48 @@ class ProductReplenishmentCostRuleItem(models.Model):
         ondelete='cascade',
         auto_join=True,
     )
+
     sequence = fields.Char(
         'sequence',
         default=10,
     )
+
     name = fields.Char(
         'Name',
         required=True,
     )
+
     percentage_amount = fields.Float(
         'Percentage Amount',
         digits=dp.get_precision('Discount'),
     )
+
     fixed_amount = fields.Float(
         'Fixed Amount',
+        help='Specify the fixed amount to add or substract (if negative) to '
+             'the amount calculated with the percentage amount.',
         digits=dp.get_precision('Product Price'),
-        help='Specify the fixed amount to add or substract(if negative) to the'
-        ' amount calculated with the percentage amount.'
     )
-    expr = fields.Char('Expression Amount',
-        help='Specify a python expression that returns a float amount.')
 
-    add_to_cost = fields.Boolean('Add to Cost', default=True,
+    expr = fields.Char(
+        'Expression Amount',
+        help='Specify a python expression that returns a float amount.\r\n'
+             'You van use python variables:\r\n'
+             '- env, model, Warning\r\n'
+             '- product: the current product\r\n'
+             '- cost: the base cost\r\n'
+             '- cost_sum: the accumulated cost so far\r\n'
+             '- lines: previous calculated lines (ie lines.get("line_name")',
+    )
+
+    add_to_cost = fields.Boolean(
+        'Add to Cost',
         help='If true, this line value will be added to the cost. '
-             'If not, it\'s just a variable.')
+             'If not, it\'s just a variable.',
+        default=True,
+    )
+
+    # no-op for testing and calculating rule
+    value = fields.Char(
+        compute=lambda x: x,
+    )

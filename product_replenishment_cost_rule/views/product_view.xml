@@ -26,7 +26,7 @@
                     <field name="replenishment_base_cost_on_currency" class="oe_inline" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                 </div>
                 <field name="replenishment_cost" position="before">
-                    <field name="replenishment_cost_rule_id"/>
+                    <field name="replenishment_cost_rule_id" context="{'default_product_id': active_id}"/>
                 </field>
             </field>
         </record>
