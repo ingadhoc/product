@@ -99,7 +99,6 @@ class ProductReplenishmentCostRule(models.Model):
             eval_context = self._get_eval_context(product)
             eval_context.update({
                 'cost': cost,
-                'cost_sum': cost,
                 'lines': values,
             })
 
@@ -109,6 +108,7 @@ class ProductReplenishmentCostRule(models.Model):
             # line expressions
             if line.expr:
                 try:
+                    eval_context.update({'cost_sum': cost})
                     res = safe_eval(str(line.expr), eval_context)
                     if isinstance(res, (int, float)):
                         value = value + res
@@ -118,10 +118,8 @@ class ProductReplenishmentCostRule(models.Model):
 
             values[line.name] = error or value
             line.value = error or str(value)
-
             if line.add_to_cost:
                 cost = cost + value
-                eval_context.update({'cost_sum': cost})
         return cost
 
     @api.onchange('product_id', 'item_ids')
