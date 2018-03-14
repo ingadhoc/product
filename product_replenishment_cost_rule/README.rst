@@ -66,7 +66,7 @@ Images
 
 Contributors
 ------------
-
+* Iván Todorovich <ivan.todorovich@gmail.com>
 
 Maintainer
 ----------
