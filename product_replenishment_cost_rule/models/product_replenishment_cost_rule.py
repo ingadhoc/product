@@ -24,6 +24,7 @@ class ProductReplenishmentCostRule(models.Model):
         'replenishment_cost_rule_id',
         'Items',
         auto_join=True,
+        copy=True,
     )
 
     product_ids = fields.One2many(
