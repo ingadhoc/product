@@ -64,4 +64,4 @@
             id="menu_product_computed_list_price_rule"
             parent="product.prod_config_main" sequence="40"/>
     </data>
-</openerp>
+</odoo>

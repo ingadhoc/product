@@ -64,4 +64,4 @@
                 parent="product.prod_config_main"
                 sequence="10"/>
     </data>
-</openerp>
+</odoo>

@@ -17,4 +17,4 @@
         <field name="groups" eval="[(4, ref('base.group_sale_salesman_all_leads'))]"/>
     </record>
 </data>
-</openerp>
+</odoo>

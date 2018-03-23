@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
-# For copyright and license notices, see __openerp__.py file in module root
+# For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from openerp import models, fields, api
+from odoo import models, fields, api
 
 
 class SalesmanGroup(models.Model):
@@ -40,7 +39,7 @@ class SalesmanGroup(models.Model):
     complete_name = fields.Char(
         compute=_name_get_fnc, string='Name')
     parent_id = fields.Many2one(
-        'sale.salesman.group', 'Parent Group', select=True)
+        'sale.salesman.group', 'Parent Group', index=True)
     child_id = fields.One2many(
         'sale.salesman.group', 'parent_id',
         string='Children Groups')

@@ -52,4 +52,4 @@
             <field name="pricelist_ids" eval="[(4, ref('product.list0'))]"/>
         </record>
     </data>
-</openerp>
+</odoo>

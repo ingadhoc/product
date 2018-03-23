@@ -78,4 +78,4 @@
             id="menu_product_replenshiment_cost_rule"
             parent="product.prod_config_main" sequence="40"/>
     </data>
-</openerp>
+</odoo>

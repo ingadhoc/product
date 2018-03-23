@@ -6,5 +6,5 @@
         <field name="view_id" ref="product.product_template_tree_view"/>
     </record>
 </data>
-</openerp>
+</odoo>
 
