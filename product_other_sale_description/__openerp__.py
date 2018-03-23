@@ -30,7 +30,7 @@
     'depends': [
         'product',
     ],
-    'installable': True,
+    'installable': False,
     'name': 'Sale Other Product Description',
     'test': [],
     'version': '9.0.1.0.0'
