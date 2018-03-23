@@ -39,7 +39,7 @@ class SalesmanGroup(models.Model):
     complete_name = fields.Char(
         compute=_name_get_fnc, string='Name')
     parent_id = fields.Many2one(
-        'sale.salesman.group', 'Parent Group', select=True)
+        'sale.salesman.group', 'Parent Group', index=True)
     child_id = fields.One2many(
         'sale.salesman.group', 'parent_id',
         string='Children Groups')

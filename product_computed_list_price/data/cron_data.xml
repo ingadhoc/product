@@ -2,8 +2,8 @@
 <data noupdate="1">
         <record id="ir_cron_update_price_from_planned" model="ir.cron">
             <field name="name">Update Prices from Planned</field>
-            <field name="model">product.template</field>
-            <field name="function">cron_update_prices_from_planned</field>
+            <field name="model_id" ref="product.model_product_template"/>
+            <field name="code">cron_update_prices_from_planned()</field>
             <field name="interval_type">days</field>
             <field name="user_id" ref="base.user_root"/>
             <field eval="-1" name="numbercall"/>
