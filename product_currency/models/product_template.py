@@ -3,9 +3,9 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from openerp import models, fields
-from openerp.osv import fields as old_fields
-# from openerp.exceptions import ValidationError
+from odoo import models, fields
+from odoo.osv import fields as old_fields
+# from odoo.exceptions import ValidationError
 import logging
 
 _logger = logging.getLogger(__name__)

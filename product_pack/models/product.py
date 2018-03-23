@@ -2,9 +2,9 @@
 ##############################################################################
 # For copyright and license notices, see __manifest__.py file in root directory
 ##############################################################################
-from openerp import fields, models, api, _
-from openerp.osv import fields as old_fields
-from openerp.exceptions import UserError
+from odoo import fields, models, api, _
+from odoo.osv import fields as old_fields
+from odoo.exceptions import UserError
 import math
 
 

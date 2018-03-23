@@ -3,7 +3,7 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from openerp import models, fields, api, SUPERUSER_ID
+from odoo import models, fields, api, SUPERUSER_ID
 
 
 class ProductAttribute(models.Model):

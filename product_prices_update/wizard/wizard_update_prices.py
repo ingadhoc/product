@@ -3,9 +3,9 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from openerp import fields, models, api, _
-from openerp.exceptions import Warning
-from openerp import tools
+from odoo import fields, models, api, _
+from odoo.exceptions import Warning
+from odoo import tools
 
 
 class prices_update_wizard(models.TransientModel):

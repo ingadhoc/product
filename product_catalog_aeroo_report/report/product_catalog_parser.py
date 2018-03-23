@@ -4,8 +4,8 @@
 # directory
 ##############################################################################
 import time
-from openerp import _
-from openerp.report.report_sxw import rml_parse
+from odoo import _
+from odoo.report.report_sxw import rml_parse
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')

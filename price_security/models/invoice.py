@@ -3,8 +3,8 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from openerp import fields, models, api
-from openerp.tools import float_compare
+from odoo import fields, models, api
+from odoo.tools import float_compare
 
 
 class AccountInvoiceLine(models.Model):
