@@ -23,7 +23,7 @@
     'category': 'base.module_category_knowledge_management',
     'version': '9.0.1.0.0',
     'depends': ['product'],
-    'installable': True,
+    'installable': False,
     'license': 'AGPL-3',
     'name': 'Product Template Search by Barcode',
     'test': [],

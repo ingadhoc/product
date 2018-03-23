@@ -36,5 +36,5 @@
         # TODO actualizar tests a nueva logica solo en product template
         # 'test/cost_price_update.yml',
     ],
-    'installable': True,
+    'installable': False,
 }
