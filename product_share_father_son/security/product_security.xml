@@ -8,4 +8,4 @@
         <field name="domain_force">['|','|',('company_id.child_ids','child_of',[user.company_id.id]),('company_id','child_of',[user.company_id.id]),('company_id','=',False)]</field>
     </record>
 </data>
-</openerp>
+</odoo>

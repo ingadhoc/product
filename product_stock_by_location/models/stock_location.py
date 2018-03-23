@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
-# For copyright and license notices, see __openerp__.py file in module root
+# For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from openerp import fields, models, api
-import openerp.addons.decimal_precision as dp
+from odoo import fields, models, api
+import odoo.addons.decimal_precision as dp
 
 
 class StockLocation(models.Model):

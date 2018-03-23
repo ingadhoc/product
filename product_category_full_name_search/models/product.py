@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
-# For copyright and license notices, see __openerp__.py file in module root
+# For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from openerp import models, api
-from openerp.osv import expression
+from odoo import models, api
+from odoo.osv import expression
 
 
 class ProductPublicCategory(models.Model):

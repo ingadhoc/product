@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Author: Alexandre Fayolle, Joel Grand-Guillaume

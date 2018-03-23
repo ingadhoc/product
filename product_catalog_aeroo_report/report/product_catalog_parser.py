@@ -1,11 +1,10 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
-# For copyright and license notices, see __openerp__.py file in module root
+# For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
 import time
-from openerp import _
-from openerp.report.report_sxw import rml_parse
+from odoo import _
+from odoo.report.report_sxw import rml_parse
 import sys
 reload(sys)
 sys.setdefaultencoding('utf8')

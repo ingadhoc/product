@@ -1,9 +1,8 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
-# For copyright and license notices, see __openerp__.py file in module root
+# For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from openerp import models, fields, api
+from odoo import models, fields, api
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -18,8 +17,8 @@ class ProductPublicCategory(models.Model):
     # a litle spected order on website
     _order = 'parent_left, sequence, name'
     parent_id = fields.Many2one(ondelete='restrict')
-    parent_left = fields.Integer('Left Parent', select=1)
-    parent_right = fields.Integer('Right Parent', select=1)
+    parent_left = fields.Integer('Left Parent', index=True)
+    parent_right = fields.Integer('Right Parent', index=True)
 
     @api.constrains('sequence')
     def update_parents(self):

@@ -24,4 +24,4 @@
         <field name="sequence" eval="20"/>
     </record>
     </data>
-</openerp>
+</odoo>
