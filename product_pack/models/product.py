@@ -23,32 +23,33 @@ class ProductProduct(models.Model):
         help='List of packs where product is used.'
     )
 
-    @api.depends('stock_quant_ids', 'stock_move_ids')
     def _compute_quantities(self):
         packs = self.filtered('pack')
-        no_packs = (self + packs.mapped('pack_line_ids.product_id')) - packs
-        res = super(ProductProduct, no_packs)._compute_quantities()
-        for product in packs:
-            pack_qty_available = []
-            pack_virtual_available = []
-            for subproduct in product.pack_line_ids:
-                subproduct_stock = res[subproduct.product_id.id]
+        res = super(ProductProduct, self - packs)._compute_quantities()
+        context = self.env.context
+        for pack in packs:
+            qty_available = 0
+            incoming_qty = 0
+            outgoing_qty = 0
+            virtual_available = 0
+            sub_qties = pack.mapped(
+                'pack_line_ids.product_id'
+            )._compute_quantities_dict(
+                context.get('lot_id'), context.get('owner_id'),
+                context.get('package_id'), context.get('from_date'),
+                context.get('to_date'),
+            )
+            for subproduct in pack.pack_line_ids.filtered('quantity'):
+                res_sub = sub_qties[subproduct.product_id.id]
                 sub_qty = subproduct.quantity
-                if sub_qty:
-                    pack_qty_available.append(math.floor(
-                        subproduct_stock['qty_available'] / sub_qty))
-                    pack_virtual_available.append(math.floor(
-                        subproduct_stock['virtual_available'] / sub_qty))
-            # TODO calcular correctamente pack virtual available para negativos
-            res[product.id] = {
-                'qty_available': (
-                    pack_qty_available and min(pack_qty_available) or False),
-                'incoming_qty': 0,
-                'outgoing_qty': 0,
-                'virtual_available': (
-                    pack_virtual_available and
-                    max(min(pack_virtual_available), 0) or False),
-            }
+                qty_available += res_sub['qty_available'] / sub_qty
+                incoming_qty += res_sub['incoming_qty'] / sub_qty
+                outgoing_qty += res_sub['outgoing_qty'] / sub_qty
+                virtual_available += res_sub['virtual_available'] / sub_qty
+            pack.qty_available = qty_available
+            pack.incoming_qty = incoming_qty
+            pack.outgoing_qty = outgoing_qty
+            pack.virtual_available = virtual_available
         return res
 
     @api.multi
