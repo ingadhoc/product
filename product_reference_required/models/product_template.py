@@ -27,16 +27,3 @@ class ProductTemplate(models.Model):
             return super(ProductTemplate, self.with_context(
                 default_default_code=default_code)).create(vals)
         return super(ProductTemplate, self).create(vals)
-
-
-class ProductProduct(models.Model):
-    _inherit = "product.product"
-
-    @api.model
-    def _get_default_code(self):
-        return self.env['ir.sequence'].next_by_code('product.default_code')
-
-    default_code = fields.Char(
-        required=True,
-        default=_get_default_code,
-    )

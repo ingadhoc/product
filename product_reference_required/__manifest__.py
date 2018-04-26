@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product Reference Requiered',
-    'version': '9.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -35,12 +35,11 @@
         'data/default_code_data.xml',
     ],
     'demo': [
-        # 'demo/product.product.csv',
         'demo/default_code_sequence_demo.xml',
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
     'pre_init_hook': 'set_default_code',
