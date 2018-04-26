@@ -18,9 +18,9 @@
 #
 ##############################################################################
 {
-    'name': 'Product Usability Improvements',
-    'version': '9.0.1.0.0',
-    'category': 'Sales',
+    'name': 'Product Usability',
+    'version': '11.0.1.0.0',
+    'category': 'Products',
     'sequence': 14,
     'summary': '',
     'author': 'ADHOC SA',
@@ -32,13 +32,11 @@
         'product',
     ],
     'data': [
-        'views/product_template_view.xml',
+        'views/product_template_views.xml',
     ],
     'demo': [
     ],
-    'test': [
-    ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
