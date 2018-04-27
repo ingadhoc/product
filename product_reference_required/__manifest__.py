@@ -37,8 +37,6 @@
     'demo': [
         'demo/default_code_sequence_demo.xml',
     ],
-    'test': [
-    ],
     'installable': True,
     'auto_install': False,
     'application': False,
