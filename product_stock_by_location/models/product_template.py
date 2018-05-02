@@ -19,8 +19,8 @@ class ProductTemplate(models.Model):
     @api.depends('name')
     def _compute_location_ids(self):
         for rec in self:
-            rec.location_ids = rec.location_ids.filtered(
-                'show_stock_on_products')
+            rec.location_ids = rec.location_ids.search([
+                ('show_stock_on_products', '=', True)])
 
     @api.multi
     def view_stock_detail(self):
@@ -35,5 +35,6 @@ class ProductTemplate(models.Model):
             'view_mode': 'form',
             'res_model': self._name,
             'view_id': self.env.ref(view).id,
-            'type': 'ir.actions.act_window',
+            'flags': {'initial_mode': 'view'},
+            'type': 'ir.actions.act_window'
         }

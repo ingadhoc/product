@@ -30,7 +30,7 @@
             <field name="model">product.template</field>
             <field name="priority">99</field>
             <field name="arch" type="xml">
-                <form string="Product Stock by Locations">
+                <form string="Product Stock by Locations" create="false" edit="false">
                     <field name="id" invisible="1"/>
                     <field name="name" readonly="1"/>
                     <field name="location_ids" context="{'tree_view_ref': 'product_stock_by_location.view_location_stock_tree', 'template_id': id}"/>
