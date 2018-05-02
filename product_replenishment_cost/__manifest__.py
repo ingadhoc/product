@@ -19,8 +19,8 @@
 ##############################################################################
 {
     'name': 'Replenishment Cost',
-    'version': '9.0.1.1.0',
-    'author': "Camptocamp,GRAP,Odoo Community Association (OCA)",
+    'version': '11.0.1.0.0',
+    'author': "ADHOC S.A, Camptocamp,GRAP,Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'category': 'Products',
     'depends': [
@@ -28,12 +28,10 @@
     ],
     'website': 'http://www.camptocamp.com/',
     'data': [
-        'views/product_view.xml',
+        'data/cron_data.xml',
+        'views/product_template_views.xml',
+        'wizards/product_update_from_replenishment_cost_wizard_view.xml',
         'demo/res_groups.yml',
     ],
-    'test': [
-        # TODO actualizar tests a nueva logica solo en product template
-        # 'test/cost_price_update.yml',
-    ],
-    'installable': False,
+    'installable': True,
 }

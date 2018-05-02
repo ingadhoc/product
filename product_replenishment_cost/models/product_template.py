@@ -11,12 +11,23 @@ _logger = logging.getLogger(__name__)
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    # TODO this field should be move to PRC (product_replenishment_cost)
+    replenishment_cost = fields.Float(
+        'Replenishment Cost',
+        compute='_compute_replenishment_cost',
+        # TODO, activamos store como estaba??
+        store=False,
+        digits=dp.get_precision('Product Price'),
+        help="The cost that you have to support in order to produce or "
+             "acquire the goods. Depending on the modules installed, "
+             "this cost may be computed based on various pieces of "
+             "information, for example Bills of Materials or latest "
+             "Purchases. By default, the Replenishment cost is the same "
+             "as the Cost Price.")
+
     replenishment_cost_last_update = fields.Datetime(
         'Replenishment Cost Last Update',
         track_visibility='onchange',
     )
-    # TODO this field should be move to PRC (product_replenishment_cost)
     replenishment_base_cost = fields.Float(
         'Replenishment Base Cost',
         digits=dp.get_precision('Product Price'),
@@ -31,22 +42,6 @@ class ProductTemplate(models.Model):
         track_visibility='onchange',
         help="Currency used for the Replanishment Base Cost."
     )
-    # TODO borrar, ya lo cambiamos en nustro modulo base de rep cost
-    # lo que si dejamos es sobreescribir el metodo de computar, algo que
-    # deberiamos mejorar tmb
-    replenishment_cost = fields.Float(
-        compute='_get_replenishment_cost',
-    )
-    # for now we make replenshiment cost field only on template and not in
-    # product (this should be done in PRC)
-    #     string='Replenishment Cost',
-    #     store=False,
-    #     digits=dp.get_precision('Product Price'),
-    #     help="The cost that you have to support in order to produce or "
-    #          "acquire the goods. Depending on the modules installed, "
-    #          "this cost may be computed based on various pieces of "
-    #          "information, for example Bills of Materials or latest "
-    #          "Purchases."
 
     @api.model
     def cron_update_cost_from_replenishment_cost(self, limit=None):
@@ -110,6 +105,7 @@ class ProductTemplate(models.Model):
             # principalmente agregamos esto por error en migracion pero tmb
             # para que solo se haga el commit por cron
             if commit_transaction:
+                # pylint: disable=invalid-commit
                 cr.commit()
             _logger.info('Finish updating cost of run %s' % run)
 
@@ -135,7 +131,7 @@ class ProductTemplate(models.Model):
         # and this if we change de date (name field)
         'replenishment_base_cost_currency_id.rate_ids.name',
     )
-    def _get_replenishment_cost(self):
+    def _compute_replenishment_cost(self):
         _logger.info(
             'Getting replenishment cost currency for ids %s' % self.ids)
         for rec in self:
@@ -155,16 +151,3 @@ class ProductTemplate(models.Model):
                 replenishment_cost = from_currency.compute(
                     replenishment_cost, to_currency, round=False)
         return replenishment_cost
-
-
-# al final, directamente lo cambiamos en product.template en el modulo
-# base, para mejorar temas de performance
-# class ProductProduct(models.Model):
-#     _inherit = 'product.product'
-
-#     # we make it related to prod template because for now we want it only
-#     # on prod template
-#     replenishment_cost = fields.Float(
-#         related='product_tmpl_id.replenishment_cost',
-#         store=False,
-#     )
