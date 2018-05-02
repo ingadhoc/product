@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data>
-
+<odoo>
     <!-- product template views -->
 
         <record id="view_stock_product_template_tree" model="ir.ui.view">
@@ -20,7 +18,6 @@
             <field name="model">product.template</field>
             <field name="inherit_id" ref="stock.product_template_kanban_stock_view"/>
             <field name="arch" type="xml">
-                <li t-if="record.type.raw_value == 'product'" position="replace"/>
                 <li t-if="record.type.raw_value == 'product'" position="replace">
                      <li t-if="record.type.raw_value == 'product'"><a type="object" name="view_stock_detail" string="View Stock Detail">On hand: <field name="qty_available"/> <field name="uom_id"/></a></li>
                      <li t-if="record.type.raw_value == 'product'"><a type="object" name="view_stock_detail" string="View Stock Detail">Forecasted: <field name="virtual_available"/> <field name="uom_id"/></a></li>
@@ -67,6 +64,4 @@
                 </field>
             </field>
         </record>
-
-    </data>
 </odoo>
