@@ -32,7 +32,7 @@
     ],
     'data': [
         'data/product_data.xml',
-        'views/product_view.xml',
+        'views/product_views.xml',
     ],
     'demo': [
         'demo/product.product.csv'
