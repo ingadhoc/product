@@ -11,7 +11,7 @@
             <label for="standard_price" position="replace"/>
             <div name="standard_price_uom" position="replace"/>
 
-            <group name="inventory" position="after">
+            <group name="packaging" position="after">
                 <group name="costing" string="Costing">
                     <group name="replenishment_cost">
                         <field name="replenishment_cost_last_update"/>
