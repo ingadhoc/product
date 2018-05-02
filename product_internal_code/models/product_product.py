@@ -5,7 +5,7 @@
 from odoo import fields, models, api
 
 
-class Product(models.Model):
+class ProductProduct(models.Model):
 
     _inherit = 'product.product'
 
@@ -32,25 +32,9 @@ class Product(models.Model):
                 _context.get('default_internal_code', False)):
             vals['internal_code'] = self.env[
                 'ir.sequence'].next_by_code('product.internal.code') or '/'
-        return super(Product, self).create(vals)
+        return super(ProductProduct, self).create(vals)
 
     _sql_constraints = {
         ('internal_code_uniq', 'unique(internal_code)',
             'Internal Code mast be unique!')
     }
-
-
-class ProductTemplate(models.Model):
-
-    _inherit = 'product.template'
-
-    internal_code = fields.Char(
-        related='product_variant_ids.internal_code',
-        string='Internal Code')
-
-    @api.model
-    def create(self, vals):
-        if vals.get('internal_code'):
-            self = self.with_context(
-                default_internal_code=vals.get('internal_code'))
-        return super(ProductTemplate, self).create(vals)
