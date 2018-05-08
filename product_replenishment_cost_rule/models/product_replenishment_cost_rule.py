@@ -145,8 +145,8 @@ class ProductReplenishmentCostRuleItem(models.Model):
         auto_join=True,
     )
 
-    sequence = fields.Char(
-        'sequence',
+    sequence = fields.Integer(
+        required=True,
         default=10,
     )
 
