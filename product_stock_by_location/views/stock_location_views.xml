@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_location_form" model="ir.ui.view">
+        <field name="name">stock.location.form</field>
+        <field name="model">stock.location</field>
+        <field name="inherit_id" ref="stock.view_location_form"/>
+        <field name="arch" type="xml">
+            <field name="usage" position="before">
+                <field name="show_stock_on_products"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_location_stock_tree" model="ir.ui.view">
+        <field name="name">location stocks</field>
+        <field name="model">stock.location</field>
+        <field name="priority">99</field>
+        <field name="arch" type="xml">
+            <tree string="Location Stock">
+                <field name="complete_name"/>
+                <field name="qty_available"/>
+                <field name="virtual_available"/>
+                <field name="incoming_qty"/>
+                <field name="outgoing_qty"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
