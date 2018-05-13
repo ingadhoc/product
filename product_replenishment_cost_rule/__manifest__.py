@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Product Replenshiment Cost Rule",
-    'version': '9.0.1.2.0',
+    'version': '9.0.1.3.0',
     'category': 'Product',
     'sequence': 14,
     'author': 'ADHOC SA',
