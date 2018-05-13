@@ -14,7 +14,6 @@ class ProductReplenishmentCostRule(models.Model):
     _inherit = ['mail.thread']
 
     name = fields.Char(
-        'Name',
         required=True,
     )
 
@@ -118,9 +117,15 @@ class ProductReplenishmentCostRule(models.Model):
 
             values[line.name] = error or value
             line.value = error or str(value)
+            line.error = error
             if line.add_to_cost:
                 cost = cost + value
-        return cost
+
+        # Don't compute cost if there are errors
+        if any([line.error for line in self.item_ids]):
+            return False
+        else:
+            return cost
 
     @api.onchange('product_id', 'item_ids')
     def _onchange_product_id(self):
@@ -144,13 +149,12 @@ class ProductReplenishmentCostRuleItem(models.Model):
         auto_join=True,
     )
 
-    sequence = fields.Char(
-        'sequence',
+    sequence = fields.Integer(
+        required=True,
         default=10,
     )
 
     name = fields.Char(
-        'Name',
         required=True,
     )
 
@@ -185,6 +189,5 @@ class ProductReplenishmentCostRuleItem(models.Model):
     )
 
     # no-op for testing and calculating rule
-    value = fields.Char(
-        compute=lambda x: x,
-    )
+    value = fields.Char(compute=lambda x: x)
+    error = fields.Char(compute=lambda x: x)
