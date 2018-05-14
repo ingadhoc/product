@@ -14,8 +14,9 @@
 Product Internal Code
 =====================
 
-This module create the field internal_code in product.product.
-Internal Code field value mast be unique
+This module creates a new field called "Internal Code" on products.
+Internal Code must be unique per product.
+It also creates a sequence to populate this new field automatically upon product creation.
 
 Installation
 ============
@@ -27,16 +28,15 @@ To install this module, you need to:
 Configuration
 =============
 
-To configure this module, you need to:
-
-#. No configuration needed.
+You can change or delete the default sequence called "product.internal.code" sequences menu.
 
 Usage
 =====
 
-To use this module, you need to:
+Create a product and you can:
 
-#. Go to ...
+set an internal code
+or leave it empty, then a new code will be automatically assigned by the "product.internal.code" sequence
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
