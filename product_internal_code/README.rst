@@ -28,15 +28,15 @@ To install this module, you need to:
 Configuration
 =============
 
-You can change or delete the default sequence called "product.internal.code" sequences menu.
+You can change or delete the default sequence called "product.internal.code" on sequences menu.
 
 Usage
 =====
 
 Create a product and you can:
 
-set an internal code
-or leave it empty, then a new code will be automatically assigned by the "product.internal.code" sequence
+#. Set an Internal Code
+#. Or leave it empty, then a new code will be automatically assigned by the "product.internal.code" sequence.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
