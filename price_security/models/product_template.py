@@ -12,10 +12,3 @@ class ProductTemplate(models.Model):
         help='If checked all users can modify the\
         price of this product in a sale order or invoice.',
         string='Can modify prices')
-
-
-class ProductPricelist(models.Model):
-    _inherit = 'product.pricelist'
-
-    sequence = fields.Integer(
-        string='Sequence')

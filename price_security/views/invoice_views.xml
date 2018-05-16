@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<openerp>
-    <data>
+<odoo>
         <!-- readonly for group restrict prices and not can modify -->
         <record id="invoice_form" model="ir.ui.view">
             <field name="name">price_security.invoice.form</field>
@@ -31,6 +30,4 @@
                 </xpath>
             </field>
         </record>
-        
-    </data>
 </odoo>

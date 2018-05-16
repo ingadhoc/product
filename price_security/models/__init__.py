@@ -2,8 +2,11 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
+from . import account_invoice_line
+from . import account_payment_term
+from . import discount_restriction
+from . import product_price_list
+from . import product_template
 from . import res_users
-from . import product
-from . import sale
-from . import invoice
-from . import account
+from . import sale_order
+from . import sale_order_line
