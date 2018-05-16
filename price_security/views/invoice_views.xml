@@ -1,33 +1,33 @@
 <?xml version="1.0"?>
 <odoo>
-        <!-- readonly for group restrict prices and not can modify -->
-        <record id="invoice_form" model="ir.ui.view">
-            <field name="name">price_security.invoice.form</field>
-            <field name="model">account.invoice</field>
-            <field name="inherit_id" ref="account.invoice_form"/>
-            <field name="groups_id" eval="[(6, 0, [ref('group_restrict_prices')])]"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='invoice_line_ids']/tree" position="inside">
-                    <field name="product_can_modify_prices" invisible="1"/>
-                </xpath>
+    <!-- readonly for group restrict prices and not can modify -->
+    <record id="invoice_form" model="ir.ui.view">
+        <field name="name">price_security.invoice.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="groups_id" eval="[(6, 0, [ref('group_restrict_prices')])]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_line_ids']/tree" position="inside">
+                <field name="product_can_modify_prices" invisible="1"/>
+            </xpath>
 
-                <!-- add readonly price unit -->
-                <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='price_unit']" position="after">
-                    <field name="price_unit_readonly" attrs="{'readonly': [('product_can_modify_prices','=', False)]}"/>
-                </xpath>
-                <!-- make price unit invisible -->
-                <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='price_unit']" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </xpath>
+            <!-- add readonly price unit -->
+            <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='price_unit']" position="after">
+                <field name="price_unit_readonly" attrs="{'readonly': [('product_can_modify_prices','=', False)]}"/>
+            </xpath>
+            <!-- make price unit invisible -->
+            <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='price_unit']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
 
-                <!-- add tax readonly -->
-                <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='invoice_line_tax_ids']" position="after">
-                    <field name="invoice_line_tax_ids_readonly" attrs="{'readonly': [('product_can_modify_prices','=', False)]}" context="{'type':parent.type}" domain="[('type_tax_use','=','sale'),('company_id', '=', parent.company_id)]" widget="many2many_tags"/>
-                </xpath>
-                <!-- make tax invisible -->
-                <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='invoice_line_tax_ids']" position="attributes">
-                    <attribute name="invisible">1</attribute>
-                </xpath>
-            </field>
-        </record>
+            <!-- add tax readonly -->
+            <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='invoice_line_tax_ids']" position="after">
+                <field name="invoice_line_tax_ids_readonly" attrs="{'readonly': [('product_can_modify_prices','=', False)]}" context="{'type':parent.type}" domain="[('type_tax_use','=','sale'),('company_id', '=', parent.company_id)]" widget="many2many_tags"/>
+            </xpath>
+            <!-- make tax invisible -->
+            <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='invoice_line_tax_ids']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
 </odoo>
