@@ -28,7 +28,7 @@
         'sale',
     ],
     'data': [
-        'security/security.xml',
+        'security/price_security_security.xml',
         'security/ir.model.access.csv',
         'views/account_invoice_views.xml',
         'views/account_payment_term_views.xml',
