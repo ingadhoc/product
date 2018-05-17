@@ -14,9 +14,11 @@ class AccountInvoiceLine(models.Model):
     # we want them to be writeable
     invoice_line_tax_ids_readonly = fields.Many2many(
         related='invoice_line_tax_ids',
+        readonly=True,
     )
     price_unit_readonly = fields.Float(
         related='price_unit',
+        readonly=True,
     )
     product_can_modify_prices = fields.Boolean(
         related='product_id.can_modify_prices',

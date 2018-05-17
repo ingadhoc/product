@@ -46,12 +46,12 @@ Usage
 To use this module, you need to:
 
 For users with price restriction, it restricts:
-* on sales orders: change payment term or pricelist
-* on sales order lines: change unit price and set limits on discount (limits configured on user)
-* on partners: change payment term or pricelist
-* on invoices: change unit price
-* on invoice lines: change unit price and set limits on discount (limits configured on user)
-* on product: change price
+#. on sales orders: change payment term or pricelist
+#. on sales order lines: change unit price and set limits on discount (limits configured on user)
+#. on partners: change payment term or pricelist
+#. on invoices: change unit price
+#. on invoice lines: change unit price and set limits on discount (limits configured on user)
+#. on product: change price
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot

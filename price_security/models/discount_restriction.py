@@ -18,6 +18,7 @@ class DiscountRestriction(models.Model):
     user_id = fields.Many2one(
         'res.users',
         'User',
+        index=True,
         required=True,
         ondelete='cascade',
     )
