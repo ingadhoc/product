@@ -7,7 +7,6 @@
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="groups_id" eval="[(6, 0, [ref('group_restrict_prices')])]"/>
         <field name="arch" type="xml">
-            
             <xpath expr="//field[@name='order_line']/form" position="inside">
                 <field name="product_can_modify_prices" invisible="1"/>
             </xpath>
@@ -50,7 +49,6 @@
             <xpath expr="//field[@name='order_line']/form//field[@name='tax_id']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
-        -->
         </field>
     </record>
 </odoo>
