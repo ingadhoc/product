@@ -30,12 +30,12 @@
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
-        'views/res_users_views.xml',
+        'views/account_invoice_views.xml',
+        'views/account_payment_term_views.xml',
         'views/product_views.xml',
+        'views/res_partner_views.xml',
+        'views/res_users_views.xml',
         'views/sale_order_views.xml',
-        'views/invoice_views.xml',
-        'views/partner_views.xml',
-        'views/account_views.xml',
     ],
     'installable': True,
 }
