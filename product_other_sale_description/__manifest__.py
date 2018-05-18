@@ -19,7 +19,9 @@
 #
 ##############################################################################
 {
+    'name': 'Sale Other Product Description',
     'author': 'ADHOC SA',
+    'version': '10.0.1.0.0',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'category': 'Accounting & Finance',
@@ -30,8 +32,6 @@
     'depends': [
         'product',
     ],
-    'installable': False,
-    'name': 'Sale Other Product Description',
+    'installable': True,
     'test': [],
-    'version': '9.0.1.0.0'
 }
