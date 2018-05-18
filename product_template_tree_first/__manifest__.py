@@ -32,11 +32,7 @@
         'product',
     ],
     'data': [
-        'views/action_views.xml',
-    ],
-    'demo': [
-    ],
-    'test': [
+        'views/product_template_action_views.xml',
     ],
     'installable': True,
     'auto_install': False,
