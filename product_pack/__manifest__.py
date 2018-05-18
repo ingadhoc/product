@@ -40,7 +40,8 @@
         'views/sale_order_views.xml',
     ],
     'demo': [
-        'demo/demo_data.xml',
+        'demo/product_product_demo.xml',
+        'demo/product_pack_line_demo.xml',
     ],
     'installable': True,
     'auto_install': False,
