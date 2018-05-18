@@ -3,7 +3,7 @@
 # directory
 ##############################################################################
 from odoo import fields, models, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import ValidationError
 import math
 
 
@@ -52,7 +52,6 @@ class ProductProduct(models.Model):
             product.update(vals)
         # return res
 
-    @api.multi
     @api.constrains('pack_line_ids')
     def check_recursion(self):
         """
@@ -62,7 +61,7 @@ class ProductProduct(models.Model):
             pack_lines = rec.pack_line_ids
             while pack_lines:
                 if rec in pack_lines.mapped('product_id'):
-                    raise UserError(_(
+                    raise ValidationError(_(
                         'Error! You cannot create recursive packs.\n'
                         'Product id: %s') % rec.id)
                 pack_lines = pack_lines.mapped('product_id.pack_line_ids')

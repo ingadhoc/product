@@ -12,20 +12,17 @@ class ProductPack(models.Model):
 
     parent_product_id = fields.Many2one(
         'product.product',
-        'Parent Product',
         ondelete='cascade',
         index=True,
         required=True
     )
     quantity = fields.Float(
-        'Quantity',
         required=True,
         default=1.0,
         digits=dp.get_precision('Product UoS'),
     )
     product_id = fields.Many2one(
         'product.product',
-        'Product',
         ondelete='cascade',
         index=True,
         required=True,

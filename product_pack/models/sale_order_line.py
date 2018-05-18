@@ -10,7 +10,6 @@ class SaleOrderLine(models.Model):
 
     # Fields for sale order pack
     pack_total = fields.Float(
-        string='Pack total',
         compute='_compute_pack_total'
     )
     pack_line_ids = fields.One2many(
@@ -20,7 +19,7 @@ class SaleOrderLine(models.Model):
     )
     pack_type = fields.Selection(
         related='product_id.pack_price_type',
-        readonly=True
+        readonly=True,
     )
 
     # Fields for common packs

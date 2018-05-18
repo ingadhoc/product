@@ -3,7 +3,7 @@
 # directory
 ##############################################################################
 from odoo import fields, models, api, _
-from odoo.exceptions import UserError
+from odoo.exceptions import ValidationError
 
 
 class ProductTemplate(models.Model):
@@ -33,14 +33,13 @@ class ProductTemplate(models.Model):
     )
     pack_line_ids = fields.One2many(
         related='product_variant_ids.pack_line_ids',
-        readonly=True
+        readonly=True,
     )
     used_pack_line_ids = fields.One2many(
         related='product_variant_ids.used_pack_line_ids',
-        readonly=True
+        readonly=True,
     )
 
-    @api.multi
     @api.constrains(
         'product_variant_ids', 'pack_price_type')
     def check_relations(self):
@@ -53,7 +52,7 @@ class ProductTemplate(models.Model):
                 child_packs = rec.mapped(
                     'pack_line_ids.product_id').filtered('pack')
                 if child_packs:
-                    raise UserError(_(
+                    raise ValidationError(_(
                         'A "None Detailed - Assisted Price Pack" can not have '
                         'a pack as a child!'))
 
@@ -73,7 +72,6 @@ class ProductTemplate(models.Model):
         #             'You can not set this product as pack because it is part'
         #             ' of a "None Detailed - Assisted Price Pack"'))
 
-    @api.multi
     @api.constrains('company_id', 'product_variant_ids')
     def check_pack_line_company(self):
         """
@@ -82,12 +80,12 @@ class ProductTemplate(models.Model):
         for rec in self:
             for line in rec.pack_line_ids:
                 if line.product_id.company_id != rec.company_id:
-                    raise UserError(_(
+                    raise ValidationError(_(
                         'Pack lines products company must be the same as the '
                         'parent product company'))
             for line in rec.used_pack_line_ids:
                 if line.parent_product_id.company_id != rec.company_id:
-                    raise UserError(_(
+                    raise ValidationError(_(
                         'Pack lines products company must be the same as the '
                         'parent product company'))
 
