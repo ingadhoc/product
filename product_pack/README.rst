@@ -14,7 +14,7 @@
 Product Pack
 ============
 
-This module add "Product Pack" funcionality to sale orders. For prouct you can add some other product to sell with them, in the sale order you choose the product and then automaticaly added the products that set in Product selected.
+This module add "Product Pack" funcionality to sale orders. For product you can add some other product to sell with them, in the sale order you choose the product and then automaticaly added the products that set in Product selected.
 
 TODO: check modifications of this fork https://github.com/mohamedhagag/dvit-odoo/tree/10.0/product_pack
 
