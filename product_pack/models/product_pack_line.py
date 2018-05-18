@@ -12,6 +12,7 @@ class ProductPack(models.Model):
 
     parent_product_id = fields.Many2one(
         'product.product',
+        'Parent Product',
         ondelete='cascade',
         index=True,
         required=True
@@ -23,6 +24,7 @@ class ProductPack(models.Model):
     )
     product_id = fields.Many2one(
         'product.product',
+        'Product',
         ondelete='cascade',
         index=True,
         required=True,
