@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-    <data noupdate="1">
+<odoo noupdate="1">
 
 <record id="product_pack_cpu_detailed_components" model="product.product">
     <field name="name">Pack CPU (Detailed Components Price)</field>
@@ -18,12 +17,12 @@
         <field name="quantity" eval="1.0"/>
         <field name="discount" eval="10.0"/>
     </record>
-    <record id="pack_cpu_detailed_components_2" model="product.pack.line">
-        <field name="parent_product_id" ref="product_pack_cpu_detailed_components"/>
-        <field name="product_id" ref="product.product_product_19"/>
-        <field name="quantity" eval="1.0"/>
-        <field name="discount" eval="10.0"/>
-    </record>
+    <!--<record id="pack_cpu_detailed_components_2" model="product.pack.line">-->
+        <!--<field name="parent_product_id" ref="product_pack_cpu_detailed_components"/>-->
+        <!--<field name="product_id" ref="product.product_product_19"/>-->
+        <!--<field name="quantity" eval="1.0"/>-->
+        <!--<field name="discount" eval="10.0"/>-->
+    <!--</record>-->
     <record id="pack_cpu_detailed_components_3" model="product.pack.line">
         <field name="parent_product_id" ref="product_pack_cpu_detailed_components"/>
         <field name="product_id" ref="product.product_product_16"/>
@@ -35,11 +34,11 @@
         <field name="product_id" ref="product.product_product_24"/>
         <field name="quantity" eval="1.0"/>
     </record>
-    <record id="pack_cpu_detailed_components_5" model="product.pack.line">
-        <field name="parent_product_id" ref="product_pack_cpu_detailed_components"/>
-        <field name="product_id" ref="product.product_product_15"/>
-        <field name="quantity" eval="2.0"/>
-    </record>
+    <!--<record id="pack_cpu_detailed_components_5" model="product.pack.line">-->
+        <!--<field name="parent_product_id" ref="product_pack_cpu_detailed_components"/>-->
+        <!--<field name="product_id" ref="product.product_product_15"/>-->
+        <!--<field name="quantity" eval="2.0"/>-->
+    <!--</record>-->
 
 <record id="product_pack_cpu_detailed_totaliced" model="product.product">
     <field name="name">Pack CPU (Detailed Totaliced Price)</field>
@@ -57,12 +56,12 @@
         <field name="quantity" eval="1.0"/>
         <field name="discount" eval="10.0"/>
     </record>
-    <record id="pack_cpu_detailed_totaliced_2" model="product.pack.line">
-        <field name="parent_product_id" ref="product_pack_cpu_detailed_totaliced"/>
-        <field name="product_id" ref="product.product_product_19"/>
-        <field name="quantity" eval="1.0"/>
-        <field name="discount" eval="10.0"/>
-    </record>
+    <!--<record id="pack_cpu_detailed_totaliced_2" model="product.pack.line">-->
+        <!--<field name="parent_product_id" ref="product_pack_cpu_detailed_totaliced"/>-->
+        <!--<field name="product_id" ref="product.product_product_19"/>-->
+        <!--<field name="quantity" eval="1.0"/>-->
+        <!--<field name="discount" eval="10.0"/>-->
+    <!--</record>-->
     <record id="pack_cpu_detailed_totaliced_3" model="product.pack.line">
         <field name="parent_product_id" ref="product_pack_cpu_detailed_totaliced"/>
         <field name="product_id" ref="product.product_product_16"/>
@@ -74,11 +73,11 @@
         <field name="product_id" ref="product.product_product_24"/>
         <field name="quantity" eval="1.0"/>
     </record>
-    <record id="pack_cpu_detailed_totaliced_5" model="product.pack.line">
-        <field name="parent_product_id" ref="product_pack_cpu_detailed_totaliced"/>
-        <field name="product_id" ref="product.product_product_15"/>
-        <field name="quantity" eval="2.0"/>
-    </record>
+    <!--<record id="pack_cpu_detailed_totaliced_5" model="product.pack.line">-->
+        <!--<field name="parent_product_id" ref="product_pack_cpu_detailed_totaliced"/>-->
+        <!--<field name="product_id" ref="product.product_product_15"/>-->
+        <!--<field name="quantity" eval="2.0"/>-->
+    <!--</record>-->
 
 <record id="product_pack_cpu_detailed_fixed" model="product.product">
     <field name="name">Pack CPU (Detailed Fixed Price)</field>
@@ -95,11 +94,11 @@
         <field name="product_id" ref="product.product_product_20"/>
         <field name="quantity" eval="1.0"/>
     </record>
-    <record id="pack_cpu_detailed_fixed_2" model="product.pack.line">
-        <field name="parent_product_id" ref="product_pack_cpu_detailed_fixed"/>
-        <field name="product_id" ref="product.product_product_19"/>
-        <field name="quantity" eval="1.0"/>
-    </record>
+    <!--<record id="pack_cpu_detailed_fixed_2" model="product.pack.line">-->
+        <!--<field name="parent_product_id" ref="product_pack_cpu_detailed_fixed"/>-->
+        <!--<field name="product_id" ref="product.product_product_19"/>-->
+        <!--<field name="quantity" eval="1.0"/>-->
+    <!--</record>-->
     <record id="pack_cpu_detailed_fixed_3" model="product.pack.line">
         <field name="parent_product_id" ref="product_pack_cpu_detailed_fixed"/>
         <field name="product_id" ref="product.product_product_16"/>
@@ -110,11 +109,11 @@
         <field name="product_id" ref="product.product_product_24"/>
         <field name="quantity" eval="1.0"/>
     </record>
-    <record id="pack_cpu_detailed_fixed_5" model="product.pack.line">
-        <field name="parent_product_id" ref="product_pack_cpu_detailed_fixed"/>
-        <field name="product_id" ref="product.product_product_15"/>
-        <field name="quantity" eval="2.0"/>
-    </record>
+    <!--<record id="pack_cpu_detailed_fixed_5" model="product.pack.line">-->
+        <!--<field name="parent_product_id" ref="product_pack_cpu_detailed_fixed"/>-->
+        <!--<field name="product_id" ref="product.product_product_15"/>-->
+        <!--<field name="quantity" eval="2.0"/>-->
+    <!--</record>-->
 
 <record id="product_pack_cpu_none_detailed_assited" model="product.product">
     <field name="name">Pack CPU (None Detailed Assisted Price)</field>
@@ -132,12 +131,12 @@
         <field name="quantity" eval="1.0"/>
         <field name="discount" eval="10.0"/>
     </record>
-    <record id="pack_cpu_none_detailed_assited_2" model="product.pack.line">
-        <field name="parent_product_id" ref="product_pack_cpu_none_detailed_assited"/>
-        <field name="product_id" ref="product.product_product_19"/>
-        <field name="quantity" eval="1.0"/>
-        <field name="discount" eval="10.0"/>
-    </record>
+    <!--<record id="pack_cpu_none_detailed_assited_2" model="product.pack.line">-->
+        <!--<field name="parent_product_id" ref="product_pack_cpu_none_detailed_assited"/>-->
+        <!--<field name="product_id" ref="product.product_product_19"/>-->
+        <!--<field name="quantity" eval="1.0"/>-->
+        <!--<field name="discount" eval="10.0"/>-->
+    <!--</record>-->
     <record id="pack_cpu_none_detailed_assited_3" model="product.pack.line">
         <field name="parent_product_id" ref="product_pack_cpu_none_detailed_assited"/>
         <field name="product_id" ref="product.product_product_16"/>
@@ -149,11 +148,11 @@
         <field name="product_id" ref="product.product_product_24"/>
         <field name="quantity" eval="1.0"/>
     </record>
-    <record id="pack_cpu_none_detailed_assited_5" model="product.pack.line">
-        <field name="parent_product_id" ref="product_pack_cpu_none_detailed_assited"/>
-        <field name="product_id" ref="product.product_product_15"/>
-        <field name="quantity" eval="2.0"/>
-    </record>
+    <!--<record id="pack_cpu_none_detailed_assited_5" model="product.pack.line">-->
+        <!--<field name="parent_product_id" ref="product_pack_cpu_none_detailed_assited"/>-->
+        <!--<field name="product_id" ref="product.product_product_15"/>-->
+        <!--<field name="quantity" eval="2.0"/>-->
+    <!--</record>-->
 
 <record id="product_pack_cpu_none_detailed_totaliced" model="product.product">
     <field name="name">Pack CPU (None Detailed Totaliced Price)</field>
@@ -171,12 +170,12 @@
         <field name="quantity" eval="1.0"/>
         <field name="discount" eval="10.0"/>
     </record>
-    <record id="pack_cpu_none_detailed_totaliced_2" model="product.pack.line">
-        <field name="parent_product_id" ref="product_pack_cpu_none_detailed_totaliced"/>
-        <field name="product_id" ref="product.product_product_19"/>
-        <field name="quantity" eval="1.0"/>
-        <field name="discount" eval="10.0"/>
-    </record>
+    <!--<record id="pack_cpu_none_detailed_totaliced_2" model="product.pack.line">-->
+        <!--<field name="parent_product_id" ref="product_pack_cpu_none_detailed_totaliced"/>-->
+        <!--<field name="product_id" ref="product.product_product_19"/>-->
+        <!--<field name="quantity" eval="1.0"/>-->
+        <!--<field name="discount" eval="10.0"/>-->
+    <!--</record>-->
     <record id="pack_cpu_none_detailed_totaliced_3" model="product.pack.line">
         <field name="parent_product_id" ref="product_pack_cpu_none_detailed_totaliced"/>
         <field name="product_id" ref="product.product_product_16"/>
@@ -188,11 +187,11 @@
         <field name="product_id" ref="product.product_product_24"/>
         <field name="quantity" eval="1.0"/>
     </record>
-    <record id="pack_cpu_none_detailed_totaliced_5" model="product.pack.line">
-        <field name="parent_product_id" ref="product_pack_cpu_none_detailed_totaliced"/>
-        <field name="product_id" ref="product.product_product_15"/>
-        <field name="quantity" eval="2.0"/>
-    </record>
+    <!--<record id="pack_cpu_none_detailed_totaliced_5" model="product.pack.line">-->
+        <!--<field name="parent_product_id" ref="product_pack_cpu_none_detailed_totaliced"/>-->
+        <!--<field name="product_id" ref="product.product_product_15"/>-->
+        <!--<field name="quantity" eval="2.0"/>-->
+    <!--</record>-->
 
 <record id="product_pack_pc_detailed_components" model="product.product">
     <field name="name">Pack PC (Detailed Components Price)</field>
@@ -209,11 +208,11 @@
         <field name="product_id" ref="product.product_product_12"/>
         <field name="quantity" eval="1.0"/>
     </record>
-    <record id="pack_pc_detailed_components_2" model="product.pack.line">
-        <field name="parent_product_id" ref="product_pack_pc_detailed_components"/>
-        <field name="product_id" ref="product.product_product_31"/>
-        <field name="quantity" eval="1.0"/>
-    </record>
+    <!--<record id="pack_pc_detailed_components_2" model="product.pack.line">-->
+        <!--<field name="parent_product_id" ref="product_pack_pc_detailed_components"/>-->
+        <!--<field name="product_id" ref="product.product_product_31"/>-->
+        <!--<field name="quantity" eval="1.0"/>-->
+    <!--</record>-->
     <record id="pack_pc_detailed_components_3" model="product.pack.line">
         <field name="parent_product_id" ref="product_pack_pc_detailed_components"/>
         <field name="product_id" ref="product_pack_cpu_detailed_components"/>
@@ -235,37 +234,11 @@
         <field name="product_id" ref="product.product_product_12"/>
         <field name="quantity" eval="1.0"/>
     </record>
-    <record id="pack_pc_detailed_totaliced_2" model="product.pack.line">
-        <field name="parent_product_id" ref="product_pack_pc_detailed_totaliced"/>
-        <field name="product_id" ref="product.product_product_31"/>
-        <field name="quantity" eval="1.0"/>
-    </record>
-    <record id="pack_pc_detailed_totaliced_3" model="product.pack.line">
-        <field name="parent_product_id" ref="product_pack_pc_detailed_totaliced"/>
-        <field name="product_id" ref="product_pack_cpu_detailed_totaliced"/>
-        <field name="quantity" eval="1.0"/>
-    </record>
-
-<record id="product_pack_pc_detailed_totaliced" model="product.product">
-    <field name="name">Pack PC (Detailed Totaliced Price)</field>
-    <field name="categ_id" ref="product.product_category_4"/>
-    <field name="pack" eval="True"/>
-    <field name="pack_price_type">totalice_price</field>
-    <field name="standard_price">20.5</field>
-    <field name="list_price">30.75</field>
-    <field name="type">service</field>
-</record>
-
-    <record id="pack_pc_detailed_totaliced_1" model="product.pack.line">
-        <field name="parent_product_id" ref="product_pack_pc_detailed_totaliced"/>
-        <field name="product_id" ref="product.product_product_12"/>
-        <field name="quantity" eval="1.0"/>
-    </record>
-    <record id="pack_pc_detailed_totaliced_2" model="product.pack.line">
-        <field name="parent_product_id" ref="product_pack_pc_detailed_totaliced"/>
-        <field name="product_id" ref="product.product_product_31"/>
-        <field name="quantity" eval="1.0"/>
-    </record>
+    <!--<record id="pack_pc_detailed_totaliced_2" model="product.pack.line">-->
+        <!--<field name="parent_product_id" ref="product_pack_pc_detailed_totaliced"/>-->
+        <!--<field name="product_id" ref="product.product_product_31"/>-->
+        <!--<field name="quantity" eval="1.0"/>-->
+    <!--</record>-->
     <record id="pack_pc_detailed_totaliced_3" model="product.pack.line">
         <field name="parent_product_id" ref="product_pack_pc_detailed_totaliced"/>
         <field name="product_id" ref="product_pack_cpu_detailed_totaliced"/>
@@ -287,16 +260,15 @@
         <field name="product_id" ref="product.product_product_12"/>
         <field name="quantity" eval="1.0"/>
     </record>
-    <record id="pack_pc_detailed_fixed_2" model="product.pack.line">
-        <field name="parent_product_id" ref="product_pack_pc_detailed_fixed"/>
-        <field name="product_id" ref="product.product_product_31"/>
-        <field name="quantity" eval="1.0"/>
-    </record>
+    <!--<record id="pack_pc_detailed_fixed_2" model="product.pack.line">-->
+        <!--<field name="parent_product_id" ref="product_pack_pc_detailed_fixed"/>-->
+        <!--<field name="product_id" ref="product.product_product_31"/>-->
+        <!--<field name="quantity" eval="1.0"/>-->
+    <!--</record>-->
     <record id="pack_pc_detailed_fixed_3" model="product.pack.line">
         <field name="parent_product_id" ref="product_pack_pc_detailed_fixed"/>
         <field name="product_id" ref="product_pack_cpu_detailed_fixed"/>
         <field name="quantity" eval="1.0"/>
     </record>
 
-    </data>
 </odoo>
