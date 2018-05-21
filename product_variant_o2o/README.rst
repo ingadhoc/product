@@ -14,11 +14,11 @@
 Product Variant Force One Two One
 =================================
 
-Add a new field "One variant per product" on products (product.template) that changes current behaviour in this way:
+Add a new field "One variant per product" on products (product.template) that changes current behavior in this way:
 
 #. One variant per product can be created (only one attribute value per attribute can be setted).
-#. Change odoo behaviour when changing attribute values, if:
-    #. False: default odoo behaviour, if you change an attribute or remove it odoo creates a new variant.
+#. Change odoo behavior when changing attribute values, if:
+    #. False: default odoo behavior, if you change an attribute or remove it odoo creates a new variant.
     #. True: change attributes wont change variants, it will only update variants attributes
 
 Installation
