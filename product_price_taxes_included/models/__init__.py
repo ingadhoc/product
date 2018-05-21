@@ -5,4 +5,4 @@
 
 from . import product_template
 from . import product_product
-from . import pricelist
+from . import product_pricelist
