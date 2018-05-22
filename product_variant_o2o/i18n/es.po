@@ -1,33 +1,38 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * product_variant_o2o
-# 
-# Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2017
+# 	* product_variant_o2o
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 11.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-20 14:44+0000\n"
-"PO-Revision-Date: 2017-07-20 14:44+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2017\n"
-"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"POT-Creation-Date: 2018-05-18 14:29+0000\n"
+"PO-Revision-Date: 2018-05-18 11:30-0300\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
 "Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #. module: product_variant_o2o
+#: model:ir.ui.view,arch_db:product_variant_o2o.product_template_only_form_view
+msgid "<strong>Warning</strong>: Change attributes won't change variants, it will only update variants attribute."
+msgstr "<strong>Advertencia</strong>: Los atributos de cambio no cambiarán las variantes, solo actualizará el atributo de variantes."
+
+#. module: product_variant_o2o
+#: model:ir.model.fields,field_description:product_variant_o2o.field_product_product_one_variant_per_product
 #: model:ir.model.fields,field_description:product_variant_o2o.field_product_template_one_variant_per_product
-msgid "One variant per product"
-msgstr "Una variante por producto"
+msgid "One Variant Per Product"
+msgstr "One Variant Per Product"
 
 #. module: product_variant_o2o
-#: code:addons/product_variant_o2o/product.py:43
+#: code:addons/product_variant_o2o/models/product_template.py:45
 #, python-format
 msgid "Only 1 value for attribute."
-msgstr "Solo 1 valor por atributo."
+msgstr "Only 1 value for attribute."
 
 #. module: product_variant_o2o
 #: model:ir.model,name:product_variant_o2o.model_product_template
@@ -35,6 +40,7 @@ msgid "Product Template"
 msgstr "Plantilla de Producto"
 
 #. module: product_variant_o2o
+#: model:ir.model.fields,help:product_variant_o2o.field_product_product_one_variant_per_product
 #: model:ir.model.fields,help:product_variant_o2o.field_product_template_one_variant_per_product
 msgid ""
 "Restrict so that only one variant per product can be created (only one attribute value per attribute can be setted). Also change odoo behaviour when changing attribute values:\n"
@@ -44,3 +50,9 @@ msgstr ""
 "Restringir para que solo se pueda crear una variante por producto (solo un valor por atributo se puede definir). También cambia el comportamiento cuando se cambian los valores de los atributos:\n"
 "* Falso: comportamiento por defecto de odoo, si se cambia un atributo o se borra crea una nueva variante.\n"
 "* Verdadero: cambios en los atributos no van a cambiar las variantes, solo va a actualizar los atributos de las variantes"
+
+#. module: product_variant_o2o
+#: code:addons/product_variant_o2o/models/product_template.py:51
+#, python-format
+msgid "To set \"One variant per product\" product must have only one variant. Deactivate/delete some variants or remove some attributes to achieve that."
+msgstr "To set \"One variant per product\" product must have only one variant. Deactivate/delete some variants or remove some attributes to achieve that."

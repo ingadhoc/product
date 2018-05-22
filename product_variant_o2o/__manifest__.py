@@ -19,14 +19,14 @@
 ##############################################################################
 {
     'name': 'Product Variant Force One Two One',
-    'version': '9.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': 'Sales',
     'author': 'ADHOC SA, Odoo Community Association (OCA)',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'depends': ['product'],
     'data': [
-        'product_view.xml',
+        'views/product_template_views.xml',
     ],
-    'installable': False
+    'installable': True
 }
