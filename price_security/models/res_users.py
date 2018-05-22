@@ -6,24 +6,6 @@ from odoo import models, api, fields, _
 from odoo.exceptions import UserError
 
 
-class DiscountRestriction(models.Model):
-    _name = 'res.users.discount_restriction'
-    _description = 'Discount Restriction'
-
-    pricelist_id = fields.Many2one(
-        'product.pricelist',
-        'Pricelist',
-        ondelete='cascade',)
-    min_discount = fields.Float('Min. Discount', required=True)
-    max_discount = fields.Float('Max. Discount', required=True)
-    user_id = fields.Many2one(
-        'res.users',
-        'User',
-        required=True,
-        ondelete='cascade',
-    )
-
-
 class Users(models.Model):
     _inherit = 'res.users'
 

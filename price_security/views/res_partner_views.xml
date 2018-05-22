@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_partner_property_term_form" model="ir.ui.view">
+        <field name="name">res.partner.account.property.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account.view_partner_property_form"/>
+        <field name="groups_id" eval="[(6, 0, [ref('group_restrict_prices')])]"/>
+        <field name="arch" type="xml">
+            <field name="property_payment_term_id" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+        </field>
+    </record>
+    <record id="view_partner_property_price_list_form" model="ir.ui.view">
+        <field name="name">res.partner.product.property.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="product.view_partner_property_form"/>
+        <field name="groups_id" eval="[(6, 0, [ref('group_restrict_prices')])]"/>
+        <field name="arch" type="xml">
+            <field name="property_product_pricelist" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
