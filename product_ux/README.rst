@@ -18,6 +18,7 @@ Several Improvements to products:
 
 #. Add product description on product form (this field is still on odoo but not on product view, only used on membership or other modules. Check this issue https://github.com/odoo/odoo/issues/19279)
 #. Add tracking on active fields for products
+#. Add allows to search by supplier codes of products on product and product variants.
 
 Installation
 ============
