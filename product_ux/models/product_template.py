@@ -9,3 +9,9 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     active = fields.Boolean(track_visibility='onchange')
+
+    sellers_product_code = fields.Char(
+        'Vendor Product Code',
+        related='seller_ids.product_code',
+        readonly=True,
+    )
