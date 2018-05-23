@@ -32,7 +32,7 @@
         'account',
     ],
     'data': [
-        'views/product_view.xml',
+        'views/product_template_views.xml',
     ],
     'demo': [
     ],
