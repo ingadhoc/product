@@ -14,7 +14,7 @@
 Product Unique
 ==============
 
-Module to made "barcode" and "default_code" fields to be unique for products on the same company.
+Module to made "default_code" field to be unique for products on the same company.
 
 Installation
 ============
@@ -35,7 +35,7 @@ Usage
 
 To use this module, you need to:
 
-#. Set an default code and barcode to the product.
+#. Set a default code to the product.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
