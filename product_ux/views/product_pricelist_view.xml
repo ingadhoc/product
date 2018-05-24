@@ -1,0 +1,14 @@
+<odoo>
+
+    <record id="product_pricelist_view" model="ir.ui.view">
+        <field name="name">product.pricelist.form</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view"/>
+        <field name="arch" type="xml">
+            <button name="toggle_active" position="before">
+                <button class="oe_stat_button" name="%(product_pricelist_item_action)d" type="action" icon="fa-list"><span class="o_stat_text">Elementos de tarifa</span></button>
+            </button>
+        </field>
+    </record>
+
+</odoo>
