@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Usability Improvements',
-    'version': '9.0.1.1.0',
+    'version': '9.0.1.2.0',
     'category': 'Sales',
     'sequence': 14,
     'summary': '',
@@ -34,6 +34,8 @@
     ],
     'data': [
         'views/product_template_view.xml',
+        'views/product_pricelist_item_view.xml',
+        'views/product_pricelist_view.xml',
     ],
     'demo': [
     ],

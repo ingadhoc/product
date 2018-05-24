@@ -1,0 +1,24 @@
+<odoo>
+
+    <record id="product_pricelist_item_action" model="ir.actions.act_window">
+        <field name="name">Pricelists Items</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.pricelist.item</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('pricelist_id', '=', active_id)]</field>
+        <field name="context">{'default_pricelist_id': active_id}</field>
+    </record>
+
+    <record id="product_pricelist_view" model="ir.ui.view">
+        <field name="name">product.pricelist.form</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view"/>
+        <field name="arch" type="xml">
+            <button name="toggle_active" position="before">
+                <button class="oe_stat_button" name="%(product_pricelist_item_action)d" type="action" icon="fa-list"><span class="o_stat_text">Elementos de tarifa</span></button>
+            </button>
+        </field>
+    </record>
+
+</odoo>
