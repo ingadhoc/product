@@ -1,5 +1,4 @@
 <odoo>
-
     <!-- Enable multi currency if not already configured -->
     <record id="base.group_user" model="res.groups">
         <field eval="[(4, ref('base.group_multi_currency'))]" name="implied_ids"/>
