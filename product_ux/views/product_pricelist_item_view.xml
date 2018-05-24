@@ -1,0 +1,55 @@
+<odoo>
+
+    <record id="product_pricelist_item_tree_view" model="ir.ui.view">
+        <field name="name">product.pricelist.item.tree</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_tree_view"/>
+        <field name="arch" type="xml">
+            <!-- on this view we prefer to show de detail -->
+            <field name="name" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="name" position="after">
+                <field name="applied_on"/>
+            </field>
+
+            <tree>
+                <field name="price"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="product_pricelist_item_search_view" model="ir.ui.view">
+        <field name="name">product.pricelist.item.search</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="arch" type="xml">
+            <search string="Pricelist Items">
+                <field name="applied_on"/>
+                <field name="product_id" groups="product.group_product_variant"/>
+                <field name="product_tmpl_id"/>
+                <field name="categ_id"/>
+                <field name="min_quantity"/>
+                <field name="base_pricelist_id"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <group>
+                    <filter name="applied_on" string="Apply On" context="{'group_by': 'applied_on'}"/>
+                    <filter name="product_id" string="Product" context="{'group_by': 'product_id'}" groups="product.group_product_variant"/>
+                    <filter name="product_tmpl_id" string="Product Template" context="{'group_by': 'product_tmpl_id'}"/>
+                    <filter name="categ_id" string="Product Category" context="{'group_by': 'categ_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="product_pricelist_item_action" model="ir.actions.act_window">
+        <field name="name">Pricelists Items</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.pricelist.item</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('pricelist_id', '=', active_id)]</field>
+        <field name="context">{'default_pricelist_id': active_id}</field>
+    </record>
+
+</odoo>
