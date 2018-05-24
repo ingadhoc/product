@@ -5,6 +5,10 @@
         <field name="model">product.pricelist.item</field>
         <field name="inherit_id" ref="product.product_pricelist_item_tree_view"/>
         <field name="arch" type="xml">
+            <!-- on this view we prefer to show de detail -->
+            <field name="name" position="replace">
+                <field name="applied_on"/>
+            </field>
             <tree>
                 <field name="price"/>
             </tree>
@@ -17,12 +21,11 @@
         <field name="arch" type="xml">
             <search string="Pricelist Items">
                 <field name="applied_on"/>
-                <field name="pricelist_id"/>
-                <!-- <field name="base_pricelist_id"/> -->
                 <field name="product_id" groups="product.group_product_variant"/>
                 <field name="product_tmpl_id"/>
                 <field name="categ_id"/>
                 <field name="min_quantity"/>
+                <field name="base_pricelist_id"/>
                 <field name="date_start"/>
                 <field name="date_end"/>
                 <group>
