@@ -3,9 +3,6 @@
 # directory
 ##############################################################################
 from odoo import models, fields, api
-import logging
-
-_logger = logging.getLogger(__name__)
 
 
 class ProductTemplate(models.Model):
@@ -17,8 +14,13 @@ class ProductTemplate(models.Model):
         'Force Currency',
         help='Use this currency instead of the product company currency'
     )
+    company_currency_id = fields.Many2one(
+        related='company_id.currency_id')
 
-    @api.multi
+    @api.depends(
+        'force_currency_id',
+        'company_id',
+        'company_id.currency_id')
     def _compute_currency_id(self):
         super(ProductTemplate, self)._compute_currency_id()
         for rec in self.filtered('force_currency_id'):
