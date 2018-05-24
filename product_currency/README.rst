@@ -14,7 +14,7 @@
 Product Currency
 ================
 
-This module allow to define on products a different currency from the default one (related to product company).
+This module allow to define on products a different currency from the default one (which is company currency were this product is defined).
 
 Installation
 ============
@@ -36,7 +36,8 @@ Usage
 
 To use this module, you need to:
 
-#. In product view set "for currency" field and the currency of the product change to that set it in the force currency.
+#. If you want to force a currency different from the company which the product is, then set this field.
+#. If you want to use the same currency of the company then just remove the value in "Force Currency" field.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
