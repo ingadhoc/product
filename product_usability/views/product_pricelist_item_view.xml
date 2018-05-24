@@ -30,6 +30,8 @@
         <field name="res_model">product.pricelist.item</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
+        <field name="domain">[('pricelist_id', '=', active_id)]</field>
+        <field name="context">{'default_pricelist_id': active_id}</field>
     </record>
 
 </odoo>

@@ -46,7 +46,7 @@
         <field name="report_rml">product_catalog_aeroo_report/report/product_catalog_by_categories.odt</field>
         <field name="parser_state">loc</field>
         <field name="tml_source">file</field>
-    </record>    
+    </record>
 
 </data>
 </openerp>
