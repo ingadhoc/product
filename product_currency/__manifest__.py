@@ -19,8 +19,8 @@
 ##############################################################################
 {
     'name': 'Product Currency',
-    'version': '9.0.1.0.0',
-    'category': 'Sales',
+    'version': '11.0.1.0.0',
+    'category': 'Products',
     'sequence': 14,
     'summary': '',
     'author': 'ADHOC SA',
@@ -32,14 +32,12 @@
         'product',
     ],
     'data': [
-        'views/product_template_view.xml',
-        'data/res_groups_data.xml',
+        'views/product_template_views.xml',
+        'security/product_currency_security.xml',
     ],
     'demo': [
     ],
-    'test': [
-    ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }

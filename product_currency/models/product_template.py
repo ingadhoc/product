@@ -2,12 +2,7 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import models, fields
-from odoo.osv import fields as old_fields
-# from odoo.exceptions import ValidationError
-import logging
-
-_logger = logging.getLogger(__name__)
+from odoo import models, fields, api
 
 
 class ProductTemplate(models.Model):
@@ -19,17 +14,14 @@ class ProductTemplate(models.Model):
         'Force Currency',
         help='Use this currency instead of the product company currency'
     )
+    company_currency_id = fields.Many2one(
+        related='company_id.currency_id')
 
-    def _product_currency(self, cr, uid, ids, name, arg, context=None):
-        res = super(ProductTemplate, self)._product_currency(
-            cr, uid, ids, name, arg, context=context)
-        for rec in self.browse(cr, uid, ids, context=context):
-            if rec.force_currency_id:
-                res[rec.id] = rec.force_currency_id.id
-        return res
-
-    _columns = {
-        'currency_id': old_fields.function(
-            _product_currency, type='many2one', relation='res.currency',
-            string='Currency'),
-    }
+    @api.depends(
+        'force_currency_id',
+        'company_id',
+        'company_id.currency_id')
+    def _compute_currency_id(self):
+        super(ProductTemplate, self)._compute_currency_id()
+        for rec in self.filtered('force_currency_id'):
+            rec.currency_id = rec.force_currency_id
