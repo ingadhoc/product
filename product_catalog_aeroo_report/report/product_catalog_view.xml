@@ -4,7 +4,6 @@
 <!-- ODS Catalog -->
     <record id="report_product_catalog_ods" model="ir.actions.report.xml">
         <field name="name">Product Catalog Report - ODS</field>
-        <field name="type">ir.actions.report.xml</field>
         <field name="model">product.product_catalog_report</field>
         <field name="report_name">report_product_catalog_ods</field>
         <field name="report_type">aeroo</field>
@@ -21,7 +20,6 @@
 <!-- ODT Catalog Simple -->
     <record id="report_product_catalog_simple_odt" model="ir.actions.report.xml">
         <field name="name">Product Catalog Simple Report - ODT</field>
-        <field name="type">ir.actions.report.xml</field>
         <field name="model">product.product_catalog_report</field>
         <field name="report_name">report_product_catalog_simple_odt</field>
         <field name="report_type">aeroo</field>
@@ -36,7 +34,6 @@
 <!-- ODT Catalog By Categories -->
     <record id="report_product_catalog_by_categories_odt" model="ir.actions.report.xml">
         <field name="name">Product Catalog By Categories Report - ODT</field>
-        <field name="type">ir.actions.report.xml</field>
         <field name="model">product.product_catalog_report</field>
         <field name="report_name">report_product_catalog_by_categories_odt</field>
         <field name="report_type">aeroo</field>
@@ -46,7 +43,7 @@
         <field name="report_rml">product_catalog_aeroo_report/report/product_catalog_by_categories.odt</field>
         <field name="parser_state">loc</field>
         <field name="tml_source">file</field>
-    </record>    
+    </record>
 
 </data>
 </odoo>
