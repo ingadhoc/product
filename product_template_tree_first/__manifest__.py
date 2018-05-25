@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product Template Tree First',
-    'version': '9.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': 'Sales Management',
     'sequence': 14,
     'summary': 'Product',
@@ -32,13 +32,9 @@
         'product',
     ],
     'data': [
-        'action_data.xml',
+        'views/product_template_action_views.xml',
     ],
-    'demo': [
-    ],
-    'test': [
-    ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
