@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0c\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-19 13:42+0000\n"
-"PO-Revision-Date: 2018-03-19 13:42+0000\n"
+"POT-Creation-Date: 2018-05-24 20:30+0000\n"
+"PO-Revision-Date: 2018-05-24 20:30+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018\n"
 "Language-Team: Dutch (https://www.transifex.com/adhoc/teams/46451/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -19,17 +19,49 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: product_usability
+#: model:ir.ui.view,arch_db:product_usability.product_pricelist_view
+msgid "<span class=\"o_stat_text\">Elementos de tarifa</span>"
+msgstr ""
+
+#. module: product_usability
+#: model:ir.ui.view,arch_db:product_usability.product_pricelist_item_search_view
+msgid "Apply On"
+msgstr ""
+
+#. module: product_usability
 #: model:ir.ui.view,arch_db:product_usability.product_template_only_form_view
 msgid "Internal Description"
 msgstr ""
 
 #. module: product_usability
+#: model:ir.model,name:product_usability.model_product_pricelist
+msgid "Pricelist"
+msgstr ""
+
+#. module: product_usability
+#: model:ir.ui.view,arch_db:product_usability.product_pricelist_item_search_view
+msgid "Pricelist Items"
+msgstr ""
+
+#. module: product_usability
+#: model:ir.actions.act_window,name:product_usability.product_pricelist_item_action
+msgid "Pricelists Items"
+msgstr ""
+
+#. module: product_usability
 #: model:ir.model,name:product_usability.model_product_product
+#: model:ir.ui.view,arch_db:product_usability.product_pricelist_item_search_view
 msgid "Product"
 msgstr "Product"
 
 #. module: product_usability
+#: model:ir.ui.view,arch_db:product_usability.product_pricelist_item_search_view
+msgid "Product Category"
+msgstr ""
+
+#. module: product_usability
 #: model:ir.model,name:product_usability.model_product_template
+#: model:ir.ui.view,arch_db:product_usability.product_pricelist_item_search_view
 msgid "Product Template"
 msgstr ""
 
