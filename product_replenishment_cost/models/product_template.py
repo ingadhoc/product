@@ -4,6 +4,7 @@
 ##############################################################################
 from odoo import models, fields, api
 import odoo.addons.decimal_precision as dp
+from odoo.tools import float_compare
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -84,6 +85,7 @@ class ProductTemplate(models.Model):
                 0, len(product_ids), batch_size)]
         cr = self.env.cr
         run = 0
+        prec = self.env['decimal.precision'].precision_get('Product Price')
         for product_ids in sliced_product_ids:
             run += 1
             # hacemos invalidate cache para que no haga prefetch de todos,
@@ -99,6 +101,12 @@ class ProductTemplate(models.Model):
                 # not by quants or similar, we remove that because it makes
                 # it slower
                 if not replenishment_cost:
+                    continue
+                # to avoid writing if there are no changes, also to avoid
+                # creating records on product_price_history table
+                if float_compare(
+                        rec.standard_price, replenishment_cost,
+                        precision_digits=prec) == 0:
                     continue
                 rec.standard_price = replenishment_cost
                 # we can not use sql because standar_price is a property,
