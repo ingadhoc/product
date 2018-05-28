@@ -11,8 +11,10 @@ _logger = logging.getLogger(__name__)
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
+    def _default_replenishment_base_cost_currency_id(self):
+        return self.env.user.company_id.currency_id.id
+
     replenishment_cost = fields.Float(
-        'Replenishment Cost',
         compute='_compute_replenishment_cost',
         # TODO, activamos store como estaba??
         store=False,
@@ -25,11 +27,9 @@ class ProductTemplate(models.Model):
              "as the Cost Price.")
 
     replenishment_cost_last_update = fields.Datetime(
-        'Replenishment Cost Last Update',
         track_visibility='onchange',
     )
     replenishment_base_cost = fields.Float(
-        'Replenishment Base Cost',
         digits=dp.get_precision('Product Price'),
         track_visibility='onchange',
         help="Replanishment Cost expressed in 'Replenishment Base Cost "
@@ -40,7 +40,8 @@ class ProductTemplate(models.Model):
         'Replenishment Base Cost Currency',
         auto_join=True,
         track_visibility='onchange',
-        help="Currency used for the Replanishment Base Cost."
+        help="Currency used for the Replanishment Base Cost.",
+        default=_default_replenishment_base_cost_currency_id
     )
 
     @api.model
@@ -105,13 +106,11 @@ class ProductTemplate(models.Model):
             # principalmente agregamos esto por error en migracion pero tmb
             # para que solo se haga el commit por cron
             if commit_transaction:
-                # pylint: disable=invalid-commit
-                cr.commit()
+                cr.commit()  # pylint: disable=invalid-commit
             _logger.info('Finish updating cost of run %s' % run)
 
         return True
 
-    @api.multi
     @api.constrains(
         'replenishment_base_cost',
         'replenishment_base_cost_currency_id',
@@ -119,7 +118,6 @@ class ProductTemplate(models.Model):
     def update_replenishment_cost_last_update(self):
         self.write({'replenishment_cost_last_update': fields.Datetime.now()})
 
-    @api.multi
     # TODO ver si necesitamos borrar estos depends o no, por ahora
     # no parecen afectar performance y sirvern para que la interfaz haga
     # el onchange, pero no son fundamentales porque el campo no lo storeamos

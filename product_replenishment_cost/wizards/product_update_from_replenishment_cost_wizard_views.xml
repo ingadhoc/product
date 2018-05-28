@@ -6,7 +6,7 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Product Catalog Report">
-                Update Accounting Cost with Replenishment Cost for all sellected products with costing method Standard Price and with Replenishment Cost different from 0.
+                This will apply to all the selected products across company with costing method "Standard Price" and with Replenishment Cost different from 0.
                 <footer>
                     <button name="confirm" string="Confirm" type="object" class="oe_highlight"/>
                     or
@@ -18,7 +18,7 @@
 
     <act_window id="action_update_from_replenishment_cost_wizard"
         key2="client_action_multi"
-        name="Update Cost from Replenishment Cost"
+        name="Update Accounting Cost from Replenishment Cost"
         res_model="product.update_from_replenishment_cost.wizard"
         src_model="product.template"
         view_mode="form" target="new" view_type="form" />

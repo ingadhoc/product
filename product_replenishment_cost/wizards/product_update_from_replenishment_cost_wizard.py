@@ -3,7 +3,7 @@
 # directory
 ##############################################################################
 from odoo import api, models, _
-from odoo.exceptions import ValidationError
+from odoo.exceptions import UserError
 
 
 class ProductUpdateFromReplenishmentCostWizard(models.TransientModel):
@@ -16,7 +16,7 @@ class ProductUpdateFromReplenishmentCostWizard(models.TransientModel):
         active_ids = self._context.get('active_ids')
         active_model = self._context.get('active_model')
         if active_model != 'product.template':
-            raise ValidationError(_(
+            raise UserError(_(
                 'Update from replenishment cost must be called from product '
                 'template'))
         return self.env[active_model].browse(

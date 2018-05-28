@@ -24,14 +24,17 @@
     'license': 'AGPL-3',
     'category': 'Products',
     'depends': [
-        'product',
+        'stock',
     ],
     'website': 'http://www.camptocamp.com/',
     'data': [
-        'data/cron_data.xml',
+        'data/ir_cron_data.xml',
         'views/product_template_views.xml',
-        'wizards/product_update_from_replenishment_cost_wizard_view.xml',
-        'demo/res_groups.yml',
+        'wizards/product_update_from_replenishment_cost_wizard_views.xml',
+        'demo/product_replanishment_cost_demo.xml',
+    ],
+    'test': [
+        'test/cost_price_update.yml',
     ],
     'installable': True,
 }
