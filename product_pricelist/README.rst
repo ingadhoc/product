@@ -14,7 +14,7 @@
 Pricelists information on Products
 ==================================
 
-This modules add a new field on producs sales tab that shows price for that product for every pricelist. On installation it also changes sale pricelist option to "Advanced pricing based on formula"
+This modules adds a funcionality to show the price for that product for every pricelist. On installation it also changes sale pricelist option to "Advanced pricing based on formula"
 
 Installation
 ============
@@ -26,6 +26,8 @@ Configuration
 =============
 
 To configure this module, you need to:
+
+#. Go to pricelist and select the field "Show in products" to show this pricelist in the products.
 
 
 Usage
