@@ -3,34 +3,34 @@
 # directory
 ##############################################################################
 from odoo import models, fields, api
-# import odoo.addons.decimal_precision as dp
-import logging
-_logger = logging.getLogger(__name__)
 
 
-class product_pricelist(models.Model):
+class ProductPricelist(models.Model):
     _inherit = 'product.pricelist'
 
     price = fields.Monetary(
-        string='Price',
-        compute='_get_price',
+        compute='_compute_price',
         # digits=dp.get_precision('Product Price'),
         help='Price for product specified on the context',
     )
+    show_products = fields.Boolean(
+        'Show in products',
+        help="By selecting it allows you to display the pricelist "
+        "with the price of that product in the products")
 
-    @api.one
-    # TODO make multi
-    def _get_price(self):
-        product_id = self._context.get('product_id', False)
-        template_id = self._context.get('template_id', False)
-        if product_id:
-            price = self.env['product.product'].browse(
-                product_id).with_context(pricelist=self.id).price
-            self.price = price
-        elif template_id:
-            price = self.env['product.template'].browse(
-                template_id).with_context(pricelist=self.id).price
-            self.price = price
+    @api.multi
+    def _compute_price(self):
+        for rec in self:
+            product_id = self._context.get('product_id', False)
+            template_id = self._context.get('template_id', False)
+            if product_id:
+                price = self.env['product.product'].browse(
+                    product_id).with_context(pricelist=rec.id).price
+                rec.price = price
+            elif template_id:
+                price = self.env['product.template'].browse(
+                    template_id).with_context(pricelist=rec.id).price
+                rec.price = price
 
     # not yet implemented
     # @api.multi
