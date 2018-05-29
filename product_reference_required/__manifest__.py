@@ -32,10 +32,10 @@
         'product',
     ],
     'data': [
-        'data/default_code_data.xml',
+        'data/ir_sequence_data.xml',
     ],
     'demo': [
-        'demo/default_code_sequence_demo.xml',
+        'demo/ir_sequence_demo.xml',
     ],
     'installable': True,
     'auto_install': False,
