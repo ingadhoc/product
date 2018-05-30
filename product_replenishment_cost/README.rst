@@ -1,5 +1,13 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
+.. |company| replace:: ADHOC SA
+
+.. |company_logo| image:: https://raw.githubusercontent.com/ingadhoc/maintainer-tools/master/resources/adhoc-logo.png
+   :alt: ADHOC SA
+   :target: https://www.adhoc.com.ar
+
+.. |icon| image:: https://raw.githubusercontent.com/ingadhoc/maintainer-tools/master/resources/adhoc-icon.png
+
+.. image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+   :target: https://www.gnu.org/licenses/agpl
    :alt: License: AGPL-3
 
 ==========================
@@ -10,8 +18,10 @@ Provides an overridable method on product which compute the Replenishment cost o
 
 As it is a generic module, you can also setup your own way of computing the replenishment_cost for your product.
 
-All OCA modules to compute margins are based on it, so you'll be able to use them in your own way.
-
+#. All OCA modules to compute margins are based on it, so you'll be able to use them in your own way.
+#. New Replenishment Cost Last Update
+#. Track changes of RC (Replenishment Cost) Last update, RC Base Cost, RC Base Cost Currency
+#. Update RC Last Update automatically if RC Base Cost or RC Base Cost Currency changes (NOTE: currency exchange changes are not tracked)
 
 Installation
 ============
@@ -27,36 +37,23 @@ To configure this module, you need to:
 
 #. No configuration needed.
 
-.. figure:: path/to/local/image.png
-   :alt: alternative description
-   :width: 600 px
-
 Usage
 =====
 
 To use this module, you need to:
 
-#. Go to ...
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
-   :target: https://runbot.odoo-community.org/runbot/{repo_id}/{branch}
-
-.. repo_id is available in https://github.com/OCA/maintainer-tools/blob/master/tools/repos_with_ids.txt
-.. branch is "8.0" for example
-
-Known issues / Roadmap
-======================
-
-* ...
+   :target: http://runbot.adhoc.com.ar/
 
 Bug Tracker
 ===========
 
-Bugs are tracked on `GitHub Issues <https://github.com/OCA/margin-analysis/issues>`_.
-In case of trouble, please check there if your issue has already been reported.
-If you spotted it first, help us smashing it by providing a detailed and welcomed feedback
-`here <https://github.com/OCA/margin-analysis/issues/new?body=module:%20product_replenishment_cost%0Aversion:%208.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+Bugs are tracked on `GitHub Issues
+<https://github.com/ingadhoc/product/issues>`_. In case of trouble, please
+check there if your issue has already been reported. If you spotted it first,
+help us smashing it by providing a detailed and welcomed feedback.
 
 Credits
 =======
@@ -64,26 +61,16 @@ Credits
 Images
 ------
 
-* Odoo Community Association: `Icon <https://github.com/OCA/maintainer-tools/blob/master/template/module/static/description/icon.svg>`_.
+* |company| |icon|
 
 Contributors
 ------------
 
-* Alexandre Fayolle <alexandre.fayolle@camptocamp.com>
-* Yannick Vaucher <yannick.vaucher@camptocamp.com>
-* Joël Grand-Guillaume <joel.grand-guillaume@camptocamp.com>
-* Sylvain Le Gal (https://twitter.com/legalsylvain)
-
 Maintainer
 ----------
 
-.. image:: http://odoo-community.org/logo.png
-    :alt: Odoo Community Association
-    :target: http://odoo-community.org
+|company_logo|
 
-This module is maintained by the OCA.
+This module is maintained by the |company|.
 
-OCA, or the Odoo Community Association, is a nonprofit organization whose mission is to support the collaborative development of Odoo features and promote its widespread use.
-
-To contribute to this module, please visit http://odoo-community.org.
-
+To contribute to this module, please visit https://www.adhoc.com.ar.
