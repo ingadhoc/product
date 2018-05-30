@@ -1,0 +1,15 @@
+<odoo noupdate="1">
+    <record id="ir_cron_update_cost_from_replenishment_cost" model="ir.cron">
+        <field name="name">Update Cost from Replenishment Cost</field>
+        <field name="model_id" ref="product.model_product_template"/>
+        <field name="code">model.cron_update_cost_from_replenishment_cost()</field>
+        <field name="interval_type">days</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="state">code</field>
+        <field name="numbercall" eval="-1"/>
+        <field name="priority" eval="5"/>
+        <field name="doall" eval="False"/>
+        <field name="active" eval="False"/>
+        <field name="interval_number" eval="1"/>
+    </record>
+</odoo>
