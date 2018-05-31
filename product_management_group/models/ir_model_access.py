@@ -24,7 +24,7 @@ class IrModelAccess(models.Model):
                 raise exceptions.AccessError(_(
                     "Sorry, you are not allowed to manage products."
                     "Only users with 'Products Management' level are currently"
-                    "allowed to do that"))
+                    " allowed to do that"))
             else:
                 return False
         return super(IrModelAccess, self).check(
