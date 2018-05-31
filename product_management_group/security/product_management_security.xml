@@ -1,0 +1,8 @@
+<odoo>
+
+    <record model="res.groups" id="group_products_management">
+        <field name="name">Products Management</field>
+        <field name="category_id" ref="base.module_category_usability"/>
+    </record>
+
+</odoo>
