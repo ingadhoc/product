@@ -15,11 +15,14 @@
                 <group name="costing" string="Costing">
                     <group name="replenishment_cost" string="Replenishment Cost">
                         <field name="replenishment_cost_last_update" string="Last Update" readonly="1"/>
-                        <label for="replenishment_base_cost" string ="Base Cost"/>
+                        <label for="replenishment_base_cost" string="Base Cost"/>
                         <div name="replenishment_base_cost" class="o_row">
                             <field name="replenishment_base_cost" class="oe_inline" widget="monetary" options="{'currency_field': 'replenishment_base_cost_currency_id'}"/>
                             <field name="replenishment_base_cost_currency_id" class="oe_inline oe_edit_only" options="{'no_open': True, 'no_create': True}"/>
+                            <label string="/"/>
+                            <field name="replenishment_base_cost_on_currency" class="oe_inline" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                         </div>
+                        <field name="replenishment_cost_rule_id"  string="Cost Rule" context="{'default_product_id': active_id}"/>
                         <field name="replenishment_cost" string="Cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                     </group>
                     <group name="accounting_cost" string="Accounting Cost">
@@ -33,4 +36,18 @@
             </group>
         </field>
     </record>
+
+    <!-- search VIEW -->
+    <record id="product_template_search_view" model="ir.ui.view">
+        <field name="name">product_replenishment_rule.filter</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <filter name="filter_to_sell" position="after">
+                <filter string="Without Rep. Rule" name="without_rep_rule" help="Products Without Replenishment Rule" domain="[('replenishment_cost_rule_id', '=', False)]"/>
+                <separator/>
+            </filter>
+        </field>
+    </record>
+
 </odoo>

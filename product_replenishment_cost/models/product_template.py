@@ -44,6 +44,20 @@ class ProductTemplate(models.Model):
         default=_default_replenishment_base_cost_currency_id
     )
 
+    replenishment_cost_rule_id = fields.Many2one(
+        'product.replenishment_cost.rule',
+        auto_join=True,
+        index=True,
+        string='Replenishment Cost Rule',
+        track_visibility='onchange',
+    )
+
+    replenishment_base_cost_on_currency = fields.Float(
+        compute='_compute_replenishment_cost',
+        string='Replenishment Base Cost on Currency',
+        digits=dp.get_precision('Product Price'),
+    )
+
     @api.model
     def cron_update_cost_from_replenishment_cost(self, limit=None):
         _logger.info('Running cron update cost from replenishment')
@@ -128,16 +142,31 @@ class ProductTemplate(models.Model):
         'replenishment_base_cost_currency_id.rate_ids.rate',
         # and this if we change de date (name field)
         'replenishment_base_cost_currency_id.rate_ids.name',
+        'replenishment_base_cost_on_currency',
+        # rule items
+        'replenishment_cost_rule_id.item_ids.sequence',
+        'replenishment_cost_rule_id.item_ids.percentage_amount',
+        'replenishment_cost_rule_id.item_ids.fixed_amount',
     )
     def _compute_replenishment_cost(self):
         _logger.info(
             'Getting replenishment cost currency for ids %s' % self.ids)
         for rec in self:
-            rec.replenishment_cost = rec.get_replenishment_cost_currency(
+            replenishment_cost = rec.get_replenishment_cost_currency(
                 rec.replenishment_base_cost_currency_id,
                 rec.currency_id,
                 rec.replenishment_base_cost,
             )
+            replenishment_base_cost_on_currency = replenishment_cost
+            if rec.replenishment_cost_rule_id:
+                replenishment_cost =\
+                    rec.replenishment_cost_rule_id.compute_rule(
+                        replenishment_base_cost_on_currency, rec)
+            rec.update({
+                'replenishment_base_cost_on_currency':
+                replenishment_base_cost_on_currency,
+                'replenishment_cost': replenishment_cost
+            })
 
     @api.model
     def get_replenishment_cost_currency(
@@ -149,3 +178,7 @@ class ProductTemplate(models.Model):
                 replenishment_cost = from_currency.compute(
                     replenishment_cost, to_currency, round=False)
         return replenishment_cost
+
+    @api.constrains('replenishment_cost_rule_id')
+    def update_replenishment_cost_last_update_by_rule(self):
+        self.update_replenishment_cost_last_update()

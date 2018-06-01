@@ -5,7 +5,6 @@
 from odoo import models, fields, api
 from odoo import exceptions
 from odoo.tools.safe_eval import safe_eval
-import odoo.addons.decimal_precision as dp
 
 
 class ProductReplenishmentCostRule(models.Model):
@@ -44,12 +43,12 @@ class ProductReplenishmentCostRule(models.Model):
         'Test Product',
         compute=lambda x: x,
         inverse=lambda x: x,
+        help="This field it's only for testing"
     )
 
     demo_cost = fields.Float('Cost', compute=lambda x: x)
     demo_result = fields.Float('Result', compute=lambda x: x)
 
-    @api.one
     @api.depends(
         'name',
         'item_ids.name',
@@ -57,26 +56,27 @@ class ProductReplenishmentCostRule(models.Model):
         'item_ids.fixed_amount',
     )
     def _compute_description(self):
-        # "asdasda: line name 40% + 12, line 2 13% + 2" % (
-        description = "%s: %s" % (
-            self.name,
-            ', '.join(self.item_ids.mapped(
-                lambda x: "%s %s + %s%s" % (
-                    x.name,
-                    x.percentage_amount,
-                    x.fixed_amount,
-                    '+ expr' if x.expr else ''))))
-        self.description = description
+        for rec in self:
+            description = "%s: %s" % (
+                rec.name,
+                ', '.join(rec.item_ids.mapped(
+                    lambda x: "%s %s + %s%s" % (
+                        x.name,
+                        x.percentage_amount,
+                        x.fixed_amount,
+                        '+ expr' if x.expr else ''))))
+            rec.description = description
 
-    @api.one
     @api.constrains('item_ids')
     def update_replenishment_cost_last_update(self):
         self.product_ids.update_replenishment_cost_last_update()
 
+    @api.multi
     def _get_eval_context(self, obj=None):
         """ Prepare the context used when evaluating python code
         :param obj: the current obj
         :returns: dict -- evaluation context given to (safe_)eval """
+        self.ensure_one()
         env = api.Environment(self.env.cr, self.env.uid, self.env.context)
         model = env['product.template']
         # handle id instead of records
@@ -91,8 +91,10 @@ class ProductReplenishmentCostRule(models.Model):
             'product': obj,
         }
 
+    @api.multi
     def compute_rule(self, cost, product=None):
         # prepare context only if we need to eval something
+        self.ensure_one()
         values = {}
         if any([l.expr for l in self.item_ids]):
             eval_context = self._get_eval_context(product)
@@ -134,60 +136,3 @@ class ProductReplenishmentCostRule(models.Model):
             cost = self.product_id.replenishment_base_cost_on_currency
             self.demo_cost = cost
             self.demo_result = self.compute_rule(cost, self.product_id)
-
-
-class ProductReplenishmentCostRuleItem(models.Model):
-    _name = 'product.replenishment_cost.rule.item'
-    _description = 'product.replenishment_cost.rule.item'
-    _order = 'sequence'
-
-    replenishment_cost_rule_id = fields.Many2one(
-        'product.replenishment_cost.rule',
-        'Rule',
-        required=True,
-        ondelete='cascade',
-        auto_join=True,
-    )
-
-    sequence = fields.Integer(
-        required=True,
-        default=10,
-    )
-
-    name = fields.Char(
-        required=True,
-    )
-
-    percentage_amount = fields.Float(
-        'Percentage Amount',
-        digits=dp.get_precision('Discount'),
-    )
-
-    fixed_amount = fields.Float(
-        'Fixed Amount',
-        help='Specify the fixed amount to add or substract (if negative) to '
-             'the amount calculated with the percentage amount.',
-        digits=dp.get_precision('Product Price'),
-    )
-
-    expr = fields.Char(
-        'Expression Amount',
-        help='Specify a python expression that returns a float amount.\r\n'
-             'You van use python variables:\r\n'
-             '- env, model, Warning\r\n'
-             '- product: the current product\r\n'
-             '- cost: the base cost\r\n'
-             '- cost_sum: the accumulated cost so far\r\n'
-             '- lines: previous calculated lines (ie lines.get("line_name")',
-    )
-
-    add_to_cost = fields.Boolean(
-        'Add to Cost',
-        help='If true, this line value will be added to the cost. '
-             'If not, it\'s just a variable.',
-        default=True,
-    )
-
-    # no-op for testing and calculating rule
-    value = fields.Char(compute=lambda x: x)
-    error = fields.Char(compute=lambda x: x)
