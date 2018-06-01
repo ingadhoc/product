@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="sequence" model="ir.sequence">
+        <field name="name">Product Default Code</field>
+        <field name="code">product.default_code</field>
+    </record>
+</odoo>
