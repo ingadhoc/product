@@ -54,7 +54,6 @@ class ProductTemplate(models.Model):
 
     replenishment_base_cost_on_currency = fields.Float(
         compute='_compute_replenishment_cost',
-        string='Replenishment Base Cost on Currency',
         digits=dp.get_precision('Product Price'),
     )
 
@@ -121,7 +120,7 @@ class ProductTemplate(models.Model):
             # para que solo se haga el commit por cron
             if commit_transaction:
                 cr.commit()  # pylint: disable=invalid-commit
-            _logger.info('Finish updating cost of run %s' % run)
+            _logger.info('Finish updating cost of run %s', run)
 
         return True
 
@@ -142,7 +141,6 @@ class ProductTemplate(models.Model):
         'replenishment_base_cost_currency_id.rate_ids.rate',
         # and this if we change de date (name field)
         'replenishment_base_cost_currency_id.rate_ids.name',
-        'replenishment_base_cost_on_currency',
         # rule items
         'replenishment_cost_rule_id.item_ids.sequence',
         'replenishment_cost_rule_id.item_ids.percentage_amount',

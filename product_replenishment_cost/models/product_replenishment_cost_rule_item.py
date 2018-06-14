@@ -56,5 +56,11 @@ class ProductReplenishmentCostRuleItem(models.Model):
     )
 
     # no-op for testing and calculating rule
-    value = fields.Char(compute=lambda x: x)
-    error = fields.Char(compute=lambda x: x)
+    value = fields.Char(
+        compute=lambda x: x,
+        help="Technical fields: This field it's only for testing",
+    )
+    error = fields.Char(
+        compute=lambda x: x,
+        help="Technical fields: This field it's only for testing",
+    )

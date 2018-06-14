@@ -43,7 +43,7 @@ class ProductReplenishmentCostRule(models.Model):
         'Test Product',
         compute=lambda x: x,
         inverse=lambda x: x,
-        help="This field it's only for testing"
+        help="Technical field: This field it's only for testing",
     )
 
     demo_cost = fields.Float('Cost', compute=lambda x: x)
@@ -118,8 +118,10 @@ class ProductReplenishmentCostRule(models.Model):
                     pass
 
             values[line.name] = error or value
-            line.value = error or str(value)
-            line.error = error
+            line.update({
+                'value': error or str(value),
+                'error': error,
+            })
             if line.add_to_cost:
                 cost = cost + value
 
@@ -134,5 +136,7 @@ class ProductReplenishmentCostRule(models.Model):
         """ On change to show dynamic results. """
         if self.product_id:
             cost = self.product_id.replenishment_base_cost_on_currency
-            self.demo_cost = cost
-            self.demo_result = self.compute_rule(cost, self.product_id)
+            self.update({
+                'demo_cost': cost,
+                'demo_result': self.compute_rule(cost, self.product_id),
+            })
