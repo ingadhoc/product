@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+    <record model="res.groups" id="group_replenishment_rule_expr">
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="name">Allow expressions on Replenishment Cost Rules</field>
+    </record>
+</odoo>
