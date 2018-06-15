@@ -22,6 +22,7 @@ As it is a generic module, you can also setup your own way of computing the repl
 #. New Replenishment Cost Last Update
 #. Track changes of RC (Replenishment Cost) Last update, RC Base Cost, RC Base Cost Currency
 #. Update RC Last Update automatically if RC Base Cost or RC Base Cost Currency changes (NOTE: currency exchange changes are not tracked)
+#. Add Product Replenshiment Cost Rules. Each rule can have several lines, each line can add a percentage and a fixed amount. It also update "RC Last Update" automatically if rule or rule lines change. Also changes in rules lines are tracked inside the rules.
 
 Installation
 ============
