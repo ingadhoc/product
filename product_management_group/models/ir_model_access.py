@@ -4,6 +4,7 @@
 # directory
 ##############################################################################
 from openerp import models, tools, exceptions, _
+from openerp.osv.orm import BaseModel
 
 
 class IrModelAccess(models.Model):
@@ -15,7 +16,15 @@ class IrModelAccess(models.Model):
     def check(
             self, cr, uid, model, mode='read', raise_exception=True,
             context=None):
-        if model in ['product.template', 'product.product'] and mode != 'read':
+
+        if isinstance(model, BaseModel):
+            assert model._name == 'ir.model', 'Invalid model object'
+            model_name = model.model
+        else:
+            model_name = model
+
+        if mode != 'read' and model_name in [
+                'product.template', 'product.product']:
             if self.pool['res.users'].has_group(
                     cr, uid,
                     'product_management_group.group_products_management'):
