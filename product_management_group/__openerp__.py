@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Products Management Group',
-    'version': '9.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': 'base.module_category_knowledge_management',
     'author': 'ADHOC SA.',
     'website': 'www.adhoc.com.ar',
@@ -32,5 +32,5 @@
         'security/product_management_security.xml',
         'data/res_users_data.xml',
     ],
-    'installable': True,
+    'installable': False,
 }
