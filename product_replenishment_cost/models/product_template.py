@@ -108,7 +108,10 @@ class ProductTemplate(models.Model):
                         rec.standard_price, replenishment_cost,
                         precision_digits=prec) == 0:
                     continue
-                rec.standard_price = replenishment_cost
+                # standard_price is stored on variants (product.product), we
+                # force the update of all the variants
+                rec.product_variant_ids.write(
+                    {'standard_price': replenishment_cost})
                 # we can not use sql because standar_price is a property,
                 # perhups we can do it writing directly on the property but
                 # we need to check if record exists, we can copy some code of
