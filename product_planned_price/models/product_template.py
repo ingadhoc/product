@@ -18,7 +18,7 @@ class ProductTemplate(models.Model):
     )
     computed_list_price = fields.Float(
         string='Planned Price',
-        compute='_get_computed_list_price',
+        compute='_compute_computed_list_price',
         digits=dp.get_precision('Product Price'),
         help='Planned Price. This value depends on Planned Price Type" an '
         'other parameters.',
@@ -45,7 +45,7 @@ class ProductTemplate(models.Model):
         Haciendo practicamente lo de ahora pero sin el slice tuvimos une
         performance basatante peor (casi 2 o 3 veces mas de tiempo)
         """
-        # hacemos search de nuevo por si se llama desde vista lista
+        # we search again if it is called from list view
         domain = [('list_price_type', '!=', False)]
         commit_transaction = self.env.context.get('commit_transaction')
         if self:
@@ -60,8 +60,8 @@ class ProductTemplate(models.Model):
         run = 0
         for product_ids in sliced_product_ids:
             run += 1
-            # hacemos invalidate cache para que no haga prefetch de todos,
-            # solo los del slice
+            # we make invalidate cache so that it does not do prefetch of all,
+            # only the slice
             self.invalidate_cache()
             recs = self.browse(product_ids)
             _logger.info(
@@ -72,7 +72,8 @@ class ProductTemplate(models.Model):
                 # xx for 40000 products
 
                 # el or 0.0 es porque
-                # en algunos casos computed list price es False y esto da error
+                # in some cases computed list price is False
+                #  and this gives error
                 cr.execute(
                     "UPDATE product_template SET list_price=%s WHERE id=%s",
                     (rec.computed_list_price or 0.0, rec.id))
@@ -80,40 +81,31 @@ class ProductTemplate(models.Model):
             # commit update (fo free memory?) also to have results stored
             # in the future, if we store the date, we can update only newones
 
-            # principalmente agregamos esto por error en migracion pero tmb
-            # para que solo se haga el commit por cron
+            # mainly we add this by mistake in migration but also
+            # so that only the commit is done by cron
             if commit_transaction:
-                cr.commit()
+                cr.commit()  # pylint: disable=invalid-commit
             _logger.info('Finish updating prices of run %s' % run)
-        # because we have write list_price with sql, this method from delivery
-        # module is not called, we call it manually. If other modules depends
-        # on list_price we should also add them here
-        if self.env['ir.module.module'].search([
-                ('name', '=', 'delivery')]).state == 'installed':
-            carriers = self.env['delivery.carrier'].search([
-                ('product_id.product_tmpl_id', 'in', product_ids)])
-            carriers.create_price_rules()
         return True
 
-    @api.multi
     @api.depends(
         'list_price_type',
         'computed_list_price_manual',
     )
-    def _get_computed_list_price(self):
+    def _compute_computed_list_price(self):
         manual_recs = self.filtered(
             lambda x: x.list_price_type == 'manual')
         _logger.info('Get computed_list_price for %s "manual" products' % (
             len(manual_recs)))
         for rec in manual_recs:
-            rec.computed_list_price = rec.computed_list_price_manual
+            rec.update({'computed_list_price': rec.computed_list_price_manual})
 
     @api.model
     def _price_get(self, products, ptype='list_price'):
         """
-        Hacemos esto para que si alguien quiere forzar que el precio calculado
-        se en base al planeado, lo pueda hacer mandando use_planned_price
-        en el contexto
+        We do this so that if someone wants to force the calculated price
+        be based on the planned, you can do it by sending use_planned_price
+        in the context
         """
         if self._context.get('use_planned_price') and ptype == 'list_price':
             ptype = 'computed_list_price'

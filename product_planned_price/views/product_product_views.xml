@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- tenemos que heredar esta y agregar group a items porque eran sobre escritos -->
+    <record id="product_product_prices_form" model="ir.ui.view">
+        <field name="name">product.product.prices.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <!-- pero ponemos el grupo a los items -->
+            <field name="item_ids" position="attributes">
+                <attribute name="groups">product.group_product_pricelist</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
