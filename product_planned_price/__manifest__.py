@@ -1,8 +1,7 @@
 ##############################################################################
 #
-#    OpenUpgrade module for Odoo
-#    @copyright 2015-Today: Odoo Community Association
-#    @author: Stephane LE CORNEC
+#    Copyright (C) 2015  ADHOC SA  (http://www.adhoc.com.ar)
+#    All Rights Reserved.
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -18,15 +17,29 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-
-from openupgradelib import openupgrade
-
-
-@openupgrade.migrate(use_env=True)
-def migrate(env, version):
-    # on v8 value was stored on list_price
-    openupgrade.logged_query(env.cr, """
-        UPDATE product_template
-        SET computed_list_price_manual = list_price
-        WHERE list_price_type = 'manual'
-    """,)
+{
+    'name': 'Product Planned Price',
+    'version': '11.0.1.0.0',
+    'category': 'Product',
+    'sequence': 14,
+    'author': 'ADHOC SA,Odoo Community Association (OCA)',
+    'website': 'www.adhoc.com.ar',
+    'license': 'AGPL-3',
+    'images': [
+    ],
+    'depends': [
+        'product',
+    ],
+    'data': [
+        'views/product_template_views.xml',
+        'views/product_product_views.xml',
+        'wizards/product_update_from_planned_price_wizard_views.xml',
+        'data/ir_cron_data.xml',
+    ],
+    'demo': [
+        'demo/product_product_demo.xml',
+    ],
+    'installable': True,
+    'auto_install': False,
+    'application': False,
+}

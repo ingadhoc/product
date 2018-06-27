@@ -1,0 +1,153 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* product_planned_price
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-26 17:51+0000\n"
+"PO-Revision-Date: 2018-06-26 17:51+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_planned_price
+#: model:ir.ui.view,arch_db:product_planned_price.view_update_from_planned_price_wizard_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: product_planned_price
+#: model:product.product,name:product_planned_price.computed_manual
+#: model:product.template,name:product_planned_price.computed_manual_product_template
+msgid "Computed Manual Product"
+msgstr "Computed Manual Product"
+
+#. module: product_planned_price
+#: model:ir.ui.view,arch_db:product_planned_price.view_update_from_planned_price_wizard_form
+msgid "Confirm"
+msgstr "Confirmar"
+
+#. module: product_planned_price
+#: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: product_planned_price
+#: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: product_planned_price
+#: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard_display_name
+msgid "Display Name"
+msgstr "Mostrar Nombre"
+
+#. module: product_planned_price
+#: model:ir.model.fields,help:product_planned_price.field_product_product_computed_list_price_manual
+#: model:ir.model.fields,help:product_planned_price.field_product_template_computed_list_price_manual
+msgid "Field to store manual planned price"
+msgstr "Field to store manual planned price"
+
+#. module: product_planned_price
+#: selection:product.template,list_price_type:0
+msgid "Fixed value"
+msgstr "Valor fijo"
+
+#. module: product_planned_price
+#: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard_id
+msgid "ID"
+msgstr "ID"
+
+#. module: product_planned_price
+#: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: product_planned_price
+#: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización realizada por"
+
+#. module: product_planned_price
+#: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard_write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: product_planned_price
+#: model:ir.model.fields,field_description:product_planned_price.field_product_product_computed_list_price
+#: model:ir.model.fields,field_description:product_planned_price.field_product_template_computed_list_price
+#: model:ir.ui.view,arch_db:product_planned_price.product_template_only_form_view
+msgid "Planned Price"
+msgstr "Planned Price"
+
+#. module: product_planned_price
+#: model:ir.model.fields,field_description:product_planned_price.field_product_product_computed_list_price_manual
+#: model:ir.model.fields,field_description:product_planned_price.field_product_template_computed_list_price_manual
+msgid "Planned Price Manual"
+msgstr "Planned Price Manual"
+
+#. module: product_planned_price
+#: model:ir.model.fields,field_description:product_planned_price.field_product_product_list_price_type
+#: model:ir.model.fields,field_description:product_planned_price.field_product_template_list_price_type
+msgid "Planned Price Type"
+msgstr "Planned Price Type"
+
+#. module: product_planned_price
+#: model:ir.ui.view,arch_db:product_planned_price.product_template_only_form_view
+msgid "Planned Price based on"
+msgstr "Planned Price based on"
+
+#. module: product_planned_price
+#: model:ir.model.fields,help:product_planned_price.field_product_product_computed_list_price
+#: model:ir.model.fields,help:product_planned_price.field_product_template_computed_list_price
+msgid "Planned Price. This value depends on Planned Price Type\" an other parameters."
+msgstr "Planned Price. This value depends on Planned Price Type\" an other parameters."
+
+#. module: product_planned_price
+#: model:ir.ui.view,arch_db:product_planned_price.view_update_from_planned_price_wizard_form
+msgid "Product Catalog Report"
+msgstr "Product Catalog Report"
+
+#. module: product_planned_price
+#: model:ir.model,name:product_planned_price.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de Producto"
+
+#. module: product_planned_price
+#: model:ir.ui.view,arch_db:product_planned_price.view_update_from_planned_price_wizard_form
+msgid "Update List Price with Planned Price for all sellected products with planned price."
+msgstr "Update List Price with Planned Price for all sellected products with planned price."
+
+#. module: product_planned_price
+#: model:ir.actions.act_window,name:product_planned_price.action_update_from_planned_price_wizard
+#: model:ir.actions.server,name:product_planned_price.ir_cron_update_price_from_planned_ir_actions_server
+#: model:ir.cron,cron_name:product_planned_price.ir_cron_update_price_from_planned
+#: model:ir.cron,name:product_planned_price.ir_cron_update_price_from_planned
+msgid "Update Prices from Planned"
+msgstr "Update Prices from Planned"
+
+#. module: product_planned_price
+#: code:addons/product_planned_price/wizards/product_update_from_planned_price_wizard.py:19
+#, python-format
+msgid "Update from planned price must be called from product template"
+msgstr "Update from planned price must be called from product template"
+
+#. module: product_planned_price
+#: model:ir.model,name:product_planned_price.model_product_update_from_planned_price_wizard
+msgid "Update product price from planned price"
+msgstr "Update product price from planned price"
+
+#. module: product_planned_price
+#: model:ir.ui.view,arch_db:product_planned_price.product_template_search_view
+msgid "With Planned Price"
+msgstr "With Planned Price"
+
+#. module: product_planned_price
+#: model:ir.ui.view,arch_db:product_planned_price.view_update_from_planned_price_wizard_form
+msgid "or"
+msgstr "o"
+
