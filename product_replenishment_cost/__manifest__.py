@@ -24,7 +24,11 @@
     'license': 'AGPL-3',
     'category': 'Products',
     'depends': [
-        'stock',
+        'product',
+        # for access rights
+        'sales_team',
+        # only for menu for cost rules
+        'sale',
     ],
     'website': 'http://www.camptocamp.com/',
     'data': [
