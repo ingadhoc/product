@@ -23,6 +23,12 @@
                 <group name="pricing">
                     <group name="planned_price">
                         <field name="list_price_type" string="Planned Price based on"/>
+                        <label for="sale_margin" string="Margin Formula" attrs="{'invisible': [('list_price_type', '!=', 'by_margin')]}"/>
+                        <div attrs="{'invisible': [('list_price_type', '!=', 'by_margin')]}">
+                            <field name="replenishment_cost_copy" class="oe_inline"/>* ( 1 +
+                            <field name="sale_margin" class="oe_inline"/>%) + 
+                            <field name="sale_surcharge" class="oe_inline"/>
+                        </div>
                         <field name="computed_list_price_manual" widget="monetary" attrs="{'invisible': [('list_price_type', '!=', 'manual')]}" string="Planned Price" options="{'currency_field': 'currency_id'}"/>
                         <field name="computed_list_price" widget="monetary" attrs="{'invisible': [('list_price_type', 'in', ['manual', False])]}" options="{'currency_field': 'currency_id'}"/>
                     </group>
