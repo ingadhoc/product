@@ -28,7 +28,7 @@
     'images': [
     ],
     'depends': [
-        'product',
+        'product_replenishment_cost',
     ],
     'data': [
         'views/product_template_views.xml',

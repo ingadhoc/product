@@ -24,11 +24,29 @@ class ProductTemplate(models.Model):
         'other parameters.',
     )
     list_price_type = fields.Selection([
-        ('manual', 'Fixed value')],
+        ('manual', 'Fixed value'),
+        ('by_margin', 'By Margin')
+    ],
         string='Planned Price Type',
         # we make it optional
         # required=True,
         default='manual',
+        help="If the 'Fixed value' type is chosen, a fixed planned"
+        " price is defined. \n If the 'By margin' type is chosen, "
+        "the following formula will be taken into account for "
+        "the planned price: Replenishment cost * (1 + margin(%)) + surcharge.",
+    )
+    sale_margin = fields.Float(
+        'Planned Price Sale margin %',
+        digits=dp.get_precision('Discount'),
+    )
+    sale_surcharge = fields.Float(
+        'Planned Price Sale surcharge',
+        digits=dp.get_precision('Product Price')
+    )
+    replenishment_cost_copy = fields.Float(
+        related='replenishment_cost'
+        # related='product_variant_ids.replenishment_cost'
     )
 
     @api.model
@@ -89,16 +107,25 @@ class ProductTemplate(models.Model):
         return True
 
     @api.depends(
+        'sale_margin',
+        'sale_surcharge',
+        'replenishment_cost',
         'list_price_type',
         'computed_list_price_manual',
     )
     def _compute_computed_list_price(self):
-        manual_recs = self.filtered(
-            lambda x: x.list_price_type == 'manual')
-        _logger.info('Get computed_list_price for %s "manual" products' % (
-            len(manual_recs)))
-        for rec in manual_recs:
-            rec.update({'computed_list_price': rec.computed_list_price_manual})
+        recs = self.filtered(
+            lambda x: x.list_price_type in ['manual', 'by_margin'])
+        _logger.info('Get computed_list_price for %s "manual" and "by_margin"'
+                     ' products' % (len(recs)))
+        for rec in recs:
+            computed_list_price = rec.computed_list_price_manual\
+                if rec.list_price_type == 'manual'\
+                else rec.replenishment_cost * \
+                (1 + rec.sale_margin / 100.0) + rec.sale_surcharge
+            rec.update({
+                'computed_list_price': computed_list_price,
+            })
 
     @api.model
     def _price_get(self, products, ptype='list_price'):
