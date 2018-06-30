@@ -19,30 +19,27 @@
 ##############################################################################
 {
     "name": "Pricelists information on Products",
-    'version': '9.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': 'Sales & Purchases',
     'sequence': 14,
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
-    'summary': '',
     "depends": [
-        "product",
+        'sale',
     ],
-    'external_dependencies': {
-    },
     "data": [
-        'views/product_view.xml',
+        'views/product_template_views.xml',
+        'views/product_product_views.xml',
+        'views/product_pricelist_views.xml',
         # set pricelist groups
-        'data/pricelist_group_data.xml',
+        'security/product_pricelist_security.xml',
         # set default formula on sale settings configuration
-        'data/data_pricelist_config.yml',
+        'data/product_pricelist_data.xml',
     ],
     'demo': [
     ],
-    'test': [
-    ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
