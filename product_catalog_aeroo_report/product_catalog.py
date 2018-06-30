@@ -98,5 +98,4 @@ class ProductCatalogReport(models.Model):
         """
         self.ensure_one()
         self = self.prepare_report()
-        return self.env['report'].get_action(
-            self, self.report_xml_id.report_name)
+        return self.report_xml_id.report_action(self)
