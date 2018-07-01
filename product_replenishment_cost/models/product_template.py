@@ -68,6 +68,9 @@ class ProductTemplate(models.Model):
     def _update_cost_from_replenishment_cost(self):
         """
         If we came from tree list, we update only in selected list
+        Lo hacemos en tandas ya que baja el tiempo a la mitad (al menos en 40k)
+        de productos. Además nos permite ir haciendo commits parciales.
+        Actulizamos product.product ya que el standard_price esta en ese modelo
         """
         # hacemos search de nuevo por si se llama desde vista lista
         commit_transaction = self.env.context.get('commit_transaction')
@@ -76,10 +79,10 @@ class ProductTemplate(models.Model):
             ('replenishment_base_cost_currency_id', '!=', False),
         ]
         if self:
-            domain.append(('id', 'in', self.ids))
+            domain.append(('product_tmpl_id.id', 'in', self.ids))
 
         batch_size = 1000
-        product_ids = self.search(domain).ids
+        product_ids = self.env['product.product'].search(domain).ids
         sliced_product_ids = [
             product_ids[i:i + batch_size] for i in range(
                 0, len(product_ids), batch_size)]
@@ -88,30 +91,32 @@ class ProductTemplate(models.Model):
         prec = self.env['decimal.precision'].precision_get('Product Price')
         for product_ids in sliced_product_ids:
             run += 1
+
             # hacemos invalidate cache para que no haga prefetch de todos,
             # solo los del slice
             self.invalidate_cache()
-            recs = self.browse(product_ids)
+            recs = self.env['product.product'].browse(product_ids)
             _logger.info(
-                'Running update update cost for %s products. Run %s of %s' % (
+                'Running update update cost for %s variants. Run %s of %s' % (
                     len(recs), run, len(sliced_product_ids)))
-            for rec in recs:
-                replenishment_cost = rec.replenishment_cost
+            # by filtering before running we win a lot on performance
+            # este filter ayuda a que no se vuelvan a procesar registros que ya
+            # seactualizaron pero el cron cayó, además lo hace más rapido y
+            # no genera product price history inncesarios
+            for rec in recs.filtered(
+                    lambda x: x.replenishment_cost and float_compare(
+                        x.standard_price,
+                        x.replenishment_cost,
+                        precision_digits=prec) != 0):
+
                 # TODO we should check if standar_price type is standar and
                 # not by quants or similar, we remove that because it makes
                 # it slower
-                if not replenishment_cost:
-                    continue
-                # to avoid writing if there are no changes, also to avoid
-                # creating records on product_price_history table
-                if float_compare(
-                        rec.standard_price, replenishment_cost,
-                        precision_digits=prec) == 0:
-                    continue
+
                 # standard_price is stored on variants (product.product), we
                 # force the update of all the variants
-                rec.product_variant_ids.write(
-                    {'standard_price': replenishment_cost})
+                rec.standard_price = rec.replenishment_cost
+
                 # we can not use sql because standar_price is a property,
                 # perhups we can do it writing directly on the property but
                 # we need to check if record exists, we can copy some code of
