@@ -25,7 +25,8 @@ class ProductTemplate(models.Model):
     )
     list_price_type = fields.Selection([
         ('manual', 'Fixed value'),
-        ('by_margin', 'By Margin')
+        ('by_margin', 'By Margin'),
+        ('other_currency', 'Currency exchange')
     ],
         string='Planned Price Type',
         # we make it optional
@@ -34,7 +35,9 @@ class ProductTemplate(models.Model):
         help="If the 'Fixed value' type is chosen, a fixed planned"
         " price is defined. \n If the 'By margin' type is chosen, "
         "the following formula will be taken into account for "
-        "the planned price: Replenishment cost * (1 + margin(%)) + surcharge.",
+        "the planned price: Replenishment cost * (1 + margin(%)) + surcharge."
+        "\n If the 'Currency exchange' type is chosen, The planned price is "
+        "set in the chosen currency and converted to the product's currency",
     )
     sale_margin = fields.Float(
         'Planned Price Sale margin %',
@@ -47,6 +50,16 @@ class ProductTemplate(models.Model):
     replenishment_cost_copy = fields.Float(
         related='replenishment_cost'
         # related='product_variant_ids.replenishment_cost'
+    )
+    other_currency_id = fields.Many2one(
+        'res.currency',
+        'Planned Currency',
+        help="Currency used for the Currency List Price.",
+    )
+    other_currency_list_price = fields.Float(
+        'Planned Price on Currency',
+        digits=dp.get_precision('Product Price'),
+        help="Sale Price on Other Currency",
     )
 
     @api.model
@@ -112,17 +125,25 @@ class ProductTemplate(models.Model):
         'replenishment_cost',
         'list_price_type',
         'computed_list_price_manual',
+        'other_currency_list_price',
+        'other_currency_id',
     )
     def _compute_computed_list_price(self):
         recs = self.filtered(
-            lambda x: x.list_price_type in ['manual', 'by_margin'])
-        _logger.info('Get computed_list_price for %s "manual" and "by_margin"'
-                     ' products' % (len(recs)))
+            lambda x: x.list_price_type in [
+                'manual', 'by_margin', 'other_currency'])
+        _logger.info('Get computed_list_price for %s "manual", "by_margin"'
+                     ' and "other_currency" products' % (len(recs)))
         for rec in recs:
-            computed_list_price = rec.computed_list_price_manual\
-                if rec.list_price_type == 'manual'\
-                else rec.replenishment_cost * \
-                (1 + rec.sale_margin / 100.0) + rec.sale_surcharge
+            computed_list_price = rec.computed_list_price_manual
+            if rec.list_price_type == 'by_margin':
+                computed_list_price = rec.replenishment_cost * \
+                    (1 + rec.sale_margin / 100.0) + rec.sale_surcharge
+            elif rec.list_price_type == 'other_currency' and rec.currency_id:
+                computed_list_price = rec.other_currency_id.compute(
+                    rec.other_currency_list_price,
+                    rec.currency_id,
+                    round=False)
             rec.update({
                 'computed_list_price': computed_list_price,
             })

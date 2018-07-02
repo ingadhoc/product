@@ -29,6 +29,11 @@
                             <field name="sale_margin" class="oe_inline"/>%) + 
                             <field name="sale_surcharge" class="oe_inline"/>
                         </div>
+                        <label for="other_currency_list_price" attrs="{'invisible': [('list_price_type', '!=', 'other_currency')]}"/>
+                        <div name="other_currency_list_price" attrs="{'invisible': [('list_price_type', '!=', 'other_currency')]}">
+                            <field name="other_currency_list_price" widget="monetary"  class="oe_inline" options="{'currency_field': 'other_currency_id'}"/>
+                            <field name="other_currency_id" class="oe_inline oe_edit_only" attrs="{'required': [('list_price_type', '=', 'other_currency')]}" options="{'no_create': True, 'no_open': True}" domain="[('id','!=', currency_id)]"/>
+                        </div>
                         <field name="computed_list_price_manual" widget="monetary" attrs="{'invisible': [('list_price_type', '!=', 'manual')]}" string="Planned Price" options="{'currency_field': 'currency_id'}"/>
                         <field name="computed_list_price" widget="monetary" attrs="{'invisible': [('list_price_type', 'in', ['manual', False])]}" options="{'currency_field': 'currency_id'}"/>
                     </group>
