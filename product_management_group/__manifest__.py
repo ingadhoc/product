@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2015  ADHOC SA  (http://www.adhoc.com.ar)
@@ -30,7 +29,6 @@
     ],
     'data': [
         'security/product_management_security.xml',
-        'data/res_users_data.xml',
     ],
-    'installable': False,
+    'installable': True,
 }
