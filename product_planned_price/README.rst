@@ -18,6 +18,7 @@ This module add a new field "Planned Price" to products that can be extended by 
 
 #. It also add a wizard to update "List Price" using "Planned Price" value. Optionally, you can activate a cron to run this update auomatically.
 #. Also Extends Planned Price and allow to set prices based on Replenishment Cost with a fixed and/or percentage margin.
+#. Allow to set prices base in other currency.
 
 Installation
 ============
