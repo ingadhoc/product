@@ -46,9 +46,10 @@ class ProductCatalogReport(models.Model):
          ('variants', 'Variants'),
          ], 'Product Display Type',
     )
-    report_xml_id = fields.Many2one(
-        'ir.actions.report.xml',
-        'Report XML',
+    report_id = fields.Many2one(
+        oldname='report_xml_id',
+        'ir.actions.report',
+        'Report',
         domain=[('report_type', '=', 'aeroo'),
                 ('model', '=', 'product.product_catalog_report')],
         context={'default_report_type': 'aeroo',
