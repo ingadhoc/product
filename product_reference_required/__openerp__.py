@@ -20,7 +20,7 @@
 ##############################################################################
 {
     'name': 'Product Reference Requiered',
-    'version': '9.0.1.0.0',
+    'version': '9.0.1.1.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -34,6 +34,7 @@
     ],
     'data': [
         'data/default_code_data.xml',
+        'product_template_view.xml',
     ],
     'demo': [
         # 'demo/product.product.csv',
