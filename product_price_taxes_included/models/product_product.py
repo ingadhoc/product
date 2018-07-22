@@ -2,34 +2,29 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import models, api, _
-from odoo.exceptions import UserError
+from odoo import models, fields, api
+import odoo.addons.decimal_precision as dp
 
 
 class ProductProduct(models.Model):
 
     _inherit = 'product.product'
 
-    @api.depends('list_price', 'price_extra')
-    def _compute_product_lst_price(self):
-        """ We do this so that we can show prices w/wo taxes without needing a
-        pricelist
-        """
-        super(ProductProduct, self)._compute_product_lst_price()
-        if not self._context.get('taxes_included', False):
-            return
+    taxed_lst_price = fields.Float(
+        string='Taxed Sale Price',
+        compute='_compute_taxed_lst_price',
+        digits=dp.get_precision('Product Price'),
+    )
 
+    @api.depends('taxes_id', 'lst_price')
+    def _compute_taxed_lst_price(self):
+        """ if taxes_included lst_price already has taxes included
+        """
         company_id = self._context.get(
             'company_id', self.env.user.company_id.id)
-
         for product in self:
-            product.lst_price = product.taxes_id.filtered(
+            product.taxed_lst_price = product.taxes_id.filtered(
                 lambda x: x.company_id.id == company_id).compute_all(
-                    product.lst_price, product=product.id)['total_included']
-
-    def _set_product_lst_price(self):
-        if self._context.get('taxes_included'):
-            raise UserError(_(
-                "You can not set list price if you are working with 'Taxes "
-                "Included' in the context"))
-        return super(ProductProduct, self)._set_product_lst_price()
+                    product.lst_price,
+                    self.env.user.company_id.currency_id,
+                    product=product)['total_included']
