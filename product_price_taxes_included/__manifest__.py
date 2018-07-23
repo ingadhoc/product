@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product Price Taxes Included or Not',
-    'version': '9.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -32,13 +32,12 @@
         'account',
     ],
     'data': [
-        'views/product_view.xml',
+        'views/product_template_views.xml',
+        'views/product_product_views.xml',
     ],
     'demo': [
     ],
-    'test': [
-    ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
