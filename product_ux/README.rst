@@ -20,6 +20,8 @@ Several Improvements to products:
 #. Add tracking on active fields for products
 #. Add allows to search by supplier codes of products on product and product variants.
 #. Add smart button from pricelist to pricelists items
+#. Add prices on product template tree view.
+#. Both product template and product product tree view show the price taking into account the pricelsit.
 
 Installation
 ============

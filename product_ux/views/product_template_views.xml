@@ -21,4 +21,18 @@
             </group>
         </field>
     </record>
+
+    <record id="product_template_tree_view" model="ir.ui.view">
+        <field name="name">product.template.product.tree</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="standard_price" position="before">
+                <!-- TODO borrar en proximas versiones si anda bien, segun probamos en v9 y v10 no se muestra cuando se agrega filtro de pricelist entonces lo mostramos siempre -->
+                <!-- <field name="price" string="Pricelist Price" invisible="not context.get('pricelist',False)"/> -->
+                <field name="price" string="Pricelist Price"/>
+            </field>
+        </field>
+    </record>
+
 </odoo>
