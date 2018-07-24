@@ -33,6 +33,7 @@
     ],
     'data': [
         'views/product_template_views.xml',
+        'views/product_product_views.xml',
         'views/product_pricelist_item_view.xml',
         'views/product_pricelist_view.xml',
     ],

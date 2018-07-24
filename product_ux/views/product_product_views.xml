@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_product_tree_view" model="ir.ui.view">
+        <field name="name">product.product.prices.tree</field>
+        <field name="model">product.product</field>
+        <field name="priority" eval="20"/>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="arch" type="xml">
+            <!-- TODO ver si borrar mas adelante idem lo de arriba, lo hacemos visible siempre porque al menos en v9 y v10 no se actualiza al filtrar -->
+            <field name="price" position="attributes">
+                <attribute name="invisible"></attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>
