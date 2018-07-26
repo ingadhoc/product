@@ -4,5 +4,5 @@
 ##############################################################################
 
 from . import report
-from . import wizard
-from . import product_catalog
+from . import wizards
+from . import models

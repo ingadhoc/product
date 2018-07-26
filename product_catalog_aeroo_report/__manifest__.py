@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product Catalog Aeroo Report',
-    'version': '9.0.1.1.0',
+    'version': '11.0.1.0.0',
     'category': 'Aeroo Reporting',
     'sequence': 14,
     'summary': '',
@@ -29,22 +29,22 @@
     'images': [
     ],
     'depends': [
-        # 'product',
         'product_price_taxes_included',
         'report_aeroo',
+        'sale',
+        'stock',
     ],
     'data': [
-        'wizard/product_catalog_wizard.xml',
+        'wizards/product_catalog_wizard_views.xml',
         'security/ir.model.access.csv',
-        'product_catalog.xml',
-        'report/product_catalog_view.xml'
+        'views/product_catalog_report_views.xml',
+        'report/product_catalog_report_data.xml'
     ],
     'demo': [
-        'demo/demo_data.xml',
+        'demo/product_template_demo.xml',
+        'demo/product_product_demo.xml',
     ],
-    'test': [
-    ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': True,
 }
