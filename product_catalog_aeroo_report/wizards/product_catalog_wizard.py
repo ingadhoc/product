@@ -12,15 +12,14 @@ class ProductCatalog(models.TransientModel):
     product_catalog_report_id = fields.Many2one(
         'product.product_catalog_report',
         'Product Catalog',
-        required=True
+        required=True,
     )
     taxes_included = fields.Boolean(
-        'Taxes Included',
     )
     use_planned_price = fields.Boolean(
-        string='Use Planned Price',
         help="Use planned price instead of list price (if planned price module"
-        " is not installed, nothing is going to change)")
+        " is not installed, nothing is going to change)",
+    )
 
     @api.onchange('product_catalog_report_id')
     def change_product_catalog_report(self):

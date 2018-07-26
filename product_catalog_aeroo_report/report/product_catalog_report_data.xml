@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<openerp>
-<data>
+<odoo>
 <!-- ODS Catalog -->
     <record id="report_product_catalog_ods" model="ir.actions.report">
         <field name="name">Product Catalog Report - ODS</field>
@@ -9,9 +8,8 @@
         <field name="report_type">aeroo</field>
         <field name="in_format">oo-ods</field>
         <field name="out_format" ref="report_aeroo.report_mimetypes_xls_odt"/>
-        <field name="parser_loc">product_catalog_aeroo_report/report/product_catalog_parser.py</field>
         <field name="report_file">product_catalog_aeroo_report/report/product_catalog.ods</field>
-        <!-- <field name="report_file">product_catalog_aeroo_report/report/product_catalog.odt</field> -->
+        <field name="parser_loc">product_catalog_aeroo_report/report/parser.py</field>
         <field name="parser_state">loc</field>
         <field name="tml_source">file</field>
     </record>
@@ -25,8 +23,8 @@
         <field name="report_type">aeroo</field>
         <field name="in_format">oo-odt</field>
         <field name="out_format" ref="report_aeroo.report_mimetypes_pdf_odt"/>
-        <field name="parser_loc">product_catalog_aeroo_report/report/product_catalog_parser.py</field>
         <field name="report_file">product_catalog_aeroo_report/report/product_catalog_simple.odt</field>
+        <field name="parser_loc">product_catalog_aeroo_report/report/parser.py</field>
         <field name="parser_state">loc</field>
         <field name="tml_source">file</field>
     </record>
@@ -39,11 +37,10 @@
         <field name="report_type">aeroo</field>
         <field name="in_format">oo-odt</field>
         <field name="out_format" ref="report_aeroo.report_mimetypes_pdf_odt"/>
-        <field name="parser_loc">product_catalog_aeroo_report/report/product_catalog_parser.py</field>
         <field name="report_file">product_catalog_aeroo_report/report/product_catalog_by_categories.odt</field>
+        <field name="parser_loc">product_catalog_aeroo_report/report/parser.py</field>
         <field name="parser_state">loc</field>
         <field name="tml_source">file</field>
     </record>
 
-</data>
 </odoo>
