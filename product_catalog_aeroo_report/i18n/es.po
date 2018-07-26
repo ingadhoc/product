@@ -165,7 +165,7 @@ msgstr "Reporte de Catálogo de Productos con Aeroo"
 #: model:ir.ui.view,arch_db:product_catalog_aeroo_report.view_product_catalog_report_form
 #: model:ir.ui.view,arch_db:product_catalog_aeroo_report.view_product_catalog_report_tree
 msgid "Product Catalog Reports"
-msgstr "Reporte de Catálogos de Productos"
+msgstr "Reportes de Catálogos de Productos"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.actions.report.xml,name:product_catalog_aeroo_report.report_product_catalog_simple_odt
