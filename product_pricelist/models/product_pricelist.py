@@ -14,8 +14,10 @@ class ProductPricelist(models.Model):
     )
     show_products = fields.Boolean(
         'Show in products',
+        default=True,
         help="By selecting it allows you to display the pricelist "
-        "with the price of that product in the products")
+        "with the price of that product in the products",
+    )
 
     @api.multi
     def _compute_price(self):
