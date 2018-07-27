@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product Catalog Aeroo Report with public Category',
-    'version': '9.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': 'Aeroo Reporting',
     'sequence': 14,
     'summary': '',
@@ -33,13 +33,11 @@
         'product_catalog_aeroo_report',
     ],
     'data': [
-        'product_catalog.xml'
+        'views/product_catalog_report_views.xml',
     ],
     'demo': [
     ],
-    'test': [
-    ],
-    'installable': False,
+    'installable': True,
     'auto_install': True,
     'application': False,
 }
