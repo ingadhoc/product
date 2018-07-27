@@ -11,7 +11,6 @@ class ProductCatalogReport(models.Model):
     category_type = fields.Selection(
         [('public_category', 'Public Category'),
          ('accounting_category', 'Accounting Category')],
-        'Category Type',
         required=True,
         default='accounting_category',
     )
@@ -22,16 +21,6 @@ class ProductCatalogReport(models.Model):
         'category_id',
         'Product Categories Public',
     )
-
-    # TODO remove this
-    # @api.one
-    # @api.onchange('category_type')
-    # def change_category_type(self):
-    #     if (
-    #             self.category_type == 'public_category' and
-    #             not self.categories_order
-    #             ):
-    #         self.categories_order = 'parent_left, sequence, name'
 
     @api.multi
     def prepare_report(self):

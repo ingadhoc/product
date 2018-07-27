@@ -3,5 +3,5 @@
 # directory
 ##############################################################################
 
-from . import product_catalog
-from . import product
+from . import product_catalog_report
+from . import product_public_category

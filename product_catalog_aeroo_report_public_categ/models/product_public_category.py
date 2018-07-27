@@ -13,12 +13,17 @@ class ProductPublicCategory(models.Model):
     _parent_name = "parent_id"
     _parent_store = True
     _parent_order = 'sequence, name'
-    # TODO. remove this: we dont use this order as default because it breaks
-    # a litle spected order on website
-    _order = 'parent_left, sequence, name'
-    parent_id = fields.Many2one(ondelete='restrict')
-    parent_left = fields.Integer('Left Parent', index=True)
-    parent_right = fields.Integer('Right Parent', index=True)
+    parent_id = fields.Many2one(
+        ondelete='restrict',
+    )
+    parent_left = fields.Integer(
+        'Left Parent',
+        index=True,
+    )
+    parent_right = fields.Integer(
+        'Right Parent',
+        index=True,
+    )
 
     @api.constrains('sequence')
     def update_parents(self):
