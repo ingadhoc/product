@@ -35,7 +35,7 @@ class ProductImageUrl(models.Model):
         string='Image URL', help='Automatically sanitized HTML contents',
         copy=False)
 
-    @api.onchange('web_url')
+    @api.constrains('web_url')
     def onchange_image(self):
         link = self.web_url
         try:
