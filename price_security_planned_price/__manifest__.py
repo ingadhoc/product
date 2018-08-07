@@ -19,20 +19,18 @@
 ##############################################################################
 {
     'name': 'Price Security with planned price',
-    'version': '9.0.1.0.0',
+    'version': '11.0.1.0.0',
     'category': 'Sales Management',
     'author': 'ADHOC SA',
     'website': 'http://www.adhoc.com.ar/',
     'license': 'AGPL-3',
     'depends': [
         'price_security',
-        'product_replenishment_cost_rule',
-        'product_price_currency',
-        'product_sale_price_by_margin',
+        'product_planned_price',
     ],
     'data': [
-        'views/product_view.xml',
+        'views/product_template_views.xml',
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
 }
