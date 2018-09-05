@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_form" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='move_lines']//tree//field[@name='product_uom']" position="before">
+                <field name="uom_unit_ids" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='move_lines']//tree//field[@name='product_uom']" position="attributes">
+                <attribute name="domain">[('id','in',uom_unit_ids or [])]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='move_line_ids']//tree//field[@name='product_uom_id']" position="before">
+                <field name="uom_unit_ids" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='move_line_ids']//tree//field[@name='product_uom_id']" position="attributes">
+                <attribute name="domain">[('id','in',uom_unit_ids or [])]</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
