@@ -25,3 +25,10 @@ class ProductTemplate(models.Model):
         super(ProductTemplate, self)._compute_currency_id()
         for rec in self.filtered('force_currency_id'):
             rec.currency_id = rec.force_currency_id
+
+class ProductProduct(models.Model):
+
+    _inherit = "product.product"
+
+    company_currency_id = fields.Many2one(
+        related='company_id.currency_id')
