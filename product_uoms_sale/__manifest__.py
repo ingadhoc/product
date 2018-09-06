@@ -18,24 +18,24 @@
 #
 ##############################################################################
 {
-    'name': 'Product Sale UOMS',
-    'version': '9.0.1.0.0',
+    'name': 'Product UOMS Sale',
+    'version': '11.0.1.0.0',
     'category': 'base.module_category_knowledge_management',
-    'author': 'ADHOC SA.',
+    'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'depends': [
+        'product_uoms',
         'sale',
     ],
-    'test': [],
     'demo': [
-        'demo/product_demo.xml',
     ],
     'data': [
-        'data.xml',
-        'view/product_view.xml',
-        'view/sale_view.xml',
+        'views/sale_order_views.xml',
+        'views/product_template_views.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': False,
+    'installable': True,
+    'auto_install': True,
+    'application': False,
 }
