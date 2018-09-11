@@ -14,9 +14,32 @@
 Products Management Group
 =========================
 
-This module creates a new group called "Products Management", only users on that group can create, edit or unlink products.
+This module creates a new group called "Products Management", only users on
+that group can create, edit or unlink products.
 
-IMPORTANT: this module overwrite rules on ir.model.access (except for the "read" mode)
+IMPORTANT: this module overwrite rules on ir.model.access (except for the
+"read" mode)
+
+Installation
+============
+
+To install this module, you need to:
+
+#. Only need to install the module
+
+Configuration
+=============
+
+To configure this module, you need to:
+
+#. Nothing to configure
+
+Usage
+=====
+
+To use this module, you need to:
+
+#. Go to ...
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot

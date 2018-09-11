@@ -1,23 +1,21 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from openerp import models, tools, exceptions, _
-from openerp.osv.orm import BaseModel
+from odoo import api, models, tools, exceptions, _
 
 
 class IrModelAccess(models.Model):
 
     _inherit = 'ir.model.access'
 
+    @api.model
     @tools.ormcache_context(
-        'uid', 'model', 'mode', 'raise_exception', keys=('lang',))
+        'self._uid', 'model', 'mode', 'raise_exception', keys=('lang',))
     def check(
-            self, cr, uid, model, mode='read', raise_exception=True,
-            context=None):
+            self, model, mode='read', raise_exception=True):
 
-        if isinstance(model, BaseModel):
+        if isinstance(model, models.BaseModel):
             assert model._name == 'ir.model', 'Invalid model object'
             model_name = model.model
         else:
@@ -25,8 +23,7 @@ class IrModelAccess(models.Model):
 
         if mode != 'read' and model_name in [
                 'product.template', 'product.product']:
-            if self.pool['res.users'].has_group(
-                    cr, uid,
+            if self.env['res.users'].has_group(
                     'product_management_group.group_products_management'):
                 return True
             elif raise_exception:
@@ -37,5 +34,4 @@ class IrModelAccess(models.Model):
             else:
                 return False
         return super(IrModelAccess, self).check(
-            cr, uid, model, mode=mode, raise_exception=raise_exception,
-            context=context)
+            model, mode=mode, raise_exception=raise_exception)
