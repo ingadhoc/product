@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Copyright (C) 2015  ADHOC SA  (http://www.adhoc.com.ar)
@@ -22,7 +21,7 @@
     'name': 'Products Management Group',
     'version': '11.0.1.0.0',
     'category': 'base.module_category_knowledge_management',
-    'author': 'ADHOC SA.',
+    'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'depends': [
@@ -30,7 +29,6 @@
     ],
     'data': [
         'security/product_management_security.xml',
-        'data/res_users_data.xml',
     ],
-    'installable': False,
+    'installable': True,
 }
