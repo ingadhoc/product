@@ -19,12 +19,14 @@
 ##############################################################################
 {
     'name': 'Replenishment Cost',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.1.0',
     'author': "ADHOC SA, Camptocamp,GRAP,Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'category': 'Products',
     'depends': [
         'product',
+        # for page in product form
+        'purchase',
         # for access rights
         'sales_team',
         # only for menu for cost rules
