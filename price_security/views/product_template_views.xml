@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="priority">30</field>
         <field name="arch" type="xml">
-            <field name="list_price" position="after">
+            <field name="list_price" position="before">
                 <field name="can_modify_prices"/>
             </field>
         </field>
