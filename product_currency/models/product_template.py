@@ -12,10 +12,12 @@ class ProductTemplate(models.Model):
     force_currency_id = fields.Many2one(
         'res.currency',
         'Force Currency',
-        help='Use this currency instead of the product company currency'
+        help='Use this currency instead of the product company currency',
     )
     company_currency_id = fields.Many2one(
-        related='company_id.currency_id')
+        related='company_id.currency_id',
+        readonly=True,
+    )
 
     @api.depends(
         'force_currency_id',
