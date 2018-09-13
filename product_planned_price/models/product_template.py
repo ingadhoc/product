@@ -23,6 +23,9 @@ class ProductTemplate(models.Model):
         help='Planned Price. This value depends on Planned Price Type" an '
         'other parameters.',
     )
+    list_price_copy = fields.Float(
+        related='list_price',
+    )
     list_price_type = fields.Selection([
         ('manual', 'Fixed value'),
         ('by_margin', 'By Margin'),
