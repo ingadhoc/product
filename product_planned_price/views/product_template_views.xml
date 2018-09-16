@@ -8,8 +8,6 @@
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="priority">8</field>
         <field name="arch" type="xml">
-            <!-- sacamos este campo y lo llevamos a tab sale -->
-            <field name="list_price" position="replace"/>
             <!-- dejamos visible el pricelist group -->
             <div name="pricelist_item" position="attributes">
                 <attribute name="groups"></attribute>
@@ -19,10 +17,10 @@
                 <attribute name="groups">product.group_product_pricelist</attribute>
             </field>
 
-            <field name="item_ids" position="before">
+            <div name="pricelist_item" position="before">
                 <group name="pricing">
-                    <group name="planned_price">
-                        <field name="list_price_type" string="Planned Price based on"/>
+                    <group name="planned_price" string="Planned Price">
+                        <field name="list_price_type" string="Based on"/>
                         <label for="sale_margin" string="Margin Formula" attrs="{'invisible': [('list_price_type', '!=', 'by_margin')]}"/>
                         <div attrs="{'invisible': [('list_price_type', '!=', 'by_margin')]}">
                             <field name="replenishment_cost_copy" class="oe_inline"/>* ( 1 +
@@ -37,11 +35,11 @@
                         <field name="computed_list_price_manual" widget="monetary" attrs="{'invisible': [('list_price_type', '!=', 'manual')]}" string="Planned Price" options="{'currency_field': 'currency_id'}"/>
                         <field name="computed_list_price" widget="monetary" attrs="{'invisible': [('list_price_type', 'in', ['manual', False])]}" options="{'currency_field': 'currency_id'}"/>
                     </group>
-                    <group name="list_price">
-                        <field name="list_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <group name="list_price_copy" string="Sales Price">
+                        <field name="list_price_copy" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                     </group>
                 </group>
-            </field>
+            </div>
         </field>
     </record>
 
