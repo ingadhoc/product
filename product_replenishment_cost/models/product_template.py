@@ -15,6 +15,12 @@ class ProductTemplate(models.Model):
     def _default_replenishment_base_cost_currency_id(self):
         return self.env.user.company_id.currency_id.id
 
+    standard_price = fields.Float(
+        string='Accounting Cost',
+    )
+    standard_price_copy = fields.Float(
+        related='standard_price',
+    )
     replenishment_cost = fields.Float(
         compute='_compute_replenishment_cost',
         # TODO, activamos store como estaba??

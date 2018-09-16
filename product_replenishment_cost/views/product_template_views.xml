@@ -5,14 +5,10 @@
     <record id="product_template_form_view" model="ir.ui.view">
         <field name="name">product.cost.currency.form</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="inherit_id" ref="purchase.view_product_supplier_inherit"/>
         <field name="arch" type="xml">
-            <!-- we move standard_price to inventory tab -->
-            <label for="standard_price" position="replace"/>
-            <div name="standard_price_uom" position="replace"/>
-
-            <group name="packaging" position="after">
-                <group name="costing" string="Costing">
+            <group name="vendors" position="before">
+                <group name="costing">
                     <group name="replenishment_cost" string="Replenishment Cost">
                         <field name="replenishment_cost_last_update" string="Last Update" readonly="1"/>
                         <label for="replenishment_base_cost" string="Base Cost"/>
@@ -23,13 +19,13 @@
                             <field name="replenishment_base_cost_on_currency" class="oe_inline" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                         </div>
                         <field name="replenishment_cost_rule_id"  string="Cost Rule" context="{'default_product_id': active_id}"/>
-                        <field name="replenishment_cost" string="Cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="replenishment_cost" string="Replenishment Cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                     </group>
                     <group name="accounting_cost" string="Accounting Cost">
                         <!-- we only change label -->
-                        <label for="standard_price" groups="base.group_user" string="Standard Price" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"/>
-                        <div name="standard_price_uom" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}">
-                            <field name="standard_price" widget="monetary" options="{'currency_field': 'currency_id'}" class="oe_inline"/>
+                        <label for="standard_price_copy" groups="base.group_user" string="Accounting Cost" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"/>
+                        <div name="standard_price_copy" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}">
+                            <field name="standard_price_copy" widget="monetary" options="{'currency_field': 'currency_id'}" class="oe_inline"/>
                         </div>
                     </group>
                 </group>
