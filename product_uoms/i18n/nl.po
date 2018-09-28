@@ -1,0 +1,128 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_uoms
+# 
+# Translators:
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-09-25 13:51+0000\n"
+"PO-Revision-Date: 2018-09-25 13:51+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018\n"
+"Language-Team: Dutch (https://www.transifex.com/adhoc/teams/46451/nl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: product_uoms
+#: model:ir.model.fields,field_description:product_uoms.field_product_product_uom_category_id
+#: model:ir.model.fields,field_description:product_uoms.field_product_template_uom_category_id
+msgid "Category"
+msgstr ""
+
+#. module: product_uoms
+#: model:ir.model.fields,help:product_uoms.field_product_product_uom_category_id
+#: model:ir.model.fields,help:product_uoms.field_product_template_uom_category_id
+msgid ""
+"Conversion between Units of Measure can only occur if they belong to the "
+"same category. The conversion will be made based on the ratios."
+msgstr ""
+
+#. module: product_uoms
+#: model:ir.model.fields,field_description:product_uoms.field_product_uoms_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: product_uoms
+#: model:ir.model.fields,field_description:product_uoms.field_product_uoms_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: product_uoms
+#: model:ir.model.fields,field_description:product_uoms.field_product_uoms_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: product_uoms
+#: model:ir.model.fields,field_description:product_uoms.field_product_uoms_id
+msgid "ID"
+msgstr ""
+
+#. module: product_uoms
+#: model:ir.model.fields,field_description:product_uoms.field_product_uoms___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: product_uoms
+#: model:ir.model.fields,field_description:product_uoms.field_product_uoms_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: product_uoms
+#: model:ir.model.fields,field_description:product_uoms.field_product_uoms_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: product_uoms
+#: model:ir.model.fields,help:product_uoms.field_product_product_uom_ids
+#: model:ir.model.fields,help:product_uoms.field_product_template_uom_ids
+msgid ""
+"Only uoms in this list will be available. If none is specified, then all "
+"uoms of product uom category will be available."
+msgstr ""
+
+#. module: product_uoms
+#: model:ir.model,name:product_uoms.model_product_product
+msgid "Product"
+msgstr "Product"
+
+#. module: product_uoms
+#: model:product.product,name:product_uoms.product_on_cm_saleable_on_m_and_km
+#: model:product.template,name:product_uoms.product_on_cm_saleable_on_m_and_km_product_template
+msgid "Product On Centimeter Saleable on Metera and Km"
+msgstr ""
+
+#. module: product_uoms
+#: model:ir.model,name:product_uoms.model_product_template
+#: model:ir.model.fields,field_description:product_uoms.field_product_uoms_product_tmpl_id
+msgid "Product Template"
+msgstr ""
+
+#. module: product_uoms
+#: model:ir.model,name:product_uoms.model_product_uoms
+msgid "Product Uoms"
+msgstr ""
+
+#. module: product_uoms
+#: model:ir.model.fields,field_description:product_uoms.field_product_uoms_sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: product_uoms
+#: model:ir.model.fields,field_description:product_uoms.field_product_uoms_uom_id
+msgid "UOM"
+msgstr ""
+
+#. module: product_uoms
+#: code:addons/product_uoms/models/product_uoms.py:29
+#: sql_constraint:product.uoms:0
+#, python-format
+msgid "UOM must be unique per Product Template!"
+msgstr ""
+
+#. module: product_uoms
+#: model:ir.model.fields,field_description:product_uoms.field_product_product_uom_ids
+#: model:ir.model.fields,field_description:product_uoms.field_product_template_uom_ids
+msgid "UOMs"
+msgstr ""
+
+#. module: product_uoms
+#: code:addons/product_uoms/models/product_template.py:38
+#, python-format
+msgid ""
+"UOMs Category must be of the same UOM Category as Product Unit of Measure"
+msgstr ""
