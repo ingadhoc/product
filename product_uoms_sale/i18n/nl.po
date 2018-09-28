@@ -1,0 +1,52 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_uoms_sale
+# 
+# Translators:
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-09-25 13:51+0000\n"
+"PO-Revision-Date: 2018-09-25 13:51+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018\n"
+"Language-Team: Dutch (https://www.transifex.com/adhoc/teams/46451/nl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: product_uoms_sale
+#: code:addons/product_uoms_sale/models/sale_order_line.py:53
+#, python-format
+msgid ""
+"%s unit of measure is not valid for sale, please change %s product line with"
+" the proper uom in order to continue"
+msgstr ""
+
+#. module: product_uoms_sale
+#: model:ir.model,name:product_uoms_sale.model_product_product
+msgid "Product"
+msgstr "Product"
+
+#. module: product_uoms_sale
+#: model:ir.model,name:product_uoms_sale.model_product_uoms
+msgid "Product Uoms"
+msgstr ""
+
+#. module: product_uoms_sale
+#: model:ir.model.fields,field_description:product_uoms_sale.field_product_uoms_sale_ok
+msgid "Sale Ok"
+msgstr ""
+
+#. module: product_uoms_sale
+#: model:ir.model,name:product_uoms_sale.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: product_uoms_sale
+#: model:ir.model.fields,field_description:product_uoms_sale.field_sale_order_line_uom_unit_ids
+msgid "Uom Unit"
+msgstr ""
