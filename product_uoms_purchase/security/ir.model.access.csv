@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_product_purchase_uom_manager,product_purchase_uom_manager,model_product_uoms,purchase.group_purchase_manager,1,1,1,1
+access_product_stock_uom_manager,product_stock_uom_manager,model_product_uoms,stock.group_stock_manager,1,1,1,1
