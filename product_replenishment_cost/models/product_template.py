@@ -26,13 +26,8 @@ class ProductTemplate(models.Model):
         # TODO, activamos store como estaba??
         store=False,
         digits=dp.get_precision('Product Price'),
-        help="The cost that you have to support in order to produce or "
-             "acquire the goods. Depending on the modules installed, "
-             "this cost may be computed based on various pieces of "
-             "information, for example Bills of Materials or latest "
-             "Purchases. By default, the Replenishment cost is the same "
-             "as the Cost Price.")
-
+        help="Replenishment cost on the currency of the product",
+    )
     replenishment_cost_last_update = fields.Datetime(
         track_visibility='onchange',
     )
@@ -50,7 +45,6 @@ class ProductTemplate(models.Model):
         help="Currency used for the Replanishment Base Cost.",
         default=_default_replenishment_base_cost_currency_id
     )
-
     replenishment_cost_rule_id = fields.Many2one(
         'product.replenishment_cost.rule',
         auto_join=True,
@@ -58,10 +52,15 @@ class ProductTemplate(models.Model):
         string='Replenishment Cost Rule',
         track_visibility='onchange',
     )
-
     replenishment_base_cost_on_currency = fields.Float(
         compute='_compute_replenishment_cost',
+        help='Replenishment cost on replenishment base cost currency',
         digits=dp.get_precision('Product Price'),
+    )
+    replenishment_cost_type = fields.Selection(
+        [('supplier_price', ' Supplier Price'),
+         ('manual', 'Manual')],
+        default='manual',
     )
 
     @api.model
@@ -158,46 +157,48 @@ class ProductTemplate(models.Model):
     # el onchange, pero no son fundamentales porque el campo no lo storeamos
     @api.depends(
         'currency_id',
+        'replenishment_cost_type',
         'replenishment_base_cost',
-        # because of being stored
-        'replenishment_base_cost_currency_id.rate_ids.rate',
-        # and this if we change de date (name field)
-        'replenishment_base_cost_currency_id.rate_ids.name',
+        # beccause field is not stored anymore we only keep currency and
+        # rule
+        'replenishment_base_cost_currency_id',
+        # # because of being stored
+        # 'replenishment_base_cost_currency_id.rate_ids.rate',
+        # # and this if we change de date (name field)
+        # 'replenishment_base_cost_currency_id.rate_ids.name',
         # rule items
-        'replenishment_cost_rule_id.item_ids.sequence',
-        'replenishment_cost_rule_id.item_ids.percentage_amount',
-        'replenishment_cost_rule_id.item_ids.fixed_amount',
+        'replenishment_cost_rule_id',
+        # 'replenishment_cost_rule_id.item_ids.sequence',
+        # 'replenishment_cost_rule_id.item_ids.percentage_amount',
+        # 'replenishment_cost_rule_id.item_ids.fixed_amount',
     )
     def _compute_replenishment_cost(self):
         _logger.info(
             'Getting replenishment cost currency for ids %s' % self.ids)
         for rec in self:
-            replenishment_cost = rec.get_replenishment_cost_currency(
-                rec.replenishment_base_cost_currency_id,
-                rec.currency_id,
-                rec.replenishment_base_cost,
-            )
-            replenishment_base_cost_on_currency = replenishment_cost
-            if rec.replenishment_cost_rule_id:
-                replenishment_cost =\
-                    rec.replenishment_cost_rule_id.compute_rule(
-                        replenishment_base_cost_on_currency, rec)
-            rec.update({
-                'replenishment_base_cost_on_currency':
-                replenishment_base_cost_on_currency,
-                'replenishment_cost': replenishment_cost
-            })
+            product_currency = rec.currency_id
+            if rec.replenishment_cost_type == 'supplier_price'\
+                    and rec.seller_ids:
+                rec.replenishment_cost = rec.seller_ids[0].currency_id.compute(
+                    rec.seller_ids[0].net_price, product_currency, round=False)
+            elif rec.replenishment_cost_type == 'manual':
+                replenishment_base_cost = rec.replenishment_base_cost
+                replenishment_cost_rule = rec.replenishment_cost_rule_id
+                base_cost_currency = rec.replenishment_base_cost_currency_id
 
-    @api.model
-    def get_replenishment_cost_currency(
-            self, from_currency, to_currency, base_cost):
-        replenishment_cost = False
-        if from_currency and to_currency:
-            replenishment_cost = base_cost
-            if from_currency != to_currency:
-                replenishment_cost = from_currency.compute(
-                    replenishment_cost, to_currency, round=False)
-        return replenishment_cost
+                replenishment_cost = base_cost_currency.compute(
+                    replenishment_base_cost, product_currency, round=False)
+
+                replenishment_base_cost_on_currency = replenishment_cost
+                if replenishment_cost_rule:
+                    replenishment_cost =\
+                        replenishment_cost_rule.compute_rule(
+                            replenishment_base_cost_on_currency, rec)
+                rec.update({
+                    'replenishment_base_cost_on_currency':
+                    replenishment_base_cost_on_currency,
+                    'replenishment_cost': replenishment_cost
+                })
 
     @api.constrains('replenishment_cost_rule_id')
     def update_replenishment_cost_last_update_by_rule(self):

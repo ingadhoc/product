@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- FORM VIEW -->
+    <record id="product_supplierinfo_form_view" model="ir.ui.view">
+        <field name="name">product.cost.currency.form</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
+        <field name="arch" type="xml">
+            <label for="date_start"  position="before">
+                <field name="replenishment_cost_rule_id" context="{'default_product_id': active_id}"/>
+                <field name="net_price" string="Net Price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+            </label>
+        </field>
+    </record>
+
+    <record id="product_supplierinfo_tree_view" model="ir.ui.view">
+        <field name="name">product.cost.currency.tree</field>
+        <field name="model">product.supplierinfo</field>
+        <field name="inherit_id" ref="product.product_supplierinfo_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="price" position="after">
+                <field name="net_price"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
