@@ -23,6 +23,9 @@ As it is a generic module, you can also setup your own way of computing the repl
 #. Track changes of RC (Replenishment Cost) Last update, RC Base Cost, RC Base Cost Currency
 #. Update RC Last Update automatically if RC Base Cost or RC Base Cost Currency changes (NOTE: currency exchange changes are not tracked)
 #. Add Product Replenshiment Cost Rules. Each rule can have several lines, each line can add a percentage and a fixed amount. It also update "RC Last Update" automatically if rule or rule lines change. Also changes in rules lines are tracked inside the rules.
+#. Add Replenshiment cost rules to supplierinfo.
+#. You can select "Replenishment Cost Type" to use Replenshiment cost rules in the product or use rules in supplierinfo for the first seller.
+#. Now when create an Purchase Order the price that suggest in the line is the replanishment cost.
 
 Installation
 ============
