@@ -19,6 +19,5 @@
 ##############################################################################
 
 from . import product_template
-from . import product_product
 from . import product_replenishment_cost_rule
 from . import product_replenishment_cost_rule_item
