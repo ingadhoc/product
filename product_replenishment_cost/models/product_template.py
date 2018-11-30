@@ -112,7 +112,9 @@ class ProductTemplate(models.Model):
         'replenishment_base_cost_currency_id',
     )
     def update_replenishment_cost_last_update(self):
-        self.write({'replenishment_cost_last_update': fields.Datetime.now()})
+        # con el tracking_disable nos ahorramos doble mensaje
+        self.with_context(tracking_disable=True).write(
+            {'replenishment_cost_last_update': fields.Datetime.now()})
 
     # TODO ver si necesitamos borrar estos depends o no, por ahora
     # no parecen afectar performance y sirvern para que la interfaz haga
