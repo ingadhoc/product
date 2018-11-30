@@ -30,6 +30,12 @@ class ProductReplenishmentCostRule(models.Model):
         'Products',
         auto_join=True,
     )
+    product_supplierinfo_ids = fields.One2many(
+        'product.supplierinfo',
+        'replenishment_cost_rule_id',
+        'Supplierinfo',
+        auto_join=True,
+        )
 
     description = fields.Char(
         compute='_compute_description',
@@ -90,6 +96,14 @@ class ProductReplenishmentCostRule(models.Model):
             'Warning': exceptions.Warning,
             'product': obj,
         }
+
+    @api.multi
+    def compute_rule_inverse(self, cost):
+        self.ensure_one()
+        for line in self.item_ids.filtered('add_to_cost').sorted(reverse=True):
+            cost = (cost - line.fixed_amount) / (
+                1.0 + line.percentage_amount / 100.0)
+        return cost
 
     @api.multi
     def compute_rule(self, cost, product=None):
