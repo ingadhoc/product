@@ -82,76 +82,29 @@ class ProductTemplate(models.Model):
     def _update_cost_from_replenishment_cost(self):
         """
         If we came from tree list, we update only in selected list
-        Lo hacemos en tandas ya que baja el tiempo a la mitad (al menos en 40k)
-        de productos. Además nos permite ir haciendo commits parciales.
         Actulizamos product.product ya que el standard_price esta en ese modelo
         """
-        # hacemos search de nuevo por si se llama desde vista lista
-        commit_transaction = self.env.context.get('commit_transaction')
+        prec = self.env['decimal.precision'].precision_get('Product Price')
+
         domain = [
+            '|', '&', ('seller_ids', '!=', False),
+            ('replenishment_cost_type', '=', 'supplier_price'),
+            '&', '&',
+            ('replenishment_cost_type', '=', 'manual'),
             ('replenishment_base_cost', '!=', False),
             ('replenishment_base_cost_currency_id', '!=', False),
         ]
         if self:
             domain.append(('product_tmpl_id.id', 'in', self.ids))
 
-        batch_size = 1000
-        product_ids = self.env['product.product'].search(domain).ids
-        sliced_product_ids = [
-            product_ids[i:i + batch_size] for i in range(
-                0, len(product_ids), batch_size)]
-        cr = self.env.cr
-        run = 0
-        prec = self.env['decimal.precision'].precision_get('Product Price')
-        for product_ids in sliced_product_ids:
-            run += 1
-
-            # hacemos invalidate cache para que no haga prefetch de todos,
-            # solo los del slice
-            self.invalidate_cache()
-            recs = self.env['product.product'].browse(product_ids)
-            _logger.info(
-                'Running update update cost for %s variants. Run %s of %s' % (
-                    len(recs), run, len(sliced_product_ids)))
-            # by filtering before running we win a lot on performance
-            # este filter ayuda a que no se vuelvan a procesar registros que ya
-            # seactualizaron pero el cron cayó, además lo hace más rapido y
-            # no genera product price history inncesarios
-            for rec in recs.filtered(
+        products = self.env['product.product'].with_context(
+            prefetch_fields=False).search(domain)
+        for product in products.filtered(
                     lambda x: x.replenishment_cost and float_compare(
                         x.standard_price,
                         x.replenishment_cost,
                         precision_digits=prec) != 0):
-
-                # TODO we should check if standar_price type is standar and
-                # not by quants or similar, we remove that because it makes
-                # it slower
-
-                # standard_price is stored on variants (product.product), we
-                # force the update of all the variants
-                rec.standard_price = rec.replenishment_cost
-
-                # we can not use sql because standar_price is a property,
-                # perhups we can do it writing directly on the property but
-                # we need to check if record exists, we can copy some code of
-                # def set_multi
-                # tal vez mejor que meter mano en esto hacer que solo se
-                # actualicen los que se tienen que actualizar
-                # seguramente en la v10 se mejoro el metodo de set de property
-                # tmb
-                # cr.execute(
-                #     "UPDATE product_template SET standard_price=%s WHERE "
-                #     "id=%s", (replenishment_cost, rec.id))
-
-            # commit update (fo free memory?) also to have results stored
-            # in the future, if we store the date, we can update only newones
-
-            # principalmente agregamos esto por error en migracion pero tmb
-            # para que solo se haga el commit por cron
-            if commit_transaction:
-                cr.commit()  # pylint: disable=invalid-commit
-            _logger.info('Finish updating cost of run %s', run)
-
+            product.standard_price = product.replenishment_cost
         return True
 
     @api.constrains(
