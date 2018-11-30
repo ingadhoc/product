@@ -15,6 +15,15 @@ class ProductTemplate(models.Model):
     def _default_replenishment_base_cost_currency_id(self):
         return self.env.user.company_id.currency_id.id
 
+    supplier_currency_id = fields.Many2one(
+        related='seller_ids.currency_id',
+        readonly=True,
+    )
+    supplier_price = fields.Float(
+        string='Supplier Price',
+        related='seller_ids.net_price',
+        readonly=True,
+    )
     standard_price = fields.Float(
         string='Accounting Cost',
     )
@@ -177,28 +186,27 @@ class ProductTemplate(models.Model):
             'Getting replenishment cost currency for ids %s' % self.ids)
         for rec in self:
             product_currency = rec.currency_id
-            if rec.replenishment_cost_type == 'supplier_price'\
-                    and rec.seller_ids:
-                rec.replenishment_cost = rec.seller_ids[0].currency_id.compute(
-                    rec.seller_ids[0].net_price, product_currency, round=False)
+            if rec.replenishment_cost_type == 'supplier_price':
+                replenishment_base_cost = rec.supplier_price
+                base_cost_currency = rec.supplier_currency_id
             elif rec.replenishment_cost_type == 'manual':
                 replenishment_base_cost = rec.replenishment_base_cost
-                replenishment_cost_rule = rec.replenishment_cost_rule_id
                 base_cost_currency = rec.replenishment_base_cost_currency_id
 
-                replenishment_cost = base_cost_currency.compute(
-                    replenishment_base_cost, product_currency, round=False)
+            replenishment_cost_rule = rec.replenishment_cost_rule_id
+            replenishment_cost = base_cost_currency.compute(
+                replenishment_base_cost, product_currency, round=False)
 
-                replenishment_base_cost_on_currency = replenishment_cost
-                if replenishment_cost_rule:
-                    replenishment_cost =\
-                        replenishment_cost_rule.compute_rule(
-                            replenishment_base_cost_on_currency, rec)
-                rec.update({
-                    'replenishment_base_cost_on_currency':
-                    replenishment_base_cost_on_currency,
-                    'replenishment_cost': replenishment_cost
-                })
+            replenishment_base_cost_on_currency = replenishment_cost
+            if replenishment_cost_rule:
+                replenishment_cost =\
+                    replenishment_cost_rule.compute_rule(
+                        replenishment_base_cost_on_currency, rec)
+            rec.update({
+                'replenishment_base_cost_on_currency':
+                replenishment_base_cost_on_currency,
+                'replenishment_cost': replenishment_cost
+            })
 
     @api.constrains('replenishment_cost_rule_id')
     def update_replenishment_cost_last_update_by_rule(self):
