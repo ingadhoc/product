@@ -100,10 +100,10 @@ class ProductTemplate(models.Model):
         products = self.env['product.product'].with_context(
             prefetch_fields=False).search(domain)
         for product in products.filtered(
-                    lambda x: x.replenishment_cost and float_compare(
-                        x.standard_price,
-                        x.replenishment_cost,
-                        precision_digits=prec) != 0):
+                lambda x: x.replenishment_cost and float_compare(
+                    x.standard_price,
+                    x.replenishment_cost,
+                    precision_digits=prec) != 0):
             product.standard_price = product.replenishment_cost
         return True
 
