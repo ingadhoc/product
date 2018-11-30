@@ -136,7 +136,7 @@ class ProductTemplate(models.Model):
     )
     def _compute_replenishment_cost(self):
         _logger.info(
-            'Getting replenishment cost currency for ids %s' % self.ids)
+            'Getting replenishment cost for ids %s' % self.ids)
         for rec in self:
             product_currency = rec.currency_id
             if rec.replenishment_cost_type == 'supplier_price':
