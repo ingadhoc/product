@@ -4,6 +4,7 @@
 ##############################################################################
 from odoo import models, fields, api
 import odoo.addons.decimal_precision as dp
+from odoo.tools import float_compare
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -79,47 +80,24 @@ class ProductTemplate(models.Model):
         Haciendo practicamente lo de ahora pero sin el slice tuvimos une
         performance basatante peor (casi 2 o 3 veces mas de tiempo)
         """
+        prec = self.env['decimal.precision'].precision_get('Product Price')
+
         # we search again if it is called from list view
         domain = [('list_price_type', '!=', False)]
-        commit_transaction = self.env.context.get('commit_transaction')
         if self:
             domain.append(('id', 'in', self.ids))
 
-        batch_size = 1000
-        product_ids = self.search(domain).ids
-        sliced_product_ids = [
-            product_ids[i:i + batch_size] for i in range(
-                0, len(product_ids), batch_size)]
-        cr = self.env.cr
-        run = 0
-        for product_ids in sliced_product_ids:
-            run += 1
-            # we make invalidate cache so that it does not do prefetch of all,
-            # only the slice
-            self.invalidate_cache()
-            recs = self.browse(product_ids)
-            _logger.info(
-                'Running update prices for %s products. Run %s of %s' % (
-                    len(recs), run, len(sliced_product_ids)))
-            for rec in recs:
-                # by using sql we win lot of performance, from 12minutes to
-                # xx for 40000 products
-
-                # el or 0.0 es porque
-                # in some cases computed list price is False
-                #  and this gives error
-                cr.execute(
-                    "UPDATE product_template SET list_price=%s WHERE id=%s",
-                    (rec.computed_list_price or 0.0, rec.id))
-
-            # commit update (fo free memory?) also to have results stored
-            # in the future, if we store the date, we can update only newones
-
-            # mainly we add this by mistake in migration but also
-            # so that only the commit is done by cron
-            if commit_transaction:
-                cr.commit()  # pylint: disable=invalid-commit
-            _logger.info('Finish updating prices of run %s' % run)
+        cr = self._cr
+        for rec in self.with_context(
+                prefetch_fields=False).search(domain).filtered(
+                lambda x: x.computed_list_price and float_compare(
+                        x.computed_list_price,
+                        x.list_price,
+                        precision_digits=prec) != 0):
+            # es mucho mas rapido hacerlo por sql directo
+            cr.execute(
+                "UPDATE product_template SET list_price=%s WHERE id=%s",
+                (rec.computed_list_price or 0.0, rec.id))
         return True
 
     @api.depends(
