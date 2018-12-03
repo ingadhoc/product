@@ -35,7 +35,7 @@ class Users(models.Model):
                 'product_uom': so_line.product_uom.id,
                 'product_uom_qty': so_line.product_uom_qty,
             })
-            tmp_line.product_id_change()
+            tmp_line._onchange_discount()
             pricelist_disc = tmp_line.discount
         net_discount = discount - pricelist_disc
 
