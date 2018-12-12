@@ -6,7 +6,9 @@
 Product Pack
 ============
 
-This module add "Product Pack" funcionality to sale orders. For prouct you can add some other product to sell with them, in the sale order you choose the product and then automaticaly added the products that set in Product selected. 
+This module add "Product Pack" funcionality to sale orders. For prouct you can add some other product to sell with them, in the sale order you choose the product and then automaticaly added the products that set in Product selected.
+
+Nota sobre permisos. Odoo por defecto deja que grupos "Manager" e "Inventario / User" puedan gestionar productos. Para no tener que agregar dependencia a stock ni hacer modulo puente con las diversas apps que crean esos grupos, damos permiso sobre "product.pack.line" a "Empleados" para que de esta manera, cualquiera que pueda gestionar productos pueda gestionar la info del pack.
 
 Installation
 ============
