@@ -29,12 +29,17 @@ class Users(models.Model):
         pricelist_disc = 0.0
         if so_line and 'discount_policy' in pricelist._fields and \
                 pricelist.discount_policy == 'without_discount':
-            tmp_line = so_line.new({
+            tmp_line_vals = {
                 'product_id': so_line.product_id.id,
                 'order_id': so_line.order_id.id,
                 'product_uom': so_line.product_uom.id,
                 'product_uom_qty': so_line.product_uom_qty,
-            })
+            }
+            # for compatibility with product_pack
+            if 'pack_parent_line_id' in so_line._fields:
+                tmp_line_vals['pack_parent_line_id'] = so_line\
+                    .pack_parent_line_id.id
+            tmp_line = so_line.new(tmp_line_vals)
             tmp_line._onchange_discount()
             pricelist_disc = tmp_line.discount
         net_discount = discount - pricelist_disc
