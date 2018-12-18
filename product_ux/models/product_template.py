@@ -15,3 +15,5 @@ class ProductTemplate(models.Model):
         related='seller_ids.product_code',
         readonly=True,
     )
+
+    warranty = fields.Float()
