@@ -24,7 +24,7 @@ class ProductTemplate(models.Model):
         for rec in one_variants:
             variant_alone = rec.attribute_line_ids.filtered(
                 lambda r: len(r.value_ids) == 1).mapped(
-                lambda t: t.value_ids[0])
+                lambda t: t.value_ids and t.value_ids[0])
             values = {'attribute_value_ids': [
                 (6, 0, [x.id for x in variant_alone])]}\
                 if rec.product_variant_ids else {
