@@ -22,7 +22,8 @@ Several Improvements to products:
 #. Add smart button from pricelist to pricelists items
 #. Add prices on product template tree view.
 #. Both product template and product product tree view show the price taking into account the pricelsit.
-#. Add product warranty field that was deprecated by odoo
+#. Add product warranty field that was deprecated by odoo.
+#. Add in product the "User Company Currency" field and replace for the currency taken in the widget of standard price.
 
 Installation
 ============
