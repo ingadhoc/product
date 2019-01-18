@@ -22,9 +22,17 @@
             <group name="group_general">
                 <label for="warranty"/>
                 <div>
-                    <field name="warranty" class="oe_inline"/> months
+                    <field name="warranty" class="oe_inline"/>
+ months
                 </div>
             </group>
+            <field name="currency_id" position="after">
+                <field name="user_company_currency_id" invisible="1"/>
+            </field>
+
+            <field name="standard_price" position="attributes">
+                <attribute name="options">{'currency_field': 'user_company_currency_id', 'field_digits': True}</attribute>
+            </field>
         </field>
     </record>
 
