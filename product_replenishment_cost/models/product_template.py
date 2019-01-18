@@ -99,12 +99,17 @@ class ProductTemplate(models.Model):
 
         products = self.env['product.product'].with_context(
             prefetch_fields=False).search(domain)
-        for product in products.filtered(
-                lambda x: x.replenishment_cost and float_compare(
-                    x.standard_price,
-                    x.replenishment_cost,
-                    precision_digits=prec) != 0):
-            product.standard_price = product.replenishment_cost
+        for product in products.filtered('replenishment_cost'):
+            replenishment_cost = product.replenishment_cost
+            if product.currency_id != product.user_company_currency_id:
+                replenishment_cost = product.currency_id.compute(
+                    replenishment_cost,
+                    product.user_company_currency_id, round=False)
+            if float_compare(
+                    product.standard_price,
+                    replenishment_cost,
+                    precision_digits=prec) != 0:
+                product.standard_price = replenishment_cost
         return True
 
     @api.constrains(
