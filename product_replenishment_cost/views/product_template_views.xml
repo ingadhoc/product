@@ -28,7 +28,7 @@
                         <!-- we only change label -->
                         <label for="standard_price_copy" groups="base.group_user" string="Accounting Cost" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"/>
                         <div name="standard_price_copy" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}">
-                            <field name="standard_price_copy" widget="monetary" options="{'currency_field': 'currency_id'}" class="oe_inline"/>
+                            <field name="standard_price_copy" widget="monetary" options="{'currency_field': 'user_company_currency_id'}" class="oe_inline"/>
                         </div>
                     </group>
                 </group>
