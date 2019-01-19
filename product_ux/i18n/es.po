@@ -3,14 +3,16 @@
 # * product_ux
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018
+# Gonzalo Ruzafa <gr@ingadhoc.com>, 2019
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-25 13:51+0000\n"
-"PO-Revision-Date: 2018-09-25 13:51+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018\n"
+"POT-Creation-Date: 2019-01-08 21:20+0000\n"
+"PO-Revision-Date: 2018-04-26 12:32+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,32 +23,32 @@ msgstr ""
 #. module: product_ux
 #: model:ir.ui.view,arch_db:product_ux.product_pricelist_view
 msgid "<span class=\"o_stat_text\">Elementos de tarifa</span>"
-msgstr ""
+msgstr "<span class=\"o_stat_text\">Elementos de tarifa</span>"
 
 #. module: product_ux
 #: model:ir.ui.view,arch_db:product_ux.product_pricelist_item_search_view
 msgid "Apply On"
-msgstr ""
+msgstr "Aplicar en"
 
 #. module: product_ux
 #: model:ir.ui.view,arch_db:product_ux.product_template_only_form_view
 msgid "Internal Description"
-msgstr ""
+msgstr "Descripción Interna"
 
 #. module: product_ux
 #: model:ir.ui.view,arch_db:product_ux.product_pricelist_item_search_view
 msgid "Pricelist Items"
-msgstr ""
+msgstr "Items de Tarifa"
 
 #. module: product_ux
 #: model:ir.ui.view,arch_db:product_ux.product_template_tree_view
 msgid "Pricelist Price"
-msgstr ""
+msgstr "Precio Tarifa"
 
 #. module: product_ux
 #: model:ir.actions.act_window,name:product_ux.product_pricelist_item_action
 msgid "Pricelists Items"
-msgstr ""
+msgstr "Items de Tarifa"
 
 #. module: product_ux
 #: model:ir.model,name:product_ux.model_product_product
@@ -57,7 +59,7 @@ msgstr "Producto"
 #. module: product_ux
 #: model:ir.ui.view,arch_db:product_ux.product_pricelist_item_search_view
 msgid "Product Category"
-msgstr ""
+msgstr "Categoría de producto"
 
 #. module: product_ux
 #: model:ir.model,name:product_ux.model_product_template
@@ -68,7 +70,7 @@ msgstr "Plantilla de Producto"
 #. module: product_ux
 #: model:ir.ui.view,arch_db:product_ux.product_template_only_form_view
 msgid "This note is for internal use only."
-msgstr ""
+msgstr "Esta nota es únicamente para uso interno ."
 
 #. module: product_ux
 #: model:ir.model.fields,help:product_ux.field_product_product_sellers_product_code
@@ -77,9 +79,22 @@ msgid ""
 "This vendor's product code will be used when printing a request for "
 "quotation. Keep empty to use the internal one."
 msgstr ""
+"El código de producto de vendedor se usará al imprimir una solicitud de "
+"presupuesto. Déjelo vacío para usar el código interno."
 
 #. module: product_ux
 #: model:ir.model.fields,field_description:product_ux.field_product_product_sellers_product_code
 #: model:ir.model.fields,field_description:product_ux.field_product_template_sellers_product_code
 msgid "Vendor Product Code"
-msgstr ""
+msgstr "Código de producto del proveedor"
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_product_product_warranty
+#: model:ir.model.fields,field_description:product_ux.field_product_template_warranty
+msgid "Warranty"
+msgstr "Garantía"
+
+#. module: product_ux
+#: model:ir.ui.view,arch_db:product_ux.product_template_only_form_view
+msgid "months"
+msgstr "meses"

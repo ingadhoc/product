@@ -4,13 +4,15 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018
+# Mariana Luz Torres <mt@adhoc.com.ar>, 2019
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-25 13:51+0000\n"
-"PO-Revision-Date: 2018-09-25 13:51+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018\n"
+"POT-Creation-Date: 2019-01-08 21:20+0000\n"
+"PO-Revision-Date: 2018-09-06 19:04+0000\n"
+"Last-Translator: Mariana Luz Torres <mt@adhoc.com.ar>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,6 +27,8 @@ msgid ""
 "%s unit of measure is not valid for purchase, please change %s product line "
 "with the proper uom in order to continue"
 msgstr ""
+"%s La unidad de medida no es válida para la compra, por favor cámbiela %s "
+"Línea de productos con la uom adecuada para continuar."
 
 #. module: product_uoms_purchase
 #: model:ir.model,name:product_uoms_purchase.model_product_product
@@ -39,14 +43,14 @@ msgstr "Product Uoms"
 #. module: product_uoms_purchase
 #: model:ir.model.fields,field_description:product_uoms_purchase.field_product_uoms_purchase_ok
 msgid "Purchase Ok"
-msgstr ""
+msgstr "Compras Ok"
 
 #. module: product_uoms_purchase
 #: model:ir.model,name:product_uoms_purchase.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr ""
+msgstr "Línea de Pedido de Venta"
 
 #. module: product_uoms_purchase
 #: model:ir.model.fields,field_description:product_uoms_purchase.field_purchase_order_line_uom_unit_ids
 msgid "Uom Unit"
-msgstr ""
+msgstr "Unidad de Medida"
