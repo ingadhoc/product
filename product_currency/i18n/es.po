@@ -3,14 +3,16 @@
 # * product_currency
 # 
 # Translators:
-# Javier Diez <jd@adhoc.com.ar>, 2017
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018
+# Gonzalo Ruzafa <gr@ingadhoc.com>, 2019
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-31 12:38+0000\n"
-"PO-Revision-Date: 2017-08-31 12:38+0000\n"
-"Last-Translator: Javier Diez <jd@adhoc.com.ar>, 2017\n"
+"POT-Creation-Date: 2019-01-08 21:19+0000\n"
+"PO-Revision-Date: 2018-05-24 19:23+0000\n"
+"Last-Translator: Gonzalo Ruzafa <gr@ingadhoc.com>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,9 +21,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: product_currency
+#: model:ir.model.fields,field_description:product_currency.field_product_product_company_currency_id
+#: model:ir.model.fields,field_description:product_currency.field_product_template_company_currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: product_currency
+#: model:ir.model.fields,field_description:product_currency.field_product_product_force_currency_id
 #: model:ir.model.fields,field_description:product_currency.field_product_template_force_currency_id
 msgid "Force Currency"
-msgstr ""
+msgstr "Forzar Moneda"
 
 #. module: product_currency
 #: model:ir.model,name:product_currency.model_product_template
@@ -29,6 +38,7 @@ msgid "Product Template"
 msgstr "Plantilla de Producto"
 
 #. module: product_currency
+#: model:ir.model.fields,help:product_currency.field_product_product_force_currency_id
 #: model:ir.model.fields,help:product_currency.field_product_template_force_currency_id
 msgid "Use this currency instead of the product company currency"
-msgstr ""
+msgstr "Usar esta moneda en lugar de la moneda de la Compañía"

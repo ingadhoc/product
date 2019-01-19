@@ -4,13 +4,15 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018
+# Santiago Crespo <sc@adhoc.com.ar>, 2019
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-25 13:51+0000\n"
-"PO-Revision-Date: 2018-09-25 13:51+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018\n"
+"POT-Creation-Date: 2019-01-08 21:20+0000\n"
+"PO-Revision-Date: 2018-05-10 13:11+0000\n"
+"Last-Translator: Santiago Crespo <sc@adhoc.com.ar>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,7 +55,7 @@ msgstr ""
 #. module: product_stock_by_location
 #: model:ir.ui.view,arch_db:product_stock_by_location.product_template_kanban_stock_view
 msgid "Forecasted:"
-msgstr ""
+msgstr "Pronosticado"
 
 #. module: product_stock_by_location
 #: model:ir.model.fields,help:product_stock_by_location.field_stock_location_show_stock_on_products
@@ -77,7 +79,7 @@ msgstr "Ubicaciones de inventario"
 #. module: product_stock_by_location
 #: model:ir.ui.view,arch_db:product_stock_by_location.view_location_stock_tree
 msgid "Location Stock"
-msgstr ""
+msgstr "Ubicación Stock"
 
 #. module: product_stock_by_location
 #: model:ir.model.fields,field_description:product_stock_by_location.field_product_product_location_ids
@@ -88,7 +90,7 @@ msgstr "Úbicación"
 #. module: product_stock_by_location
 #: model:ir.ui.view,arch_db:product_stock_by_location.product_template_kanban_stock_view
 msgid "On hand:"
-msgstr ""
+msgstr "En mano:"
 
 #. module: product_stock_by_location
 #: model:ir.model.fields,field_description:product_stock_by_location.field_stock_location_outgoing_qty
@@ -103,7 +105,7 @@ msgstr "Producto"
 #. module: product_stock_by_location
 #: model:ir.ui.view,arch_db:product_stock_by_location.view_template_stock_by_location_form
 msgid "Product Stock by Locations"
-msgstr ""
+msgstr "Stock de producto por localizaciones"
 
 #. module: product_stock_by_location
 #: model:ir.model,name:product_stock_by_location.model_product_template
@@ -144,7 +146,7 @@ msgstr ""
 #. module: product_stock_by_location
 #: model:ir.model.fields,field_description:product_stock_by_location.field_stock_location_show_stock_on_products
 msgid "Show Stock On Products"
-msgstr ""
+msgstr "Mostrar stock en productos"
 
 #. module: product_stock_by_location
 #: code:addons/product_stock_by_location/models/product_product.py:17
@@ -158,4 +160,4 @@ msgstr "Stock por Ubicación"
 #: model:ir.ui.view,arch_db:product_stock_by_location.view_stock_product_template_tree
 #: model:ir.ui.view,arch_db:product_stock_by_location.view_stock_product_tree
 msgid "View Stock Detail"
-msgstr ""
+msgstr "Ver detalle de stock"

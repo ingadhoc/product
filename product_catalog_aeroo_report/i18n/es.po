@@ -3,14 +3,19 @@
 # * product_catalog_aeroo_report
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018
+# Gonzalo Ruzafa <gr@ingadhoc.com>, 2019
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019
+# Valentino Defelice <vd@adhoc.com.ar>, 2019
+# Julián García <jg@adhoc.com.ar>, 2019
+# Santiago Crespo <sc@adhoc.com.ar>, 2019
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-25 13:51+0000\n"
-"PO-Revision-Date: 2018-09-25 13:51+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018\n"
+"POT-Creation-Date: 2019-01-08 21:19+0000\n"
+"PO-Revision-Date: 2018-08-23 20:36+0000\n"
+"Last-Translator: Santiago Crespo <sc@adhoc.com.ar>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,23 +27,23 @@ msgstr ""
 #: code:addons/product_catalog_aeroo_report/report/parser.py:79
 #, python-format
 msgid "%s (%s)"
-msgstr ""
+msgstr "%s (%s)"
 
 #. module: product_catalog_aeroo_report
 #: code:addons/product_catalog_aeroo_report/report/parser.py:82
 #, python-format
 msgid "%s. Also available in %s"
-msgstr ""
+msgstr "%s. Also available in %s"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.ui.view,arch_db:product_catalog_aeroo_report.view_product_catalog
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report_categories_order
 msgid "Categories Order Sintax"
-msgstr ""
+msgstr "Sintaxis para orden de categoría"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog_create_uid
@@ -65,6 +70,8 @@ msgid ""
 "Export prices with taxes included by default? This value will be used as "
 "default on print catalog wizard"
 msgstr ""
+"¿Exportar precios con impuestos incluidos por defecto?. Este valor se "
+"utilizará como predeterminado en el asistente del catálogo de impresión."
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog_id
@@ -76,7 +83,7 @@ msgstr "ID (identificación)"
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report_include_sub_categories
 msgid "Include Subcategories?"
-msgstr ""
+msgstr "¿Incluir Subcategorías?"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog___last_update
@@ -100,17 +107,17 @@ msgstr "Última actualización en"
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report_name
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #. module: product_catalog_aeroo_report
 #: selection:product.product_catalog_report,prod_display_type:0
 msgid "One Product Per Line"
-msgstr ""
+msgstr "Un producto por línea"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report_only_with_stock
 msgid "Only With Stock Products?"
-msgstr ""
+msgstr "¿Sólo en Productos con Stock?"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report_pricelist_ids
@@ -121,12 +128,12 @@ msgstr "Lista de Precios"
 #: model:ir.ui.view,arch_db:product_catalog_aeroo_report.view_product_catalog
 #: model:ir.ui.view,arch_db:product_catalog_aeroo_report.view_product_catalog_report_form
 msgid "Print"
-msgstr ""
+msgstr "Imprimir"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report_print_product_uom
 msgid "Print Product UOM?"
-msgstr ""
+msgstr "¿Imprimir UOM del Producto?"
 
 #. module: product_catalog_aeroo_report
 #: selection:product.product_catalog_report,product_type:0
@@ -138,27 +145,27 @@ msgstr "Producto"
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog_product_catalog_report_id
 #: model:ir.ui.menu,name:product_catalog_aeroo_report.menu_product_catalog
 msgid "Product Catalog"
-msgstr ""
+msgstr "Catálogo de Producto"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.actions.report,name:product_catalog_aeroo_report.report_product_catalog_by_categories_odt
 msgid "Product Catalog By Categories Report - ODT"
-msgstr ""
+msgstr "Catálogo de productos por informe de categorías - ODT"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.ui.view,arch_db:product_catalog_aeroo_report.view_product_catalog
 msgid "Product Catalog Report"
-msgstr ""
+msgstr "Informe del catálogo de productos"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.actions.report,name:product_catalog_aeroo_report.report_product_catalog_ods
 msgid "Product Catalog Report - ODS"
-msgstr ""
+msgstr "Informe del catálogo de productos - ODS"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model,name:product_catalog_aeroo_report.model_product_product_catalog_report
 msgid "Product Catalog Report with Aeroo"
-msgstr ""
+msgstr "Reporte de Catálogo de Productos con Aeroo"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.actions.act_window,name:product_catalog_aeroo_report.action_product_catalog_reports
@@ -166,27 +173,27 @@ msgstr ""
 #: model:ir.ui.view,arch_db:product_catalog_aeroo_report.view_product_catalog_report_form
 #: model:ir.ui.view,arch_db:product_catalog_aeroo_report.view_product_catalog_report_tree
 msgid "Product Catalog Reports"
-msgstr ""
+msgstr "Catálogo de producto Reporte"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.actions.report,name:product_catalog_aeroo_report.report_product_catalog_simple_odt
 msgid "Product Catalog Simple Report - ODT"
-msgstr ""
+msgstr "Catálogo simple de producto  Reporte - ODT"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report_category_ids
 msgid "Product Categories"
-msgstr ""
+msgstr "Categorías de producto"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report_prod_display_type
 msgid "Product Display Type"
-msgstr ""
+msgstr "Tipo de visualización del producto"
 
 #. module: product_catalog_aeroo_report
 #: selection:product.product_catalog_report,prod_display_type:0
 msgid "Product List"
-msgstr ""
+msgstr "Lista de productos"
 
 #. module: product_catalog_aeroo_report
 #: selection:product.product_catalog_report,product_type:0
@@ -196,32 +203,32 @@ msgstr "Plantilla de producto"
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report_product_type
 msgid "Product Type"
-msgstr ""
+msgstr "Tipo de producto"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report_products_order
 msgid "Products Order Sintax"
-msgstr ""
+msgstr "Sintaxis para orden de productos"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report_report_id
 msgid "Report"
-msgstr ""
+msgstr "Reporte"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog_taxes_included
 msgid "Taxes Included"
-msgstr ""
+msgstr "Impuestos Incluidos"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report_taxes_included
 msgid "Taxes Included?"
-msgstr ""
+msgstr "¿Incluir Impuestos?"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog_use_planned_price
 msgid "Use Planned Price"
-msgstr ""
+msgstr "Utilizar Precio Planeado"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,help:product_catalog_aeroo_report.field_product_catalog_use_planned_price
@@ -229,29 +236,31 @@ msgid ""
 "Use planned price instead of list price (if planned price module is not "
 "installed, nothing is going to change)"
 msgstr ""
+"Use el precio planificado en lugar del precio de lista (si el módulo de "
+"precio planificado no está instalado, nada cambiará)"
 
 #. module: product_catalog_aeroo_report
 #: selection:product.product_catalog_report,prod_display_type:0
 msgid "Variants"
-msgstr ""
+msgstr "Variantes"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model,name:product_catalog_aeroo_report.model_product_catalog
 msgid "Wizard to generate the Product Catalog Report with Aeroo"
-msgstr ""
+msgstr "Asistente para generar el informe del catálogo de productos con Aeroo"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,help:product_catalog_aeroo_report.field_product_product_catalog_report_categories_order
 #: model:ir.model.fields,help:product_catalog_aeroo_report.field_product_product_catalog_report_products_order
 msgid "for eg. name desc"
-msgstr ""
+msgstr "por ej. nombre desc"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.ui.view,arch_db:product_catalog_aeroo_report.view_product_catalog
 msgid "or"
-msgstr ""
+msgstr "o"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model,name:product_catalog_aeroo_report.model_report_product_catalog_parser
 msgid "report.product_catalog_parser"
-msgstr ""
+msgstr "report.product_catalog_parser"
