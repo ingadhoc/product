@@ -79,9 +79,11 @@ class ProductProduct(models.Model):
         ])
 
         # for compatibility with website_sale
-        if self._context.get('website_id', False):
+        if self._context.get('website_id', False) and \
+           not self._context.get('from_cart', False):
             packs |= self.filtered(
                 lambda p: p.pack and p.pack_price_type == 'components_price')
+
         no_packs = (self | self.mapped('pack_line_ids.product_id')) - packs
         return packs, no_packs
 
