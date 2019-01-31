@@ -13,6 +13,7 @@
         <field name="name">product.template.form.inherit</field>
         <field name="model">product.template</field>
         <!-- inherit common view -->
+        <field name="priority">30</field>
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
             <group name="description">
