@@ -24,6 +24,7 @@ Several Improvements to products:
 #. Both product template and product product tree view show the price taking into account the pricelsit.
 #. Add product warranty field that was deprecated by odoo.
 #. Add in product the "User Company Currency" field and replace for the currency taken in the widget of standard price.
+#. Add new field description on product UOMs and add search view to allow to group and search by several fields
 
 Installation
 ============
