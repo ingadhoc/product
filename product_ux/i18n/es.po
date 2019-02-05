@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-08 21:20+0000\n"
+"POT-Creation-Date: 2019-02-04 15:04+0000\n"
 "PO-Revision-Date: 2018-04-26 12:32+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
@@ -29,6 +29,16 @@ msgstr "<span class=\"o_stat_text\">Elementos de tarifa</span>"
 #: model:ir.ui.view,arch_db:product_ux.product_pricelist_item_search_view
 msgid "Apply On"
 msgstr "Aplicar en"
+
+#. module: product_ux
+#: model:ir.ui.view,arch_db:product_ux.product_uom_search_view
+msgid "Category"
+msgstr "Categoría"
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_product_uom_description
+msgid "Description"
+msgstr ""
 
 #. module: product_ux
 #: model:ir.ui.view,arch_db:product_ux.product_template_only_form_view
@@ -68,6 +78,11 @@ msgid "Product Template"
 msgstr "Plantilla de Producto"
 
 #. module: product_ux
+#: model:ir.model,name:product_ux.model_product_uom
+msgid "Product Unit of Measure"
+msgstr ""
+
+#. module: product_ux
 #: model:ir.ui.view,arch_db:product_ux.product_template_only_form_view
 msgid "This note is for internal use only."
 msgstr "Esta nota es únicamente para uso interno ."
@@ -81,6 +96,12 @@ msgid ""
 msgstr ""
 "El código de producto de vendedor se usará al imprimir una solicitud de "
 "presupuesto. Déjelo vacío para usar el código interno."
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_product_product_user_company_currency_id
+#: model:ir.model.fields,field_description:product_ux.field_product_template_user_company_currency_id
+msgid "User Company Currency"
+msgstr ""
 
 #. module: product_ux
 #: model:ir.model.fields,field_description:product_ux.field_product_product_sellers_product_code
