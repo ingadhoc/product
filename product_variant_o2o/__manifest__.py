@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product Variant Force One Two One',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.1.0',
     'category': 'Sales',
     'author': 'ADHOC SA, Odoo Community Association (OCA)',
     'website': 'www.adhoc.com.ar',
@@ -27,6 +27,7 @@
     'depends': ['product'],
     'data': [
         'views/product_template_views.xml',
+        'views/product_attribute_views.xml',
     ],
     'installable': True
 }
