@@ -15,10 +15,6 @@
         <!-- inherit common view -->
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
-            <group name="description">
-                <separator string="Internal Description" colspan="4"/>
-                <field name="description" colspan="4" nolabel="1" placeholder="This note is for internal use only."/>
-            </group>
             <group name="group_general">
                 <label for="warranty"/>
                 <div>
