@@ -3,11 +3,6 @@
 # * product_planned_price
 # 
 # Translators:
-# Gonzalo Ruzafa <gr@ingadhoc.com>, 2019
-# Valentino Defelice <vd@adhoc.com.ar>, 2019
-# Julián García <jg@adhoc.com.ar>, 2019
-# emiquinodoz <eq@ingadhoc.com>, 2019
-# Santiago Crespo <sc@adhoc.com.ar>, 2019
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019
 # 
 msgid ""
@@ -17,12 +12,12 @@ msgstr ""
 "POT-Creation-Date: 2019-02-22 01:01+0000\n"
 "PO-Revision-Date: 2018-08-23 20:36+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019\n"
-"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"Language-Team: French (https://www.transifex.com/adhoc/teams/46451/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: product_planned_price
 #: model:ir.model.fields,help:product_planned_price.field_product_product_list_price_copy
@@ -31,88 +26,86 @@ msgid ""
 "Base price to compute the customer price. Sometimes called the catalog "
 "price."
 msgstr ""
-"Precio Base para computar el precio de cliente.\n"
-"Algunas veces llamado Precio de Catálogo."
 
 #. module: product_planned_price
 #: model:ir.ui.view,arch_db:product_planned_price.product_template_only_form_view
 msgid "Based on"
-msgstr "Basado en"
+msgstr ""
 
 #. module: product_planned_price
 #: selection:product.template,list_price_type:0
 msgid "By Margin"
-msgstr "Por Margen"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.ui.view,arch_db:product_planned_price.view_update_from_planned_price_wizard_form
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr ""
 
 #. module: product_planned_price
 #: model:product.product,name:product_planned_price.computed_manual
 #: model:product.template,name:product_planned_price.computed_manual_product_template
 msgid "Computed Manual Product"
-msgstr "Producto computado manual"
+msgstr ""
 
 #. module: product_planned_price
 #: model:product.product,name:product_planned_price.computed_other_currency
 #: model:product.template,name:product_planned_price.computed_other_currency_product_template
 msgid "Computed Other Currency Product"
-msgstr "Producto computado en otra moneda"
+msgstr ""
 
 #. module: product_planned_price
 #: model:product.product,name:product_planned_price.computed_by_margin
 #: model:product.template,name:product_planned_price.computed_by_margin_product_template
 msgid "Computed by Margin Product"
-msgstr "Producto computado por margen"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.ui.view,arch_db:product_planned_price.view_update_from_planned_price_wizard_form
 msgid "Confirm"
-msgstr "Confirmar"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard_create_uid
 msgid "Created by"
-msgstr "Creado por"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard_create_date
 msgid "Created on"
-msgstr "Creado en"
+msgstr ""
 
 #. module: product_planned_price
 #: selection:product.template,list_price_type:0
 msgid "Currency exchange"
-msgstr "Tasa cambiaría"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,help:product_planned_price.field_product_product_other_currency_id
 #: model:ir.model.fields,help:product_planned_price.field_product_template_other_currency_id
 msgid "Currency used for the Currency List Price."
-msgstr "Moneda utilizada para el precio de lista de divisas"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard_display_name
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,help:product_planned_price.field_product_product_computed_list_price_manual
 #: model:ir.model.fields,help:product_planned_price.field_product_template_computed_list_price_manual
 msgid "Field to store manual planned price"
-msgstr "Campo para almacenar el precio planificado manual"
+msgstr ""
 
 #. module: product_planned_price
 #: selection:product.template,list_price_type:0
 msgid "Fixed value"
-msgstr "Valor fijo"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard_id
 msgid "ID"
-msgstr "ID (identificación)"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,help:product_planned_price.field_product_product_list_price_type
@@ -122,72 +115,69 @@ msgid ""
 " If the 'By margin' type is chosen, the following formula will be taken into account for the planned price: Replenishment cost * (1 + margin(%)) + surcharge.\n"
 " If the 'Currency exchange' type is chosen, The planned price is set in the chosen currency and converted to the product's currency"
 msgstr ""
-"Si se elige el tipo 'Valor fijo', se define un precio planificado fijo.\n"
-"Si se elige el tipo 'Por margen', se tendrá en cuenta la siguiente fórmula para el precio planificado: Costo de reposición * (1 + margen (%)) + recargo.\n"
-"Si se elige el tipo de 'Cambio de moneda', el precio planificado se establece en la moneda elegida y se convierte a la moneda del producto"
 
 #. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard___last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard_write_uid
 msgid "Last Updated by"
-msgstr "Última actualización de"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard_write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.ui.view,arch_db:product_planned_price.product_template_only_form_view
 msgid "Margin Formula"
-msgstr "Fórmula de margen"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_product_other_currency_id
 #: model:ir.model.fields,field_description:product_planned_price.field_product_template_other_currency_id
 msgid "Planned Currency"
-msgstr "Moneda planificada"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_product_computed_list_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_template_computed_list_price
 #: model:ir.ui.view,arch_db:product_planned_price.product_template_only_form_view
 msgid "Planned Price"
-msgstr "Precio planificado"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_product_computed_list_price_manual
 #: model:ir.model.fields,field_description:product_planned_price.field_product_template_computed_list_price_manual
 msgid "Planned Price Manual"
-msgstr "Manual de precios planificados"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_product_sale_margin
 #: model:ir.model.fields,field_description:product_planned_price.field_product_template_sale_margin
 msgid "Planned Price Sale margin %"
-msgstr "Precio planificado Margen de venta%"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_product_sale_surcharge
 #: model:ir.model.fields,field_description:product_planned_price.field_product_template_sale_surcharge
 msgid "Planned Price Sale surcharge"
-msgstr "Precio planificado recargo de venta"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_product_list_price_type
 #: model:ir.model.fields,field_description:product_planned_price.field_product_template_list_price_type
 msgid "Planned Price Type"
-msgstr "Tipo de precio planificado"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_product_other_currency_list_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_template_other_currency_list_price
 msgid "Planned Price on Currency"
-msgstr "Precio planificado en moneda"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,help:product_planned_price.field_product_product_computed_list_price
@@ -196,48 +186,46 @@ msgid ""
 "Planned Price. This value depends on Planned Price Type\" an other "
 "parameters."
 msgstr ""
-"Precio previsto. Este valor depende del tipo de precio planificado \"y otros"
-" parámetros."
 
 #. module: product_planned_price
 #: model:ir.model,name:product_planned_price.model_product_product
 msgid "Product"
-msgstr "Producto"
+msgstr "Article"
 
 #. module: product_planned_price
 #: model:ir.ui.view,arch_db:product_planned_price.view_update_from_planned_price_wizard_form
 msgid "Product Catalog Report"
-msgstr "Informe del catálogo de productos"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model,name:product_planned_price.model_product_template
 msgid "Product Template"
-msgstr "Plantilla de producto"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_product_replenishment_cost_copy
 #: model:ir.model.fields,field_description:product_planned_price.field_product_template_replenishment_cost_copy
 msgid "Replenishment Cost"
-msgstr "Costo de reposición"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,help:product_planned_price.field_product_product_replenishment_cost_copy
 #: model:ir.model.fields,help:product_planned_price.field_product_template_replenishment_cost_copy
 msgid "Replenishment cost on the currency of the product"
-msgstr "Coste de reposición en la moneda del producto"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,help:product_planned_price.field_product_product_other_currency_list_price
 #: model:ir.model.fields,help:product_planned_price.field_product_template_other_currency_list_price
 msgid "Sale Price on Other Currency"
-msgstr "Precio de venta en otra moneda"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_product_list_price_copy
 #: model:ir.model.fields,field_description:product_planned_price.field_product_template_list_price_copy
 #: model:ir.ui.view,arch_db:product_planned_price.product_template_only_form_view
 msgid "Sales Price"
-msgstr "Precio de venta"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.ui.view,arch_db:product_planned_price.view_update_from_planned_price_wizard_form
@@ -245,8 +233,6 @@ msgid ""
 "Update List Price with Planned Price for all sellected products with planned"
 " price."
 msgstr ""
-"Actualizar precio de lista con precio planificado para todos los productos "
-"vendidos con precio planificado."
 
 #. module: product_planned_price
 #: model:ir.actions.act_window,name:product_planned_price.action_update_from_planned_price_wizard
@@ -254,27 +240,25 @@ msgstr ""
 #: model:ir.cron,cron_name:product_planned_price.ir_cron_update_price_from_planned
 #: model:ir.cron,name:product_planned_price.ir_cron_update_price_from_planned
 msgid "Update Prices from Planned"
-msgstr "Actualizar precios desde planeado"
+msgstr ""
 
 #. module: product_planned_price
 #: code:addons/product_planned_price/wizards/product_update_from_planned_price_wizard.py:19
 #, python-format
 msgid "Update from planned price must be called from product template"
 msgstr ""
-"La actualización del precio planificado debe llamarse desde la plantilla del"
-" producto"
 
 #. module: product_planned_price
 #: model:ir.model,name:product_planned_price.model_product_update_from_planned_price_wizard
 msgid "Update product price from planned price"
-msgstr "Actualizar el precio del producto del precio planificado"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.ui.view,arch_db:product_planned_price.product_template_search_view
 msgid "With Planned Price"
-msgstr "Con precio planificado"
+msgstr ""
 
 #. module: product_planned_price
 #: model:ir.ui.view,arch_db:product_planned_price.view_update_from_planned_price_wizard_form
 msgid "or"
-msgstr "O"
+msgstr ""
