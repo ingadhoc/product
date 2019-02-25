@@ -13,7 +13,8 @@ class ResPartner(models.Model):
     def _inverse_product_pricelist(self):
         """ if user is in group restrict prices we still allow him to create
         partners without pricelist or to delete pricelist from partners"""
-        if self.user_has_groups('price_security.group_restrict_prices') and \
+        if self == self.commercial_partner_id and\
+            self.user_has_groups('price_security.group_restrict_prices') and \
                 self.property_product_pricelist:
             raise ValidationError(_(
                 'You are not allowed to change the pricelist'))
@@ -26,6 +27,7 @@ class ResPartner(models.Model):
         partners"""
         if self.user_has_groups(
                 'price_security.group_restrict_prices') and \
-                self.filtered(lambda x: x.property_payment_term_id):
+                self.filtered(lambda x: x == x.commercial_partner_id
+                              and x.property_payment_term_id):
             raise ValidationError(_(
                 'You are not allowed to change the Payment Term'))
