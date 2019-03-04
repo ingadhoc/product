@@ -17,10 +17,11 @@ class ProductTemplate(models.Model):
 
     @api.depends()
     def _compute_abc_total(self):
-        if self.abc_sales_quantity and self.abc_sales_amount:
-            self.abc_sales_combined = \
-                self.abc_sales_quantity + self.abc_sales_amount
-        elif self.abc_sales_quantity and not self.abc_sales_amount:
-            self.abc_sales_combined = self.abc_sales_quantity
-        elif self.abc_sales_amount and not self.abc_sales_quantity:
-            self.abc_sales_combined = self.abc_sales_amount
+        for rec in self:
+            if rec.abc_sales_quantity and rec.abc_sales_amount:
+                rec.abc_sales_combined = \
+                    rec.abc_sales_quantity + rec.abc_sales_amount
+            elif rec.abc_sales_quantity and not rec.abc_sales_amount:
+                rec.abc_sales_combined = rec.abc_sales_quantity
+            elif rec.abc_sales_amount and not rec.abc_sales_quantity:
+                rec.abc_sales_combined = rec.abc_sales_amount
