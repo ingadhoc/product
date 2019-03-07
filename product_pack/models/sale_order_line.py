@@ -43,6 +43,8 @@ class SaleOrderLine(models.Model):
 
     @api.constrains('product_id', 'price_unit', 'product_uom_qty')
     def expand_pack_line(self):
+        if self._context.get('update_pricelist', False):
+            return
         detailed_packs = ['components_price', 'totalice_price', 'fixed_price']
         if (
                 self.state == 'draft' and
@@ -102,6 +104,8 @@ class SaleOrderLine(models.Model):
 
     @api.constrains('product_id')
     def expand_none_detailed_pack(self):
+        if self._context.get('update_pricelist', False):
+            return
         if self.product_id.pack_price_type == 'none_detailed_assited_price':
             # remove previus existing lines
             self.pack_line_ids.unlink()
