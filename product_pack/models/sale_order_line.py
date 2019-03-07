@@ -141,7 +141,7 @@ class SaleOrderLine(models.Model):
         """ Do not let to edit a sale order line if this one belongs to pack
         """
         if self._origin.pack_parent_line_id and \
-           not self._origin.pack_parent_line_id.product_id.allow_modify_pack:
+           not self._origin.pack_parent_line_id.product_id.allow_modify_pack in ['only_backend', 'frontend_backend']:
             raise UserError(_(
                 'You can not change this line because is part of a pack'
                 ' included in this order'))
