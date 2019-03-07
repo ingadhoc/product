@@ -26,8 +26,8 @@ class SaleOrder(models.Model):
         """
         if self._origin.order_line.filtered(
             lambda x: x.pack_parent_line_id and
-            not x.pack_parent_line_id.product_id.allow_modify_pack in [
-                'only_backend', 'frontend_backend'] ):
+            x.pack_parent_line_id.product_id.allow_modify_pack not in [
+                'only_backend', 'frontend_backend']):
             raise UserError(_(
                 'You can not delete this line because is part of a pack in'
                 ' this sale order. In order to delete this line you need to'
