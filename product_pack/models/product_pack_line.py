@@ -61,12 +61,15 @@ class ProductPack(models.Model):
         vals = sol._convert_to_write(sol._cache)
 
         discount = 0.0
+        price_unit = 0.0
         if line.product_id.pack_price_type not in [
                 'fixed_price', 'totalice_price']:
+            price_unit = vals['price_unit']
             discount = 100.0 - (
                 (100.0 - sol.discount) * (100.0 - self.discount) / 100.0)
 
         vals.update({
+            'price_unit': price_unit,
             'discount': discount,
             'name': '%s%s' % (
                 '> ' * (line.pack_depth + 1), sol.name
