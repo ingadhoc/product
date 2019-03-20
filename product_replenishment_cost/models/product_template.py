@@ -70,6 +70,7 @@ class ProductTemplate(models.Model):
         [('supplier_price', ' Supplier Price'),
          ('manual', 'Manual')],
         default='manual',
+        required=True,
     )
 
     @api.model
@@ -87,6 +88,7 @@ class ProductTemplate(models.Model):
         prec = self.env['decimal.precision'].precision_get('Product Price')
 
         domain = [
+            '|', ('replenishment_cost_rule_id', '!=', False),
             '|', '&', ('seller_ids', '!=', False),
             ('replenishment_cost_type', '=', 'supplier_price'),
             '&', '&',
