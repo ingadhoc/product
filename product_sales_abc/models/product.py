@@ -9,11 +9,18 @@ class ProductTemplate(models.Model):
 
     _inherit = 'product.template'
 
-    abc_sales_quantity = fields.Char(string='ABC Sales quantity')
-    abc_sales_amount = fields.Char(string='ABC Sales amount')
+    abc_sales_quantity = fields.Char(
+        string='ABC Sales quantity',
+        copy=False,
+    )
+    abc_sales_amount = fields.Char(
+        string='ABC Sales amount',
+        copy=False,
+    )
     abc_sales_combined = fields.Char(
         compute='_compute_abc_total',
-        string='ABC Sales combined')
+        string='ABC Sales combined',
+    )
 
     @api.depends()
     def _compute_abc_total(self):
