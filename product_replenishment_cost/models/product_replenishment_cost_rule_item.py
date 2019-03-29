@@ -40,12 +40,12 @@ class ProductReplenishmentCostRuleItem(models.Model):
 
     expr = fields.Char(
         'Expression Amount',
-        help='Specify a python expression that returns a float amount.\r\n'
-             'You van use python variables:\r\n'
-             '- env, model, Warning\r\n'
-             '- product: the current product\r\n'
-             '- cost: the base cost\r\n'
-             '- cost_sum: the accumulated cost so far\r\n'
+        help='Specify a python expression that returns a float amount.\n'
+             'You van use python variables:\n'
+             '- env, model, Warning\n'
+             '- product: the current product\n'
+             '- cost: the base cost\n'
+             '- cost_sum: the accumulated cost so far\n'
              '- lines: previous calculated lines (ie lines.get("line_name")',
     )
 
