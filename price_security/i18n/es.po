@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-08 21:19+0000\n"
+"POT-Creation-Date: 2019-03-28 19:21+0000\n"
 "PO-Revision-Date: 2018-05-22 01:12+0000\n"
 "Last-Translator: Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
@@ -27,11 +27,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:price_security.field_product_template_can_modify_prices
 msgid "Can modify prices"
 msgstr "Puede modificar precios"
-
-#. module: price_security
-#: model:ir.model,name:price_security.model_res_partner
-msgid "Contact"
-msgstr "Contacto"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_create_uid
@@ -213,18 +208,6 @@ msgstr "Usuario"
 #: model:ir.model,name:price_security.model_res_users
 msgid "Users"
 msgstr "Usuarios"
-
-#. module: price_security
-#: code:addons/price_security/models/res_partner.py:30
-#, python-format
-msgid "You are not allowed to change the Payment Term"
-msgstr "No se le permite cambiar el plazo de pago"
-
-#. module: price_security
-#: code:addons/price_security/models/res_partner.py:18
-#, python-format
-msgid "You are not allowed to change the pricelist"
-msgstr "No está permitido cambiar la lista de precios."
 
 #. module: price_security
 #: code:addons/price_security/models/res_users.py:58
