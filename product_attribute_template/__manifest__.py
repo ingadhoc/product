@@ -7,6 +7,7 @@
     'license': 'AGPL-3',
     'depends': [
         'product',
+        'web_widget_x2many_2d_matrix',
     ],
     'data': [
         'views/product_attribute_template_views.xml',

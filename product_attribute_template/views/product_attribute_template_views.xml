@@ -1,4 +1,14 @@
 <odoo>
+    <record id="product_attribute_template_tree_view" model="ir.ui.view">
+        <field name="name">product.attribute.template.tree.view</field>
+        <field name="model">product.attribute.template</field>
+        <field name="arch" type="xml">
+            <tree string="Product Attribute Template">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
     <record model="ir.actions.act_window" id="attribute_template_action_view">
         <field name="name">Template Attributes</field>
         <field name="type">ir.actions.act_window</field>
@@ -11,15 +21,6 @@
     <menuitem id="menu_product_attribute_template" parent="sale.prod_config_main" sequence="10"
           action="attribute_template_action_view"/>
 
-    <record id="product_attribute_template_tree_view" model="ir.ui.view">
-        <field name="name">product.attribute.template.tree.view</field>
-        <field name="model">product.attribute.template</field>
-        <field name="arch" type="xml">
-            <tree string="Product Attribute Template">
-                <field name="name"/>
-            </tree>
-        </field>
-    </record>
 
     <record id="product_attribute_template_form_view" model="ir.ui.view">
         <field name="name">product.attribute.template.form.view</field>
@@ -59,6 +60,13 @@
                     <group>
                         <field name="product_attribute_ids" widget="many2many_tags"/>
                     </group>
+                    <field name="line_ids" widget="x2many_2d_matrix" field_x_axis="attribute_id" field_y_axis="product_tmpl_id" field_value="value_ids" show_row_totals="False" show_column_totals="False" context="{'show_attribute': False}">
+                        <tree>
+                            <field name="product_tmpl_id"/>
+                            <field name="attribute_id"/>
+                            <field name="value_ids" widget="many2many_tags" options="{'no_create_edit': True}" domain="[('attribute_id', '=', attribute_id)]" context="{'default_attribute_id': attribute_id}"/>
+                        </tree>
+                    </field>
                 </sheet>
             </form>
         </field>
