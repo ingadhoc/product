@@ -10,6 +10,7 @@
         'web_widget_x2many_2d_matrix',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'views/product_attribute_template_views.xml',
         'views/product_template_views.xml',
     ],
