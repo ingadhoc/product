@@ -10,4 +10,5 @@ class ProductTemplate(models.Model):
 
     product_attribute_template_id = fields.Many2one(
         'product.attribute.template',
+        string='Product attributes template',
     )

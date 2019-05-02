@@ -10,7 +10,7 @@
     </record>
 
     <record model="ir.actions.act_window" id="attribute_template_action_view">
-        <field name="name">Template Attributes</field>
+        <field name="name">Products attributes templates</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">product.attribute.template</field>
         <field name="view_type">form</field>
