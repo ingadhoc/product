@@ -37,13 +37,6 @@ class ProductTemplate(models.Model):
         return super(
             ProductTemplate, self - one_variants).create_variant_ids()
 
-    @api.constrains('attribute_line_ids')
-    def _check_one_variant_per_product(self):
-        if self.one_variant_per_product:
-            for variant_id in self.attribute_line_ids:
-                if len(variant_id.value_ids) > 1:
-                    raise ValidationError(_("Only 1 value for attribute."))
-
     @api.constrains('one_variant_per_product')
     def _check_variants(self):
         for rec in self.filtered('one_variant_per_product'):
