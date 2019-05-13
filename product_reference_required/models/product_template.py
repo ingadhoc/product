@@ -10,7 +10,8 @@ class ProductTemplate(models.Model):
 
     @api.model
     def _get_default_code(self):
-        return self.env['ir.sequence'].next_by_code('product.default_code')
+        return self.env['ir.sequence'].next_by_code(
+            'product.default_code') or '/'
 
     default_code = fields.Char(
         default=_get_default_code,
