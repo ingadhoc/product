@@ -155,6 +155,10 @@ class ProductTemplate(models.Model):
                 replenishment_base_cost = rec.replenishment_base_cost
                 base_cost_currency = rec.replenishment_base_cost_currency_id
 
+            # we enforce a replenishment base cost currency to be configured
+            if not base_cost_currency:
+                continue
+
             replenishment_cost_rule = rec.replenishment_cost_rule_id
             replenishment_cost = base_cost_currency.compute(
                 replenishment_base_cost, product_currency, round=False)
