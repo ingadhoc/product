@@ -39,7 +39,10 @@ class SaleOrder(models.Model):
     def check_partner_pricelist_change(self):
         pricelist = self.partner_id.property_product_pricelist
         if self.order_line and pricelist != self._origin.pricelist_id:
-            self.partner_id = self._origin.partner_id
-            return {'warning': {'title': "Warning", 'message': "You can"
-                                " not change partner if there are sale lines"
-                                " and pricelist is going to be changed"}}
+            msj = _('The change of the client produces a change in the'
+                    ' price list, remember to revise / update the same')
+            if self.user_has_groups('price_security.group_restrict_prices'):
+                self.partner_id = self._origin.partner_id
+                msj = _('You can not change partner if there are sale lines'
+                        ' and pricelist is going to be changed')
+            return {'warning': {'title': "Warning", 'message': msj}}
