@@ -8,6 +8,7 @@
     'depends': [
         'product',
         'web_widget_x2many_2d_matrix',
+        'contacts',
     ],
     'data': [
         'security/ir.model.access.csv',
