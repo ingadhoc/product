@@ -10,14 +10,16 @@
 # Valentino Defelice <vd@adhoc.com.ar>, 2019
 # Santiago Crespo <sc@adhoc.com.ar>, 2019
 # Mariana Luz Torres <mt@adhoc.com.ar>, 2019
+# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2019
+# Katherine Zaoral <katherine.zaoral@gmail.com>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-16 20:55+0000\n"
+"POT-Creation-Date: 2019-05-17 09:13+0000\n"
 "PO-Revision-Date: 2018-05-22 01:28+0000\n"
-"Last-Translator: Mariana Luz Torres <mt@adhoc.com.ar>, 2019\n"
+"Last-Translator: Katherine Zaoral <katherine.zaoral@gmail.com>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,7 +54,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_pack.field_product_product_allow_modify_pack
 #: model:ir.model.fields,field_description:product_pack.field_product_template_allow_modify_pack
 msgid "Allow Modify Pack"
-msgstr ""
+msgstr "Permitir Modificar Pack"
 
 #. module: product_pack
 #: model:ir.ui.view,arch_db:product_pack.view_order_line_form2
@@ -122,7 +124,7 @@ msgstr "Nombre mostrado"
 #. module: product_pack
 #: selection:product.template,allow_modify_pack:0
 msgid "E-commerce and Bankend"
-msgstr ""
+msgstr "Comercio Electrónico y Backend"
 
 #. module: product_pack
 #: code:addons/product_pack/models/product_product.py:64
@@ -200,7 +202,7 @@ msgstr "En Packs"
 #. module: product_pack
 #: selection:product.template,allow_modify_pack:0
 msgid "Only backend"
-msgstr ""
+msgstr "Solo en Backend"
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_sale_order_line_pack_line_order_line_id
@@ -331,7 +333,7 @@ msgstr "Plantilla de producto"
 #. module: product_pack
 #: sql_constraint:product.pack.line:0
 msgid "Product must be only once on a pack!"
-msgstr ""
+msgstr "¡El producto debe estar solo una vez en un pack!"
 
 #. module: product_pack
 #: model:ir.model.fields,field_description:product_pack.field_product_pack_line_quantity
@@ -391,6 +393,8 @@ msgid ""
 "You can not change this line because is part of a pack included in this "
 "order"
 msgstr ""
+"No puedes cambiar esta línea porque es parte de un pack incluido en este "
+"orden."
 
 #. module: product_pack
 #: code:addons/product_pack/models/sale_order.py:31
@@ -399,6 +403,8 @@ msgid ""
 "You can not delete this line because is part of a pack in this sale order. "
 "In order to delete this line you need to delete the pack itself"
 msgstr ""
+"No puede eliminar esta línea porque forma parte de un pack en esta orden de "
+"venta. Para eliminar esta línea necesitas eliminar el pack."
 
 #. module: product_pack
 #: model:ir.ui.view,arch_db:product_pack.product_template_only_form_view
