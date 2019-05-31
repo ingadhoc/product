@@ -1,0 +1,151 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_attribute_template
+# 
+# Translators:
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019
+# Julián García <jg@adhoc.com.ar>, 2019
+# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2019
+# Katherine Zaoral <katherine.zaoral@gmail.com>, 2019
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-05-17 09:13+0000\n"
+"PO-Revision-Date: 2019-05-02 14:40+0000\n"
+"Last-Translator: Katherine Zaoral <katherine.zaoral@gmail.com>, 2019\n"
+"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: product_attribute_template
+#: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template_product_qty
+msgid "# Products"
+msgstr "# Productos"
+
+#. module: product_attribute_template
+#: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template_not_configured_product_qty
+msgid "# Products Not Configured"
+msgstr "# Productos No Configurados"
+
+#. module: product_attribute_template
+#: model:ir.ui.view,arch_db:product_attribute_template.product_attribute_template_form_view
+msgid "<span class=\"o_stat_text\">Not configured</span>"
+msgstr "<span class=\"o_stat_text\">No Configurados</span>"
+
+#. module: product_attribute_template
+#: model:ir.ui.view,arch_db:product_attribute_template.product_attribute_template_form_view
+msgid "<span class=\"o_stat_text\">Products</span>"
+msgstr "<span class=\"o_stat_text\">Productos</span>"
+
+#. module: product_attribute_template
+#: model:ir.ui.view,arch_db:product_attribute_template.product_attribute_template_form_view
+msgid "Actualizar atributos en productos"
+msgstr "Actualizar atributos en productos"
+
+#. module: product_attribute_template
+#: model:ir.ui.view,arch_db:product_attribute_template.product_attribute_template_form_view
+msgid ""
+"Al confirmar se van a crear las líneas de productos faltantes en todos los "
+"productos con esta plantilla. Esta opción no puede deshacerse. Seguro que "
+"desea continuar?"
+msgstr ""
+"Al confirmar se van a crear las líneas de productos faltantes en todos los "
+"productos con esta plantilla. Esta opción no puede deshacerse. Seguro que "
+"desea continuar?"
+
+#. module: product_attribute_template
+#: model:ir.ui.view,arch_db:product_attribute_template.product_template_attribute_template_search_inherit
+msgid "Attributes not configured"
+msgstr "Atributos no Configurados"
+
+#. module: product_attribute_template
+#: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: product_attribute_template
+#: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: product_attribute_template
+#: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template_display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: product_attribute_template
+#: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template_id
+msgid "ID"
+msgstr "ID (identificación)"
+
+#. module: product_attribute_template
+#: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template___last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: product_attribute_template
+#: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template_write_uid
+msgid "Last Updated by"
+msgstr "Última actualización de"
+
+#. module: product_attribute_template
+#: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template_write_date
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: product_attribute_template
+#: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template_line_ids
+msgid "Line"
+msgstr "Linea"
+
+#. module: product_attribute_template
+#: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: product_attribute_template
+#: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template_product_attribute_ids
+msgid "Product Attribute"
+msgstr "Atributo del producto"
+
+#. module: product_attribute_template
+#: model:ir.ui.view,arch_db:product_attribute_template.product_attribute_template_tree_view
+msgid "Product Attribute Template"
+msgstr "Plantilla de Atributos de Producto"
+
+#. module: product_attribute_template
+#: model:ir.ui.view,arch_db:product_attribute_template.product_attribute_template_form_view
+msgid "Product Name"
+msgstr "Nombre de Producto"
+
+#. module: product_attribute_template
+#: model:ir.model,name:product_attribute_template.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: product_attribute_template
+#: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template_product_tmpl_ids
+msgid "Product Tmpl"
+msgstr "Plantilla de Producto"
+
+#. module: product_attribute_template
+#: model:ir.model.fields,field_description:product_attribute_template.field_product_product_product_attribute_template_id
+#: model:ir.model.fields,field_description:product_attribute_template.field_product_template_product_attribute_template_id
+msgid "Product attributes template"
+msgstr "Plantilla de atributos de Producto"
+
+#. module: product_attribute_template
+#: model:ir.actions.act_window,name:product_attribute_template.attribute_template_action_view
+#: model:ir.ui.menu,name:product_attribute_template.menu_product_attribute_template
+msgid "Products attributes templates"
+msgstr "Plantillas de atributos de Productos"
+
+#. module: product_attribute_template
+#: model:ir.model,name:product_attribute_template.model_product_attribute_template
+msgid "product.attribute.template"
+msgstr "product.attribute.template"

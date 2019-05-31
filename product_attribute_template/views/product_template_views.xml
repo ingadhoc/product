@@ -1,0 +1,25 @@
+<odoo>
+    <record id="product_template_attribute_template_inherit" model="ir.ui.view">
+        <field name="name">product.template.attribute.template.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <field name="attribute_line_ids" position="before">
+                <label for="product_attribute_template_id"/>
+                <field name="product_attribute_template_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_template_attribute_template_search_inherit" model="ir.ui.view">
+        <field name="name">product.template.attribute.template.search.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product_attribute_template_id"/>
+                <filter string="Attributes not configured" name="attributes_not_configured" domain="[('attribute_line_ids.value_ids', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+</odoo>

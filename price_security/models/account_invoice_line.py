@@ -41,14 +41,15 @@ class AccountInvoiceLine(models.Model):
         # 'product_can_modify_prices'
     )
     def check_discount(self):
+        if not self.user_has_groups('price_security.group_restrict_prices'):
+            return True
         precision = self.env['decimal.precision'].precision_get(
             'Product Unit of Measure')
         for il in self:
             # only customer invoices
             if il.invoice_id and il.invoice_id.type in (
-                'out_invoice', 'out_refund') and (il.user_has_groups(
-                    'price_security.group_restrict_prices') and
-                    not il.product_can_modify_prices):
+                    'out_invoice', 'out_refund'
+            ) and not il.product_can_modify_prices:
                 # chequeamos si la orden de venta permitió un descuento mayor
                 if any(
                         float_compare(
