@@ -9,10 +9,7 @@ class ProductCatalogReport(models.Model):
     _inherit = 'product.product_catalog_report'
 
     category_type = fields.Selection(
-        [('public_category', 'Public Category'),
-         ('accounting_category', 'Accounting Category')],
-        required=True,
-        default='accounting_category',
+        selection_add=[('public_category', 'Public Category')],
     )
     public_category_ids = fields.Many2many(
         'product.public.category',
@@ -30,12 +27,5 @@ class ProductCatalogReport(models.Model):
             if self.include_sub_categories and categories:
                 categories = self.env['product.public.category'].search(
                     [('id', 'child_of', categories.ids)])
-        else:
-            categories = self.category_ids
-            if self.include_sub_categories and categories:
-                categories = self.env['product.category'].search(
-                    [('id', 'child_of', categories.ids)])
-
-        return self.with_context(
-            category_ids=categories.ids,
-            category_type=self.category_type)
+                self = self.with_context(category_ids=categories.ids)
+        return self
