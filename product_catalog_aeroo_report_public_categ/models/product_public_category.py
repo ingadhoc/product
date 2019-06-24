@@ -24,6 +24,10 @@ class ProductPublicCategory(models.Model):
         'Right Parent',
         index=True,
     )
+    complete_name = fields.Char(
+        related='display_name',
+        readonly=True,
+    )
 
     @api.constrains('sequence')
     def update_parents(self):
