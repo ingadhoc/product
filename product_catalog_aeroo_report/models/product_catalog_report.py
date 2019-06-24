@@ -72,6 +72,12 @@ class ProductCatalogReport(models.Model):
         'Pricelist',
     )
 
+    category_type = fields.Selection(
+        [('accounting_category', 'Accounting Category')],
+        default='accounting_category',
+        required=True,
+    )
+
     @api.multi
     def prepare_report(self):
         context = dict(self._context.copy())
@@ -92,6 +98,7 @@ class ProductCatalogReport(models.Model):
             'only_with_stock': self.only_with_stock,
             'prod_display_type': self.prod_display_type,
             'print_product_uom': self.print_product_uom,
+            'category_type': self.category_type,
         })
         return self.with_context(context)
 
