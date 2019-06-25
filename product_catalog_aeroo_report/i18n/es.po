@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-16 20:55+0000\n"
+"POT-Creation-Date: 2019-06-24 14:32+0000\n"
 "PO-Revision-Date: 2018-08-23 20:36+0000\n"
 "Last-Translator: Santiago Crespo <sc@adhoc.com.ar>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
@@ -37,6 +37,11 @@ msgid "%s. Also available in %s"
 msgstr "%s. Also available in %s"
 
 #. module: product_catalog_aeroo_report
+#: selection:product.product_catalog_report,category_type:0
+msgid "Accounting Category"
+msgstr "Categoría Contable"
+
+#. module: product_catalog_aeroo_report
 #: model:ir.ui.view,arch_db:product_catalog_aeroo_report.view_product_catalog
 msgid "Cancel"
 msgstr "Cancelar"
@@ -45,6 +50,11 @@ msgstr "Cancelar"
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report_categories_order
 msgid "Categories Order Sintax"
 msgstr "Sintaxis para orden de categoría"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report_category_type
+msgid "Category Type"
+msgstr " Tipo de Categoría"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog_create_uid
@@ -210,6 +220,11 @@ msgstr "Tipo de producto"
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report_products_order
 msgid "Products Order Sintax"
 msgstr "Sintaxis para orden de productos"
+
+#. module: product_catalog_aeroo_report
+#: selection:product.product_catalog_report,category_type:0
+msgid "Public Category"
+msgstr " Categoría Pública"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report_report_id
