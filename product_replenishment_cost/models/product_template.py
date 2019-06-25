@@ -67,7 +67,7 @@ class ProductTemplate(models.Model):
         digits=dp.get_precision('Product Price'),
     )
     replenishment_cost_type = fields.Selection(
-        [('supplier_price', ' Supplier Price'),
+        [('supplier_price', 'Supplier Price'),
          ('manual', 'Manual')],
         default='manual',
         required=True,
