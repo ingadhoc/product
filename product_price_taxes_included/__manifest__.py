@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product Price Taxes Included or Not',
-    'version': '11.0.1.0.0',
+    'version': '11.0.1.1.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -29,11 +29,13 @@
     'images': [
     ],
     'depends': [
-        'account',
+        'sale',
     ],
     'data': [
+        'security/product_price_taxes_included_security.xml',
         'views/product_template_views.xml',
         'views/product_product_views.xml',
+        'wizards/res_config_settings_views.xml',
     ],
     'demo': [
     ],
