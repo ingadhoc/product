@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<odoo noupdate="1">
+
+    <record model="res.groups" id="group_prices_with_tax">
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="name">Products: see the price with tax</field>
+    </record>
+
+</odoo>
