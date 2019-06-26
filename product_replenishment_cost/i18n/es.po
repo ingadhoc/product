@@ -4,31 +4,26 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019
+# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2019
 # Gonzalo Ruzafa <gr@ingadhoc.com>, 2019
 # emiquinodoz <eq@ingadhoc.com>, 2019
 # Julián García <jg@adhoc.com.ar>, 2019
 # Santiago Crespo <sc@adhoc.com.ar>, 2019
 # Mariana Luz Torres <mt@adhoc.com.ar>, 2019
-# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-02 09:29+0000\n"
+"POT-Creation-Date: 2019-06-25 18:59+0000\n"
 "PO-Revision-Date: 2018-05-30 23:07+0000\n"
-"Last-Translator: Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2019\n"
+"Last-Translator: Mariana Luz Torres <mt@adhoc.com.ar>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#. module: product_replenishment_cost
-#: selection:product.template,replenishment_cost_type:0
-msgid " Supplier Price"
-msgstr "Precio del proveedor"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product_standard_price_copy
@@ -365,6 +360,7 @@ msgstr ""
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product_supplier_price
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template_supplier_price
+#: selection:product.template,replenishment_cost_type:0
 msgid "Supplier Price"
 msgstr "Precio de Vendedor"
 
