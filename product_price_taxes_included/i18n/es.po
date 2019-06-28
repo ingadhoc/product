@@ -3,16 +3,17 @@
 # * product_price_taxes_included
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019
 # Katherine Zaoral <katherine.zaoral@gmail.com>, 2019
+# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2019
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-08 21:19+0000\n"
+"POT-Creation-Date: 2019-06-27 18:52+0000\n"
 "PO-Revision-Date: 2018-06-01 16:04+0000\n"
-"Last-Translator: Katherine Zaoral <katherine.zaoral@gmail.com>, 2019\n"
+"Last-Translator: Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,9 +22,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: product_price_taxes_included
+#: model:ir.ui.view,arch_db:product_price_taxes_included.res_config_settings_view_form
+msgid ""
+"In the kanban view, in addition to showing the price without\n"
+"                        taxes, add the price of the product with taxes."
+msgstr ""
+"En la vista kanban, además de mostrar el precio sin\n"
+" impuestos, agrega el precio del producto con impuestos."
+
+#. module: product_price_taxes_included
 #: model:ir.ui.view,arch_db:product_price_taxes_included.product_template_search_view
 msgid "Include Taxes on Pricelist price"
 msgstr "Incluir impuestos en el precio de la tarifa"
+
+#. module: product_price_taxes_included
+#: model:ir.model.fields,field_description:product_price_taxes_included.field_res_config_settings_group_kanban_prices_with_tax
+msgid "Price with taxes in kanban view"
+msgstr "Precio con impuestos en vista kanban"
 
 #. module: product_price_taxes_included
 #: model:ir.model,name:product_price_taxes_included.model_product_pricelist
@@ -46,7 +61,17 @@ msgid "Product Template"
 msgstr "Plantilla de producto"
 
 #. module: product_price_taxes_included
+#: model:res.groups,name:product_price_taxes_included.group_prices_with_tax
+msgid "Products: see the price with tax"
+msgstr "Productos: Ver el precio con impuestos."
+
+#. module: product_price_taxes_included
 #: model:ir.model.fields,field_description:product_price_taxes_included.field_product_product_taxed_lst_price
 #: model:ir.model.fields,field_description:product_price_taxes_included.field_product_template_taxed_lst_price
 msgid "Taxed Sale Price"
 msgstr "Precio de venta con impuestos"
+
+#. module: product_price_taxes_included
+#: model:ir.model,name:product_price_taxes_included.model_res_config_settings
+msgid "res.config.settings"
+msgstr "res.config.settings"
