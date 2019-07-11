@@ -18,4 +18,23 @@
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 ###############################################################################
-from . import product_template
+{
+    'name': 'Product Image from URL',
+    'version': '11.0.1.0.0',
+    'category': 'Sales',
+    'author': 'Cybrosys Techno Solutions, ADHOC SA',
+    'company': 'Cybrosys Techno Solutions',
+    'maintainer': 'Cybrosys Techno Solutions',
+    'website': "https://www.cybrosys.com",
+    'depends': [
+        'base',
+        'product'
+    ],
+    'data': ['views/product_inherit_view.xml'],
+    'demo': [],
+    'images': ['static/description/banner.jpg'],
+    'license': 'AGPL-3',
+    'installable': True,
+    'auto_install': False,
+    'application': False,
+}

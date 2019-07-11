@@ -18,4 +18,32 @@
 #   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 ###############################################################################
-from . import product_template
+import base64
+from urllib.request import urlopen
+import requests
+from PIL import Image
+from io import BytesIO
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
+
+
+class ProductTemplate(models.Model):
+    _inherit = 'product.template'
+
+    web_url = fields.Char(
+        string='Image URL',
+        help='Automatically sanitized HTML contents',
+        copy=False,
+    )
+
+    @api.constrains('web_url')
+    def onchange_image(self):
+        for rec in self.filtered('web_url'):
+            link = rec.web_url
+            try:
+                r = requests.get(link)
+                Image.open(BytesIO(r.content))
+                rec.image_medium = base64.encodestring(urlopen(link).read())
+            except:
+                raise ValidationError(
+                    _("Please provide correct URL or check your image size.!"))
