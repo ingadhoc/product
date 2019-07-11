@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-27 18:52+0000\n"
+"POT-Creation-Date: 2019-07-10 18:07+0000\n"
 "PO-Revision-Date: 2018-06-01 16:04+0000\n"
 "Last-Translator: Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
@@ -24,21 +24,16 @@ msgstr ""
 #. module: product_price_taxes_included
 #: model:ir.ui.view,arch_db:product_price_taxes_included.res_config_settings_view_form
 msgid ""
-"In the kanban view, in addition to showing the price without\n"
+"In the product kanban view, in addition to showing the price without\n"
 "                        taxes, add the price of the product with taxes."
 msgstr ""
-"En la vista kanban, además de mostrar el precio sin\n"
-" impuestos, agrega el precio del producto con impuestos."
+"En la vista kanban de productos, además de mostrar el precio sin\n"
+"Impuestos, agregue el precio del producto con impuestos."
 
 #. module: product_price_taxes_included
 #: model:ir.ui.view,arch_db:product_price_taxes_included.product_template_search_view
 msgid "Include Taxes on Pricelist price"
 msgstr "Incluir impuestos en el precio de la tarifa"
-
-#. module: product_price_taxes_included
-#: model:ir.model.fields,field_description:product_price_taxes_included.field_res_config_settings_group_kanban_prices_with_tax
-msgid "Price with taxes in kanban view"
-msgstr "Precio con impuestos en vista kanban"
 
 #. module: product_price_taxes_included
 #: model:ir.model,name:product_price_taxes_included.model_product_pricelist
@@ -49,6 +44,11 @@ msgstr "Tarifa"
 #: model:ir.ui.view,arch_db:product_price_taxes_included.product_template_search_view
 msgid "Pricelist w/ taxes"
 msgstr "Tarifa con impuestos"
+
+#. module: product_price_taxes_included
+#: model:ir.model.fields,field_description:product_price_taxes_included.field_res_config_settings_group_kanban_prices_with_tax
+msgid "Prices with tax on products kanban view"
+msgstr "Precios con impuesto sobre la vista kanban de productos."
 
 #. module: product_price_taxes_included
 #: model:ir.model,name:product_price_taxes_included.model_product_product
