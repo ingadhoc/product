@@ -3,14 +3,16 @@
 # * product_image_url
 # 
 # Translators:
-# Javier Diez <jd@adhoc.com.ar>, 2018
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019
+# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2019
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0c\n"
+"Project-Id-Version: Odoo Server 11.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-05 12:27+0000\n"
-"PO-Revision-Date: 2018-05-05 12:27+0000\n"
-"Last-Translator: Javier Diez <jd@adhoc.com.ar>, 2018\n"
+"POT-Creation-Date: 2019-07-11 14:46+0000\n"
+"PO-Revision-Date: 2019-07-11 14:46+0000\n"
+"Last-Translator: Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,14 +21,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: product_image_url
+#: model:ir.model.fields,help:product_image_url.field_product_product_web_url
 #: model:ir.model.fields,help:product_image_url.field_product_template_web_url
 msgid "Automatically sanitized HTML contents"
 msgstr ""
 
 #. module: product_image_url
+#: model:ir.model.fields,field_description:product_image_url.field_product_product_web_url
 #: model:ir.model.fields,field_description:product_image_url.field_product_template_web_url
 msgid "Image URL"
+msgstr "Imagen URL"
+
+#. module: product_image_url
+#: code:addons/product_image_url/models/product_template.py:49
+#, python-format
+msgid "Please provide correct URL or check your image size.!"
 msgstr ""
+"Por favor, proporcione la URL correcta o verifique el tamaño de su imagen."
 
 #. module: product_image_url
 #: model:ir.model,name:product_image_url.model_product_template
