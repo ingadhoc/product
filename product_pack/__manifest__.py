@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product Pack',
-    'version': '11.0.1.5.0',
+    'version': '12.0.1.0.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -43,7 +43,7 @@
         'demo/product_product_demo.xml',
         'demo/product_pack_line_demo.xml',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }
