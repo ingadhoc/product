@@ -20,7 +20,7 @@
 ###############################################################################
 {
     'name': 'Product Image from URL',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'category': 'Sales',
     'author': 'Cybrosys Techno Solutions, ADHOC SA',
     'company': 'Cybrosys Techno Solutions',
@@ -34,7 +34,7 @@
     'demo': [],
     'images': ['static/description/banner.jpg'],
     'license': 'AGPL-3',
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }

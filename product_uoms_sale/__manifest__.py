@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product UOMS Sale',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'category': 'base.module_category_knowledge_management',
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
@@ -35,7 +35,7 @@
         'views/product_template_views.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     'application': False,
 }

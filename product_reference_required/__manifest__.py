@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product Reference Requiered',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -37,7 +37,7 @@
     'demo': [
         'demo/ir_sequence_demo.xml',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
     'pre_init_hook': 'set_default_code',
