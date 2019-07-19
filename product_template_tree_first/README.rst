@@ -14,7 +14,7 @@
 Product Template Tree First
 ===========================
 
-This module set tree view first when you enter in product variant.
+This module set tree view first when you enter in Sales / Products / Products.
 
 Installation
 ============
