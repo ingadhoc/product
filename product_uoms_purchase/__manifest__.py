@@ -26,7 +26,9 @@
     'license': 'AGPL-3',
     'depends': [
         'product_uoms',
-        'purchase',
+        # TODO when migrate analyze if this depends are necessary or
+        # we do the part of the "stock.rule" in a bridge module
+        'purchase_stock',
     ],
     'demo': [
     ],
