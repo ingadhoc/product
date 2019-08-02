@@ -18,8 +18,6 @@
                     <tree delete='false' create='false'>
                         <field name="name"/>
                         <field name="price"/>
-                        <!-- <button name="action_related_pricelist_items" type="object" string="Related Product Items" help="See related pricelist items that affect this product" context="{'onle_related_product_items': True}"/> -->
-                        <!-- <button name="action_related_pricelist_items" type="object" string="All Pricelist Items" help="See related pricelist items"/> -->
                     </tree>
                 </field>
             </field>
