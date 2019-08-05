@@ -18,7 +18,7 @@
 #
 ##############################################################################
 {
-    'name': 'Product Usability',
+    'name': 'Product UX',
     'version': '12.0.1.0.0',
     'category': 'Products',
     'sequence': 14,
