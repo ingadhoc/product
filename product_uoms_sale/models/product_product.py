@@ -12,5 +12,5 @@ class ProductProduct(models.Model):
     def get_product_uoms(self, product_uom, use=False):
         if use == 'sale' and self.uom_ids.filtered('sale_ok'):
             return self.uom_ids.filtered('sale_ok').mapped('uom_id')
-        return super(ProductProduct, self).get_product_uoms(
+        return super().get_product_uoms(
             product_uom, use=use)

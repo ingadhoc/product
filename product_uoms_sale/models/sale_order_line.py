@@ -1,4 +1,4 @@
-##############################################################################
+
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
@@ -11,7 +11,7 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     uom_unit_ids = fields.Many2many(
-        'product.uom',
+        'uom.uom',
         compute='_compute_uom_unit',
     )
 
@@ -33,7 +33,7 @@ class SaleOrderLine(models.Model):
                 product_uom = sale_product_uoms[0].id
                 # we do this because odoo overwrite view domain
                 product_uom_domain = [('id', 'in', sale_product_uoms.ids)]
-        res = super(SaleOrderLine, self).product_id_change()
+        res = super().product_id_change()
         if product_uom:
             self.product_uom = product_uom
         if product_uom_domain:
