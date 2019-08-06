@@ -33,7 +33,7 @@ class SaleOrderLine(models.Model):
                 product_uom = sale_product_uoms[0].id
                 # we do this because odoo overwrite view domain
                 product_uom_domain = [('id', 'in', sale_product_uoms.ids)]
-        res = super(SaleOrderLine, self).product_id_change()
+        res = super().product_id_change()
         if product_uom:
             self.product_uom = product_uom
         if product_uom_domain:
