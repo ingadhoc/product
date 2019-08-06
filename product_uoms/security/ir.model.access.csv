@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_product_uoms_all,product_uoms_pulbic,model_product_uoms,,1,0,0,0
+access_product_uoms_all,product_uoms_public,model_product_uoms,,1,0,0,0

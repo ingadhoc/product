@@ -12,7 +12,6 @@ class ProductTemplate(models.Model):
 
     uom_category_id = fields.Many2one(
         related='uom_id.category_id',
-        readonly=True,
     )
     uom_ids = fields.One2many(
         'product.uoms',
