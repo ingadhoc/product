@@ -13,7 +13,6 @@ class ProductTemplate(models.Model):
     sellers_product_code = fields.Char(
         'Vendor Product Code',
         related='seller_ids.product_code',
-        readonly=True,
     )
 
     warranty = fields.Float()

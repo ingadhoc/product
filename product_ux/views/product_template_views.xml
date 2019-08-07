@@ -39,8 +39,6 @@
         <field name="inherit_id" ref="product.product_template_tree_view"/>
         <field name="arch" type="xml">
             <field name="standard_price" position="before">
-                <!-- TODO borrar en proximas versiones si anda bien, segun probamos en v9 y v10 no se muestra cuando se agrega filtro de pricelist entonces lo mostramos siempre -->
-                <!-- <field name="price" string="Pricelist Price" invisible="not context.get('pricelist',False)"/> -->
                 <field name="price" string="Pricelist Price"/>
             </field>
         </field>
