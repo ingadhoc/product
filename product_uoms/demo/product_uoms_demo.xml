@@ -3,12 +3,12 @@
 
     <record id="computed_by_uom_line_1" model="product.uoms">
         <field name="product_tmpl_id" ref="product_on_cm_saleable_on_m_and_km_product_template"/>
-        <field name="uom_id" ref="product.product_uom_meter"/>
+        <field name="uom_id" ref="uom.product_uom_meter"/>
         <field name="sequence" eval="10"/>
     </record>
     <record id="computed_by_uom_line_2" model="product.uoms">
         <field name="product_tmpl_id" ref="product_on_cm_saleable_on_m_and_km_product_template"/>
-        <field name="uom_id" ref="product.product_uom_km"/>
+        <field name="uom_id" ref="uom.product_uom_km"/>
         <field name="sequence" eval="20"/>
     </record>
 
