@@ -1,8 +1,8 @@
 from odoo import fields, models
 
 
-class ProductUoM(models.Model):
-    _inherit = 'product.uom'
+class Uom(models.Model):
+    _inherit = 'uom.uom'
 
     description = fields.Char(
     )

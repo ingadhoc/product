@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
     <record id="product_on_cm_saleable_on_m_and_km" model="product.product">
-        <field name="name">Product On Centimeter Saleable on Metera and Km</field>
+        <field name="name">Product On Centimeter Saleable on Meter and Km</field>
         <field name="categ_id" ref="product.product_category_4"/>
-        <field name="uom_id" ref="product.product_uom_cm"/>
-        <field name="uom_po_id" ref="product.product_uom_cm"/>
+        <field name="uom_id" ref="uom.product_uom_cm"/>
+        <field name="uom_po_id" ref="uom.product_uom_cm"/>
         <field name="standard_price">1</field>
         <field name="list_price">2</field>
         <field name="type">consu</field>

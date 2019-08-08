@@ -18,7 +18,7 @@
 #
 ##############################################################################
 {
-    'name': 'Product Usability',
+    'name': 'Product UX',
     'version': '12.0.1.0.0',
     'category': 'Products',
     'sequence': 14,
@@ -36,11 +36,11 @@
         'views/product_product_views.xml',
         'views/product_pricelist_item_view.xml',
         'views/product_pricelist_view.xml',
-        'views/product_uom_views.xml',
+        'views/uom_uom_views.xml',
     ],
     'demo': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
