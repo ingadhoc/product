@@ -19,7 +19,7 @@ class ProductUoms(models.Model):
         string='Product Template'
     )
     uom_id = fields.Many2one(
-        'product.uom',
+        'uom.uom',
         string='UOM',
         required=True,
     )
