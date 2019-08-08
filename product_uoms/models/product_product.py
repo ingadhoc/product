@@ -17,5 +17,5 @@ class ProductProduct(models.Model):
         """
         self.ensure_one()
         uom_uom = self.uom_id
-        return uom_uom | self.env['uom.uom'].search([
-            ('category_id', '=', uom_uom.category_id.id)])
+        return uom_uom | self.env['uom.uom'].search(
+            [('category_id', '=', uom_uom.category_id.id)])
