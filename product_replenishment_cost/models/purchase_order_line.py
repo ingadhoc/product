@@ -10,7 +10,7 @@ class PurchaseOrderLine(models.Model):
 
     @api.onchange('product_qty', 'product_uom')
     def _onchange_quantity(self):
-        super(PurchaseOrderLine, self)._onchange_quantity()
+        super()._onchange_quantity()
         if not self.product_id:
             return
 
