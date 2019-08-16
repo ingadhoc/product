@@ -47,5 +47,5 @@
     'test': [
         'test/cost_price_update.yml',
     ],
-    'installable': False,
+    'installable': True,
 }
