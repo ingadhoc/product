@@ -44,8 +44,5 @@
         'security/ir.model.access.csv',
         'security/product_replenishment_cost_security.xml',
     ],
-    'test': [
-        'test/cost_price_update.yml',
-    ],
     'installable': True,
 }
