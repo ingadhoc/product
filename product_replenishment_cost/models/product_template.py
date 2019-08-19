@@ -14,6 +14,7 @@ class ProductTemplate(models.Model):
 
     supplier_currency_id = fields.Many2one(
         related='seller_ids.currency_id',
+        string="Supplier Currency"
     )
     supplier_price = fields.Float(
         string='Supplier Price',
