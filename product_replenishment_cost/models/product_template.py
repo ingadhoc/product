@@ -12,23 +12,16 @@ _logger = logging.getLogger(__name__)
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    def _default_replenishment_base_cost_currency_id(self):
-        return self.env.user.company_id.currency_id.id
-
     supplier_currency_id = fields.Many2one(
         related='seller_ids.currency_id',
-        readonly=True,
+        string="Supplier Currency"
     )
     supplier_price = fields.Float(
         string='Supplier Price',
         related='seller_ids.net_price',
-        readonly=True,
     )
     standard_price = fields.Float(
         string='Accounting Cost',
-    )
-    standard_price_copy = fields.Float(
-        related='standard_price',
     )
     replenishment_cost = fields.Float(
         compute='_compute_replenishment_cost',
@@ -52,13 +45,12 @@ class ProductTemplate(models.Model):
         auto_join=True,
         track_visibility='onchange',
         help="Currency used for the Replanishment Base Cost.",
-        default=_default_replenishment_base_cost_currency_id
+        default=lambda self: self.env.user.company_id.currency_id.id
     )
     replenishment_cost_rule_id = fields.Many2one(
         'product.replenishment_cost.rule',
         auto_join=True,
         index=True,
-        string='Replenishment Cost Rule',
         track_visibility='onchange',
     )
     replenishment_base_cost_on_currency = fields.Float(
