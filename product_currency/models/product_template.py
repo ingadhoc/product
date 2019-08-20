@@ -24,6 +24,7 @@ class ProductTemplate(models.Model):
         'company_id',
         'company_id.currency_id')
     def _compute_currency_id(self):
-        super(ProductTemplate, self)._compute_currency_id()
-        for rec in self.filtered('force_currency_id'):
+        forced_products = self.filtered('force_currency_id')
+        for rec in forced_products:
             rec.currency_id = rec.force_currency_id
+        super(ProductTemplate, self - forced_products)._compute_currency_id()
