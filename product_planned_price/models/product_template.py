@@ -24,9 +24,6 @@ class ProductTemplate(models.Model):
         help='Planned Price. This value depends on Planned Price Type" an '
         'other parameters.',
     )
-    list_price_copy = fields.Float(
-        related='list_price',
-    )
     list_price_type = fields.Selection([
         ('manual', 'Fixed value'),
         ('by_margin', 'By Margin'),
@@ -50,10 +47,6 @@ class ProductTemplate(models.Model):
     sale_surcharge = fields.Float(
         'Planned Price Sale surcharge',
         digits=dp.get_precision('Product Price')
-    )
-    replenishment_cost_copy = fields.Float(
-        related='replenishment_cost'
-        # related='product_variant_ids.replenishment_cost'
     )
     other_currency_id = fields.Many2one(
         'res.currency',
