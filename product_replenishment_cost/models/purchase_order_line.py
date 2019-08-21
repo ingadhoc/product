@@ -2,7 +2,7 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import models, api
+from odoo import models, api, fields
 
 
 class PurchaseOrderLine(models.Model):
@@ -10,14 +10,14 @@ class PurchaseOrderLine(models.Model):
 
     @api.onchange('product_qty', 'product_uom')
     def _onchange_quantity(self):
-        super(PurchaseOrderLine, self)._onchange_quantity()
+        super()._onchange_quantity()
         if not self.product_id:
             return
 
         seller = self.product_id._select_seller(
             partner_id=self.partner_id,
             quantity=self.product_qty,
-            date=self.order_id.date_order and self.order_id.date_order[:10],
+            date=self.order_id.date_order and self.order_id.date_order.date(),
             uom_id=self.product_uom)
         if not seller:
             return
@@ -28,8 +28,10 @@ class PurchaseOrderLine(models.Model):
         if price_unit and seller and self.\
                 order_id.currency_id and seller.\
                 currency_id != self.order_id.currency_id:
-            price_unit = seller.currency_id.compute(
-                price_unit, self.order_id.currency_id)
+            price_unit = seller.currency_id._convert(
+                price_unit, self.order_id.currency_id,
+                self.order_id.company_id,
+                self.order_id.date_order or fields.Date.today())
 
         if seller and self.product_uom and seller.\
                 product_uom != self.product_uom:

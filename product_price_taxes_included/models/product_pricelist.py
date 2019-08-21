@@ -16,7 +16,7 @@ class ProductPricelist(models.Model):
         * we only need to do it once
         * pricelist could be based on fixed prices so product price is not used
         """
-        res = super(ProductPricelist, self).get_products_price(
+        res = super().get_products_price(
             products, quantities, partners, date=date, uom_id=uom_id)
         if self._context.get('taxes_included'):
             company_id = (

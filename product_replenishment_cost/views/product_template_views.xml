@@ -18,7 +18,7 @@
                             <field name="supplier_price" widget="monetary" options="{'currency_field': 'supplier_currency_id'}" attrs="{'invisible':[('replenishment_cost_type', '!=', 'supplier_price')]}"/>
                             <field name="replenishment_base_cost" class="oe_inline" widget="monetary" options="{'currency_field': 'replenishment_base_cost_currency_id'}" attrs="{'invisible':[('replenishment_cost_type', '=', 'supplier_price')]}"/>
                             <field name="replenishment_base_cost_currency_id" class="oe_inline oe_edit_only" options="{'no_open': True, 'no_create': True}" attrs="{'invisible':[('replenishment_cost_type', '=', 'supplier_price')]}"/>
-                            <label string="/"/>
+                            <label for="replenishment_base_cost_on_currency" string="/"/>
                             <field name="replenishment_base_cost_on_currency" class="oe_inline" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                         </div>
                         <field name="replenishment_cost_rule_id"  string="Cost Rule" context="{'default_product_id': active_id}"/>
@@ -26,9 +26,9 @@
                     </group>
                     <group name="accounting_cost" string="Accounting Cost">
                         <!-- we only change label -->
-                        <label for="standard_price_copy" groups="base.group_user" string="Accounting Cost" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"/>
-                        <div name="standard_price_copy" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}">
-                            <field name="standard_price_copy" widget="monetary" options="{'currency_field': 'user_company_currency_id'}" class="oe_inline"/>
+                        <label for="standard_price" groups="base.group_user" string="Accounting Cost" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"/>
+                        <div name="standard_price" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}">
+                            <field name="standard_price" widget="monetary" options="{'currency_field': 'user_company_currency_id'}" class="oe_inline"/>
                         </div>
                     </group>
                 </group>
