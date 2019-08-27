@@ -31,7 +31,6 @@
         "stock",
     ],
     'data': [
-        # 'data/product_data.xml',
         'views/product_views.xml',
         'views/stock_location_views.xml',
     ],
@@ -39,7 +38,7 @@
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
