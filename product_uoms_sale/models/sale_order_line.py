@@ -1,4 +1,4 @@
-
+##############################################################################
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
@@ -12,8 +12,7 @@ class SaleOrderLine(models.Model):
 
     uom_unit_ids = fields.Many2many(
         'uom.uom',
-        compute='_compute_uom_unit',
-    )
+        compute='_compute_uom_unit')
 
     @api.depends('product_id')
     def _compute_uom_unit(self):
