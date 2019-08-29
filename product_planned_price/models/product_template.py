@@ -118,6 +118,19 @@ class ProductTemplate(models.Model):
                     rec.other_currency_list_price,
                     rec.currency_id,
                     round=False)
+
+            # if product has taxes with price_include, add the tax to the
+            # sale price
+            inc_taxes = rec.taxes_id.filtered('price_include')
+            if inc_taxes:
+                # we change momentary price_include, as we are on a computed
+                # method it's not written to the database
+                inc_taxes.update({'price_include': False})
+                computed_list_price = inc_taxes.compute_all(
+                    computed_list_price, rec.currency_id,
+                    product=rec)['total_included']
+                inc_taxes.update({'price_include': True})
+
             rec.update({
                 'computed_list_price': computed_list_price,
             })
