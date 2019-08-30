@@ -3,18 +3,18 @@
 # directory
 ##############################################################################
 from odoo import fields, models, api, _
-from odoo.exceptions import Warning
+from odoo.exceptions import UserError
 from odoo import tools
 
 
-class prices_update_wizard(models.TransientModel):
+class ProductPricesUpdateWizard(models.TransientModel):
     _name = 'product.prices_update_wizard'
 
     price_type = fields.Selection(
         [('list_price', 'Sale Price'), ('standard_price', 'Cost Price')],
         required=True,
         string='Price Type')
-    price_discount = fields.Float('Price Discoun')
+    price_discount = fields.Float('Price Discount')
     price_surcharge = fields.Float(
         'Price Surcharge', help='Specify the fixed amount to add'
                                 ' or substract(if negative) to the'
@@ -34,7 +34,7 @@ class prices_update_wizard(models.TransientModel):
         active_ids = context.get('active_ids', [])
         products_vals = []
         if not active_ids:
-            raise Warning(_('You must select at least one product'))
+            raise UserError(_('You must select at least one product'))
         if self.check is True:
             actions = self.env.ref(
                 'product_prices_update.action_prices_update_wizard_result')
@@ -56,7 +56,7 @@ class prices_update_wizard(models.TransientModel):
                 elif self.price_type == 'standard_price':
                     old_price = prodct.standard_price
                 else:
-                    raise Warning(
+                    raise UserError(
                         _('Price type "%s" is not '
                           'implemented') % (self.price_type))
                 new_price = self.calc_new_price(
@@ -99,7 +99,7 @@ class prices_update_wizard(models.TransientModel):
         return new_price
 
 
-class prices_update_wizard_result_detail(models.TransientModel):
+class ProductPricesUpdateWizardResultDetail(models.TransientModel):
     _name = 'product.prices_update_wizard_result_detail'
 
     result_id = fields.Many2one(
@@ -116,7 +116,7 @@ class prices_update_wizard_result_detail(models.TransientModel):
     )
 
 
-class prices_update_wizard_result(models.TransientModel):
+class ProductPricesUpdateWizardResult(models.TransientModel):
     _name = 'product.prices_update_wizard_result'
 
     @api.model
@@ -134,7 +134,7 @@ class prices_update_wizard_result(models.TransientModel):
             elif price_type == 'standard_price':
                 old_price = product_tmpl.standard_price
             else:
-                raise Warning(
+                raise UserError(
                     _('Price type "%s" is not implemented') % (price_type))
             vals = {
                 'product_tmpl_id': product_tmpl.id,
