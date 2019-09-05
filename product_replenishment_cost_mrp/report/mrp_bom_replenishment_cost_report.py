@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
-
 from odoo import api, models
 
 
@@ -12,7 +9,6 @@ class MrpBomCReplenishmentCost(models.AbstractModel):
 
     @api.multi
     def get_lines(self, boms):
-        import pdb; pdb.set_trace()
         product_lines = []
         for bom in boms:
             products = bom.product_id
@@ -35,7 +31,7 @@ class MrpBomCReplenishmentCost(models.AbstractModel):
                     # FIN CAMBIO
                     line = {
                         'product_id': bom_line.product_id,
-                        'product_uom_qty': line_data['qty'], #line_data needed for phantom bom explosion
+                        'product_uom_qty': line_data['qty'],  # line_data needed for phantom bom explosion
                         'product_uom': bom_line.product_uom_id,
                         'price_unit': price_uom,
                         'total_price': price_uom * line_data['qty'],
