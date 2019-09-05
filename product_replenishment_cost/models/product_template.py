@@ -86,8 +86,8 @@ class ProductTemplate(models.Model):
     @api.model
     def cron_update_cost_from_replenishment_cost(self, limit=None):
         _logger.info('Running cron update cost from replenishment')
-        return self.with_context(
-            commit_transaction=True)._update_cost_from_replenishment_cost()
+        return self.with_context(prefetch_fields=False).search(
+            [])._update_cost_from_replenishment_cost()
 
     @api.multi
     def _update_cost_from_replenishment_cost(self):
@@ -97,21 +97,7 @@ class ProductTemplate(models.Model):
         """
         prec = self.env['decimal.precision'].precision_get('Product Price')
 
-        domain = [
-            '|', ('replenishment_cost_rule_id', '!=', False),
-            '|', '&', ('seller_ids', '!=', False),
-            ('replenishment_cost_type', '=', 'supplier_price'),
-            '&', '&',
-            ('replenishment_cost_type', '=', 'manual'),
-            ('replenishment_base_cost', '!=', False),
-            ('replenishment_base_cost_currency_id', '!=', False),
-        ]
-        if self:
-            domain.append(('product_tmpl_id.id', 'in', self.ids))
-
-        products = self.env['product.product'].with_context(
-            prefetch_fields=False).search(domain)
-        for product in products.filtered('replenishment_cost'):
+        for product in self.filtered('replenishment_cost'):
             replenishment_cost = product.replenishment_cost
             if product.currency_id != product.user_company_currency_id:
                 replenishment_cost = product.currency_id._convert(
