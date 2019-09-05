@@ -12,12 +12,12 @@
                     <field name="supplier_currency_id" invisible="1"/>
                     <group name="replenishment_cost" string="Replenishment Cost">
                         <field name="replenishment_cost_type"/>
-                        <field name="replenishment_cost_last_update" string="Last Update" readonly="1" attrs="{'invisible':[('replenishment_cost_type', '=', 'supplier_price')]}"/>
+                        <field name="replenishment_cost_last_update" string="Last Update" readonly="1" attrs="{'invisible':[('replenishment_cost_type', '!=', 'manual')]}"/>
                         <label for="replenishment_base_cost" string="Base Cost"/>
                         <div name="replenishment_base_cost" class="o_row" >
                             <field name="supplier_price" widget="monetary" options="{'currency_field': 'supplier_currency_id'}" attrs="{'invisible':[('replenishment_cost_type', '!=', 'supplier_price')]}"/>
-                            <field name="replenishment_base_cost" class="oe_inline" widget="monetary" options="{'currency_field': 'replenishment_base_cost_currency_id'}" attrs="{'invisible':[('replenishment_cost_type', '=', 'supplier_price')]}"/>
-                            <field name="replenishment_base_cost_currency_id" class="oe_inline oe_edit_only" options="{'no_open': True, 'no_create': True}" attrs="{'invisible':[('replenishment_cost_type', '=', 'supplier_price')]}"/>
+                            <field name="replenishment_base_cost" class="oe_inline" widget="monetary" options="{'currency_field': 'replenishment_base_cost_currency_id'}" attrs="{'invisible':[('replenishment_cost_type', '!=', 'manual')]}"/>
+                            <field name="replenishment_base_cost_currency_id" class="oe_inline oe_edit_only" options="{'no_open': True, 'no_create': True}" attrs="{'invisible':[('replenishment_cost_type', '!=', 'manual')]}"/>
                             <label string="/"/>
                             <field name="replenishment_base_cost_on_currency" class="oe_inline" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                         </div>
