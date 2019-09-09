@@ -16,12 +16,8 @@ class ProductPublicCategory(models.Model):
     parent_id = fields.Many2one(
         ondelete='restrict',
     )
-    parent_left = fields.Integer(
-        'Left Parent',
-        index=True,
-    )
-    parent_right = fields.Integer(
-        'Right Parent',
+    parent_path = fields.Char(
+        'Parent',
         index=True,
     )
     complete_name = fields.Char(
