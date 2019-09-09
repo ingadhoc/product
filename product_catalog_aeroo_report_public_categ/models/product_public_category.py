@@ -19,6 +19,7 @@ class ProductPublicCategory(models.Model):
     parent_path = fields.Char(
         'Left',
         index=True,
+    )
     complete_name = fields.Char(
         related='display_name',
         readonly=True,
