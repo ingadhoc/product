@@ -44,7 +44,7 @@
         'demo/product_template_demo.xml',
         'demo/product_product_demo.xml',
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': True,
 }
