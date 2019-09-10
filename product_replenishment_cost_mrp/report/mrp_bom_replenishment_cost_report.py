@@ -19,15 +19,17 @@ class MrpBomCReplenishmentCost(models.AbstractModel):
                 for value in product.attribute_value_ids:
                     attributes += [(value.attribute_id.name, value.name)]
                 result, result2 = bom.explode(product, 1)
+                # INICIO CAMBIO: cambio de standar_price por replenishment_cost
+                currency = product.currency_id
                 product_line = {'bom': bom, 'name': product.name, 'lines': [], 'total': 0.0,
-                                'currency': self.env.user.company_id.currency_id,
+                                'currency': currency,
                                 'product_uom_qty': bom.product_qty,
                                 'product_uom': bom.product_uom_id,
                                 'attributes': attributes}
                 total = 0.0
                 for bom_line, line_data in result2:
-                    # INICIO CAMBIO: cambio de standar_price por replenishment_cost
                     price_uom = bom_line.product_id.uom_id._compute_price(bom_line.product_id.replenishment_cost, bom_line.product_uom_id)
+                    price_uom = bom_line.product_id.currency_id.compute(price_uom, currency, round=False)
                     # FIN CAMBIO
                     line = {
                         'product_id': bom_line.product_id,
