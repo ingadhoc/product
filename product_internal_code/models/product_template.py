@@ -18,4 +18,4 @@ class ProductTemplate(models.Model):
         if vals.get('internal_code'):
             self = self.with_context(
                 default_internal_code=vals.get('internal_code'))
-        return super(ProductTemplate, self).create(vals)
+        return super().create(vals)
