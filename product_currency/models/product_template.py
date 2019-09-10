@@ -15,8 +15,8 @@ class ProductTemplate(models.Model):
         help='Use this currency instead of the product company currency',
     )
     company_currency_id = fields.Many2one(
+        string='Company Currency',
         related='company_id.currency_id',
-        readonly=True,
     )
 
     @api.depends(

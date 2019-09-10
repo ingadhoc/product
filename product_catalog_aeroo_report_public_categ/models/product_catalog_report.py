@@ -21,7 +21,7 @@ class ProductCatalogReport(models.Model):
 
     @api.multi
     def prepare_report(self):
-        self = super(ProductCatalogReport, self).prepare_report()
+        self = super().prepare_report()
         if self.category_type == 'public_category':
             categories = self.public_category_ids
             if self.include_sub_categories and categories:
