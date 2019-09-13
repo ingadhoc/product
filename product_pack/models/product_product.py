@@ -93,7 +93,9 @@ class ProductProduct(models.Model):
         packs, no_packs = self.separete_pack_products()
         prices = super(ProductProduct, no_packs).price_compute(
             price_type, uom, currency, company)
-        for product in packs.with_context(prefetch_fields=False):
+        if self._context.get('website_id', False):
+            packs = packs.with_context(prefetch_fields=False)
+        for product in packs:
             pack_price = 0.0
             for pack_line in product.pack_line_ids:
                 product_line_price = pack_line.product_id.price * (
