@@ -108,16 +108,17 @@ class ProductTemplate(models.Model):
                 'manual', 'by_margin', 'other_currency'])
         _logger.info('Get computed_list_price for %s "manual", "by_margin"'
                      ' and "other_currency" products' % (len(recs)))
+        company = self.env.user.company_id
+        date = fields.Date.today()
         for rec in recs:
             computed_list_price = rec.computed_list_price_manual
             if rec.list_price_type == 'by_margin':
                 computed_list_price = rec.replenishment_cost * \
                     (1 + rec.sale_margin / 100.0) + rec.sale_surcharge
             elif rec.list_price_type == 'other_currency' and rec.currency_id:
-                computed_list_price = rec.other_currency_id.compute(
+                computed_list_price = rec.other_currency_id._convert(
                     rec.other_currency_list_price,
-                    rec.currency_id,
-                    round=False)
+                    rec.currency_id, company, date, round=False)
 
             # if product has taxes with price_include, add the tax to the
             # sale price
