@@ -139,6 +139,8 @@ class ProductTemplate(models.Model):
     def _compute_replenishment_cost(self):
         _logger.info(
             'Getting replenishment cost for ids %s' % self.ids)
+        company = self.env.user.company_id
+        date = fields.Date.today()
         for rec in self:
             product_currency = rec.currency_id
             if rec.replenishment_cost_type == 'supplier_price':
@@ -154,7 +156,7 @@ class ProductTemplate(models.Model):
 
             replenishment_cost_rule = rec.replenishment_cost_rule_id
             replenishment_cost = base_cost_currency.compute(
-                replenishment_base_cost, product_currency, round=False)
+                replenishment_base_cost, product_currency, company, date, round=False)
 
             replenishment_base_cost_on_currency = replenishment_cost
             if replenishment_cost_rule:
