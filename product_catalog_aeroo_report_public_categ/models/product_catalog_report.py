@@ -27,5 +27,5 @@ class ProductCatalogReport(models.Model):
             if self.include_sub_categories and categories:
                 categories = self.env['product.public.category'].search(
                     [('id', 'child_of', categories.ids)])
-                self = self.with_context(category_ids=categories.ids)
+            self = self.with_context(category_ids=categories.ids)
         return self
