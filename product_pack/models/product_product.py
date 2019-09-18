@@ -4,6 +4,7 @@
 ##############################################################################
 from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError
+from odoo.tools import pycompat
 import math
 
 
@@ -101,6 +102,25 @@ class ProductProduct(models.Model):
                 product_line_price = pack_line.product_id.price * (
                     1 - (pack_line.discount or 0.0) / 100.0)
                 pack_price += (product_line_price * pack_line.quantity)
+            pricelist_id_or_name = self._context.get('pricelist')
+            # if there is a pricelist on the context the returned prices are on
+            # that currency but, if the pack product has a different currency
+            # it will be converted again by pp._compute_price_rule, so if
+            # that is the case we convert the amounts to the pack currency
+            if pricelist_id_or_name:
+                if isinstance(pricelist_id_or_name, pycompat.string_types):
+                    pricelist_name_search = self.env[
+                        'product.pricelist'].name_search(
+                        pricelist_id_or_name, operator='=', limit=1)
+                    if pricelist_name_search:
+                        pricelist = self.env['product.pricelist'].browse(
+                            [pricelist_name_search[0][0]])
+                elif isinstance(pricelist_id_or_name, pycompat.integer_types):
+                    pricelist = self.env['product.pricelist'].browse(
+                        pricelist_id_or_name)
+                if pricelist and pricelist.currency_id != product.currency_id:
+                    pack_price = pricelist.currency_id.compute(
+                        pack_price, product.currency_id)
             prices[product.id] = pack_price
         return prices
 
