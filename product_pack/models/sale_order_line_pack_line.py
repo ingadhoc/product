@@ -45,7 +45,7 @@ class SaleOrderLinePackLine(models.Model):
     @api.onchange('product_id')
     def onchange_product_id(self):
         for line in self:
-            line.price_unit = line.product_id.lst_price
+            line.price_unit = line.product_id.price
 
     @api.depends('price_unit', 'product_uom_qty')
     def _compute_price_subtotal(self):

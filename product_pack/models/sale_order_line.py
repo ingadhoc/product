@@ -86,7 +86,9 @@ class SaleOrderLine(models.Model):
             'target': 'new',
             'readonly': True,
             'res_id': self.id,
-            'context': self.env.context
+            'context': dict(
+                self.env.context,
+                pricelist=self.order_id.pricelist_id.id)
         }
         return view
 
@@ -115,8 +117,9 @@ class SaleOrderLine(models.Model):
             self.pack_line_ids.unlink()
 
             # create a sale pack line for each product pack line
-            for pack_line in self.product_id.pack_line_ids:
-                price_unit = pack_line.product_id.lst_price
+            for pack_line in self.product_id.pack_line_ids.with_context(
+                    pricelist=self.order_id.pricelist_id.id):
+                price_unit = pack_line.product_id.price
                 quantity = pack_line.quantity
                 vals = {
                     'order_line_id': self.id,
