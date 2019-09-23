@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product Planned Price',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.1.0',
     'category': 'Product',
     'sequence': 14,
     'author': 'ADHOC SA,Odoo Community Association (OCA)',
