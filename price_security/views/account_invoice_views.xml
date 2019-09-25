@@ -12,21 +12,15 @@
             </xpath>
 
             <!-- add readonly price unit -->
-            <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='price_unit']" position="after">
-                <field name="price_unit_readonly" attrs="{'readonly': [('product_can_modify_prices','=', False)]}"/>
-            </xpath>
-            <!-- make price unit invisible -->
             <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='price_unit']" position="attributes">
-                <attribute name="invisible">1</attribute>
+                <attribute name="attrs">{'readonly': [('product_can_modify_prices','=', False)]}</attribute>
+                <attribute name="force_save">1</attribute>
             </xpath>
 
             <!-- add tax readonly -->
-            <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='invoice_line_tax_ids']" position="after">
-                <field name="invoice_line_tax_ids_readonly" attrs="{'readonly': [('product_can_modify_prices','=', False)]}" context="{'type':parent.type}" domain="[('type_tax_use','=','sale'),('company_id', '=', parent.company_id)]" widget="many2many_tags"/>
-            </xpath>
-            <!-- make tax invisible -->
             <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='invoice_line_tax_ids']" position="attributes">
-                <attribute name="invisible">1</attribute>
+                <attribute name="attrs">{'readonly': [('product_can_modify_prices','=', False)]}</attribute>
+                <attribute name="force_save">1</attribute>
             </xpath>
         </field>
     </record>
