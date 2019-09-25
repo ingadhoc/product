@@ -155,10 +155,8 @@ class ProductTemplate(models.Model):
                 continue
 
             replenishment_cost_rule = rec.replenishment_cost_rule_id
-            replenishment_cost = base_cost_currency.compute(
-                replenishment_base_cost,
-                product_currency, company, date, round=False
-                )
+            replenishment_cost = base_cost_currency._convert(
+                replenishment_base_cost, product_currency, company, date, round=False)
 
             replenishment_base_cost_on_currency = replenishment_cost
             if replenishment_cost_rule:

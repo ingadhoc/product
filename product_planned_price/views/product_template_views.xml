@@ -17,7 +17,7 @@
                 <attribute name="groups">product.group_product_pricelist</attribute>
             </field>
 
-            <div name="pricelist_item" position="before">
+            <group name="sale" position="before">
                 <group name="pricing">
                     <group name="planned_price" string="Planned Price">
                         <field name="list_price_type" string="Based on"/>
@@ -39,7 +39,7 @@
                         <field name="list_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
                     </group>
                 </group>
-            </div>
+            </group>
         </field>
     </record>
 
