@@ -21,6 +21,7 @@ class ProductPublicCategory(models.Model):
         index=True,
     )
     complete_name = fields.Char(
+        'Complete Name',
         related='display_name',
         readonly=True,
     )
