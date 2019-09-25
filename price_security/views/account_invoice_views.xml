@@ -18,6 +18,7 @@
             <!-- make price unit invisible -->
             <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='price_unit']" position="attributes">
                 <attribute name="invisible">1</attribute>
+                <attribute name="force_save">1</attribute>
             </xpath>
 
             <!-- add tax readonly -->
@@ -27,6 +28,7 @@
             <!-- make tax invisible -->
             <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='invoice_line_tax_ids']" position="attributes">
                 <attribute name="invisible">1</attribute>
+                <attribute name="force_save">1</attribute>
             </xpath>
         </field>
     </record>
