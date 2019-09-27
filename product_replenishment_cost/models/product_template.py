@@ -18,7 +18,7 @@ class ProductTemplate(models.Model):
     )
     supplier_price = fields.Float(
         string='Supplier Price',
-        related='seller_ids.net_price',
+        compute='_compute_supplier_price',
     )
     standard_price = fields.Float(
         string='Accounting Cost',
@@ -64,6 +64,24 @@ class ProductTemplate(models.Model):
         default='manual',
         required=True,
     )
+
+    @api.depends('seller_ids')
+    def _compute_supplier_price(self):
+        """ Lo ideal seria utilizar campo related para que segun los permisos
+         del usuario tome el seller_id que corresponda, pero el tema es que el
+         cron se corre con admin y entonces siempre va a tomar el primer seller
+        sin importar si estamos usando un force_company para poder definir rel
+         costo en distintas compañias.
+        Basicamente usamos regla analoga a la que viene por defecto para los
+         sellers donde se puede ver si
+        no tiene cia o es cia del usuario.
+        """
+        company = self._context.get(
+            'force_company', self.env.user.company_id)
+        for rec in self.filtered('seller_ids'):
+            seller_ids = rec.seller_ids.filtered(
+                lambda x: not x.company_id or x.company_id == company)
+            rec.supplier_price = seller_ids and seller_ids[0].net_price
 
     @api.model
     def cron_update_cost_from_replenishment_cost(self, limit=None):
