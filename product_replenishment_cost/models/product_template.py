@@ -87,7 +87,7 @@ class ProductTemplate(models.Model):
     def cron_update_cost_from_replenishment_cost(self, limit=None):
         _logger.info('Running cron update cost from replenishment')
         return self.with_context(prefetch_fields=False).search(
-            [])._update_cost_from_replenishment_cost()
+            [], limit=limit)._update_cost_from_replenishment_cost()
 
     @api.multi
     def _update_cost_from_replenishment_cost(self):
@@ -97,7 +97,11 @@ class ProductTemplate(models.Model):
         """
         prec = self.env['decimal.precision'].precision_get('Product Price')
 
-        for product in self.filtered('replenishment_cost'):
+        # clave hacerlo en product.product por velocidad (relativo a
+        # campos standard_price)
+        products = self.env['product.product'].search(
+            [('product_tmpl_id.id', 'in', self.ids)])
+        for product in products.filtered('replenishment_cost'):
             replenishment_cost = product.replenishment_cost
             if product.currency_id != product.user_company_currency_id:
                 replenishment_cost = product.currency_id._convert(
