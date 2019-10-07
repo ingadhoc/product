@@ -38,5 +38,5 @@
         'views/res_users_views.xml',
         'views/sale_order_views.xml',
     ],
-    'installable': False,
+    'installable': True,
 }

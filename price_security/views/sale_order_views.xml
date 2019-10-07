@@ -15,39 +15,23 @@
             </xpath>
 
             <!-- add readonly price unit on tree -->
-            <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">
-                <field name="price_unit_readonly" attrs="{'readonly': [('product_can_modify_prices','=', False)]}"/>
-            </xpath>
-            <!-- make price unit invisible on tree -->
             <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="attributes">
-                <attribute name="invisible">1</attribute>
+                <attribute name="attrs">{'readonly': [('product_can_modify_prices','=', False)]}</attribute>
             </xpath>
 
             <!-- add readonly tax on tree -->
-            <xpath expr="//field[@name='order_line']/tree//field[@name='tax_id']" position="after">
-                <field name="tax_id_readonly" attrs="{'readonly': [('product_can_modify_prices','=', False)]}" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]" widget="many2many_tags"/>
-            </xpath>
-            <!-- make tax invisible on tree -->
             <xpath expr="//field[@name='order_line']/tree//field[@name='tax_id']" position="attributes">
-                <attribute name="invisible">1</attribute>
+                <attribute name="attrs">{'readonly': [('product_can_modify_prices','=', False)]}</attribute>
             </xpath>
 
             <!-- add readonly price unit on form -->
-            <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="after">
-                <field name="price_unit_readonly" attrs="{'readonly': [('product_can_modify_prices','=', False)]}"/>
-            </xpath>
-            <!-- make price unit invisible on form -->
             <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="attributes">
-                <attribute name="invisible">1</attribute>
+                <attribute name="attrs">{'readonly': [('product_can_modify_prices','=', False)]}</attribute>
             </xpath>
 
             <!-- add readonly tax on form -->
-            <xpath expr="//field[@name='order_line']/form//field[@name='tax_id']" position="after">
-                <field name="tax_id_readonly" attrs="{'readonly': [('product_can_modify_prices','=', False)]}" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]" widget="many2many_tags"/>
-            </xpath>
-            <!-- make tax invisible on form -->
             <xpath expr="//field[@name='order_line']/form//field[@name='tax_id']" position="attributes">
-                <attribute name="invisible">1</attribute>
+                <attribute name="attrs">{'readonly': [('product_can_modify_prices','=', False)]}</attribute>
             </xpath>
         </field>
     </record>
