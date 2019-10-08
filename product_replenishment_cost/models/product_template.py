@@ -28,6 +28,7 @@ class ProductTemplate(models.Model):
     )
     standard_price_copy = fields.Float(
         related='standard_price',
+        related_sudo=False,
     )
     replenishment_cost = fields.Float(
         compute='_compute_replenishment_cost',
