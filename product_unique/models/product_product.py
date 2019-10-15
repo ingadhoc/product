@@ -2,12 +2,16 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import models, api, _
+from odoo import models, fields,  api, _
 from odoo.exceptions import ValidationError
 
 
 class ProductProduct(models.Model):
     _inherit = "product.product"
+
+    default_code = fields.Char(
+        copy=False,
+    )
 
     @api.constrains('product_tmpl_id', 'default_code', 'active')
     def check_unique_company_and_default_code(self):
