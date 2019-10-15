@@ -18,7 +18,7 @@ class ProductTemplate(models.Model):
     )
     supplier_price = fields.Float(
         string='Supplier Price',
-        related='seller_ids.net_price',
+        compute='_compute_supplier_price',
     )
     standard_price = fields.Float(
         string='Accounting Cost',
@@ -65,11 +65,29 @@ class ProductTemplate(models.Model):
         required=True,
     )
 
+    @api.depends('seller_ids')
+    def _compute_supplier_price(self):
+        """ Lo ideal seria utilizar campo related para que segun los permisos
+         del usuario tome el seller_id que corresponda, pero el tema es que el
+         cron se corre con admin y entonces siempre va a tomar el primer seller
+        sin importar si estamos usando un force_company para poder definir rel
+         costo en distintas compañias.
+        Basicamente usamos regla analoga a la que viene por defecto para los
+         sellers donde se puede ver si
+        no tiene cia o es cia del usuario.
+        """
+        company = self._context.get(
+            'force_company', self.env.user.company_id)
+        for rec in self.filtered('seller_ids'):
+            seller_ids = rec.seller_ids.filtered(
+                lambda x: not x.company_id or x.company_id == company)
+            rec.supplier_price = seller_ids and seller_ids[0].net_price
+
     @api.model
     def cron_update_cost_from_replenishment_cost(self, limit=None):
         _logger.info('Running cron update cost from replenishment')
-        return self.with_context(
-            commit_transaction=True)._update_cost_from_replenishment_cost()
+        return self.with_context(prefetch_fields=False).search(
+            [], limit=limit)._update_cost_from_replenishment_cost()
 
     @api.multi
     def _update_cost_from_replenishment_cost(self):
@@ -79,20 +97,10 @@ class ProductTemplate(models.Model):
         """
         prec = self.env['decimal.precision'].precision_get('Product Price')
 
-        domain = [
-            '|', ('replenishment_cost_rule_id', '!=', False),
-            '|', '&', ('seller_ids', '!=', False),
-            ('replenishment_cost_type', '=', 'supplier_price'),
-            '&', '&',
-            ('replenishment_cost_type', '=', 'manual'),
-            ('replenishment_base_cost', '!=', False),
-            ('replenishment_base_cost_currency_id', '!=', False),
-        ]
-        if self:
-            domain.append(('product_tmpl_id.id', 'in', self.ids))
-
-        products = self.env['product.product'].with_context(
-            prefetch_fields=False).search(domain)
+        # clave hacerlo en product.product por velocidad (relativo a
+        # campos standard_price)
+        products = self.env['product.product'].search(
+            [('product_tmpl_id.id', 'in', self.ids)])
         for product in products.filtered('replenishment_cost'):
             replenishment_cost = product.replenishment_cost
             if product.currency_id != product.user_company_currency_id:
