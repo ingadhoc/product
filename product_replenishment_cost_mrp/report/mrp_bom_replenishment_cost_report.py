@@ -6,6 +6,7 @@ class MrpBomCReplenishmentCost(models.AbstractModel):
     cambio en "INICIO CAMBIO"
     """
     _name = 'report.product_replenishment_cost_mrp.bom_report'
+    _description = 'report.product_replenishment_cost_mrp.bom_report'
 
     @api.multi
     def get_lines(self, boms):
