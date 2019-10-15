@@ -9,7 +9,7 @@ class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     @api.multi
-    def get_product_uoms(self, use=False):
+    def get_product_uoms(self, product_uom, use=False):
         if use == 'sale' and self.uom_ids.filtered('sale_ok'):
             return self.uom_ids.filtered('sale_ok').mapped('uom_id')
-        return super().get_product_uoms(use=use)
+        return super().get_product_uoms(product_uom, use=use)

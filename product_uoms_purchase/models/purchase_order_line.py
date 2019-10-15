@@ -17,7 +17,8 @@ class PurchaseOrderLine(models.Model):
     @api.depends('product_id')
     def _compute_uom_unit(self):
         for rec in self.filtered('product_id'):
-            rec.uom_unit_ids = rec.product_id.get_product_uoms(use='purchase')
+            rec.uom_unit_ids = rec.product_id.get_product_uoms(
+                rec.product_id.uom_po_id, use='purchase')
 
     @api.onchange('product_id')
     def onchange_product_id(self):
@@ -25,7 +26,8 @@ class PurchaseOrderLine(models.Model):
         product_uom_domain = None
         if self.product_id:
             product = self.product_id
-            purchase_product_uoms = product.get_product_uoms(use='purchase')
+            purchase_product_uoms = product.get_product_uoms(
+                product.uom_po_id, use='purchase')
             if purchase_product_uoms:
                 product_uom = purchase_product_uoms[0].id
                 # we do this because odoo overwrite view domain
@@ -41,7 +43,8 @@ class PurchaseOrderLine(models.Model):
     def check_uoms(self):
         for rec in self:
             product = rec.product_id
-            purchase_product_uoms = product.get_product_uoms(use='purchase')
+            purchase_product_uoms = product.get_product_uoms(
+                product.uom_po_id, use='purchase')
             if rec.product_uom not in purchase_product_uoms:
                 raise ValidationError(_(
                     "%s unit of measure is not valid for purchase,"
