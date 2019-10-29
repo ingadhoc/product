@@ -12,5 +12,5 @@
     'data': [
         'report/mrp_bom_replenishment_cost_report_templates.xml',
     ],
-    'installable': True,
+    'installable': False,
 }
