@@ -31,7 +31,7 @@ class ProductTemplate(models.Model):
             for sbom, sbom_data in result2:
                 # TODO ver si podemos evitar este invalidate cache. Es necesario
                 # para que actualice desde el cron
-                sbom.product_id.product_tmpl_id.invalidate_cache(['replenishment_cost'])
+                self.invalidate_cache(['replenishment_cost'], [sbom.product_id.product_tmpl_id.id])
                 sbom_rep_cost = sbom.product_id.uom_id._compute_price(
                     sbom.product_id.product_tmpl_id.replenishment_cost, sbom.product_uom_id) * sbom_data['qty']
                 price += sbom.product_id.product_tmpl_id.currency_id.compute(sbom_rep_cost, product_currency, round=False)
