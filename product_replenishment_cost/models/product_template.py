@@ -84,11 +84,11 @@ class ProductTemplate(models.Model):
          sellers donde se puede ver si
         no tiene cia o es cia del usuario.
         """
-        company = self._context.get(
-            'force_company', self.env.user.company_id)
+        company_id = self._context.get(
+            'force_company', self.env.user.company_id.id)
         for rec in self.filtered('seller_ids'):
             seller_ids = rec.seller_ids.filtered(
-                lambda x: not x.company_id or x.company_id == company)
+                lambda x: not x.company_id or x.company_id.id == company_id)
             rec.supplier_price = seller_ids and seller_ids[0].net_price
 
     @api.model
