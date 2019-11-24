@@ -107,7 +107,7 @@ class ProductTemplate(models.Model):
                 'manual', 'by_margin', 'other_currency'])
         _logger.info('Get computed_list_price for %s "manual", "by_margin"'
                      ' and "other_currency" products' % (len(recs)))
-        company = self.env.user.company_id
+        company = self.env['res.company'].browse(self._context.get('force_company', False)) or self.env.user.company_id
         date = fields.Date.today()
         for rec in recs:
             computed_list_price = rec.computed_list_price_manual
