@@ -14,7 +14,7 @@
 Product Template Tree First
 ===========================
 
-This module set tree view first when you enter in product variant.
+After installing this module, all product template views will always be displayed using a tree view by default.
 
 Installation
 ============

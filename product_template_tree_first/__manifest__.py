@@ -22,7 +22,7 @@
     'version': '12.0.1.0.0',
     'category': 'Sales Management',
     'sequence': 14,
-    'summary': 'Product',
+    'summary': '',
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
@@ -31,10 +31,7 @@
     'depends': [
         'product',
     ],
-    'data': [
-        'views/product_template_action_views.xml',
-    ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
