@@ -1,7 +1,7 @@
 {
     'name': 'Integration between Replenishment Cost and Manufacture',
-    'version': '11.0.1.5.0',
-    'author': "ADHOC SA, Camptocamp,GRAP,Odoo Community Association (OCA)",
+    'version': '12.0.1.0.0',
+    'author': "ADHOC SA, Camptocamp, GRAP, Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'category': 'Products',
     'depends': [
@@ -10,7 +10,8 @@
     ],
     'website': 'http://www.camptocamp.com/',
     'data': [
-        'report/mrp_bom_replenishment_cost_report_templates.xml',
+        'views/mrp_bom_views.xml',
+        'report/mrp_report_bom_structure.xml'
     ],
-    'installable': False,
+    'installable': True,
 }
