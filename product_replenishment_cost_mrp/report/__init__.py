@@ -1,1 +1,1 @@
-from . import mrp_bom_replenishment_cost_report
+from . import mrp_report_bom_structure

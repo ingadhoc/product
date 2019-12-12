@@ -14,8 +14,8 @@
 Integration between Replenishment Cost and Manufacture
 ======================================================
 
-#. Agregado de reporte de costo de BOM basado en costo de reposición
-#. Agregado de método para cálculo de costo de reposición utilizando el costo de reposición de la bom
+#. Agregado de método para cálculo de costo de reposición utilizando el costo de reposición de la LdM.
+#. Modifica el reporte de "Estructura de Lista de Materiales" para que utilice el costo de reposición.
 
 Installation
 ============
