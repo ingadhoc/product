@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 
 
@@ -12,9 +12,9 @@ class ProductTemplate(models.Model):
     @api.onchange('replenishment_cost_type')
     def onchange_replenishment_cost_type(self):
         if self.replenishment_cost_type == 'bom' and not self._origin.bom_ids:
-            raise UserError(
-                'Si elige tipo de costo de reposición "Basado en Ldm" el '
-                'producto debe tener asociadas listas de materiales')
+            raise UserError(_(
+                'If you choose replenishment cost type "Based on BoM" '
+                'then the product must have a bill of materials.'))
 
     def _compute_replenishment_cost(self):
         bom_costs = self.filtered(lambda x: x.replenishment_cost_type == 'bom')
