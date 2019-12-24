@@ -19,6 +19,7 @@ class ProductTemplate(models.Model):
     supplier_price = fields.Float(
         string='Supplier Price',
         compute='_compute_supplier_price',
+        digits=dp.get_precision('Product Price'),
     )
     standard_price = fields.Float(
         string='Accounting Cost',
