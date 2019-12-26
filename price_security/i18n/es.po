@@ -4,17 +4,15 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019
-# Katherine Zaoral <katherine.zaoral@gmail.com>, 2019
-# emiquinodoz <eq@ingadhoc.com>, 2019
-# Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2019
+# Federico La Torre <3doeste@gmail.com>, 2019
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-17 09:13+0000\n"
-"PO-Revision-Date: 2018-05-22 01:12+0000\n"
-"Last-Translator: Nicolas Mac Rouillon <nmr@ingadhoc.com>, 2019\n"
+"POT-Creation-Date: 2019-12-26 00:43+0000\n"
+"PO-Revision-Date: 2019-10-07 15:37+0000\n"
+"Last-Translator: Federico La Torre <3doeste@gmail.com>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,18 +21,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: price_security
-#: model:ir.model.fields,field_description:price_security.field_product_product_can_modify_prices
-#: model:ir.model.fields,field_description:price_security.field_product_template_can_modify_prices
+#: model:ir.model.fields,field_description:price_security.field_product_product__can_modify_prices
+#: model:ir.model.fields,field_description:price_security.field_product_template__can_modify_prices
+#: model:ir.model.fields,field_description:price_security.field_sale_order_line__product_can_modify_prices
 msgid "Can modify prices"
 msgstr "Puede modificar precios"
 
 #. module: price_security
-#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_create_uid
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__create_uid
 msgid "Created by"
 msgstr "Creado por"
 
 #. module: price_security
-#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_create_date
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__create_date
 msgid "Created on"
 msgstr "Creado en"
 
@@ -44,30 +43,30 @@ msgid "Discount Restriction"
 msgstr "Restricción de Descuento"
 
 #. module: price_security
-#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_ids
+#: model:ir.model.fields,field_description:price_security.field_res_users__discount_restriction_ids
 msgid "Discount Restrictions"
 msgstr "Restricciones de Descuento"
 
 #. module: price_security
-#: model:ir.ui.view,arch_db:price_security.view_price_security_users_form
+#: model_terms:ir.ui.view,arch_db:price_security.view_price_security_users_form
 msgid "Discounts Permissions"
 msgstr "Permisos de descuento"
 
 #. module: price_security
-#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_display_name
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: price_security
-#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_id
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__id
 msgid "ID"
 msgstr "ID (identificación)"
 
 #. module: price_security
-#: model:ir.model.fields,help:price_security.field_account_invoice_line_product_can_modify_prices
-#: model:ir.model.fields,help:price_security.field_product_product_can_modify_prices
-#: model:ir.model.fields,help:price_security.field_product_template_can_modify_prices
-#: model:ir.model.fields,help:price_security.field_sale_order_line_product_can_modify_prices
+#: model:ir.model.fields,help:price_security.field_account_invoice_line__product_can_modify_prices
+#: model:ir.model.fields,help:price_security.field_product_product__can_modify_prices
+#: model:ir.model.fields,help:price_security.field_product_template__can_modify_prices
+#: model:ir.model.fields,help:price_security.field_sale_order_line__product_can_modify_prices
 msgid ""
 "If checked all users can modify the price of this product in a sale order or"
 " invoice."
@@ -81,32 +80,32 @@ msgid "Invoice Line"
 msgstr "Línea de factura"
 
 #. module: price_security
-#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction___last_update
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction____last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
 #. module: price_security
-#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_write_uid
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización de"
 
 #. module: price_security
-#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_write_date
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__write_date
 msgid "Last Updated on"
 msgstr "Última actualización en"
 
 #. module: price_security
-#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_max_discount
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__max_discount
 msgid "Max. Discount"
 msgstr "Máx. Descuento"
 
 #. module: price_security
-#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_min_discount
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__min_discount
 msgid "Min. Discount"
 msgstr "Min. Descuento"
 
 #. module: price_security
-#: model:ir.ui.view,arch_db:price_security.view_payment_term_tree
+#: model_terms:ir.ui.view,arch_db:price_security.view_payment_term_tree
 msgid "Payment Term"
 msgstr "Condiciones de pago"
 
@@ -117,13 +116,12 @@ msgstr "Plazos de pago"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_product_pricelist
-#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_pricelist_id
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__pricelist_id
 msgid "Pricelist"
 msgstr "Tarifa"
 
 #. module: price_security
-#: model:ir.model.fields,field_description:price_security.field_account_invoice_line_product_can_modify_prices
-#: model:ir.model.fields,field_description:price_security.field_sale_order_line_product_can_modify_prices
+#: model:ir.model.fields,field_description:price_security.field_account_invoice_line__product_can_modify_prices
 msgid "Product Can modify prices"
 msgstr "Puede modificar precios de Producto"
 
@@ -133,14 +131,14 @@ msgid "Product Template"
 msgstr "Plantilla de producto"
 
 #. module: price_security
-#: model:ir.model,name:price_security.model_sale_order
-msgid "Quotation"
-msgstr "Presupuesto"
-
-#. module: price_security
 #: model:ir.module.category,name:price_security.module_prices_management
 msgid "Restricción de precios"
 msgstr "Restricción de precios"
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_sale_order
+msgid "Sale Order"
+msgstr "Orden de Venta"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_sale_order_line
@@ -168,6 +166,12 @@ msgstr ""
 "precios configurado en cliente"
 
 #. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_account_payment_term__sequence
+#: model:ir.model.fields,field_description:price_security.field_product_pricelist__sequence
+msgid "Sequence"
+msgstr "Secuencia"
+
+#. module: price_security
 #: model:res.groups,name:price_security.group_restrict_prices
 msgid "Solo ver: precio de venta"
 msgstr "Solo ver: precio de venta"
@@ -176,12 +180,6 @@ msgstr "Solo ver: precio de venta"
 #: model:res.groups,name:price_security.group_only_view
 msgid "Solo ver: precio venta y compra"
 msgstr "Solo ver: precio venta y compra"
-
-#. module: price_security
-#: model:ir.model.fields,field_description:price_security.field_account_invoice_line_invoice_line_tax_ids_readonly
-#: model:ir.model.fields,field_description:price_security.field_sale_order_line_tax_id_readonly
-msgid "Taxes"
-msgstr "Impuestos"
 
 #. module: price_security
 #: code:addons/price_security/models/res_users.py:70
@@ -204,13 +202,7 @@ msgstr ""
 "revisar/actualizar los mismos"
 
 #. module: price_security
-#: model:ir.model.fields,field_description:price_security.field_account_invoice_line_price_unit_readonly
-#: model:ir.model.fields,field_description:price_security.field_sale_order_line_price_unit_readonly
-msgid "Unit Price"
-msgstr "Precio unitario"
-
-#. module: price_security
-#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction_user_id
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__user_id
 msgid "User"
 msgstr "Usuario"
 

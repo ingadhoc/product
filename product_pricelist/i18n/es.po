@@ -4,16 +4,14 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019
-# Katherine Zaoral <katherine.zaoral@gmail.com>, 2019
-# Santiago Crespo <sc@adhoc.com.ar>, 2019
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-16 20:55+0000\n"
-"PO-Revision-Date: 2018-08-23 20:36+0000\n"
-"Last-Translator: Santiago Crespo <sc@adhoc.com.ar>, 2019\n"
+"POT-Creation-Date: 2019-12-26 00:43+0000\n"
+"PO-Revision-Date: 2019-08-07 21:43+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: product_pricelist
-#: model:ir.model.fields,help:product_pricelist.field_product_pricelist_show_products
+#: model:ir.model.fields,help:product_pricelist.field_product_pricelist__show_products
 msgid ""
 "By selecting it allows you to display the pricelist with the price of that "
 "product in the products"
@@ -31,12 +29,12 @@ msgstr ""
 "con el precio para ese producto"
 
 #. module: product_pricelist
-#: model:ir.model.fields,field_description:product_pricelist.field_product_pricelist_price
+#: model:ir.model.fields,field_description:product_pricelist.field_product_pricelist__price
 msgid "Price"
 msgstr "Precio"
 
 #. module: product_pricelist
-#: model:ir.model.fields,help:product_pricelist.field_product_pricelist_price
+#: model:ir.model.fields,help:product_pricelist.field_product_pricelist__price
 msgid "Price for product specified on the context"
 msgstr "Precio por producto especificado en el contexto"
 
@@ -46,8 +44,8 @@ msgid "Pricelist"
 msgstr "Tarifa"
 
 #. module: product_pricelist
-#: model:ir.model.fields,field_description:product_pricelist.field_product_product_pricelist_ids
-#: model:ir.model.fields,field_description:product_pricelist.field_product_template_pricelist_ids
+#: model:ir.model.fields,field_description:product_pricelist.field_product_product__pricelist_ids
+#: model:ir.model.fields,field_description:product_pricelist.field_product_template__pricelist_ids
 msgid "Pricelists"
 msgstr "Lista de precios"
 
@@ -57,6 +55,6 @@ msgid "Product Template"
 msgstr "Plantilla de producto"
 
 #. module: product_pricelist
-#: model:ir.model.fields,field_description:product_pricelist.field_product_pricelist_show_products
+#: model:ir.model.fields,field_description:product_pricelist.field_product_pricelist__show_products
 msgid "Show in products"
 msgstr "Mostrar en productos"

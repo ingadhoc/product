@@ -1,0 +1,123 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * product_ux
+# 
+# Translators:
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-12-26 00:44+0000\n"
+"PO-Revision-Date: 2019-08-07 21:36+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019\n"
+"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: product_ux
+#: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_view
+msgid "<span class=\"o_stat_text\">Elementos de tarifa</span>"
+msgstr "<span class=\"o_stat_text\">Elementos de tarifa</span>"
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_product_product__active
+#: model:ir.model.fields,field_description:product_ux.field_product_template__active
+msgid "Active"
+msgstr ""
+
+#. module: product_ux
+#: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_item_search_view
+msgid "Apply On"
+msgstr "Aplicar en"
+
+#. module: product_ux
+#: model_terms:ir.ui.view,arch_db:product_ux.product_uom_search_view
+msgid "Category"
+msgstr "Categoría"
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_uom_uom__description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: product_ux
+#: model:ir.model.fields,help:product_ux.field_product_product__active
+#: model:ir.model.fields,help:product_ux.field_product_template__active
+msgid ""
+"If unchecked, it will allow you to hide the product without removing it."
+msgstr ""
+
+#. module: product_ux
+#: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_item_search_view
+msgid "Pricelist Items"
+msgstr "Items de Tarifa"
+
+#. module: product_ux
+#: model_terms:ir.ui.view,arch_db:product_ux.product_template_tree_view
+msgid "Pricelist Price"
+msgstr "Precio Tarifa"
+
+#. module: product_ux
+#: model:ir.actions.act_window,name:product_ux.product_pricelist_item_action
+msgid "Pricelists Items"
+msgstr "Items de Tarifa"
+
+#. module: product_ux
+#: model:ir.model,name:product_ux.model_product_product
+#: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_item_search_view
+msgid "Product"
+msgstr "Producto"
+
+#. module: product_ux
+#: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_item_search_view
+msgid "Product Category"
+msgstr "Categoría de producto"
+
+#. module: product_ux
+#: model:ir.model,name:product_ux.model_product_template
+#: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_item_search_view
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: product_ux
+#: model:ir.model,name:product_ux.model_uom_uom
+msgid "Product Unit of Measure"
+msgstr "Unidad de Medida de Producto"
+
+#. module: product_ux
+#: model:ir.model.fields,help:product_ux.field_product_product__sellers_product_code
+#: model:ir.model.fields,help:product_ux.field_product_template__sellers_product_code
+msgid ""
+"This vendor's product code will be used when printing a request for "
+"quotation. Keep empty to use the internal one."
+msgstr ""
+"El código de producto de vendedor se usará al imprimir una solicitud de "
+"presupuesto. Déjelo vacío para usar el código interno."
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_product_product__user_company_currency_id
+#: model:ir.model.fields,field_description:product_ux.field_product_template__user_company_currency_id
+msgid "User Company Currency"
+msgstr "Moneda de la Compañía del Usuario"
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_product_product__sellers_product_code
+#: model:ir.model.fields,field_description:product_ux.field_product_template__sellers_product_code
+msgid "Vendor Product Code"
+msgstr "Código de producto del proveedor"
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_product_product__warranty
+#: model:ir.model.fields,field_description:product_ux.field_product_template__warranty
+msgid "Warranty"
+msgstr "Garantía"
+
+#. module: product_ux
+#: model_terms:ir.ui.view,arch_db:product_ux.product_template_only_form_view
+msgid "months"
+msgstr "meses"
