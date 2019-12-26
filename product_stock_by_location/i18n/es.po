@@ -3,16 +3,15 @@
 # * product_stock_by_location
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2018
-# Santiago Crespo <sc@adhoc.com.ar>, 2019
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0\n"
+"Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-08 21:20+0000\n"
-"PO-Revision-Date: 2018-05-10 13:11+0000\n"
-"Last-Translator: Santiago Crespo <sc@adhoc.com.ar>, 2019\n"
+"POT-Creation-Date: 2019-12-26 00:43+0000\n"
+"PO-Revision-Date: 2019-08-27 23:11+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: product_stock_by_location
-#: model:ir.model.fields,help:product_stock_by_location.field_stock_location_qty_available
+#: model:ir.model.fields,help:product_stock_by_location.field_stock_location__qty_available
 msgid ""
 "Current quantity of products.\n"
 "In a context with a single Stock Location, this includes goods stored at this Location, or any of its children.\n"
@@ -35,12 +34,12 @@ msgstr ""
 "De lo contrario, esto incluye los bienes almacenados en cualquier ubicación de stock con tipo \"interno\"."
 
 #. module: product_stock_by_location
-#: model:ir.model.fields,field_description:product_stock_by_location.field_stock_location_virtual_available
+#: model:ir.model.fields,field_description:product_stock_by_location.field_stock_location__virtual_available
 msgid "Forecast Quantity"
 msgstr "Cantidad prevista"
 
 #. module: product_stock_by_location
-#: model:ir.model.fields,help:product_stock_by_location.field_stock_location_virtual_available
+#: model:ir.model.fields,help:product_stock_by_location.field_stock_location__virtual_available
 msgid ""
 "Forecast quantity (computed as Quantity On Hand - Outgoing + Incoming)\n"
 "In a context with a single Stock Location, this includes goods stored in this location, or any of its children.\n"
@@ -53,12 +52,12 @@ msgstr ""
 ".De lo contrario, esto incluye los bienes almacenados en cualquier ubicación de stock con tipo \"interno\"."
 
 #. module: product_stock_by_location
-#: model:ir.ui.view,arch_db:product_stock_by_location.product_template_kanban_stock_view
+#: model_terms:ir.ui.view,arch_db:product_stock_by_location.product_template_kanban_stock_view
 msgid "Forecasted:"
 msgstr "Pronosticado"
 
 #. module: product_stock_by_location
-#: model:ir.model.fields,help:product_stock_by_location.field_stock_location_show_stock_on_products
+#: model:ir.model.fields,help:product_stock_by_location.field_stock_location__show_stock_on_products
 msgid ""
 "If true, this location will be shown on the pop up window openedfrom "
 "products kanban and tree view"
@@ -67,7 +66,7 @@ msgstr ""
 "desde la producción kanban y vista de árbol"
 
 #. module: product_stock_by_location
-#: model:ir.model.fields,field_description:product_stock_by_location.field_stock_location_incoming_qty
+#: model:ir.model.fields,field_description:product_stock_by_location.field_stock_location__incoming_qty
 msgid "Incoming"
 msgstr "Ingreso"
 
@@ -77,23 +76,23 @@ msgid "Inventory Locations"
 msgstr "Ubicaciones de inventario"
 
 #. module: product_stock_by_location
-#: model:ir.ui.view,arch_db:product_stock_by_location.view_location_stock_tree
+#: model_terms:ir.ui.view,arch_db:product_stock_by_location.view_location_stock_tree
 msgid "Location Stock"
 msgstr "Ubicación Stock"
 
 #. module: product_stock_by_location
-#: model:ir.model.fields,field_description:product_stock_by_location.field_product_product_location_ids
-#: model:ir.model.fields,field_description:product_stock_by_location.field_product_template_location_ids
+#: model:ir.model.fields,field_description:product_stock_by_location.field_product_product__location_ids
+#: model:ir.model.fields,field_description:product_stock_by_location.field_product_template__location_ids
 msgid "Locations"
 msgstr "Úbicación"
 
 #. module: product_stock_by_location
-#: model:ir.ui.view,arch_db:product_stock_by_location.product_template_kanban_stock_view
+#: model_terms:ir.ui.view,arch_db:product_stock_by_location.product_template_kanban_stock_view
 msgid "On hand:"
 msgstr "En mano:"
 
 #. module: product_stock_by_location
-#: model:ir.model.fields,field_description:product_stock_by_location.field_stock_location_outgoing_qty
+#: model:ir.model.fields,field_description:product_stock_by_location.field_stock_location__outgoing_qty
 msgid "Outgoing"
 msgstr "Salida"
 
@@ -103,7 +102,7 @@ msgid "Product"
 msgstr "Producto"
 
 #. module: product_stock_by_location
-#: model:ir.ui.view,arch_db:product_stock_by_location.view_template_stock_by_location_form
+#: model_terms:ir.ui.view,arch_db:product_stock_by_location.view_template_stock_by_location_form
 msgid "Product Stock by Locations"
 msgstr "Stock de producto por localizaciones"
 
@@ -113,12 +112,12 @@ msgid "Product Template"
 msgstr "Plantilla de producto"
 
 #. module: product_stock_by_location
-#: model:ir.model.fields,field_description:product_stock_by_location.field_stock_location_qty_available
+#: model:ir.model.fields,field_description:product_stock_by_location.field_stock_location__qty_available
 msgid "Quantity On Hand"
 msgstr "Cantidad a mano"
 
 #. module: product_stock_by_location
-#: model:ir.model.fields,help:product_stock_by_location.field_stock_location_incoming_qty
+#: model:ir.model.fields,help:product_stock_by_location.field_stock_location__incoming_qty
 msgid ""
 "Quantity of products that are planned to arrive.\n"
 "In a context with a single Stock Location, this includes goods arriving to this Location, or any of its children.\n"
@@ -131,7 +130,7 @@ msgstr ""
 "En cualquier otro caso, esto incluye los bienes almacenados en cualquier ubicación de existencias de tipo 'Interna'."
 
 #. module: product_stock_by_location
-#: model:ir.model.fields,help:product_stock_by_location.field_stock_location_outgoing_qty
+#: model:ir.model.fields,help:product_stock_by_location.field_stock_location__outgoing_qty
 msgid ""
 "Quantity of products that are planned to leave.\n"
 "In a context with a single Stock Location, this includes goods leaving this Location, or any of its children.\n"
@@ -144,7 +143,7 @@ msgstr ""
 "De lo contrario, esto incluye los bienes que salen de cualquier ubicación de existencias con tipo \"interno\"."
 
 #. module: product_stock_by_location
-#: model:ir.model.fields,field_description:product_stock_by_location.field_stock_location_show_stock_on_products
+#: model:ir.model.fields,field_description:product_stock_by_location.field_stock_location__show_stock_on_products
 msgid "Show Stock On Products"
 msgstr "Mostrar stock en productos"
 
@@ -156,8 +155,8 @@ msgid "Stock By Locations"
 msgstr "Stock por Ubicación"
 
 #. module: product_stock_by_location
-#: model:ir.ui.view,arch_db:product_stock_by_location.product_template_kanban_stock_view
-#: model:ir.ui.view,arch_db:product_stock_by_location.view_stock_product_template_tree
-#: model:ir.ui.view,arch_db:product_stock_by_location.view_stock_product_tree
+#: model_terms:ir.ui.view,arch_db:product_stock_by_location.product_template_kanban_stock_view
+#: model_terms:ir.ui.view,arch_db:product_stock_by_location.view_stock_product_template_tree
+#: model_terms:ir.ui.view,arch_db:product_stock_by_location.view_stock_product_tree
 msgid "View Stock Detail"
 msgstr "Ver detalle de stock"
