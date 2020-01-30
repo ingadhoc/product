@@ -44,5 +44,5 @@
         'demo/product_replanishment_cost_demo.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': True,
+    'installable': False,
 }
