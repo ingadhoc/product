@@ -13,5 +13,5 @@
         'views/mrp_bom_views.xml',
         'report/mrp_report_bom_structure.xml'
     ],
-    'installable': True,
+    'installable': False,
 }
