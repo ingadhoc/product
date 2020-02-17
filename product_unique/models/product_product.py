@@ -16,7 +16,7 @@ class ProductProduct(models.Model):
     @api.constrains('product_tmpl_id', 'default_code', 'active')
     def check_unique_company_and_default_code(self):
         for rec in self:
-            if rec.active and rec.default_code and rec.company_id:
+            if rec.active and rec.default_code:
                 filters = [
                     ('product_tmpl_id.company_id', '=', rec.company_id.id),
                     ('default_code', '=', rec.default_code),
