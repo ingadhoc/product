@@ -25,7 +25,6 @@ class ProductSupplierinfo(models.Model):
         help="Net Price",
     )
 
-    @api.multi
     def _inverse_net_price(self):
         """ For now we only implement when product_tmpl_id is set
         """

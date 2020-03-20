@@ -10,7 +10,6 @@ class ProductUpdateFromReplenishmentCostWizard(models.TransientModel):
     _name = 'product.update_from_replenishment_cost.wizard'
     _description = 'Update product cost from replenishment cost'
 
-    @api.multi
     def confirm(self):
         self.ensure_one()
         active_ids = self._context.get('active_ids')

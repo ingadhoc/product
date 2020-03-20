@@ -90,7 +90,6 @@ class ProductTemplate(models.Model):
         return self.with_context(prefetch_fields=False).search(
             [], limit=limit)._update_cost_from_replenishment_cost()
 
-    @api.multi
     def _update_cost_from_replenishment_cost(self):
         """
         If we came from tree list, we update only in selected list
