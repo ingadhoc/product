@@ -40,7 +40,7 @@ class ProductReplenishmentCostRule(models.Model):
     description = fields.Char(
         compute='_compute_description',
         store=True,
-        track_visibility='onchange',
+        tracking=True
     )
 
     # no-op for testing and calculating rule

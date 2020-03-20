@@ -3,7 +3,6 @@
 # directory
 ##############################################################################
 from odoo import models, fields, api
-import odoo.addons.decimal_precision as dp
 
 
 class ProductSupplierinfo(models.Model):
@@ -21,7 +20,7 @@ class ProductSupplierinfo(models.Model):
         compute='_compute_net_price',
         # TODO, activamos store como estaba??
         store=False,
-        digits=dp.get_precision('Product Price'),
+        digits='Product Price',
         help="Net Price",
     )
 
@@ -49,7 +48,9 @@ class ProductSupplierinfo(models.Model):
     def _compute_net_price(self):
         """ For now we only implement when product_tmpl_id is set
         """
-        for rec in self.filtered('product_tmpl_id'):
+        product_tmpls = self.filtered('product_tmpl_id')
+        (self - product_tmpls).update({'net_price': 0.0})
+        for rec in product_tmpls:
             net_price = rec.price
             replenishment_cost_rule_id = rec.replenishment_cost_rule_id
             if replenishment_cost_rule_id:

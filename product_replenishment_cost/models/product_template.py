@@ -3,7 +3,6 @@
 # directory
 ##############################################################################
 from odoo import models, fields, api
-import odoo.addons.decimal_precision as dp
 from odoo.tools import float_compare
 import logging
 _logger = logging.getLogger(__name__)
@@ -19,7 +18,7 @@ class ProductTemplate(models.Model):
     supplier_price = fields.Float(
         string='Supplier Price',
         compute='_compute_supplier_price',
-        digits=dp.get_precision('Product Price'),
+        digits='Product Price',
     )
     standard_price = fields.Float(
         string='Accounting Cost',
@@ -28,15 +27,15 @@ class ProductTemplate(models.Model):
         compute='_compute_replenishment_cost',
         # TODO, activamos store como estaba??
         store=False,
-        digits=dp.get_precision('Product Price'),
+        digits='Product Price',
         help="Replenishment cost on the currency of the product",
     )
     replenishment_cost_last_update = fields.Datetime(
-        track_visibility='onchange',
+        tracking=True,
     )
     replenishment_base_cost = fields.Float(
-        digits=dp.get_precision('Product Price'),
-        track_visibility='onchange',
+        digits='Product Price',
+        tracking=True,
         help="Replanishment Cost expressed in 'Replenishment Base Cost "
         "Currency'."
     )
@@ -44,20 +43,20 @@ class ProductTemplate(models.Model):
         'res.currency',
         'Replenishment Base Cost Currency',
         auto_join=True,
-        track_visibility='onchange',
+        tracking=True,
         help="Currency used for the Replanishment Base Cost.",
-        default=lambda self: self.env.user.company_id.currency_id.id
+        default=lambda self: self.env.company.currency_id.id
     )
     replenishment_cost_rule_id = fields.Many2one(
         'product.replenishment_cost.rule',
         auto_join=True,
         index=True,
-        track_visibility='onchange',
+        tracking=True,
     )
     replenishment_base_cost_on_currency = fields.Float(
         compute='_compute_replenishment_cost',
         help='Replenishment cost on replenishment base cost currency',
-        digits=dp.get_precision('Product Price'),
+        digits='Product Price',
     )
     replenishment_cost_type = fields.Selection(
         [('supplier_price', 'Supplier Price'),
@@ -67,6 +66,7 @@ class ProductTemplate(models.Model):
     )
 
     @api.depends('seller_ids')
+    @api.depends_context('force_company')
     def _compute_supplier_price(self):
         """ Lo ideal seria utilizar campo related para que segun los permisos
          del usuario tome el seller_id que corresponda, pero el tema es que el
@@ -77,9 +77,10 @@ class ProductTemplate(models.Model):
          sellers donde se puede ver si
         no tiene cia o es cia del usuario.
         """
-        company_id = self._context.get(
-            'force_company', self.env.user.company_id.id)
-        for rec in self.filtered('seller_ids'):
+        company_id = self._context.get('force_company', self.env.company.id)
+        products_with_sellers = self.filtered('seller_ids')
+        (self - products_with_sellers).update({'supplier_price': 0.0})
+        for rec in products_with_sellers:
             seller_ids = rec.seller_ids.filtered(
                 lambda x: not x.company_id or x.company_id.id == company_id)
             rec.supplier_price = seller_ids and seller_ids[0].net_price
@@ -147,10 +148,12 @@ class ProductTemplate(models.Model):
     def _compute_replenishment_cost(self):
         _logger.info(
             'Getting replenishment cost for ids %s' % self.ids)
-        company = self.env.user.company_id
+        company = self.env.company
         date = fields.Date.today()
         for rec in self:
             product_currency = rec.currency_id
+            rec.replenishment_base_cost_on_currency = 0.0
+            rec.replenishment_cost = 0.0
             if rec.replenishment_cost_type == 'supplier_price':
                 replenishment_base_cost = rec.supplier_price
                 base_cost_currency = rec.supplier_currency_id
