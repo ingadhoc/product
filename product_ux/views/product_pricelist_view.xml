@@ -5,9 +5,11 @@
         <field name="model">product.pricelist</field>
         <field name="inherit_id" ref="product.product_pricelist_view"/>
         <field name="arch" type="xml">
-            <button name="toggle_active" position="before">
-                <button class="oe_stat_button" name="%(product_pricelist_item_action)d" type="action" icon="fa-list"><span class="o_stat_text">Elementos de tarifa</span></button>
-            </button>
+            <widget name="web_ribbon" position="after">
+                <div class="oe_button_box" name="button_box">
+                    <button class="oe_stat_button" name="%(product_pricelist_item_action)d" type="action" icon="fa-list"><span class="o_stat_text">Elementos de tarifa</span></button>
+                </div>
+            </widget>
         </field>
     </record>
 

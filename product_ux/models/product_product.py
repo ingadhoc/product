@@ -8,4 +8,4 @@ from odoo import models, fields
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
-    active = fields.Boolean(track_visibility='onchange')
+    active = fields.Boolean(tracking=True)
