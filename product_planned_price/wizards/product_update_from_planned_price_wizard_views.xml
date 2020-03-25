@@ -17,10 +17,9 @@
     </record>
 
     <act_window id="action_update_from_planned_price_wizard"
-        key2="client_action_multi"
         name="Update Prices from Planned"
         res_model="product.update_from_planned_price.wizard"
-        src_model="product.template"
-        view_mode="form" target="new" view_type="form" />
+        binding_model="product.template"
+        view_mode="form" target="new" binding_views="list,form"/>
 
 </odoo>
