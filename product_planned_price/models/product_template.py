@@ -3,7 +3,6 @@
 # directory
 ##############################################################################
 from odoo import models, fields, api
-import odoo.addons.decimal_precision as dp
 from odoo.tools import float_compare
 import logging
 _logger = logging.getLogger(__name__)
@@ -14,13 +13,13 @@ class ProductTemplate(models.Model):
 
     computed_list_price_manual = fields.Float(
         string='Planned Price Manual',
-        digits=dp.get_precision('Product Price'),
+        digits='Product Price',
         help='Field to store manual planned price',
     )
     computed_list_price = fields.Float(
         string='Planned Price',
         compute='_compute_computed_list_price',
-        digits=dp.get_precision('Product Price'),
+        digits='Product Price',
         help='Planned Price. This value depends on Planned Price Type" an '
         'other parameters.',
     )
@@ -42,11 +41,11 @@ class ProductTemplate(models.Model):
     )
     sale_margin = fields.Float(
         'Planned Price Sale margin %',
-        digits=dp.get_precision('Discount'),
+        digits='Discount',
     )
     sale_surcharge = fields.Float(
         'Planned Price Sale surcharge',
-        digits=dp.get_precision('Product Price')
+        digits='Product Price',
     )
     other_currency_id = fields.Many2one(
         'res.currency',
@@ -55,7 +54,7 @@ class ProductTemplate(models.Model):
     )
     other_currency_list_price = fields.Float(
         'Planned Price on Currency',
-        digits=dp.get_precision('Product Price'),
+        digits='Product Price',
         help="Sale Price on Other Currency",
     )
 
@@ -64,7 +63,6 @@ class ProductTemplate(models.Model):
         _logger.info('Running update prices from planned cron')
         return self._update_prices_from_planned()
 
-    @api.multi
     def _update_prices_from_planned(self):
         """
         If we came from tree list, we update only in selected list
@@ -101,13 +99,14 @@ class ProductTemplate(models.Model):
         'other_currency_list_price',
         'other_currency_id',
     )
+    @api.depends_context('force_company')
     def _compute_computed_list_price(self):
         recs = self.filtered(
             lambda x: x.list_price_type in [
                 'manual', 'by_margin', 'other_currency'])
         _logger.info('Get computed_list_price for %s "manual", "by_margin"'
                      ' and "other_currency" products' % (len(recs)))
-        company = self.env['res.company'].browse(self._context.get('force_company', False)) or self.env.user.company_id
+        company = self.env['res.company'].browse(self._context.get('force_company', False)) or self.env.company
         date = fields.Date.today()
         for rec in recs:
             computed_list_price = rec.computed_list_price_manual
@@ -135,7 +134,6 @@ class ProductTemplate(models.Model):
                 'computed_list_price': computed_list_price,
             })
 
-    @api.multi
     def price_compute(
             self, price_type, uom=False, currency=False, company=False):
         """
@@ -146,6 +144,4 @@ class ProductTemplate(models.Model):
         if self._context.get(
                 'use_planned_price') and price_type == 'list_price':
             price_type = 'computed_list_price'
-        return super(
-            ProductTemplate, self).price_compute(
-            price_type, uom=uom, currency=currency, company=company)
+        return super().price_compute(price_type, uom=uom, currency=currency, company=company)
