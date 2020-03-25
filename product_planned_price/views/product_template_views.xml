@@ -8,15 +8,6 @@
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="priority">8</field>
         <field name="arch" type="xml">
-            <!-- dejamos visible el pricelist group -->
-            <div name="pricelist_item" position="attributes">
-                <attribute name="groups"></attribute>
-            </div>
-            <!-- pero ponemos el grupo a los items -->
-            <field name="item_ids" position="attributes">
-                <attribute name="groups">product.group_product_pricelist</attribute>
-            </field>
-
             <group name="sale" position="before">
                 <group name="pricing">
                     <group name="planned_price" string="Planned Price">
@@ -29,14 +20,14 @@
                         </div>
                         <label for="other_currency_list_price" attrs="{'invisible': [('list_price_type', '!=', 'other_currency')]}"/>
                         <div name="other_currency_list_price" attrs="{'invisible': [('list_price_type', '!=', 'other_currency')]}">
-                            <field name="other_currency_list_price" widget="monetary"  class="oe_inline" options="{'currency_field': 'other_currency_id'}"/>
+                            <field name="other_currency_list_price" widget="monetary"  class="oe_inline" options="{'currency_field': 'other_currency_id', 'field_digits': True}"/>
                             <field name="other_currency_id" class="oe_inline oe_edit_only" attrs="{'required': [('list_price_type', '=', 'other_currency')]}" options="{'no_create': True, 'no_open': True}" domain="[('id','!=', currency_id)]"/>
                         </div>
-                        <field name="computed_list_price_manual" widget="monetary" attrs="{'invisible': [('list_price_type', '!=', 'manual')]}" string="Planned Price" options="{'currency_field': 'currency_id'}"/>
-                        <field name="computed_list_price" widget="monetary" attrs="{'invisible': [('list_price_type', 'in', ['manual', False])]}" options="{'currency_field': 'currency_id'}"/>
+                        <field name="computed_list_price_manual" widget="monetary" attrs="{'invisible': [('list_price_type', '!=', 'manual')]}" string="Planned Price" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                        <field name="computed_list_price" widget="monetary" attrs="{'invisible': [('list_price_type', 'in', ['manual', False])]}" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
                     </group>
                     <group name="list_price" string="Sales Price">
-                        <field name="list_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="list_price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
                     </group>
                 </group>
             </group>
