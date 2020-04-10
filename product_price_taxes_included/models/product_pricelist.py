@@ -20,7 +20,7 @@ class ProductPricelist(models.Model):
             products, quantities, partners, date=date, uom_id=uom_id)
         if self._context.get('taxes_included'):
             company_id = (
-                self._context.get('company_id') or self.env.user.company_id.id)
+                self._context.get('company_id') or self.env.company.id)
             for product in products:
                 res[product.id] = product.taxes_id.filtered(
                     lambda x: x.company_id.id == company_id).compute_all(
