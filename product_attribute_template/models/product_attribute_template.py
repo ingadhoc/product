@@ -7,6 +7,7 @@ from odoo import models, fields
 
 class ProductAttributeTemplate(models.Model):
     _name = "product.attribute.template"
+    _description = "product.attribute.template"
 
     name = fields.name = fields.Char(
         required=True
@@ -25,7 +26,7 @@ class ProductAttributeTemplate(models.Model):
         '# Products Not Configured', compute='_compute_products',
     )
     line_ids = fields.Many2many(
-        'product.attribute.line',
+        'product.template.attribute.line',
         compute='_compute_default_line_ids',
         inverse='_inverse_dummy_inverse',
     )
@@ -35,17 +36,17 @@ class ProductAttributeTemplate(models.Model):
             rec.product_qty = len(rec.product_tmpl_ids)
             rec.not_configured_product_qty = rec.product_tmpl_ids.search_count(
                 [('attribute_line_ids.value_ids', '=', False),
-                    ('id', '=', rec.product_tmpl_ids.ids)])
+                    ('id', 'in', rec.product_tmpl_ids.ids)])
 
     def update_attributes(self):
         self.ensure_one()
-        for product_tmpl in self.product_tmpl_ids:
+        for product_tmpl in self.with_context(non_create_values=True).product_tmpl_ids:
             for attribute in (
                     self.product_attribute_ids -
                     product_tmpl.attribute_line_ids.mapped('attribute_id')):
                 product_tmpl.attribute_line_ids.create({
                     'attribute_id': attribute.id,
-                    'product_tmpl_id': product_tmpl.id
+                    'product_tmpl_id': product_tmpl.id,
                 })
 
     def _inverse_dummy_inverse(self):
@@ -70,4 +71,4 @@ class ProductAttributeTemplate(models.Model):
             for product_template in product_templates
             for attribute in attributes
         ]
-        self.line_ids = res
+        self.with_context(non_create_values=True).line_ids = res
