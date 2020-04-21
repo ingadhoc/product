@@ -60,7 +60,7 @@
                     <group>
                         <field name="product_attribute_ids" widget="many2many_tags"/>
                     </group>
-                    <field name="line_ids" widget="x2many_2d_matrix" field_x_axis="attribute_id" field_y_axis="product_tmpl_id" field_value="value_ids" show_row_totals="False" show_column_totals="False" context="{'show_attribute': False}">
+                    <field name="line_ids" widget="x2many_2d_matrix" field_x_axis="attribute_id" field_y_axis="product_tmpl_id" field_value="value_ids" show_column_totals="False" context="{'show_attribute': False}">
                         <tree>
                             <field name="product_tmpl_id"/>
                             <field name="attribute_id"/>

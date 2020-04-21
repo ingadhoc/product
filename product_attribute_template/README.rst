@@ -10,9 +10,9 @@
    :target: https://www.gnu.org/licenses/agpl
    :alt: License: AGPL-3
 
-=================================
+==========================
 Product Attribute Template
-=================================
+==========================
 
 This module add new class to create attributes templates
 
@@ -27,18 +27,15 @@ To install this module, you need to:
 Configuration
 =============
 
-To configure this module, you need to:
-
-#. Set 'Restrict Prices' for users you want to restrict.
-#. For the same users, configure discounts range on "Discounts Permissions" users tab.
-
+No configuration needed.
 
 Usage
 =====
 
 To use this module, you need to:
 
-Just use it.
+#. Go to Sales > Configuration > Product attribute templates.
+#. Create product attribute templates.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
