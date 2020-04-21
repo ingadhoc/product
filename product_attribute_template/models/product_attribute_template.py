@@ -71,4 +71,4 @@ class ProductAttributeTemplate(models.Model):
             for product_template in product_templates
             for attribute in attributes
         ]
-        self.line_ids = res
+        self.with_context(non_create_values=True).line_ids = res
