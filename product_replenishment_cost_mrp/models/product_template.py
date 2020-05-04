@@ -34,7 +34,8 @@ class ProductTemplate(models.Model):
                 self.invalidate_cache(['replenishment_cost'], [sbom.product_id.product_tmpl_id.id])
                 sbom_rep_cost = sbom.product_id.uom_id._compute_price(
                     sbom.product_id.product_tmpl_id.replenishment_cost, sbom.product_uom_id) * sbom_data['qty']
-                price += sbom.product_id.product_tmpl_id.currency_id.compute(sbom_rep_cost, product_currency, round=False)
+                price += sbom.product_id.product_tmpl_id.currency_id.compute(
+                    sbom_rep_cost, product_currency, round=False)
             # NO implementamos total va a ser borrado. Ver si implementamos mas adelante (tener en cuenta convertir
             # moneda)
             # if bom.routing_id:
