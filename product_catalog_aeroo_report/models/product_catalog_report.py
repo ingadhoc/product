@@ -78,7 +78,6 @@ class ProductCatalogReport(models.Model):
         required=True,
     )
 
-    @api.multi
     def prepare_report(self):
         context = dict(self._context.copy())
         categories = self.category_ids
@@ -102,7 +101,6 @@ class ProductCatalogReport(models.Model):
         })
         return self.with_context(context)
 
-    @api.multi
     def generate_report(self):
         """ Print the catalog
         """
