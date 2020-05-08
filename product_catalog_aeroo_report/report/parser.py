@@ -45,7 +45,7 @@ class Parser(models.AbstractModel):
             context=self._context,
             field_value_get=self.field_value_get,
         )
-        return super(Parser, self).aeroo_report(docids, data)
+        return super().aeroo_report(docids, data)
 
     def field_value_get(self, product, field):
         # TODO hacer funcioal esto en el reporte ods. El problema es que
