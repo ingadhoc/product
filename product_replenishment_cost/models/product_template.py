@@ -13,12 +13,13 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     supplier_currency_id = fields.Many2one(
-        related='seller_ids.currency_id',
-        string="Supplier Currency"
+        'res.currency',
+        string="Supplier Currency",
+        compute='_compute_supplier_data',
     )
     supplier_price = fields.Float(
         string='Supplier Price',
-        compute='_compute_supplier_price',
+        compute='_compute_supplier_data',
         digits=dp.get_precision('Product Price'),
     )
     standard_price = fields.Float(
@@ -67,7 +68,7 @@ class ProductTemplate(models.Model):
     )
 
     @api.depends('seller_ids')
-    def _compute_supplier_price(self):
+    def _compute_supplier_data(self):
         """ Lo ideal seria utilizar campo related para que segun los permisos
          del usuario tome el seller_id que corresponda, pero el tema es que el
          cron se corre con admin y entonces siempre va a tomar el primer seller
@@ -82,7 +83,10 @@ class ProductTemplate(models.Model):
         for rec in self.filtered('seller_ids'):
             seller_ids = rec.seller_ids.filtered(
                 lambda x: not x.company_id or x.company_id.id == company_id)
-            rec.supplier_price = seller_ids and seller_ids[0].net_price
+            rec.update({
+                'supplier_price': seller_ids and seller_ids[0].net_price,
+                'supplier_currency_id': seller_ids and seller_ids[0].currency_id.id,
+            })
 
     @api.model
     def cron_update_cost_from_replenishment_cost(self, limit=None):
