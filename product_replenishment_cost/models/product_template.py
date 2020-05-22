@@ -16,7 +16,7 @@ class ProductTemplate(models.Model):
         return self.env.user.company_id.currency_id.id
 
     supplier_currency_id = fields.Many2one(
-        related='seller_ids.currency_id',
+        'res.currency',
         compute='_compute_supplier_data',
     )
     supplier_price = fields.Float(
