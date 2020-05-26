@@ -19,7 +19,6 @@ class ProductCatalogReport(models.Model):
         'Product Categories Public',
     )
 
-    @api.multi
     def prepare_report(self):
         self = super().prepare_report()
         if self.category_type == 'public_category':
