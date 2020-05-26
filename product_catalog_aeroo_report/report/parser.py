@@ -9,6 +9,7 @@ class Parser(models.AbstractModel):
     _inherit = 'report.report_aeroo.abstract'
 
     _name = 'report.product_catalog_parser'
+    _description = 'report.product_catalog_parser'
 
     @api.model
     def aeroo_report(self, docids, data):

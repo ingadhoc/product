@@ -2,7 +2,7 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import fields, models, api
+from odoo import fields, models
 
 
 class ProductCatalogReport(models.Model):
@@ -49,7 +49,6 @@ class ProductCatalogReport(models.Model):
     )
     report_id = fields.Many2one(
         'ir.actions.report',
-        oldname='report_xml_id',
         string='Report',
         domain=[('report_type', '=', 'aeroo'),
                 ('model', '=', 'product.product_catalog_report')],
