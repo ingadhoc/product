@@ -92,7 +92,7 @@ class ProductTemplate(models.Model):
                 lambda x: not x.company_id or x.company_id.id == company_id)
             rec.update({
                 'supplier_price': seller_ids and seller_ids[0].net_price,
-                'supplier_currency_id': seller_ids and seller_ids[0].currency_id.id,
+                'supplier_currency_id': seller_ids and seller_ids[0].currency_id.id or self.env['res.currency'],
             })
 
     @api.model
