@@ -25,7 +25,6 @@ class ProductCatalog(models.TransientModel):
     def change_product_catalog_report(self):
         self.taxes_included = self.product_catalog_report_id.taxes_included
 
-    @api.multi
     def generate_report(self):
         self.ensure_one()
         return self.product_catalog_report_id.with_context(

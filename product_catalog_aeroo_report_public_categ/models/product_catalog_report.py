@@ -2,7 +2,7 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import fields, models, api
+from odoo import fields, models
 
 
 class ProductCatalogReport(models.Model):
@@ -19,7 +19,6 @@ class ProductCatalogReport(models.Model):
         'Product Categories Public',
     )
 
-    @api.multi
     def prepare_report(self):
         self = super().prepare_report()
         if self.category_type == 'public_category':
