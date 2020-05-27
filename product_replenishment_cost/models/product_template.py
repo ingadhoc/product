@@ -81,14 +81,14 @@ class ProductTemplate(models.Model):
         products_with_sellers = self.filtered('seller_ids')
         (self - products_with_sellers).update({
             'supplier_price': 0.0,
-            'supplier_currency_id': False,
+            'supplier_currency_id': self.env['res.currency'],
         })
         for rec in products_with_sellers:
             seller_ids = rec.seller_ids.filtered(
                 lambda x: not x.company_id or x.company_id.id == company_id)
             rec.update({
                 'supplier_price': seller_ids and seller_ids[0].net_price,
-                'supplier_currency_id': seller_ids and seller_ids[0].currency_id.id,
+                'supplier_currency_id': seller_ids and seller_ids[0].currency_id.id or self.env['res.currency'],
             })
 
     @api.model
