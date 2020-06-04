@@ -28,7 +28,7 @@
                         <!-- we only change label -->
                         <label for="standard_price" groups="base.group_user" string="Accounting Cost" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"/>
                         <div name="standard_price" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}">
-                            <field name="standard_price" widget="monetary" options="{'currency_field': 'cost_currency_id','field_digits': True}" class="oe_inline"/>
+                            <field name="standard_price" widget="monetary" options="{'currency_field': 'cost_currency_id','field_digits': True}" class="oe_inline" attrs="{'readonly':[('valuation','=','real_time')]}"/>
                         </div>
                     </group>
                 </group>
