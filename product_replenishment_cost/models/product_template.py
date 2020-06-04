@@ -123,7 +123,16 @@ class ProductTemplate(models.Model):
                     product.standard_price,
                     replenishment_cost,
                     precision_digits=prec) != 0:
-                product.standard_price = replenishment_cost
+                account = product.property_account_creditor_price_difference \
+                    or product.categ_id.property_account_creditor_price_difference_categ\
+                    or product.property_account_expense_id\
+                    or product.categ_id.property_account_expense_categ_id
+                # TODO Remove the get parameter in v13
+                if product.valuation == 'real_time' and\
+                        self.env['ir.config_parameter'].sudo().get_param('use_real_time'):
+                    product.do_change_standard_price(replenishment_cost, account.id)
+                else:
+                    product.standard_price = replenishment_cost
         return True
 
     @api.constrains(
