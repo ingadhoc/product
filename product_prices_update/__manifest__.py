@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product Prices Update',
-    'version': '12.0.1.0.0',
+    'version': '13.0.1.0.0',
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -32,13 +32,11 @@
         'product',
     ],
     'data': [
-        'wizard/product_prices_update_view.xml',
+        'wizards/product_prices_update_views.xml',
     ],
     'demo': [
     ],
-    'test': [
-    ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
