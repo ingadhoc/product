@@ -16,9 +16,12 @@ class SaleOrderLine(models.Model):
 
     @api.depends('product_id')
     def _compute_uom_unit(self):
-        for rec in self.filtered('product_id'):
-            rec.uom_unit_ids = rec.product_id.get_product_uoms(
-                rec.product_id.uom_id, use='sale')
+        for rec in self:
+            if rec.product_id:
+                rec.uom_unit_ids = rec.product_id.get_product_uoms(
+                    rec.product_id.uom_id, use='sale')
+            else:
+                rec.uom_unit_ids = False
 
     @api.onchange('product_id')
     def product_id_change(self):

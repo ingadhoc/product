@@ -2,13 +2,12 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import models, api
+from odoo import models
 
 
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
-    @api.multi
     def get_product_uoms(self, product_uom, use=False):
         if use == 'sale' and self.uom_ids.filtered('sale_ok'):
             return self.uom_ids.filtered('sale_ok').mapped('uom_id')
