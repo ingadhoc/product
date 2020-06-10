@@ -2,7 +2,7 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import models, api, fields, _
+from odoo import models, fields, _
 from odoo.exceptions import UserError
 
 
@@ -14,7 +14,6 @@ class Users(models.Model):
         'user_id',
         string='Discount Restrictions')
 
-    @api.multi
     def check_discount(
             self, discount, pricelist_id,
             so_line=False, do_not_raise=False):
