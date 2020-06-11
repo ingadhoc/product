@@ -31,7 +31,7 @@
     'data': [
         'security/price_security_security.xml',
         'security/ir.model.access.csv',
-        'views/account_invoice_views.xml',
+        'views/account_move_views.xml',
         'views/account_payment_term_views.xml',
         'views/product_template_views.xml',
         'views/res_partner_views.xml',
