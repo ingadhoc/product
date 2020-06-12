@@ -38,6 +38,9 @@
             </field>
 
             <!-- make cost prices fields readonly -->
+            <field name="replenishment_cost_type" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
             <field name="replenishment_cost_last_update" position="attributes">
                 <attribute name="readonly">1</attribute>
             </field>
@@ -53,6 +56,9 @@
             <field name="replenishment_cost_rule_id" position="attributes">
                 <attribute name="readonly">1</attribute>
             </field>
+            <xpath expr="//group[@name='accounting_cost']//field[@name='standard_price']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
 
         </field>
     </record>
