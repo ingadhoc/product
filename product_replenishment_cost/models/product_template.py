@@ -110,10 +110,10 @@ class ProductTemplate(models.Model):
             [('product_tmpl_id.id', 'in', self.ids)])
         for product in products.filtered('replenishment_cost'):
             replenishment_cost = product.replenishment_cost
-            if product.currency_id != product.user_company_currency_id:
+            if product.currency_id != product.cost_currency_id:
                 replenishment_cost = product.currency_id._convert(
-                    replenishment_cost, product.user_company_currency_id,
-                    product.company_id, fields.Date.today(),
+                    replenishment_cost, product.cost_currency_id,
+                    product.company_id or self.env.company, fields.Date.today(),
                     round=False)
             if float_compare(
                     product.standard_price,
