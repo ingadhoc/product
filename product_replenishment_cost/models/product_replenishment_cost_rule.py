@@ -47,13 +47,13 @@ class ProductReplenishmentCostRule(models.Model):
     product_id = fields.Many2one(
         'product.template',
         'Test Product',
-        compute=lambda x: x,
+        compute=lambda x: x.update({'product_id': x.env['product.template']}),
         inverse=lambda x: x,
         help="Technical field: This field it's only for testing",
     )
 
-    demo_cost = fields.Float('Cost', compute=lambda x: x)
-    demo_result = fields.Float('Result', compute=lambda x: x)
+    demo_cost = fields.Float('Cost', compute=lambda x: x.update({'demo_cost': 0.0}))
+    demo_result = fields.Float('Result', compute=lambda x: x.update({'demo_result': 0.0}))
 
     @api.depends(
         'name',
