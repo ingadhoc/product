@@ -18,6 +18,10 @@ class ProductTemplate(models.Model):
 
     def _compute_replenishment_cost(self):
         bom_costs = self.filtered(lambda x: x.replenishment_cost_type == 'bom')
+        bom_costs.update({
+                'replenishment_base_cost_on_currency': 0.0,
+                'replenishment_cost': 0.0
+            })
         for rec in bom_costs:
             product_currency = rec.currency_id
 
@@ -62,6 +66,5 @@ class ProductTemplate(models.Model):
                 replenishment_base_cost_on_currency,
                 'replenishment_cost': replenishment_cost
             })
-
         return super(
             ProductTemplate, self - bom_costs)._compute_replenishment_cost()

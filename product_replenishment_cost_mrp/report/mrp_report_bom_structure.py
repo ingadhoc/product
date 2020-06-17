@@ -35,7 +35,7 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
             'bom': bom, 'bom_qty': bom_quantity,
             'bom_prod_name': product.display_name,
             'currency': self.env.user.company_id.currency_id,
-            'product': product, 'code': bom and self._get_bom_reference(bom)
+            'product': product, 'code': bom and bom.display_name
             or '', 'price': product.uom_id._compute_price(
                 product.replenishment_cost, bom.product_uom_id) * bom_quantity,
             'total': sum([op['total'] for op in operations]),
