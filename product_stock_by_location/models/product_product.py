@@ -8,7 +8,6 @@ from odoo import models, api, _
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
-    @api.multi
     def view_stock_detail(self):
         self.ensure_one()
         view = (

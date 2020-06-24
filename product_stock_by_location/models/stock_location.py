@@ -70,7 +70,6 @@ class StockLocation(models.Model):
              "Location with 'internal' type."
     )
 
-    @api.multi
     def _compute_product_available(self):
         template_id = self._context.get('template_id', False)
         product_id = self._context.get('product_id', False)
