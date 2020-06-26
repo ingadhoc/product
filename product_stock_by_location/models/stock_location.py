@@ -2,8 +2,7 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import fields, models, api
-import odoo.addons.decimal_precision as dp
+from odoo import fields, models
 
 
 class StockLocation(models.Model):
@@ -16,7 +15,7 @@ class StockLocation(models.Model):
     )
     qty_available = fields.Float(
         compute='_compute_product_available',
-        digits=dp.get_precision('Product Unit of Measure'),
+        digits='Product Unit of Measure',
         string='Quantity On Hand',
         help="Current quantity of products.\n"
              "In a context with a single Stock Location, this includes "
@@ -31,7 +30,7 @@ class StockLocation(models.Model):
     )
     virtual_available = fields.Float(
         compute='_compute_product_available',
-        digits=dp.get_precision('Product Unit of Measure'),
+        digits='Product Unit of Measure',
         string='Forecast Quantity',
         help="Forecast quantity (computed as Quantity On Hand "
              "- Outgoing + Incoming)\n"
@@ -45,7 +44,7 @@ class StockLocation(models.Model):
     )
     incoming_qty = fields.Float(
         compute='_compute_product_available',
-        digits=dp.get_precision('Product Unit of Measure'),
+        digits='Product Unit of Measure',
         string='Incoming',
         help="Quantity of products that are planned to arrive.\n"
              "In a context with a single Stock Location, this includes "
@@ -58,7 +57,7 @@ class StockLocation(models.Model):
     )
     outgoing_qty = fields.Float(
         compute='_compute_product_available',
-        digits=dp.get_precision('Product Unit of Measure'),
+        digits='Product Unit of Measure',
         string='Outgoing',
         help="Quantity of products that are planned to leave.\n"
              "In a context with a single Stock Location, this includes "
@@ -70,7 +69,6 @@ class StockLocation(models.Model):
              "Location with 'internal' type."
     )
 
-    @api.multi
     def _compute_product_available(self):
         template_id = self._context.get('template_id', False)
         product_id = self._context.get('product_id', False)
