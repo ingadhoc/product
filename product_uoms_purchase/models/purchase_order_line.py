@@ -16,9 +16,12 @@ class PurchaseOrderLine(models.Model):
 
     @api.depends('product_id')
     def _compute_uom_unit(self):
-        for rec in self.filtered('product_id'):
-            rec.uom_unit_ids = rec.product_id.get_product_uoms(
-                rec.product_id.uom_po_id, use='purchase')
+        for rec in self:
+            if rec.product_id:
+                rec.uom_unit_ids = rec.product_id.get_product_uoms(
+                    rec.product_id.uom_po_id, use='purchase')
+            else:
+                rec.uom_unit_ids: False
 
     @api.onchange('product_id')
     def onchange_product_id(self):

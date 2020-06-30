@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product UOMS Purchase',
-    'version': '12.0.1.0.0',
+    'version': '13.0.1.0.0',
     'category': 'base.module_category_knowledge_management',
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
@@ -37,7 +37,7 @@
         'views/purchase_order_views.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': True,
     'application': False,
 }
