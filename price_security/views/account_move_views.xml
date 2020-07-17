@@ -18,7 +18,7 @@
             </xpath>
 
             <!-- add tax readonly -->
-            <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='invoice_line_tax_ids']" position="attributes">
+            <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='tax_ids']" position="attributes">
                 <attribute name="attrs">{'readonly': [('product_can_modify_prices','=', False)]}</attribute>
                 <attribute name="force_save">1</attribute>
             </xpath>
