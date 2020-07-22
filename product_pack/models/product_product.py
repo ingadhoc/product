@@ -94,7 +94,7 @@ class ProductProduct(models.Model):
         packs, no_packs = self.separete_pack_products()
         prices = super(ProductProduct, no_packs).price_compute(
             price_type, uom, currency, company)
-        for product in packs.with_context(prefetch_fields=False):
+        for product in packs:
             pack_price = 0.0
             for pack_line in product.pack_line_ids:
                 product_line_price = pack_line.product_id.price * (
@@ -121,6 +121,41 @@ class ProductProduct(models.Model):
                         pack_price, product.currency_id)
             prices[product.id] = pack_price
         return prices
+
+    def _compute_product_price(self):
+        packs, no_packs = self.separete_pack_products()
+        super(ProductProduct, no_packs)._compute_product_price()
+        prices = {}
+        pricelist_id_or_name = self._context.get('pricelist')
+        if pricelist_id_or_name:
+            pricelist = None
+            partner = self._context.get('partner', False)
+            quantity = self._context.get('quantity', 1.0)
+
+            # Support context pricelists specified as display_name or ID for compatibility
+            if isinstance(pricelist_id_or_name, pycompat.string_types):
+                pricelist_name_search = self.env['product.pricelist'].name_search(
+                    pricelist_id_or_name, operator='=', limit=1)
+                if pricelist_name_search:
+                    pricelist = self.env['product.pricelist'].browse(
+                        [pricelist_name_search[0][0]])
+            elif isinstance(pricelist_id_or_name, pycompat.integer_types):
+                pricelist = self.env['product.pricelist'].browse(
+                    pricelist_id_or_name)
+
+            if pricelist:
+                quantities = [quantity] * len(packs)
+                partners = [partner] * len(packs)
+                prices = {p.id: pricelist.get_product_price(
+                    p, quantities, partners) for p in no_packs}
+
+        for product in packs:
+            pack_price = 0.0
+            for pack_line in product.pack_line_ids:
+                product_line_price = prices.get(pack_line.product_id.id, 0.0) * (
+                    1 - (pack_line.discount or 0.0) / 100.0)
+                pack_price += (product_line_price * pack_line.quantity)
+            product.price = pack_price
 
     @api.depends('list_price', 'price_extra')
     def _compute_product_lst_price(self):
