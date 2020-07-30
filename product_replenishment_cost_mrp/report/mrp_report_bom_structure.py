@@ -71,7 +71,7 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
             components.append({
                 'prod_id': line.product_id.id,
                 'prod_name': line.product_id.display_name,
-                'code': line.child_bom_id and self._get_bom_reference(line.child_bom_id) or '',
+                'code': line.child_bom_id and line.child_bom_id.display_name or '',
                 'prod_qty': line_quantity,
                 'prod_uom': line.product_uom_id.name,
                 'prod_cost': self.env.user.company_id.currency_id.round(price),
