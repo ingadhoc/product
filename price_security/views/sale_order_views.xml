@@ -22,6 +22,7 @@
             <!-- add readonly tax on tree -->
             <xpath expr="//field[@name='order_line']/tree//field[@name='tax_id']" position="attributes">
                 <attribute name="attrs">{'readonly': [('product_can_modify_prices','=', False)]}</attribute>
+                <attribute name="force_save">1</attribute>
             </xpath>
 
             <!-- add readonly price unit on form -->
@@ -32,6 +33,7 @@
             <!-- add readonly tax on form -->
             <xpath expr="//field[@name='order_line']/form//field[@name='tax_id']" position="attributes">
                 <attribute name="attrs">{'readonly': [('product_can_modify_prices','=', False)]}</attribute>
+                <attribute name="force_save">1</attribute>
             </xpath>
         </field>
     </record>

@@ -3,7 +3,6 @@
 # directory
 ##############################################################################
 from odoo import models, fields, api
-import odoo.addons.decimal_precision as dp
 from odoo.tools import float_compare
 import logging
 _logger = logging.getLogger(__name__)
@@ -13,13 +12,13 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     supplier_currency_id = fields.Many2one(
-        related='seller_ids.currency_id',
-        string="Supplier Currency"
+        'res.currency',
+        compute='_compute_supplier_data',
     )
     supplier_price = fields.Float(
         string='Supplier Price',
-        compute='_compute_supplier_price',
-        digits=dp.get_precision('Product Price'),
+        compute='_compute_supplier_data',
+        digits='Product Price',
     )
     standard_price = fields.Float(
         string='Accounting Cost',
@@ -28,15 +27,15 @@ class ProductTemplate(models.Model):
         compute='_compute_replenishment_cost',
         # TODO, activamos store como estaba??
         store=False,
-        digits=dp.get_precision('Product Price'),
+        digits='Product Price',
         help="Replenishment cost on the currency of the product",
     )
     replenishment_cost_last_update = fields.Datetime(
-        track_visibility='onchange',
+        tracking=True,
     )
     replenishment_base_cost = fields.Float(
-        digits=dp.get_precision('Product Price'),
-        track_visibility='onchange',
+        digits='Product Price',
+        tracking=True,
         help="Replanishment Cost expressed in 'Replenishment Base Cost "
         "Currency'."
     )
@@ -44,20 +43,20 @@ class ProductTemplate(models.Model):
         'res.currency',
         'Replenishment Base Cost Currency',
         auto_join=True,
-        track_visibility='onchange',
+        tracking=True,
         help="Currency used for the Replanishment Base Cost.",
-        default=lambda self: self.env.user.company_id.currency_id.id
+        default=lambda self: self.env.company.currency_id.id
     )
     replenishment_cost_rule_id = fields.Many2one(
         'product.replenishment_cost.rule',
         auto_join=True,
         index=True,
-        track_visibility='onchange',
+        tracking=True,
     )
     replenishment_base_cost_on_currency = fields.Float(
         compute='_compute_replenishment_cost',
         help='Replenishment cost on replenishment base cost currency',
-        digits=dp.get_precision('Product Price'),
+        digits='Product Price',
     )
     replenishment_cost_type = fields.Selection(
         [('supplier_price', 'Supplier Price'),
@@ -67,7 +66,8 @@ class ProductTemplate(models.Model):
     )
 
     @api.depends('seller_ids')
-    def _compute_supplier_price(self):
+    @api.depends_context('force_company')
+    def _compute_supplier_data(self):
         """ Lo ideal seria utilizar campo related para que segun los permisos
          del usuario tome el seller_id que corresponda, pero el tema es que el
          cron se corre con admin y entonces siempre va a tomar el primer seller
@@ -77,12 +77,19 @@ class ProductTemplate(models.Model):
          sellers donde se puede ver si
         no tiene cia o es cia del usuario.
         """
-        company_id = self._context.get(
-            'force_company', self.env.user.company_id.id)
-        for rec in self.filtered('seller_ids'):
+        company_id = self._context.get('force_company', self.env.company.id)
+        products_with_sellers = self.filtered('seller_ids')
+        (self - products_with_sellers).update({
+            'supplier_price': 0.0,
+            'supplier_currency_id': self.env['res.currency'],
+        })
+        for rec in products_with_sellers:
             seller_ids = rec.seller_ids.filtered(
                 lambda x: not x.company_id or x.company_id.id == company_id)
-            rec.supplier_price = seller_ids and seller_ids[0].net_price
+            rec.update({
+                'supplier_price': seller_ids and seller_ids[0].net_price,
+                'supplier_currency_id': seller_ids and seller_ids[0].currency_id.id or self.env['res.currency'],
+            })
 
     @api.model
     def cron_update_cost_from_replenishment_cost(self, limit=None):
@@ -90,7 +97,6 @@ class ProductTemplate(models.Model):
         return self.with_context(prefetch_fields=False).search(
             [], limit=limit)._update_cost_from_replenishment_cost()
 
-    @api.multi
     def _update_cost_from_replenishment_cost(self):
         """
         If we came from tree list, we update only in selected list
@@ -104,16 +110,31 @@ class ProductTemplate(models.Model):
             [('product_tmpl_id.id', 'in', self.ids)])
         for product in products.filtered('replenishment_cost'):
             replenishment_cost = product.replenishment_cost
-            if product.currency_id != product.user_company_currency_id:
+            if product.currency_id != product.cost_currency_id:
                 replenishment_cost = product.currency_id._convert(
-                    replenishment_cost, product.user_company_currency_id,
-                    product.company_id, fields.Date.today(),
+                    replenishment_cost, product.cost_currency_id,
+                    product.company_id or self.env.company, fields.Date.today(),
                     round=False)
             if float_compare(
                     product.standard_price,
                     replenishment_cost,
                     precision_digits=prec) != 0:
-                product.standard_price = replenishment_cost
+                account = product.property_account_creditor_price_difference \
+                    or product.categ_id.property_account_creditor_price_difference_categ\
+                    or product.property_account_expense_id\
+                    or product.categ_id.property_account_expense_categ_id
+                if product.valuation == 'real_time':
+                    # we force to change company to env when we run with "force_company" in the context, because
+                    # odoo use the env company to in the change price method
+                    if self._context.get('force_company', False):
+                        user_company = self.env.company
+                        self.env.company = self.env['res.company'].browse(self._context.get('force_company'))
+                        product._change_standard_price(replenishment_cost, account.id)
+                        self.env.company = user_company
+                    else:
+                        product._change_standard_price(replenishment_cost, account.id)
+                else:
+                    product.standard_price = replenishment_cost
         return True
 
     @api.constrains(
@@ -148,10 +169,12 @@ class ProductTemplate(models.Model):
     def _compute_replenishment_cost(self):
         _logger.info(
             'Getting replenishment cost for ids %s' % self.ids)
-        company = self.env.user.company_id
+        company = self.env.company
         date = fields.Date.today()
         for rec in self:
             product_currency = rec.currency_id
+            rec.replenishment_base_cost_on_currency = 0.0
+            rec.replenishment_cost = 0.0
             if rec.replenishment_cost_type == 'supplier_price':
                 replenishment_base_cost = rec.supplier_price
                 base_cost_currency = rec.supplier_currency_id

@@ -3,7 +3,6 @@
 # directory
 ##############################################################################
 from odoo import models, fields
-import odoo.addons.decimal_precision as dp
 
 
 class ProductReplenishmentCostRuleItem(models.Model):
@@ -29,13 +28,13 @@ class ProductReplenishmentCostRuleItem(models.Model):
     )
 
     percentage_amount = fields.Float(
-        digits=dp.get_precision('Discount'),
+        digits='Discount',
     )
 
     fixed_amount = fields.Float(
         help='Specify the fixed amount to add or substract (if negative) to '
              'the amount calculated with the percentage amount.',
-        digits=dp.get_precision('Product Price'),
+        digits='Product Price',
     )
 
     expr = fields.Char(
@@ -57,10 +56,10 @@ class ProductReplenishmentCostRuleItem(models.Model):
 
     # no-op for testing and calculating rule
     value = fields.Char(
-        compute=lambda x: x,
+        compute=lambda x: x.update({'value': 0.0}),
         help="Technical fields: This field it's only for testing",
     )
     error = fields.Char(
-        compute=lambda x: x,
+        compute=lambda x: x.update({'error': ''}),
         help="Technical fields: This field it's only for testing",
     )

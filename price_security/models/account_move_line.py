@@ -6,8 +6,8 @@ from odoo import fields, models, api
 from odoo.tools import float_compare
 
 
-class AccountInvoiceLine(models.Model):
-    _inherit = 'account.invoice.line'
+class AccountMoveLine(models.Model):
+    _inherit = 'account.move.line'
 
     product_can_modify_prices = fields.Boolean(
         related='product_id.can_modify_prices',
@@ -27,7 +27,7 @@ class AccountInvoiceLine(models.Model):
             'Product Unit of Measure')
         for il in self:
             # only customer invoices
-            if il.invoice_id and il.invoice_id.type in (
+            if il.move_id and il.move_id.type in (
                     'out_invoice', 'out_refund'
             ) and not il.product_can_modify_prices:
                 # chequeamos si la orden de venta permitió un descuento mayor
@@ -38,4 +38,4 @@ class AccountInvoiceLine(models.Model):
                     return True
                 il.env.user.check_discount(
                     il.discount,
-                    il.invoice_id.partner_id.property_product_pricelist.id)
+                    il.move_id.partner_id.property_product_pricelist.id)

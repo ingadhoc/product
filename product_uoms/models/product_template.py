@@ -18,7 +18,6 @@ class ProductTemplate(models.Model):
         'product_tmpl_id',
         copy=True,
         string='UOMs',
-        oldname='sale_uom_ids',
         help="Only uoms in this list will be available. "
         "If none is specified, then all uoms of product uom category will be "
         "available.",

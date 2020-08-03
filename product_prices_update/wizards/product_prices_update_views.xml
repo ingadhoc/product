@@ -29,11 +29,11 @@
     </record>
 
     <act_window name="Update Product Prices"
-                src_model="product.template"
                 res_model="product.prices_update_wizard"
                 view_mode="form"
                 target="new"
-                key2="client_action_multi"
+                binding_model="product.template"
+                binding_views="list"
                 id="action_update_prices_wizard"/>
 
     <record id="view_prices_update_wizard_result_form" model="ir.ui.view">
@@ -65,7 +65,6 @@
         <field name="name">Update Prices Result</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">product.prices_update_wizard_result</field>
-        <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">inline</field>
     </record>

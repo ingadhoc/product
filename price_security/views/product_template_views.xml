@@ -7,9 +7,9 @@
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="priority">30</field>
         <field name="arch" type="xml">
-            <field name="list_price" position="before">
+            <label for="list_price" position="before">
                 <field name="can_modify_prices"/>
-            </field>
+            </label>
         </field>
     </record>
 
@@ -33,6 +33,10 @@
                 <attribute name="invisible">1</attribute>
             </label>
             <field name="seller_ids" position="attributes">
+                <attribute name="readonly">1</attribute>
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="variant_seller_ids" position="attributes">
                 <attribute name="readonly">1</attribute>
                 <attribute name="invisible">1</attribute>
             </field>
@@ -75,6 +79,9 @@
 
             <!-- restore cost fields (they remain readonly) -->
             <field name="seller_ids" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </field>
+            <field name="variant_seller_ids" position="attributes">
                 <attribute name="invisible">0</attribute>
             </field>
             <field name="standard_price" position="attributes">

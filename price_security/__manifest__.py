@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Price Security',
-    'version': '12.0.1.0.0',
+    'version': '13.0.1.0.0',
     'category': 'Sales Management',
     'author': 'ADHOC SA, Odoo Community Association (OCA)',
     'website': 'http://www.adhoc.com.ar/',
@@ -31,12 +31,12 @@
     'data': [
         'security/price_security_security.xml',
         'security/ir.model.access.csv',
-        'views/account_invoice_views.xml',
+        'views/account_move_views.xml',
         'views/account_payment_term_views.xml',
         'views/product_template_views.xml',
         'views/res_partner_views.xml',
         'views/res_users_views.xml',
         'views/sale_order_views.xml',
     ],
-    'installable': False,
+    'installable': True,
 }

@@ -40,20 +40,20 @@ class ProductReplenishmentCostRule(models.Model):
     description = fields.Char(
         compute='_compute_description',
         store=True,
-        track_visibility='onchange',
+        tracking=True
     )
 
     # no-op for testing and calculating rule
     product_id = fields.Many2one(
         'product.template',
         'Test Product',
-        compute=lambda x: x,
+        compute=lambda x: x.update({'product_id': x.env['product.template']}),
         inverse=lambda x: x,
         help="Technical field: This field it's only for testing",
     )
 
-    demo_cost = fields.Float('Cost', compute=lambda x: x)
-    demo_result = fields.Float('Result', compute=lambda x: x)
+    demo_cost = fields.Float('Cost', compute=lambda x: x.update({'demo_cost': 0.0}))
+    demo_result = fields.Float('Result', compute=lambda x: x.update({'demo_result': 0.0}))
 
     @api.depends(
         'name',
@@ -77,7 +77,6 @@ class ProductReplenishmentCostRule(models.Model):
     def update_replenishment_cost_last_update(self):
         self.product_ids.update_replenishment_cost_last_update()
 
-    @api.multi
     def _get_eval_context(self, obj=None):
         """ Prepare the context used when evaluating python code
         :param obj: the current obj
@@ -97,7 +96,6 @@ class ProductReplenishmentCostRule(models.Model):
             'product': obj,
         }
 
-    @api.multi
     def compute_rule_inverse(self, cost):
         self.ensure_one()
         for line in self.item_ids.filtered('add_to_cost').sorted(reverse=True):
@@ -105,7 +103,6 @@ class ProductReplenishmentCostRule(models.Model):
                 1.0 + line.percentage_amount / 100.0)
         return cost
 
-    @api.multi
     def compute_rule(self, cost, product=None):
         # prepare context only if we need to eval something
         self.ensure_one()

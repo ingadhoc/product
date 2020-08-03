@@ -14,7 +14,6 @@ class ProductTemplate(models.Model):
         string='Locations',
     )
 
-    @api.multi
     # dummy depends it is computed
     @api.depends('name')
     def _compute_location_ids(self):
@@ -22,7 +21,6 @@ class ProductTemplate(models.Model):
             rec.location_ids = rec.location_ids.search([
                 ('show_stock_on_products', '=', True)])
 
-    @api.multi
     def view_stock_detail(self):
         self.ensure_one()
         view = (

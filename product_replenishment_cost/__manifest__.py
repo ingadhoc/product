@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Replenishment Cost',
-    'version': '12.0.1.2.0',
+    'version': '13.0.1.2.0',
     'author': "ADHOC SA, Camptocamp,GRAP,Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'category': 'Products',
@@ -44,5 +44,5 @@
         'demo/product_replanishment_cost_demo.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': False,
+    'installable': True,
 }

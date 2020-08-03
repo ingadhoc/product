@@ -18,6 +18,12 @@ class ProductTemplate(models.Model):
 
     def _compute_replenishment_cost(self):
         bom_costs = self.filtered(lambda x: x.replenishment_cost_type == 'bom')
+        bom_costs.update({
+            'replenishment_base_cost_on_currency': 0.0,
+            'replenishment_cost': 0.0
+        })
+        company = self.env.company
+        date = fields.Date.today()
         for rec in bom_costs:
             product_currency = rec.currency_id
 
@@ -31,13 +37,12 @@ class ProductTemplate(models.Model):
             for sbom, sbom_data in result2:
                 # TODO ver si podemos evitar este invalidate cache. Es necesario
                 # para que actualice desde el cron
-                sbom.product_id.product_tmpl_id.invalidate_cache(
-                    ['replenishment_cost'])
+                self.invalidate_cache(['replenishment_cost'], [sbom.product_id.product_tmpl_id.id])
                 sbom_rep_cost = sbom.product_id.uom_id._compute_price(
                     sbom.product_id.product_tmpl_id.replenishment_cost,
                     sbom.product_uom_id) * sbom_data['qty']
-                price += sbom.product_id.product_tmpl_id.currency_id.compute(
-                    sbom_rep_cost, product_currency, round=False)
+                price += sbom.product_id.product_tmpl_id.currency_id._convert(
+                    sbom_rep_cost, product_currency, company, date, round=False)
             # NO implementamos total va a ser borrado. Ver si implementamos mas adelante (tener en cuenta convertir
             # moneda)
             # if bom.routing_id:
@@ -62,6 +67,5 @@ class ProductTemplate(models.Model):
                 replenishment_base_cost_on_currency,
                 'replenishment_cost': replenishment_cost
             })
-
         return super(
             ProductTemplate, self - bom_costs)._compute_replenishment_cost()

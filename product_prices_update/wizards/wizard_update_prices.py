@@ -30,9 +30,8 @@ class ProductPricesUpdateWizard(models.TransientModel):
                                )
     check = fields.Boolean('Check before changing')
 
-    @api.multi
-    def change_prices(self, context=None):
-        active_ids = context.get('active_ids', [])
+    def change_prices(self):
+        active_ids = self._context.get('active_ids', [])
         products_vals = []
         if not active_ids:
             raise UserError(_('You must select at least one product'))
@@ -122,6 +121,13 @@ class ProductPricesUpdateWizardResult(models.TransientModel):
     _name = 'product.prices_update_wizard_result'
     _description = 'product.prices_update_wizard_result'
 
+    detail_ids = fields.One2many(
+        'product.prices_update_wizard_result_detail',
+        'result_id',
+        string='Products Detail',
+        default=lambda self: self._get_details(),
+    )
+
     @api.model
     def _get_details(self):
         ret = []
@@ -150,14 +156,6 @@ class ProductPricesUpdateWizardResult(models.TransientModel):
             ret.append(vals)
         return ret
 
-    detail_ids = fields.One2many(
-        'product.prices_update_wizard_result_detail',
-        'result_id',
-        string='Products Detail',
-        default=_get_details,
-    )
-
-    @api.multi
     def confirm(self):
         products_vals = []
         price_type = self._context.get('price_type', False)

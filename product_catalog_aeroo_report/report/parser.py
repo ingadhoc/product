@@ -9,6 +9,7 @@ class Parser(models.AbstractModel):
     _inherit = 'report.report_aeroo.abstract'
 
     _name = 'report.product_catalog_parser'
+    _description = 'report.product_catalog_parser'
 
     @api.model
     def aeroo_report(self, docids, data):
@@ -45,7 +46,7 @@ class Parser(models.AbstractModel):
             context=self._context,
             field_value_get=self.field_value_get,
         )
-        return super(Parser, self).aeroo_report(docids, data)
+        return super().aeroo_report(docids, data)
 
     def field_value_get(self, product, field):
         # TODO hacer funcioal esto en el reporte ods. El problema es que
