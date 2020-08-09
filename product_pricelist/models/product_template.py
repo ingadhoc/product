@@ -2,7 +2,7 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import models, fields, api
+from odoo import models, fields
 
 
 class ProductTemplate(models.Model):
@@ -14,8 +14,6 @@ class ProductTemplate(models.Model):
         string='Pricelists',
     )
 
-    @api.multi
     def _compute_pricelist_ids(self):
         for rec in self:
-            rec.pricelist_ids = rec.pricelist_ids.search(
-                [('show_products', '=', True)])
+            rec.pricelist_ids = rec.pricelist_ids.search([('show_products', '=', True)])
