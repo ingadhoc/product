@@ -1,21 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <odoo>
-    <record id="product_template_prices_form" model="ir.ui.view">
+    <record id="product_template_form_view" model="ir.ui.view">
         <field name="name">product.template.prices.form</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
-            <!-- si instalamos este modulo estos items ya no tienen razon de ser, los desactivamos por grupo y ponemos antes las listas de precios -->
-            <!-- dejamos visible el pricelist group -->
-            <div name="pricelist_item" position="attributes">
-                <attribute name="groups"></attribute>
-            </div>
-            <!-- pero ponemos el grupo a los items -->
-            <field name="item_ids" position="attributes">
-                <attribute name="groups">product.group_product_pricelist</attribute>
-            </field>
-
-            <field name="item_ids" position="before">
+            <group name="description" position="before">
                 <field name="pricelist_ids" context="{'template_id': id}">
                     <!-- TODO move this to a low priority view and specify here -->
                     <tree delete='false' create='false'>
@@ -25,7 +15,7 @@
                         <!-- TODO enable buttons after correcting domain -->
                     </tree>
                 </field>
-            </field>
+            </group>
         </field>
     </record>
 </odoo>

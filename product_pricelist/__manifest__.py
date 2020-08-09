@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Pricelists information on Products",
-    'version': '12.0.1.0.0',
+    'version': '13.0.1.0.0',
     'category': 'Sales & Purchases',
     'sequence': 14,
     'author': 'ADHOC SA',
@@ -30,16 +30,11 @@
     ],
     "data": [
         'views/product_template_views.xml',
-        'views/product_product_views.xml',
         'views/product_pricelist_views.xml',
-        # set pricelist groups
-        'security/product_pricelist_security.xml',
-        # set default formula on sale settings configuration
-        'data/product_pricelist_data.xml',
     ],
     'demo': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }

@@ -19,7 +19,7 @@ class ProductPricelist(models.Model):
         "with the price of that product in the products",
     )
 
-    @api.multi
+    @api.depends_context('product_id', 'template_id')
     def _compute_price(self):
         product_id = self._context.get('product_id', False)
         template_id = self._context.get('template_id', False)
