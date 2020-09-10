@@ -17,8 +17,9 @@
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
             <group name="group_general">
-                <label for="warranty"/>
-                <div>
+                <!-- TODO remove on v14 or include (see commit message) -->
+                <label for="warranty" invisible="1"/>
+                <div invisible="1">
                     <field name="warranty" class="oe_inline"/>
  months
                 </div>
