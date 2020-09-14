@@ -11,7 +11,7 @@ class IrActionsActWindow(models.Model):
         configured in the action
         """
         super()._compute_views()
-        product_template = self.filtered(
+        product_template = self.sudo().filtered(
             lambda x: x.res_model == 'product.template' and
             'tree' in x.view_mode)
         for act in product_template:
