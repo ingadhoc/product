@@ -41,7 +41,7 @@ class SaleOrderLine(models.Model):
 
     @api.constrains('product_uom')
     def check_uoms(self):
-        for rec in self:
+        for rec in self.filtered('product_id'):
             product = rec.product_id
             sale_product_uoms = product.get_product_uoms(
                 product.uom_id, use='sale')
