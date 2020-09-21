@@ -108,6 +108,7 @@ class ProductTemplate(models.Model):
                      ' and "other_currency" products' % (len(recs)))
         company = self.env['res.company'].browse(self._context.get('force_company', False)) or self.env.company
         date = fields.Date.today()
+        (self - recs).computed_list_price = 0.0
         for rec in recs:
             computed_list_price = rec.computed_list_price_manual
             if rec.list_price_type == 'by_margin':
