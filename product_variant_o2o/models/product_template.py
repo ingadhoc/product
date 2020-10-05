@@ -20,7 +20,7 @@ class ProductTemplate(models.Model):
 
     @api.multi
     def create_variant_ids(self):
-        one_variants = self.filtered('one_variant_per_product')
+        one_variants = self.with_context(active_test=False).filtered('one_variant_per_product')
         for rec in one_variants:
             variant_alone = rec.attribute_line_ids.filtered(
                 lambda r: len(r.value_ids) == 1).mapped(
@@ -31,6 +31,9 @@ class ProductTemplate(models.Model):
                 'product_tmpl_id': rec.id,
                 'attribute_value_ids': [
                     (6, 0, [x.id for x in variant_alone])]}
+            # we force to active the variants who are disable when the template is activated.
+            if not all(rec.product_variant_ids.mapped('active')):
+                values.update({'active': True})
             rec.product_variant_ids.write(values) \
                 if rec.product_variant_ids else \
                 rec.product_variant_ids.create(values)
