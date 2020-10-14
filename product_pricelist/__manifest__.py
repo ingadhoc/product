@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Pricelists information on Products",
-    'version': '13.0.1.0.0',
+    'version': '13.0.1.1.0',
     'category': 'Sales & Purchases',
     'sequence': 14,
     'author': 'ADHOC SA',
@@ -30,6 +30,7 @@
     ],
     "data": [
         'views/product_template_views.xml',
+        'views/product_product_views.xml',
         'views/product_pricelist_views.xml',
     ],
     'demo': [
