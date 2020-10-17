@@ -32,3 +32,5 @@ class ProductPricelist(models.Model):
                 price = self.env['product.template'].browse(
                     template_id).with_context(pricelist=rec.id).price
                 rec.price = price
+            else:
+                rec.price = 0.0
