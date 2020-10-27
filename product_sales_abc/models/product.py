@@ -32,3 +32,5 @@ class ProductTemplate(models.Model):
                 rec.abc_sales_combined = rec.abc_sales_quantity
             elif rec.abc_sales_amount and not rec.abc_sales_quantity:
                 rec.abc_sales_combined = rec.abc_sales_amount
+            else:
+                rec.abc_sales_combined = False
