@@ -14,7 +14,7 @@ class IrActionsActWindow(models.Model):
         product_template = self.sudo().filtered(
             lambda x: x.res_model == 'product.template' and
             'tree' in x.view_mode)
-        for act in product_template:
+        for act in product_template.with_context(from_config=True):
             modes = act.view_mode.split(',')
             modes.remove('tree')
             modes = ['tree'] + modes
