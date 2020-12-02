@@ -20,6 +20,9 @@ class IrModelAccess(models.Model):
             model_name = model.model
         else:
             model_name = model
+        # we need to use this flag to know when the operation is from this modules
+        if self._context.get('sale_quotation_products') or self._context.get('purchase_quotation_products'):
+            return True
 
         if mode != 'read' and model_name in [
                 'product.template', 'product.product']:
