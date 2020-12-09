@@ -47,8 +47,6 @@
         <field name="arch" type="xml">
             <tree string="Replenishment Cost Rule">
                 <field name="name" placeholder="Name..."/>
-                <field name="product_ids"/>
-                <field name="item_ids"/>
             </tree>
         </field>
     </record>
