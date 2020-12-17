@@ -18,6 +18,9 @@
             </group>
 
             <!-- make planned price fields readonly -->
+            <field name="list_price_copy" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
             <field name="list_price_type" position="attributes">
                 <attribute name="readonly">1</attribute>
             </field>
@@ -39,6 +42,12 @@
 
             <!-- make cost prices fields readonly -->
             <field name="replenishment_cost_last_update" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="standard_price_copy" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+            <field name="replenishment_cost_type" position="attributes">
                 <attribute name="readonly">1</attribute>
             </field>
             <field name="replenishment_base_cost" position="attributes">
