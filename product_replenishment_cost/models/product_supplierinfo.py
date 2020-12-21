@@ -19,7 +19,7 @@ class ProductSupplierinfo(models.Model):
         inverse='_inverse_net_price',
         compute='_compute_net_price',
         # TODO, activamos store como estaba??
-        store=False,
+        store=True,
         digits='Product Price',
         help="Net Price",
     )
@@ -43,7 +43,9 @@ class ProductSupplierinfo(models.Model):
         'currency_id',
         # and this if we change de date (name field)
         # rule items
-        'replenishment_cost_rule_id',
+        'replenishment_cost_rule_id.item_ids.sequence',
+        'replenishment_cost_rule_id.item_ids.percentage_amount',
+        'replenishment_cost_rule_id.item_ids.fixed_amount',
     )
     def _compute_net_price(self):
         """ For now we only implement when product_tmpl_id is set
