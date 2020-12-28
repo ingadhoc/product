@@ -3,7 +3,7 @@
 # directory
 ##############################################################################
 from odoo import models, fields, api
-from odoo.tools import float_compare
+from odoo.tools import float_is_zero
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -80,10 +80,9 @@ class ProductTemplate(models.Model):
         cr = self._cr
         for rec in self.with_context(
                 prefetch_fields=False).search(domain).filtered(
-                lambda x: x.computed_list_price and float_compare(
-                    x.computed_list_price,
-                    x.list_price,
-                    precision_digits=prec) != 0):
+                lambda x: x.computed_list_price and not float_is_zero(
+                    x.computed_list_price - x.list_price,
+                    precision_digits=prec)):
             # es mucho mas rapido hacerlo por sql directo
             cr.execute(
                 "UPDATE product_template SET list_price=%s WHERE id=%s",

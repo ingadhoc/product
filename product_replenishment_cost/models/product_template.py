@@ -65,8 +65,8 @@ class ProductTemplate(models.Model):
         required=True,
     )
 
-    @api.depends('seller_ids')
     @api.depends_context('force_company')
+    @api.depends('seller_ids.net_price', 'seller_ids.currency_id', 'seller_ids.company_id')
     def _compute_supplier_data(self):
         """ Lo ideal seria utilizar campo related para que segun los permisos
          del usuario tome el seller_id que corresponda, pero el tema es que el
@@ -78,17 +78,11 @@ class ProductTemplate(models.Model):
         no tiene cia o es cia del usuario.
         """
         company_id = self._context.get('force_company', self.env.company.id)
-        products_with_sellers = self.filtered('seller_ids')
-        (self - products_with_sellers).update({
-            'supplier_price': 0.0,
-            'supplier_currency_id': self.env['res.currency'],
-        })
-        for rec in products_with_sellers:
-            seller_ids = rec.seller_ids.filtered(
-                lambda x: not x.company_id or x.company_id.id == company_id)
+        for rec in self:
+            seller_ids = rec.seller_ids.filtered(lambda x: not x.company_id or x.company_id.id == company_id)
             rec.update({
-                'supplier_price': seller_ids and seller_ids[0].net_price,
-                'supplier_currency_id': seller_ids and seller_ids[0].currency_id.id or self.env['res.currency'],
+                'supplier_price': seller_ids and seller_ids[0].net_price or 0.0,
+                'supplier_currency_id': seller_ids and seller_ids[0].currency_id or self.env['res.currency'],
             })
 
     @api.model
@@ -150,25 +144,27 @@ class ProductTemplate(models.Model):
     # no parecen afectar performance y sirvern para que la interfaz haga
     # el onchange, pero no son fundamentales porque el campo no lo storeamos
     @api.depends(
-        'currency_id',
+        # no usamos estos depends porque afetan un poco la performance al actualizar costo de reposicion, al menos
+        # testeado desde cron de precio planeado usando de reposicion
+        # 'currency_id',
+        # 'supplier_price',
+        # 'supplier_currency_id',
         'replenishment_cost_type',
         'replenishment_base_cost',
         # beccause field is not stored anymore we only keep currency and
         # rule
-        'replenishment_base_cost_currency_id',
+        # 'replenishment_base_cost_currency_id',
         # # because of being stored
-        # 'replenishment_base_cost_currency_id.rate_ids.rate',
+        'replenishment_base_cost_currency_id.rate_ids.rate',
         # # and this if we change de date (name field)
         # 'replenishment_base_cost_currency_id.rate_ids.name',
         # rule items
-        'replenishment_cost_rule_id',
-        # 'replenishment_cost_rule_id.item_ids.sequence',
-        # 'replenishment_cost_rule_id.item_ids.percentage_amount',
-        # 'replenishment_cost_rule_id.item_ids.fixed_amount',
+        'replenishment_cost_rule_id.item_ids.sequence',
+        'replenishment_cost_rule_id.item_ids.percentage_amount',
+        'replenishment_cost_rule_id.item_ids.fixed_amount',
     )
     def _compute_replenishment_cost(self):
-        _logger.info(
-            'Getting replenishment cost for ids %s' % self.ids)
+        _logger.info('Getting replenishment cost for %s products' % len(self.ids))
         company = self.env.company
         date = fields.Date.today()
         for rec in self:
