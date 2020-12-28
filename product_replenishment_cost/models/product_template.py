@@ -106,7 +106,7 @@ class ProductTemplate(models.Model):
 
         # clave hacerlo en product.product por velocidad (relativo a
         # campos standard_price)
-        products = self.env['product.product'].search(
+        products = self.with_context(tracking_disable=True).env['product.product'].search(
             [('product_tmpl_id.id', 'in', self.ids)])
         for product in products.filtered('replenishment_cost'):
             replenishment_cost = product.replenishment_cost
