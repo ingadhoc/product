@@ -1,0 +1,48 @@
+<odoo>
+
+    <record id="view_product_only_view_sale_price_form" model="ir.ui.view">
+        <field name="name">View Only sale price template form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="account_multicompany_ux.product_template_form_view"/>
+        <field name="groups_id" eval="[(6, 0, [ref('price_security.group_restrict_prices')])]"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='standard_price_ids']/.." position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_product_only_view_form" model="ir.ui.view">
+        <field name="name">View Only: sale and cost template form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="account_multicompany_ux.product_template_form_view"/>
+        <field name="groups_id" eval="[(6, 0, [ref('price_security.group_only_view')])]"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='standard_price_ids']/.." position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='action_company_properties']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <!-- We do this to hide the cost field when the widget is present in the view because the price security module shows this field by default -->
+    <record id="price_security_view_product_only_view_sale_price_form" model="ir.ui.view">
+        <field name="name">Not show standard_price</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="price_security.view_product_only_view_form"/>
+        <field name="groups_id" eval="[(6, 0, [ref('price_security.group_only_view')])]"/>
+        <field name="arch" type="xml">
+            <field name="standard_price" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>

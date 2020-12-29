@@ -1,2 +1,2 @@
 ingadhoc-aeroo_reports https://github.com/ingadhoc/aeroo_reports.git
-web
+ingadhoc-multi-company https://github.com/ingadhoc/multi-company.git
