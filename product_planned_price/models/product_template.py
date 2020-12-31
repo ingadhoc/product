@@ -59,7 +59,7 @@ class ProductTemplate(models.Model):
     )
 
     @api.model
-    def cron_update_prices_from_planned(self, limit=None):
+    def cron_update_prices_from_planned(self):
         _logger.info('Running update prices from planned cron')
         return self._update_prices_from_planned()
 
