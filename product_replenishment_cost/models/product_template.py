@@ -144,11 +144,9 @@ class ProductTemplate(models.Model):
     # no parecen afectar performance y sirvern para que la interfaz haga
     # el onchange, pero no son fundamentales porque el campo no lo storeamos
     @api.depends(
-        # no usamos estos depends porque afetan un poco la performance al actualizar costo de reposicion, al menos
-        # testeado desde cron de precio planeado usando de reposicion
-        # 'currency_id',
-        # 'supplier_price',
-        # 'supplier_currency_id',
+        'currency_id',
+        'supplier_price',
+        'supplier_currency_id',
         'replenishment_cost_type',
         'replenishment_base_cost',
         # beccause field is not stored anymore we only keep currency and
