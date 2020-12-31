@@ -197,7 +197,3 @@ class ProductTemplate(models.Model):
                 replenishment_base_cost_on_currency,
                 'replenishment_cost': replenishment_cost
             })
-
-    @api.constrains('replenishment_cost_rule_id')
-    def update_replenishment_cost_last_update_by_rule(self):
-        self.update_replenishment_cost_last_update()
