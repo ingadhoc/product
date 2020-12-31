@@ -56,9 +56,6 @@
             <field name="replenishment_cost_rule_id" position="attributes">
                 <attribute name="readonly">1</attribute>
             </field>
-            <xpath expr="//group[@name='accounting_cost']//field[@name='standard_price']" position="attributes">
-                <attribute name="readonly">1</attribute>
-            </xpath>
 
         </field>
     </record>
