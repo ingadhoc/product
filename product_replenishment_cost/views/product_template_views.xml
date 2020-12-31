@@ -25,10 +25,10 @@
                         <field name="replenishment_cost" string="Replenishment Cost" widget="monetary" options="{'currency_field': 'currency_id','field_digits': True}"/>
                     </group>
                     <group name="accounting_cost" string="Accounting Cost">
-                        <!-- we only change label -->
-                        <label for="standard_price" groups="base.group_user" string="Accounting Cost" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"/>
-                        <div name="standard_price" groups="base.group_user" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}">
-                            <field name="standard_price" widget="monetary" options="{'currency_field': 'cost_currency_id','field_digits': True}" class="oe_inline" attrs="{'readonly':[('valuation','=','real_time')]}"/>
+                        <label for="standard_price" groups="base.group_user" string="Accounting Cost"/>
+                        <div name="standard_price" groups="base.group_user">
+                            <field name="standard_price" widget="monetary" options="{'currency_field': 'cost_currency_id','field_digits': True}" class="oe_inline" readonly="1" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}"/>
+                            <button name="%(product.product_variant_action)d" icon="fa-arrow-right" type="action" attrs="{'invisible': ['|', ('product_variant_count', '&lt;=', 1), ('is_product_variant', '=', True)]}" groups="product.group_product_variant" string="Variants Costs" class="oe_inline"/>
                         </div>
                     </group>
                 </group>
