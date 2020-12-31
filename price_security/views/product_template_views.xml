@@ -29,6 +29,12 @@
             </field>
 
             <!-- we hide costing -->
+            <button name="%(stock_account.action_view_change_standard_price)d" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+            <div name="standard_price_uom" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </div>
             <label for="standard_price" position="attributes">
                 <attribute name="invisible">1</attribute>
             </label>
@@ -78,6 +84,9 @@
         <field name="arch" type="xml">
 
             <!-- restore cost fields (they remain readonly) -->
+            <div name="standard_price_uom" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </div>
             <field name="seller_ids" position="attributes">
                 <attribute name="invisible">0</attribute>
             </field>

@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<odoo>
+<!-- Solo ver: oculta precio de compra y hace readonly -->
+    <record id="product_product_sale_only_sale_form_view" model="ir.ui.view">
+        <field name="name">price_security.product.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+        <field name="groups_id" eval="[(6, 0, [ref('group_restrict_prices')])]"/>
+        <field name="arch" type="xml">
+            <label for="standard_price" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </label>
+            <div name="update_cost_price" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </div>
+            <button name="%(stock_account.action_view_change_standard_price)d" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </button>
+            <field name="standard_price" position="attributes">
+                <attribute name="invisible">1</attribute>
+                <attribute name="readonly">1</attribute>
+            </field>
+        </field>
+    </record>
+
+<!-- Solo ver: restaura precio de compra -->
+    <record id="product_product_sale_sale_purchase_form_view" model="ir.ui.view">
+        <field name="name">price_security.product.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product_product_sale_only_sale_form_view"/>
+        <field name="groups_id" eval="[(6, 0, [ref('group_only_view')])]"/>
+        <field name="priority">30</field>
+        <field name="arch" type="xml">
+            <label for="standard_price" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </label>
+            <div name="update_cost_price" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </div>
+            <field name="standard_price" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </field>
+        </field>
+    </record>
+
+<!-- oculta precio de compra en vista lista -->
+    <record id="product_product_sale_only_tree_view" model="ir.ui.view">
+        <field name="name">View Only sale price template form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="groups_id" eval="[(6, 0, [ref('group_restrict_prices')])]"/>
+        <field name="priority">30</field>
+        <field name="arch" type="xml">
+            <field name="standard_price" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+
+<!-- restaura precio de compra en vista lista -->
+    <record id="product_product_sale_purchase_view_tree_view" model="ir.ui.view">
+        <field name="name">View Only sale price template form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product_product_sale_only_tree_view"/>
+        <field name="groups_id" eval="[(6, 0, [ref('group_only_view')])]"/>
+        <field name="priority">30</field>
+        <field name="arch" type="xml">
+            <field name="standard_price" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>
