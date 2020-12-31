@@ -119,11 +119,11 @@ class ProductTemplate(models.Model):
                     product.standard_price,
                     replenishment_cost,
                     precision_digits=prec) != 0:
-                account = product.property_account_creditor_price_difference \
-                    or product.categ_id.property_account_creditor_price_difference_categ\
-                    or product.property_account_expense_id\
-                    or product.categ_id.property_account_expense_categ_id
-                if product.valuation == 'real_time':
+                if product._fields.get('valuation') and product.valuation == 'real_time':
+                    account = product.property_account_creditor_price_difference \
+                        or product.categ_id.property_account_creditor_price_difference_categ\
+                        or product.property_account_expense_id\
+                        or product.categ_id.property_account_expense_categ_id
                     # we force to change company to env when we run with "force_company" in the context, because
                     # odoo use the env company to in the change price method
                     if self._context.get('force_company', False):
