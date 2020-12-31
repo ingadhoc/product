@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Replenishment Cost',
-    'version': '13.0.1.5.0',
+    'version': '13.0.1.6.0',
     'author': "ADHOC SA, Camptocamp,GRAP,Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'category': 'Products',

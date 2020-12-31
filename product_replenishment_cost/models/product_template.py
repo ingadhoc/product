@@ -32,6 +32,8 @@ class ProductTemplate(models.Model):
     )
     replenishment_cost_last_update = fields.Datetime(
         tracking=True,
+        compute='_compute_replenishment_cost_last_update',
+        store=True,
     )
     replenishment_base_cost = fields.Float(
         digits='Product Price',
@@ -131,14 +133,12 @@ class ProductTemplate(models.Model):
                     product.standard_price = replenishment_cost
         return True
 
-    @api.constrains(
+    @api.depends(
         'replenishment_base_cost',
         'replenishment_base_cost_currency_id',
     )
-    def update_replenishment_cost_last_update(self):
-        # con el tracking_disable nos ahorramos doble mensaje
-        self.with_context(tracking_disable=True).write(
-            {'replenishment_cost_last_update': fields.Datetime.now()})
+    def _compute_replenishment_cost_last_update(self):
+        self.replenishment_cost_last_update = fields.Datetime.now()
 
     # TODO ver si necesitamos borrar estos depends o no, por ahora
     # no parecen afectar performance y sirvern para que la interfaz haga
