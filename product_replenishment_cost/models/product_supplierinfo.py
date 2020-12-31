@@ -18,8 +18,7 @@ class ProductSupplierinfo(models.Model):
     net_price = fields.Float(
         inverse='_inverse_net_price',
         compute='_compute_net_price',
-        # TODO, activamos store como estaba??
-        store=True,
+        store=False,
         digits='Product Price',
         help="Net Price",
     )
@@ -39,7 +38,6 @@ class ProductSupplierinfo(models.Model):
     @api.depends(
         'product_id',
         'price',
-        # because of being stored
         'currency_id',
         # and this if we change de date (name field)
         # rule items
