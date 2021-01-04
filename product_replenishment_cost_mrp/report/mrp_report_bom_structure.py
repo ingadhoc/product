@@ -1,4 +1,4 @@
-from odoo import models
+from odoo import models, fields
 from odoo.tools import float_round
 
 
@@ -34,7 +34,7 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
         lines = {
             'bom': bom, 'bom_qty': bom_quantity,
             'bom_prod_name': product.display_name,
-            'currency': self.env.user.company_id.currency_id,
+            'currency': product.currency_id,
             'product': product, 'code': bom and bom.display_name
             or '', 'price': product.uom_id._compute_price(
                 product.replenishment_cost, bom.product_uom_id) * bom_quantity,
@@ -60,6 +60,8 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
                 continue
             price = line.product_id.uom_id._compute_price(
                 line.product_id.replenishment_cost, line.product_uom_id) * line_quantity
+            price = line.product_id.currency_id._convert(
+                price, product.currency_id, self.env.company, fields.Date.today(), round=True)
             if line.child_bom_id:
                 factor = line.product_uom_id._compute_quantity(
                     line_quantity, line.child_bom_id.product_uom_id) / line.child_bom_id.product_qty
@@ -67,14 +69,14 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
                     line.child_bom_id, factor, line.product_id)
             else:
                 sub_total = price
-            sub_total = self.env.user.company_id.currency_id.round(sub_total)
+            sub_total = line.product_id.currency_id.round(sub_total)
             components.append({
                 'prod_id': line.product_id.id,
                 'prod_name': line.product_id.display_name,
                 'code': line.child_bom_id and line.child_bom_id.display_name or '',
                 'prod_qty': line_quantity,
                 'prod_uom': line.product_uom_id.name,
-                'prod_cost': self.env.user.company_id.currency_id.round(price),
+                'prod_cost': price,
                 'parent_id': bom.id,
                 'line_id': line.id,
                 'level': level or 0,
@@ -120,6 +122,6 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
                 prod_qty = line.product_qty * factor
                 not_rounded_price = line.product_id.uom_id._compute_price(
                     line.product_id.replenishment_cost, line.product_uom_id) * prod_qty
-                price += self.env.user.company_id.currency_id.round(
+                price += product.currency_id.round(
                     not_rounded_price)
         return price
