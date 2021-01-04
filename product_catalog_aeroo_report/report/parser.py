@@ -35,7 +35,7 @@ class Parser(models.AbstractModel):
             products=products,
             categories=categories,
             pricelists=pricelists,
-            company_logo=self.env.user.company_id.logo,
+            company_logo=self.env.company.logo,
             print_product_uom=self.print_product_uom,
             product_type=self.product_type,
             prod_display_type=self.prod_display_type,
