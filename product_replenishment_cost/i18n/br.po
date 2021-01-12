@@ -3,7 +3,7 @@
 # 	* product_replenishment_cost
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2020
+# Cesar Lucho Tatad <gonefishingcesarlucho@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
@@ -11,133 +11,133 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-11 13:03+0000\n"
 "PO-Revision-Date: 2020-03-20 23:00+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2020\n"
-"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"Last-Translator: Cesar Lucho Tatad <gonefishingcesarlucho@gmail.com>, 2020\n"
+"Language-Team: Breton (https://www.transifex.com/adhoc/teams/46451/br/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: br\n"
+"Plural-Forms: nplurals=5; plural=((n%10 == 1) && (n%100 != 11) && (n%100 !=71) && (n%100 !=91) ? 0 :(n%10 == 2) && (n%100 != 12) && (n%100 !=72) && (n%100 !=92) ? 1 :(n%10 ==3 || n%10==4 || n%10==9) && (n%100 < 10 || n% 100 > 19) && (n%100 < 70 || n%100 > 79) && (n%100 < 90 || n%100 > 99) ? 2 :(n != 0 && n % 1000000 == 0) ? 3 : 4);\n"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__standard_price
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_template_form_view
 msgid "Accounting Cost"
-msgstr "Costo contable"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_needaction
 msgid "Action Needed"
-msgstr "Necesita Acción"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__add_to_cost
 msgid "Add To Cost"
-msgstr "Añadir al costo"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:res.groups,name:product_replenishment_cost.group_replenishment_rule_expr
 msgid "Allow expressions on Replenishment Cost Rules"
-msgstr "Permitir expresiones en reglas de costo de reposición"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_attachment_count
 msgid "Attachment Count"
-msgstr "Contar Adjunto"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_template_form_view
 msgid "Base Cost"
-msgstr "Costo Base"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.view_update_from_replenishment_cost_wizard_form
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.view_update_from_replenishment_cost_wizard_form
 msgid "Confirm"
-msgstr "Confirmar"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__demo_cost
 msgid "Cost"
-msgstr "Costo"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_template_form_view
 msgid "Cost Rule"
-msgstr "Regla de Costo"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__create_uid
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__create_uid
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_update_from_replenishment_cost_wizard__create_uid
 msgid "Created by"
-msgstr "Creado por"
+msgstr "Crëwyd Gan"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__create_date
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__create_date
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_update_from_replenishment_cost_wizard__create_date
 msgid "Created on"
-msgstr "Creado en"
+msgstr "Wedi'i greu"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_product__replenishment_base_cost_currency_id
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_template__replenishment_base_cost_currency_id
 msgid "Currency used for the Replanishment Base Cost."
-msgstr "Moneda utilizada para el Costo Base de Reposición."
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__description
 msgid "Description"
-msgstr "Descripción"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__display_name
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__display_name
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_update_from_replenishment_cost_wizard__display_name
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr "Enw Arddangos"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__error
 msgid "Error"
-msgstr "Error"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__expr
 msgid "Expression Amount"
-msgstr "Expresión para importe"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__fixed_amount
 msgid "Fixed Amount"
-msgstr "Importe fijo"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_follower_ids
 msgid "Followers"
-msgstr "Seguidores"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_channel_ids
 msgid "Followers (Channels)"
-msgstr "Seguidores (Canales)"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_partner_ids
 msgid "Followers (Partners)"
-msgstr "Seguidores (Canales)"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__id
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__id
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_update_from_replenishment_cost_wizard__id
 msgid "ID"
-msgstr "ID (identificación)"
+msgstr "adnabod"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__message_needaction
@@ -157,8 +157,6 @@ msgid ""
 "If true, this line value will be added to the cost. If not, it's just a "
 "variable."
 msgstr ""
-"Si es verdadero, este valor de línea se agregará al costo. Si no, es solo "
-"una variable."
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_template__standard_price
@@ -178,33 +176,33 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__item_ids
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenshiment_cost_rule_form
 msgid "Items"
-msgstr "Items"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule____last_update
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item____last_update
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_update_from_replenishment_cost_wizard____last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Newidiwyd Diwethaf Ar"
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_template_form_view
 msgid "Last Update"
-msgstr "Ultima Actulizacion"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__write_uid
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__write_uid
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_update_from_replenishment_cost_wizard__write_uid
 msgid "Last Updated by"
-msgstr "Última actualización de"
+msgstr "Diweddariad diwethaf gan"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__write_date
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__write_date
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_update_from_replenishment_cost_wizard__write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Diweddariad diwethaf ar"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_main_attachment_id
@@ -214,7 +212,7 @@ msgstr ""
 #. module: product_replenishment_cost
 #: model:ir.model.fields.selection,name:product_replenishment_cost.selection__product_template__replenishment_cost_type__manual
 msgid "Manual"
-msgstr "Manual"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_has_error
@@ -230,20 +228,20 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__name
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__name
 msgid "Name"
-msgstr "Nombre"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenshiment_cost_rule_form
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenshiment_cost_rule_tree
 msgid "Name..."
-msgstr "Nombre..."
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_supplierinfo__net_price
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_supplierinfo__net_price
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_supplierinfo_form_view
 msgid "Net Price"
-msgstr "Precio neto"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_needaction_counter
@@ -273,70 +271,70 @@ msgstr ""
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__percentage_amount
 msgid "Percentage Amount"
-msgstr "Importe en porcentaje"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.view_update_from_replenishment_cost_wizard_form
 msgid "Product Catalog Report"
-msgstr "Informe del catálogo de productos"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model,name:product_replenishment_cost.model_product_template
 msgid "Product Template"
-msgstr "Plantilla de producto"
+msgstr "Templed Cynnyrch"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__product_ids
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenshiment_cost_rule_form
 msgid "Products"
-msgstr "Productos"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_template_search_view
 msgid "Products Without Replenishment Rule"
-msgstr "Productos sin regla de reposición"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model,name:product_replenishment_cost.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Línea de Pedido de Venta"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_product__replenishment_base_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_template__replenishment_base_cost
 msgid "Replanishment Cost expressed in 'Replenishment Base Cost Currency'."
-msgstr "Costo de reposición expresado en 'Moneda base de reposición'."
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product__replenishment_base_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__replenishment_base_cost
 msgid "Replenishment Base Cost"
-msgstr "Coste base de reposición"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product__replenishment_base_cost_currency_id
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__replenishment_base_cost_currency_id
 msgid "Replenishment Base Cost Currency"
-msgstr "Moneda de coste base de reposición"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product__replenishment_base_cost_on_currency
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__replenishment_base_cost_on_currency
 msgid "Replenishment Base Cost On Currency"
-msgstr "Coste base de reposición en moneda"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product__replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_template_form_view
 msgid "Replenishment Cost"
-msgstr "Costo de reposición"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product__replenishment_cost_last_update
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__replenishment_cost_last_update
 msgid "Replenishment Cost Last Update"
-msgstr "Ultima actualización del costo de reposición"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product__replenishment_cost_rule_id
@@ -346,41 +344,41 @@ msgstr "Ultima actualización del costo de reposición"
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenshiment_cost_rule_form
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenshiment_cost_rule_tree
 msgid "Replenishment Cost Rule"
-msgstr "Regla de costo de reposición"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.actions.act_window,name:product_replenishment_cost.action_product_replenshiment_cost_rule
 #: model:ir.ui.menu,name:product_replenishment_cost.menu_product_replenshiment_cost_rule
 msgid "Replenishment Cost Rules"
-msgstr "Reglas de costo de reposición"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product__replenishment_cost_type
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__replenishment_cost_type
 msgid "Replenishment Cost Type"
-msgstr "Tipo de costo de reposición"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_product__replenishment_base_cost_on_currency
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_template__replenishment_base_cost_on_currency
 msgid "Replenishment cost on replenishment base cost currency"
-msgstr "Costo de reposición en la moneda del costo base de reposición"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_product__replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_template__replenishment_cost
 msgid "Replenishment cost on the currency of the product"
-msgstr "Coste de reposición en la moneda del producto"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__demo_result
 msgid "Result"
-msgstr "Resultado"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__replenishment_cost_rule_id
 msgid "Rule"
-msgstr "Regla"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_has_sms_error
@@ -390,7 +388,7 @@ msgstr ""
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__sequence
 msgid "Sequence"
-msgstr "Secuencia"
+msgstr "Dilyniant"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule_item__expr
@@ -403,13 +401,6 @@ msgid ""
 "- cost_sum: the accumulated cost so far\n"
 "- lines: previous calculated lines (ie lines.get(\"line_name\")"
 msgstr ""
-"Especifique una expresión de python que devuelva un importe flotante.\n"
-"Se van a usar variables de python:\n"
-"- env, model, Warning\n"
-"- producto: el producto actual\n"
-"- costo: el costo base\n"
-"- cost_sum: el coste acumulado hasta el momento.\n"
-"- lineas: líneas calculadas anteriormente (ie lines.get(\"line_name\")"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule_item__fixed_amount
@@ -417,8 +408,6 @@ msgid ""
 "Specify the fixed amount to add or substract (if negative) to the amount "
 "calculated with the percentage amount."
 msgstr ""
-"Especifique el importe fijo a sumar o restar (si es negativa) o el importe "
-"calculado con el porcentaje."
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product__supplier_currency_id
@@ -431,7 +420,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__supplier_price
 #: model:ir.model.fields.selection,name:product_replenishment_cost.selection__product_template__replenishment_cost_type__supplier_price
 msgid "Supplier Price"
-msgstr "Precio de Vendedor"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model,name:product_replenishment_cost.model_product_supplierinfo
@@ -441,23 +430,23 @@ msgstr ""
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__product_supplierinfo_ids
 msgid "Supplierinfo"
-msgstr "Tarifa del proveedor"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__product_id
 msgid "Technical field: This field it's only for testing"
-msgstr "Campo técnico: Este campo es solo para pruebas."
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule_item__error
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule_item__value
 msgid "Technical fields: This field it's only for testing"
-msgstr "Campos técnicos: Este campo es solo para pruebas."
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__product_id
 msgid "Test Product"
-msgstr "Producto de prueba"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.view_update_from_replenishment_cost_wizard_form
@@ -465,9 +454,6 @@ msgid ""
 "This will apply to all the selected products across company with costing "
 "method \"Standard Price\" and with Replenishment Cost different from 0."
 msgstr ""
-"Esto se aplicará a todos los productos seleccionados de la compañía con el "
-"método de costo \"Precio estándar\" y con un costo de reposición diferente a"
-" 0."
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_unread
@@ -482,32 +468,30 @@ msgstr ""
 #. module: product_replenishment_cost
 #: model:ir.actions.act_window,name:product_replenishment_cost.action_update_from_replenishment_cost_wizard
 msgid "Update Accounting Cost from Replenishment Cost"
-msgstr "Actualizar el costo contable desde el  costo de reposición."
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.actions.server,name:product_replenishment_cost.ir_cron_update_cost_from_replenishment_cost_ir_actions_server
 #: model:ir.cron,cron_name:product_replenishment_cost.ir_cron_update_cost_from_replenishment_cost
 #: model:ir.cron,name:product_replenishment_cost.ir_cron_update_cost_from_replenishment_cost
 msgid "Update Cost from Replenishment Cost"
-msgstr "Actualización del costo desde el costo de reposición"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: code:addons/product_replenishment_cost/wizards/product_update_from_replenishment_cost_wizard.py:0
 #, python-format
 msgid "Update from replenishment cost must be called from product template"
 msgstr ""
-"La actualización del costo de reposición debe llamarse desde la plantilla "
-"del producto"
 
 #. module: product_replenishment_cost
 #: model:ir.model,name:product_replenishment_cost.model_product_update_from_replenishment_cost_wizard
 msgid "Update product cost from replenishment cost"
-msgstr "Actualizar el costo del producto desde el costo de reposición"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__value
 msgid "Value"
-msgstr "Valor"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_template_form_view
@@ -527,19 +511,19 @@ msgstr ""
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_template_search_view
 msgid "Without Rep. Rule"
-msgstr "Sin Regla de Rep."
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.view_update_from_replenishment_cost_wizard_form
 msgid "or"
-msgstr "o"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model,name:product_replenishment_cost.model_product_replenishment_cost_rule
 msgid "product.replenishment_cost.rule"
-msgstr "product.replenishment_cost.rule"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model,name:product_replenishment_cost.model_product_replenishment_cost_rule_item
 msgid "product.replenishment_cost.rule.item"
-msgstr "product.replenishment_cost.rule.item"
+msgstr ""

@@ -3,7 +3,7 @@
 # 	* product_uoms
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2020
+# Irina Fedulova <istartlin@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
@@ -11,19 +11,19 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-11 13:03+0000\n"
 "PO-Revision-Date: 2020-03-18 19:48+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2020\n"
-"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"Last-Translator: Irina Fedulova <istartlin@gmail.com>, 2020\n"
+"Language-Team: Russian (https://www.transifex.com/adhoc/teams/46451/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. module: product_uoms
 #: model:ir.model.fields,field_description:product_uoms.field_product_product__uom_category_id
 #: model:ir.model.fields,field_description:product_uoms.field_product_template__uom_category_id
 msgid "Category"
-msgstr "Categoría"
+msgstr "Категория"
 
 #. module: product_uoms
 #: model:ir.model.fields,help:product_uoms.field_product_product__uom_category_id
@@ -36,37 +36,37 @@ msgstr ""
 #. module: product_uoms
 #: model:ir.model.fields,field_description:product_uoms.field_product_uoms__create_uid
 msgid "Created by"
-msgstr "Creado por"
+msgstr "Создано"
 
 #. module: product_uoms
 #: model:ir.model.fields,field_description:product_uoms.field_product_uoms__create_date
 msgid "Created on"
-msgstr "Creado en"
+msgstr "Создано"
 
 #. module: product_uoms
 #: model:ir.model.fields,field_description:product_uoms.field_product_uoms__display_name
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr "Отображаемое имя"
 
 #. module: product_uoms
 #: model:ir.model.fields,field_description:product_uoms.field_product_uoms__id
 msgid "ID"
-msgstr "ID (identificación)"
+msgstr "ID"
 
 #. module: product_uoms
 #: model:ir.model.fields,field_description:product_uoms.field_product_uoms____last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Изменено"
 
 #. module: product_uoms
 #: model:ir.model.fields,field_description:product_uoms.field_product_uoms__write_uid
 msgid "Last Updated by"
-msgstr "Última actualización de"
+msgstr "Обновлено"
 
 #. module: product_uoms
 #: model:ir.model.fields,field_description:product_uoms.field_product_uoms__write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Обновлено"
 
 #. module: product_uoms
 #: model:ir.model.fields,help:product_uoms.field_product_product__uom_ids
@@ -79,7 +79,7 @@ msgstr ""
 #. module: product_uoms
 #: model:ir.model,name:product_uoms.model_product_product
 msgid "Product"
-msgstr "Producto"
+msgstr "Товар"
 
 #. module: product_uoms
 #: model:product.product,name:product_uoms.product_on_cm_saleable_on_m_and_km
@@ -91,22 +91,22 @@ msgstr ""
 #: model:ir.model,name:product_uoms.model_product_template
 #: model:ir.model.fields,field_description:product_uoms.field_product_uoms__product_tmpl_id
 msgid "Product Template"
-msgstr "Plantilla de producto"
+msgstr "Шаблон товара"
 
 #. module: product_uoms
 #: model:ir.model,name:product_uoms.model_product_uoms
 msgid "Product Uoms"
-msgstr "Product Uoms"
+msgstr "Uom-ы товаров"
 
 #. module: product_uoms
 #: model:ir.model.fields,field_description:product_uoms.field_product_uoms__sequence
 msgid "Sequence"
-msgstr "Secuencia"
+msgstr ""
 
 #. module: product_uoms
 #: model:ir.model.fields,field_description:product_uoms.field_product_uoms__uom_id
 msgid "UOM"
-msgstr ""
+msgstr "UOM"
 
 #. module: product_uoms
 #: code:addons/product_uoms/models/product_uoms.py:0
@@ -119,7 +119,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_uoms.field_product_product__uom_ids
 #: model:ir.model.fields,field_description:product_uoms.field_product_template__uom_ids
 msgid "UOMs"
-msgstr ""
+msgstr "UOM-ы"
 
 #. module: product_uoms
 #: code:addons/product_uoms/models/product_template.py:0
@@ -132,4 +132,4 @@ msgstr ""
 #: model:product.product,uom_name:product_uoms.product_on_cm_saleable_on_m_and_km
 #: model:product.template,uom_name:product_uoms.product_on_cm_saleable_on_m_and_km_product_template
 msgid "cm"
-msgstr ""
+msgstr "см"

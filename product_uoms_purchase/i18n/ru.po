@@ -3,7 +3,7 @@
 # 	* product_uoms_purchase
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2020
+# Irina Fedulova <istartlin@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
@@ -11,13 +11,13 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-11 13:03+0000\n"
 "PO-Revision-Date: 2020-07-01 20:19+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2020\n"
-"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"Last-Translator: Irina Fedulova <istartlin@gmail.com>, 2020\n"
+"Language-Team: Russian (https://www.transifex.com/adhoc/teams/46451/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #. module: product_uoms_purchase
 #: code:addons/product_uoms_purchase/models/purchase_order_line.py:0
@@ -30,12 +30,12 @@ msgstr ""
 #. module: product_uoms_purchase
 #: model:ir.model,name:product_uoms_purchase.model_product_product
 msgid "Product"
-msgstr "Producto"
+msgstr "Товар"
 
 #. module: product_uoms_purchase
 #: model:ir.model,name:product_uoms_purchase.model_product_uoms
 msgid "Product Uoms"
-msgstr "Product Uoms"
+msgstr "Uom-ы товаров"
 
 #. module: product_uoms_purchase
 #: model:ir.model.fields,field_description:product_uoms_purchase.field_product_uoms__purchase_ok
@@ -45,7 +45,7 @@ msgstr ""
 #. module: product_uoms_purchase
 #: model:ir.model,name:product_uoms_purchase.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Línea de Pedido de Venta"
+msgstr ""
 
 #. module: product_uoms_purchase
 #: model:ir.model,name:product_uoms_purchase.model_stock_rule
@@ -55,4 +55,4 @@ msgstr ""
 #. module: product_uoms_purchase
 #: model:ir.model.fields,field_description:product_uoms_purchase.field_purchase_order_line__uom_unit_ids
 msgid "Uom Unit"
-msgstr "Unidad de Medida"
+msgstr "Единица измерения Uom"

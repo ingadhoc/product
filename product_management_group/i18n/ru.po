@@ -1,0 +1,38 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_management_group
+# 
+# Translators:
+# Irina Fedulova <istartlin@gmail.com>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-11 13:03+0000\n"
+"PO-Revision-Date: 2020-06-17 17:08+0000\n"
+"Last-Translator: Irina Fedulova <istartlin@gmail.com>, 2020\n"
+"Language-Team: Russian (https://www.transifex.com/adhoc/teams/46451/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#. module: product_management_group
+#: model:ir.model,name:product_management_group.model_ir_model_access
+msgid "Model Access"
+msgstr ""
+
+#. module: product_management_group
+#: model:res.groups,name:product_management_group.group_products_management
+msgid "Products Management"
+msgstr "Управление товарами"
+
+#. module: product_management_group
+#: code:addons/product_management_group/models/ir_model_access.py:0
+#, python-format
+msgid ""
+"Sorry, you are not allowed to manage products.Only users with 'Products "
+"Management' level are currently allowed to do that"
+msgstr ""

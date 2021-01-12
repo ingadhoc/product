@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* product_reference_required
+# 	* product_unique
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2020
@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-11 13:03+0000\n"
-"PO-Revision-Date: 2020-03-14 01:38+0000\n"
+"PO-Revision-Date: 2020-03-16 13:29+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2020\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
@@ -19,12 +19,20 @@ msgstr ""
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: product_reference_required
-#: model:ir.model.fields,field_description:product_reference_required.field_product_product__default_code
+#. module: product_unique
+#: model:ir.model.fields,field_description:product_unique.field_product_product__default_code
 msgid "Internal Reference"
 msgstr ""
 
-#. module: product_reference_required
-#: model:ir.model,name:product_reference_required.model_product_product
+#. module: product_unique
+#: model:ir.model,name:product_unique.model_product_product
 msgid "Product"
 msgstr "Producto"
+
+#. module: product_unique
+#: code:addons/product_unique/models/product_product.py:0
+#, python-format
+msgid ""
+"There can not be two active products with the same Reference code in the "
+"same company."
+msgstr ""

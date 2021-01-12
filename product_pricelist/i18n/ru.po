@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_pricelist
+# 
+# Translators:
+# Irina Fedulova <istartlin@gmail.com>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-11 13:03+0000\n"
+"PO-Revision-Date: 2020-08-09 01:20+0000\n"
+"Last-Translator: Irina Fedulova <istartlin@gmail.com>, 2020\n"
+"Language-Team: Russian (https://www.transifex.com/adhoc/teams/46451/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#. module: product_pricelist
+#: model:ir.model.fields,help:product_pricelist.field_product_pricelist__show_products
+msgid ""
+"By selecting it allows you to display the pricelist with the price of that "
+"product in the products"
+msgstr ""
+
+#. module: product_pricelist
+#: model:ir.model.fields,field_description:product_pricelist.field_product_pricelist__price
+msgid "Price"
+msgstr "Цена"
+
+#. module: product_pricelist
+#: model:ir.model.fields,help:product_pricelist.field_product_pricelist__price
+msgid "Price for product specified on the context"
+msgstr ""
+
+#. module: product_pricelist
+#: model:ir.model,name:product_pricelist.model_product_pricelist
+msgid "Pricelist"
+msgstr "Прайс"
+
+#. module: product_pricelist
+#: model:ir.model.fields,field_description:product_pricelist.field_product_product__pricelist_ids
+#: model:ir.model.fields,field_description:product_pricelist.field_product_template__pricelist_ids
+msgid "Pricelists"
+msgstr "Прайсы"
+
+#. module: product_pricelist
+#: model:ir.model,name:product_pricelist.model_product_template
+msgid "Product Template"
+msgstr "Шаблон товара"
+
+#. module: product_pricelist
+#: model:ir.model.fields,field_description:product_pricelist.field_product_pricelist__show_products
+msgid "Show in products"
+msgstr "Показать в товарах"
