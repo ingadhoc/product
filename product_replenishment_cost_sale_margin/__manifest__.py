@@ -1,7 +1,7 @@
 {
     'name': 'Use Replenishment Cost on Sale Margin',
     'version': '12.0.1.0.0',
-    'author': "ADHOC SA, Camptocamp, GRAP, Odoo Community Association (OCA)",
+    'author': "ADHOC SA, Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'category': 'Products',
     'depends': [
