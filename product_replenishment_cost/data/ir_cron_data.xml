@@ -2,8 +2,21 @@
     <record id="ir_cron_update_cost_from_replenishment_cost" model="ir.cron">
         <field name="name">Update Cost from Replenishment Cost</field>
         <field name="model_id" ref="product.model_product_template"/>
-        <field name="code">model.cron_update_cost_from_replenishment_cost()</field>
-        <field name="interval_type">days</field>
+        <field name="code">
+# IMPORTANTE:
+# A) Este cron se corre por defecto de manera mensual para que su costo contable se actualizado mensualmente.
+#    NO RECOMENDMAMOS cambiar esta configuración a diario porque si utiliza costeo en tiempo real, podría estar haciendo numerosos asientos
+#    todos los días que reflejarán un cambio en la valuación de stock diario, por lo general con hacerlo mensualmente ya es suficiente.
+#    Si por algun motivo, su empresa necesita una recucrrencia mayor, consúltelo especificamete con su lider de proyecto.
+#
+# B) NO CAMBIAR a frecuencias menores a diario porque puede repercutir considerablemente en la performance de su base de datos.
+#
+# C) Sobre multicompañía: este cron actualiza por defecto el costo contable de todas las compañías de su base de datos. Si por alguna razon
+#    (por ejemplo performance) desea actualizar solo algunas, puede pasar el argumento "company_ids"
+
+model.cron_update_cost_from_replenishment_cost(company_ids=None)
+        </field>
+        <field name="interval_type">months</field>
         <field name="user_id" ref="base.user_root"/>
         <field name="state">code</field>
         <field name="numbercall" eval="-1"/>
