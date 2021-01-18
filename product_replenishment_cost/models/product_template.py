@@ -2,8 +2,9 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.tools import float_compare
+from odoo.exceptions import ValidationError
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -88,10 +89,24 @@ class ProductTemplate(models.Model):
             })
 
     @api.model
-    def cron_update_cost_from_replenishment_cost(self, limit=None):
-        _logger.info('Running cron update cost from replenishment')
-        return self.with_context(prefetch_fields=False).search(
-            [], limit=limit)._update_cost_from_replenishment_cost()
+    def cron_update_cost_from_replenishment_cost(self, limit=None, company_ids=None):
+
+        # allow force_company for backward compatibility
+        force_company = self._context.get('force_company', False)
+        if force_company and company_ids:
+            raise ValidationError(_(
+                "The argument 'company_ids' and the key 'force_company' on the context can't be used together"))
+
+        # use company_ids or force_company or search for all companies
+        if force_company:
+            company_ids = [force_company]
+        elif not company_ids:
+            company_ids = self.env['res.company'].search([]).ids
+
+        for company_id in company_ids:
+            _logger.info('Running cron update cost from replenishment for company %s', company_id)
+            self.with_context(prefetch_fields=False, force_company=company_id).search(
+                [], limit=limit)._update_cost_from_replenishment_cost()
 
     def _update_cost_from_replenishment_cost(self):
         """
@@ -104,12 +119,13 @@ class ProductTemplate(models.Model):
         # campos standard_price)
         products = self.with_context(tracking_disable=True).env['product.product'].search(
             [('product_tmpl_id.id', 'in', self.ids)])
+        company = self.env['res.company'].browse(self._context.get('force_company', False)) or self.env.company
         for product in products.filtered('replenishment_cost'):
             replenishment_cost = product.replenishment_cost
             if product.currency_id != product.cost_currency_id:
                 replenishment_cost = product.currency_id._convert(
                     replenishment_cost, product.cost_currency_id,
-                    product.company_id or self.env.company, fields.Date.today(),
+                    product.company_id or company, fields.Date.today(),
                     round=False)
             if float_compare(
                     product.standard_price,
@@ -124,7 +140,7 @@ class ProductTemplate(models.Model):
                     # odoo use the env company to in the change price method
                     if self._context.get('force_company', False):
                         user_company = self.env.company
-                        self.env.company = self.env['res.company'].browse(self._context.get('force_company'))
+                        self.env.company = company
                         product._change_standard_price(replenishment_cost, account.id)
                         self.env.company = user_company
                     else:
