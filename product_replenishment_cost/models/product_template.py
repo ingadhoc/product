@@ -35,6 +35,7 @@ class ProductTemplate(models.Model):
         tracking=True,
         compute='_compute_replenishment_cost_last_update',
         store=True,
+        help="Date of the last update of replenishment base cost or its currency"
     )
     replenishment_base_cost = fields.Float(
         digits='Product Price',
