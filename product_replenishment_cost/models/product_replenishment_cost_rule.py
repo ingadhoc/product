@@ -73,10 +73,6 @@ class ProductReplenishmentCostRule(models.Model):
                         '+ expr' if x.expr else ''))))
             rec.description = description
 
-    @api.constrains('item_ids')
-    def update_replenishment_cost_last_update(self):
-        self.product_ids.update_replenishment_cost_last_update()
-
     def _get_eval_context(self, obj=None):
         """ Prepare the context used when evaluating python code
         :param obj: the current obj
