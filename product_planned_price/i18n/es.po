@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2020
+# Juan Rivero <jr@adhoc.com.ar>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-11 13:03+0000\n"
+"POT-Creation-Date: 2021-01-26 16:50+0000\n"
 "PO-Revision-Date: 2020-03-25 18:38+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2020\n"
+"Last-Translator: Juan Rivero <jr@adhoc.com.ar>, 2021\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,12 +66,12 @@ msgstr "Creado por"
 #. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard__create_date
 msgid "Created on"
-msgstr "Creado en"
+msgstr "Creado el"
 
 #. module: product_planned_price
 #: model:ir.model.fields.selection,name:product_planned_price.selection__product_template__list_price_type__other_currency
 msgid "Currency exchange"
-msgstr "Tasa cambiaría"
+msgstr "Tasa cambiaria"
 
 #. module: product_planned_price
 #: model:ir.model.fields,help:product_planned_price.field_product_product__other_currency_id
@@ -114,17 +115,17 @@ msgstr ""
 #. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard____last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Última modificación el"
 
 #. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard__write_uid
 msgid "Last Updated by"
-msgstr "Última actualización de"
+msgstr "Última actualización por"
 
 #. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard__write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Última actualización el"
 
 #. module: product_planned_price
 #: model_terms:ir.ui.view,arch_db:product_planned_price.product_template_only_form_view
@@ -227,7 +228,7 @@ msgid ""
 " price."
 msgstr ""
 "Actualizar precio de lista con precio planificado para todos los productos "
-"vendidos con precio planificado."
+"seleccionados con precio planificado."
 
 #. module: product_planned_price
 #: model:ir.actions.act_window,name:product_planned_price.action_update_from_planned_price_wizard

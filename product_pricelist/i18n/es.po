@@ -1,17 +1,18 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * product_pricelist
+# 	* product_pricelist
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2020
+# Juan Rivero <jr@adhoc.com.ar>, 2021
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-26 00:43+0000\n"
-"PO-Revision-Date: 2019-08-07 21:43+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019\n"
+"POT-Creation-Date: 2021-01-26 16:50+0000\n"
+"PO-Revision-Date: 2020-08-09 01:20+0000\n"
+"Last-Translator: Juan Rivero <jr@adhoc.com.ar>, 2021\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,8 +26,8 @@ msgid ""
 "By selecting it allows you to display the pricelist with the price of that "
 "product in the products"
 msgstr ""
-"Con esta opción le permite visualizar en los productos las lisas de precios "
-"con el precio para ese producto"
+"Con esta opción le permite visualizar en los productos las listas de precios"
+" con el precio para ese producto"
 
 #. module: product_pricelist
 #: model:ir.model.fields,field_description:product_pricelist.field_product_pricelist__price
