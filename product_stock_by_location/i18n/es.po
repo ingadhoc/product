@@ -1,17 +1,18 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * product_stock_by_location
+# 	* product_stock_by_location
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2020
+# Juan Rivero <jr@adhoc.com.ar>, 2021
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-26 00:43+0000\n"
-"PO-Revision-Date: 2019-08-27 23:11+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2019\n"
+"POT-Creation-Date: 2021-02-02 11:03+0000\n"
+"PO-Revision-Date: 2020-06-26 20:03+0000\n"
+"Last-Translator: Juan Rivero <jr@adhoc.com.ar>, 2021\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +63,7 @@ msgid ""
 "If true, this location will be shown on the pop up window openedfrom "
 "products kanban and tree view"
 msgstr ""
-"Si es verdader, esta ubicación se mostrará en la ventana emergente abierta "
+"Si es verdadero, esta ubicación se mostrará en la ventana emergente abierta "
 "desde la producción kanban y vista de árbol"
 
 #. module: product_stock_by_location
@@ -84,12 +85,12 @@ msgstr "Ubicación Stock"
 #: model:ir.model.fields,field_description:product_stock_by_location.field_product_product__location_ids
 #: model:ir.model.fields,field_description:product_stock_by_location.field_product_template__location_ids
 msgid "Locations"
-msgstr "Úbicación"
+msgstr "Ubicaciones"
 
 #. module: product_stock_by_location
 #: model_terms:ir.ui.view,arch_db:product_stock_by_location.product_template_kanban_stock_view
 msgid "On hand:"
-msgstr "En mano:"
+msgstr "A mano:"
 
 #. module: product_stock_by_location
 #: model:ir.model.fields,field_description:product_stock_by_location.field_stock_location__outgoing_qty
@@ -148,8 +149,8 @@ msgid "Show Stock On Products"
 msgstr "Mostrar stock en productos"
 
 #. module: product_stock_by_location
-#: code:addons/product_stock_by_location/models/product_product.py:17
-#: code:addons/product_stock_by_location/models/product_template.py:31
+#: code:addons/product_stock_by_location/models/product_product.py:0
+#: code:addons/product_stock_by_location/models/product_template.py:0
 #, python-format
 msgid "Stock By Locations"
 msgstr "Stock por Ubicación"

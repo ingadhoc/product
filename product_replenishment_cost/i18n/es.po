@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2020
+# Juan Rivero <jr@adhoc.com.ar>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-11 13:03+0000\n"
+"POT-Creation-Date: 2021-02-02 11:03+0000\n"
 "PO-Revision-Date: 2020-03-20 23:00+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2020\n"
+"Last-Translator: Juan Rivero <jr@adhoc.com.ar>, 2021\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -82,13 +83,19 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__create_date
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_update_from_replenishment_cost_wizard__create_date
 msgid "Created on"
-msgstr "Creado en"
+msgstr "Creado el"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_product__replenishment_base_cost_currency_id
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_template__replenishment_base_cost_currency_id
 msgid "Currency used for the Replanishment Base Cost."
 msgstr "Moneda utilizada para el Costo Base de Reposición."
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,help:product_replenishment_cost.field_product_product__replenishment_cost_last_update
+#: model:ir.model.fields,help:product_replenishment_cost.field_product_template__replenishment_cost_last_update
+msgid "Date of the last update of replenishment base cost or its currency"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__description
@@ -185,7 +192,7 @@ msgstr "Items"
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item____last_update
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_update_from_replenishment_cost_wizard____last_update
 msgid "Last Modified on"
-msgstr "Última modificación en"
+msgstr "Última modificación el"
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_template_form_view
@@ -197,14 +204,14 @@ msgstr "Ultima Actulizacion"
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__write_uid
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_update_from_replenishment_cost_wizard__write_uid
 msgid "Last Updated by"
-msgstr "Última actualización de"
+msgstr "Última actualización por"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__write_date
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__write_date
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_update_from_replenishment_cost_wizard__write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Última actualización el"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_main_attachment_id
@@ -404,7 +411,7 @@ msgid ""
 "- lines: previous calculated lines (ie lines.get(\"line_name\")"
 msgstr ""
 "Especifique una expresión de python que devuelva un importe flotante.\n"
-"Se van a usar variables de python:\n"
+"Puede usar variables de python:\n"
 "- env, model, Warning\n"
 "- producto: el producto actual\n"
 "- costo: el costo base\n"
@@ -417,7 +424,7 @@ msgid ""
 "Specify the fixed amount to add or substract (if negative) to the amount "
 "calculated with the percentage amount."
 msgstr ""
-"Especifique el importe fijo a sumar o restar (si es negativa) o el importe "
+"Especifique el importe fijo a sumar o restar (si es negativa) al importe "
 "calculado con el porcentaje."
 
 #. module: product_replenishment_cost
@@ -441,7 +448,7 @@ msgstr ""
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__product_supplierinfo_ids
 msgid "Supplierinfo"
-msgstr "Tarifa del proveedor"
+msgstr "Información del Proveedor"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__product_id
@@ -458,6 +465,14 @@ msgstr "Campos técnicos: Este campo es solo para pruebas."
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__product_id
 msgid "Test Product"
 msgstr "Producto de prueba"
+
+#. module: product_replenishment_cost
+#: code:addons/product_replenishment_cost/models/product_template.py:0
+#, python-format
+msgid ""
+"The argument 'company_ids' and the key 'force_company' on the context can't "
+"be used together"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.view_update_from_replenishment_cost_wizard_form
