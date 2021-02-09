@@ -110,7 +110,7 @@ class ProductTemplate(models.Model):
             if product.currency_id != product.user_company_currency_id:
                 replenishment_cost = product.currency_id._convert(
                     replenishment_cost, product.user_company_currency_id,
-                    product.company_id, fields.Date.today(),
+                    product.company_id or self.env.user.company_id, fields.Date.today(),
                     round=False)
             if float_compare(
                     product.standard_price,
