@@ -16,14 +16,19 @@ class ProductTemplate(models.Model):
                 'If you choose replenishment cost type "Based on BoM" '
                 'then the product must have a bill of materials.'))
 
+    @api.depends(
+        # TODO ver si encontramos otra alternativa a este depends ya que esto lo hace bastante malo a nivel performance
+        # antes usabamos un invalidate cache pero nos dejó de funcionar
+        'bom_ids.bom_line_ids.product_id.product_tmpl_id.replenishment_cost',
+        'bom_ids.bom_line_ids.product_qty',
+        'bom_ids.bom_line_ids.product_uom_id',
+    )
     def _compute_replenishment_cost(self):
         bom_costs = self.filtered(lambda x: x.replenishment_cost_type == 'bom')
-        bom_costs.update({
-            'replenishment_base_cost_on_currency': 0.0,
-            'replenishment_cost': 0.0
-        })
         company = self.env.company
         date = fields.Date.today()
+        res = super(
+            ProductTemplate, self - bom_costs)._compute_replenishment_cost()
         for rec in bom_costs:
             product_currency = rec.currency_id
 
@@ -31,13 +36,14 @@ class ProductTemplate(models.Model):
             price = 0.0
             bom = self.env['mrp.bom']._bom_find(product_tmpl=rec)
             if not bom:
+                rec.update({
+                    'replenishment_base_cost_on_currency': 0.0,
+                    'replenishment_cost': 0.0
+                })
                 continue
             # el explode es para product.product, tomamos la primer variante
             result, result2 = bom.explode(rec.product_variant_ids[0], 1)
             for sbom, sbom_data in result2:
-                # TODO ver si podemos evitar este invalidate cache. Es necesario
-                # para que actualice desde el cron
-                self.invalidate_cache(['replenishment_cost'], [sbom.product_id.product_tmpl_id.id])
                 sbom_rep_cost = sbom.product_id.uom_id._compute_price(
                     sbom.product_id.product_tmpl_id.replenishment_cost,
                     sbom.product_uom_id) * sbom_data['qty']
@@ -67,5 +73,4 @@ class ProductTemplate(models.Model):
                 replenishment_base_cost_on_currency,
                 'replenishment_cost': replenishment_cost
             })
-        return super(
-            ProductTemplate, self - bom_costs)._compute_replenishment_cost()
+        return res
