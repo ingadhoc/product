@@ -1,0 +1,268 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_catalog_aeroo_report
+# 
+# Translators:
+# Irina Fedulova <istartlin@gmail.com>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-04 10:25+0000\n"
+"PO-Revision-Date: 2020-05-27 18:09+0000\n"
+"Last-Translator: Irina Fedulova <istartlin@gmail.com>, 2020\n"
+"Language-Team: Russian (https://www.transifex.com/adhoc/teams/46451/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#. module: product_catalog_aeroo_report
+#: code:addons/product_catalog_aeroo_report/report/parser.py:0
+#, python-format
+msgid "%s (%s)"
+msgstr "%s (%s)"
+
+#. module: product_catalog_aeroo_report
+#: code:addons/product_catalog_aeroo_report/report/parser.py:0
+#, python-format
+msgid "%s. Also available in %s"
+msgstr "%s. Также доступно в %s"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields.selection,name:product_catalog_aeroo_report.selection__product_product_catalog_report__category_type__accounting_category
+msgid "Accounting Category"
+msgstr ""
+
+#. module: product_catalog_aeroo_report
+#: model_terms:ir.ui.view,arch_db:product_catalog_aeroo_report.view_product_catalog
+msgid "Cancel"
+msgstr "Отмена"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__categories_order
+msgid "Categories Order Sintax"
+msgstr ""
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__category_type
+msgid "Category Type"
+msgstr "Тип категории"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog__create_uid
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__create_uid
+msgid "Created by"
+msgstr "Создано"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog__create_date
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__create_date
+msgid "Created on"
+msgstr "Создано"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog__display_name
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__display_name
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_report_product_catalog_parser__display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,help:product_catalog_aeroo_report.field_product_product_catalog_report__taxes_included
+msgid ""
+"Export prices with taxes included by default? This value will be used as "
+"default on print catalog wizard"
+msgstr ""
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog__id
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__id
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_report_product_catalog_parser__id
+msgid "ID"
+msgstr "ID"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__include_sub_categories
+msgid "Include Subcategories?"
+msgstr "Включить подкатегории?"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog____last_update
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report____last_update
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_report_product_catalog_parser____last_update
+msgid "Last Modified on"
+msgstr "Изменено"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog__write_uid
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__write_uid
+msgid "Last Updated by"
+msgstr "Обновлено"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog__write_date
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__write_date
+msgid "Last Updated on"
+msgstr "Обновлено"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__name
+msgid "Name"
+msgstr "Имя"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields.selection,name:product_catalog_aeroo_report.selection__product_product_catalog_report__prod_display_type__prod_per_line
+msgid "One Product Per Line"
+msgstr ""
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__only_with_stock
+msgid "Only With Stock Products?"
+msgstr ""
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__pricelist_ids
+msgid "Pricelist"
+msgstr "Прайс"
+
+#. module: product_catalog_aeroo_report
+#: model_terms:ir.ui.view,arch_db:product_catalog_aeroo_report.view_product_catalog
+#: model_terms:ir.ui.view,arch_db:product_catalog_aeroo_report.view_product_catalog_report_form
+msgid "Print"
+msgstr "Печать"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__print_product_uom
+msgid "Print Product UOM?"
+msgstr "Печать UOM товара?"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields.selection,name:product_catalog_aeroo_report.selection__product_product_catalog_report__product_type__product_product
+msgid "Product"
+msgstr "Товар"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.actions.act_window,name:product_catalog_aeroo_report.action_product_catalog
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog__product_catalog_report_id
+#: model:ir.ui.menu,name:product_catalog_aeroo_report.menu_product_catalog
+msgid "Product Catalog"
+msgstr "Каталог товаров"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.actions.report,name:product_catalog_aeroo_report.report_product_catalog_by_categories_odt
+msgid "Product Catalog By Categories Report - ODT"
+msgstr ""
+
+#. module: product_catalog_aeroo_report
+#: model_terms:ir.ui.view,arch_db:product_catalog_aeroo_report.view_product_catalog
+msgid "Product Catalog Report"
+msgstr ""
+
+#. module: product_catalog_aeroo_report
+#: model:ir.actions.report,name:product_catalog_aeroo_report.report_product_catalog_ods
+msgid "Product Catalog Report - ODS"
+msgstr ""
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model,name:product_catalog_aeroo_report.model_product_product_catalog_report
+msgid "Product Catalog Report with Aeroo"
+msgstr ""
+
+#. module: product_catalog_aeroo_report
+#: model:ir.actions.act_window,name:product_catalog_aeroo_report.action_product_catalog_reports
+#: model:ir.ui.menu,name:product_catalog_aeroo_report.menu_product_catalog_reports
+#: model_terms:ir.ui.view,arch_db:product_catalog_aeroo_report.view_product_catalog_report_form
+#: model_terms:ir.ui.view,arch_db:product_catalog_aeroo_report.view_product_catalog_report_tree
+msgid "Product Catalog Reports"
+msgstr ""
+
+#. module: product_catalog_aeroo_report
+#: model:ir.actions.report,name:product_catalog_aeroo_report.report_product_catalog_simple_odt
+msgid "Product Catalog Simple Report - ODT"
+msgstr ""
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__category_ids
+msgid "Product Categories"
+msgstr "Категории товаров"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__prod_display_type
+msgid "Product Display Type"
+msgstr "Тип отображения товара"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields.selection,name:product_catalog_aeroo_report.selection__product_product_catalog_report__prod_display_type__prod_list
+msgid "Product List"
+msgstr "Список товаров"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields.selection,name:product_catalog_aeroo_report.selection__product_product_catalog_report__product_type__product_template
+msgid "Product Template"
+msgstr "Шаблон товара"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__product_type
+msgid "Product Type"
+msgstr "Тип товара"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__products_order
+msgid "Products Order Sintax"
+msgstr ""
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__report_id
+msgid "Report"
+msgstr "Отчет"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog__taxes_included
+msgid "Taxes Included"
+msgstr "Включенные налоги"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__taxes_included
+msgid "Taxes Included?"
+msgstr "Налоги включены?"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog__use_planned_price
+msgid "Use Planned Price"
+msgstr ""
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,help:product_catalog_aeroo_report.field_product_catalog__use_planned_price
+msgid ""
+"Use planned price instead of list price (if planned price module is not "
+"installed, nothing is going to change)"
+msgstr ""
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields.selection,name:product_catalog_aeroo_report.selection__product_product_catalog_report__prod_display_type__variants
+msgid "Variants"
+msgstr ""
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model,name:product_catalog_aeroo_report.model_product_catalog
+msgid "Wizard to generate the Product Catalog Report with Aeroo"
+msgstr ""
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,help:product_catalog_aeroo_report.field_product_product_catalog_report__categories_order
+#: model:ir.model.fields,help:product_catalog_aeroo_report.field_product_product_catalog_report__products_order
+msgid "for eg. name desc"
+msgstr "напр., описание имени"
+
+#. module: product_catalog_aeroo_report
+#: model_terms:ir.ui.view,arch_db:product_catalog_aeroo_report.view_product_catalog
+msgid "or"
+msgstr "или"
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model,name:product_catalog_aeroo_report.model_report_product_catalog_parser
+msgid "report.product_catalog_parser"
+msgstr "report.product_catalog_parser"

@@ -1,0 +1,226 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_prices_update
+# 
+# Translators:
+# Irina Fedulova <istartlin@gmail.com>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-04 10:25+0000\n"
+"PO-Revision-Date: 2020-06-09 14:49+0000\n"
+"Last-Translator: Irina Fedulova <istartlin@gmail.com>, 2020\n"
+"Language-Team: Russian (https://www.transifex.com/adhoc/teams/46451/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#. module: product_prices_update
+#: model_terms:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_form
+msgid "Base Price"
+msgstr "Базовая цена"
+
+#. module: product_prices_update
+#: model_terms:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_form
+msgid "Cancel"
+msgstr "Отмена"
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard__check
+msgid "Check before changing"
+msgstr ""
+
+#. module: product_prices_update
+#: model_terms:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_form
+#: model_terms:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_result_form
+msgid "Confirm"
+msgstr "Подтвердить"
+
+#. module: product_prices_update
+#: model:ir.model.fields.selection,name:product_prices_update.selection__product_prices_update_wizard__price_type__standard_price
+msgid "Cost Price"
+msgstr ""
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard__create_uid
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result__create_uid
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail__create_uid
+msgid "Created by"
+msgstr "Создано"
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard__create_date
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result__create_date
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail__create_date
+msgid "Created on"
+msgstr "Создано"
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard__display_name
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result__display_name
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail__display_name
+msgid "Display Name"
+msgstr "Отображаемое имя"
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard__id
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result__id
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail__id
+msgid "ID"
+msgstr "ID"
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard____last_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result____last_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail____last_update
+msgid "Last Modified on"
+msgstr "Изменено"
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard__write_uid
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result__write_uid
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail__write_uid
+msgid "Last Updated by"
+msgstr "Обновлено"
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard__write_date
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result__write_date
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail__write_date
+msgid "Last Updated on"
+msgstr "Обновлено"
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail__new_price
+msgid "New Price"
+msgstr "Новая цена"
+
+#. module: product_prices_update
+#: model_terms:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_form
+msgid "New Price ="
+msgstr "Новая цена ="
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail__old_price
+msgid "Old Price"
+msgstr "Старая цена"
+
+#. module: product_prices_update
+#: model_terms:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_form
+msgid "Price Computation"
+msgstr ""
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard__price_discount
+msgid "Price Discount"
+msgstr ""
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard__price_round
+msgid "Price Rounding"
+msgstr ""
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard__price_surcharge
+msgid "Price Surcharge"
+msgstr ""
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard__price_type
+msgid "Price Type"
+msgstr "Тип цены"
+
+#. module: product_prices_update
+#: code:addons/product_prices_update/wizards/wizard_update_prices.py:0
+#: code:addons/product_prices_update/wizards/wizard_update_prices.py:0
+#, python-format
+msgid "Price type \"%s\" is not implemented"
+msgstr ""
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail__product_tmpl_id
+msgid "Product Template"
+msgstr "Шаблон товара"
+
+#. module: product_prices_update
+#: code:addons/product_prices_update/wizards/wizard_update_prices.py:0
+#: model_terms:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_result_detail_tree
+#: model_terms:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_result_form
+#, python-format
+msgid "Products"
+msgstr "Товары"
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result__detail_ids
+msgid "Products Detail"
+msgstr "Описание товаров"
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail__result_id
+msgid "Result"
+msgstr "Результат"
+
+#. module: product_prices_update
+#: model_terms:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_form
+msgid "Rounding Method"
+msgstr ""
+
+#. module: product_prices_update
+#: model:ir.model.fields.selection,name:product_prices_update.selection__product_prices_update_wizard__price_type__list_price
+msgid "Sale Price"
+msgstr ""
+
+#. module: product_prices_update
+#: model:ir.model.fields,help:product_prices_update.field_product_prices_update_wizard__price_round
+msgid ""
+"Sets the price so that it is a multiple of this value.\n"
+"Rounding is applied after the discount and before the surcharge.\n"
+"To have prices that end in 9.99, set rounding 10, surcharge -0.01"
+msgstr ""
+
+#. module: product_prices_update
+#: model:ir.model.fields,help:product_prices_update.field_product_prices_update_wizard__price_surcharge
+msgid ""
+"Specify the fixed amount to add or substract(if negative) to the amount "
+"calculated with the discount."
+msgstr ""
+
+#. module: product_prices_update
+#: model:ir.actions.act_window,name:product_prices_update.action_prices_update_wizard_result
+msgid "Update Prices Result"
+msgstr ""
+
+#. module: product_prices_update
+#: model:ir.actions.act_window,name:product_prices_update.action_update_prices_wizard
+msgid "Update Product Prices"
+msgstr "Обновить цены товаров"
+
+#. module: product_prices_update
+#: code:addons/product_prices_update/wizards/wizard_update_prices.py:0
+#, python-format
+msgid "You must select at least one product"
+msgstr "Вы должны выбрать как минимум один товар"
+
+#. module: product_prices_update
+#: model_terms:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_form
+msgid "or"
+msgstr "или"
+
+#. module: product_prices_update
+#: model:ir.model,name:product_prices_update.model_product_prices_update_wizard
+msgid "product.prices_update_wizard"
+msgstr "product.prices_update_wizard"
+
+#. module: product_prices_update
+#: model:ir.model,name:product_prices_update.model_product_prices_update_wizard_result
+msgid "product.prices_update_wizard_result"
+msgstr "product.prices_update_wizard_result"
+
+#. module: product_prices_update
+#: model:ir.model,name:product_prices_update.model_product_prices_update_wizard_result_detail
+msgid "product.prices_update_wizard_result_detail"
+msgstr "product.prices_update_wizard_result_detail"
