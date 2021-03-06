@@ -54,13 +54,3 @@ class ProductReplenishmentCostRuleItem(models.Model):
              'If not, it\'s just a variable.',
         default=True,
     )
-
-    # no-op for testing and calculating rule
-    value = fields.Char(
-        compute=lambda x: x,
-        help="Technical fields: This field it's only for testing",
-    )
-    error = fields.Char(
-        compute=lambda x: x,
-        help="Technical fields: This field it's only for testing",
-    )
