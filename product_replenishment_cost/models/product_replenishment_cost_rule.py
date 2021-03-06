@@ -43,18 +43,6 @@ class ProductReplenishmentCostRule(models.Model):
         track_visibility='onchange',
     )
 
-    # no-op for testing and calculating rule
-    product_id = fields.Many2one(
-        'product.template',
-        'Test Product',
-        compute=lambda x: x,
-        inverse=lambda x: x,
-        help="Technical field: This field it's only for testing",
-    )
-
-    demo_cost = fields.Float('Cost', compute=lambda x: x)
-    demo_result = fields.Float('Result', compute=lambda x: x)
-
     @api.depends(
         'name',
         'item_ids.name',
@@ -132,25 +120,7 @@ class ProductReplenishmentCostRule(models.Model):
                     pass
 
             values[line.name] = error or value
-            line.update({
-                'value': error or str(value),
-                'error': error,
-            })
             if line.add_to_cost:
                 cost = cost + value
 
-        # Don't compute cost if there are errors
-        if any([line.error for line in self.item_ids]):
-            return False
-        else:
-            return cost
-
-    @api.onchange('product_id', 'item_ids')
-    def _onchange_product_id(self):
-        """ On change to show dynamic results. """
-        if self.product_id:
-            cost = self.product_id.replenishment_base_cost_on_currency
-            self.update({
-                'demo_cost': cost,
-                'demo_result': self.compute_rule(cost, self.product_id),
-            })
+        return cost
