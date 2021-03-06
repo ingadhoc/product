@@ -8,11 +8,6 @@
             <form string="Replenishment Cost Rule">
                 <sheet string="Replenishment Cost Rule">
                     <h1><field name="name" placeholder="Name..."/></h1>
-                    <group>
-                        <field name="product_id" options='{"no_open": True,"no_create": 1, "no_create_edit": 1}'/>
-                        <field name="demo_cost" attrs="{'invisible': [('product_id', '=', False)]}"/>
-                        <field name="demo_result" attrs="{'invisible': [('product_id', '=', False)]}"/>
-                    </group>
                     <notebook>
                         <page string="Items">
                             <field name="item_ids">
@@ -23,7 +18,6 @@
                                     <field name="fixed_amount"/>
                                     <field name="expr" groups="product_replenishment_cost.group_replenishment_rule_expr"/>
                                     <field name="add_to_cost" groups="product_replenishment_cost.group_replenishment_rule_expr"/>
-                                    <field name="value"/>
                                 </tree>
                             </field>
                         </page>
