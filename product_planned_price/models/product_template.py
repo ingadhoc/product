@@ -63,7 +63,7 @@ class ProductTemplate(models.Model):
         _logger.info('Running update prices from planned cron')
         if not self._context.get('force_company'):
             self = self.with_context(force_company=self.env['res.company'].search([], limit=1).id)
-        return self._update_prices_from_planned()
+        return self.with_context(bypass_base_automation=True)._update_prices_from_planned()
 
     def _update_prices_from_planned(self):
         """

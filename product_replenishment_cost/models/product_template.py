@@ -106,7 +106,7 @@ class ProductTemplate(models.Model):
 
         for company_id in company_ids:
             _logger.info('Running cron update cost from replenishment for company %s', company_id)
-            self.with_context(prefetch_fields=False, force_company=company_id).search(
+            self.with_context(prefetch_fields=False, force_company=company_id, bypass_base_automation=True).search(
                 [], limit=limit)._update_cost_from_replenishment_cost()
 
     def _update_cost_from_replenishment_cost(self):
