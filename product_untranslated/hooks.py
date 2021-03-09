@@ -8,9 +8,7 @@ def post_init_hook(cr, registry):
     Create a payment group for every existint payment
     """
     env = api.Environment(cr, SUPERUSER_ID, {})
-    lang_read = env['res.lang'].search_read([
-        '&', ('active', '=', True), ('translatable', '=', True),
-        ('code', '!=', 'en_US')], ['code'])
+    lang_read = env['res.lang'].search_read(['&', ('active', '=', True), ('code', '!=', 'en_US')], ['code'])
     if len(lang_read) != 1:
         # no language besides english or more than one language, no need to sync
         return True

@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product Untraslated',
-    'version': '12.0.1.0.0',
+    'version': '13.0.1.0.0',
     'category': 'Product',
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
