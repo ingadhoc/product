@@ -27,8 +27,8 @@ class ProductSupplierinfo(models.Model):
     )
 
     def write(self, vals):
-        if vals.get('price'):
-            vals.update(last_date_price_updated = fields.Datetime.now())
+        if vals.get('price') and not vals.get('last_date_price_updated'):
+            vals.update(last_date_price_updated=fields.Datetime.now())
         return super(ProductSupplierinfo, self).write(vals)
 
     def _inverse_net_price(self):
