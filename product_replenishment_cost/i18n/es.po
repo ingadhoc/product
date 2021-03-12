@@ -437,7 +437,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product__supplier_price
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__supplier_price
 #: model:ir.model.fields.selection,name:product_replenishment_cost.selection__product_template__replenishment_cost_type__supplier_price
-msgid "Supplier Price"
+msgid "Main Supplier Price"
 msgstr "Precio de Proveedor Principal"
 
 #. module: product_replenishment_cost
