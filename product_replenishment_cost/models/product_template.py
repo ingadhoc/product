@@ -63,14 +63,15 @@ class ProductTemplate(models.Model):
         digits='Product Price',
     )
     replenishment_cost_type = fields.Selection(
-        [('supplier_price', 'Supplier Price'),
+        [('supplier_price', 'Main Supplier Price'),
+         ('last_supplier_price', 'Last Supplier Price'),
          ('manual', 'Manual')],
         default='manual',
         required=True,
     )
 
     @api.depends_context('force_company')
-    @api.depends('seller_ids.net_price', 'seller_ids.currency_id', 'seller_ids.company_id')
+    @api.depends('seller_ids.net_price', 'seller_ids.currency_id', 'seller_ids.company_id', 'replenishment_cost_type')
     def _compute_supplier_data(self):
         """ Lo ideal seria utilizar campo related para que segun los permisos
          del usuario tome el seller_id que corresponda, pero el tema es que el
@@ -84,6 +85,8 @@ class ProductTemplate(models.Model):
         company_id = self._context.get('force_company', self.env.company.id)
         for rec in self:
             seller_ids = rec.seller_ids.filtered(lambda x: not x.company_id or x.company_id.id == company_id)
+            if rec.replenishment_cost_type == 'last_supplier_price':
+                seller_ids = seller_ids.sorted(key='last_date_price_updated', reverse=True)
             rec.update({
                 'supplier_price': seller_ids and seller_ids[0].net_price or 0.0,
                 'supplier_currency_id': seller_ids and seller_ids[0].currency_id or self.env['res.currency'],
@@ -186,7 +189,7 @@ class ProductTemplate(models.Model):
             product_currency = rec.currency_id
             rec.replenishment_base_cost_on_currency = 0.0
             rec.replenishment_cost = 0.0
-            if rec.replenishment_cost_type == 'supplier_price':
+            if rec.replenishment_cost_type in ['supplier_price', 'last_supplier_price']:
                 replenishment_base_cost = rec.supplier_price
                 base_cost_currency = rec.supplier_currency_id
             elif rec.replenishment_cost_type == 'manual':

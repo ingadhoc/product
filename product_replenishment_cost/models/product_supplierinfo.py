@@ -8,6 +8,9 @@ from odoo import models, fields, api
 class ProductSupplierinfo(models.Model):
     _inherit = 'product.supplierinfo'
 
+    last_date_price_updated = fields.Datetime(string="Last date price updated",
+                                              default=lambda self: fields.Datetime.now())
+
     replenishment_cost_rule_id = fields.Many2one(
         'product.replenishment_cost.rule',
         auto_join=True,
@@ -22,6 +25,11 @@ class ProductSupplierinfo(models.Model):
         digits='Product Price',
         help="Net Price",
     )
+
+    def write(self, vals):
+        if vals.get('price') and not vals.get('last_date_price_updated'):
+            vals.update(last_date_price_updated=fields.Datetime.now())
+        return super(ProductSupplierinfo, self).write(vals)
 
     def _inverse_net_price(self):
         """ For now we only implement when product_tmpl_id is set
