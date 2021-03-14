@@ -11,7 +11,8 @@ class ProductTemplate(models.Model):
 
     internal_code = fields.Char(
         related='product_variant_ids.internal_code',
-        string='Internal Code')
+        string='Internal Code',
+        readonly=False)
 
     @api.model
     def create(self, vals):
