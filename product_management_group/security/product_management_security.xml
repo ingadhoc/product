@@ -8,4 +8,8 @@
         <field name="groups_id" eval="[(4,ref('product_management_group.group_products_management'))]"/>
     </record>
 
+    <record id="base.user_admin" model="res.users">
+        <field name="groups_id" eval="[(4,ref('product_management_group.group_products_management'))]"/>
+    </record>
+
 </odoo>
