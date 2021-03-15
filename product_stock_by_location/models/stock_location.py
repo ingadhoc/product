@@ -2,7 +2,7 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class StockLocation(models.Model):
@@ -69,6 +69,7 @@ class StockLocation(models.Model):
              "Location with 'internal' type."
     )
 
+    @api.depends_context('product_id', 'template_id')
     def _compute_product_available(self):
         template_id = self._context.get('template_id', False)
         product_id = self._context.get('product_id', False)
