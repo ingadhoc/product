@@ -6,10 +6,12 @@
 Porduct Untranslated
 ====================
 
-For now this module only makes the name field of products untranslated.
+The most important change is to make name field of product.template untranslated.
 The main purpose of this is to speed up searches, specially when using advance searches, for example the ones introduced by the base_name_search_improved module.
 
 The product_order_noname already improves performance but is not enaought for databases with a huge amount of products and searches with the base_name_search_improved module.
+
+Additionaly, this module makes 'description' and 'description_sale' untranslated because they're used on website_sale module and searching for each word, so making the untranslated helps iproving search performance.
 
 
 Installation
