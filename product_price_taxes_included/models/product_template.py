@@ -16,6 +16,7 @@ class ProductTemplate(models.Model):
         string='Taxed Sale Price',
         compute='_compute_taxed_lst_price',
         digits='Product Price',
+        compute_sudo=True,
     )
 
     @api.depends('taxes_id', 'list_price')
