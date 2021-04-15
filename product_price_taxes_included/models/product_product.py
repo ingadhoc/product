@@ -13,10 +13,10 @@ class ProductProduct(models.Model):
         string='Taxed Sale Price',
         compute='_compute_taxed_lst_price',
         digits='Product Price',
-        compute_sudo=True,
     )
 
     @api.depends('taxes_id', 'lst_price')
+    @api.depends_context('company', 'company_id')
     def _compute_taxed_lst_price(self):
         """ if taxes_included lst_price already has taxes included
         """
@@ -24,7 +24,7 @@ class ProductProduct(models.Model):
             'company_id', self.env.company.id)
         for product in self:
             product.taxed_lst_price = product.taxes_id.filtered(
-                lambda x: x.company_id.id == company_id).compute_all(
+                lambda x: x.company_id.id == company_id).sudo().compute_all(
                     product.lst_price,
                     self.env.company.currency_id,
                     product=product)['total_included']

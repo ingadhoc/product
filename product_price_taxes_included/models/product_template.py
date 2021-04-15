@@ -20,6 +20,7 @@ class ProductTemplate(models.Model):
     )
 
     @api.depends('taxes_id', 'list_price')
+    @api.depends_context('company', 'company_id')
     def _compute_taxed_lst_price(self):
         """ compute it from list_price and not for lst_price for performance
         (avoid using dummy related field)
