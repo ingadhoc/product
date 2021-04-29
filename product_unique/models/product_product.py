@@ -13,16 +13,14 @@ class ProductProduct(models.Model):
         copy=False,
     )
 
-    @api.constrains('product_tmpl_id', 'default_code', 'active')
+    @api.constrains('default_code', 'active')
     def check_unique_company_and_default_code(self):
         for rec in self:
-            if rec.active and rec.default_code and rec.company_id:
+            if rec.active and rec.default_code:
                 filters = [
-                    ('product_tmpl_id.company_id', '=', rec.company_id.id),
                     ('default_code', '=', rec.default_code),
                     ('active', '=', True)]
                 products = self.search(filters)
                 if len(products) > 1:
                     raise ValidationError(_(
-                        'There can not be two active products with the '
-                        'same Reference code in the same company.'))
+                        'There can not be two active products with the same Reference code.'))
