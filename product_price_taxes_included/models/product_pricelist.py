@@ -22,6 +22,9 @@ class ProductPricelist(models.Model):
             company_id = (
                 self._context.get('company_id') or self.env.company.id)
             for product in products:
+                # for compatibility with product_pack
+                if 'pack_ok' in product._fields and product.pack_ok and product.pack_component_price != 'ignored':
+                    continue
                 res[product.id] = product.taxes_id.filtered(
                     lambda x: x.company_id.id == company_id).compute_all(
                         res[product.id], product=product.id)['total_included']
