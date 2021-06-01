@@ -13,13 +13,13 @@
 
             <!-- add readonly price unit -->
             <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='price_unit']" position="attributes">
-                <attribute name="attrs">{'readonly': [('product_can_modify_prices','=', False)]}</attribute>
+                <attribute name="attrs">{'readonly': [('parent.type', 'in', ('out_invoice', 'out_refund')),('product_can_modify_prices','=', False)]}</attribute>
                 <attribute name="force_save">1</attribute>
             </xpath>
 
             <!-- add tax readonly -->
             <xpath expr="//field[@name='invoice_line_ids']/tree//field[@name='tax_ids']" position="attributes">
-                <attribute name="attrs">{'readonly': [('product_can_modify_prices','=', False)]}</attribute>
+                <attribute name="attrs">{'readonly': [('parent.type', 'in', ('out_invoice', 'out_refund')),('product_can_modify_prices','=', False)]}</attribute>
                 <attribute name="force_save">1</attribute>
             </xpath>
         </field>

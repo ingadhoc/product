@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Price Security',
-    'version': '13.0.1.1.0',
+    'version': '13.0.1.2.0',
     'category': 'Sales Management',
     'author': 'ADHOC SA, Odoo Community Association (OCA)',
     'website': 'http://www.adhoc.com.ar/',
