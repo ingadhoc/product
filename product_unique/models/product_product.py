@@ -23,4 +23,7 @@ class ProductProduct(models.Model):
                 products = self.search(filters)
                 if len(products) > 1:
                     raise ValidationError(_(
-                        'There can not be two active products with the same Reference code.'))
+                        'There can not be two active products with the same Internal Reference.\n'
+                        'Internal Reference: %s\n'
+                        'Products IDs: %s'
+                    ) % (rec.default_code, products.ids))
