@@ -62,6 +62,8 @@ Images
 Contributors
 ------------
 
+* Daniel Luque
+
 Maintainer
 ----------
 
