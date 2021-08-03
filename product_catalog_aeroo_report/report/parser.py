@@ -71,6 +71,8 @@ class Parser(models.AbstractModel):
 
         sale_uom = self.env['product.template'].fields_get(
             ['sale_uom_ids'])
+        # we force to not print default code because it's already shown in the reports.
+        product = product.with_context(display_default_code=False)
         if not print_product_uom:
             return product.display_name
         if sale_uom and product.sale_uom_ids:
