@@ -135,7 +135,7 @@ class ProductTemplate(models.Model):
                     product.standard_price,
                     replenishment_cost,
                     precision_digits=prec) != 0:
-                if product._fields.get('valuation') and product.valuation == 'real_time':
+                if product._fields.get('valuation'):
                     account = product.property_account_creditor_price_difference \
                         or product.categ_id.property_account_creditor_price_difference_categ\
                         or product.property_account_expense_id\
