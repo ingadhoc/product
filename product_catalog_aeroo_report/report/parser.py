@@ -30,10 +30,13 @@ class Parser(models.AbstractModel):
         category_ids = self._context.get('category_ids', [])
         categories = categories.search([('id', 'in', category_ids)],
                                        order=categories_order)
+        products_categ = self.get_categories_products(categories)
+
         products = self.get_products(category_ids)
         self = self.with_context(
             products=products,
             categories=categories,
+            products_categ=products_categ,
             pricelists=pricelists,
             company_logo=self.env.company.logo,
             print_product_uom=self.print_product_uom,
@@ -42,6 +45,7 @@ class Parser(models.AbstractModel):
             today=fields.Date.today(),
             get_price=self.get_price,
             get_description=self.get_description,
+            get_categories_products=self.get_categories_products,
             get_products=self.get_products,
             context=self._context,
             field_value_get=self.field_value_get,
@@ -106,3 +110,20 @@ class Parser(models.AbstractModel):
         products = self.env[self.product_type].search(
             domain, order=order)
         return products
+
+    def get_categories_products(self, category_ids):
+        order = self._context.get('products_order', '')
+        only_with_stock = self._context.get('only_with_stock', False)
+        category_type = self._context.get('category_type', False)
+        field = 'categ_id'
+        if category_type == 'public_category':
+            domain = [('public_categ_ids', 'in', category_ids.ids)]
+            field = 'public_categ_ids'
+        else:
+            domain = [('categ_id', 'in', category_ids.ids)]
+        if only_with_stock:
+            domain.append(('qty_available', '>', 0))
+
+        products = self.env[self.product_type].read_group(domain, [field, 'ids:array_agg(id)'], [field], orderby=order)
+        mapped_data = dict((self.env['product.category'].browse(data[field][0]), data['ids']) for data in products)
+        return mapped_data
