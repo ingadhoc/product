@@ -37,6 +37,8 @@ class SaleOrder(models.Model):
 
     @api.onchange('partner_id')
     def check_partner_pricelist_change(self):
+        if not self.user_has_groups('product.group_product_pricelist'):
+            return
         pricelist = self.partner_id.property_product_pricelist
         if self.order_line and pricelist != self._origin.pricelist_id:
             if self.user_has_groups('price_security.group_restrict_prices'):
