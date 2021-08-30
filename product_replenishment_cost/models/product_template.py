@@ -143,10 +143,10 @@ class ProductTemplate(models.Model):
                     # we force to change company to env when we run with "force_company" in the context, because
                     # odoo use the env company to in the change price method
                     if self._context.get('force_company', False):
-                        user_company = self.env.company
-                        self.env.company = company
+                        user_company = product.env.company
+                        product.env.company = company
                         product._change_standard_price(replenishment_cost, account.id)
-                        self.env.company = user_company
+                        product.env.company = user_company
                     else:
                         product._change_standard_price(replenishment_cost, account.id)
                 else:
