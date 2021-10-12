@@ -60,7 +60,7 @@ class Parser(models.AbstractModel):
     def get_price(self, product, pricelist):
         # TODO we send "website_id" in the context to compute the price for pack detailed by component,
         # to change this with "whole_pack_price" when this PR https://github.com/OCA/product-pack/pull/46 was merged
-        product_obj = self.env[self.product_type].with_context(pricelist=pricelist.id, website_id=True)
+        product_obj = self.env[self.product_type].with_context(pricelist=pricelist.id, website_id=pricelist.website_id.id or True)
         sale_uom = self.env['product.template'].fields_get(
             ['sale_uom_ids'])
         if sale_uom and product.sale_uom_ids:
