@@ -39,7 +39,7 @@ class PurchaseOrderLine(models.Model):
         if product_uom:
             self.product_uom = product_uom
         if product_uom_domain:
-            res = {'domain': {'product_uom': product_uom_domain}}
+            res.update({'domain': {'product_uom': product_uom_domain}})
         return res
 
     @api.constrains('product_uom')
