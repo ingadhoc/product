@@ -23,5 +23,5 @@
         'wizards/product_update_from_replenishment_cost_wizard_views.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': True,
+    'installable': False,
 }

@@ -39,7 +39,7 @@
     'demo': [
         'demo/product_product_demo.xml',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }

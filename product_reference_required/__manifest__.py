@@ -37,7 +37,7 @@
     'demo': [
         'demo/ir_sequence_demo.xml',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
     'pre_init_hook': 'set_default_code',
