@@ -1,4 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/ingadhoc/product/badge.png?branch=13.0)](https://coveralls.io/r/ingadhoc/product?branch=13.0)
+[![Coverage Status](https://coveralls.io/repos/ingadhoc/product/badge.png?branch=15.0)](https://coveralls.io/r/ingadhoc/product?branch=15.0)
 [![Code Climate](https://codeclimate.com/github/ingadhoc/product/badges/gpa.svg)](https://codeclimate.com/github/ingadhoc/product)
 
 # ADHOC Product
@@ -10,7 +10,7 @@ ADHOC Product related Odoo Addons
 
 Translation Status
 ------------------
-[![Transifex Status](https://www.transifex.com/projects/p/ingadhoc-product-13-0/chart/image_png)](https://www.transifex.com/projects/p/ingadhoc-product-13-0)
+[![Transifex Status](https://www.transifex.com/projects/p/ingadhoc-product-15-0/chart/image_png)](https://www.transifex.com/projects/p/ingadhoc-product-15-0)
 
 ----
 
