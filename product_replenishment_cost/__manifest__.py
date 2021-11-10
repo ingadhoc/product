@@ -1,6 +1,6 @@
 {
     'name': 'Replenishment Cost',
-    'version': '13.0.1.11.0',
+    'version': "15.0.1.0.0",
     'author': "ADHOC SA, Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'category': 'Products',
@@ -23,5 +23,5 @@
         'wizards/product_update_from_replenishment_cost_wizard_views.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': False,
+    'installable': True,
 }
