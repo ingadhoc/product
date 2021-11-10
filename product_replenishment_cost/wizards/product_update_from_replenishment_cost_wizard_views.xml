@@ -16,10 +16,13 @@
         </field>
     </record>
 
-    <act_window id="action_update_from_replenishment_cost_wizard"
-        name="Update Accounting Cost from Replenishment Cost"
-        res_model="product.update_from_replenishment_cost.wizard"
-        binding_model="product.template"
-        view_mode="form" target="new" binding_views="list,form"/>
+    <record id="action_update_from_replenishment_cost_wizard" model="ir.actions.act_window">
+        <field name="name">Update Accounting Cost from Replenishment Cost</field>
+        <field name="res_model">product.update_from_replenishment_cost.wizard</field>
+        <field name="binding_model_id" ref="product.model_product_template"/>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_view_types">list,form</field>
+    </record>
 
 </odoo>
