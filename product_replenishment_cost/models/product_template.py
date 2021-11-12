@@ -70,7 +70,7 @@ class ProductTemplate(models.Model):
         required=True,
     )
 
-    @api.depends_context('force_company')
+    @api.depends_context('company')
     @api.depends('seller_ids.net_price', 'seller_ids.currency_id', 'seller_ids.company_id', 'replenishment_cost_type')
     def _compute_supplier_data(self):
         """ Lo ideal seria utilizar campo related para que segun los permisos
@@ -82,7 +82,7 @@ class ProductTemplate(models.Model):
          sellers donde se puede ver si
         no tiene cia o es cia del usuario.
         """
-        company_id = self._context.get('force_company', self.env.company.id)
+        company_id = self.env.company.id
         for rec in self:
             seller_ids = rec.seller_ids.filtered(lambda x: not x.company_id or x.company_id.id == company_id)
             if rec.replenishment_cost_type == 'last_supplier_price':
@@ -109,7 +109,7 @@ class ProductTemplate(models.Model):
 
         for company_id in company_ids:
             _logger.info('Running cron update cost from replenishment for company %s', company_id)
-            self.with_context(prefetch_fields=False, force_company=company_id, bypass_base_automation=True).search(
+            self.with_company(company=company_id).with_context(prefetch_fields=False, bypass_base_automation=True).search(
                 [], limit=limit)._update_cost_from_replenishment_cost()
 
     def _update_cost_from_replenishment_cost(self):
@@ -121,9 +121,9 @@ class ProductTemplate(models.Model):
 
         # clave hacerlo en product.product por velocidad (relativo a
         # campos standard_price)
+        company = self.env.company
         products = self.with_context(tracking_disable=True).env['product.product'].search(
             [('product_tmpl_id.id', 'in', self.ids)])
-        company = self.env['res.company'].browse(self._context.get('force_company', False)) or self.env.company
         for product in products.filtered('replenishment_cost'):
             replenishment_cost = product.replenishment_cost
             if product.currency_id != product.cost_currency_id:
@@ -131,19 +131,8 @@ class ProductTemplate(models.Model):
                     replenishment_cost, product.cost_currency_id,
                     product.company_id or company, fields.Date.today(),
                     round=False)
-            if float_compare(
-                    product.standard_price,
-                    replenishment_cost,
-                    precision_digits=prec) != 0:
-                    # we force to change company to env when we run with "force_company" in the context, because
-                    # odoo use the env company to in the change price method
-                    if self._context.get('force_company', False):
-                        user_company = product.env.company
-                        product.env.company = company
-                        product.standard_price = replenishment_cost
-                        product.env.company = user_company
-                    else:
-                        product.standard_price = replenishment_cost
+            if float_compare(product.standard_price, replenishment_cost, precision_digits=prec) != 0:
+                    product.standard_price = replenishment_cost
         return True
 
     @api.depends(
