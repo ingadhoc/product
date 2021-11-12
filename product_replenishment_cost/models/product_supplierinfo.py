@@ -16,7 +16,6 @@ class ProductSupplierinfo(models.Model):
         auto_join=True,
         index=True,
         string='Replenishment Cost Rule',
-        track_visibility='onchange',
     )
     net_price = fields.Float(
         inverse='_inverse_net_price',
