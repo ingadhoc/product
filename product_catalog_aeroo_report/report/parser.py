@@ -58,7 +58,7 @@ class Parser(models.AbstractModel):
         return field_value[0].get(field, '')
 
     def get_price(self, product, pricelist):
-        product_obj = self.env[self.product_type].with_context(whole_pack_price=True)
+        product_obj = self.env[self.product_type].with_context(pricelist=pricelist.id, whole_pack_price=True)
         sale_uom = self.env['product.template'].fields_get(
             ['sale_uom_ids'])
         if sale_uom and product.sale_uom_ids:
