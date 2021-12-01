@@ -1,10 +1,6 @@
 {
     'name': 'Replenishment Cost',
-<<<<<<< HEAD
     'version': "15.0.1.0.0",
-=======
-    'version': '13.0.1.12.0',
->>>>>>> 3e32dbcb... temp
     'author': "ADHOC SA, Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'category': 'Products',
