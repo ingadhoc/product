@@ -16,10 +16,13 @@
         </field>
     </record>
 
-    <act_window id="action_update_from_planned_price_wizard"
-        name="Update Prices from Planned"
-        res_model="product.update_from_planned_price.wizard"
-        binding_model="product.template"
-        view_mode="form" target="new" binding_views="list,form"/>
+    <record id="action_update_from_planned_price_wizard" model="ir.actions.act_window">
+        <field name="name">Update Prices from Planned</field>
+        <field name="res_model">product.update_from_planned_price.wizard</field>
+        <field name="binding_model">product.template</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_views">list,form</field>
+    </record>
 
 </odoo>
