@@ -35,6 +35,7 @@
         'wizards/product_update_from_planned_price_wizard_views.xml',
         'data/ir_cron_data.xml',
         'security/product_planned_price_security.xml',
+        'security/ir.model.access.csv',
     ],
     'demo': [
         'demo/product_product_demo.xml',

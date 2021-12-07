@@ -61,8 +61,11 @@ class ProductTemplate(models.Model):
     @api.model
     def cron_update_prices_from_planned(self):
         _logger.info('Running update prices from planned cron')
-        if not self._context.get('force_company'):
-            self = self.with_context(force_company=self.env['res.company'].search([], limit=1).id)
+        if self._context.get('force_company'):
+            self = self.with_company(self._context.get('force_company'))
+        else:
+            self = self.with_company(self.env['res.company'].search([], limit=1).id)
+        
         return self.with_context(bypass_base_automation=True)._update_prices_from_planned()
 
     def _update_prices_from_planned(self):
@@ -100,14 +103,14 @@ class ProductTemplate(models.Model):
         'other_currency_list_price',
         'other_currency_id',
     )
-    @api.depends_context('force_company')
+    @api.depends_context('company')
     def _compute_computed_list_price(self):
         recs = self.filtered(
             lambda x: x.list_price_type in [
                 'manual', 'by_margin', 'other_currency'])
         _logger.info('Get computed_list_price for %s "manual", "by_margin"'
                      ' and "other_currency" products' % (len(recs)))
-        company = self.env['res.company'].browse(self._context.get('force_company', False)) or self.env.company
+        company = self.env.company
         date = fields.Date.today()
         (self - recs).computed_list_price = 0.0
         for rec in recs:
