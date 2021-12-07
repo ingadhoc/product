@@ -19,10 +19,11 @@
     <record id="action_update_from_planned_price_wizard" model="ir.actions.act_window">
         <field name="name">Update Prices from Planned</field>
         <field name="res_model">product.update_from_planned_price.wizard</field>
-        <field name="binding_model">product.template</field>
+        <field name="binding_model_id" ref="product.model_product_template"/>
         <field name="view_mode">form</field>
         <field name="target">new</field>
-        <field name="binding_views">list,form</field>
+        <field name="binding_type">action</field>
+        <field name="binding_view_types">list,form</field>
     </record>
 
 </odoo>
