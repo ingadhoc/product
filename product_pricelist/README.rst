@@ -14,7 +14,7 @@
 Pricelists information on Products
 ==================================
 
-This modules adds a funcionality to show the price for that product for every pricelist. On installation it also changes sale pricelist option to "Advanced pricing based on formula"
+This modules adds a funcionality to show the price for that product for every pricelist.
 
 Installation
 ============
