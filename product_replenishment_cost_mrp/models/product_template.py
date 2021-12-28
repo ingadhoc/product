@@ -42,7 +42,7 @@ class ProductTemplate(models.Model):
                 })
                 continue
             # el explode es para product.product, tomamos la primer variante
-            result, result2 = bom.explode(rec.product_variant_ids[0], 1)
+            result, result2 = bom.explode(rec.with_context(active_test=rec.active).product_variant_ids[0], 1)
             for sbom, sbom_data in result2:
                 sbom_rep_cost = sbom.product_id.uom_id._compute_price(
                     sbom.product_id.product_tmpl_id.replenishment_cost,
