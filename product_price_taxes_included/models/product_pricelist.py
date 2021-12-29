@@ -27,7 +27,7 @@ class ProductPricelist(models.Model):
                     continue
                 res[product.id] = product.taxes_id.filtered(
                     lambda x: x.company_id.id == company_id).compute_all(
-                        res[product.id], product=product.id)['total_included']
+                        res[product.id], product=product)['total_included']
         return res
 
     def check_for_product_pack_parent(self, product):
