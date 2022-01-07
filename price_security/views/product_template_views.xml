@@ -29,9 +29,6 @@
             </field>
 
             <!-- we hide costing -->
-            <button name="%(stock_account.action_view_change_standard_price)d" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </button>
             <div name="standard_price_uom" position="attributes">
                 <attribute name="invisible">1</attribute>
             </div>
