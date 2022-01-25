@@ -130,7 +130,7 @@ class ProductTemplate(models.Model):
                 replenishment_cost = product.currency_id._convert(
                     replenishment_cost, product.cost_currency_id,
                     product.company_id or company, fields.Date.today(),
-                    round=False)
+                    round=True)
             if float_compare(
                     product.standard_price,
                     replenishment_cost,
