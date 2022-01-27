@@ -10,10 +10,8 @@ class IrModelAccess(models.Model):
     _inherit = 'ir.model.access'
 
     @api.model
-    @tools.ormcache_context(
-        'self._uid', 'model', 'mode', 'raise_exception', keys=('lang',))
-    def check(
-            self, model, mode='read', raise_exception=True):
+    @tools.ormcache_context('self.env.uid', 'self.env.su', 'model', 'mode', 'raise_exception', keys=('lang',))
+    def check(self, model, mode='read', raise_exception=True):
 
         if isinstance(model, models.BaseModel):
             assert model._name == 'ir.model', 'Invalid model object'
