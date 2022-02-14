@@ -35,9 +35,9 @@ class Users(models.Model):
                 'product_uom_qty': so_line.product_uom_qty,
             }
             # for compatibility with product_pack
-            if 'pack_parent_line_id' in so_line._fields:
-                tmp_line_vals['pack_parent_line_id'] = so_line\
-                    .pack_parent_line_id.id
+            if 'pack_parent_line_id' in so_line._fields and so_line.product_id.pack_ok:
+                so_line = so_line.with_context(whole_pack_price=True, pricelist=pricelist_id)
+
             tmp_line = so_line.new(tmp_line_vals)
             tmp_line._onchange_discount()
             pricelist_disc = tmp_line.discount
