@@ -9,6 +9,9 @@
             <xpath expr="//field[@name='uom_ids']/tree//field[@name='uom_id']" position="after">
                 <field name="purchase_ok"/>
             </xpath>
+            <field name="uom_po_id" position="attributes">
+                <attribute name="attrs">{'readonly': [('uom_ids', '!=', [])]}</attribute>
+            </field>
         </field>
     </record>
 
