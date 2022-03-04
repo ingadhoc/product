@@ -4,5 +4,6 @@
 ##############################################################################
 from . import product_uoms
 from . import product_product
+from . import product_template
 from . import purchase_order_line
 from . import stock_rule
