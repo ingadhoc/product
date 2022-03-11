@@ -4,31 +4,37 @@ from odoo import models, api, fields
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    def _compute_margin(self, order_id, product_id, product_uom_id):
-        if product_id.replenishment_cost:
-            frm_cur = product_id.currency_id
-            to_cur = order_id.pricelist_id.currency_id
-            purchase_price = product_id.replenishment_cost
-            if product_uom_id != product_id.uom_id:
-                purchase_price = product_id.uom_id._compute_price(purchase_price, product_uom_id)
-            return frm_cur._convert(
-                purchase_price, to_cur, order_id.company_id or self.env.company,
-                order_id.date_order or fields.Date.today(), round=False)
-        else:
-            return super()._compute_margin(order_id, product_id, product_uom_id)
+    @api.depends('product_id.replenishment_cost')
+    def _compute_purchase_price(self):
+        super()._compute_purchase_price()
+        for line in self.filtered('product_id'):
+            order_id = line.order_id
+            product_id = line.product_id
+            product_uom_id = line.product_uom
+            if product_id.replenishment_cost:
+                frm_cur = product_id.currency_id
+                to_cur = order_id.currency_id
+                purchase_price = product_id.replenishment_cost
+                if product_uom_id != product_id.uom_id:
+                    purchase_price = product_id.uom_id._compute_price(purchase_price, product_uom_id)
+                line.purchase_price = frm_cur._convert(
+                    purchase_price, to_cur, order_id.company_id or self.env.company,
+                    order_id.date_order or fields.Date.today(), round=False)
+                
 
-    @api.model
-    def _get_purchase_price(self, pricelist, product, product_uom, date):
-        if product.replenishment_cost:
-            frm_cur = product.currency_id
-            to_cur = pricelist.currency_id
-            purchase_price = product.replenishment_cost
-            if product_uom != product.uom_id:
-                purchase_price = product.uom_id._compute_price(purchase_price, product_uom)
-            price = frm_cur._convert(
+    def _convert_price(self, product_cost, from_uom):
+        if not product_cost:
+            if not self.purchase_price:
+                return product_cost
+        if self.product_id.replenishment_cost:
+            frm_cur = self.product_id.currency_id
+            to_cur = self.currency_id or self.order_id.currency_id
+            purchase_price = self.product_id.replenishment_cost
+            if self.product_uom != from_uom:
+                purchase_price = from_uom._compute_price(purchase_price, self.product_uom)
+            return frm_cur._convert(
                 purchase_price, to_cur,
                 self.order_id.company_id or self.env.company,
-                date or fields.Date.today(), round=False)
+                self.order_id.date_order or fields.Date.today(), round=False)
         else:
-            price = super()._get_purchase_price(pricelist, product, product_uom, date)
-        return {'purchase_price': price}
+            return super()._convert_price(product_cost, from_uom)
