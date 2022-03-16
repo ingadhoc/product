@@ -36,6 +36,7 @@ To configure this module, you need to:
 
 Usage
 =====
+Once the module is installed, go to the user settings and disable the checkbox "Product Management" to remove to the user the possibility of creating products.
 
 To use this module, you need to:
 
