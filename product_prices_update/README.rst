@@ -23,7 +23,7 @@ Usage
 =====
 
 To use this module, you need to:
-
+Go to the products list, select the products and then "Action" > "Product price update".
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot

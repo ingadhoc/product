@@ -10,11 +10,11 @@
                     <field name="check"/>
                 </group>
                 <group col="6" colspan="5">
-                    <label  for="" string="New Price ="/>
-                    <label  for="" string="Base Price"/>
-                    <label  for="" string="* ( 1 + "/>
+                    <label  for="price_discount" string="New Price ="/>
+                    <label  for="price_discount" string="Base Price"/>
+                    <label  for="price_discount" string="* ( 1 + "/>
                     <field name="price_discount" nolabel="1"/>
-                    <label  for="" string=" ) + "/>
+                    <label  for="price_surcharge" string=" ) + "/>
                     <field name="price_surcharge" nolabel="1"/>
                     <newline/>
                     <field name="price_round" string="Rounding Method"/>
@@ -28,13 +28,14 @@
         </field>
     </record>
 
-    <act_window name="Update Product Prices"
-                res_model="product.prices_update_wizard"
-                view_mode="form"
-                target="new"
-                binding_model="product.template"
-                binding_views="list"
-                id="action_update_prices_wizard"/>
+    <record id="action_update_prices_wizard" model="ir.actions.act_window">
+        <field name="name">Update Product Prices</field>
+        <field name="res_model">product.prices_update_wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="product.model_product_template"></field>
+        <field name="binding_view_types">list</field>
+    </record>
 
     <record id="view_prices_update_wizard_result_form" model="ir.ui.view">
         <field name="name">product.prices_update_wizard_result</field>

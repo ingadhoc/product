@@ -23,7 +23,7 @@ msgstr ""
 #. module: product_prices_update
 #: model_terms:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_form
 msgid "Base Price"
-msgstr "Precio Base ="
+msgstr "Precio Base"
 
 #. module: product_prices_update
 #: model_terms:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_form

@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product Prices Update',
-    'version': '13.0.1.0.0',
+    'version': "15.0.1.0.0",
     'category': 'Product',
     'sequence': 14,
     'summary': '',
@@ -32,11 +32,12 @@
         'product',
     ],
     'data': [
+        'security/ir.model.access.csv',
         'wizards/product_prices_update_views.xml',
     ],
     'demo': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
