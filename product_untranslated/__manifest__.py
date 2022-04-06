@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product Untraslated',
-    'version': '13.0.1.1.0',
+    'version': "15.0.1.0.0",
     'category': 'Product',
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
@@ -31,7 +31,7 @@
     ],
     'data': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
     'post_init_hook': 'post_init_hook',
