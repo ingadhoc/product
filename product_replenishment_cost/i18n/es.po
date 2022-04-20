@@ -3,17 +3,16 @@
 # 	* product_replenishment_cost
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2020
-# Juan Rivero <jr@adhoc.com.ar>, 2021
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-02 11:03+0000\n"
-"PO-Revision-Date: 2020-03-20 23:00+0000\n"
-"Last-Translator: Juan Rivero <jr@adhoc.com.ar>, 2021\n"
-"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"POT-Creation-Date: 2022-04-20 12:31+0000\n"
+"PO-Revision-Date: 2022-04-19 14:03+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2022\n"
+"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/133229/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -62,11 +61,6 @@ msgid "Confirm"
 msgstr "Confirmar"
 
 #. module: product_replenishment_cost
-#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__demo_cost
-msgid "Cost"
-msgstr "Costo"
-
-#. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_template_form_view
 msgid "Cost Rule"
 msgstr "Regla de Costo"
@@ -110,11 +104,6 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: product_replenishment_cost
-#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__error
-msgid "Error"
-msgstr "Error"
-
-#. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__expr
 msgid "Expression Amount"
 msgstr "Expresión para importe"
@@ -130,14 +119,14 @@ msgid "Followers"
 msgstr "Seguidores"
 
 #. module: product_replenishment_cost
-#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_channel_ids
-msgid "Followers (Channels)"
-msgstr "Seguidores (Canales)"
-
-#. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Seguidores (Canales)"
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__has_message
+msgid "Has Message"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__id
@@ -150,13 +139,13 @@ msgstr "ID (identificación)"
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__message_needaction
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__message_unread
 msgid "If checked, new messages require your attention."
-msgstr ""
+msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__message_has_error
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
-msgstr ""
+msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule_item__add_to_cost
@@ -171,21 +160,25 @@ msgstr ""
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_template__standard_price
 msgid ""
 "In Standard Price & AVCO: value of the product (automatically computed in AVCO).\n"
-"        In FIFO: value of the last unit that left the stock (automatically computed).\n"
+"        In FIFO: value of the next unit that will leave the stock (automatically computed).\n"
 "        Used to value the product when the purchase cost is not known (e.g. inventory adjustment).\n"
 "        Used to compute margins on sale orders."
 msgstr ""
+"En Standard Price & AVCO: valor del producto (calculado automáticamente en AVCO).\n"
+"En FIFO: valor de la última unidad que salió del inventario (calculado automáticamente).\n"
+"Se utiliza para valorar el producto cuando se desconoce el coste de compra (por ejemplo, ajuste de inventario).\n"
+"Se utiliza para calcular los márgenes de las órdenes de venta."
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_is_follower
 msgid "Is Follower"
-msgstr ""
+msgstr "Es un seguidor"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__item_ids
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenshiment_cost_rule_form
 msgid "Items"
-msgstr "Items"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule____last_update
@@ -193,6 +186,11 @@ msgstr "Items"
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_update_from_replenishment_cost_wizard____last_update
 msgid "Last Modified on"
 msgstr "Última modificación el"
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields.selection,name:product_replenishment_cost.selection__product_template__replenishment_cost_type__last_supplier_price
+msgid "Last Supplier Price"
+msgstr "Precio de Proveedor más reciente"
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_template_form_view
@@ -214,24 +212,34 @@ msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_supplierinfo__last_date_price_updated
+msgid "Last date price updated"
+msgstr ""
+
+#. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_main_attachment_id
 msgid "Main Attachment"
-msgstr ""
+msgstr "Adjuntos principales"
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields.selection,name:product_replenishment_cost.selection__product_template__replenishment_cost_type__supplier_price
+msgid "Main Supplier Price"
+msgstr "Precio de Proveedor Principal"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields.selection,name:product_replenishment_cost.selection__product_template__replenishment_cost_type__manual
 msgid "Manual"
-msgstr "Manual"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_has_error
 msgid "Message Delivery error"
-msgstr ""
+msgstr "Error de Envío de Mensaje"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_ids
 msgid "Messages"
-msgstr ""
+msgstr "Mensajes"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__name
@@ -255,27 +263,27 @@ msgstr "Precio neto"
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_needaction_counter
 msgid "Number of Actions"
-msgstr ""
+msgstr "Número de acciones"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_has_error_counter
 msgid "Number of errors"
-msgstr ""
+msgstr "Número de error"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__message_needaction_counter
 msgid "Number of messages which requires an action"
-msgstr ""
+msgstr "Número de mensajes que requieren una acción"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__message_has_error_counter
 msgid "Number of messages with delivery error"
-msgstr ""
+msgstr "Número de mensajes con error de envío"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__message_unread_counter
 msgid "Number of unread messages"
-msgstr ""
+msgstr "Número de mensajes sin leer"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__percentage_amount
@@ -306,7 +314,7 @@ msgstr "Productos sin regla de reposición"
 #. module: product_replenishment_cost
 #: model:ir.model,name:product_replenishment_cost.model_purchase_order_line
 msgid "Purchase Order Line"
-msgstr "Línea de Pedido de Venta"
+msgstr "Línea de pedido de compra"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_product__replenishment_base_cost
@@ -380,11 +388,6 @@ msgid "Replenishment cost on the currency of the product"
 msgstr "Coste de reposición en la moneda del producto"
 
 #. module: product_replenishment_cost
-#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__demo_result
-msgid "Result"
-msgstr "Resultado"
-
-#. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__replenishment_cost_rule_id
 msgid "Rule"
 msgstr "Regla"
@@ -392,7 +395,7 @@ msgstr "Regla"
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_has_sms_error
 msgid "SMS Delivery error"
-msgstr ""
+msgstr "Error de entrega de SMS"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__sequence
@@ -436,42 +439,18 @@ msgstr ""
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product__supplier_price
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__supplier_price
-#: model:ir.model.fields.selection,name:product_replenishment_cost.selection__product_template__replenishment_cost_type__supplier_price
-msgid "Main Supplier Price"
-msgstr "Precio de Proveedor Principal"
-
-#. module: product_replenishment_cost
-#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product__last_supplier_price
-#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__last_supplier_price
-#: model:ir.model.fields.selection,name:product_replenishment_cost.selection__product_template__replenishment_cost_type__last_supplier_price
-msgid "Last Supplier Price"
-msgstr "Precio de Proveedor más reciente"
+msgid "Supplier Price"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model,name:product_replenishment_cost.model_product_supplierinfo
 msgid "Supplier Pricelist"
-msgstr ""
+msgstr "Tarifa de proveedor"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__product_supplierinfo_ids
 msgid "Supplierinfo"
 msgstr "Información del Proveedor"
-
-#. module: product_replenishment_cost
-#: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__product_id
-msgid "Technical field: This field it's only for testing"
-msgstr "Campo técnico: Este campo es solo para pruebas."
-
-#. module: product_replenishment_cost
-#: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule_item__error
-#: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule_item__value
-msgid "Technical fields: This field it's only for testing"
-msgstr "Campos técnicos: Este campo es solo para pruebas."
-
-#. module: product_replenishment_cost
-#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__product_id
-msgid "Test Product"
-msgstr "Producto de prueba"
 
 #. module: product_replenishment_cost
 #: code:addons/product_replenishment_cost/models/product_template.py:0
@@ -494,12 +473,12 @@ msgstr ""
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_unread
 msgid "Unread Messages"
-msgstr ""
+msgstr "Mensajes No Leídos"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_unread_counter
 msgid "Unread Messages Counter"
-msgstr ""
+msgstr "Contador de mensajes no leídos"
 
 #. module: product_replenishment_cost
 #: model:ir.actions.act_window,name:product_replenishment_cost.action_update_from_replenishment_cost_wizard
@@ -527,11 +506,6 @@ msgid "Update product cost from replenishment cost"
 msgstr "Actualizar el costo del producto desde el costo de reposición"
 
 #. module: product_replenishment_cost
-#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__value
-msgid "Value"
-msgstr "Valor"
-
-#. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_template_form_view
 msgid "Variants Costs"
 msgstr ""
@@ -539,12 +513,12 @@ msgstr ""
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__website_message_ids
 msgid "Website Messages"
-msgstr ""
+msgstr "Mensajes del sitio web"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__website_message_ids
 msgid "Website communication history"
-msgstr ""
+msgstr "Historial de comunicación del sitio web"
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_template_search_view
@@ -559,9 +533,9 @@ msgstr "o"
 #. module: product_replenishment_cost
 #: model:ir.model,name:product_replenishment_cost.model_product_replenishment_cost_rule
 msgid "product.replenishment_cost.rule"
-msgstr "product.replenishment_cost.rule"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model,name:product_replenishment_cost.model_product_replenishment_cost_rule_item
 msgid "product.replenishment_cost.rule.item"
-msgstr "product.replenishment_cost.rule.item"
+msgstr ""

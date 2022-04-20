@@ -1,0 +1,41 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_internal_code
+# 
+# Translators:
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2022
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-20 13:12+0000\n"
+"PO-Revision-Date: 2022-04-19 13:57+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2022\n"
+"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/133229/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: product_internal_code
+#: model:ir.model.fields,field_description:product_internal_code.field_product_product__internal_code
+#: model:ir.model.fields,field_description:product_internal_code.field_product_template__internal_code
+msgid "Internal Code"
+msgstr "Código Interno"
+
+#. module: product_internal_code
+#: model:ir.model.constraint,message:product_internal_code.constraint_product_product_internal_code_uniq
+msgid "Internal Code mast be unique!"
+msgstr ""
+
+#. module: product_internal_code
+#: model:ir.model,name:product_internal_code.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: product_internal_code
+#: model:ir.model,name:product_internal_code.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
