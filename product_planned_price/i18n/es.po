@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-21 13:23+0000\n"
+"POT-Creation-Date: 2022-04-23 13:41+0000\n"
 "PO-Revision-Date: 2022-04-19 18:52+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2022\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/133229/es/)\n"
@@ -33,24 +33,6 @@ msgstr "Por Margen"
 #: model_terms:ir.ui.view,arch_db:product_planned_price.view_update_from_planned_price_wizard_form
 msgid "Cancel"
 msgstr "Cancelar"
-
-#. module: product_planned_price
-#: model:product.product,name:product_planned_price.computed_manual
-#: model:product.template,name:product_planned_price.computed_manual_product_template
-msgid "Computed Manual Product"
-msgstr "Producto computado manual"
-
-#. module: product_planned_price
-#: model:product.product,name:product_planned_price.computed_other_currency
-#: model:product.template,name:product_planned_price.computed_other_currency_product_template
-msgid "Computed Other Currency Product"
-msgstr "Producto computado en otra moneda"
-
-#. module: product_planned_price
-#: model:product.product,name:product_planned_price.computed_by_margin
-#: model:product.template,name:product_planned_price.computed_by_margin_product_template
-msgid "Computed by Margin Product"
-msgstr "Producto computado por margen"
 
 #. module: product_planned_price
 #: model_terms:ir.ui.view,arch_db:product_planned_price.view_update_from_planned_price_wizard_form
