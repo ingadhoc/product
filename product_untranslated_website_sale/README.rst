@@ -3,7 +3,7 @@
   :alt: License: AGPL-3
 
 =================================================
-Porduct Untranslated glue module for Website Sale
+Product Untranslated glue module for Website Sale
 =================================================
 
 Make product.public.category.name because it's translated and also used on the _order
