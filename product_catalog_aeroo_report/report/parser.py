@@ -13,10 +13,10 @@ class Parser(models.AbstractModel):
 
     @api.model
     def aeroo_report(self, docids, data):
-        self.print_product_uom = self._context.get('print_product_uom', False)
-        self.product_type = self._context.get(
+        self.env.print_product_uom = self._context.get('print_product_uom', False)
+        self.env.product_type = self._context.get(
             'product_type', 'product.product')
-        self.prod_display_type = self._context.get('prod_display_type', False)
+        self.env.prod_display_type = self._context.get('prod_display_type', False)
         pricelist_ids = self._context.get('pricelist_ids', [])
         categories_order = self._context.get('categories_order', '')
         pricelists = self.env['product.pricelist'].browse(pricelist_ids)
@@ -36,9 +36,9 @@ class Parser(models.AbstractModel):
             categories=categories,
             pricelists=pricelists,
             company_logo=self.env.company.logo,
-            print_product_uom=self.print_product_uom,
-            product_type=self.product_type,
-            prod_display_type=self.prod_display_type,
+            print_product_uom=self.env.print_product_uom,
+            product_type=self.env.product_type,
+            prod_display_type=self.env.prod_display_type,
             today=fields.Date.today(),
             get_price=self.get_price,
             get_description=self.get_description,
@@ -52,13 +52,13 @@ class Parser(models.AbstractModel):
         # TODO hacer funcioal esto en el reporte ods. El problema es que
         # deberiamos usar export_data en vez de read para poder elegir que ver
         # del padre, por ejemplo "categ_id/name"
-        product_obj = self.env[self.product_type]
+        product_obj = self.env[self.env.product_type]
         field_value = product_obj.read(
             [product.id], [field])
         return field_value[0].get(field, '')
 
     def get_price(self, product, pricelist):
-        product_obj = self.env[self.product_type].with_context(pricelist=pricelist.id, whole_pack_price=True)
+        product_obj = self.env[self.env.product_type].with_context(pricelist=pricelist.id, whole_pack_price=True)
         sale_uom = self.env['product.template'].fields_get(
             ['sale_uom_ids'])
         if sale_uom and product.sale_uom_ids:
@@ -102,6 +102,6 @@ class Parser(models.AbstractModel):
         if only_with_stock:
             domain.append(('qty_available', '>', 0))
 
-        products = self.env[self.product_type].search(
+        products = self.env[self.env.product_type].search(
             domain, order=order)
         return products
