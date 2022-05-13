@@ -10,8 +10,9 @@ class ProductCatalogReport(models.Model):
 
     category_type = fields.Selection(
         selection_add=[('public_category', 'Public Category')],
+        ondelete={'public_category': 'set default'}
     )
-    public_category_ids = fields.Many2many(
+    public_category_ids=fields.Many2many(
         'product.public.category',
         'product_catalog_report_categories_public',
         'product_catalog_report_id',
@@ -24,7 +25,6 @@ class ProductCatalogReport(models.Model):
         if self.category_type == 'public_category':
             categories = self.public_category_ids
             if self.include_sub_categories and categories:
-                categories = self.env['product.public.category'].search(
-                    [('id', 'child_of', categories.ids)])
-            self = self.with_context(category_ids=categories.ids)
+                categories = self.env['product.public.category'].search([('id', 'child_of', categories.ids)])
+            self = self.with_context(category_ids = categories.ids)
         return self
