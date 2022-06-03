@@ -183,7 +183,7 @@ class ProductTemplate(models.Model):
     )
     def _compute_replenishment_cost(self):
         _logger.info('Getting replenishment cost for %s products' % len(self.ids))
-        company = self.env.company
+        company = self.env['res.company'].browse(self._context.get('force_company', False)) or self.env.company
         date = fields.Date.today()
         for rec in self:
             product_currency = rec.currency_id
