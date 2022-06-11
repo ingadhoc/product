@@ -12,9 +12,10 @@ class ProductPricesUpdateWizard(models.TransientModel):
     _description = 'product.prices_update_wizard'
 
     price_type = fields.Selection(
-        [('list_price', 'Sale Price'), ('standard_price', 'Cost Price')],
+        [('replenishment_base_cost', 'Costo base de reposición'),('list_price', 'Sale Price'), ('standard_price', 'Cost Price')],
         required=True,
-        string='Price Type')
+        string='Price Type',
+        default='replenishment_base_cost')
     price_discount = fields.Float('Price Discount')
     price_surcharge = fields.Float(
         'Price Surcharge', help='Specify the fixed amount to add'
@@ -55,6 +56,8 @@ class ProductPricesUpdateWizard(models.TransientModel):
                     old_price = prodct.list_price
                 elif self.price_type == 'standard_price':
                     old_price = prodct.standard_price
+                elif self.price_type == 'replenishment_base_cost':
+                    old_price = prodct.replenishment_base_cost
                 else:
                     raise UserError(
                         _('Price type "%s" is not '
@@ -75,6 +78,7 @@ class ProductPricesUpdateWizard(models.TransientModel):
         for line in products_vals:
             line['product_tmpl'].write({price_type: line['new_price']})
             product_ids.append(line['product_tmpl'].id)
+            line['product_tmpl']._update_cost_from_replenishment_cost()
         return {
             'type': 'ir.actions.act_window',
             'name': _('Products'),
@@ -142,6 +146,8 @@ class ProductPricesUpdateWizardResult(models.TransientModel):
                 old_price = product_tmpl.list_price
             elif price_type == 'standard_price':
                 old_price = product_tmpl.standard_price
+            elif price_type == 'replenishment_base_cost':
+                    old_price = prodct.replenishment_base_cost
             else:
                 raise UserError(
                     _('Price type "%s" is not implemented') % (price_type))
