@@ -163,6 +163,7 @@ class ProductTemplate(models.Model):
         'replenishment_cost_rule_id.item_ids.percentage_amount',
         'replenishment_cost_rule_id.item_ids.fixed_amount',
     )
+    @api.depends_context('force_company')
     def _compute_replenishment_cost(self):
         _logger.info('Getting replenishment cost for %s products' % len(self.ids))
         company = self.env.company
