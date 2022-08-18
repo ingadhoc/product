@@ -6,7 +6,7 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     replenishment_cost_type = fields.Selection(
-        selection_add=[('bom', 'Basado en Ldm')],
+        selection_add=[('bom', 'Basado en Ldm')], ondelete={'bom': 'set default'}
     )
 
     @api.onchange('replenishment_cost_type')
@@ -19,7 +19,6 @@ class ProductTemplate(models.Model):
     @api.depends(
         # TODO ver si encontramos otra alternativa a este depends ya que esto lo hace bastante malo a nivel performance
         # antes usabamos un invalidate cache pero nos dejó de funcionar
-        'bom_ids.bom_line_ids.product_id.product_tmpl_id.replenishment_cost',
         'bom_ids.bom_line_ids.product_qty',
         'bom_ids.bom_line_ids.product_uom_id',
     )
@@ -34,7 +33,7 @@ class ProductTemplate(models.Model):
 
             # robamos metodo de calculo de costo de product_extended
             price = 0.0
-            bom = self.env['mrp.bom']._bom_find(product_tmpl=rec)
+            bom = self.env['mrp.bom']._bom_find(rec.product_variant_ids[0])[rec.product_variant_ids[0]]
             if not bom:
                 rec.update({
                     'replenishment_base_cost_on_currency': 0.0,
