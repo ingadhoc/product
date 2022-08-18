@@ -1,6 +1,6 @@
 {
     'name': 'Integration between Replenishment Cost and Manufacture',
-    'version': '13.0.1.1.0',
+    'version': "15.0.1.0.0",
     'author': "ADHOC SA, Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'category': 'Products',
@@ -13,5 +13,5 @@
         'views/product_template_views.xml',
         'report/mrp_report_bom_structure.xml'
     ],
-    'installable': False,
+    'installable': True,
 }
