@@ -27,7 +27,7 @@ class AccountMoveLine(models.Model):
             'Product Unit of Measure')
         for il in self:
             # only customer invoices
-            if il.move_id and il.move_id.type in (
+            if il.move_id and il.move_id.move_type in (
                     'out_invoice', 'out_refund'
             ) and not il.product_can_modify_prices:
                 # chequeamos si la orden de venta permitió un descuento mayor
