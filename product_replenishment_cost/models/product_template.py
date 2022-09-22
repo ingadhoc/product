@@ -136,8 +136,14 @@ class ProductTemplate(models.Model):
         return True
 
     @api.depends(
+        'replenishment_cost_type',
         'replenishment_base_cost',
         'replenishment_base_cost_currency_id',
+        'supplier_price',
+        'supplier_currency_id',
+        'replenishment_cost_rule_id.item_ids.sequence',
+        'replenishment_cost_rule_id.item_ids.percentage_amount',
+        'replenishment_cost_rule_id.item_ids.fixed_amount',
     )
     def _compute_replenishment_cost_last_update(self):
         self.replenishment_cost_last_update = fields.Datetime.now()
