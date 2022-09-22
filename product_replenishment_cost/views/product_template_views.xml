@@ -11,7 +11,7 @@
                     <field name="supplier_currency_id" invisible="1"/>
                     <group name="replenishment_cost" string="Replenishment Cost">
                         <field name="replenishment_cost_type"/>
-                        <field name="replenishment_cost_last_update" string="Last Update" readonly="1" attrs="{'invisible':[('replenishment_cost_type', '!=', 'manual')]}"/>
+                        <field name="replenishment_cost_last_update" string="Last Update" readonly="1"/>
                         <label for="replenishment_base_cost" string="Base Cost"/>
                         <div name="replenishment_base_cost" class="o_row">
                             <field name="supplier_price" widget="monetary" options="{'currency_field': 'supplier_currency_id','field_digits': True}" attrs="{'invisible':[('replenishment_cost_type', 'not in', ['supplier_price', 'last_supplier_price'])]}"/>
