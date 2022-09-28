@@ -1,0 +1,9 @@
+<odoo>
+    <menuitem id="real_estate_menu" name="Real Estate"/>
+    <menuitem id="advertisement_menu" name="Advertisements" parent = "real_estate_menu"/>
+    <menuitem id="properties_menu" action="estate_property_action" parent= "advertisement_menu"/>
+
+    <menuitem id="settings_menu" name="Settings" parent= "real_estate_menu"/>
+    <menuitem id="property_type_menu" name="Property Types" action="estate_property_type_action" parent= "settings_menu"/>
+    <menuitem id="property_tag_menu" name="Property Tags" action="estate_property_tag_action" sequence="100" parent= "settings_menu"/>
+</odoo>
