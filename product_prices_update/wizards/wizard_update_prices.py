@@ -39,7 +39,7 @@ class ProductPricesUpdateWizard(models.TransientModel):
             actions = self.env.ref(
                 'product_prices_update.action_prices_update_wizard_result')
             if actions:
-                action_read = actions.read()[0]
+                action_read = actions.sudo().read()[0]
                 action_read['context'] = {
                     'product_tmpl_ids': active_ids,
                     'price_type': self.price_type,
