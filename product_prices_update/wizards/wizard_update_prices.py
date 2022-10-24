@@ -36,18 +36,16 @@ class ProductPricesUpdateWizard(models.TransientModel):
         if not active_ids:
             raise UserError(_('You must select at least one product'))
         if self.check is True:
-            actions = self.env.ref(
+            action_read = self.env["ir.actions.actions"]._for_xml_id(
                 'product_prices_update.action_prices_update_wizard_result')
-            if actions:
-                action_read = actions.sudo().read()[0]
-                action_read['context'] = {
-                    'product_tmpl_ids': active_ids,
-                    'price_type': self.price_type,
-                    'price_discount': self.price_discount,
-                    'price_surcharge': self.price_surcharge,
-                    'price_round': self.price_round,
-                }
-                return action_read
+            action_read['context'] = {
+                'product_tmpl_ids': active_ids,
+                'price_type': self.price_type,
+                'price_discount': self.price_discount,
+                'price_surcharge': self.price_surcharge,
+                'price_round': self.price_round,
+            }
+            return action_read
         else:
             for prodct in self.env['product.template'].browse(
                     active_ids):
