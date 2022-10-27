@@ -12,10 +12,6 @@
             <field name="name" position="after">
                 <field name="applied_on"/>
             </field>
-
-            <tree>
-                <field name="price"/>
-            </tree>
         </field>
     </record>
 
