@@ -35,7 +35,7 @@
         'views/product_template_views.xml',
         'security/ir.model.access.csv',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     'application': False,
 }

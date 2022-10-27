@@ -31,7 +31,7 @@
     'depends': [
         'product',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }
