@@ -28,7 +28,7 @@ Configuration
 
 To configure this module, you need to:
 
-#. No configuration nedeed.
+#. No configuration needed.
 
 
 Usage
