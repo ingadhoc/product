@@ -35,13 +35,18 @@ To configure this module, you need to:
 1. If you want to show the product price with taxes included on kanban view you have select the boolean
    "Prices with tax on products kanban view" in the Invoicing Settings
 
+First Part
+==========
+
+1. Show in tree view the Product Price with taxes included .
+2. Modify pricelist method so that if include_taxes is sent on context you will get prices with taxes included
+3. Add in config of sale the boolean to show price with tax in the product template kanban view.
+
 Usage
 =====
 
-#. In the form view a new field with taxes included is added.
-#. In the product tree and kanban view if you add the filter "Taxes Included",
-   then the prices are showed with included taxes.
-#. When filtering a pricelilst in the product list view, the column "Pricelist Price" will show the price according to the selected pricelist. In addition, when selecting the filter "Pricelis w/taxes", the column "Pricelist Price" will show that price with taxes.
+#. In the product tree and kanban view if you add the filter "Taxes Included", then the prices are showed with included taxes.
+#. When filtering a pricelist in the product list view, the column "Pricelist Price" will show the price according to the selected pricelist. In addition, when selecting the filter "Pricelis w/taxes", the column "Pricelist Price" will show that price with taxes.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot

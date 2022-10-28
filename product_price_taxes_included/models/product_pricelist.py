@@ -8,7 +8,7 @@ from odoo import models
 class ProductPricelist(models.Model):
     _inherit = "product.pricelist"
 
-    def get_products_price(
+    def _get_products_price(
             self, products, quantities, partners, date=False, uom_id=False):
         """If we send taxes_included on context we include price on the
         requested prices for this pricelist. We do it here and not in
@@ -16,7 +16,7 @@ class ProductPricelist(models.Model):
         * we only need to do it once
         * pricelist could be based on fixed prices so product price is not used
         """
-        res = super().get_products_price(
+        res = super()._get_products_price(
             products, quantities, partners, date=date, uom_id=uom_id)
         if self._context.get('taxes_included'):
             company_id = (self._context.get('company_id')
