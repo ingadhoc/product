@@ -26,11 +26,11 @@ class ProductPricelist(models.Model):
         for rec in self:
             if product_id:
                 price = self.env['product.product'].browse(
-                    product_id).with_context(pricelist=rec.id).price
+                    product_id).with_context(pricelist=rec.id)._get_contextual_price()
                 rec.price = price
             elif template_id:
                 price = self.env['product.template'].browse(
-                    template_id).with_context(pricelist=rec.id).price
+                    template_id).with_context(pricelist=rec.id)._get_contextual_price()
                 rec.price = price
             else:
                 rec.price = 0.0
