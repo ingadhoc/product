@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+    <record id="view_move_form_expiry_ux" model="ir.ui.view">
+        <field name="name">stock.production.lot.inherit.form.ux</field>
+        <field name="model">stock.production.lot</field>
+        <field name="inherit_id" ref="product_expiry.view_move_form_expiry" />
+        <field name="arch" type="xml">
+            <xpath expr="//span[hasclass('badge-danger')]" position="replace">
+                <span class="badge badge-danger" attrs="{'invisible': [('product_expiry_alert', '=', False)]}">Expired</span>
+            </xpath>
+            <xpath expr="//span[hasclass('badge-danger')]" position="after">
+                <field name="is_alert_date" invisible="1"/>
+                <span class="badge badge-warning" attrs="{'invisible': [('is_alert_date', '=', False)]}">Expiration Alert</span>
+            </xpath>
+        </field>
+    </record>
+</odoo>
