@@ -5,6 +5,7 @@
         <field name="arch" type="xml">
             <field name="name" position="after">
                 <field name="sellers_product_code"/>
+                <field name="pricelist_id" context="{'pricelist': self}" filter_domain="[]" groups="product.group_product_pricelist"/>
             </field>
         </field>
     </record>
@@ -17,7 +18,7 @@
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
             <group name="group_general">
-                <!-- TODO remove on v16 or include (see commit message) -->
+                <!-- TODO remove on v17 or include (see commit message) -->
                 <label for="warranty" invisible="1"/>
                 <div invisible="1">
                     <field name="warranty" class="oe_inline"/>
@@ -33,7 +34,7 @@
         <field name="inherit_id" ref="product.product_template_tree_view"/>
         <field name="arch" type="xml">
             <field name="standard_price" position="before">
-                <field name="price" string="Pricelist Price"/>
+                <field name="pricelist_price" string="Pricelist Price"/>
             </field>
         </field>
     </record>
