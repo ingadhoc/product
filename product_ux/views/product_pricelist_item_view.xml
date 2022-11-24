@@ -11,11 +11,8 @@
             </field>
             <field name="name" position="after">
                 <field name="applied_on"/>
+                <field name="applied_description" nolabel="1"/>
             </field>
-
-            <tree>
-                <field name="price"/>
-            </tree>
         </field>
     </record>
 
