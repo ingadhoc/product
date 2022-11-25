@@ -26,11 +26,11 @@ class Users(models.Model):
         # for compatibility with price_security
         pricelist = self.env['product.pricelist'].browse(pricelist_id)
         pricelist_disc = 0.0
-        if so_line and 'discount_policy' in pricelist._fields and \
-                pricelist.discount_policy == 'without_discount':
-            tmp_line_vals = {
-                'product_id': so_line.product_id.id,
-                'order_id': so_line.order_id.id,
+        # if so_line and 'discount_policy' in pricelist._fields and \
+        #         pricelist.discount_policy == 'without_discount':
+        #     tmp_line_vals = {
+        #         'product_id': so_line.product_id.id,
+        #         'order_id': so_line.order_id.id,
                 'product_uom': so_line.product_uom.id,
                 'product_uom_qty': so_line.product_uom_qty,
             }
