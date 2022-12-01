@@ -13,7 +13,7 @@
             </label>
         </field>
     </record>
-    
+
     <record id="product_supplierinfo_tree_view" model="ir.ui.view">
         <field name="name">product.cost.currency.tree</field>
         <field name="model">product.supplierinfo</field>

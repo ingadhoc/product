@@ -8,9 +8,9 @@ from odoo import models, api, fields
 class PurchaseOrderLine(models.Model):
     _inherit = 'purchase.order.line'
 
-    @api.onchange('product_qty', 'product_uom')
-    def _onchange_quantity(self):
-        super()._onchange_quantity()
+    @api.depends('product_qty', 'product_uom')
+    def _compute_price_unit_and_date_planned_and_name(self):
+        super()._compute_price_unit_and_date_planned_and_name()
         if not self.product_id:
             return
 
