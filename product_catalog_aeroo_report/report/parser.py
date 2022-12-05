@@ -64,7 +64,8 @@ class Parser(models.AbstractModel):
         if sale_uom and product.sale_uom_ids:
             product_obj = product_obj.with_context(
                 uom=product.sale_uom_ids[0].uom_id.id)
-        return product_obj.browse([product.id]).price
+        return product_obj.browse([product.id])._get_contextual_price()
+
 
     def get_description(self, product, print_product_uom):
 

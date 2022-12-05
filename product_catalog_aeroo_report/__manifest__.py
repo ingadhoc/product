@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product Catalog Aeroo Report',
-    'version': "15.0.1.0.0",
+    'version': "16.0.1.0.0",
     'category': 'Aeroo Reporting',
     'sequence': 14,
     'summary': '',
@@ -44,7 +44,7 @@
         'demo/product_template_demo.xml',
         'demo/product_product_demo.xml',
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': True,
 }
