@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="product.product_template_tree_view"></field>
         <field name="arch" type="xml">
             <field name="list_price" position="after">
-                <field name="taxed_lst_price"/>
+                <field name="taxed_lst_price" groups="base.group_user"/>
             </field>
         </field>
     </record>
