@@ -19,7 +19,13 @@
 ##############################################################################
 {
     'name': 'Product Price Taxes Included or Not',
+<<<<<<< HEAD
     'version': "16.0.1.0.0",
+||||||| parent of 5fcd7108... temp
+    'version': "15.0.1.0.0",
+=======
+    'version': "15.0.1.1.0",
+>>>>>>> 5fcd7108... temp
     'category': 'Product',
     'sequence': 14,
     'summary': '',
