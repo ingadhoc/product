@@ -53,7 +53,7 @@
         <field name="inherit_id" ref="product.product_template_tree_view"/>
         <field name="arch" type="xml">
             <field name="standard_price" position="after">
-                <field name="replenishment_cost_last_update" optional="hide"/>
+                <field name="replenishment_cost_last_update" optional="hide" groups="base.group_user"/>
             </field>
         </field>
     </record>
