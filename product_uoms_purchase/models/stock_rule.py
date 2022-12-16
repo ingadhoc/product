@@ -16,8 +16,7 @@ class StockRule(models.Model):
          creation of the purchase line.
         """
         res = super()._prepare_purchase_order_line(
-            product_id=product_id, product_qty=product_qty,
-            product_uom=product_uom, company_id=company_id, values=values, po=po)
+            product_id, product_qty, product_uom, company_id, values, po)
 
         purchase_line = self.env['purchase.order.line'].new(res)
         purchase_line.onchange_product_id()
