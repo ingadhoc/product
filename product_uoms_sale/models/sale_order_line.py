@@ -23,27 +23,15 @@ class SaleOrderLine(models.Model):
             else:
                 rec.uom_unit_ids = False
 
-    @api.onchange('product_id')
-    def product_id_change(self):
-        product_uom = None
-        product_uom_domain = None
-        if self.product_id:
-            product = self.product_id
-            sale_product_uoms = product.get_product_uoms(
-                product.uom_id, use='sale')
-            if sale_product_uoms:
-                product_uom = sale_product_uoms[0].id
-                # we do this because odoo overwrite view domain
-                product_uom_domain = [('id', 'in', sale_product_uoms.ids)]
-        res = super().product_id_change()
-        if product_uom:
-            self.product_uom = product_uom
-        if product_uom_domain:
-            if isinstance(res, dict):
-                res.update({'domain': {'product_uom': product_uom_domain}})
-            else:
-                res = {'domain': {'product_uom': product_uom_domain}}
-        return res
+    @api.depends('product_id')
+    def _compute_product_uom(self):
+        super()._compute_product_uom()
+        for line in self:
+            if line.product_id:
+                sale_product_uoms = line.product_id.get_product_uoms(
+                    line.product_id.uom_id, use='sale')
+                if sale_product_uoms:
+                    line.product_uom = sale_product_uoms[0].id
 
     @api.constrains('product_uom')
     def check_uoms(self):
