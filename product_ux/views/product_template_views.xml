@@ -21,7 +21,6 @@
                 <label for="warranty" invisible="1"/>
                 <div invisible="1">
                     <field name="warranty" class="oe_inline"/>
- months
                 </div>
             </group>
         </field>
@@ -31,11 +30,6 @@
         <field name="name">product.template.product.tree</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_tree_view"/>
-        <field name="arch" type="xml">
-            <field name="standard_price" position="before">
-                <field name="price" string="Pricelist Price"/>
-            </field>
-        </field>
     </record>
 
 </odoo>
