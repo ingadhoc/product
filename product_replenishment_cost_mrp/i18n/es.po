@@ -31,9 +31,10 @@ msgid "Basado en Ldm"
 msgstr "Basado en Ldm"
 
 #. module: product_replenishment_cost_mrp
+#: model:ir.actions.client,name:mrp.action_report_mrp_bom
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost_mrp.report_mrp_bom_inherit
-msgid "Estructura de Lista de Materiales y Costo (Según Costo de Reposición)"
-msgstr ""
+msgid "BoM Overview (Based on Replenishment Cost)"
+msgstr "Estructura de Lista de Materiales y Costo (Según Costo de Reposición)"
 
 #. module: product_replenishment_cost_mrp
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost_mrp.mrp_bom_form_view

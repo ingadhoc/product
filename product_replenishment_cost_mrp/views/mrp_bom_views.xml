@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <record id="mrp.action_report_mrp_bom" model="ir.actions.client">
+            <field name="name">BoM Overview (Based on Replenishment Cost)</field>
+        </record>
+
         <record id="mrp_bom_form_view" model="ir.ui.view">
             <field name="name">mrp.bom.inherit.view.form</field>
             <field name="model">mrp.bom</field>
             <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//div[@name='button_box']//button[@type='action']" position="attributes">
+                <xpath expr="//div[@name='button_box']/button[2]" position="attributes">
                     <attribute name="help">Estructura y costo según costo de reposición</attribute>
                 </xpath>
             </field>
