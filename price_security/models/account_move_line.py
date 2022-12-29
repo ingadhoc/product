@@ -21,7 +21,7 @@ class AccountMoveLine(models.Model):
         # 'product_can_modify_prices'
     )
     def check_discount(self):
-        if not self.user_has_groups('price_security.group_restrict_prices'):
+        if not self.user_has_groups('price_security.group_only_view'):
             return True
         precision = self.env['decimal.precision'].precision_get(
             'Product Unit of Measure')

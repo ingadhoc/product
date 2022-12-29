@@ -20,7 +20,7 @@ class SaleOrderLine(models.Model):
     )
     def check_discount(self):
         if not self.user_has_groups(
-                'price_security.group_restrict_prices'):
+                'price_security.group_only_view'):
             return True
         for rec in self.filtered(lambda x: not x.product_can_modify_prices):
             self.env.user.check_discount(
