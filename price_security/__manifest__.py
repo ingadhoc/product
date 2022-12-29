@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Price Security',
-    'version': "15.0.1.2.0",
+    'version': "16.0.1.0.0",
     'category': 'Sales Management',
     'author': 'ADHOC SA, Odoo Community Association (OCA)',
     'website': 'http://www.adhoc.com.ar/',
@@ -27,8 +27,6 @@
     'depends': [
         'sale',
         'purchase',
-        # stock_account to hide correctly everything related to standard_price (TODO on v14/v15 this could be
-        # removed as the wizard has been removed)
         'stock_account',
     ],
     'data': [
@@ -37,10 +35,8 @@
         'views/account_move_views.xml',
         'views/account_payment_term_views.xml',
         'views/product_template_views.xml',
-        'views/product_product_views.xml',
-        'views/res_partner_views.xml',
         'views/res_users_views.xml',
         'views/sale_order_views.xml',
     ],
-    'installable': False,
+    'installable': True,
 }
