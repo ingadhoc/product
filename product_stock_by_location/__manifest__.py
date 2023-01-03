@@ -20,7 +20,7 @@
 
 {
     "name": "Product Stock By Location",
-    'version': "15.0.1.1.0",
+    'version': "15.0.1.2.0",
     'category': 'Tools',
     'sequence': 14,
     'author': 'ADHOC SA',
