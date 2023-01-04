@@ -9,7 +9,7 @@ class ProductPricelist(models.Model):
     _inherit = "product.pricelist"
 
     def _get_products_price(
-            self, products, quantities, partners, date=False, uom_id=False):
+            self, products, quantities, date=False, uom_id=False, **kwargs):
         """If we send taxes_included on context we include price on the
         requested prices for this pricelist. We do it here and not in
         price_compute of product.template / product.product because:
@@ -17,7 +17,7 @@ class ProductPricelist(models.Model):
         * pricelist could be based on fixed prices so product price is not used
         """
         res = super()._get_products_price(
-            products, quantities, partners, date=date, uom_id=uom_id)
+            products, quantities, date=date, uom_id=uom_id, **kwargs)
         if self._context.get('taxes_included'):
             company_id = (self._context.get('company_id')
                           or self.env.company.id)
