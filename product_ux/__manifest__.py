@@ -37,6 +37,7 @@
         'views/product_pricelist_item_view.xml',
         'views/product_pricelist_view.xml',
         'views/uom_uom_views.xml',
+        'report/picking_templates.xml',
     ],
     'demo': [
     ],
