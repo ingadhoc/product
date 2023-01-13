@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="stock.label_transfer_template_view_zpl">
+        <t t-foreach="docs" t-as="picking">
+            <t t-foreach="picking.move_lines" t-as="move">
+                <t t-foreach="move.move_line_ids" t-as="move_line">
+                    <t t-if="move_line.product_uom_id.category_id.measure_type == 'unit'">
+                    <t t-set="qty" t-value="int(move_line.qty_done)"/>
+                    <t t-set='numero' t-value='0'/>
+                    </t>
+                    <t t-else="">
+                    <t t-set="qty" t-value="1"/>
+                    </t>
+                    <t t-foreach="range(qty)" t-as="item">
+                    <t t-set='numero' t-value='numero + 1'/>
+                    <t t-translation="off">
+                    ^XA ^FX Top section with logo, name and address. ^FO50,50^GFA,4929,4929,31,,:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::J07LFM03FFU01gHF8,J0OF8J0IFC00LFEK07gHFC,I0180CK03FI018K08K0FCJ04001M06K04K04,I01008L01C0018002O0FJ04001M0CK04K0C,I0301N03001800203N0CI04001L018J018J018,I0602N01001800203N04I04001L038J018J038,I0602N01I0800206N04I04001YF,I0C04N01I0800204R06001XFE,I0C04N03I080020CR06001UF8,I0LFEJ06I080021C0FF8N06001FF00FF8K0803,I0MF8I0JF80021JFEJ07IFE001FE00FFK01803,001LFEJ0JF80021JFCJ0JFE001FC01FFK01002,001FEN01F8K022O0FEK01FC03FFK03006,003O07FF00180026N07F8006001F003FE00IFE00C78,00608M01FE0018002CN0FFI0E001F003FC01IFC01FFE,00608M01FC0038002CM03FE001E001FI018J018007FF,00C1O0FI0780038M0FFC003E001EI01K018J02,00E3O0FI0FC003M07FFC007E001EI01K01K06,01LFCJ0C003FC002I07I01FEI0FE001EI06K02J01C,01LF8I018003FCL0F8I0FC001FE001VF8,01KF8J01I0FFCL0C8I0F8003FE001VF,01P02R084I038gI01,023N01CQ01038gM02,062N03R0101CgM06,064M01ER0300CgM0C,04CM07ER03002gL018,0D8L07CCR06003gL038,0MFE007RF8I07gKFE,,:::::::Y07IF0JF8FJ03F807IFC,Y0JF0JF9FJ07FC07IFC,Y0F81F1JF9FJ0FFC07IF8,Y0F00F3E00F9FI01F7C0F0078,X01FI03C00F1EI01E7C0F0078,X01IFE7I0F3CI0783C1E00F8,X01IFEF001E3CI0F03C3IFE,Y07FFEF001E78001F03C3IFC,gG03FF001C78003IFC7IFC,X0F807DJFCIFC7IFE7C03C,X0JF9JFDIFCF803E7803C,X0JF1JF9IF9F003E78038,X07FFC1IFE1IFBE003EF0078,,:::::::::::::::::::::::::::::::::::::::::::::::::^FS
+                    <t t-if="picking.partner_id == True">
+                    ^CF0,60 ^FO300,50^FD
+                    <t t-esc="picking.partner_id.parent_id != False"/>
+                    ^FS ^CF0,30 ^CI28 ^FO300,115^FD
+                    <t t-esc="picking.partner_id.street"/>
+                    ^FS ^FO300,155^FD
+                    <t t-esc="picking.partner_id.city"/>
+                    ^FS ^FO300,195^FD
+                    <t class="oe_inline" t-esc="picking.partner_id.state_id.name"/>
+                    ,
+                    <t class="oe_inline" t-esc="picking.partner_id.name"/>
+                    ^FS ^FO50,250^GB700,3,3^FS
+                    </t>
+                    <t t-if="picking.partner_id == False and picking.book_id.company_id != False">
+                    ^CF0,60 ^FO300,50^FD
+                    <t t-esc="picking.book_id.company_id.name"/>
+                    ^FS ^CF0,30 ^CI28 ^FO300,115^FD
+                    <t t-esc="picking.book_id.company_id.street"/>
+                    ^FS ^FO300,155^FD
+                    <t t-esc="picking.book_id.company_id.city"/>
+                    ^FS ^FO300,195^FD
+                    <t class="oe_inline" t-esc="picking.book_id.company_id.state_id.name"/>
+                    ,
+                    <t class="oe_inline" t-esc="picking.book_id.company_id.name"/>
+                    ^FS ^FO50,250^GB700,3,3^FS
+                    </t>
+                    <t t-else="">
+                    ^CF0,60 ^FO300,50^FD
+                    <t t-esc="picking.company_id.name"/>
+                    ^FS ^CF0,30 ^CI28 ^FO300,115^FD
+                    <t t-esc="picking.company_id.street"/>
+                    ^FS ^FO300,155^FD
+                    <t t-esc="picking.company_id.city"/>
+                    ^FS ^FO300,195^FD
+                    <t class="oe_inline" t-esc="picking.company_id.state_id.name"/>
+                    ,
+                    <t class="oe_inline" t-esc="picking.company_id.name"/>
+                    ^FS ^FO50,250^GB700,3,3^FS
+                    </t>
+                    ^FX Second section with recipient address and permit information. ^CFJ,23 ^FO50,280^FDDestinatario^FS ^CF0,45 ^TBN,700,100
+                    <t t-if="picking.partner_id.parent_id">
+                    ^FO50,310^FD
+                    <t t-esc="picking.partner_id.parent_id.name"/>
+                    ^FS
+                    </t>
+                    <t t-else="">
+                    ^FO50,310^FD
+                    <t t-esc="picking.partner_id.name"/>
+                    ^FS
+                    </t>
+                    ^CF0,30 ^FO50,425^FD
+                    <t t-esc="picking.partner_id.street"/>
+                    ^FS ^FO50,465^FD
+                    <t class="oe_inline" t-esc="picking.partner_id.zip"/>
+                    ,
+                    <t class="oe_inline" t-esc="picking.partner_id.city"/>
+                    ^FS ^FO50,505^FD
+                    <t class="oe_inline" t-esc="picking.partner_id.state_id.name"/>
+                    ,
+                    <t class="oe_inline" t-esc="picking.partner_id.country_id.name"/>
+                    ^FS ^FO50,545^FDTel: ^FS
+                    <t t-if="picking.partner_id.parent_id and picking.partner_id.parent_id.phone != False">
+                    ^FO100,545^FD
+                    <t t-esc="picking.partner_id.parent_id.name"/>
+                    ^FS
+                    </t>
+                    <t t-if="picking.partner_id.parent_id and picking.partner_id.parent_id.mobile != False and picking.partner_id.parent_id.phone == False">
+                    ^FO100,545^FD
+                    <t t-esc="picking.partner_id.parent_id.mobile"/>
+                    ^FS
+                    </t>
+                    <t t-if="picking.partner_id.parent_id == False and picking.partner_id.mobile != False">
+                    ^FO100,545^FD
+                    <t t-esc="picking.partner_id.mobile"/>
+                    ^FS
+                    </t>
+                    <t t-if="picking.partner_id.parent_id == False and picking.partner_id.phone != False">
+                    ^FO100,545^FD
+                    <t t-esc="picking.partner_id.phone"/>
+                    ^FS
+                    </t>
+                    <t if="picking._fields.get('carrier_id') and picking.carrier_id">
+                    Transportista:
+                    ^FX Transportista ^CFJ,30 ^FO50,615^FDTransportista: ^FS ^FO260,615^FD
+                    <t t-esc="picking.carrier_id.name"/>
+                    </t>
+                    <t t-else="">
+                    </t>
+                    ^FS^FS ^FO50,655^GB700,3,3^FS
+                    ^FX Referencias Odoo ^CFJ,25 ^FO50,680^FDOrden:^FS ^FO50,720^FDRemito:^FS ^CF0,28 ^FO160,680^FD
+                    <t t-esc="picking.origin"/>
+                    ^FS ^FO160,720^FD
+                    <t t-esc="picking.voucher_ids.name"/>
+                    ^FS ^BY3,2,160 ^FO100,765^BC^FD
+                    <t t-esc="picking.name"/>
+                    ^FS ^FX Fecha y nro de bultos ^FO50,980^GB700,170,3^FS ^FO400,980^GB3,170,3^FS ^CFJ,30 ^FO180,1020^FDBultos^FS
+                    ^CF0,50 ^FO160,1070^FD<t t-esc="numero"/> de <t t-if="picking.number_of_packages == 0">1</t><t t-else=""><t t-esc="picking.number_of_packages"/></t>^FS ^CFJ,30 ^FO520,1020^FD
+                    Fecha
+                    ^FS ^CF0,50 ^FO460,1070^FD
+                    <t t-esc="picking.date_done" t-options="{'widget': 'date'}"/>
+                    ^FS ^XZ
+                    </t>
+                    </t>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
+
