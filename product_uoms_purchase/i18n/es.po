@@ -3,28 +3,38 @@
 # 	* product_uoms_purchase
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2022
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-25 13:26+0000\n"
-"PO-Revision-Date: 2022-04-19 15:51+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2022\n"
-"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/133229/es/)\n"
+"POT-Creation-Date: 2023-01-13 14:05+0000\n"
+"PO-Revision-Date: 2023-01-13 14:04+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2023\n"
+"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. module: product_uoms_purchase
+#. odoo-python
 #: code:addons/product_uoms_purchase/models/purchase_order_line.py:0
 #, python-format
 msgid ""
 "%s unit of measure is not valid for purchase, please change %s product line "
 "with the proper uom in order to continue"
+msgstr ""
+
+#. module: product_uoms_purchase
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_product_product__algolia_search
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_product_template__algolia_search
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_product_uoms__algolia_search
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_purchase_order_line__algolia_search
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_stock_rule__algolia_search
+msgid "Algolia Search"
 msgstr ""
 
 #. module: product_uoms_purchase
@@ -38,19 +48,19 @@ msgstr ""
 "estar en la misma categoría que la unidad de medida por defecto."
 
 #. module: product_uoms_purchase
-#: model:ir.model,name:product_uoms_purchase.model_product_product
+#: model:ir.model,name:product_uoms_purchase.model_product_template
 msgid "Product"
 msgstr "Producto"
-
-#. module: product_uoms_purchase
-#: model:ir.model,name:product_uoms_purchase.model_product_template
-msgid "Product Template"
-msgstr "Plantilla de producto"
 
 #. module: product_uoms_purchase
 #: model:ir.model,name:product_uoms_purchase.model_product_uoms
 msgid "Product Uoms"
 msgstr ""
+
+#. module: product_uoms_purchase
+#: model:ir.model,name:product_uoms_purchase.model_product_product
+msgid "Product Variant"
+msgstr "Producto"
 
 #. module: product_uoms_purchase
 #: model:ir.model.fields,field_description:product_uoms_purchase.field_product_uoms__purchase_ok

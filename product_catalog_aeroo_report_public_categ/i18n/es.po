@@ -1,0 +1,61 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_catalog_aeroo_report_public_categ
+# 
+# Translators:
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2023
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-13 13:53+0000\n"
+"PO-Revision-Date: 2023-01-13 13:53+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2023\n"
+"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#. module: product_catalog_aeroo_report_public_categ
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report_public_categ.field_product_product_catalog_report__algolia_search
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report_public_categ.field_product_public_category__algolia_search
+msgid "Algolia Search"
+msgstr ""
+
+#. module: product_catalog_aeroo_report_public_categ
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report_public_categ.field_product_product_catalog_report__category_type
+msgid "Category Type"
+msgstr ""
+
+#. module: product_catalog_aeroo_report_public_categ
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report_public_categ.field_product_public_category__complete_name
+msgid "Complete Name"
+msgstr ""
+
+#. module: product_catalog_aeroo_report_public_categ
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report_public_categ.field_product_public_category__parent_id
+msgid "Parent Category"
+msgstr ""
+
+#. module: product_catalog_aeroo_report_public_categ
+#: model:ir.model,name:product_catalog_aeroo_report_public_categ.model_product_product_catalog_report
+msgid "Product Catalog Report with Aeroo"
+msgstr ""
+
+#. module: product_catalog_aeroo_report_public_categ
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report_public_categ.field_product_product_catalog_report__public_category_ids
+msgid "Product Categories Public"
+msgstr ""
+
+#. module: product_catalog_aeroo_report_public_categ
+#: model:ir.model.fields.selection,name:product_catalog_aeroo_report_public_categ.selection__product_product_catalog_report__category_type__public_category
+msgid "Public Category"
+msgstr ""
+
+#. module: product_catalog_aeroo_report_public_categ
+#: model:ir.model,name:product_catalog_aeroo_report_public_categ.model_product_public_category
+msgid "Website Product Category"
+msgstr "Categoría del Producto"

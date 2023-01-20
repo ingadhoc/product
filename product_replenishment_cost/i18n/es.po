@@ -3,21 +3,21 @@
 # 	* product_replenishment_cost
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2022
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-25 13:25+0000\n"
-"PO-Revision-Date: 2022-04-19 14:03+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2022\n"
-"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/133229/es/)\n"
+"POT-Creation-Date: 2023-01-13 14:04+0000\n"
+"PO-Revision-Date: 2023-01-13 14:04+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2023\n"
+"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__standard_price
@@ -34,6 +34,16 @@ msgstr "Necesita Acción"
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__add_to_cost
 msgid "Add To Cost"
 msgstr "Añadir al costo"
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__algolia_search
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__algolia_search
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_supplierinfo__algolia_search
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__algolia_search
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_update_from_replenishment_cost_wizard__algolia_search
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_purchase_order_line__algolia_search
+msgid "Algolia Search"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:res.groups,name:product_replenishment_cost.group_replenishment_rule_expr
@@ -137,7 +147,6 @@ msgstr "ID (identificación)"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__message_needaction
-#: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__message_unread
 msgid "If checked, new messages require your attention."
 msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 
@@ -281,24 +290,19 @@ msgid "Number of messages with delivery error"
 msgstr "Número de mensajes con error de envío"
 
 #. module: product_replenishment_cost
-#: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__message_unread_counter
-msgid "Number of unread messages"
-msgstr "Número de mensajes sin leer"
-
-#. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__percentage_amount
 msgid "Percentage Amount"
 msgstr "Importe en porcentaje"
 
 #. module: product_replenishment_cost
+#: model:ir.model,name:product_replenishment_cost.model_product_template
+msgid "Product"
+msgstr "Producto"
+
+#. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.view_update_from_replenishment_cost_wizard_form
 msgid "Product Catalog Report"
 msgstr "Informe del catálogo de productos"
-
-#. module: product_replenishment_cost
-#: model:ir.model,name:product_replenishment_cost.model_product_template
-msgid "Product Template"
-msgstr "Plantilla de producto"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__product_ids
@@ -453,6 +457,7 @@ msgid "Supplierinfo"
 msgstr "Información del Proveedor"
 
 #. module: product_replenishment_cost
+#. odoo-python
 #: code:addons/product_replenishment_cost/models/product_template.py:0
 #, python-format
 msgid ""
@@ -471,16 +476,6 @@ msgstr ""
 " 0."
 
 #. module: product_replenishment_cost
-#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_unread
-msgid "Unread Messages"
-msgstr "Mensajes No Leídos"
-
-#. module: product_replenishment_cost
-#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_unread_counter
-msgid "Unread Messages Counter"
-msgstr "Contador de mensajes no leídos"
-
-#. module: product_replenishment_cost
 #: model:ir.actions.act_window,name:product_replenishment_cost.action_update_from_replenishment_cost_wizard
 msgid "Update Accounting Cost from Replenishment Cost"
 msgstr "Actualizar el costo contable desde el  costo de reposición."
@@ -488,11 +483,11 @@ msgstr "Actualizar el costo contable desde el  costo de reposición."
 #. module: product_replenishment_cost
 #: model:ir.actions.server,name:product_replenishment_cost.ir_cron_update_cost_from_replenishment_cost_ir_actions_server
 #: model:ir.cron,cron_name:product_replenishment_cost.ir_cron_update_cost_from_replenishment_cost
-#: model:ir.cron,name:product_replenishment_cost.ir_cron_update_cost_from_replenishment_cost
 msgid "Update Cost from Replenishment Cost"
 msgstr "Actualización del costo desde el costo de reposición"
 
 #. module: product_replenishment_cost
+#. odoo-python
 #: code:addons/product_replenishment_cost/wizards/product_update_from_replenishment_cost_wizard.py:0
 #, python-format
 msgid "Update from replenishment cost must be called from product template"
