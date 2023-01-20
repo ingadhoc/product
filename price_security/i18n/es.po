@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-25 13:24+0000\n"
+"POT-Creation-Date: 2022-08-30 17:09+0000\n"
 "PO-Revision-Date: 2022-04-19 14:03+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2022\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/133229/es/)\n"
@@ -17,7 +17,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#. module: price_security
+#: model:ir.model.fields,field_description:price_security.field_account_move_line__algolia_search
+#: model:ir.model.fields,field_description:price_security.field_account_payment_term__algolia_search
+#: model:ir.model.fields,field_description:price_security.field_product_pricelist__algolia_search
+#: model:ir.model.fields,field_description:price_security.field_product_template__algolia_search
+#: model:ir.model.fields,field_description:price_security.field_res_users__algolia_search
+#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__algolia_search
+#: model:ir.model.fields,field_description:price_security.field_sale_order__algolia_search
+#: model:ir.model.fields,field_description:price_security.field_sale_order_line__algolia_search
+msgid "Algolia Search"
+msgstr ""
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_product_product__can_modify_prices

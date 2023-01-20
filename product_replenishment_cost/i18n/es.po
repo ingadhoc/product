@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-25 13:25+0000\n"
+"POT-Creation-Date: 2022-08-30 17:10+0000\n"
 "PO-Revision-Date: 2022-04-19 14:03+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2022\n"
 "Language-Team: Spanish (https://www.transifex.com/adhoc/teams/133229/es/)\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__standard_price
@@ -34,6 +34,16 @@ msgstr "Necesita Acción"
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__add_to_cost
 msgid "Add To Cost"
 msgstr "Añadir al costo"
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__algolia_search
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__algolia_search
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_supplierinfo__algolia_search
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__algolia_search
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_update_from_replenishment_cost_wizard__algolia_search
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_purchase_order_line__algolia_search
+msgid "Algolia Search"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:res.groups,name:product_replenishment_cost.group_replenishment_rule_expr

@@ -3,22 +3,21 @@
 # 	* product_catalog_aeroo_report
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2020
-# Juan Rivero <jr@adhoc.com.ar>, 2021
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 13.0\n"
+"Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-04 10:25+0000\n"
-"PO-Revision-Date: 2020-05-27 18:09+0000\n"
-"Last-Translator: Juan Rivero <jr@adhoc.com.ar>, 2021\n"
-"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"POT-Creation-Date: 2023-01-13 16:11+0000\n"
+"PO-Revision-Date: 2022-05-12 13:46+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2022\n"
+"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/133229/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. module: product_catalog_aeroo_report
 #: code:addons/product_catalog_aeroo_report/report/parser.py:0
@@ -35,6 +34,13 @@ msgstr ""
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields.selection,name:product_catalog_aeroo_report.selection__product_product_catalog_report__category_type__accounting_category
 msgid "Accounting Category"
+msgstr ""
+
+#. module: product_catalog_aeroo_report
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog__algolia_search
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__algolia_search
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_report_product_catalog_parser__algolia_search
+msgid "Algolia Search"
 msgstr ""
 
 #. module: product_catalog_aeroo_report
@@ -67,7 +73,6 @@ msgstr "Creado el"
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog__display_name
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__display_name
-#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_report_product_catalog_parser__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
 
@@ -81,7 +86,6 @@ msgstr ""
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog__id
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__id
-#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_report_product_catalog_parser__id
 msgid "ID"
 msgstr "ID (identificación)"
 
@@ -93,7 +97,6 @@ msgstr ""
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog____last_update
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report____last_update
-#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_report_product_catalog_parser____last_update
 msgid "Last Modified on"
 msgstr "Última modificación el"
 
@@ -133,7 +136,7 @@ msgstr "Tarifa"
 #: model_terms:ir.ui.view,arch_db:product_catalog_aeroo_report.view_product_catalog
 #: model_terms:ir.ui.view,arch_db:product_catalog_aeroo_report.view_product_catalog_report_form
 msgid "Print"
-msgstr ""
+msgstr "Imprimir"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__print_product_uom
