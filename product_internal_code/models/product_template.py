@@ -14,9 +14,10 @@ class ProductTemplate(models.Model):
         string='Internal Code',
         readonly=False)
 
-    @api.model
-    def create(self, vals):
-        if vals.get('internal_code'):
-            self = self.with_context(
-                default_internal_code=vals.get('internal_code'))
-        return super().create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('internal_code'):
+                self = self.with_context(
+                    default_internal_code=vals.get('internal_code'))
+        return super().create(vals_list)
