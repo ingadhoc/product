@@ -2,7 +2,7 @@
 # For copyright and license notices, see __openerp__.py file in module root
 # directory
 ##############################################################################
-from odoo import api, models, tools, exceptions, _
+from odoo import api, models, exceptions, _
 
 
 class IrModelAccess(models.Model):
@@ -10,9 +10,7 @@ class IrModelAccess(models.Model):
     _inherit = 'ir.model.access'
 
     @api.model
-    @tools.ormcache_context('self.env.uid', 'self.env.su', 'model', 'mode', 'raise_exception', keys=('lang',))
     def check(self, model, mode='read', raise_exception=True):
-
         if isinstance(model, models.BaseModel):
             assert model._name == 'ir.model', 'Invalid model object'
             model_name = model.model
