@@ -7,7 +7,7 @@
         <field name="priority">10</field>
         <field name="inherit_id" ref="product.product_template_search_view"/>
         <field name="arch" type="xml">
-            <field name="pricelist_id" position="before">
+            <field name="attribute_line_ids" position="after">
                 <field name="internal_code" filter_domain="[('internal_code','=',self)]"/>
             </field>
        </field>
