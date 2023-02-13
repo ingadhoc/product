@@ -59,4 +59,17 @@
         </field>
     </record>
 
+<!-- Solo ver: precio de venta: lst price en readonly -->
+    <record id="view_product_product_only_view_sale_price_form" model="ir.ui.view">
+        <field name="name">View Only sale price product form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="groups_id" eval="[(6, 0, [ref('group_restrict_prices')])]"/>
+        <field name="arch" type="xml">
+            <field name="lst_price" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </field>
+        </field>
+    </record>
+
 </odoo>
