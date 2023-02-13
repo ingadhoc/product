@@ -19,7 +19,13 @@
 ##############################################################################
 {
     'name': 'Price Security',
+<<<<<<< HEAD
     'version': "15.0.1.2.0",
+||||||| parent of 76d899fd (temp)
+    'version': "15.0.1.3.0",
+=======
+    'version': "15.0.1.4.0",
+>>>>>>> 76d899fd (temp)
     'category': 'Sales Management',
     'author': 'ADHOC SA, Odoo Community Association (OCA)',
     'website': 'http://www.adhoc.com.ar/',
