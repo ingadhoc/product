@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product UX',
-    'version': "13.0.1.3.0",
+    'version': "13.0.1.4.0",
     'category': 'Products',
     'sequence': 14,
     'summary': '',
@@ -32,11 +32,13 @@
         'product',
     ],
     'data': [
+        'report/ir.action.reports.xml',
         'views/product_template_views.xml',
         'views/product_product_views.xml',
         'views/product_pricelist_item_view.xml',
         'views/product_pricelist_view.xml',
         'views/uom_uom_views.xml',
+        'report/picking_templates.xml',
     ],
     'demo': [
     ],

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+            <report id="action_custom_label_transfer_template_zpl"
+            model="stock.picking"
+            string="Etiqueta de despacho (ZPL)"
+            name="product_ux.custom_label_transfer_template_view_zpl"
+            file="product_ux.custom_label_transfer_template_view_zpl"
+            report_type="qweb-text"
+        />
+    </data>
+</odoo>
