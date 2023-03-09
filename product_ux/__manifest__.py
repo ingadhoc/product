@@ -19,7 +19,13 @@
 ##############################################################################
 {
     'name': 'Product UX',
+<<<<<<< HEAD
     'version': "15.0.1.0.0",
+||||||| parent of f387fdbc (temp)
+    'version': "13.0.1.3.0",
+=======
+    'version': "13.0.1.4.0",
+>>>>>>> f387fdbc (temp)
     'category': 'Products',
     'sequence': 14,
     'summary': '',
@@ -32,11 +38,13 @@
         'product',
     ],
     'data': [
+        'report/ir.action.reports.xml',
         'views/product_template_views.xml',
         'views/product_product_views.xml',
         'views/product_pricelist_item_view.xml',
         'views/product_pricelist_view.xml',
         'views/uom_uom_views.xml',
+        'report/picking_templates.xml',
     ],
     'demo': [
     ],
