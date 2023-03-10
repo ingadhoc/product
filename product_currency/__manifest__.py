@@ -36,6 +36,7 @@
         'security/product_currency_security.xml',
     ],
     'demo': [
+        'demo/product_product_demo.xml',
     ],
     'installable': True,
     'auto_install': False,
