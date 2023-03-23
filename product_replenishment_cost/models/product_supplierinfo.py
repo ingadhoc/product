@@ -9,6 +9,8 @@ class ProductSupplierinfo(models.Model):
     _inherit = 'product.supplierinfo'
 
     last_date_price_updated = fields.Datetime(string="Last date price updated",
+                                              compute='_compute_last_date_price_updated',
+                                              store=True,
                                               default=lambda self: fields.Datetime.now())
 
     replenishment_cost_rule_id = fields.Many2one(
@@ -25,10 +27,10 @@ class ProductSupplierinfo(models.Model):
         help="Net Price",
     )
 
-    def write(self, vals):
-        if vals.get('price') and not vals.get('last_date_price_updated'):
-            vals.update(last_date_price_updated=fields.Datetime.now())
-        return super(ProductSupplierinfo, self).write(vals)
+    @api.depends('price', 'min_qty')
+    def _compute_last_date_price_updated(self):
+        for rec in self:
+            rec.last_date_price_updated = fields.Datetime.now()
 
     def _inverse_net_price(self):
         """ For now we only implement when product_tmpl_id is set
