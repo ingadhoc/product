@@ -11,30 +11,23 @@ class PurchaseOrderLine(models.Model):
     @api.depends('product_qty', 'product_uom')
     def _compute_price_unit_and_date_planned_and_name(self):
         super()._compute_price_unit_and_date_planned_and_name()
-        if not self.product_id:
-            return
 
-        seller = self.product_id._select_seller(
-            partner_id=self.partner_id,
-            quantity=self.product_qty,
-            date=self.order_id.date_order and self.order_id.date_order.date(),
-            uom_id=self.product_uom)
-        if not seller:
-            return
+        for line in self:
+            if not line.product_id:
+                continue
 
-        price_unit = self.env['account.tax']._fix_tax_included_price_company(
-            seller.net_price, self.product_id.supplier_taxes_id,
-            self.taxes_id, self.company_id) if seller else 0.0
-        if price_unit and seller and self.\
-                order_id.currency_id and seller.\
-                currency_id != self.order_id.currency_id:
-            price_unit = seller.currency_id._convert(
-                price_unit, self.order_id.currency_id,
-                self.order_id.company_id,
-                self.order_id.date_order or fields.Date.today())
+            seller = line.product_id._select_seller(
+                partner_id=line.partner_id,
+                quantity=line.product_qty,
+                date=line.order_id.date_order and line.order_id.date_order.date(),
+                uom_id=line.product_uom)
 
-        if seller and self.product_uom and seller.\
-                product_uom != self.product_uom:
-            price_unit = seller.product_uom._compute_price(
-                price_unit, self.product_uom)
-        self.price_unit = price_unit
+            if not seller:
+                continue
+
+            price_unit = line.env['account.tax']._fix_tax_included_price_company(seller.net_price, line.product_id.supplier_taxes_id, line.taxes_id, line.company_id) if seller else 0.0
+            price_unit = seller.currency_id._convert(price_unit, line.currency_id, line.company_id, line.date_order or fields.Date.today())
+
+            if seller and line.product_uom and seller.product_uom != line.product_uom:
+                price_unit = seller.product_uom._compute_price(price_unit, line.product_uom)
+            line.price_unit = price_unit
