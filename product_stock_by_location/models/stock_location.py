@@ -74,15 +74,15 @@ class StockLocation(models.Model):
         template_id = self._context.get('template_id', False)
         product_id = self._context.get('product_id', False)
         if template_id:
-            product = self.env['product.template'].browse(template_id)
+            product_variants = self.env['product.template'].browse(template_id).product_variant_ids
         elif product_id:
-            product = self.env['product.product'].browse(product_id)
+            product_variants = self.env['product.product'].browse(product_id)
         else:
             # it not template_id or product_id on context, return True
             return True
         for rec in self:
-            product = product.with_context(location=rec.id)
-            rec.qty_available = product.qty_available
-            rec.virtual_available = product.virtual_available
-            rec.incoming_qty = product.incoming_qty
-            rec.outgoing_qty = product.outgoing_qty
+            product_variants = [p.with_context(location=rec.id) for p in product_variants]
+            rec.qty_available = sum(p.qty_available for p in product_variants)
+            rec.virtual_available = sum(p.virtual_available for p in product_variants)
+            rec.incoming_qty = sum(p.incoming_qty for p in product_variants)
+            rec.outgoing_qty = sum(p.outgoing_qty for p in product_variants)
