@@ -19,7 +19,13 @@
 ##############################################################################
 {
     'name': 'Product UX',
+<<<<<<< HEAD
     'version': "15.0.1.0.0",
+||||||| parent of 2a68dba2 (temp)
+    'version': "13.0.1.4.0",
+=======
+    'version': "13.0.1.5.0",
+>>>>>>> 2a68dba2 (temp)
     'category': 'Products',
     'sequence': 14,
     'summary': '',
