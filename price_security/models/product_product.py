@@ -1,18 +1,9 @@
-##############################################################################
-# For copyright and license notices, see __manifest__.py file in module root
-# directory
-##############################################################################
-from odoo import fields, models, api
+from odoo import models, api
 import json
 
 
-class ProductTemplate(models.Model):
-    _inherit = 'product.template'
-
-    can_modify_prices = fields.Boolean(
-        help="If checked all users can modify the "
-        "price of this product in a sale order or invoice.",
-        string='Can modify prices')
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
 
     @api.model
     def _get_view(self, view_id=None, view_type='form', **options):
@@ -20,7 +11,7 @@ class ProductTemplate(models.Model):
         if view_type == 'form':
             if self.env.user.has_group('price_security.group_only_view'):
                 readonly_fields = (arch.xpath("//field[@name='can_modify_prices']")
-                                    + arch.xpath("//field[@name='list_price']")
+                                    + arch.xpath("//field[@name='lst_price']")
                                     + arch.xpath("//field[@name='uom_id']")
                                     + arch.xpath("//field[@name='seller_ids']")
                                     + arch.xpath("//field[@name='variant_seller_ids']")

@@ -39,6 +39,7 @@
         'views/uom_uom_views.xml',
     ],
     'demo': [
+        'demo/product_pricelist_demo.xml',
     ],
     'installable': True,
     'auto_install': False,

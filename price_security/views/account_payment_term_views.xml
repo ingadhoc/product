@@ -10,15 +10,4 @@
             </field>
         </field>
     </record>
-
-    <record id="view_payment_term_tree" model="ir.ui.view">
-        <field name="name">account.payment.term.tree</field>
-        <field name="model">account.payment.term</field>
-        <field name="arch" type="xml">
-            <tree string="Payment Term">
-                <field name="sequence" widget="handle"/>
-                <field name="name"/>
-            </tree>
-        </field>
-    </record>
 </odoo>

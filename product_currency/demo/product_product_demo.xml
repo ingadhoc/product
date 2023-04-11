@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="product_with_forced_currency" model="product.product">
+        <field name="name">Product with forced currency (EUR)</field>
+        <field name="categ_id" ref="product.product_category_all"/>
+        <field name="standard_price">50</field>
+        <field name="list_price">100</field>
+        <field name="currency_id" ref="base.USD"/>
+        <field name="force_currency_id" ref="base.EUR"/>
+        <field name="type">consu</field>
+    </record>
+</odoo>

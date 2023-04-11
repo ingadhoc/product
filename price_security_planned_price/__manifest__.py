@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Price Security with planned price',
-    'version': "15.0.1.0.0",
+    'version': "16.0.1.0.0",
     'category': 'Sales Management',
     'author': 'ADHOC SA',
     'website': 'http://www.adhoc.com.ar/',
@@ -28,9 +28,6 @@
         'price_security',
         'product_planned_price',
     ],
-    'data': [
-        'views/product_template_views.xml',
-    ],
-    'installable': False,
+    'installable': True,
     'auto_install': True,
 }
