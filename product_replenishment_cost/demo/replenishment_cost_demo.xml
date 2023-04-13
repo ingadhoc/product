@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="rule_1" model="product.replenishment_cost.rule">
+        <field name="name">Rule 1</field>
+    </record>
+
+    <record id="rule_item_1" model="product.replenishment_cost.rule.item">
+        <field name="name">Customs</field>
+        <field name="percentage_amount">10.00</field>
+        <field name="replenishment_cost_rule_id" ref="product_replenishment_cost.rule_1"/>
+    </record>
+</odoo>
