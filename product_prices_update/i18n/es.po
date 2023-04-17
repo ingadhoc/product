@@ -3,21 +3,21 @@
 # 	* product_prices_update
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2022
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0+e\n"
+"Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-04 14:45+0000\n"
-"PO-Revision-Date: 2022-04-28 12:15+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2022\n"
-"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/133229/es/)\n"
+"POT-Creation-Date: 2023-04-10 15:29+0000\n"
+"PO-Revision-Date: 2023-04-10 15:29+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2023\n"
+"Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. module: product_prices_update
 #: model_terms:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_form
@@ -135,6 +135,7 @@ msgid "Price Type"
 msgstr "Tipo de Precio"
 
 #. module: product_prices_update
+#. odoo-python
 #: code:addons/product_prices_update/wizards/wizard_update_prices.py:0
 #: code:addons/product_prices_update/wizards/wizard_update_prices.py:0
 #, python-format
@@ -147,6 +148,7 @@ msgid "Product Template"
 msgstr "Plantilla de Producto"
 
 #. module: product_prices_update
+#. odoo-python
 #: code:addons/product_prices_update/wizards/wizard_update_prices.py:0
 #: model_terms:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_result_detail_tree
 #: model_terms:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_result_form
@@ -205,6 +207,7 @@ msgid "Update Product Prices"
 msgstr "Actualizar Precios de Productos"
 
 #. module: product_prices_update
+#. odoo-python
 #: code:addons/product_prices_update/wizards/wizard_update_prices.py:0
 #, python-format
 msgid "You must select at least one product"
