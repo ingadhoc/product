@@ -1,0 +1,63 @@
+<odoo>
+
+<!--TREE -->
+    <record id="sale_margin_sale_order_line_form_only_view_sale_price_form" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.margin.view.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line_form"/>
+        <field name="groups_id" eval="[(6, 0, [ref('price_security.group_restrict_prices')])]"/>
+        <field name="arch" type="xml">
+
+            <!-- we hide costing -->
+            <xpath expr="//field[@name='order_line']/tree//field[@name='purchase_price']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="sale_margin_sale_order_line_form_only_view_form" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.margin.view.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_margin_sale_order_line_form_only_view_sale_price_form"/>
+        <field name="groups_id" eval="[(6, 0, [ref('price_security.group_only_view')])]"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='order_line']/tree//field[@name='purchase_price']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+<!--FORM -->
+    <record id="sale_margin_sale_order_line_only_view_sale_price_form" model="ir.ui.view">
+        <field name="name">sale.order.line.margin.view.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line"/>
+        <field name="groups_id" eval="[(6, 0, [ref('price_security.group_restrict_prices')])]"/>
+        <field name="arch" type="xml">
+
+            <!-- we hide costing -->
+            <xpath expr="//field[@name='order_line']/form//field[@name='purchase_price']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="sale_margin_sale_order_line_only_view_form" model="ir.ui.view">
+        <field name="name">sale.order.line.margin.view.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_margin_sale_order_line_only_view_sale_price_form"/>
+        <field name="groups_id" eval="[(6, 0, [ref('price_security.group_only_view')])]"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='order_line']/form//field[@name='purchase_price']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
