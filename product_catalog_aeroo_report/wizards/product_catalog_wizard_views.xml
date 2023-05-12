@@ -29,4 +29,5 @@
     </record>
 
     <menuitem id="menu_product_catalog" action="action_product_catalog" parent="sale.menu_sale_report" sequence="20"/>
+    <menuitem id="menu_product_catalog_reporting" name="Reporting" action="sale.action_order_report_all" parent="sale.menu_sale_report" sequence="20"/>
 </odoo>
