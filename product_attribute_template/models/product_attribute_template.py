@@ -2,7 +2,7 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import models, fields
+from odoo import models, fields, api, Command
 
 
 class ProductAttributeTemplate(models.Model):
@@ -25,50 +25,44 @@ class ProductAttributeTemplate(models.Model):
     not_configured_product_qty = fields.Integer(
         '# Products Not Configured', compute='_compute_products',
     )
-    line_ids = fields.Many2many(
+    line_ids = fields.One2many(
         'product.template.attribute.line',
-        compute='_compute_default_line_ids',
-        inverse='_inverse_dummy_inverse',
+        inverse_name='product_attribute_template_id',
+        compute='_compute_line_ids',
+        store=True,
+        readonly=False,
     )
 
     def _compute_products(self):
         for rec in self:
             rec.product_qty = len(rec.product_tmpl_ids)
-            rec.not_configured_product_qty = rec.product_tmpl_ids.search_count(
-                [('attribute_line_ids.value_ids', '=', False),
-                    ('id', 'in', rec.product_tmpl_ids.ids)])
+            rec.not_configured_product_qty = rec.product_tmpl_ids.search_count([
+                ('attribute_line_ids.value_ids', '=', False),
+                ('id', 'in', rec.product_tmpl_ids.ids)
+            ])
 
     def update_attributes(self):
         self.ensure_one()
-        for product_tmpl in self.with_context(non_create_values=True).product_tmpl_ids:
-            for attribute in (
-                    self.product_attribute_ids -
-                    product_tmpl.attribute_line_ids.mapped('attribute_id')):
-                product_tmpl.attribute_line_ids.create({
-                    'attribute_id': attribute.id,
-                    'product_tmpl_id': product_tmpl.id,
+        for product in self.product_tmpl_ids:
+            for attr in (self.product_attribute_ids - product.attribute_line_ids.mapped('attribute_id')):
+                product.attribute_line_ids.with_context(non_create_values=True).create({
+                    'attribute_id': attr.id,
+                    'product_tmpl_id': product.id,
                 })
 
-    def _inverse_dummy_inverse(self):
-        return True
-
-    def _compute_default_line_ids(self):
-        product_templates = self.product_tmpl_ids
-        attributes = self.product_attribute_ids
-        res = [
-            (0, 0, {
-                'product_tmpl_id': product_template.id,
-                'attribute_id': attribute.id,
-                'value_ids': False,
-            })
-            # if the product doesn't have an line for the attribute,
-            # create a new one
-            if not product_template.attribute_line_ids.filtered(
-                lambda x: x.attribute_id == attribute) else
-            # otherwise, return the line
-            (4, product_template.attribute_line_ids.filtered(
-                lambda x: x.attribute_id == attribute)[0].id)
-            for product_template in product_templates
-            for attribute in attributes
-        ]
-        self.with_context(non_create_values=True).line_ids = res
+    @api.depends('product_attribute_ids')
+    def _compute_line_ids(self):
+        self.ensure_one()
+        res = []
+        for product in self.product_tmpl_ids._origin:
+            for attr in self.product_attribute_ids._origin:
+                res.append(Command.link(attr.id))
+                attribute_line = product.attribute_line_ids.filtered(lambda x: x.attribute_id == attr)
+                if not attribute_line:
+                    self.env['product.template.attribute.line'].with_context(non_create_values=True).create({
+                        'product_tmpl_id': product.id,
+                        'attribute_id': attr.id,
+                        'value_ids': False,
+                        'product_attribute_template_id': self.id
+                        })
+        self.product_attribute_ids = res # Revisar por qué no quedan guardados los atributos
