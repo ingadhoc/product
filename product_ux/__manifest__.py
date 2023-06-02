@@ -30,6 +30,7 @@
     ],
     'depends': [
         'product',
+        'stock_batch_picking_ux'
     ],
     'data': [
         'views/product_template_views.xml',
@@ -37,6 +38,9 @@
         'views/product_pricelist_item_view.xml',
         'views/product_pricelist_view.xml',
         'views/uom_uom_views.xml',
+        'report/ir.action.reports.xml',
+        'report/picking_templates.xml'
+        
     ],
     'demo': [
         'demo/product_pricelist_demo.xml',
