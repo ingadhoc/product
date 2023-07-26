@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product UX',
-    'version': "16.0.3.0.0",
+    'version': "16.0.4.0.0",
     'category': 'Products',
     'sequence': 14,
     'summary': '',
@@ -37,8 +37,6 @@
         'views/product_pricelist_item_view.xml',
         'views/product_pricelist_view.xml',
         'views/uom_uom_views.xml',
-        'report/ir.action.reports.xml',
-        'report/picking_templates.xml',
     ],
     'demo': [
         'demo/product_pricelist_demo.xml',
