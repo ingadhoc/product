@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product UX',
-    'version': "15.0.1.0.0",
+    'version': "15.0.1.1.0",
     'category': 'Products',
     'sequence': 14,
     'summary': '',
@@ -30,7 +30,6 @@
     ],
     'depends': [
         'product',
-        'stock_batch_picking_ux'
     ],
     'data': [
         'views/product_template_views.xml',
@@ -38,9 +37,6 @@
         'views/product_pricelist_item_view.xml',
         'views/product_pricelist_view.xml',
         'views/uom_uom_views.xml',
-        'report/ir.action.reports.xml',
-        'report/picking_templates.xml'
-        
     ],
     'demo': [
     ],
