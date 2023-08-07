@@ -64,8 +64,10 @@ class Parser(models.AbstractModel):
         if sale_uom and product.sale_uom_ids:
             product_obj = product_obj.with_context(
                 uom=product.sale_uom_ids[0].uom_id.id)
-        return product_obj.browse([product.id])._get_contextual_price()
-
+        price = product_obj.browse([product.id])._get_contextual_price()
+        if self._context.get('taxes_included'):
+            price = product.taxes_id.filtered(lambda tax: tax.company_id == self.env.user.company_id).compute_all(price, product=product)['total_included']
+        return price
 
     def get_description(self, product, print_product_uom):
 
