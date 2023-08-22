@@ -21,7 +21,8 @@ class SaleOrder(models.Model):
             if self.env.user.has_group('price_security.group_only_view_sale_price'):
                 invisible_fields = (arch.xpath("//field[@name='purchase_price']")
                                     + arch.xpath("//field[@name='margin']")
-                                    + arch.xpath("//field[@name='margin_percent']"))
+                                    + arch.xpath("//field[@name='margin_percent']")
+                                    + arch.xpath("//field[@name='margin_percent']/.."))
                 for node in invisible_fields:
                     node.set('invisible', '1')
                     modifiers = json.loads(node.get("modifiers") or "{}")
