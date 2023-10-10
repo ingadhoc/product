@@ -20,9 +20,8 @@ class ProductTemplate(models.Model):
         makes the view cache dependent on the fact the user has the group price security or not
         """
         key = super()._get_view_cache_key(view_id, view_type, **options)
-        key = key + (self.env.user.has_group('price_security.group_only_view'),) + \
+        return key + (self.env.user.has_group('price_security.group_only_view'),) + \
             (self.env.user.has_group('price_security.group_only_view_sale_price'),)
-        return key
 
     @api.model
     def _get_view(self, view_id=None, view_type='form', **options):

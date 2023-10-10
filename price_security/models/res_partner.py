@@ -6,6 +6,15 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     @api.model
+    def _get_view_cache_key(self, view_id=None, view_type='form', **options):
+        """The override of fields_get making fields readonly for price security users
+        makes the view cache dependent on the fact the user has the group price security or not
+        """
+        key = super()._get_view_cache_key(view_id, view_type, **options)
+        return key + (self.env.user.has_group('price_security.group_only_view'),) + \
+            (self.env.user.has_group('price_security.group_only_view_sale_price'),)
+
+    @api.model
     def _get_view(self, view_id=None, view_type='form', **options):
         arch, view = super()._get_view(view_id, view_type, **options)
         if view_type == 'form':
