@@ -39,7 +39,6 @@ class Users(models.Model):
                 so_line = so_line.with_context(whole_pack_price=True, pricelist=pricelist_id)
 
             tmp_line = so_line.new(tmp_line_vals)
-            tmp_line._onchange_discount()
             pricelist_disc = tmp_line.discount
         net_discount = discount - pricelist_disc
 
