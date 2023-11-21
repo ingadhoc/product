@@ -1,8 +1,8 @@
 from odoo import api, fields, models
 from odoo.tools import float_compare
 
-class StockProductionLot(models.Model):
-    _inherit = 'stock.production.lot'
+class StockLot(models.Model):
+    _inherit = 'stock.lot'
 
     is_alert_date = fields.Boolean(compute='_compute_is_alert_date', help="The Alert Date has been reached")
 
