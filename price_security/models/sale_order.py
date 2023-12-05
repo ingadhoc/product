@@ -71,9 +71,9 @@ class SaleOrder(models.Model):
                                     + arch.xpath("//field[@name='order_line']/form//field[@name='tax_id']")
                                     )
                 for node in fields:
-                    node.set('attrs', "{'readonly': [('product_can_modify_prices','=', False)]}")
+                    node.set('readonly', "product_can_modify_prices == False")
                     modifiers = json.loads(node.get("modifiers") or "{}")
-                    modifiers['attrs'] = "{'readonly': [('product_can_modify_prices','=', False)]}"
+                    modifiers['readonly'] = "product_can_modify_prices == False"
                     node.set("modifiers", json.dumps(modifiers))
                     node.set('force_save', '1')
                     modifiers = json.loads(node.get("modifiers") or "{}")
