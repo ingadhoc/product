@@ -13,7 +13,7 @@ class ProductTemplate(models.Model):
         'Vendor Product Code',
         related='seller_ids.product_code',
     )
-    warranty = fields.Float()
+    warranty = fields.Float(help="Informative field to define the warranty months of the product. Do not have relation with other models.")
     pricelist_price = fields.Float(compute='_compute_product_pricelist_price', digits='Product Price')
     pricelist_id = fields.Many2one('product.pricelist', store=False,)
 
