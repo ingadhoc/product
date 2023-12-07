@@ -16,11 +16,12 @@ Product Usability
 
 Several Improvements to products:
 
-#. Add tracking on active fields for products
-#. Add allows to search by supplier codes of products on product and product variants.
-#. Add smart button from pricelist to pricelists items
+#. Now the field "Active" (Archive) keeps tracking in chatter.
+#. Incorporates the possibility to search a product by the vendor product code in the product.template and product.product models.
+#. Add smart button from pricelist to pricelists items.
 #. Add product warranty field that was deprecated by odoo.
-#. Add new field description on product UOMs and add search view to allow to group and search by several fields
+#. Add new field "Description" on product UOMs.
+#. Incorporates the possibility to search the Pricelist Price of products in the tree view.
 
 Installation
 ============
