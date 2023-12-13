@@ -59,14 +59,44 @@ class ProductTemplate(models.Model):
     )
 
     @api.model
-    def cron_update_prices_from_planned(self):
+    def cron_update_prices_from_planned(self, batch_size=1000):
+        """ vamos a actualizar de a batches y guardar en un parametro cual es el ultimo que se actualizó.
+        si hay mas por atualizar llamamos con trigger al mismo cron para que siga con el prox batch
+        si terminamos, resetamos el parametro a 0 para que en proxima corrida arranque desde abajo
+        no usamos set_param porque refresca caché y en este caso preferimos evitarlo, al no usar set_param
+        tampoco podemos usar get_param porque justamente no se va a refrescar el valor
+        """
+
         _logger.info('Running update prices from planned cron')
         if self._context.get('force_company'):
             self = self.with_company(self._context.get('force_company'))
         else:
             self = self.with_company(self.env['res.company'].search([], limit=1).id)
-        
-        return self.with_context(bypass_base_automation=True)._update_prices_from_planned()
+
+        # buscamos cual fue el ultimo registro actualziado
+        parameter_name = 'product_planned_price.last_updated_record_id'
+        last_updated_param = self.env['ir.config_parameter'].sudo().search([('key', '=', parameter_name)], limit=1)
+        if not last_updated_param:
+            last_updated_param = self.env['ir.config_parameter'].sudo().create({'key': parameter_name, 'value': '0'})
+
+        # Obtiene los registros ordenados por id
+        domain = [('list_price_type', '!=', False), ('id', '>', int(last_updated_param.value))]
+        records = self.with_context(prefetch_fields=False).search(domain, order='id asc')
+
+        records.with_context(bypass_base_automation=True)._update_prices_from_planned()
+
+        if len(records) > batch_size:
+            last_updated_id = records[batch_size].id
+        else:
+            last_updated_id = 0
+
+        self.env.cr.execute("UPDATE ir_config_parameter set value = %s where id = %s", (str(last_updated_id), last_updated_param.id))
+        self.env.cr.commit()
+        # si setamos last updated es porque todavia quedan por procesar, volvemos a llamar al cron
+        if last_updated_id:
+            # para obtener el job_id se requiere este PR https://github.com/odoo/odoo/pull/146147
+            cron = self.env['ir.cron'].browse(self.env.context.get('job_id')) or self.env.ref('product_planned_price.ir_cron_update_price_from_planned')
+            cron._trigger()
 
     def _update_prices_from_planned(self):
         """
@@ -77,15 +107,9 @@ class ProductTemplate(models.Model):
         """
         prec = self.env['decimal.precision'].precision_get('Product Price')
 
-        # we search again if it is called from list view
-        domain = [('list_price_type', '!=', False)]
-        if self:
-            domain.append(('id', 'in', self.ids))
-
         cr = self._cr
-        for rec in self.with_context(
-                prefetch_fields=False).search(domain).filtered(
-                lambda x: x.computed_list_price and not float_is_zero(
+        for rec in self.with_context(prefetch_fields=False).filtered(
+                lambda x: x.list_price_type and x.computed_list_price and not float_is_zero(
                     x.computed_list_price - x.list_price,
                     precision_digits=prec)):
             # es mucho mas rapido hacerlo por sql directo
