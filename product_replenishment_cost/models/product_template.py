@@ -93,13 +93,27 @@ class ProductTemplate(models.Model):
             })
 
     @api.model
-    def cron_update_cost_from_replenishment_cost(self, limit=None, company_ids=None):
+    def cron_update_cost_from_replenishment_cost(self, limit=None, company_ids=None, batch_size=1000):
+        """ vamos a actualizar de a batches y guardar en un parametro cual es el ultimo que se actualizó.
+        si hay mas por atualizar llamamos con trigger al mismo cron para que siga con el prox batch
+        si terminamos, resetamos el parametro a 0 para que en proxima corrida arranque desde abajo
+        no usamos set_param porque refresca caché y en este caso preferimos evitarlo, al no usar set_param
+        tampoco podemos usar get_param porque justamente no se va a refrescar el valor
+        """
 
         # allow force_company for backward compatibility
         force_company = self._context.get('force_company', False)
         if force_company and company_ids:
             raise ValidationError(_(
                 "The argument 'company_ids' and the key 'force_company' on the context can't be used together"))
+         # buscamos cual fue el ultimo registro actualziado
+        parameter_name = 'product_replenishment_cost.last_updated_record_id'
+        last_updated_param = self.env['ir.config_parameter'].sudo().search([('key', '=', parameter_name)], limit=1)
+        if not last_updated_param:
+            last_updated_param = self.env['ir.config_parameter'].sudo().create({'key': parameter_name, 'value': '0'})
+        # Obtiene los registros ordenados por id
+        domain = [('id', '>', int(last_updated_param.value))] 
+        records = self.with_context(prefetch_fields=False).search(domain, order='id asc')
 
         # use company_ids or force_company or search for all companies
         if force_company:
@@ -109,8 +123,21 @@ class ProductTemplate(models.Model):
 
         for company_id in company_ids:
             _logger.info('Running cron update cost from replenishment for company %s', company_id)
-            self.with_company(company=company_id).with_context(prefetch_fields=False, bypass_base_automation=True).search(
-                [], limit=limit)._update_cost_from_replenishment_cost()
+            records.with_company(company=company_id).with_context(bypass_base_automation=True)._update_cost_from_replenishment_cost()
+
+        if len(records) > batch_size:
+            last_updated_id = records[batch_size].id
+        else:
+            last_updated_id = 0
+        self.env.cr.execute("UPDATE ir_config_parameter set value = %s where id = %s", (str(last_updated_id), last_updated_param.id))
+        self.env.cr.commit()
+        # si setamos last updated es porque todavia quedan por procesar, volvemos a llamar al cron
+        if last_updated_id:
+            # para obtener el job_id se requiere este PR https://github.com/odoo/odoo/pull/146147
+            cron = self.env['ir.cron'].browse(self.env.context.get('job_id')) or self.env.ref('product_replenishment_cost.ir_cron_update_cost_from_replenishment_cost')
+            cron._trigger()
+            
+        
 
     def _update_cost_from_replenishment_cost(self):
         """
