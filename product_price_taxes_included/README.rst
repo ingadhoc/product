@@ -14,11 +14,11 @@
 Product Price Taxes Included or Not
 ===================================
 
-This modules allow you to see product prices with or without taxes included.
+#. This modules allow you to see product prices with or without taxes included.
 
-#. Create new field on products that is shown on tree and form that shows "Product Price" with taxes included (on previous versions it was same lst_price field but then you couldn't search and sort by this field, so for siplicity we keep native odoo fields and add our owns)
-#. Also modify pricelist method so that if include_taxes is sent on context you will get prices with taxes included
-#. Add in config of sale the boolean to show price with tax in the product template kanban view.
+1. Add inside the configurations of Accounting a boolean to show price with tax in the product template kanban view.
+2. Create a new field on products that shows the product price with taxes included in the kanban and tree view (Taxed Sale Price).
+3. When filtering a pricelist in the product tree view, the column "Pricelist Price" will show the sale price according to the selected pricelist (need to have installed product_pricelist module).
 
 Installation
 ============
@@ -27,26 +27,12 @@ To install this module, you need to:
 
 #. Just install module.
 
-Configuration
-=============
+Technical readme
+================
 
-To configure this module, you need to:
-
-1. If you want to show the product price with taxes included on kanban view you have select the boolean
-   "Prices with tax on products kanban view" in the Invoicing Settings
-
-First Part
-==========
-
-1. Show in tree view the Product Price with taxes included .
-2. Modify pricelist method so that if include_taxes is sent on context you will get prices with taxes included
-3. Add in config of sale the boolean to show price with tax in the product template kanban view.
-
-Usage
-=====
-
-#. In the product tree and kanban view if you add the filter "Taxes Included", then the prices are showed with included taxes.
-#. When filtering a pricelist in the product list view, the column "Pricelist Price" will show the price according to the selected pricelist. In addition, when selecting the filter "Pricelis w/taxes", the column "Pricelist Price" will show that price with taxes.
+#. Create new field on products that is shown on tree and form that shows "Product Price" with taxes included (on previous versions it was same lst_price field but then you couldn't search and sort by this field, so for siplicity we keep native odoo fields and add our owns)
+#. Also modify pricelist method so that if include_taxes is sent on context you will get prices with taxes included
+#. Add in config of sale the boolean to show price with tax in the product template kanban view.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
