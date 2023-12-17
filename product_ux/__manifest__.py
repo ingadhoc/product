@@ -41,7 +41,7 @@
     'demo': [
         'demo/product_pricelist_demo.xml',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
     'application': False,
 }
