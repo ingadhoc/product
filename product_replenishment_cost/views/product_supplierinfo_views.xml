@@ -26,7 +26,7 @@
             <field name="price" position="after">
                 <field name="replenishment_cost_rule_id" context="{'default_product_id': active_id}" optional="show"/>
                 <field name="net_price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
-                <field name="currency_id" invisible="1"/>
+                <field name="currency_id" column_invisible="True"/>
             </field>
         </field>
     </record>
