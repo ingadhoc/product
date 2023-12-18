@@ -8,7 +8,7 @@
         <field name="inherit_id" ref="product.product_supplierinfo_form_view"/>
         <field name="arch" type="xml">
             <label for="date_start"  position="before">
-                <field name="replenishment_cost_rule_id" context="{'default_product_id': active_id}"/>
+                <field name="replenishment_cost_rule_id" context="{'default_product_id': id}"/>
                 <field name="net_price" string="Net Price" widget="monetary" options="{'currency_field': 'currency_id','field_digits': True}"/>
             </label>
         </field>
@@ -24,7 +24,7 @@
                 <attribute name="options">{'currency_field': 'currency_id', 'field_digits': True}</attribute>
             </field>
             <field name="price" position="after">
-                <field name="replenishment_cost_rule_id" context="{'default_product_id': active_id}" optional="show"/>
+                <field name="replenishment_cost_rule_id" context="{'default_product_id': id}" optional="show"/>
                 <field name="net_price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
                 <field name="currency_id" column_invisible="True"/>
             </field>
