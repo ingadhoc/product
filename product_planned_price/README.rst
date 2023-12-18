@@ -14,11 +14,11 @@
 Product Planned Price
 =====================
 
-This module add a new field "Planned Price" to products that can be extended by other modules to calculte this prices based in different conditions.
+This module add a new field "Planned Price" to products in the Sales tab that can be extended by other modules to calculte this prices based in different conditions.
 
-#. It also add a wizard to update "List Price" using "Planned Price" value. Optionally, you can activate a cron to run this update auomatically.
-#. Also Extends Planned Price and allow to set prices based on Replenishment Cost with a fixed and/or percentage margin.
-#. Allow to set prices base in other currency.
+Extends Planned Price and allow to set prices based on Replenishment Cost with a fixed and/or percentage margin.
+Allow to set prices based in other currency.
+It also add a wizard to update manually the "List Price" using "Planned Price" value in the action menu. Optionally, you can activate a cron to run this update auomatically.
 
 Installation
 ============
