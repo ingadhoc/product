@@ -14,9 +14,9 @@
                         <field name="replenishment_cost_last_update" string="Last Update" readonly="1"/>
                         <label for="replenishment_base_cost" string="Base Cost"/>
                         <div name="replenishment_base_cost" class="o_row">
-                            <field name="supplier_price" widget="monetary" options="{'currency_field': 'supplier_currency_id','field_digits': True}" attrs="{'invisible':[('replenishment_cost_type', 'not in', ['supplier_price', 'last_supplier_price'])]}"/>
-                            <field name="replenishment_base_cost" class="oe_inline" widget="monetary" options="{'currency_field': 'replenishment_base_cost_currency_id','field_digits': True}" attrs="{'invisible':[('replenishment_cost_type', '!=', 'manual')]}"/>
-                            <field name="replenishment_base_cost_currency_id" class="oe_inline oe_edit_only" options="{'no_open': True, 'no_create': True}" attrs="{'invisible':[('replenishment_cost_type', '!=', 'manual')]}"/>
+                            <field name="supplier_price" widget="monetary" options="{'currency_field': 'supplier_currency_id','field_digits': True}" invisible="replenishment_cost_type not in ['supplier_price', 'last_supplier_price']"/>
+                            <field name="replenishment_base_cost" class="oe_inline" widget="monetary" options="{'currency_field': 'replenishment_base_cost_currency_id','field_digits': True}" invisible="replenishment_cost_type != 'manual'"/>
+                            <field name="replenishment_base_cost_currency_id" class="oe_inline oe_edit_only" options="{'no_open': True, 'no_create': True}" invisible="replenishment_cost_type != 'manual'"/>
                             <label for="replenishment_base_cost_on_currency" string="/"/>
                             <field name="replenishment_base_cost_on_currency" class="oe_inline" widget="monetary" options="{'currency_field': 'currency_id','field_digits': True}"/>
                         </div>
@@ -26,8 +26,8 @@
                     <group name="accounting_cost" string="Accounting Cost">
                         <label for="standard_price" groups="base.group_user" string="Accounting Cost"/>
                         <div name="standard_price" groups="base.group_user">
-                            <field name="standard_price" widget="monetary" options="{'currency_field': 'cost_currency_id','field_digits': True}" class="oe_inline" readonly="1" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}" force_save="1"/>
-                            <button name="%(product.product_variant_action)d" icon="fa-arrow-right" type="action" attrs="{'invisible': ['|', ('product_variant_count', '&lt;=', 1), ('is_product_variant', '=', True)]}" groups="product.group_product_variant" string="Variants Costs" class="oe_inline"/>
+                            <field name="standard_price" widget="monetary" options="{'currency_field': 'cost_currency_id','field_digits': True}" class="oe_inline" readonly="1" invisible="product_variant_count &gt; 1 and not is_product_variant" force_save="1"/>
+                            <button name="%(product.product_variant_action)d" icon="fa-arrow-right" type="action" invisible="product_variant_count &lt;= 1 or is_product_variant" groups="product.group_product_variant" string="Variants Costs" class="oe_inline"/>
                         </div>
                     </group>
                 </group>
