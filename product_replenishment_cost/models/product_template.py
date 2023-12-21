@@ -112,7 +112,7 @@ class ProductTemplate(models.Model):
         if not last_updated_param:
             last_updated_param = self.env['ir.config_parameter'].sudo().create({'key': parameter_name, 'value': '0'})
         # Obtiene los registros ordenados por id
-        domain = [('id', '>', int(last_updated_param.value))] 
+        domain = [('id', '>', int(last_updated_param.value))]
         records = self.with_context(prefetch_fields=False).search(domain, order='id asc')
 
         # use company_ids or force_company or search for all companies
@@ -123,7 +123,7 @@ class ProductTemplate(models.Model):
 
         for company_id in company_ids:
             _logger.info('Running cron update cost from replenishment for company %s', company_id)
-            records.with_company(company=company_id).with_context(bypass_base_automation=True)._update_cost_from_replenishment_cost()
+            records[:batch_size].with_company(company=company_id).with_context(bypass_base_automation=True)._update_cost_from_replenishment_cost()
 
         if len(records) > batch_size:
             last_updated_id = records[batch_size].id
