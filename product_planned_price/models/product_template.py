@@ -83,7 +83,7 @@ class ProductTemplate(models.Model):
         domain = [('list_price_type', '!=', False), ('id', '>', int(last_updated_param.value))]
         records = self.with_context(prefetch_fields=False).search(domain, order='id asc')
 
-        records.with_context(bypass_base_automation=True)._update_prices_from_planned()
+        records[:batch_size].with_context(bypass_base_automation=True)._update_prices_from_planned()
 
         if len(records) > batch_size:
             last_updated_id = records[batch_size].id
