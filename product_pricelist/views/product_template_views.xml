@@ -3,15 +3,15 @@
     <record id="product_template_only_form_view" model="ir.ui.view">
         <field name="name">product.template.prices.form</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
             <group name="description" position="before">
-                <field name="pricelist_ids" context="{'template_id': id}">
+                <field name="pricelist_ids" >
                     <!-- TODO move this to a low priority view and specify here -->
-                    <tree delete='false' create='false'>
+                    <tree delete='false' create='false' edit="false" editable="top" options="{'no_open': True}">
                         <field name="name"/>
                         <field name="price"/>
-                        <field name="currency_id" invisible="1"/>
+                        <field name="currency_id" column_invisible="True"/>
                         <!-- TODO enable buttons after correcting domain -->
                     </tree>
                 </field>

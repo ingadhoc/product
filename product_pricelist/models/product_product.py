@@ -5,8 +5,8 @@
 from odoo import models, fields
 
 
-class ProductTemplate(models.Model):
-    _inherit = 'product.template'
+class ProductProduct(models.Model):
+    _inherit = 'product.product'
 
     pricelist_ids = fields.One2many(
         'product.pricelist',
@@ -17,4 +17,4 @@ class ProductTemplate(models.Model):
     def _compute_pricelist_ids(self):
         for rec in self:
             rec.pricelist_ids = rec.pricelist_ids.search([('show_products', '=', True)])
-            rec.pricelist_ids.with_context(pricelist_template_id=rec.id)._compute_price()
+            rec.pricelist_ids.with_context(pricelist_product_id=rec.id)._compute_price()
