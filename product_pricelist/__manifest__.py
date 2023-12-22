@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Pricelists information on Products",
-    'version': "16.0.1.0.0",
+    'version': "17.0.1.0.0",
     'category': 'Sales & Purchases',
     'sequence': 14,
     'author': 'ADHOC SA',
@@ -30,12 +30,11 @@
     ],
     "data": [
         'views/product_template_views.xml',
-        'views/product_product_views.xml',
         'views/product_pricelist_views.xml',
     ],
     'demo': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
