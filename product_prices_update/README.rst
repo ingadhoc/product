@@ -5,12 +5,15 @@
 =====================
 Product Prices Update
 =====================
-This module add a wizard for update product prices.
+Add a wizard in the product.template Action menu to update the product prices.
 
 Installation
 ============
 
 To install this module, you need to:
+
+1-Just Install the module
+
 
 
 Configuration
@@ -23,7 +26,9 @@ Usage
 =====
 
 To use this module, you need to:
-Go to the products list, select the products and then "Action" > "Product price update".
+1- Go to the products list
+2- Select the products
+3- "Action" -> "Product price update"
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
