@@ -2,7 +2,7 @@
 <odoo>
     <record id="view_product_catalog" model="ir.ui.view">
         <field name="name">Product Catalog</field>
-        <field name="model">product_catalog</field>
+        <field name="model">product.product_catalog.wizard</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Product Catalog Report">
@@ -23,7 +23,7 @@
     <record id="action_product_catalog" model="ir.actions.act_window">
         <field name="name">Product Catalog</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">product_catalog</field>
+        <field name="res_model">product.product_catalog.wizard</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
     </record>
