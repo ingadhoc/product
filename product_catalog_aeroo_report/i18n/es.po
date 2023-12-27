@@ -253,7 +253,7 @@ msgid "Variants"
 msgstr ""
 
 #. module: product_catalog_aeroo_report
-#: model:ir.model,name:product_catalog_aeroo_report.model_product_catalog
+#: model:ir.model,name:product_catalog_aeroo_report.model_product_product_catalog_wizard
 msgid "Wizard to generate the Product Catalog Report with Aeroo"
 msgstr ""
 

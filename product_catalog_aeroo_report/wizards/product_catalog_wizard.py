@@ -6,7 +6,7 @@ from odoo import fields, api, models
 
 
 class ProductCatalog(models.TransientModel):
-    _name = 'product_catalog'
+    _name = 'product.product_catalog.wizard'
     _description = 'Wizard to generate the Product Catalog Report with Aeroo'
 
     product_catalog_report_id = fields.Many2one(
