@@ -1,0 +1,12 @@
+<odoo>
+    <template id="report_saleorder" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//th[@name='th_description']" position="after">
+            <th class="text-center" t-if="doc.env['ir.config_parameter'].sudo().get_param('product_brand_report.show_brand_sales_report')">Brand</th>
+        </xpath>
+        <xpath expr="//td[@name='td_name']" position="after">
+            <td name="td_product_brand" class="text-center" t-if="doc.env['ir.config_parameter'].sudo().get_param('product_brand_report.show_brand_sales_report')">
+                <span t-field="line.product_id.product_brand_id.display_name" />
+            </td>
+        </xpath>
+    </template>
+</odoo>
