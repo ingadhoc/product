@@ -13,5 +13,15 @@ class ProductProduct(models.Model):
 
     @api.depends_context('pricelist', 'quantity', 'uom', 'date', 'no_variant_attributes_price_extra')
     def _compute_product_pricelist_price(self):
+        context = dict(self._context)
+        if 'pricelist' in context:
+            id_pricelist = next((x for x in context['pricelist'] if isinstance(x, int)), None)
+            if id_pricelist is None:
+                pricelist_name_search = self.env['product.pricelist'].name_search(
+                        context['pricelist'][0], operator="ilike", limit=1
+                    )
+                context['pricelist'] = pricelist_name_search[0][0] if pricelist_name_search else False
+            else:
+                context['pricelist'] = id_pricelist
         for product in self:
-            product.pricelist_price = product._get_contextual_price()
+            product.pricelist_price = product.with_context(context)._get_contextual_price()
