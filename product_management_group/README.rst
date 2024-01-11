@@ -14,8 +14,7 @@
 Products Management Group
 =========================
 
-This module creates a new group called "Products Management", only users on
-that group can create, edit or unlink products.
+This module creates a new group called "Products Management". Only users on that group can create, edit or archive products.
 
 IMPORTANT: this module overwrite rules on ir.model.access (except for the
 "read" mode)

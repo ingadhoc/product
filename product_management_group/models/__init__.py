@@ -3,5 +3,4 @@
 # directory
 ##############################################################################
 from . import ir_model_access
-from . import product_product
 
