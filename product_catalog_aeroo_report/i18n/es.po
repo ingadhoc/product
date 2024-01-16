@@ -9,10 +9,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-13 13:44+0000\n"
+"POT-Creation-Date: 2023-09-19 18:38+0000\n"
 "PO-Revision-Date: 2023-01-13 13:44+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2023\n"
-"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
@@ -36,13 +36,6 @@ msgstr ""
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields.selection,name:product_catalog_aeroo_report.selection__product_product_catalog_report__category_type__accounting_category
 msgid "Accounting Category"
-msgstr ""
-
-#. module: product_catalog_aeroo_report
-#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog__algolia_search
-#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_product_catalog_report__algolia_search
-#: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_report_product_catalog_parser__algolia_search
-msgid "Algolia Search"
 msgstr ""
 
 #. module: product_catalog_aeroo_report

@@ -1,0 +1,42 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_expiry_ux
+# 
+# Translators:
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 16.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-04 13:02+0000\n"
+"PO-Revision-Date: 2024-01-04 13:02+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024\n"
+"Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#. module: product_expiry_ux
+#: model_terms:ir.ui.view,arch_db:product_expiry_ux.view_move_form_expiry_ux
+msgid ""
+"<span class=\"badge text-bg-danger\" attrs=\"{'invisible': [('product_expiry_alert', '=', False)]}\">Expired </span>\n"
+"                <span class=\"badge text-bg-warning\" attrs=\"{'invisible': [('is_alert_date', '=', False)]}\"> Expiration Alert</span>"
+msgstr ""
+
+#. module: product_expiry_ux
+#: model:ir.model.fields,field_description:product_expiry_ux.field_stock_lot__is_alert_date
+msgid "Is Alert Date"
+msgstr ""
+
+#. module: product_expiry_ux
+#: model:ir.model,name:product_expiry_ux.model_stock_lot
+msgid "Lot/Serial"
+msgstr "Lote/Número de serie"
+
+#. module: product_expiry_ux
+#: model:ir.model.fields,help:product_expiry_ux.field_stock_lot__is_alert_date
+msgid "The Alert Date has been reached"
+msgstr ""
