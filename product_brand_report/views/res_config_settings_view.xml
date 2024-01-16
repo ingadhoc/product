@@ -5,16 +5,11 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[@data-key='sale_management']/div[3]" position="inside">
-                    <div class="col-xs-12 col-md-6 o_setting_box">
-                        <div class="o_setting_left_pane">
-                            <field name="show_brand_sales_report"/>
-                        </div>
-                        <div class="o_setting_right_pane">
-                            <label for="show_brand_sales_report"/>
-                        </div>
-                    </div>
-            </xpath>
+            <block name="quotation_order_setting_container" position="inside">
+                <setting id="show_brand_sales_report">
+                    <field name="show_brand_sales_report"/>
+                </setting>
+            </block>
         </field>
     </record>
 
@@ -23,16 +18,11 @@
         <field name="model">res.config.settings</field>
         <field name="inherit_id" ref="account.res_config_settings_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[@id='invoicing_settings']" position="inside">
-                <div class="col-xs-12 col-md-6 o_setting_box">
-                    <div class="o_setting_left_pane">
-                        <field name="show_brand_invoice_report"/>
-                    </div>
-                    <div class="o_setting_right_pane">
-                        <label for="show_brand_invoice_report"/>
-                    </div>
-                </div>
-            </xpath>
+            <block id="invoicing_settings" position="inside">
+                <setting id="show_brand_invoice_report">
+                    <field name="show_brand_invoice_report"/>
+                </setting>
+            </block>
         </field>
     </record>
 </odoo>

@@ -9,4 +9,15 @@
             </td>
         </xpath>
     </template>
+
+    <template id="report_saleorder_portal" inherit_id="sale.sale_order_portal_content">
+        <xpath expr="//th[@id='product_name_header']" position="after">
+            <th class="text-center" t-if="sale_order.env['ir.config_parameter'].sudo().get_param('product_brand_report.show_brand_sales_report')">Brand</th>
+        </xpath>
+        <xpath expr="//td[@id='product_name']" position="after">
+            <td name="td_product_brand" class="text-center" t-if="sale_order.env['ir.config_parameter'].sudo().get_param('product_brand_report.show_brand_sales_report')">
+                <span t-field="line.product_id.product_brand_id.display_name" />
+            </td>
+        </xpath>
+    </template>
 </odoo>
