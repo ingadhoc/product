@@ -3,21 +3,21 @@
 # 	* price_security
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2022
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2023
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 15.0+e\n"
+"Project-Id-Version: Odoo Server 17.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-25 13:24+0000\n"
-"PO-Revision-Date: 2022-04-19 14:03+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2022\n"
-"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/133229/es/)\n"
+"POT-Creation-Date: 2023-12-28 11:49+0000\n"
+"PO-Revision-Date: 2023-12-28 11:49+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2023\n"
+"Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_product_product__can_modify_prices
@@ -27,14 +27,19 @@ msgid "Can modify prices"
 msgstr ""
 
 #. module: price_security
+#: model:ir.model,name:price_security.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
+
+#. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__create_uid
 msgid "Created by"
-msgstr "Creado por"
+msgstr ""
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__create_date
 msgid "Created on"
-msgstr "Creado en"
+msgstr ""
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_res_users_discount_restriction
@@ -54,12 +59,12 @@ msgstr ""
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__display_name
 msgid "Display Name"
-msgstr "Nombre Mostrado"
+msgstr ""
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__id
 msgid "ID"
-msgstr "ID"
+msgstr ""
 
 #. module: price_security
 #: model:ir.model.fields,help:price_security.field_account_move_line__product_can_modify_prices
@@ -72,24 +77,24 @@ msgid ""
 msgstr ""
 
 #. module: price_security
+#: model:ir.model,name:price_security.model_account_move
+msgid "Journal Entry"
+msgstr "Asiento contable"
+
+#. module: price_security
 #: model:ir.model,name:price_security.model_account_move_line
 msgid "Journal Item"
 msgstr "Apunte contable"
 
 #. module: price_security
-#: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction____last_update
-msgid "Last Modified on"
-msgstr "Última Modificación en"
-
-#. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__write_uid
 msgid "Last Updated by"
-msgstr "Última actualización realizada por"
+msgstr ""
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr ""
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__max_discount
@@ -102,14 +107,9 @@ msgid "Min. Discount"
 msgstr ""
 
 #. module: price_security
-#: model_terms:ir.ui.view,arch_db:price_security.view_payment_term_tree
-msgid "Payment Term"
-msgstr ""
-
-#. module: price_security
 #: model:ir.model,name:price_security.model_account_payment_term
 msgid "Payment Terms"
-msgstr "Plazos de pago"
+msgstr "Condiciones de pago"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_product_pricelist
@@ -118,14 +118,19 @@ msgid "Pricelist"
 msgstr "Tarifa"
 
 #. module: price_security
+#: model:ir.model,name:price_security.model_product_template
+msgid "Product"
+msgstr "Producto"
+
+#. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_account_move_line__product_can_modify_prices
 msgid "Product Can modify prices"
 msgstr ""
 
 #. module: price_security
-#: model:ir.model,name:price_security.model_product_template
-msgid "Product Template"
-msgstr "Plantilla de producto"
+#: model:ir.model,name:price_security.model_product_product
+msgid "Product Variant"
+msgstr "Variantes de producto"
 
 #. module: price_security
 #: model:ir.module.category,name:price_security.module_prices_management
@@ -143,6 +148,7 @@ msgid "Sales Order Line"
 msgstr "Línea de pedido de venta"
 
 #. module: price_security
+#. odoo-python
 #: code:addons/price_security/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -151,6 +157,7 @@ msgid ""
 msgstr ""
 
 #. module: price_security
+#. odoo-python
 #: code:addons/price_security/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -165,7 +172,7 @@ msgid "Sequence"
 msgstr "Secuencia"
 
 #. module: price_security
-#: model:res.groups,name:price_security.group_restrict_prices
+#: model:res.groups,name:price_security.group_only_view_sale_price
 msgid "Solo ver: precio de venta"
 msgstr ""
 
@@ -175,6 +182,7 @@ msgid "Solo ver: precio venta y compra"
 msgstr ""
 
 #. module: price_security
+#. odoo-python
 #: code:addons/price_security/models/res_users.py:0
 #, python-format
 msgid ""
@@ -183,6 +191,7 @@ msgid ""
 msgstr ""
 
 #. module: price_security
+#. odoo-python
 #: code:addons/price_security/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -191,16 +200,13 @@ msgid ""
 msgstr ""
 
 #. module: price_security
+#: model:ir.model,name:price_security.model_res_users
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__user_id
 msgid "User"
 msgstr "Usuario"
 
 #. module: price_security
-#: model:ir.model,name:price_security.model_res_users
-msgid "Users"
-msgstr "Usuarios"
-
-#. module: price_security
+#. odoo-python
 #: code:addons/price_security/models/sale_order.py:0
 #, python-format
 msgid ""
@@ -209,6 +215,7 @@ msgid ""
 msgstr ""
 
 #. module: price_security
+#. odoo-python
 #: code:addons/price_security/models/res_users.py:0
 #, python-format
 msgid "You can not give any discount greater than pricelist discounts"
