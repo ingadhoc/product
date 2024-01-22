@@ -19,15 +19,23 @@ class ProductTemplate(models.Model):
 
     @api.depends_context('pricelist', 'quantity', 'uom', 'date', 'no_variant_attributes_price_extra')
     def _compute_product_pricelist_price(self):
-        context = dict(self._context)
-        if 'pricelist' in context:
-            id_pricelist = next((x for x in context['pricelist'] if isinstance(x, int)), None)
-            if id_pricelist is None:
-                pricelist_name_search = self.env['product.pricelist'].name_search(
-                        context['pricelist'][0], operator="ilike", limit=1
-                    )
-                context['pricelist'] = pricelist_name_search[0][0] if pricelist_name_search else False
-            else:
-                context['pricelist'] = id_pricelist
         for product in self:
-            product.pricelist_price = product.with_context(context)._get_contextual_price()
+            product.pricelist_price = product._get_contextual_price()
+
+    def _get_contextual_pricelist(self):
+        """ Re agregamos compatibilidad con que la lista de precios se mande como name o como lista en el contexto
+        Basicamente esto de acá https://github.com/odoo/odoo/blob/13.0/addons/product/models/product_template.py#L213
+        Si viene lista obtenemos el primer elemento
+        Luego, si ese elemento es string buscamos a traves de name search.
+        Para otros casos devolvemos super (debería ser un ID)
+        """
+        pricelist_id_or_name = self._context.get('pricelist')
+        if isinstance(pricelist_id_or_name, list):
+            pricelist_id_or_name = pricelist_id_or_name[0]
+        if isinstance(pricelist_id_or_name, str):
+            pricelist_data = self.env['product.pricelist'].name_search(pricelist_id_or_name, operator='ilike', limit=1)
+            if pricelist_data:
+                return self.env['product.pricelist'].browse(pricelist_data[0][0])
+            else:
+                return self.env['product.pricelist']
+        return super()._get_contextual_pricelist()
