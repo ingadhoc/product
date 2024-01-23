@@ -32,8 +32,10 @@ class ProductTemplate(models.Model):
         pricelist_id_or_name = self._context.get('pricelist')
         if isinstance(pricelist_id_or_name, list):
             pricelist_id_or_name = pricelist_id_or_name[0]
+            # Si viene una lista en pricelist actualizamos contexto para que si se llama super, este reciba un entero
+            self = self.with_context(pricelist=pricelist_id_or_name)
         if isinstance(pricelist_id_or_name, str):
-            pricelist_data = self.env['product.pricelist'].name_search(pricelist_id_or_name, operator='ilike', limit=1)
+            pricelist_data = self.env['product.pricelist'].name_search(pricelist_id_or_name, operator='=', limit=1)
             if pricelist_data:
                 return self.env['product.pricelist'].browse(pricelist_data[0][0])
             else:
