@@ -1,10 +1,15 @@
 from odoo import fields, models, api
+from odoo.exceptions import UserError, ValidationError
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 class EstateProperty(models.Model):
     _name = "estate.property"
     _description = "Estate properties"
+
+    _order = "id desc"
+
+   
 
     name = fields.Char('Property name', required=True)
     description = fields.Text('Description', translate=True)
@@ -50,7 +55,7 @@ class EstateProperty(models.Model):
             if len(record.offer_ids) > 0:
                 record.best_price = max(record.offer_ids.mapped('price'))
             else:
-                record.best_price = 0    
+                record.best_price = 0
     
     @api.onchange('garden')
     def _onchange_garden_area_orientation(self):
@@ -60,4 +65,38 @@ class EstateProperty(models.Model):
         else:
             self.garden_area = False
             self.garden_orientation = False
-        
+    
+    def action_property_sold(self):
+        for record in self:
+            if record.state != 'canceled':
+                record.state = 'sold'
+            else:
+                raise UserError('A canceled property cannot be sold')
+                
+
+    def action_property_cancel(self):
+        for record in self:
+            if record.state != 'sold':
+                record.state = 'canceled'
+            else:
+                raise UserError('A sold property cannot be canceled')
+
+    @api.constrains('selling_price', 'expected_price')
+    def _check_price_lower(self):
+        for record in self:
+            if record.selling_price > 0:
+                if record.selling_price < (record.expected_price * 0.9):
+                    raise ValidationError('The selling price must be greater than the 90 percent of the expected price')
+
+
+    @api.ondelete(at_uninstall=False)
+    def _unlink_if_new_or_canceled(self):
+        for record in self:
+            if record.state != ('new') and record.state != ('canceled') :
+                raise UserError("You cannot delete a property that its not in new or canceled state.")
+            
+
+
+    _sql_constraints = [('check_expected_price', 'CHECK(expected_price>0)', 
+    'The expected price must be greater than $0'),
+    ('check_selling_price', 'CHECK(selling_price>0)', 'The selling price must be greater than $0')]
