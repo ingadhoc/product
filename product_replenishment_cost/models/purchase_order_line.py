@@ -34,7 +34,7 @@ class PurchaseOrderLine(models.Model):
 
     @api.model
     def _prepare_purchase_order_line(self, product_id, product_qty, product_uom, company_id, supplier, po):
-        # [FIX]calculo precio bien cuando viene de reabastecimiento
+        # Para casos como cuando se viene de reabastecimientos, usamos el nuevo net_price en vez de price
         res = super()._prepare_purchase_order_line(
             product_id, product_qty, product_uom, company_id, supplier, po)
         price_unit = self.env['account.tax']._fix_tax_included_price_company(supplier.net_price, product_id.supplier_taxes_id, self.taxes_id, company_id) if supplier else 0.0
