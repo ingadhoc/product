@@ -31,3 +31,15 @@ class PurchaseOrderLine(models.Model):
             if seller and line.product_uom and seller.product_uom != line.product_uom:
                 price_unit = seller.product_uom._compute_price(price_unit, line.product_uom)
             line.price_unit = price_unit
+
+    @api.model
+    def _prepare_purchase_order_line(self, product_id, product_qty, product_uom, company_id, supplier, po):
+        # [FIX]calculo precio bien cuando viene de reabastecimiento
+        res = super()._prepare_purchase_order_line(
+            product_id, product_qty, product_uom, company_id, supplier, po)
+        price_unit = self.env['account.tax']._fix_tax_included_price_company(supplier.net_price, product_id.supplier_taxes_id, self.taxes_id, company_id) if supplier else 0.0
+        if price_unit and supplier and po.currency_id and supplier.currency_id != po.currency_id:
+            price_unit = supplier.currency_id._convert(price_unit, po.currency_id, po.company_id, po.date_order or fields.Date.today())
+        res['price_unit'] = price_unit
+
+        return res
