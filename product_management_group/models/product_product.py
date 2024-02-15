@@ -10,7 +10,7 @@ class ProductProduct(models.Model):
         # Hacemos esto para evitar la edición desde la vista form de productos cuando se accede desde el botón 
         # "Search Products" en ventas y compras.
         arch, view = super()._get_view(view_id, view_type, **options)
-        if ((self._context.get('sale_quotation_products') or self._context.get('purchase_quotation_products'))
+        if ((self._context.get('sale_quotation_products') or self._context.get('purchase_quotation_products') or self._context.get('product_management_group_bypass'))
             and view_type == 'form' and not self.env.user.has_group('product_management_group.group_products_management')):
                 for node in arch.xpath("//field[@name]"):
                     node.set('readonly', '1')
