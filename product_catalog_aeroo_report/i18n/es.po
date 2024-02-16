@@ -34,9 +34,9 @@ msgid "%s. Also available in %s"
 msgstr ""
 
 #. module: product_catalog_aeroo_report
-#: model:ir.model.fields.selection,name:product_catalog_aeroo_report.selection__product_product_catalog_report__category_type__accounting_category
-msgid "Accounting Category"
-msgstr ""
+#: model:ir.model.fields.selection,name:product_catalog_aeroo_report.selection__product_product_catalog_report__category_type__product_category
+msgid "Product Category"
+msgstr "Categoría de Producto"
 
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report.field_product_catalog__algolia_search
