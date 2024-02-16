@@ -6,11 +6,11 @@
         <field name="inherit_id" ref="product_catalog_aeroo_report.view_product_catalog_report_form"/>
         <field name="arch" type="xml">
             <field name="product_type" position="after">
-                <field name="category_type"/>
+                <field name="product_category"/>
             </field>
             <field name="category_ids" position="replace">
-                <field name="category_ids" attrs="{'invisible':[('category_type','=','public_category')]}"/>
-                <field name="public_category_ids" attrs="{'invisible':[('category_type','=','accounting_category')]}"/>
+                <field name="category_ids" invisible="product_category == 'public_category'"/>
+                <field name="public_category_ids" invisible="product_category == 'accounting_category'"/>
             </field>
         </field>
     </record>
