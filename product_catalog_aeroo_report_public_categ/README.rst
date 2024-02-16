@@ -14,7 +14,7 @@
 Product Catalog Aeroo Report with public Category
 =================================================
 
-This module adds the functionality of "Public Category" to module Product Catalog.
+This module incorporates the possibility of filtering the products that will be displayed in the Category Type by Public Category (this category is the one that is used in the e-commerce).
 
 Installation
 ============

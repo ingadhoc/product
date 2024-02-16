@@ -9,8 +9,8 @@
                 <field name="category_type"/>
             </field>
             <field name="category_ids" position="replace">
-                <field name="category_ids" attrs="{'invisible':[('category_type','=','public_category')]}"/>
-                <field name="public_category_ids" attrs="{'invisible':[('category_type','=','accounting_category')]}"/>
+                <field name="category_ids" invisible="category_type == 'public_category'"/>
+                <field name="public_category_ids" invisible="category_type == 'product_category'"/>
             </field>
         </field>
     </record>

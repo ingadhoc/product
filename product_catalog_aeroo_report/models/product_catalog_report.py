@@ -72,8 +72,8 @@ class ProductCatalogReport(models.Model):
     )
 
     category_type = fields.Selection(
-        [('accounting_category', 'Accounting Category')],
-        default='accounting_category',
+        [('product_category', 'Product Category')],
+        default='product_category',
         required=True,
     )
 
