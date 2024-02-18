@@ -1,17 +1,17 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* product_replenishment_cost_sale_margin
+# 	* product_replenishment_cost_stock
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2023
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-16 13:48+0000\n"
-"PO-Revision-Date: 2023-09-19 13:35+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2023\n"
+"POT-Creation-Date: 2024-02-14 20:32+0000\n"
+"PO-Revision-Date: 2024-02-14 20:32+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Language: es\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-#. module: product_replenishment_cost_sale_margin
-#: model:ir.model,name:product_replenishment_cost_sale_margin.model_sale_order_line
-msgid "Sales Order Line"
-msgstr "Línea de pedido de venta"
+#. module: product_replenishment_cost_stock
+#: model:ir.model,name:product_replenishment_cost_stock.model_stock_rule
+msgid "Stock Rule"
+msgstr "Regla de Inventario"
