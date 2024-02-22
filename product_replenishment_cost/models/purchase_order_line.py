@@ -41,5 +41,7 @@ class PurchaseOrderLine(models.Model):
         if price_unit and supplier and po.currency_id and supplier.currency_id != po.currency_id:
             price_unit = supplier.currency_id._convert(price_unit, po.currency_id, po.company_id, po.date_order or fields.Date.today())
         res['price_unit'] = price_unit
+        if res['price_unit'] == 0:
+            res['price_unit'] = product_id.standard_price
 
         return res
