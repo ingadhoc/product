@@ -19,5 +19,7 @@ class StockRule(models.Model):
         if price_unit and supplier and po.currency_id and supplier.currency_id != po.currency_id:
             price_unit = supplier.currency_id._convert(price_unit, po.currency_id, po.company_id, po.date_order or fields.Date.today())
         vals['price_unit'] = price_unit
+        if vals['price_unit'] == 0:
+            vals['price_unit'] = product_id.standard_price
 
         return vals
