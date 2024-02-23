@@ -44,3 +44,12 @@ class ProductPricelist(models.Model):
             else:
                 result = True
         return result
+
+    def _get_product_price(self, product, quantity, uom=None, date=False, **kwargs):
+        res = super()._get_product_price(product, quantity, uom=None, date=False, **kwargs)
+        if self._context.get('taxes_included'):
+            company_id = (self._context.get('company_id')
+                          or self.env.company.id)
+            res = product.taxes_id.filtered(
+                lambda x: x.company_id.id == company_id).compute_all(res, product=product)['total_included']
+        return res
