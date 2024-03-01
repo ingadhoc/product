@@ -9,7 +9,6 @@
         <field name="prod_display_type">prod_per_line</field>
         <field name="report_id" ref="report_product_catalog_ods"/>
         <field name="category_ids" eval="[(4, ref('product.product_category_all'))]"/>
-        <field name="pricelist_ids" eval="[(4, ref('product.list0'))]"/>
     </record>
 
     <record id="catalog_demo2" model="product.product_catalog_report">
@@ -21,7 +20,6 @@
         <field name="prod_display_type">prod_list</field>
         <field name="report_id" ref="report_product_catalog_simple_odt"/>
         <field name="category_ids" eval="[(4, ref('product.product_category_all'))]"/>
-        <field name="pricelist_ids" eval="[(4, ref('product.list0'))]"/>
     </record>
 
     <record id="catalog_demo3" model="product.product_catalog_report">
@@ -33,7 +31,6 @@
         <field name="prod_display_type">variants</field>
         <field name="report_id" ref="report_product_catalog_by_categories_odt"/>
         <field name="category_ids" eval="[(4, ref('product.product_category_all'))]"/>
-        <field name="pricelist_ids" eval="[(4, ref('product.list0'))]"/>
     </record>
 
 </odoo>
