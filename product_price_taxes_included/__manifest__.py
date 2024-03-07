@@ -30,6 +30,7 @@
     ],
     'depends': [
         'account',
+        'product_ux'
     ],
     'data': [
         'security/product_price_taxes_included_security.xml',

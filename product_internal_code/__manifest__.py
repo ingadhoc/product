@@ -20,7 +20,7 @@
 
 {
     "name": "Product Internal Code",
-    'version': "16.0.1.0.0",
+    'version': "17.0.1.0.0",
     'category': 'Tools',
     'sequence': 14,
     'author': 'ADHOC SA',
@@ -35,11 +35,10 @@
         'views/product_views.xml',
     ],
     'demo': [
-        'demo/product.product.csv'
     ],
     'test': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }

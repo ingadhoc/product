@@ -33,3 +33,7 @@ class ProductTemplate(models.Model):
                     product.list_price,
                     self.env.company.currency_id,
                     product=product)['total_included']
+
+    @api.depends_context('taxes_included')
+    def _compute_product_pricelist_price(self):
+        return super()._compute_product_pricelist_price()

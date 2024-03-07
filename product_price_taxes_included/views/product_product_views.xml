@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="product.product_product_tree_view"></field>
         <field name="arch" type="xml">
             <field name="lst_price" position="after">
-                <field name="taxed_lst_price"/>
+                <field name="taxed_lst_price" widget="monetary" options="{'currency_field': 'currency_id'}"/>
             </field>
         </field>
     </record>

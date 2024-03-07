@@ -8,6 +8,5 @@
         <field name="product_type">product.product</field>
         <field name="report_id" ref="report_product_catalog_by_categories_odt"/>
         <field name="category_ids" eval="[(4, ref('product.product_category_all'))]"/>
-        <field name="pricelist_ids" eval="[(4, ref('product.list0'))]"/>
     </record>
 </odoo>
