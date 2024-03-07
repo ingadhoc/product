@@ -46,7 +46,7 @@ class ProductPricelist(models.Model):
         return result
 
     def _get_product_price(self, product, quantity, uom=None, date=False, **kwargs):
-        res = super()._get_product_price(product, quantity, uom=None, date=False, **kwargs)
+        res = super()._get_product_price(product, quantity, uom, date, **kwargs)
         if self._context.get('taxes_included'):
             company_id = (self._context.get('company_id')
                           or self.env.company.id)
