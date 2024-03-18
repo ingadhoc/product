@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="estate_property_action" model="ir.actions.act_window">
+        <field name="name">Properties</field>
+        <field name="res_model">estate.property</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Empty App</p>
+        </field>
+    </record>
+
+    <record id="estate_property_type_action" model="ir.actions.act_window">
+        <field name="name">Properties Types</field>
+        <field name="res_model">estate.property.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add Type</p>           
+        </field>
+    </record>
+    
+    <record id="estate_property_tags_action" model="ir.actions.act_window">
+        <field name="name">Properties Tags</field>
+        <field name="res_model">estate.property.tags</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add Type</p>           
+        </field>
+    </record>
+
+    <menuitem
+        id="estate_property_menu"
+        name="Estate Property"
+        sequence="1"/>
+    
+    <menuitem
+        id="properties_menu"
+        name="Properties"
+        parent="estate_property_menu"
+        sequence="2"/>
+    
+    <menuitem
+        id="properties_submenu"
+        action="estate_property_action"
+        parent="estate_property_menu"
+        sequence="3"/>
+
+    <menuitem
+        id="settings_menu"
+        name="Settings"
+        parent="estate_property_menu"
+        sequence="4" />
+    
+    <menuitem
+        id="estate_property_type_menu"
+        name="Property Types"
+        action="estate_property_type_action"
+        parent="settings_menu"
+        sequence="5" />
+    
+    <menuitem
+        id="estate_property_tags_menu"
+        name="Property Tags"
+        action="estate_property_tags_action"
+        parent="settings_menu"
+        sequence="6" />
+</odoo>

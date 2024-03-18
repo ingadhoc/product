@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="estate_property_view_tree" model="ir.ui.view">
+        <field name="name">Propiedades</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="postcode" />
+                <field name="bedrooms" />
+                <field name="living_area" />
+                <field name="expected_price" />
+                <field name="selling_price" />
+                <field name="date_availability" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="estate_property_view_form" model="ir.ui.view">
+        <field name="name">New Property</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                        <field name="tag_ids" widget="many2many_tags" />
+                    </div>
+                    <group>
+                        <group>
+                            <group>
+                                <field name="property_type_id" />
+                                <field name="postcode" />
+                                <field name="date_availability" />
+                            </group>
+                            <group>
+                                <field name="expected_price" />
+                                <field name="best_price" />
+                                <field name="selling_price" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <group>
+                                    <field name="description" />
+                                    <field name="bedrooms" />
+                                    <field name="living_area" />
+                                    <field name="facades" />
+                                    <field name="garage" />
+                                    <field name="garden" />
+                                    <field name="garden_area" />
+                                    <field name="garden_orientation" />
+                                    <field name="total_area" />
+                                </group>
+                            </page>
+                            <page string="Offers">
+                                <group>
+                                    <field name="offer_ids" />
+                                </group>
+                            </page>
+                            <page string="Other Info">
+                                <group>
+                                    <field name="salesperson_id" />
+                                    <field name="buyer_id" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="estate_property_view_search" model="ir.ui.view">
+        <field name="name">Properties</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <search string="Properties">
+                <field name="name" />
+                <field name="postcode" />
+                <field name="expected_price" />
+                <field name="bedrooms" />
+                <field name="living_area" />
+                <field name="facades" />
+                <filter name="state" string="Availability" domain="['|',('state', '=', 'new'),('state', '=', 'o_r')]"/>
+                <filter name="postcode" string="Postcode" context="{'group_by': 'postcode'}" />
+            </search>
+        </field>
+    </record>
+</odoo>
