@@ -26,7 +26,7 @@ msgid "Algolia Search"
 msgstr ""
 
 #. module: product_catalog_aeroo_report_public_categ
-#: model:ir.model.fields,field_description:product_catalog_aeroo_report_public_categ.field_product_product_catalog_report__category_type
+#: model:ir.model.fields,field_description:product_catalog_aeroo_report_public_categ.field_product_product_catalog_report__product_category
 msgid "Category Type"
 msgstr ""
 
@@ -51,9 +51,9 @@ msgid "Product Categories Public"
 msgstr ""
 
 #. module: product_catalog_aeroo_report_public_categ
-#: model:ir.model.fields.selection,name:product_catalog_aeroo_report_public_categ.selection__product_product_catalog_report__category_type__public_category
-msgid "Public Category"
-msgstr "Categoría pública"
+#: model:ir.model.fields.selection,name:product_catalog_aeroo_report_public_categ.selection__product_product_catalog_report__product_category__public_category
+msgid "Product Category"
+msgstr "Categoría de Producto"
 
 #. module: product_catalog_aeroo_report_public_categ
 #: model:ir.model,name:product_catalog_aeroo_report_public_categ.model_product_public_category
