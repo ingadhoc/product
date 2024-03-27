@@ -27,4 +27,3 @@ class StockMoveLine(models.Model):
             })
             if not lot.alert_date:
                 lot.write({'alert_date': lot.expiration_date - datetime.timedelta(days=prod.alert_time)})
-

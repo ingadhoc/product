@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+    <record id="view_move_line_tree" model="ir.ui.view">
+        <field name="name">stock.move.line.tree</field>
+        <field name="model">stock.move.line</field>
+        <field name="mode">primary</field>
+        <field name="priority">50</field>
+        <field name="inherit_id" ref="stock.view_move_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="lot_id" position="after">
+                <field name="expiration_date" readonly="0"/>
+            </field>
+            <field name="product_id" position="after">
+                <field name="lots_visible" invisible="1"/>
+            </field>
+            <field name="expiration_date" position="attributes">
+                <attribute name="invisible">lots_visible == False</attribute>
+            </field>
+        </field>
+    </record>
+</odoo>
