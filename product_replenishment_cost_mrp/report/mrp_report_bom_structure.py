@@ -48,6 +48,7 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
         })
         return res
 
+<<<<<<< HEAD
     @api.model
     def _get_byproducts_lines(self, product, bom, bom_quantity, level, total, index):
         byproducts, byproduct_cost_portion = super()._get_byproducts_lines(product, bom, bom_quantity, level, total, index)
@@ -63,6 +64,37 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
                 'prod_cost': price,
             })
         return byproducts, byproduct_cost_portion
+||||||| parent of 26dc8132 (temp)
+    def _get_price(self, bom, factor, product):
+        price = 0
+        if bom.routing_id:
+            # routing are defined on a BoM and don't have a concept of quantity.
+            # It means that the operation time are defined for the quantity on
+            # the BoM (the user produces a batch of products). E.g the user
+            # product a batch of 10 units with a 5 minutes operation, the time
+            # will be the 5 for a quantity between 1-10, then doubled for
+            # 11-20,...
+            operation_cycle = float_round(
+                factor, precision_rounding=1, rounding_method='UP')
+            operations = self._get_operation_line(
+                bom.routing_id, operation_cycle, 0)
+            price += sum([op['total'] for op in operations])
+=======
+    def _get_price(self, bom, factor, product):
+        price = 0
+        if bom.operation_ids:
+            # routing are defined on a BoM and don't have a concept of quantity.
+            # It means that the operation time are defined for the quantity on
+            # the BoM (the user produces a batch of products). E.g the user
+            # product a batch of 10 units with a 5 minutes operation, the time
+            # will be the 5 for a quantity between 1-10, then doubled for
+            # 11-20,...
+            operation_cycle = float_round(
+                factor, precision_rounding=1, rounding_method='UP')
+            operations = self._get_operation_line(
+                bom.operation_ids, operation_cycle, 0)
+            price += sum([op['total'] for op in operations])
+>>>>>>> 26dc8132 (temp)
 
     @api.model
     def _get_operation_line(self, product, bom, qty, level, index):
