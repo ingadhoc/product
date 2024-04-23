@@ -48,7 +48,7 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
 
     def _get_price(self, bom, factor, product):
         price = 0
-        if bom.routing_id:
+        if bom.operation_ids:
             # routing are defined on a BoM and don't have a concept of quantity.
             # It means that the operation time are defined for the quantity on
             # the BoM (the user produces a batch of products). E.g the user
@@ -58,7 +58,7 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
             operation_cycle = float_round(
                 factor, precision_rounding=1, rounding_method='UP')
             operations = self._get_operation_line(
-                bom.routing_id, operation_cycle, 0)
+                bom.operation_ids, operation_cycle, 0)
             price += sum([op['total'] for op in operations])
 
         for line in bom.bom_line_ids:
