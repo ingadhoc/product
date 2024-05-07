@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    
     <record id="estate_property_action" model="ir.actions.act_window">
         <field name="name">Estate Property</field>
         <field name="res_model">estate.property</field>
-        <field name="view_mode">tree,form</field>
-    </record>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="context">{'search_default_disponilbe': False}</field>
+    </record>s
 
     <!-- model.name tree view -->
     <record id="estate_property_view_tree" model="ir.ui.view">
         <field name="name">estate.property.view.tree</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree decoration-muted="state=='sold'" decoration-success="state in ['offer_received','offer_accepted']">
                 <field name="name" string="Title"/>
                 <field name="postcode" />
                 <field name="bedrooms"/>
                 <field name="living_area" string="Living Area(sqm)"/>
                 <field name="expected_price"/>
                 <field name="selling_price"/>
-                <field name="date_availability" string="Available From" />                
+                <field name="date_availability" string="Available From" optional="hide" />    
+                <field name="state"/>
+                <field name="property_type_id"/>     
+                <button name="offer_recieved" string="Offer Recieved" type="object"  invisible="state in ['offer_accepted','sold','canceled']"/>    
             </tree>
         </field>
     </record>
@@ -29,6 +34,11 @@
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
             <form string="Estate Property">
+                <header>
+                    <button name="sold_property" type="object" string="Sold" invisible="state == 'canceled'"/>
+                    <button name="cancel_property" type="object" string="Cancel" invisible="state == 'sold'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_accepted,sold"/>
+                </header>
                 <sheet>                    
                     <div>
                         <div class="oe_edit_only">
@@ -37,18 +47,19 @@
                         <h1>
                             <field name="name"/>
                         </h1>
-                        <field name="tag_ids" widget="many2many_tags"/>
+                        <field name="tag_ids" widget="many2many_tags" options="{'create': False,'color_field': 'color'}"/>
                     </div>                   
                     <group>
                         <group>
                             <field name="postcode"/>
                             <field name="date_availability" string="Available From"/>
+                            <field name="property_type_id"/>
                         </group>
                         <group>
                             <field name="expected_price"/>
-                            <field name="selling_price"/>
-                            <field name="state"/>
+                            <field name="selling_price"/>                            
                             <field name="best_price"/>
+                            
                         </group>
                     </group>
                     <notebook>
@@ -60,8 +71,8 @@
                                 <field name="facades"/>
                                 <field name="garage"/>
                                 <field name="garden"/>
-                                <field name="garden_area"/>
-                                <field name="garden_orientation"/>
+                                <field name="garden_area" invisible="garden != True"/>
+                                <field name="garden_orientation" invisible="garden != True"/>
                                 <field name="total_area"/>  
                             </group>
                         </page>
@@ -72,7 +83,7 @@
                             </group>
                         </page>
                         <page string="Offers">
-                            <field name="offer_ids"/>
+                            <field name="offer_ids" readonly="state in ['sold','canceled','offer_accepted']"/>
                         </page>         
                     </notebook>
                 </sheet>
@@ -90,13 +101,49 @@
                 <field name="postcode"/>
                 <field name="expected_price"/>
                 <field name="bedrooms"/>
-                <field name="living_area"/>
+                <field name="living_area" string="Area greater than" filter_domain="[('living_area','>=',self)]"/>
                 <field name="facades"/>
-                <filter string="Availability" name="disponilbe" domain="[('state','in',['new','offer_recived'])]" ></filter>
+                <filter string="Availability" name="disponilbe" domain="[('state','in',['new','offer_received'])]" ></filter>
                 <group expand="1" string="Group by">
                     <filter string="Postcode" name="Postcode" context="{'group_by':'postcode'}" ></filter>
                 </group>                
             </search>
+        </field>
+    </record>
+
+    <!-- estate.property kanban view -->
+    <record id="estate_property_view_kanban" model="ir.ui.view">
+        <field name="name">estate.property.view.kanban</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <kanban string="Properties Kanban"  default_group_by="property_type_id" records_draggable="False">
+                <!-- Add your fields here -->
+                <template>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">       
+                            <strong><field name="name"/></strong>
+                            <field name="state" invisible="1"/>                            
+                            <div class="o_kanban_record_subtitle">
+                                <p>
+                                    expected price: <field name="expected_price"/>   
+                                </p>                         
+                                <div t-if="record.state.raw_value == 'offer_received'">
+                                    <p>
+                                        best price: <field name="best_price"/>
+                                    </p>
+                                </div>                           
+                                <div t-if="record.state.raw_value == 'offer_accepted'">
+                                    <p>
+                                        selling price: <field name="selling_price"/>
+                                    </p>
+                                </div>
+                                <field name="tag_ids"/>
+                            </div>
+                        </div>
+                            
+                    </t>
+                </template>
+            </kanban>
         </field>
     </record>
     

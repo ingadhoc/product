@@ -12,9 +12,46 @@
         <field name="model">estate.property.type</field>
         <field name="arch" type="xml">
             <tree>
+                    <field name="sequence" widget="handle"/>
                     <field name="name"/>                
                 </tree>
             </field>
     </record>
 
+    <!-- estate.property.type form view -->
+    <record id="estate.property.type_view_form" model="ir.ui.view">
+        <field name="name">estate.property.type.view.form</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>                   
+                        <div class="oe_button_box" name="button_box">
+                            <button type="action" 
+                            class="oe_stat_button"  
+                            name="estate.estate_property_offer_action" 
+                            icon="fa-money" >
+                                <field name="offer_count" widget="statinfo" string="offers"/>
+                            </button>
+                        </div>                   
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <notebook>
+                        <page string="propiedades" >
+                        
+                                <field name="property_ids" />
+                           
+                        </page>
+                    </notebook>
+                   
+                </sheet>
+            </form>
+        </field>
+    </record>
 </odoo>
+
+
+<!-- This is another solution using a method call -->
+                        <!-- <button name="action_view_offers" type="object" class="oe_stat_button" icon="fa-money">
+                            <field name="offer_count" widget="statinfo" string="Offers"/>
+                        </button> -->
