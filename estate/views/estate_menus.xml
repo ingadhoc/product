@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<odoo>
+    <menuitem id="real_estate_menu_root" name="Real Estate" /> 
+    <menuitem id="advertisements_menu" name="Advertisements" parent="real_estate_menu_root" /> <!-- puede estar anidado o con atributo parent=real_estate_menu_root -->
+    <menuitem id="settings_menu" name="Settings"  parent="real_estate_menu_root"  /> 
+    <menuitem id="properties_menu_action" action="estate_property_action" parent="advertisements_menu" /> 
+    <menuitem id="properties_type_menu_action" action="estate_property_type_action" parent="settings_menu"/> 
+    <menuitem id="properties_tag_menu_action" action="estate_property_tag_action" parent="settings_menu"/> 
+</odoo>
