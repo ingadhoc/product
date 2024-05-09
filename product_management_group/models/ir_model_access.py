@@ -17,6 +17,12 @@ class IrModelAccess(models.Model):
         else:
             model_name = model
 
+        # permitimos que si se llama con super user no haya restriccion por mas que no este en el grupo
+        # esto, entre otras cosas, resuelve un error al ir a ver producto en ecommerce y tmb el caso
+        # donde hay acciones automaticas sobre modelo product.product y se usa sale_quotation_products
+        if self.env.is_superuser():
+            return True
+
         if mode != 'read' and model_name in [
                 'product.template', 'product.product']:
             if self.env['res.users'].has_group(
