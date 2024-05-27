@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- estate.property action window -->
+    <record id="estate.property_action" model="ir.actions.act_window">
+        <field name="name">Properties</field>
+        <field name="res_model">estate.property</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- estate.property.type action window -->
+    <record id="estate.property_type_action" model="ir.actions.act_window">
+        <field name="name">Property Types</field>
+        <field name="res_model">estate.property.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- estate.property.tag action window -->
+    <record id="estate.property_tag_action" model="ir.actions.act_window">
+        <field name="name">Property Tags</field>
+        <field name="res_model">estate.property.tag</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- estate.property tree view -->
+    <record id="estate.property_view_tree" model="ir.ui.view">
+        <field name="name">estate.property.view.tree</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <tree string="Properties">
+                <field name="name"/>
+                <field name="postcode"/>
+                <field name="bedrooms"/>
+                <field name="living_area"/>
+                <field name="expected_price"/>
+                <field name="selling_price"/>
+                <field name="date_availability"/>
+            </tree>
+        </field>
+    </record>
+    <!-- estate.property.offers tree view -->
+    <record id="estate.property_offer_view_tree" model="ir.ui.view">
+        <field name="name">estate.property.offer.view.tree</field>
+        <field name="model">estate.property.offer</field>
+        <field name="arch" type="xml">
+            <tree string="Offers">
+                <field name="price"/>
+                <field name="partner_id"/>
+                <field name="validity"/>
+                <field name="date_deadline"/>
+            </tree>
+        </field>
+    </record>
+    <!-- estate.property search view -->
+    <record id="estate.property_view_search" model="ir.ui.view">
+        <field name="name">estate.property.view.search</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <search string="Search Description">
+                <field name="name"/>
+                <field name="postcode"/>
+                <field name="expected_price"/>
+                <field name="bedrooms"/>
+                <field name="living_area"/>
+                <field name="facades"/>
+                <separator/>
+                <filter name="property_available" string="Available" domain="[('state', 'in', ['new','offer_received'])]" />
+                <group expand="1" string="Group By">
+                    <filter string="Postcode" name="postcode" context="{'group_by': 'postcode', 'residual_visible': True}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <!-- estate.property form view -->
+    <record id="estate.property_view_form" model="ir.ui.view">
+        <field name="name">estate.property.view.form</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <form string="Property">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="e.g. my new property"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="name">
+                            <field name="tag_ids" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <!-- Left empty on purpose -->
+                        </group>
+                        <group>
+                            <field name="property_type_id"/>
+                            <field name="postcode"/>
+                            <field name="date_availability"/>
+                        </group>
+                        <group>
+                            <field name="expected_price"/>
+                            <field name="best_price"/>
+                            <field name="selling_price"/>
+                        </group>
+                        <notebook>
+                            <page name="description" string="Description">
+                                <group>
+                                    <group>
+                                        <field name="description"/>
+                                        <field name="bedrooms"/>
+                                        <field name="living_area"/>
+                                        <field name="facades"/>
+                                        <field name="garage"/>
+                                        <field name="garden"/>
+                                        <field name="garden_area"/>
+                                        <field name="garden_orientation"/>
+                                        <field name="total_area"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page name="offers" string="Offers">
+                                <field name="offer_ids"/>
+                            </page>
+                            <page name="other_info" string="Other Info">
+                                <group>
+                                    <group>
+                                        <field name="salesperson_id"/>
+                                        <field name="buyer_id"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Menu structure -->
+    <menuitem id="estate_root" name="Real Estate">
+        <menuitem id="estate_advertisements" name="Advertisements">
+            <menuitem id="estate_properties" action="estate.property_action"/>
+        </menuitem>
+        <menuitem id="estate_settings" name="Settings">
+            <menuitem id="estate_property_types" action="estate.property_type_action"/>
+            <menuitem id="estate_property_tags" action="estate.property_tag_action"/>
+        </menuitem>
+    </menuitem>
+</odoo>
