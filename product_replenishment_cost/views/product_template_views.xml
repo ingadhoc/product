@@ -20,8 +20,14 @@
                             <label for="replenishment_base_cost_on_currency" string="/"/>
                             <field name="replenishment_base_cost_on_currency" class="oe_inline" widget="monetary" options="{'currency_field': 'currency_id','field_digits': True}"/>
                         </div>
-                        <field name="replenishment_cost_rule_id" string="Cost Rule" context="{'default_product_id': active_id}"/>
-                        <field name="replenishment_cost" string="Replenishment Cost" widget="monetary" options="{'currency_field': 'currency_id','field_digits': True}"/>
+                         <field name="replenishment_cost_rule_id" string="Cost Rule" context="{'default_product_id': active_id}"/>
+                        <label for="replenishment_cost"/>
+                        <div name="replenishment_cost_uom">
+                            <field name="replenishment_cost" class="oe_inline" string="Replenishment Cost" widget="monetary" options="{'currency_field': 'currency_id','field_digits': True}"/>
+                            <span groups="uom.group_uom" > por
+                                <field name="uom_name" class="oe_inline"/>
+                            </span>
+                        </div>
                     </group>
                     <group name="accounting_cost" string="Accounting Cost">
                         <label for="standard_price" groups="base.group_user" string="Accounting Cost"/>

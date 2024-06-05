@@ -227,6 +227,10 @@ class ProductTemplate(models.Model):
                 replenishment_cost =\
                     replenishment_cost_rule.compute_rule(
                         replenishment_base_cost_on_currency, rec)
+
+            if self.uom_po_id != self.uom_id and self.uom_id.category_id == self.uom_po_id.category_id and self.uom_po_id.factor_inv != 0:
+                replenishment_cost = replenishment_cost * (self.uom_id.factor_inv/self.uom_po_id.factor_inv)
+
             rec.update({
                 'replenishment_base_cost_on_currency':
                 replenishment_base_cost_on_currency,
