@@ -33,8 +33,8 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
         return res
 
     @api.model
-    def _get_component_data(self, parent_bom, warehouse, bom_line, line_quantity, level, index, product_info, ignore_stock=False):
-        res = super()._get_component_data(parent_bom, warehouse, bom_line, line_quantity, level, index, product_info, ignore_stock)
+    def _get_component_data(self, parent_bom, parent_product, warehouse, bom_line, line_quantity, level, index, product_info, ignore_stock=False):
+        res = super()._get_component_data(parent_bom, parent_product, warehouse, bom_line, line_quantity, level, index, product_info, ignore_stock)
         currency = self.env.context.get('force_currency') or self.env.company.currency_id
         price = bom_line.product_id.uom_id._compute_price(
                 bom_line.product_id.replenishment_cost, bom_line.product_uom_id) * line_quantity
