@@ -1,6 +1,6 @@
 {
     'name': 'Use Replenishment Cost on Sale Margin',
-    'version': "16.0.1.0.0",
+    'version': "17.0.1.0.0",
     'author': "ADHOC SA, Odoo Community Association (OCA)",
     'license': 'AGPL-3',
     'category': 'Products',
@@ -10,5 +10,5 @@
     ],
     'data': [
     ],
-    'installable': False,
+    'installable': True,
 }
