@@ -35,7 +35,7 @@
                             name="%(product.product_template_action)d"
                             icon="fa-th-list"
                             type="action"
-                            context="{'search_default_product_attribute_template_id': active_id}">
+                            context="{'search_default_product_attribute_template_id': id}">
                             <div class="o_field_widget o_stat_info">
                                 <span class="o_stat_value"><field name="product_qty"/></span>
                                 <span class="o_stat_text">Products</span>
@@ -45,7 +45,7 @@
                             name="%(product.product_template_action)d"
                             icon="fa-th-list"
                             type="action"
-                            context="{'search_default_product_attribute_template_id': active_id, 'search_default_attributes_not_configured': 1}">
+                            context="{'search_default_product_attribute_template_id': id, 'search_default_attributes_not_configured': 1}">
                             <div class="o_field_widget o_stat_info">
                                 <span class="o_stat_value"><field name="not_configured_product_qty"/></span>
                                 <span class="o_stat_text">Not configured</span>
