@@ -14,7 +14,7 @@
 Use Replenishment Cost on Sale Margin
 =====================================
 
-#. When computing cost and margin on sales orders, use replenishment cost instead of accounting cost (standard_cost)
+#. When computing cost and margin on sales orders, use replenishment cost instead of accounting cost (standard_price)
 
 Installation
 ============
