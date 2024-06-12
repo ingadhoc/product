@@ -1,6 +1,6 @@
 {
     'name': 'Integration between Replenishment Cost and purchase stock',
-    'version': "16.0.1.0.0",
+    'version': "17.0.1.0.0",
     'author': "ADHOC SA",
     'license': 'AGPL-3',
     'category': 'Products',
@@ -10,6 +10,6 @@
     ],
     'data': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': True,
 }
