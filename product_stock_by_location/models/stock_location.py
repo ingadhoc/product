@@ -71,8 +71,12 @@ class StockLocation(models.Model):
 
     @api.depends_context('product_id', 'template_id')
     def _compute_product_available(self):
-        template_id = self._context.get('template_id', False)
-        product_id = self._context.get('product_id', False)
+        template_id = []
+        product_id = []
+        if self._context.get('active_model', False) == 'product.template':
+            template_id = self._context.get('active_id', False)
+        elif self._context.get('active_model', False) == 'product.product':
+            product_id = self._context.get('active_id', False)
         if template_id:
             product_variants = self.env['product.template'].browse(template_id).product_variant_ids
         elif product_id:
