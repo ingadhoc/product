@@ -28,4 +28,11 @@ class ProductTemplate(models.Model):
                     modifiers = json.loads(node.get("modifiers") or "{}")
                     modifiers['invisible'] = True
                     node.set("modifiers", json.dumps(modifiers))
+        if view_type == 'tree':
+            if self.env.user.has_group('price_security.group_only_view_sale_price'):
+                for node in arch.xpath("//field[@name='replenishment_cost_last_update']"):
+                    node.set('column_invisible', '1')
+                    modifiers = json.loads(node.get("modifiers") or "{}")
+                    modifiers['column_invisible'] = True
+                    node.set("modifiers", json.dumps(modifiers))
         return arch, view
