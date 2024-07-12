@@ -14,7 +14,8 @@
 Price Security with replenishment cost
 ======================================
 
-This module is an integration of Price Security with Product Replenishment Cost.
+This module is an integration of Price Security with Product Replenishment Cost. 
+It extends the permissions of price_security in order to show/hide and modify the replenishment cost information within the product form.
 
 Installation
 ============
@@ -27,25 +28,12 @@ To install this module, you need to:
 Configuration
 =============
 
-To configure this module, you need to:
-
-#. Set 'Restrict Prices' for users you want to restrict.
-#. For the same users, configure discounts range on "Discounts Permissions" users tab.
-
+#. No configuration needed.
 
 Usage
 =====
 
-To use this module, you need to:
-
-For users with price restriction, it restricts:
-
-* on sales orders: change payment term or pricelist
-* on sales order lines: change unit price and set limits on discount (limits configured on user)
-* on partners: change payment term or pricelist
-* on invoices: change unit price
-* on invoice lines: change unit price and set limits on discount (limits configured on user)
-* on product: change price
+#. Just use this module.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
