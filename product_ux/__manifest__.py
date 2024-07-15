@@ -41,6 +41,12 @@
     'demo': [
         'demo/product_pricelist_demo.xml',
     ],
+    'assets': {
+        'web.assets_backend': [
+            'product_ux/static/src/product_catalog/*.js',
+            'product_ux/static/src/product_catalog/*.xml',
+        ],
+    },
     'installable': True,
     'auto_install': False,
     'application': False,

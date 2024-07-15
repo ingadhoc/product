@@ -22,6 +22,7 @@ Several Improvements to products:
 #. Add product warranty field that was deprecated by odoo.
 #. Add new field "Description" on product UOMs.
 #. Incorporates the possibility to search the Pricelist Price of products in the tree view.
+#. Incorporates the product catalog tree view.
 
 Installation
 ============

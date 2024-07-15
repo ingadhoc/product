@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="ProductCatalogListController" t-inherit="web.ListView" t-inherit-mode="primary">
+        <xpath expr="//button[hasclass('o_list_button_add')]" position="replace">
+            <button t-out="this.buttonString" type="button" class="btn btn-secondary"  t-on-click="backToQuotation">
+                Back to Order
+            </button>
+        </xpath>
+    </t>
+</templates>
+

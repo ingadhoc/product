@@ -13,4 +13,26 @@
         </field>
     </record>
 
+    <record id="product_view_tree_catalog" model="ir.ui.view">
+        <field name="name">product.product.tree.catalog</field>
+        <field name="model">product.product</field>
+        <field name="arch" type="xml">
+            <tree string="Product Catalog" editable="bottom" js_class="product_list_catalog">
+                <field name="priority" widget="priority" readonly="0"/>
+                <field name="product_catalog_qty" readonly="0"/>
+                <button name="increase_quantity" type='object' icon='fa-plus' title='Add one'></button>
+                <field name="default_code" readonly="1"/>
+                <field name="name" readonly="1"/>
+                <field name="product_catalog_price" string="Unit Price" optional="show" readonly="1"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide" readonly="1"/>
+                <field name="product_template_attribute_value_ids"
+                       widget="many2many_tags"
+                       domain="[('id', 'in', parent.ids)]"
+                       groups="product.group_product_variant"
+                       options="{'color_field': 'color'}"
+                       readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
 </odoo>
