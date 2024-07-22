@@ -32,8 +32,8 @@ class SaleOrder(models.Model):
                                     + arch.xpath("//field[@name='margin']")
                                     + arch.xpath("//field[@name='margin_percent']"))
                 for node in invisible_fields:
-                    node.set('invisible', '1')
+                    node.set('column_invisible', '1')
                     modifiers = json.loads(node.get("modifiers") or "{}")
-                    modifiers['invisible'] = True
+                    modifiers['column_invisible'] = True
                     node.set("modifiers", json.dumps(modifiers))
         return arch, view
