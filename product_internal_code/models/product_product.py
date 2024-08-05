@@ -10,7 +10,10 @@ class ProductProduct(models.Model):
     _inherit = 'product.product'
 
     internal_code = fields.Char(
-        'Internal Code', copy=False)
+        'Internal Code',
+        copy=False,
+        index='btree_not_null',
+    )
 
     @api.model_create_multi
     def create(self, vals_list):
