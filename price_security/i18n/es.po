@@ -3,15 +3,15 @@
 # 	* price_security
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2023
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-28 11:49+0000\n"
+"POT-Creation-Date: 2024-08-02 19:45+0000\n"
 "PO-Revision-Date: 2023-12-28 11:49+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2023\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,7 +115,7 @@ msgstr "Condiciones de pago"
 #: model:ir.model,name:price_security.model_product_pricelist
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__pricelist_id
 msgid "Pricelist"
-msgstr "Tarifa"
+msgstr "Lista de precios"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_product_template
@@ -130,7 +130,7 @@ msgstr ""
 #. module: price_security
 #: model:ir.model,name:price_security.model_product_product
 msgid "Product Variant"
-msgstr "Variantes de producto"
+msgstr "Variante de producto"
 
 #. module: price_security
 #: model:ir.module.category,name:price_security.module_prices_management

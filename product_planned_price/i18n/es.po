@@ -3,28 +3,21 @@
 # 	* product_planned_price
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2023
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0+e\n"
+"Project-Id-Version: Odoo Server 17.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-13 13:53+0000\n"
-"PO-Revision-Date: 2023-01-13 13:53+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2023\n"
-"Language-Team: Spanish (https://www.transifex.com/adhoc/teams/46451/es/)\n"
+"POT-Creation-Date: 2024-01-17 18:28+0000\n"
+"PO-Revision-Date: 2024-01-16 16:36+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024\n"
+"Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: es\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
-
-#. module: product_planned_price
-#: model:ir.model.fields,field_description:product_planned_price.field_product_product__algolia_search
-#: model:ir.model.fields,field_description:product_planned_price.field_product_template__algolia_search
-#: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard__algolia_search
-msgid "Algolia Search"
-msgstr ""
 
 #. module: product_planned_price
 #: model_terms:ir.ui.view,arch_db:product_planned_price.product_template_only_form_view
@@ -116,11 +109,6 @@ msgstr ""
 "Si se elige el tipo de 'Cambio de moneda', el precio planificado se establece en la moneda elegida y se convierte a la moneda del producto"
 
 #. module: product_planned_price
-#: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard____last_update
-msgid "Last Modified on"
-msgstr "Última modificación el"
-
-#. module: product_planned_price
 #: model:ir.model.fields,field_description:product_planned_price.field_product_update_from_planned_price_wizard__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
@@ -201,7 +189,7 @@ msgstr "Informe del catálogo de productos"
 #. module: product_planned_price
 #: model:ir.model,name:product_planned_price.model_product_product
 msgid "Product Variant"
-msgstr "Producto"
+msgstr "Variante de producto"
 
 #. module: product_planned_price
 #: model:ir.model.fields,help:product_planned_price.field_product_product__other_currency_list_price
@@ -226,7 +214,6 @@ msgstr ""
 #. module: product_planned_price
 #: model:ir.actions.act_window,name:product_planned_price.action_update_from_planned_price_wizard
 #: model:ir.actions.server,name:product_planned_price.ir_cron_update_price_from_planned_ir_actions_server
-#: model:ir.cron,cron_name:product_planned_price.ir_cron_update_price_from_planned
 msgid "Update Prices from Planned"
 msgstr "Actualizar precios desde planeado"
 
