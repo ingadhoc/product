@@ -3,7 +3,7 @@
 # directory
 ##############################################################################
 from odoo import models, fields, api
-from odoo import exceptions
+from odoo.exceptions import UserError
 from odoo.tools.safe_eval import safe_eval
 
 
@@ -76,7 +76,7 @@ class ProductReplenishmentCostRule(models.Model):
         return {
             'env': env,
             'model': model,
-            'Warning': exceptions.Warning,
+            'UserError': UserError,
             'product': obj,
         }
 
