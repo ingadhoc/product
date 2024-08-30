@@ -3,6 +3,7 @@
 # directory
 ##############################################################################
 from odoo import models, fields, api
+from lxml import etree
 
 
 class ProductPricelist(models.Model):
@@ -33,3 +34,13 @@ class ProductPricelist(models.Model):
         if active_id and model:
             for rec in self:
                 rec.price = self.env[model].browse(active_id).with_context(pricelist=rec.id)._get_contextual_price()
+
+    @api.model
+    def _get_view(self, view_id=None, view_type='form', **options):
+        arch, view = super()._get_view(view_id, view_type, **options)
+        if view_type == 'form':
+            if (self.env.user.has_group('sales_team.group_sale_salesman') or self.env.user.has_group('sales_team.group_sale_salesman_all_leads')) and not self.env.user.has_group('sales_team.group_sale_manager'):
+                fields = (arch.xpath("//form"))
+                for node in fields:
+                    node.set('edit', "false")
+        return arch, view
