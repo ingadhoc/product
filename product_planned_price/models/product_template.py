@@ -93,7 +93,7 @@ class ProductTemplate(models.Model):
         self.env.cr.execute("UPDATE ir_config_parameter set value = %s where id = %s", (str(last_updated_id), last_updated_param.id))
         self.env.cr.commit()
         # si setamos last updated es porque todavia quedan por procesar, volvemos a llamar al cron
-        if last_updated_id:
+        if last_updated_id > 0:
             # para obtener el job_id se requiere este PR https://github.com/odoo/odoo/pull/146147
             cron = self.env['ir.cron'].browse(self.env.context.get('job_id')) or self.env.ref('product_planned_price.ir_cron_update_price_from_planned')
             cron._trigger()
