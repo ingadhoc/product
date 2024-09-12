@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<odoo>
+    <menuitem id="menu_root_estate_property" name="Estate properties" 
+    web_icon="estate,static/description/icon.svg"></menuitem>
+    
+    <menuitem id="menu_first_level_estate_property" name="Estate properties"
+    parent="estate.menu_root_estate_property" sequence="1">
+            <menuitem id="menu_action_estate_property" action="estate_property"/>
+    </menuitem>
+
+    <menuitem
+        id="menu_first_level_estate_property_settings"
+        name="Settings"
+        parent="menu_root_estate_property"/>
+
+    <menuitem
+     id="menu_action_estate_property_type"
+     name="Types"
+     parent="menu_first_level_estate_property_settings"
+     action="estate_property_type"/>
+
+    <menuitem
+     id="menu_action_estate_property_tag"
+     name="Tags"
+     parent="menu_first_level_estate_property_settings"
+     action="estate_property_tag"/>
+       
+
+
+</odoo>
