@@ -1,0 +1,43 @@
+<odoo>
+    <record id="estate_property_offer_view_tree" model="ir.ui.view">
+        <field name="name">estate.property.offer.tree</field>
+        <field name="model">estate.property.offer</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom" decoration-danger="status == 'rejected'" decoration-success="status == 'accepted'" >
+                <field name="price"/>
+                <field name="partner_id"/>
+                <field name="validity"/>
+                <field name="date_deadline"/>
+                <button name="action_refuse_offer" type="object" icon="fa-close" title='refused' attrs="{'invisible': [('status', '!=', False)]}"/>
+                <button name="action_accept_offer" type="object" icon="fa-check" title='accepted' attrs="{'invisible': [('status', '!=', False)]}"/> 
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="estate_property_offer_view_form" model="ir.ui.view">
+        <field name="name">estate.property.offer.form</field>
+        <field name="model">estate.property.offer</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="state" invisible="1"/>
+                        <field name="price" attrs="{'readonly': [('state', 'in', ['offer_accepted', 'sold', 'canceled'])]}"/>
+                        <field name="partner_id" attrs="{'readonly': [('state', 'in', ['offer_accepted', 'sold', 'canceled'])]}"/>                     
+                        <field name="status" attrs="{'readonly': [('state', 'in', ['offer_accepted', 'sold', 'canceled'])]}"/>
+                        <field name="validity" attrs="{'readonly': [('state', 'in', ['offer_accepted', 'sold', 'canceled'])]}"/>
+                        <field name="date_deadline" attrs="{'readonly': [('state', 'in', ['offer_accepted', 'sold', 'canceled'])]}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="estate_property_offer_action" model="ir.actions.act_window">  
+        <field name="name">Properties offers</field> 
+        <field name="res_model">estate.property.offer</field>
+        <field name="view_mode">tree</field>
+    </record> 
+</odoo>
