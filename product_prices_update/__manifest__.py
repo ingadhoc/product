@@ -19,17 +19,17 @@
 ##############################################################################
 {
     'name': 'Product Prices Update',
-    'version': "15.0.1.0.0",
+    'version': "15.0.2.0.0",
     'category': 'Product',
     'sequence': 14,
     'summary': '',
-    'author': 'ADHOC SA',
+    'author': 'ADHOC SA + Nähe CG',
     'website': 'www.adhoc.com.ar',
     'license': 'AGPL-3',
     'images': [
     ],
     'depends': [
-        'product',
+        'product','product_replenishment_cost',
     ],
     'data': [
         'security/ir.model.access.csv',
