@@ -45,8 +45,8 @@ class ProductPricelist(models.Model):
                 result = True
         return result
 
-    def _get_product_price(self, product, quantity, uom=None, date=False, **kwargs):
-        res = super(ProductPricelist, self.with_context(is_recursive=True))._get_product_price(product, quantity, uom=uom, date=date, **kwargs)
+    def _get_product_price(self, product, *args, **kwargs):
+        res = super(ProductPricelist, self.with_context(is_recursive=True))._get_product_price(product, *args, **kwargs)
         if self._context.get('taxes_included') and not self._context.get('is_recursive'):
             company_id = (self._context.get('company_id')
                           or self.env.company.id)
