@@ -178,6 +178,7 @@ class ProductTemplate(models.Model):
             product_currency = rec.currency_id
             rec.replenishment_base_cost_on_currency = 0.0
             rec.replenishment_cost = 0.0
+            base_cost_currency = False
             if rec.replenishment_cost_type in ['supplier_price', 'last_supplier_price']:
                 replenishment_base_cost = rec.supplier_price
                 base_cost_currency = rec.supplier_currency_id
