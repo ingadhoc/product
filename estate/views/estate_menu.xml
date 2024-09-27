@@ -1,0 +1,8 @@
+<odoo>
+    <menuitem id="real_estate_menu" name="Real Estate"/>
+    <menuitem id="advertisements_menu" name="Advertisements" parent="real_estate_menu"/>
+    <menuitem id="properties_menu" action="estate_property_views" parent="advertisements_menu"/>
+    <menuitem id="settings_menu" name="Settings" parent="real_estate_menu"/>
+    <menuitem id="properties_type_menu" action="estate_property_type_views" parent="settings_menu"/>
+    <menuitem id="properties_tags_menu" action="estate_property_tag_views" parent="settings_menu"/>
+</odoo>
