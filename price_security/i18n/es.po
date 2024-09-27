@@ -4,14 +4,16 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024
+# mas-adhoc, 2024
+# Rocio Vega, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-02 19:45+0000\n"
+"POT-Creation-Date: 2024-09-24 18:08+0000\n"
 "PO-Revision-Date: 2023-12-28 11:49+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024\n"
+"Last-Translator: Rocio Vega, 2024\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +26,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:price_security.field_product_template__can_modify_prices
 #: model:ir.model.fields,field_description:price_security.field_sale_order_line__product_can_modify_prices
 msgid "Can modify prices"
-msgstr ""
+msgstr "Puede modificar precios"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_res_partner
@@ -34,12 +36,12 @@ msgstr "Contacto"
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado en"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_res_users_discount_restriction
@@ -49,22 +51,22 @@ msgstr "Restricción de Descuento"
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users__discount_restriction_ids
 msgid "Discount Restrictions"
-msgstr ""
+msgstr "Restricción de descuento"
 
 #. module: price_security
 #: model_terms:ir.ui.view,arch_db:price_security.view_price_security_users_form
 msgid "Discounts Permissions"
-msgstr ""
+msgstr "Permiso en descuentos"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre a Mostrar"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__id
 msgid "ID"
-msgstr ""
+msgstr "ID (identificación)"
 
 #. module: price_security
 #: model:ir.model.fields,help:price_security.field_account_move_line__product_can_modify_prices
@@ -75,6 +77,8 @@ msgid ""
 "If checked all users can modify the price of this product in a sale order or"
 " invoice."
 msgstr ""
+"Si está tildado, todos los usuarios pueden modificar los precios de este "
+"producto en una orden de venta o factura"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_account_move
@@ -89,22 +93,22 @@ msgstr "Apunte contable"
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización por"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualización en"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__max_discount
 msgid "Max. Discount"
-msgstr ""
+msgstr "Descuento máximo"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__min_discount
 msgid "Min. Discount"
-msgstr ""
+msgstr "Descuento mínimo"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_account_payment_term
@@ -125,7 +129,7 @@ msgstr "Producto"
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_account_move_line__product_can_modify_prices
 msgid "Product Can modify prices"
-msgstr ""
+msgstr "Producto Puede modificar precios"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_product_product
@@ -155,6 +159,8 @@ msgid ""
 "Selected payment term priority can not be higher than payment term "
 "configured on partner"
 msgstr ""
+"La prioridad del término de pago seleccionado no puede ser mayor que la del "
+"término de pago configurado en el contacto"
 
 #. module: price_security
 #. odoo-python
@@ -164,6 +170,8 @@ msgid ""
 "Selected pricelist priority can not be higher than pircelist configured on "
 "partner"
 msgstr ""
+" \n"
+"La prioridad de la lista de precios seleccionada no puede ser mayor que la de la lista de precios configurada en el contacto"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_account_payment_term__sequence
@@ -189,6 +197,8 @@ msgid ""
 "The applied discount is not allowed. Discount must bebetween %s and %s for "
 "pricelist \"%s\""
 msgstr ""
+"El descuento aplicado no está permitido. El descuento debe estar entre  %s y"
+" %s para la tarifa \"%s\""
 
 #. module: price_security
 #. odoo-python
@@ -198,6 +208,8 @@ msgid ""
 "The change of the customer generates a  change in the price list, remember "
 "to check / update the prices"
 msgstr ""
+"El cambio del cliente genera un cambio en la lista de precio, recordá "
+"verificar / actualizar los precios"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_res_users
@@ -213,6 +225,8 @@ msgid ""
 "You can not change partner if there are sale lines and pricelist is going to"
 " be changed"
 msgstr ""
+"No puedes cambiar el contacto si hay líneas de venta y la lista de precios "
+"va a ser modificada."
 
 #. module: price_security
 #. odoo-python

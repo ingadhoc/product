@@ -4,14 +4,15 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024
+# Juan Carreras <jc@adhoc.com.ar>, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 16:22+0000\n"
+"POT-Creation-Date: 2024-08-21 13:06+0000\n"
 "PO-Revision-Date: 2024-01-16 16:36+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024\n"
+"Last-Translator: Juan Carreras <jc@adhoc.com.ar>, 2024\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,6 +91,8 @@ msgstr "Moneda utilizada para el Costo Base de Reposición."
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_template__replenishment_cost_last_update
 msgid "Date of the last update of replenishment base cost or its currency"
 msgstr ""
+"Fecha de la última actualización de el costo base de reabastecimiento o de "
+"la moneda"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__description
@@ -126,7 +129,7 @@ msgstr "Seguidores (Canales)"
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__has_message
 msgid "Has Message"
-msgstr ""
+msgstr "Tiene Mensaje"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__id
@@ -164,7 +167,7 @@ msgstr "Es un seguidor"
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__item_ids
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenshiment_cost_rule_form
 msgid "Items"
-msgstr ""
+msgstr "Elementos"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields.selection,name:product_replenishment_cost.selection__product_template__replenishment_cost_type__last_supplier_price
@@ -193,7 +196,7 @@ msgstr "Última actualización el"
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_supplierinfo__last_date_price_updated
 msgid "Last date price updated"
-msgstr ""
+msgstr "Última actualización de precios"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields.selection,name:product_replenishment_cost.selection__product_template__replenishment_cost_type__supplier_price
@@ -203,7 +206,7 @@ msgstr "Precio de Proveedor Principal"
 #. module: product_replenishment_cost
 #: model:ir.model.fields.selection,name:product_replenishment_cost.selection__product_template__replenishment_cost_type__manual
 msgid "Manual"
-msgstr ""
+msgstr "Manual"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_has_error
@@ -403,13 +406,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product__supplier_currency_id
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__supplier_currency_id
 msgid "Supplier Currency"
-msgstr ""
+msgstr "Moneda del proveedor"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product__supplier_price
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__supplier_price
 msgid "Supplier Price"
-msgstr ""
+msgstr "Precio del proveedor"
 
 #. module: product_replenishment_cost
 #: model:ir.model,name:product_replenishment_cost.model_product_supplierinfo
@@ -429,6 +432,8 @@ msgid ""
 "The argument 'company_ids' and the key 'force_company' on the context can't "
 "be used together"
 msgstr ""
+"El argumento 'company_ids' y la clave 'force_company'  en el contexto no "
+"pueden usarse juntos"
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.view_update_from_replenishment_cost_wizard_form
@@ -479,7 +484,7 @@ msgstr ""
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_template_form_view
 msgid "Variants Costs"
-msgstr ""
+msgstr "Costo de las variantes"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__website_message_ids

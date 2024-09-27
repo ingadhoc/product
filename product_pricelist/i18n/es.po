@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-26 17:52+0000\n"
+"POT-Creation-Date: 2024-08-06 05:37+0000\n"
 "PO-Revision-Date: 2024-01-26 17:40+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
@@ -41,7 +41,7 @@ msgstr "Precio por producto especificado en el contexto"
 #. module: product_pricelist
 #: model:ir.model,name:product_pricelist.model_product_pricelist
 msgid "Pricelist"
-msgstr "Tarifa"
+msgstr "Lista de precios"
 
 #. module: product_pricelist
 #: model:ir.model.fields,field_description:product_pricelist.field_product_product__pricelist_ids
