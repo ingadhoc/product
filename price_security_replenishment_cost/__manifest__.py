@@ -28,6 +28,6 @@
         'price_security',
         'product_replenishment_cost',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
 }

@@ -14,7 +14,7 @@
     ],
     'demo': [],
     'license': 'AGPL-3',
-    'installable': True,
+    'installable': False,
     'auto_install': True,
     'application': False,
 }

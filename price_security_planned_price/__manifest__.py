@@ -28,6 +28,6 @@
         'price_security',
         'product_planned_price',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
 }

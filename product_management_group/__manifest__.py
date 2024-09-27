@@ -30,5 +30,5 @@
     'data': [
         'security/product_management_security.xml',
     ],
-    'installable': True,
+    'installable': False,
 }

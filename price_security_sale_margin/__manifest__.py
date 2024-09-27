@@ -28,6 +28,6 @@
         'price_security',
         'sale_margin',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': True,
 }
