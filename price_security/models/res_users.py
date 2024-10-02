@@ -40,7 +40,8 @@ class Users(models.Model):
 
             tmp_line = so_line.new(tmp_line_vals)
             pricelist_disc = tmp_line.discount
-        net_discount = discount - pricelist_disc
+        discount_precision_digits = self.env['decimal.precision'].precision_get('Discount')
+        net_discount = discount - round(pricelist_disc,discount_precision_digits)
 
         if net_discount and net_discount != 0.0:
             disc_restriction_env = self.env['res.users.discount_restriction']
