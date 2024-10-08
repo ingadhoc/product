@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- res.user inherit form view -->
+    <record id="res_user_state" model="ir.ui.view">
+        <field name="name">res.users.view.form.inherit.state</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_simple_form"/>
+        <field name="arch" type="xml">
+            <!-- Add your xpath here -->
+            <sheet position="inside">
+                <notebook>
+                    <page string="Estate Properties">
+                        <field name="property_ids"/>                    
+                    </page>
+                </notebook> 
+            </sheet>
+        </field>
+    </record>
+</odoo>

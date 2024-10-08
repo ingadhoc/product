@@ -1,0 +1,57 @@
+<odoo>
+    <!-- estate.property.type action window -->
+    <record id="estate_property_type_action" model="ir.actions.act_window">
+        <field name="name">Property Types</field>
+        <field name="res_model">estate.property.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- estate.property.type tree view -->
+    <record id="estate_property_type_view_tree" model="ir.ui.view">
+        <field name="name">estate.proprty.type.view.tree</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                    <field name="sequence" widget="handle"/>
+                    <field name="name"/>                
+                </tree>
+            </field>
+    </record>
+
+    <!-- estate.property.type form view -->
+    <record id="estate.property.type_view_form" model="ir.ui.view">
+        <field name="name">estate.property.type.view.form</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>                   
+                        <div class="oe_button_box" name="button_box">
+                            <button type="action" 
+                            class="oe_stat_button"  
+                            name="estate.estate_property_offer_action" 
+                            icon="fa-money" >
+                                <field name="offer_count" widget="statinfo" string="offers"/>
+                            </button>
+                        </div>                   
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <notebook>
+                        <page string="propiedades" >
+                        
+                                <field name="property_ids" />
+                           
+                        </page>
+                    </notebook>
+                   
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
+
+
+<!-- This is another solution using a method call -->
+                        <!-- <button name="action_view_offers" type="object" class="oe_stat_button" icon="fa-money">
+                            <field name="offer_count" widget="statinfo" string="Offers"/>
+                        </button> -->
