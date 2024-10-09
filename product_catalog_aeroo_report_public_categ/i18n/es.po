@@ -3,16 +3,16 @@
 # 	* product_catalog_aeroo_report_public_categ
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024
 # Franco Leyes, 2024
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-06 05:42+0000\n"
+"POT-Creation-Date: 2024-09-27 02:07+0000\n"
 "PO-Revision-Date: 2024-06-28 15:01+0000\n"
-"Last-Translator: Franco Leyes, 2024\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +23,7 @@ msgstr ""
 #. module: product_catalog_aeroo_report_public_categ
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report_public_categ.field_product_product_catalog_report__category_type
 msgid "Category Type"
-msgstr "Tipo de Categoría"
+msgstr "Tipo de categoría"
 
 #. module: product_catalog_aeroo_report_public_categ
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report_public_categ.field_product_public_category__complete_name
@@ -33,12 +33,12 @@ msgstr "Nombre Completo "
 #. module: product_catalog_aeroo_report_public_categ
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report_public_categ.field_product_public_category__parent_id
 msgid "Parent Category"
-msgstr "Categoría Padre"
+msgstr "Categoría padre"
 
 #. module: product_catalog_aeroo_report_public_categ
 #: model:ir.model,name:product_catalog_aeroo_report_public_categ.model_product_product_catalog_report
 msgid "Product Catalog Report with Aeroo"
-msgstr "Reporte de Catálogo de Productos con Aeroo"
+msgstr "Reporte Catálogo de Productos con Aeroo"
 
 #. module: product_catalog_aeroo_report_public_categ
 #: model:ir.model.fields,field_description:product_catalog_aeroo_report_public_categ.field_product_product_catalog_report__public_category_ids

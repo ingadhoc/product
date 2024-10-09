@@ -3,16 +3,16 @@
 # 	* product_replenishment_cost
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024
 # Juan Carreras <jc@adhoc.com.ar>, 2024
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-21 13:06+0000\n"
+"POT-Creation-Date: 2024-09-27 02:20+0000\n"
 "PO-Revision-Date: 2024-01-16 16:36+0000\n"
-"Last-Translator: Juan Carreras <jc@adhoc.com.ar>, 2024\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__standard_price
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_template_form_view
 msgid "Accounting Cost"
-msgstr "Costo contable"
+msgstr "Coste"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_needaction
@@ -476,10 +476,9 @@ msgid ""
 "        Used to value the product when the purchase cost is not known (e.g. inventory adjustment).\n"
 "        Used to compute margins on sale orders."
 msgstr ""
-"En Standard Price & AVCO: valor del producto (calculado automáticamente en AVCO).\n"
-"En FIFO: valor de la última unidad que salió del inventario (calculado automáticamente).\n"
-"Se utiliza para valorar el producto cuando se desconoce el coste de compra (por ejemplo, ajuste de inventario).\n"
-"Se utiliza para calcular los márgenes de las órdenes de venta."
+"El valor del producto (calculado automáticamente con AVCO).\n"
+"        Se utiliza para valorar el producto cuando se desconoce el coste de compra (por ejemplo, en un ajuste de inventario).\n"
+"        Se utiliza para calcular los márgenes de los pedidos de venta."
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_template_form_view
