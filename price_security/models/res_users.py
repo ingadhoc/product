@@ -26,8 +26,7 @@ class Users(models.Model):
         # for compatibility with price_security
         pricelist = self.env['product.pricelist'].browse(pricelist_id)
         pricelist_disc = 0.0
-        if so_line and 'discount_policy' in pricelist._fields and \
-                pricelist.discount_policy == 'without_discount':
+        if so_line and any(item._show_discount() for item in pricelist.item_ids):
             tmp_line_vals = {
                 'product_id': so_line.product_id.id,
                 'order_id': so_line.order_id.id,
@@ -58,7 +57,7 @@ class Users(models.Model):
                 error = _(
                     'You can not give any discount greater than pricelist '
                     'discounts')
-                # if pricelist_disc then we have a soline and e product
+                # if pricelist_disc then we have a so line and a product
                 if pricelist_disc:
                     error += ' (%s%% for product "%s")' % (
                         pricelist_disc, so_line.product_id.name)
