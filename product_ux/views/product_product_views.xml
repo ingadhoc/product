@@ -2,7 +2,7 @@
 <odoo>
 
     <record id="product_product_tree_view" model="ir.ui.view">
-        <field name="name">product.product.prices.tree</field>
+        <field name="name">product.product.prices.list</field>
         <field name="model">product.product</field>
         <field name="priority" eval="20"/>
         <field name="inherit_id" ref="product.product_product_tree_view"/>
