@@ -9,11 +9,11 @@
             <notebook>
                 <page string="Discounts Permissions">
                     <field name="discount_restriction_ids" colspan="4">
-                        <tree editable="top">
+                        <list editable="top">
                             <field name="pricelist_id"/>
                             <field name="min_discount"/>
                             <field name="max_discount"/>
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </notebook>
