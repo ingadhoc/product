@@ -43,7 +43,7 @@ class ProductProduct(models.Model):
                     modifiers = json.loads(node.get("modifiers") or "{}")
                     modifiers['invisible'] = True
                     node.set("modifiers", json.dumps(modifiers))
-        if view_type == 'tree':
+        if view_type == 'list':
             if self.env.user.has_group('price_security.group_only_view_sale_price'):
                 for node in arch.xpath("//field[@name='standard_price']"):
                     node.set('invisible', '1')
