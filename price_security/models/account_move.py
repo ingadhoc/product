@@ -19,8 +19,8 @@ class AccountMove(models.Model):
         arch, view = super()._get_view(view_id, view_type, **options)
         if view_type == 'form':
             if self.env.user.has_group('price_security.group_only_view'):
-                fields = (arch.xpath("//field[@name='invoice_line_ids']/tree//field[@name='price_unit']")
-                            + arch.xpath("//field[@name='invoice_line_ids']/tree//field[@name='tax_ids']"))
+                fields = (arch.xpath("//field[@name='invoice_line_ids']/list//field[@name='price_unit']")
+                            + arch.xpath("//field[@name='invoice_line_ids']/list//field[@name='tax_ids']"))
                 for node in fields:
                     node.set('readonly', "parent.move_type in ('out_invoice', 'out_refund') and product_can_modify_prices == False")
                     modifiers = json.loads(node.get("modifiers") or "{}")

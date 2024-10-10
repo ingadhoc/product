@@ -18,12 +18,12 @@ Creates a new permission to restrict the users that can modify the prices
 of the products.
 
 Asociate to each user a list of pricelist and the correspoding discounts they
-can apply to sale orders and invoices.
+can apply to sale orders and invoices. This discount is for all pricelist even though only one is configured.
 
 Allow the posibility to mark products so that anyone can modify their price in
 a sale order.
 
-Add a sequence field on pricelist and payment term (you can only assign pricelist or terms of lower priority than partner default one)
+Add a sequence field on pricelist and payment term (you can only assign pricelist or terms of lower priority than partner default one).
 
 Installation
 ============
