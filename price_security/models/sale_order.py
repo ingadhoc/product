@@ -15,7 +15,7 @@ class SaleOrder(models.Model):
         'payment_term_id',
         'partner_id')
     def check_priority(self):
-        if not self.user_has_groups('price_security.group_only_view'):
+        if not self.env.user.has_group('price_security.group_only_view'):
             return True
         if (
                 self.partner_id.property_product_pricelist and
@@ -38,11 +38,11 @@ class SaleOrder(models.Model):
 
     @api.onchange('partner_id')
     def check_partner_pricelist_change(self):
-        if not self.user_has_groups('product.group_product_pricelist'):
+        if not self.env.user.has_group('product.group_product_pricelist'):
             return
         pricelist = self.partner_id.property_product_pricelist
         if self.order_line and pricelist != self._origin.pricelist_id:
-            if self.user_has_groups('price_security.group_only_view'):
+            if self.env.user.has_group('price_security.group_only_view'):
                 self.partner_id = self._origin.partner_id
                 msj = _('You can not change partner if there are sale lines'
                         ' and pricelist is going to be changed')
@@ -65,8 +65,8 @@ class SaleOrder(models.Model):
         arch, view = super()._get_view(view_id, view_type, **options)
         if view_type == 'form':
             if self.env.user.has_group('price_security.group_only_view'):
-                fields = (arch.xpath("//field[@name='order_line']/tree//field[@name='price_unit']")
-                                    + arch.xpath("//field[@name='order_line']/tree//field[@name='tax_id']")
+                fields = (arch.xpath("//field[@name='order_line']/list//field[@name='price_unit']")
+                                    + arch.xpath("//field[@name='order_line']/list//field[@name='tax_id']")
                                     + arch.xpath("//field[@name='order_line']/form//field[@name='price_unit']")
                                     + arch.xpath("//field[@name='order_line']/form//field[@name='tax_id']")
                                     )
