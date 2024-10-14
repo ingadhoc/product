@@ -5,12 +5,12 @@
         <field name="model">stock.lot</field>
         <field name="inherit_id" ref="product_expiry.view_move_form_expiry" />
         <field name="arch" type="xml">
-            <xpath expr="//span[hasclass('text-bg-danger')]" position="replace">
-                <span class="badge text-bg-danger" invisible="not product_expiry_alert">Expired</span>
-            </xpath>
             <xpath expr="//span[hasclass('text-bg-danger')]" position="after">
                 <field name="is_alert_date" invisible="1"/>
                 <span class="badge text-bg-warning" invisible="not is_alert_date">Expiration Alert</span>
+            </xpath>
+            <xpath expr="//span[hasclass('text-bg-danger')]" position="replace">
+                <span class="badge text-bg-danger" invisible="not product_expiry_alert">Expired</span>
             </xpath>
         </field>
     </record>
