@@ -1,6 +1,6 @@
 {
     'name': 'Products Expiration Date UX',
-    'version': "17.0.1.1.0",
+    'version': "18.0.1.0.0",
     'category': 'Inventory/Inventory',
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
@@ -14,7 +14,7 @@
     ],
     'demo': [],
     'license': 'AGPL-3',
-    'installable': False,
+    'installable': True,
     'auto_install': True,
     'application': False,
 }
