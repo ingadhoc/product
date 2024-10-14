@@ -4,6 +4,7 @@
         <field name="model">estate.property.type</field>
         <field name="arch" type="xml">
             <tree>
+                <field name="sequence" widget="handle"/>
                 <field name="name"/>
             </tree>
         </field>  
@@ -17,10 +18,19 @@
                     <group>
                         <field name="name" placeholder="Name"/>
                     </group>
+                    <group>
+                        <field name="property_ids">
+                            <tree>
+                                <field name="name"/>
+                                <field name="expected_price"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </group>
                 </sheet>
             </form>
         </field>  
-    </record>    
+    </record>  
     <record id="estate_property_types_view_search" model="ir.ui.view">
         <field name="name">estate.property.type.search</field>
         <field name="model">estate.property.type</field>
