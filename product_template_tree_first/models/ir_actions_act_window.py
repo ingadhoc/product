@@ -7,7 +7,7 @@ class IrActionsActWindow(models.Model):
 
     @api.depends('view_ids.view_mode', 'view_mode', 'view_id.type')
     def _compute_views(self):
-        """ Force the tree view to always be the first one, no matter what is
+        """ Force the list view to always be the first one, no matter what is
         configured in the action
         """
         super()._compute_views()
