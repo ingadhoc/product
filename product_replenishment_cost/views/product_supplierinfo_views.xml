@@ -15,7 +15,7 @@
     </record>
 
     <record id="product_supplierinfo_tree_view" model="ir.ui.view">
-        <field name="name">product.cost.currency.tree</field>
+        <field name="name">product.cost.currency.list</field>
         <field name="model">product.supplierinfo</field>
         <field name="inherit_id" ref="product.product_supplierinfo_tree_view"/>
         <field name="arch" type="xml">
