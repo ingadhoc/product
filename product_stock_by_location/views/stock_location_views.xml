@@ -16,13 +16,13 @@
         <field name="model">stock.location</field>
         <field name="priority">99</field>
         <field name="arch" type="xml">
-            <tree string="Location Stock">
+            <list string="Location Stock">
                 <field name="complete_name"/>
                 <field name="qty_available"/>
                 <field name="virtual_available"/>
                 <field name="incoming_qty"/>
                 <field name="outgoing_qty"/>
-            </tree>
+            </list>
         </field>
     </record>
 </odoo>
