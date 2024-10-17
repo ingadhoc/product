@@ -11,7 +11,7 @@ class StockLocation(models.Model):
 
     show_stock_on_products = fields.Boolean(
         help='If true, this location will be shown on the pop up window opened'
-        'from products kanban and tree view'
+        'from products kanban and list view'
     )
     qty_available = fields.Float(
         compute='_compute_product_available',
