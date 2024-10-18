@@ -9,7 +9,7 @@
             <xpath expr="//field[@name='order_line']/form" position="inside">
                 <field name="product_can_modify_prices" invisible="1"/>
             </xpath>
-            <xpath expr="//field[@name='order_line']/tree" position="inside">
+            <xpath expr="//field[@name='order_line']/list" position="inside">
                 <field name="product_can_modify_prices" optional="hide"/>
             </xpath>
         </field>
