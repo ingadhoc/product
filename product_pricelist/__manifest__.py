@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Pricelists information on Products",
-    'version': "17.0.1.1.0",
+    'version': "18.0.1.0.0",
     'category': 'Sales & Purchases',
     'sequence': 14,
     'author': 'ADHOC SA',
@@ -35,7 +35,7 @@
     ],
     'demo': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
