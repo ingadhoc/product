@@ -7,13 +7,11 @@
         <field name="arch" type="xml">
             <group name="description" position="before">
                 <field name="pricelist_ids" >
-                    <!-- TODO move this to a low priority view and specify here -->
-                    <tree delete='false' create='false' edit="false" editable="top" options="{'no_open': True}">
+                    <list delete='false' create='false' edit="false" editable="top" options="{'no_open': True}">
                         <field name="name"/>
                         <field name="price"/>
                         <field name="currency_id" column_invisible="True"/>
-                        <!-- TODO enable buttons after correcting domain -->
-                    </tree>
+                    </list>
                 </field>
             </group>
         </field>
