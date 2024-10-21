@@ -6,13 +6,13 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
-            <field name="uom_id" position="after">
+            <field name="product_tooltip" position="after">
                 <field name="uom_category_id" invisible="1"/>
                 <field name="uom_ids">
-                    <tree editable="bottom">
+                    <list editable="bottom">
                         <field name="sequence" widget="handle"/>
                         <field name="uom_id" domain="[('category_id', '=', parent.uom_category_id)]" options="{'no_create': True, 'no_open': True}"/>
-                    </tree>
+                    </list>
                 </field>
             </field>
         </field>

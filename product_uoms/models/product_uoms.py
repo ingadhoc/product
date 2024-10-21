@@ -26,5 +26,5 @@ class ProductUoms(models.Model):
 
     _sql_constraints = [
         ('uom_uniq', 'unique(product_tmpl_id, uom_id)',
-            _('UOM must be unique per Product Template!')),
+            ('UOM must be unique per Product Template!')),
     ]
