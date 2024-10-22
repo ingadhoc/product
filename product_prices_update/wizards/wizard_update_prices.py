@@ -78,7 +78,7 @@ class ProductPricesUpdateWizard(models.TransientModel):
             'name': _('Products'),
             'res_model': 'product.template',
             'view_type': 'form',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('id', 'in', product_ids)],
             'target': 'current',
             'nodestroy': True,
