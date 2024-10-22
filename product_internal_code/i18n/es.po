@@ -28,7 +28,7 @@ msgstr "Código Interno"
 
 #. module: product_internal_code
 #: model:ir.model.constraint,message:product_internal_code.constraint_product_product_internal_code_uniq
-msgid "Internal Code mast be unique!"
+msgid "Internal Code must be unique!"
 msgstr "El Código Interno debe ser único!"
 
 #. module: product_internal_code
