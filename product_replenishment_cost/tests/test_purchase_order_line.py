@@ -11,7 +11,7 @@ class TestPurchaseOrderLine(TransactionCase):
         })
         self.product = self.env['product.product'].create({
             'name': 'Test Product',
-            'type': 'product',
+            'type': 'consu',
             'purchase_ok': True,
             'standard_price': 10.0,
         })
