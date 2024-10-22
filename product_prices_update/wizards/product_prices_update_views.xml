@@ -51,14 +51,14 @@
     </record>
 
     <record id="view_prices_update_wizard_result_detail_tree" model="ir.ui.view">
-        <field name="name">product.prices_update_wizard_result_detail.tree</field>
+        <field name="name">product.prices_update_wizard_result_detail.list</field>
         <field name="model">product.prices_update_wizard_result_detail</field>
         <field name="arch" type="xml">
-            <tree string="Products" create="false" editable="top">
+            <list string="Products" create="false" editable="top">
                 <field name="product_tmpl_id" force_save="1"/>
                 <field name="old_price"/>
                 <field name="new_price"/>
-            </tree>
+            </list>
         </field>
     </record>
 
