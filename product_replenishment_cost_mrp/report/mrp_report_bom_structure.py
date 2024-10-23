@@ -6,11 +6,11 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
     _inherit = 'report.mrp.report_bom_structure'
 
     @api.model
-    def _get_bom_data(self, bom, warehouse, product=False, line_qty=False, bom_line=False, level=0, parent_bom=False, index=0, product_info=False, ignore_stock=False):
+    def _get_bom_data(self, bom, warehouse, product=False, line_qty=False, bom_line=False, level=0, parent_bom=False, parent_product=False, index=0, product_info=False, ignore_stock=False,  simulated_leaves_per_workcenter=False):
         """ Here we use the replenishment cost for the uom unit"""
         if not self.env.context.get('force_currency'):
             self = self.with_context(force_currency=product.currency_id)
-        res = super(ReportReplenishmentBomStructure, self)._get_bom_data(bom, warehouse, product, line_qty, bom_line, level, parent_bom, index, product_info, ignore_stock)
+        res = super(ReportReplenishmentBomStructure, self)._get_bom_data(bom, warehouse, product, line_qty, bom_line, level, parent_bom, parent_product, index, product_info, ignore_stock, simulated_leaves_per_workcenter)
         currency = self.env.context.get('force_currency') or self.env.company.currency_id
         res.update({
             'currency': currency,
@@ -65,8 +65,8 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
         return byproducts, byproduct_cost_portion
 
     @api.model
-    def _get_operation_line(self, product, bom, qty, level, index):
-        operations = super()._get_operation_line(product, bom, qty, level, index)
+    def _get_operation_line(self, product, bom, qty, level, index, bom_report_line, simulated_leaves_per_workcenter):
+        operations = super()._get_operation_line(product, bom, qty, level, index, bom_report_line, simulated_leaves_per_workcenter)
         currency = self.env.context.get('force_currency') or self.env.company.currency_id
         for operation in operations:
             bom_cost = self.env.company.currency_id._convert(
