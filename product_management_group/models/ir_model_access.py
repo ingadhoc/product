@@ -25,7 +25,7 @@ class IrModelAccess(models.Model):
 
         if mode != 'read' and model_name in [
                 'product.template', 'product.product']:
-            if self.env['res.users'].has_group(
+            if self.env.user.has_group(
                     'product_management_group.group_products_management'):
                 return True
             elif raise_exception:
