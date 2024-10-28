@@ -68,8 +68,8 @@ class ProductTemplate(models.Model):
         """
 
         _logger.info('Running update prices from planned cron')
-        if self._context.get('force_company'):
-            self = self.with_company(self._context.get('force_company'))
+        if self._context.get('company_force'):
+            self = self.with_company(self._context.get('company_force'))
         else:
             self = self.with_company(self.env['res.company'].search([], limit=1).id)
 
