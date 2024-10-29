@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Price Security with replenishment cost',
-    'version': "17.0.1.0.0",
+    'version': "18.0.1.0.0",
     'category': 'Sales Management',
     'author': 'ADHOC SA',
     'website': 'http://www.adhoc.com.ar/',
@@ -28,6 +28,6 @@
         'price_security',
         'product_replenishment_cost',
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': True,
 }
