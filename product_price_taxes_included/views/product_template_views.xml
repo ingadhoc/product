@@ -2,7 +2,7 @@
 <odoo>
 
     <record id="product_template_tree_view" model="ir.ui.view">
-        <field name="name">product.template.tree</field>
+        <field name="name">product.template.list</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_tree_view"></field>
         <field name="arch" type="xml">
@@ -30,7 +30,7 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_kanban_view"></field>
         <field name="arch" type="xml">
-        <xpath expr="//div[hasclass('oe_kanban_details')]//field[@name='list_price']" position="after">
+        <xpath expr="//field[@name='list_price']" position="after">
                 <span groups="product_price_taxes_included.group_prices_with_tax"> /</span>      <field name="taxed_lst_price" groups="product_price_taxes_included.group_prices_with_tax" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
         </xpath>
         </field>
