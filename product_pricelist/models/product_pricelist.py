@@ -32,8 +32,10 @@ class ProductPricelist(models.Model):
             self.price = 0.0
 
         if active_id and model:
+            product = self.env[model].browse(active_id)
             for rec in self:
-                rec.price = self.env[model].browse(active_id).with_context(pricelist=rec.id)._get_contextual_price()
+                contextual_price = product.with_context(pricelist=rec.id)._get_contextual_price()
+                rec.sudo().write({'price': contextual_price})
 
     @api.model
     def _get_view(self, view_id=None, view_type='form', **options):
