@@ -31,7 +31,7 @@
         <field name="inherit_id" ref="product.product_template_kanban_view"></field>
         <field name="arch" type="xml">
         <xpath expr="//div[hasclass('oe_kanban_details')]//field[@name='list_price']" position="after">
-                /      <field name="taxed_lst_price" groups="product_price_taxes_included.group_prices_with_tax" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+                <span groups="product_price_taxes_included.group_prices_with_tax"> /</span>      <field name="taxed_lst_price" groups="product_price_taxes_included.group_prices_with_tax" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
         </xpath>
         </field>
     </record>
