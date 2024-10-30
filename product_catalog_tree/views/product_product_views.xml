@@ -2,19 +2,19 @@
 <odoo>
 
     <record id="product_view_tree_catalog" model="ir.ui.view">
-        <field name="name">product.view.tree.catalog</field>
+        <field name="name">product.view.list.catalog</field>
         <field name="model">product.product</field>
         <field name="priority" eval="20"/>
         <field name="inherit_id" ref="product.product_product_tree_view"/>
         <field name="mode">primary</field>
         <field name="arch" type="xml">
-            <tree position="attributes">
+            <list position="attributes">
                     <attribute name="js_class">product_list_catalog</attribute>
                     <attribute name="editable">top</attribute>
                     <attribute name="decoration-bf">product_catalog_qty &gt; 0</attribute>
                     <attribute name="decoration-muted">product_catalog_qty == 0</attribute>
-                </tree>
-            <field name="priority" position="after">
+                </list>
+            <field name="is_favorite" position="after">
                 <field name="product_catalog_qty"/>
                 <button name="increase_quantity" type='object' icon='fa-plus' title='Add one'></button>
             </field>
