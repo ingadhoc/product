@@ -83,6 +83,11 @@ class StockLocation(models.Model):
             product_variants = self.env['product.product'].browse(product_id)
         else:
             # it not template_id or product_id on context, return True
+            for rec in self:
+                rec.qty_available = 0
+                rec.virtual_available = 0
+                rec.incoming_qty = 0
+                rec.outgoing_qty = 0
             return True
         for rec in self:
             product_variants = [p.with_context(location=rec.id) for p in product_variants]
