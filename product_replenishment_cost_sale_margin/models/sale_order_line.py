@@ -20,7 +20,7 @@ class SaleOrderLine(models.Model):
                 line.purchase_price = frm_cur._convert(
                     purchase_price, to_cur, order_id.company_id or self.env.company,
                     order_id.date_order or fields.Date.today(), round=False)
-                
+
 
     def _convert_price(self, product_cost, from_uom):
         if not product_cost:
