@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product Brand Report',
-    'version': "17.0.1.0.0",
+    'version': "18.0.1.0.0",
     'category': 'Product',
     'author': 'ADHOC SA',
     'website': 'www.adhoc.com.ar',
@@ -34,7 +34,7 @@
         'reports/report_invoice_document.xml',
         'views/res_config_settings_view.xml'
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
     'application': False,
 }
