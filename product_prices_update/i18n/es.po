@@ -3,22 +3,28 @@
 # 	* product_prices_update
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2023
-# augusto-weiss, 2024
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0+e\n"
+"Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-06 05:42+0000\n"
-"PO-Revision-Date: 2023-12-29 12:38+0000\n"
-"Last-Translator: augusto-weiss, 2024\n"
+"POT-Creation-Date: 2024-11-14 20:24+0000\n"
+"PO-Revision-Date: 2024-11-14 20:24+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: es\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#. module: product_prices_update
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard__algolia_search
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result__algolia_search
+#: model:ir.model.fields,field_description:product_prices_update.field_product_prices_update_wizard_result_detail__algolia_search
+msgid "Algolia Search"
+msgstr ""
 
 #. module: product_prices_update
 #: model_terms:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_form
@@ -131,8 +137,6 @@ msgstr "Tipo de Precio"
 #. module: product_prices_update
 #. odoo-python
 #: code:addons/product_prices_update/wizards/wizard_update_prices.py:0
-#: code:addons/product_prices_update/wizards/wizard_update_prices.py:0
-#, python-format
 msgid "Price type \"%s\" is not implemented"
 msgstr "El Tipo de precio \"%s\" no está implementado."
 
@@ -146,7 +150,6 @@ msgstr "Plantilla de Producto"
 #: code:addons/product_prices_update/wizards/wizard_update_prices.py:0
 #: model_terms:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_result_detail_tree
 #: model_terms:ir.ui.view,arch_db:product_prices_update.view_prices_update_wizard_result_form
-#, python-format
 msgid "Products"
 msgstr "Productos"
 
@@ -203,7 +206,6 @@ msgstr "Actualizar Precios de Productos"
 #. module: product_prices_update
 #. odoo-python
 #: code:addons/product_prices_update/wizards/wizard_update_prices.py:0
-#, python-format
 msgid "You must select at least one product"
 msgstr "Debe seleccionar al menos un producto"
 

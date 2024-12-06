@@ -4,15 +4,14 @@
 # 
 # Translators:
 # Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024
-# Florencia Battaglia, 2024
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0+e\n"
+"Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-15 14:59+0000\n"
-"PO-Revision-Date: 2024-07-16 15:11+0000\n"
-"Last-Translator: Florencia Battaglia, 2024\n"
+"POT-Creation-Date: 2024-11-26 15:25+0000\n"
+"PO-Revision-Date: 2024-11-14 20:27+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,10 +113,7 @@ msgid "UOM"
 msgstr "UdM"
 
 #. module: product_uoms
-#. odoo-python
-#: code:addons/product_uoms/models/product_uoms.py:0
 #: model:ir.model.constraint,message:product_uoms.constraint_product_uoms_uom_uniq
-#, python-format
 msgid "UOM must be unique per Product Template!"
 msgstr "¡La unidad de medida (UdM) debe ser única por plantilla de producto!"
 
@@ -130,7 +126,6 @@ msgstr "UdMs"
 #. module: product_uoms
 #. odoo-python
 #: code:addons/product_uoms/models/product_template.py:0
-#, python-format
 msgid ""
 "UOMs Category must be of the same UOM Category as Product Unit of Measure"
 msgstr ""
