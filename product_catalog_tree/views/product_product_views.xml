@@ -24,4 +24,23 @@
         </field>
     </record>
 
+    <record id="product.product_view_search_catalog" model="ir.ui.view">
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+    </record>
+
+    <record id="product_view_search_catalog" model="ir.ui.view">
+        <field name="name">product.view.tree.catalog.inherit</field>
+        <field name="model">product.product</field>
+        <field name="priority" eval="20"/>
+        <field name="inherit_id" ref="product.product_view_search_catalog"/>
+        <field name="arch" type="xml">
+            <field name="name" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="categ_id" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+        </field>
+    </record>
+
 </odoo>
