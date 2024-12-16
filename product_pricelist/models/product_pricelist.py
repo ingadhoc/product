@@ -21,6 +21,7 @@ class ProductPricelist(models.Model):
     )
 
     def _compute_price(self):
+        self = self.sudo()
         active_id = model = False
         if 'pricelist_product_id' in self._context:
             active_id = self._context.get('pricelist_product_id')
