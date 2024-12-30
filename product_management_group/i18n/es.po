@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-20 21:08+0000\n"
+"POT-Creation-Date: 2024-12-30 11:27+0000\n"
 "PO-Revision-Date: 2024-12-20 21:08+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
@@ -28,13 +28,3 @@ msgstr "Acceso al modelo"
 #: model:res.groups,name:product_management_group.group_products_management
 msgid "Products Management"
 msgstr "Gestión de productos"
-
-#. module: product_management_group
-#. odoo-python
-#: code:addons/product_management_group/models/ir_model_access.py:0
-msgid ""
-"Sorry, you are not allowed to manage products.Only users with 'Products "
-"Management' level are currently allowed to do that"
-msgstr ""
-"Lo sentimos, no se le permite administrar productos. Actualmente, solo los "
-"usuarios con el nivel de 'Gestión de productos' pueden hacerlo."
