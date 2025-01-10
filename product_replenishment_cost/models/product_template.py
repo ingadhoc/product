@@ -15,10 +15,12 @@ class ProductTemplate(models.Model):
     supplier_currency_id = fields.Many2one(
         'res.currency',
         compute='_compute_supplier_data',
+        compute_sudo=True,
     )
     supplier_price = fields.Float(
         string='Supplier Price',
         compute='_compute_supplier_data',
+        compute_sudo=True,
         digits='Product Price',
     )
     standard_price = fields.Float(
@@ -26,6 +28,7 @@ class ProductTemplate(models.Model):
     )
     replenishment_cost = fields.Float(
         compute='_compute_replenishment_cost',
+        compute_sudo=True,
         # TODO, activamos store como estaba??
         store=False,
         digits='Product Price',
@@ -59,6 +62,7 @@ class ProductTemplate(models.Model):
     )
     replenishment_base_cost_on_currency = fields.Float(
         compute='_compute_replenishment_cost',
+        compute_sudo=True, #chequear
         help='Replenishment cost on replenishment base cost currency',
         digits='Product Price',
     )
@@ -184,17 +188,20 @@ class ProductTemplate(models.Model):
         'supplier_currency_id',
         'replenishment_cost_type',
         'replenishment_base_cost',
-        # beccause field is not stored anymore we only keep currency and
-        # rule
-        # 'replenishment_base_cost_currency_id',
-        # # because of being stored
-        'replenishment_base_cost_currency_id.rate_ids.rate',
-        # # and this if we change de date (name field)
-        # 'replenishment_base_cost_currency_id.rate_ids.name',
-        # rule items
-        'replenishment_cost_rule_id.item_ids.sequence',
-        'replenishment_cost_rule_id.item_ids.percentage_amount',
-        'replenishment_cost_rule_id.item_ids.fixed_amount',
+        'replenishment_base_cost_currency_id',
+        'replenishment_cost_rule_id',
+        # 45640 depends en replenishment cost 
+        # # beccause field is not stored anymore we only keep currency and
+        # # rule
+        # # 'replenishment_base_cost_currency_id',
+        # # # because of being stored
+        # 'replenishment_base_cost_currency_id.rate_ids.rate',
+        # # # and this if we change de date (name field)
+        # # 'replenishment_base_cost_currency_id.rate_ids.name',
+        # # rule items
+        # 'replenishment_cost_rule_id.item_ids.sequence',
+        # 'replenishment_cost_rule_id.item_ids.percentage_amount',
+        # 'replenishment_cost_rule_id.item_ids.fixed_amount',
     )
     @api.depends_context('company')
     def _compute_replenishment_cost(self):
