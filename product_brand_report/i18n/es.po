@@ -3,16 +3,15 @@
 # 	* product_brand_report
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024
-# ced_adhoc, 2024
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2025
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 17.0+e\n"
+"Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-06 05:37+0000\n"
-"PO-Revision-Date: 2024-05-07 13:14+0000\n"
-"Last-Translator: ced_adhoc, 2024\n"
+"POT-Creation-Date: 2025-01-15 19:09+0000\n"
+"PO-Revision-Date: 2025-01-15 19:09+0000\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
