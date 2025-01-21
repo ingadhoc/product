@@ -1,6 +1,6 @@
 {
     'name': 'Product Attribute Template',
-    'version': "17.0.1.0.0",
+    'version': "17.0.1.1.0",
     'category': 'Sales Management',
     'author': 'ADHOC SA, Odoo Community Association (OCA)',
     'website': 'http://www.adhoc.com.ar/',
