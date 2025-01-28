@@ -97,7 +97,7 @@ class ProductCatalogReport(models.Model):
             'print_product_uom': self.print_product_uom,
             'category_type': self.category_type,
         })
-        return self.with_context(context)
+        return self.with_context(**context)
 
     def generate_report(self):
         """ Print the catalog
