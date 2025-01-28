@@ -17,7 +17,6 @@ class ProductTemplate(models.Model):
         compute='_compute_supplier_data',
     )
     supplier_price = fields.Float(
-        string='Supplier Price',
         compute='_compute_supplier_data',
         digits='Product Price',
     )
@@ -136,8 +135,6 @@ class ProductTemplate(models.Model):
             # para obtener el job_id se requiere este PR https://github.com/odoo/odoo/pull/146147
             cron = self.env['ir.cron'].browse(self.env.context.get('job_id')) or self.env.ref('product_replenishment_cost.ir_cron_update_cost_from_replenishment_cost')
             cron._trigger()
-            
-        
 
     def _update_cost_from_replenishment_cost(self):
         """
