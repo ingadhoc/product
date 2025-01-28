@@ -1,7 +1,7 @@
 # Copyright 2017-20 ForgeFlow S.L. (https://www.forgeflow.com).
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo import models
+from odoo import models, fields
 
 
 class StockRule(models.Model):
