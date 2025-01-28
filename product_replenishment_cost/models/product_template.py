@@ -129,7 +129,8 @@ class ProductTemplate(models.Model):
         else:
             last_updated_id = 0
         self.env.cr.execute("UPDATE ir_config_parameter set value = %s where id = %s", (str(last_updated_id), last_updated_param.id))
-        self.env.cr.commit()
+        # Uso directo de cr.commit(). Buscar alternativa menos riesgosa
+        self.env.cr.commit()  # pragma pylint: disable=invalid-commit
         # si setamos last updated es porque todavia quedan por procesar, volvemos a llamar al cron
         if last_updated_id:
             # para obtener el job_id se requiere este PR https://github.com/odoo/odoo/pull/146147
