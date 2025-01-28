@@ -38,7 +38,6 @@ class ProductCatalogReport(models.Model):
     product_type = fields.Selection(
         [('product.template', 'Product Template'),
          ('product.product', 'Product')],
-        'Product Type',
         required=True,
     )
     prod_display_type = fields.Selection(
