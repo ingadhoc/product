@@ -79,7 +79,7 @@ class Parser(models.AbstractModel):
             main_uom = product.sale_uom_ids[0].uom_id
         else:
             main_uom = product.uom_id
-        description = _('%s (%s)' % (product.
+        description = ('%s (%s)' % (product.
                                      display_name, main_uom.display_name))
         if sale_uom and len(product.sale_uom_ids) > 1:
             description = _('%s. Also available in %s') % (
