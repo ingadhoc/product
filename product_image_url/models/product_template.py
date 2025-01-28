@@ -25,6 +25,7 @@ from PIL import Image
 from io import BytesIO
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
+from requests.exceptions import RequestException
 
 
 class ProductTemplate(models.Model):
@@ -41,9 +42,9 @@ class ProductTemplate(models.Model):
         for rec in self.filtered('web_url'):
             link = rec.web_url
             try:
-                r = requests.get(link)
+                r = requests.get(link, timeout=10)
                 Image.open(BytesIO(r.content))
-                rec.image_medium = base64.encodestring(urlopen(link).read())
-            except:
+                rec.image_medium = base64.encodestring(urlopen(link, timeout=10).read())
+            except RequestException as e:
                 raise ValidationError(
                     _("Please provide correct URL or check your image size.!"))
