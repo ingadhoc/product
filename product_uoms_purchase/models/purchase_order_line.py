@@ -52,6 +52,4 @@ class PurchaseOrderLine(models.Model):
                 raise ValidationError(_(
                     "%s unit of measure is not valid for purchase,"
                     " please change %s product line with the proper"
-                    " uom in order to continue" % (
-                        rec.product_uom.name, product.display_name,
-                    )))
+                    " uom in order to continue", rec.product_uom.name, product.display_name))
