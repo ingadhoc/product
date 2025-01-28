@@ -13,11 +13,10 @@ class ProductPricesUpdateWizard(models.TransientModel):
 
     price_type = fields.Selection(
         [('list_price', 'Sale Price'), ('standard_price', 'Cost Price')],
-        required=True,
-        string='Price Type')
-    price_discount = fields.Float('Price Discount')
+        required=True)
+    price_discount = fields.Float()
     price_surcharge = fields.Float(
-        'Price Surcharge', help='Specify the fixed amount to add'
+                                help='Specify the fixed amount to add'
                                 ' or substract(if negative) to the'
                                 ' amount calculated with the discount.')
     price_round = fields.Float('Price Rounding', help="Sets the price so "
@@ -107,10 +106,8 @@ class ProductPricesUpdateWizardResultDetail(models.TransientModel):
         'product.template', 'Product Template',
         readonly=True)
     old_price = fields.Float(
-        'Old Price',
         readonly=True)
     new_price = fields.Float(
-        'New Price',
         required=True
     )
 
