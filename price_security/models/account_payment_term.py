@@ -8,5 +8,4 @@ from odoo import fields, models
 class AccountPaymentTerm(models.Model):
     _inherit = 'account.payment.term'
 
-    sequence = fields.Integer(
-        string='Sequence')
+    sequence = fields.Integer()
