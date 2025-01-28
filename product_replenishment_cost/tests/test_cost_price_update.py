@@ -42,7 +42,7 @@ class TestCostPriceUpdate(common.TransactionCase):
         product_template.write({'replenishment_base_cost': 100.0})
         wizard = self.env[
             'product.update_from_replenishment_cost.wizard'].with_context(
-            {'active_model': 'product.template',
+            **{'active_model': 'product.template',
                 'active_id': product_template.id,
                 'active_ids': [product_template.id]}).create({})
         wizard.confirm()
