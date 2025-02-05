@@ -18,25 +18,25 @@
 #
 ##############################################################################
 {
-    'name': 'Product UOMS',
-    'version': "18.0.1.0.0",
-    'category': 'base.module_category_knowledge_management',
-    'author': 'ADHOC SA',
-    'website': 'www.adhoc.com.ar',
-    'license': 'AGPL-3',
-    'depends': [
-        'product',
+    "name": "Product UOMS",
+    "version": "18.0.1.0.0",
+    "category": "base.module_category_knowledge_management",
+    "author": "ADHOC SA",
+    "website": "www.adhoc.com.ar",
+    "license": "AGPL-3",
+    "depends": [
+        "product",
     ],
-    'demo': [
-        'demo/product_product_demo.xml',
-        'demo/product_uoms_demo.xml',
+    "demo": [
+        "demo/product_product_demo.xml",
+        "demo/product_uoms_demo.xml",
     ],
-    'data': [
-        'data/product_uoms_data.xml',
-        'views/product_template_views.xml',
-        'security/ir.model.access.csv',
+    "data": [
+        "data/product_uoms_data.xml",
+        "views/product_template_views.xml",
+        "security/ir.model.access.csv",
     ],
-    'installable': True,
-    'auto_install': False,
-    'application': False,
+    "installable": True,
+    "auto_install": False,
+    "application": False,
 }

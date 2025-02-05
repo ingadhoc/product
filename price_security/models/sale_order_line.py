@@ -2,27 +2,24 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import fields, models, api
+from odoo import api, fields, models
 
 
 class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
+    _inherit = "sale.order.line"
 
     product_can_modify_prices = fields.Boolean(
-        related='product_id.can_modify_prices',
-        )
+        related="product_id.can_modify_prices",
+    )
 
     @api.constrains(
-        'discount',
-        'product_id',
+        "discount",
+        "product_id",
         # this is a related none stored field
         # 'product_can_modify_prices'
     )
     def check_discount(self):
-        if not self.env.user.has_group('price_security.group_only_view'):
+        if not self.env.user.has_group("price_security.group_only_view"):
             return True
         for rec in self.filtered(lambda x: not x.product_can_modify_prices):
-            self.env.user.check_discount(
-                rec.discount,
-                rec.order_id.pricelist_id.id,
-                so_line=rec)
+            self.env.user.check_discount(rec.discount, rec.order_id.pricelist_id.id, so_line=rec)

@@ -12,6 +12,10 @@ class ProductManagementGroupCommon(ProductCommon):
     @classmethod
     def patch_get_default_groups(cls):
         groups = super(ProductCommon, cls).get_default_groups()
-        return groups | cls.env.ref('base.group_system') | cls.env.ref('product_management_group.group_products_management')
+        return (
+            groups
+            | cls.env.ref("base.group_system")
+            | cls.env.ref("product_management_group.group_products_management")
+        )
 
     ProductCommon.get_default_groups = patch_get_default_groups

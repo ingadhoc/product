@@ -20,25 +20,23 @@
 
 {
     "name": "Product Stock By Location",
-    'version': "18.0.1.0.0",
-    'category': 'Tools',
-    'sequence': 14,
-    'author': 'ADHOC SA',
-    'website': 'www.adhoc.com.ar',
-    'license': 'AGPL-3',
-    'summary': '',
+    "version": "18.0.1.0.0",
+    "category": "Tools",
+    "sequence": 14,
+    "author": "ADHOC SA",
+    "website": "www.adhoc.com.ar",
+    "license": "AGPL-3",
+    "summary": "",
     "depends": [
         "stock",
     ],
-    'data': [
-        'views/product_views.xml',
-        'views/stock_location_views.xml',
+    "data": [
+        "views/product_views.xml",
+        "views/stock_location_views.xml",
     ],
-    'demo': [
-    ],
-    'test': [
-    ],
-    'installable': True,
-    'auto_install': False,
-    'application': False,
+    "demo": [],
+    "test": [],
+    "installable": True,
+    "auto_install": False,
+    "application": False,
 }

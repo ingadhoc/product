@@ -18,29 +18,28 @@
 #
 ##############################################################################
 {
-    'name': 'Product Catalog Tree',
-    'version': "18.0.1.1.0",
-    'category': 'Products',
-    'sequence': 14,
-    'summary': '',
-    'author': 'ADHOC SA',
-    'website': 'www.adhoc.com.ar',
-    'license': 'AGPL-3',
-    'images': [
+    "name": "Product Catalog Tree",
+    "version": "18.0.1.1.0",
+    "category": "Products",
+    "sequence": 14,
+    "summary": "",
+    "author": "ADHOC SA",
+    "website": "www.adhoc.com.ar",
+    "license": "AGPL-3",
+    "images": [],
+    "depends": [
+        "product",
     ],
-    'depends': [
-        'product',
+    "data": [
+        "views/product_product_views.xml",
     ],
-    'data': [
-        'views/product_product_views.xml',
-    ],
-    'assets': {
-        'web.assets_backend': [
-            'product_catalog_tree/static/src/*.js',
-            'product_catalog_tree/static/src/*.xml',
+    "assets": {
+        "web.assets_backend": [
+            "product_catalog_tree/static/src/*.js",
+            "product_catalog_tree/static/src/*.xml",
         ],
     },
-    'installable': True,
-    'auto_install': False,
-    'application': False,
+    "installable": True,
+    "auto_install": False,
+    "application": False,
 }

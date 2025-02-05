@@ -5,4 +5,3 @@
 from . import product_uoms
 from . import product_product
 from . import sale_order_line
-

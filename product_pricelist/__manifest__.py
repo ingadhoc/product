@@ -19,23 +19,22 @@
 ##############################################################################
 {
     "name": "Pricelists information on Products",
-    'version': "18.0.1.0.0",
-    'category': 'Sales & Purchases',
-    'sequence': 14,
-    'author': 'ADHOC SA',
-    'website': 'www.adhoc.com.ar',
-    'license': 'AGPL-3',
+    "version": "18.0.1.0.0",
+    "category": "Sales & Purchases",
+    "sequence": 14,
+    "author": "ADHOC SA",
+    "website": "www.adhoc.com.ar",
+    "license": "AGPL-3",
     "depends": [
-        'sale',
+        "sale",
     ],
     "data": [
-        'security/ir.model.access.csv',
-        'views/product_template_views.xml',
-        'views/product_pricelist_views.xml',
+        "security/ir.model.access.csv",
+        "views/product_template_views.xml",
+        "views/product_pricelist_views.xml",
     ],
-    'demo': [
-    ],
-    'installable': True,
-    'auto_install': False,
-    'application': False,
+    "demo": [],
+    "installable": True,
+    "auto_install": False,
+    "application": False,
 }

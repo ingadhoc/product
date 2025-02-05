@@ -15,7 +15,7 @@
                         <label for="sale_margin" string="Margin Formula" invisible="list_price_type != 'by_margin'"/>
                         <div invisible="list_price_type != 'by_margin'">
                             <field name="replenishment_cost" class="oe_inline"/>* ( 1 +
-                            <field name="sale_margin" class="oe_inline"/>%) + 
+                            <field name="sale_margin" class="oe_inline"/>%) +
                             <field name="sale_surcharge" class="oe_inline"/>
                         </div>
                         <label for="other_currency_list_price" invisible="list_price_type != 'other_currency'"/>

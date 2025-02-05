@@ -18,30 +18,29 @@
 #
 ##############################################################################
 {
-    'name': 'Product UX',
-    'version': "18.0.1.0.0",
-    'category': 'Products',
-    'sequence': 14,
-    'summary': '',
-    'author': 'ADHOC SA',
-    'website': 'www.adhoc.com.ar',
-    'license': 'AGPL-3',
-    'images': [
+    "name": "Product UX",
+    "version": "18.0.1.0.0",
+    "category": "Products",
+    "sequence": 14,
+    "summary": "",
+    "author": "ADHOC SA",
+    "website": "www.adhoc.com.ar",
+    "license": "AGPL-3",
+    "images": [],
+    "depends": [
+        "product",
     ],
-    'depends': [
-        'product',
+    "data": [
+        "views/product_template_views.xml",
+        "views/product_product_views.xml",
+        "views/product_pricelist_item_view.xml",
+        "views/product_pricelist_view.xml",
+        "views/uom_uom_views.xml",
     ],
-    'data': [
-        'views/product_template_views.xml',
-        'views/product_product_views.xml',
-        'views/product_pricelist_item_view.xml',
-        'views/product_pricelist_view.xml',
-        'views/uom_uom_views.xml',
+    "demo": [
+        "demo/product_pricelist_demo.xml",
     ],
-    'demo': [
-        'demo/product_pricelist_demo.xml',
-    ],
-    'installable': True,
-    'auto_install': False,
-    'application': False,
+    "installable": True,
+    "auto_install": False,
+    "application": False,
 }

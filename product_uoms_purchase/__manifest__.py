@@ -18,26 +18,25 @@
 #
 ##############################################################################
 {
-    'name': 'Product UOMS Purchase',
-    'version': "18.0.1.0.0",
-    'category': 'base.module_category_knowledge_management',
-    'author': 'ADHOC SA',
-    'website': 'www.adhoc.com.ar',
-    'license': 'AGPL-3',
-    'depends': [
-        'product_uoms',
+    "name": "Product UOMS Purchase",
+    "version": "18.0.1.0.0",
+    "category": "base.module_category_knowledge_management",
+    "author": "ADHOC SA",
+    "website": "www.adhoc.com.ar",
+    "license": "AGPL-3",
+    "depends": [
+        "product_uoms",
         # TODO when migrate analyze if this depends are necessary or
         # we do the part of the "stock.rule" in a bridge module
-        'purchase_stock',
+        "purchase_stock",
     ],
-    'demo': [
+    "demo": [],
+    "data": [
+        "views/product_template_views.xml",
+        "views/purchase_order_views.xml",
+        "security/ir.model.access.csv",
     ],
-    'data': [
-        'views/product_template_views.xml',
-        'views/purchase_order_views.xml',
-        'security/ir.model.access.csv',
-    ],
-    'installable': True,
-    'auto_install': True,
-    'application': False,
+    "installable": True,
+    "auto_install": True,
+    "application": False,
 }

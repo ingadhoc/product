@@ -6,7 +6,7 @@ from odoo import models
 
 
 class ProductProduct(models.Model):
-    _inherit = 'product.product'
+    _inherit = "product.product"
 
     def get_product_uoms(self, product_uom, use=False):
         """
@@ -15,6 +15,6 @@ class ProductProduct(models.Model):
         We send product uom so it can be send from sale or purchase
         """
         self.ensure_one()
-        return product_uom + self.env['uom.uom'].search([
-            ('category_id', '=', product_uom.category_id.id),
-            ('id', '!=', product_uom.id)])
+        return product_uom + self.env["uom.uom"].search(
+            [("category_id", "=", product_uom.category_id.id), ("id", "!=", product_uom.id)]
+        )
