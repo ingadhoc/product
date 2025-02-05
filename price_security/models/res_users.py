@@ -2,21 +2,18 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import models, fields, _
+from odoo import _, fields, models
 from odoo.exceptions import UserError
 
 
 class Users(models.Model):
-    _inherit = 'res.users'
+    _inherit = "res.users"
 
     discount_restriction_ids = fields.One2many(
-        'res.users.discount_restriction',
-        'user_id',
-        string='Discount Restrictions')
+        "res.users.discount_restriction", "user_id", string="Discount Restrictions"
+    )
 
-    def check_discount(
-            self, discount, pricelist_id,
-            so_line=False, do_not_raise=False):
+    def check_discount(self, discount, pricelist_id, so_line=False, do_not_raise=False):
         """
         We add do_not_raise for compatibility with other modules
         """
@@ -24,58 +21,49 @@ class Users(models.Model):
         error = False
 
         # for compatibility with price_security
-        pricelist = self.env['product.pricelist'].browse(pricelist_id)
+        pricelist = self.env["product.pricelist"].browse(pricelist_id)
         pricelist_disc = 0.0
         if so_line and any(item._show_discount() for item in pricelist.item_ids):
             tmp_line_vals = {
-                'product_id': so_line.product_id.id,
-                'order_id': so_line.order_id.id,
-                'product_uom': so_line.product_uom.id,
-                'product_uom_qty': so_line.product_uom_qty,
+                "product_id": so_line.product_id.id,
+                "order_id": so_line.order_id.id,
+                "product_uom": so_line.product_uom.id,
+                "product_uom_qty": so_line.product_uom_qty,
             }
             # for compatibility with product_pack
-            if 'pack_parent_line_id' in so_line._fields and so_line.product_id.pack_ok:
+            if "pack_parent_line_id" in so_line._fields and so_line.product_id.pack_ok:
                 so_line = so_line.with_context(whole_pack_price=True, pricelist=pricelist_id)
 
             tmp_line = so_line.new(tmp_line_vals)
             pricelist_disc = tmp_line.discount
-        discount_precision_digits = self.env['decimal.precision'].precision_get(
-            'Discount')
-        net_discount = discount - round(pricelist_disc,discount_precision_digits)
+        discount_precision_digits = self.env["decimal.precision"].precision_get("Discount")
+        net_discount = discount - round(pricelist_disc, discount_precision_digits)
 
         if net_discount and net_discount != 0.0:
-            disc_restriction_env = self.env['res.users.discount_restriction']
-            domain = [
-                ('pricelist_id', '=', pricelist_id), ('user_id', '=', self.id)]
+            disc_restriction_env = self.env["res.users.discount_restriction"]
+            domain = [("pricelist_id", "=", pricelist_id), ("user_id", "=", self.id)]
             disc_restriction = disc_restriction_env.search(domain, limit=1)
             if not disc_restriction:
-                domain = [
-                    ('user_id', '=', self.id)]
+                domain = [("user_id", "=", self.id)]
                 disc_restriction = disc_restriction_env.search(domain, limit=1)
             # User can not make any discount
             if not disc_restriction:
-                error = _(
-                    'You can not give any discount greater than pricelist '
-                    'discounts')
+                error = _("You can not give any discount greater than pricelist " "discounts")
                 # if pricelist_disc then we have a so line and a product
                 if pricelist_disc:
-                    error += ' (%s%% for product "%s")' % (
-                        pricelist_disc, so_line.product_id.name)
+                    error += ' (%s%% for product "%s")' % (pricelist_disc, so_line.product_id.name)
             else:
-                if (
-                        net_discount < disc_restriction.min_discount or
-                        net_discount > disc_restriction.max_discount
-                ):
+                if net_discount < disc_restriction.min_discount or net_discount > disc_restriction.max_discount:
                     error = _(
-                        'The applied discount is not allowed. Discount must be'
-                        'between %s and %s for pricelist "%s"') % (
+                        "The applied discount is not allowed. Discount must be" 'between %s and %s for pricelist "%s"'
+                    ) % (
                         disc_restriction.min_discount + pricelist_disc,
                         disc_restriction.max_discount + pricelist_disc,
-                        pricelist.name)
+                        pricelist.name,
+                    )
                     # if pricelist_disc then we have a soline and e product
                     if pricelist_disc:
-                        error += ' and product "%s"' % (
-                            so_line.product_id.name)
+                        error += ' and product "%s"' % (so_line.product_id.name)
         if not do_not_raise and error:
             raise UserError(error)
         return error

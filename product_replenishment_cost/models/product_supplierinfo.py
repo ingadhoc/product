@@ -2,67 +2,65 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import models, fields, api
+from odoo import api, fields, models
 
 
 class ProductSupplierinfo(models.Model):
-    _inherit = 'product.supplierinfo'
+    _inherit = "product.supplierinfo"
 
-    last_date_price_updated = fields.Datetime(string="Last date price updated",
-                                              compute='_compute_last_date_price_updated',
-                                              store=True,
-                                              default=lambda self: fields.Datetime.now())
+    last_date_price_updated = fields.Datetime(
+        string="Last date price updated",
+        compute="_compute_last_date_price_updated",
+        store=True,
+        default=lambda self: fields.Datetime.now(),
+    )
 
     replenishment_cost_rule_id = fields.Many2one(
-        'product.replenishment_cost.rule',
+        "product.replenishment_cost.rule",
         auto_join=True,
         index=True,
-        string='Replenishment Cost Rule',
+        string="Replenishment Cost Rule",
     )
     net_price = fields.Float(
-        inverse='_inverse_net_price',
-        compute='_compute_net_price',
+        inverse="_inverse_net_price",
+        compute="_compute_net_price",
         store=False,
-        digits='Product Price',
+        digits="Product Price",
         help="Net Price",
     )
 
-    @api.depends('price', 'min_qty')
+    @api.depends("price", "min_qty")
     def _compute_last_date_price_updated(self):
         for rec in self:
             rec.last_date_price_updated = fields.Datetime.now()
 
     def _inverse_net_price(self):
-        """ For now we only implement when product_tmpl_id is set
-        """
-        for rec in self.filtered('product_tmpl_id'):
+        """For now we only implement when product_tmpl_id is set"""
+        for rec in self.filtered("product_tmpl_id"):
             price = rec.net_price
             replenishment_cost_rule_id = rec.replenishment_cost_rule_id
             if replenishment_cost_rule_id:
-                rec.price = replenishment_cost_rule_id.compute_rule_inverse(
-                    price)
+                rec.price = replenishment_cost_rule_id.compute_rule_inverse(price)
             else:
                 rec.price = price
 
     @api.depends(
-        'product_id',
-        'price',
-        'currency_id',
+        "product_id",
+        "price",
+        "currency_id",
         # and this if we change de date (name field)
         # rule items
-        'replenishment_cost_rule_id.item_ids.sequence',
-        'replenishment_cost_rule_id.item_ids.percentage_amount',
-        'replenishment_cost_rule_id.item_ids.fixed_amount',
+        "replenishment_cost_rule_id.item_ids.sequence",
+        "replenishment_cost_rule_id.item_ids.percentage_amount",
+        "replenishment_cost_rule_id.item_ids.fixed_amount",
     )
     def _compute_net_price(self):
-        """ For now we only implement when product_tmpl_id is set
-        """
-        product_tmpls = self.filtered('product_tmpl_id')
-        (self - product_tmpls).update({'net_price': 0.0})
+        """For now we only implement when product_tmpl_id is set"""
+        product_tmpls = self.filtered("product_tmpl_id")
+        (self - product_tmpls).update({"net_price": 0.0})
         for rec in product_tmpls:
             net_price = rec.price
             replenishment_cost_rule_id = rec.replenishment_cost_rule_id
             if replenishment_cost_rule_id:
-                net_price = replenishment_cost_rule_id.compute_rule(
-                    net_price, rec.product_tmpl_id)
+                net_price = replenishment_cost_rule_id.compute_rule(net_price, rec.product_tmpl_id)
             rec.net_price = net_price

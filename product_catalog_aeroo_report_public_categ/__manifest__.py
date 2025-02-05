@@ -18,26 +18,24 @@
 #
 ##############################################################################
 {
-    'name': 'Product Catalog Aeroo Report with public Category',
-    'version': "17.0.1.0.0",
-    'category': 'Aeroo Reporting',
-    'sequence': 14,
-    'summary': '',
-    'author': 'ADHOC SA',
-    'website': 'www.adhoc.com.ar',
-    'license': 'AGPL-3',
-    'images': [
+    "name": "Product Catalog Aeroo Report with public Category",
+    "version": "17.0.1.0.0",
+    "category": "Aeroo Reporting",
+    "sequence": 14,
+    "summary": "",
+    "author": "ADHOC SA",
+    "website": "www.adhoc.com.ar",
+    "license": "AGPL-3",
+    "images": [],
+    "depends": [
+        "website_sale",
+        "product_catalog_aeroo_report",
     ],
-    'depends': [
-        'website_sale',
-        'product_catalog_aeroo_report',
+    "data": [
+        "views/product_catalog_report_views.xml",
     ],
-    'data': [
-        'views/product_catalog_report_views.xml',
-    ],
-    'demo': [
-    ],
-    'installable': False,
-    'auto_install': True,
-    'application': False,
+    "demo": [],
+    "installable": False,
+    "auto_install": True,
+    "application": False,
 }

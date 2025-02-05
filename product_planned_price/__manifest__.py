@@ -18,29 +18,28 @@
 #
 ##############################################################################
 {
-    'name': 'Product Planned Price',
-    'version': "18.0.1.0.0",
-    'category': 'Product',
-    'sequence': 14,
-    'author': 'ADHOC SA,Odoo Community Association (OCA)',
-    'website': 'www.adhoc.com.ar',
-    'license': 'AGPL-3',
-    'images': [
+    "name": "Product Planned Price",
+    "version": "18.0.1.0.0",
+    "category": "Product",
+    "sequence": 14,
+    "author": "ADHOC SA,Odoo Community Association (OCA)",
+    "website": "www.adhoc.com.ar",
+    "license": "AGPL-3",
+    "images": [],
+    "depends": [
+        "product_replenishment_cost",
     ],
-    'depends': [
-        'product_replenishment_cost',
+    "data": [
+        "views/product_template_views.xml",
+        "wizards/product_update_from_planned_price_wizard_views.xml",
+        "data/ir_cron_data.xml",
+        "security/product_planned_price_security.xml",
+        "security/ir.model.access.csv",
     ],
-    'data': [
-        'views/product_template_views.xml',
-        'wizards/product_update_from_planned_price_wizard_views.xml',
-        'data/ir_cron_data.xml',
-        'security/product_planned_price_security.xml',
-        'security/ir.model.access.csv',
+    "demo": [
+        "demo/product_product_demo.xml",
     ],
-    'demo': [
-        'demo/product_product_demo.xml',
-    ],
-    'installable': True,
-    'auto_install': False,
-    'application': False,
+    "installable": True,
+    "auto_install": False,
+    "application": False,
 }

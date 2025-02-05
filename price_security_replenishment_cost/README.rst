@@ -14,7 +14,7 @@
 Price Security with replenishment cost
 ======================================
 
-This module is an integration of Price Security with Product Replenishment Cost. 
+This module is an integration of Price Security with Product Replenishment Cost.
 It extends the permissions of price_security in order to show/hide and modify the replenishment cost information within the product form.
 
 Installation

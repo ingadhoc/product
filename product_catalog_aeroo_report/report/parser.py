@@ -2,34 +2,32 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import api, models, fields, _
+from odoo import _, api, fields, models
 
 
 class Parser(models.AbstractModel):
-    _inherit = 'report.report_aeroo.abstract'
+    _inherit = "report.report_aeroo.abstract"
 
-    _name = 'report.product_catalog_parser'
-    _description = 'report.product_catalog_parser'
+    _name = "report.product_catalog_parser"
+    _description = "report.product_catalog_parser"
 
     @api.model
     def aeroo_report(self, docids, data):
-        self.env.print_product_uom = self._context.get('print_product_uom', False)
-        self.env.product_type = self._context.get(
-            'product_type', 'product.product')
-        self.env.prod_display_type = self._context.get('prod_display_type', False)
-        pricelist_ids = self._context.get('pricelist_ids', [])
-        categories_order = self._context.get('categories_order', '')
-        pricelists = self.env['product.pricelist'].browse(pricelist_ids)
+        self.env.print_product_uom = self._context.get("print_product_uom", False)
+        self.env.product_type = self._context.get("product_type", "product.product")
+        self.env.prod_display_type = self._context.get("prod_display_type", False)
+        pricelist_ids = self._context.get("pricelist_ids", [])
+        categories_order = self._context.get("categories_order", "")
+        pricelists = self.env["product.pricelist"].browse(pricelist_ids)
 
         # Get categories ordered
-        category_type = self._context.get('category_type', False)
-        if category_type == 'public_category':
-            categories = self.env['product.public.category']
+        category_type = self._context.get("category_type", False)
+        if category_type == "public_category":
+            categories = self.env["product.public.category"]
         else:
-            categories = self.env['product.category']
-        category_ids = self._context.get('category_ids', [])
-        categories = categories.search([('id', 'in', category_ids)],
-                                       order=categories_order)
+            categories = self.env["product.category"]
+        category_ids = self._context.get("category_ids", [])
+        categories = categories.search([("id", "in", category_ids)], order=categories_order)
         products = self.get_products(category_ids)
         self = self.with_context(
             products=products,
@@ -53,24 +51,19 @@ class Parser(models.AbstractModel):
         # deberiamos usar export_data en vez de read para poder elegir que ver
         # del padre, por ejemplo "categ_id/name"
         product_obj = self.env[self.env.product_type]
-        field_value = product_obj.read(
-            [product.id], [field])
-        return field_value[0].get(field, '')
+        field_value = product_obj.read([product.id], [field])
+        return field_value[0].get(field, "")
 
     def get_price(self, product, pricelist):
         product_obj = self.env[self.env.product_type].with_context(pricelist=pricelist.id, whole_pack_price=True)
-        sale_uom = self.env['product.template'].fields_get(
-            ['sale_uom_ids'])
+        sale_uom = self.env["product.template"].fields_get(["sale_uom_ids"])
         if sale_uom and product.sale_uom_ids:
-            product_obj = product_obj.with_context(
-                uom=product.sale_uom_ids[0].uom_id.id)
+            product_obj = product_obj.with_context(uom=product.sale_uom_ids[0].uom_id.id)
         price = product_obj.browse([product.id])._get_contextual_price()
         return price
 
     def get_description(self, product, print_product_uom):
-
-        sale_uom = self.env['product.template'].fields_get(
-            ['sale_uom_ids'])
+        sale_uom = self.env["product.template"].fields_get(["sale_uom_ids"])
         # we force to not print default code because it's already shown in the reports.
         product = product.with_context(display_default_code=False)
         if not print_product_uom:
@@ -79,30 +72,27 @@ class Parser(models.AbstractModel):
             main_uom = product.sale_uom_ids[0].uom_id
         else:
             main_uom = product.uom_id
-        description = ('%s (%s)' % (product.
-                                     display_name, main_uom.display_name))
+        description = "%s (%s)" % (product.display_name, main_uom.display_name)
         if sale_uom and len(product.sale_uom_ids) > 1:
-            description = _('%s. Also available in %s') % (
-                description, ', '.join(
-                    product.sale_uom_ids.filtered(
-                        lambda x: x.uom_id != main_uom).
-                    mapped('uom_id.display_name')))
+            description = _("%s. Also available in %s") % (
+                description,
+                ", ".join(product.sale_uom_ids.filtered(lambda x: x.uom_id != main_uom).mapped("uom_id.display_name")),
+            )
 
         return description
 
     def get_products(self, category_ids):
         if not isinstance(category_ids, list):
             category_ids = [category_ids]
-        order = self._context.get('products_order', '')
-        only_with_stock = self._context.get('only_with_stock', False)
-        category_type = self._context.get('category_type', False)
-        if category_type == 'public_category':
-            domain = [('public_categ_ids', 'in', category_ids)]
+        order = self._context.get("products_order", "")
+        only_with_stock = self._context.get("only_with_stock", False)
+        category_type = self._context.get("category_type", False)
+        if category_type == "public_category":
+            domain = [("public_categ_ids", "in", category_ids)]
         else:
-            domain = [('categ_id', 'in', category_ids)]
+            domain = [("categ_id", "in", category_ids)]
         if only_with_stock:
-            domain.append(('qty_available', '>', 0))
+            domain.append(("qty_available", ">", 0))
 
-        products = self.env[self.env.product_type].search(
-            domain, order=order)
+        products = self.env[self.env.product_type].search(domain, order=order)
         return products

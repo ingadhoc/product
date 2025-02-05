@@ -1,13 +1,13 @@
-from odoo import models, api, fields
+from odoo import api, fields, models
 
 
 class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
+    _inherit = "sale.order.line"
 
-    @api.depends('product_id.replenishment_cost')
+    @api.depends("product_id.replenishment_cost")
     def _compute_purchase_price(self):
         super()._compute_purchase_price()
-        for line in self.filtered('product_id'):
+        for line in self.filtered("product_id"):
             order_id = line.order_id
             product_id = line.product_id
             product_uom_id = line.product_uom
@@ -18,9 +18,12 @@ class SaleOrderLine(models.Model):
                 if product_uom_id != product_id.uom_id:
                     purchase_price = product_id.uom_id._compute_price(purchase_price, product_uom_id)
                 line.purchase_price = frm_cur._convert(
-                    purchase_price, to_cur, order_id.company_id or self.env.company,
-                    order_id.date_order or fields.Date.today(), round=False)
-
+                    purchase_price,
+                    to_cur,
+                    order_id.company_id or self.env.company,
+                    order_id.date_order or fields.Date.today(),
+                    round=False,
+                )
 
     def _convert_price(self, product_cost, from_uom):
         if not product_cost:
@@ -33,8 +36,11 @@ class SaleOrderLine(models.Model):
             if self.product_uom != from_uom:
                 purchase_price = from_uom._compute_price(purchase_price, self.product_uom)
             return frm_cur._convert(
-                purchase_price, to_cur,
+                purchase_price,
+                to_cur,
                 self.order_id.company_id or self.env.company,
-                self.order_id.date_order or fields.Date.today(), round=False)
+                self.order_id.date_order or fields.Date.today(),
+                round=False,
+            )
         else:
             return super()._convert_price(product_cost, from_uom)

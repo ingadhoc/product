@@ -18,23 +18,22 @@
 #
 ##############################################################################
 {
-    'name': 'Product Brand Report',
-    'version': "18.0.1.0.0",
-    'category': 'Product',
-    'author': 'ADHOC SA',
-    'website': 'www.adhoc.com.ar',
-    'license': 'AGPL-3',
-    'depends': [
-        'product_brand',
+    "name": "Product Brand Report",
+    "version": "18.0.1.0.0",
+    "category": "Product",
+    "author": "ADHOC SA",
+    "website": "www.adhoc.com.ar",
+    "license": "AGPL-3",
+    "depends": [
+        "product_brand",
     ],
-    'demo': [
+    "demo": [],
+    "data": [
+        "reports/report_saleorder_document.xml",
+        "reports/report_invoice_document.xml",
+        "views/res_config_settings_view.xml",
     ],
-    'data': [
-        'reports/report_saleorder_document.xml',
-        'reports/report_invoice_document.xml',
-        'views/res_config_settings_view.xml'
-    ],
-    'installable': True,
-    'auto_install': False,
-    'application': False,
+    "installable": True,
+    "auto_install": False,
+    "application": False,
 }

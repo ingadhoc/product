@@ -18,16 +18,16 @@
 #
 ##############################################################################
 {
-    'name': 'Price Security with planned price',
-    'version': "18.0.1.0.0",
-    'category': 'Sales Management',
-    'author': 'ADHOC SA',
-    'website': 'http://www.adhoc.com.ar/',
-    'license': 'AGPL-3',
-    'depends': [
-        'price_security',
-        'product_planned_price',
+    "name": "Price Security with planned price",
+    "version": "18.0.1.0.0",
+    "category": "Sales Management",
+    "author": "ADHOC SA",
+    "website": "http://www.adhoc.com.ar/",
+    "license": "AGPL-3",
+    "depends": [
+        "price_security",
+        "product_planned_price",
     ],
-    'installable': True,
-    'auto_install': True,
+    "installable": True,
+    "auto_install": True,
 }

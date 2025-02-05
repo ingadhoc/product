@@ -20,26 +20,23 @@
 
 {
     "name": "Product Sales ABC",
-    'version': "16.0.1.0.0",
-    'category': 'Tools',
-    'sequence': 14,
-    'author': 'ADHOC SA',
-    'website': 'www.adhoc.com.ar',
-    'license': 'AGPL-3',
-    'summary': '',
+    "version": "16.0.1.0.0",
+    "category": "Tools",
+    "sequence": 14,
+    "author": "ADHOC SA",
+    "website": "www.adhoc.com.ar",
+    "license": "AGPL-3",
+    "summary": "",
     "depends": [
         "product",
     ],
-    'external_dependencies': {
-    },
-    'data': [
-        'views/product_view.xml',
+    "external_dependencies": {},
+    "data": [
+        "views/product_view.xml",
     ],
-    'demo': [
-    ],
-    'test': [
-    ],
-    'installable': False,
-    'auto_install': False,
-    'application': False,
+    "demo": [],
+    "test": [],
+    "installable": False,
+    "auto_install": False,
+    "application": False,
 }

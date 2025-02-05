@@ -18,33 +18,32 @@
 #
 ##############################################################################
 {
-    'name': 'Product Catalog Aeroo Report',
-    'version': "17.0.1.0.0",
-    'category': 'Aeroo Reporting',
-    'sequence': 14,
-    'summary': '',
-    'author': 'ADHOC SA',
-    'website': 'www.adhoc.com.ar',
-    'license': 'AGPL-3',
-    'images': [
+    "name": "Product Catalog Aeroo Report",
+    "version": "17.0.1.0.0",
+    "category": "Aeroo Reporting",
+    "sequence": 14,
+    "summary": "",
+    "author": "ADHOC SA",
+    "website": "www.adhoc.com.ar",
+    "license": "AGPL-3",
+    "images": [],
+    "depends": [
+        "product_price_taxes_included",
+        "report_aeroo",
+        "sale",
+        "stock",
     ],
-    'depends': [
-        'product_price_taxes_included',
-        'report_aeroo',
-        'sale',
-        'stock',
+    "data": [
+        "wizards/product_catalog_wizard_views.xml",
+        "security/ir.model.access.csv",
+        "views/product_catalog_report_views.xml",
+        "report/product_catalog_report_data.xml",
     ],
-    'data': [
-        'wizards/product_catalog_wizard_views.xml',
-        'security/ir.model.access.csv',
-        'views/product_catalog_report_views.xml',
-        'report/product_catalog_report_data.xml'
+    "demo": [
+        "demo/product_template_demo.xml",
+        "demo/product_product_demo.xml",
     ],
-    'demo': [
-        'demo/product_template_demo.xml',
-        'demo/product_product_demo.xml',
-    ],
-    'installable': False,
-    'auto_install': False,
-    'application': True,
+    "installable": False,
+    "auto_install": False,
+    "application": True,
 }

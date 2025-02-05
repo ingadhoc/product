@@ -19,32 +19,32 @@
 #
 ###############################################################################
 import base64
-from urllib.request import urlopen
-import requests
-from PIL import Image
 from io import BytesIO
-from odoo import models, fields, api, _
+from urllib.request import urlopen
+
+import requests
+from odoo import _, api, fields, models
 from odoo.exceptions import ValidationError
+from PIL import Image
 from requests.exceptions import RequestException
 
 
 class ProductTemplate(models.Model):
-    _inherit = 'product.template'
+    _inherit = "product.template"
 
     web_url = fields.Char(
-        string='Image URL',
-        help='Automatically sanitized HTML contents',
+        string="Image URL",
+        help="Automatically sanitized HTML contents",
         copy=False,
     )
 
-    @api.constrains('web_url')
+    @api.constrains("web_url")
     def onchange_image(self):
-        for rec in self.filtered('web_url'):
+        for rec in self.filtered("web_url"):
             link = rec.web_url
             try:
                 r = requests.get(link, timeout=10)
                 Image.open(BytesIO(r.content))
                 rec.image_medium = base64.encodestring(urlopen(link, timeout=10).read())
-            except RequestException as e:
-                raise ValidationError(
-                    _("Please provide correct URL or check your image size.!"))
+            except RequestException:
+                raise ValidationError(_("Please provide correct URL or check your image size.!"))

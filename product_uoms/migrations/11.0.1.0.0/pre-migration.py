@@ -1,12 +1,11 @@
 from openupgradelib import openupgrade
 
-
 table_renames = [
-    ('product_sale_uom', 'product_uoms'),
+    ("product_sale_uom", "product_uoms"),
 ]
 
 model_renames = [
-    ('product.sale.uom', 'product.uoms'),
+    ("product.sale.uom", "product.uoms"),
 ]
 
 

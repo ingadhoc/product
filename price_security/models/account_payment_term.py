@@ -6,6 +6,6 @@ from odoo import fields, models
 
 
 class AccountPaymentTerm(models.Model):
-    _inherit = 'account.payment.term'
+    _inherit = "account.payment.term"
 
     sequence = fields.Integer()

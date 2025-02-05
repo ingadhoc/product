@@ -18,25 +18,25 @@
 #
 ##############################################################################
 {
-    'name': 'Price Security',
-    'version': "18.0.1.1.0",
-    'category': 'Sales Management',
-    'author': 'ADHOC SA, Odoo Community Association (OCA)',
-    'website': 'http://www.adhoc.com.ar/',
-    'license': 'AGPL-3',
-    'depends': [
-        'sale',
-        'purchase',
-        'stock_account',
+    "name": "Price Security",
+    "version": "18.0.1.1.0",
+    "category": "Sales Management",
+    "author": "ADHOC SA, Odoo Community Association (OCA)",
+    "website": "http://www.adhoc.com.ar/",
+    "license": "AGPL-3",
+    "depends": [
+        "sale",
+        "purchase",
+        "stock_account",
     ],
-    'data': [
-        'security/price_security_security.xml',
-        'security/ir.model.access.csv',
-        'views/account_move_views.xml',
-        'views/account_payment_term_views.xml',
-        'views/product_template_views.xml',
-        'views/res_users_views.xml',
-        'views/sale_order_views.xml',
+    "data": [
+        "security/price_security_security.xml",
+        "security/ir.model.access.csv",
+        "views/account_move_views.xml",
+        "views/account_payment_term_views.xml",
+        "views/product_template_views.xml",
+        "views/res_users_views.xml",
+        "views/sale_order_views.xml",
     ],
-    'installable': True,
+    "installable": True,
 }

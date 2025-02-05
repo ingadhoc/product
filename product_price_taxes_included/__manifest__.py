@@ -18,29 +18,24 @@
 #
 ##############################################################################
 {
-    'name': 'Product Price Taxes Included or Not',
-    'version': "18.0.1.0.0",
-    'category': 'Product',
-    'sequence': 14,
-    'summary': '',
-    'author': 'ADHOC SA',
-    'website': 'www.adhoc.com.ar',
-    'license': 'AGPL-3',
-    'images': [
+    "name": "Product Price Taxes Included or Not",
+    "version": "18.0.1.0.0",
+    "category": "Product",
+    "sequence": 14,
+    "summary": "",
+    "author": "ADHOC SA",
+    "website": "www.adhoc.com.ar",
+    "license": "AGPL-3",
+    "images": [],
+    "depends": ["account", "product_ux"],
+    "data": [
+        "security/product_price_taxes_included_security.xml",
+        "views/product_template_views.xml",
+        "views/product_product_views.xml",
+        "wizards/res_config_settings_views.xml",
     ],
-    'depends': [
-        'account',
-        'product_ux'
-    ],
-    'data': [
-        'security/product_price_taxes_included_security.xml',
-        'views/product_template_views.xml',
-        'views/product_product_views.xml',
-        'wizards/res_config_settings_views.xml',
-    ],
-    'demo': [
-    ],
-    'installable': True,
-    'auto_install': False,
-    'application': False,
+    "demo": [],
+    "installable": True,
+    "auto_install": False,
+    "application": False,
 }

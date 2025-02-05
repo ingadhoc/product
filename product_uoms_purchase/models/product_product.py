@@ -6,9 +6,9 @@ from odoo import models
 
 
 class ProductProduct(models.Model):
-    _inherit = 'product.product'
+    _inherit = "product.product"
 
     def get_product_uoms(self, product_uom, use=False):
-        if use == 'purchase' and self.uom_ids.filtered('purchase_ok'):
-            return self.uom_ids.filtered('purchase_ok').mapped('uom_id')
+        if use == "purchase" and self.uom_ids.filtered("purchase_ok"):
+            return self.uom_ids.filtered("purchase_ok").mapped("uom_id")
         return super().get_product_uoms(product_uom, use=use)

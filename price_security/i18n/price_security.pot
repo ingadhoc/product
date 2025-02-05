@@ -357,4 +357,3 @@ msgstr ""
 #, python-format
 msgid "You can not give any discount greater than pricelist discounts"
 msgstr ""
-
