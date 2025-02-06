@@ -14,7 +14,7 @@
 Product Catalog Tree Sale Renting
 =================================
 
-Incorporates the possibility to search the Pricelist Price of products in the tree view.
+If the catalog is opened from rentals the view is kanban.
 
 Installation
 ============
