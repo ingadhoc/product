@@ -210,7 +210,7 @@ msgid ""
 " price."
 msgstr ""
 "Actualizar precio de lista con precio planificado para todos los productos "
-"seleccionados con precio planificado."
+"seleccionados con precio planificado diferente a 0."
 
 #. module: product_planned_price
 #: model:ir.actions.act_window,name:product_planned_price.action_update_from_planned_price_wizard

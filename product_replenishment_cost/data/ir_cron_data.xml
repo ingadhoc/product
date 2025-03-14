@@ -20,6 +20,7 @@ model.cron_update_cost_from_replenishment_cost(company_ids=None)
         <field name="user_id" ref="base.user_root"/>
         <field name="state">code</field>
         <field name="numbercall" eval="-1"/>
+        <field name="nextcall" eval="(DateTime.now().replace(hour=9, minute=0) + timedelta(days=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
         <field name="priority" eval="5"/>
         <field name="doall" eval="False"/>
         <field name="active" eval="False"/>
