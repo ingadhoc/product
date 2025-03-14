@@ -1,4 +1,4 @@
-<odoo>
+<odoo noupdate="1">
     <record id="ir_cron_update_cost_from_replenishment_cost" model="ir.cron">
         <field name="name">Update Cost from Replenishment Cost</field>
         <field name="model_id" ref="product.model_product_template"/>
