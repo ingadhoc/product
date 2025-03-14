@@ -450,9 +450,11 @@ msgid "Update Accounting Cost from Replenishment Cost"
 msgstr "Actualizar el costo contable desde el  costo de reposición."
 
 #. module: product_replenishment_cost
-#: model:ir.actions.server,name:product_replenishment_cost.ir_cron_update_cost_from_replenishment_cost_ir_actions_server
+#: model:ir.actions.server,name:product_replenishment_cost.ir_cron_update_cost_from_replenishment_cost
+#: model:ir.cron,cron_name:product_replenishment_cost.ir_cron_update_cost_from_replenishment_cost
 msgid "Update Cost from Replenishment Cost"
 msgstr "Actualización del costo desde el costo de reposición"
+
 
 #. module: product_replenishment_cost
 #. odoo-python

@@ -84,7 +84,7 @@ class ProductTemplate(models.Model):
         records[:batch_size].with_context(bypass_base_automation=True)._update_prices_from_planned()
 
         if len(records) > batch_size:
-            last_updated_id = records[batch_size].id
+            last_updated_id = records[batch_size - 1].id
         else:
             last_updated_id = 0
 
