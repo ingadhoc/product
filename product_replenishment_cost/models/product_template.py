@@ -137,7 +137,7 @@ class ProductTemplate(models.Model):
             )._update_cost_from_replenishment_cost()
 
         if len(records) > batch_size:
-            last_updated_id = records[batch_size].id
+            last_updated_id = records[batch_size - 1].id
         else:
             last_updated_id = 0
         self.env.cr.execute(
