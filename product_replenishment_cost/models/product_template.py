@@ -126,7 +126,7 @@ class ProductTemplate(models.Model):
             records[:batch_size].with_company(company=company_id).with_context(bypass_base_automation=True)._update_cost_from_replenishment_cost()
 
         if len(records) > batch_size:
-            last_updated_id = records[batch_size].id
+            last_updated_id = records[batch_size-1].id
         else:
             last_updated_id = 0
         self.env.cr.execute("UPDATE ir_config_parameter set value = %s where id = %s", (str(last_updated_id), last_updated_param.id))
