@@ -235,3 +235,12 @@ msgstr ""
 msgid "You can not give any discount greater than pricelist discounts"
 msgstr ""
 "No puede darle un descuento mayor al descuento de la lista de precios."
+
+#. module: price_security
+#. odoo-python
+#: code:addons/price_security/wizard/sale_order_discount.py:0
+#, python-format
+msgid ""
+"You do not have permission to apply this type of discount with the current "
+"pricelist."
+msgstr "No tienes permiso para aplicar este tipo de descuento con la lista de precios actual."
