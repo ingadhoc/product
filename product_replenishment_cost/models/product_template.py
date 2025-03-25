@@ -17,9 +17,11 @@ class ProductTemplate(models.Model):
     supplier_currency_id = fields.Many2one(
         "res.currency",
         compute="_compute_supplier_data",
+        compute_sudo=True,
     )
     supplier_price = fields.Float(
         compute="_compute_supplier_data",
+        compute_sudo=True,
         digits="Product Price",
     )
     standard_price = fields.Float(
@@ -27,6 +29,7 @@ class ProductTemplate(models.Model):
     )
     replenishment_cost = fields.Float(
         compute="_compute_replenishment_cost",
+        compute_sudo=True,
         # TODO, activamos store como estaba??
         store=False,
         digits="Product Price",
@@ -59,6 +62,7 @@ class ProductTemplate(models.Model):
     )
     replenishment_base_cost_on_currency = fields.Float(
         compute="_compute_replenishment_cost",
+        compute_sudo=True,
         help="Replenishment cost on replenishment base cost currency",
         digits="Product Price",
     )
@@ -99,7 +103,7 @@ class ProductTemplate(models.Model):
     @api.model
     def cron_update_cost_from_replenishment_cost(self, limit=None, company_ids=None, batch_size=1000):
         """vamos a actualizar de a batches y guardar en un parametro cual es el ultimo que se actualizó.
-        si hay mas por atualizar llamamos con trigger al mismo cron para que siga con el prox batch
+        si hay mas por actualizar llamamos con trigger al mismo cron para que siga con el prox batch
         si terminamos, resetamos el parametro a 0 para que en proxima corrida arranque desde abajo
         no usamos set_param porque refresca caché y en este caso preferimos evitarlo, al no usar set_param
         tampoco podemos usar get_param porque justamente no se va a refrescar el valor
@@ -200,17 +204,8 @@ class ProductTemplate(models.Model):
         "supplier_currency_id",
         "replenishment_cost_type",
         "replenishment_base_cost",
-        # beccause field is not stored anymore we only keep currency and
-        # rule
-        # 'replenishment_base_cost_currency_id',
-        # # because of being stored
-        "replenishment_base_cost_currency_id.rate_ids.rate",
-        # # and this if we change de date (name field)
-        # 'replenishment_base_cost_currency_id.rate_ids.name',
-        # rule items
-        "replenishment_cost_rule_id.item_ids.sequence",
-        "replenishment_cost_rule_id.item_ids.percentage_amount",
-        "replenishment_cost_rule_id.item_ids.fixed_amount",
+        "replenishment_base_cost_currency_id",
+        "replenishment_cost_rule_id",
     )
     @api.depends_context("company")
     def _compute_replenishment_cost(self):
