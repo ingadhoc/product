@@ -25,7 +25,9 @@ class ProductTemplate(models.Model):
                     modifiers["readonly"] = True
                     node.set("modifiers", json.dumps(modifiers))
             if self.env.user.has_group("price_security.group_only_view_sale_price"):
-                invisible_fields = arch.xpath("//group[@name='costing']")
+                invisible_fields = arch.xpath("//group[@name='costing']") + arch.xpath(
+                    "//group[@name='replenishment_cost']"
+                )
                 for node in invisible_fields:
                     node.set("invisible", "1")
                     modifiers = json.loads(node.get("modifiers") or "{}")

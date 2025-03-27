@@ -76,6 +76,8 @@ class ProductTemplate(models.Model):
         required=True,
     )
 
+    warnings_cost = fields.Json(compute="_compute_warnings_cost")
+
     @api.depends_context("company")
     @api.depends("seller_ids.net_price", "seller_ids.currency_id", "seller_ids.company_id", "replenishment_cost_type")
     def _compute_supplier_data(self):
@@ -250,3 +252,15 @@ class ProductTemplate(models.Model):
                     "replenishment_cost": replenishment_cost,
                 }
             )
+
+    def _compute_warnings_cost(self):
+        warnings = {}
+        if self.env["res.company"].sudo().search_count([]) > 1:
+            warnings["company_info"] = {
+                "message": _("Replenishment cost based on company: %s.", self.env.company.name),
+                "action_text": False,
+                "action": False,
+                "level": "info",
+            }
+
+        self.warnings_cost = warnings

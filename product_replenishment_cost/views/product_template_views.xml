@@ -6,36 +6,30 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="purchase.view_product_supplier_inherit"/>
         <field name="arch" type="xml">
-            <group name="purchase" position="before">
-                <group name="costing">
-                    <field name="supplier_currency_id" invisible="1"/>
-                    <group name="replenishment_cost" string="Replenishment Cost">
-                        <field name="replenishment_cost_type"/>
-                        <field name="replenishment_cost_last_update" string="Last Update" readonly="1"/>
-                        <label for="replenishment_base_cost" string="Base Cost"/>
-                        <div name="replenishment_base_cost" class="o_row">
-                            <field name="supplier_price" widget="monetary" options="{'currency_field': 'supplier_currency_id','field_digits': True}" invisible="replenishment_cost_type not in ['supplier_price', 'last_supplier_price']"/>
-                            <field name="replenishment_base_cost" class="oe_inline" widget="monetary" options="{'currency_field': 'replenishment_base_cost_currency_id','field_digits': True}" invisible="replenishment_cost_type != 'manual'"/>
-                            <field name="replenishment_base_cost_currency_id" class="oe_inline oe_edit_only" options="{'no_open': True, 'no_create': True}" invisible="replenishment_cost_type != 'manual'"/>
-                            <label for="replenishment_base_cost_on_currency" string="/"/>
-                            <field name="replenishment_base_cost_on_currency" class="oe_inline" widget="monetary" options="{'currency_field': 'currency_id','field_digits': True}"/>
-                        </div>
-                         <field name="replenishment_cost_rule_id" string="Cost Rule" context="{'default_product_id': id}"/>
-                        <label for="replenishment_cost"/>
-                        <div name="replenishment_cost_uom">
-                            <field name="replenishment_cost" class="oe_inline" string="Replenishment Cost" widget="monetary" options="{'currency_field': 'currency_id','field_digits': True}"/>
-                            <span groups="uom.group_uom" > por
-                                <field name="uom_name" class="oe_inline"/>
-                            </span>
-                        </div>
-                    </group>
-                    <group name="accounting_cost" string="Accounting Cost">
-                        <label for="standard_price" groups="base.group_user" string="Accounting Cost"/>
-                        <div name="standard_price" groups="base.group_user">
-                            <field name="standard_price" widget="monetary" options="{'currency_field': 'cost_currency_id','field_digits': True}" class="oe_inline" readonly="1" invisible="product_variant_count &gt; 1 and not is_product_variant" force_save="1"/>
-                            <button name="%(product.product_variant_action)d" icon="fa-arrow-right" type="action" invisible="product_variant_count &lt;= 1 or is_product_variant" groups="product.group_product_variant" string="Variants Costs" class="oe_inline"/>
-                        </div>
-                    </group>
+            <group name="purchase">
+                <field name="supplier_currency_id" invisible="1"/>
+                <group name="replenishment_cost" string="Replenishment Cost">
+                    <div class="m-0" name="warnings_cost" invisible="not warnings_cost" groups="base.group_multi_company">
+                        <field name="warnings_cost" class="o_field_html w-100" widget="actionable_errors"/>
+                    </div>
+                    <field name="replenishment_cost_type"/>
+                    <field name="replenishment_cost_last_update" string="Last Update" readonly="1"/>
+                    <label for="replenishment_base_cost" string="Base Cost"/>
+                    <div name="replenishment_base_cost" class="o_row">
+                        <field name="supplier_price" widget="monetary" options="{'currency_field': 'supplier_currency_id','field_digits': True}" invisible="replenishment_cost_type not in ['supplier_price', 'last_supplier_price']"/>
+                        <field name="replenishment_base_cost" class="oe_inline" widget="monetary" options="{'currency_field': 'replenishment_base_cost_currency_id','field_digits': True}" invisible="replenishment_cost_type != 'manual'"/>
+                        <field name="replenishment_base_cost_currency_id" class="oe_inline oe_edit_only" options="{'no_open': True, 'no_create': True}" invisible="replenishment_cost_type != 'manual'"/>
+                        <label for="replenishment_base_cost_on_currency" string="/"/>
+                        <field name="replenishment_base_cost_on_currency" class="oe_inline" widget="monetary" options="{'currency_field': 'currency_id','field_digits': True}"/>
+                    </div>
+                        <field name="replenishment_cost_rule_id" string="Cost Rule" context="{'default_product_id': id}"/>
+                    <label for="replenishment_cost"/>
+                    <div name="replenishment_cost_uom">
+                        <field name="replenishment_cost" class="oe_inline" string="Replenishment Cost" widget="monetary" options="{'currency_field': 'currency_id','field_digits': True}"/>
+                        <span groups="uom.group_uom" > por
+                            <field name="uom_name" class="oe_inline"/>
+                        </span>
+                    </div>
                 </group>
             </group>
         </field>
