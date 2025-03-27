@@ -11,17 +11,20 @@
             <group name="sale" position="before">
                 <group name="pricing">
                     <group name="planned_price" string="Planned Price">
+                        <div class="m-0" name="warnings_price" invisible="not warnings_price">
+                            <field name="warnings_price" class="o_field_html w-100" widget="actionable_errors"/>
+                        </div>
                         <field name="list_price_type" string="Based on"/>
                         <label for="sale_margin" string="Margin Formula" invisible="list_price_type != 'by_margin'"/>
-                        <div invisible="list_price_type != 'by_margin'">
-                            <field name="replenishment_cost" class="oe_inline"/>* ( 1 +
-                            <field name="sale_margin" class="oe_inline"/>%) +
-                            <field name="sale_surcharge" class="oe_inline"/>
+                        <div invisible="list_price_type != 'by_margin'" class="o_row" >
+                            <field name="replenishment_cost_main_company"/>* ( 1 +
+                            <field name="sale_margin"/>%) +
+                            <field name="sale_surcharge"/>
                         </div>
                         <label for="other_currency_list_price" invisible="list_price_type != 'other_currency'"/>
-                        <div name="other_currency_list_price" invisible="list_price_type != 'other_currency'">
-                            <field name="other_currency_list_price" widget="monetary"  class="oe_inline" options="{'currency_field': 'other_currency_id', 'field_digits': True}"/>
-                            <field name="other_currency_id" class="oe_inline oe_edit_only" required="list_price_type == 'other_currency'" options="{'no_create': True, 'no_open': True}" domain="[('id','!=', currency_id)]"/>
+                        <div name="other_currency_list_price" invisible="list_price_type != 'other_currency'" class="o_row">
+                            <field name="other_currency_list_price" widget="monetary"  options="{'currency_field': 'other_currency_id', 'field_digits': True}"/>
+                            <field name="other_currency_id" class="oe_edit_only" required="list_price_type == 'other_currency'" options="{'no_create': True, 'no_open': True}" domain="[('id','!=', currency_id)]"/>
                         </div>
                         <field name="computed_list_price_manual" widget="monetary" invisible="list_price_type != 'manual'" string="Planned Price" options="{'currency_field': 'currency_id', 'field_digits': True}"/>
                         <field name="computed_list_price" widget="monetary" invisible="list_price_type in ['manual', False]" options="{'currency_field': 'currency_id', 'field_digits': True}"/>

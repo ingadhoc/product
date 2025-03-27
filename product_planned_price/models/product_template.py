@@ -4,7 +4,7 @@
 ##############################################################################
 import logging
 
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 from odoo.tools import float_is_zero
 
 _logger = logging.getLogger(__name__)
@@ -22,7 +22,7 @@ class ProductTemplate(models.Model):
         string="Planned Price",
         compute="_compute_computed_list_price",
         digits="Product Price",
-        help='Planned Price. This value depends on Planned Price Type" an ' "other parameters.",
+        help='Planned Price. This value depends on Planned Price Type" an other parameters.',
     )
     list_price_type = fields.Selection(
         [("manual", "Fixed value"), ("by_margin", "By Margin"), ("other_currency", "Currency exchange")],
@@ -55,6 +55,26 @@ class ProductTemplate(models.Model):
         digits="Product Price",
         help="Sale Price on Other Currency",
     )
+    replenishment_cost_main_company = fields.Float(
+        compute="_compute_replenishment_cost_main_company",
+    )
+    main_company_id = fields.Many2one(
+        "res.company",
+        compute="_compute_main_company",
+    )
+
+    warnings_price = fields.Json(compute="_compute_warnings_price")
+
+    @api.depends("company_id")
+    def _compute_main_company(self):
+        main_company = self.env["res.company"]._get_main_company()
+        for rec in self:
+            rec.main_company_id = rec.company_id or main_company
+
+    @api.depends("replenishment_cost", "company_id")
+    def _compute_replenishment_cost_main_company(self):
+        for rec in self:
+            rec.replenishment_cost_main_company = rec.sudo().with_company(rec.main_company_id.id).replenishment_cost
 
     @api.model
     def cron_update_prices_from_planned(self, batch_size=1000):
@@ -66,10 +86,6 @@ class ProductTemplate(models.Model):
         """
 
         _logger.info("Running update prices from planned cron")
-        if self._context.get("company_force"):
-            self = self.with_company(self._context.get("company_force"))
-        else:
-            self = self.with_company(self.env["res.company"].search([], limit=1).id)
 
         # buscamos cual fue el ultimo registro actualziado
         parameter_name = "product_planned_price.last_updated_record_id"
@@ -126,28 +142,26 @@ class ProductTemplate(models.Model):
     @api.depends(
         "sale_margin",
         "sale_surcharge",
-        "replenishment_cost",
+        "replenishment_cost_main_company",
         "list_price_type",
         "computed_list_price_manual",
         "other_currency_list_price",
         "other_currency_id",
     )
-    @api.depends_context("company")
     def _compute_computed_list_price(self):
         recs = self.filtered(lambda x: x.list_price_type in ["manual", "by_margin", "other_currency"])
-        _logger.info(
-            'Get computed_list_price for %s "manual", "by_margin"' ' and "other_currency" products' % (len(recs))
-        )
-        company = self.env.company
+        _logger.info('Get computed_list_price for %s "manual", "by_margin" and "other_currency" products' % (len(recs)))
         date = fields.Date.today()
         (self - recs).computed_list_price = 0.0
         for rec in recs:
             computed_list_price = rec.computed_list_price_manual
             if rec.list_price_type == "by_margin":
-                computed_list_price = rec.replenishment_cost * (1 + rec.sale_margin / 100.0) + rec.sale_surcharge
+                computed_list_price = (
+                    rec.replenishment_cost_main_company * (1 + rec.sale_margin / 100.0) + rec.sale_surcharge
+                )
             elif rec.list_price_type == "other_currency" and rec.currency_id:
-                computed_list_price = rec.other_currency_id._convert(
-                    rec.other_currency_list_price, rec.currency_id, company, date, round=False
+                computed_list_price = rec.other_currency_id.sudo()._convert(
+                    rec.other_currency_list_price, rec.currency_id, rec.main_company_id, date, round=False
                 )
 
             # if product has taxes with price_include, add the tax to the
@@ -173,3 +187,22 @@ class ProductTemplate(models.Model):
         if self._context.get("use_planned_price") and price_type == "list_price":
             price_type = "computed_list_price"
         return super().price_compute(price_type, uom=uom, currency=currency, company=company, date=date)
+
+    @api.onchange("list_price_type")
+    def _compute_warnings_price(self):
+        if self.env["res.company"].sudo().search_count([]) > 1:
+            msg = _("The values correspond to the replenishment cost to the company: %s.", self.main_company_id.name)
+            warnings = {
+                "company_info": {
+                    "message": msg,
+                    "action_text": False,
+                    "action": False,
+                    "level": "info",
+                }
+            }
+            fixed = self.filtered(lambda x: x.list_price_type == "manual")
+            # para los fixed no damos warning ya que no suma valor
+            fixed.warnings_price = {}
+            (self - fixed).warnings_price = warnings
+        else:
+            self.warnings_price = {}

@@ -1,16 +1,14 @@
 {
     "name": "Replenishment Cost",
-    "version": "18.0.1.0.0",
+    "version": "18.0.1.1.0",
     "author": "ADHOC SA, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Products",
     "depends": [
-        # for page in product form
-        "purchase",
-        # for access rights
-        "sales_team",
-        # only for menu for cost rules
-        "sale",
+        "purchase",  # for page in product form
+        "sales_team",  # for access rights
+        "sale",  # only for menu for cost rules
+        "account_multicompany_ux",  # for usability in multicompany environments
     ],
     "data": [
         "security/product_replenishment_cost_security.xml",
