@@ -3,21 +3,28 @@
 # 	* price_security
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024
+# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2025
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-28 14:53+0000\n"
+"POT-Creation-Date: 2025-03-31 16:36+0000\n"
 "PO-Revision-Date: 2024-11-13 15:03+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024\n"
+"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Language: es\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#. module: price_security
+#: model_terms:ir.ui.view,arch_db:price_security.sale_order_line_wizard_form
+msgid ""
+"Advertencia: No tienes permiso para aplicar este tipo de descuento con la "
+"lista de precios actual."
+msgstr ""
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_product_product__can_modify_prices
@@ -43,6 +50,7 @@ msgstr ""
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_res_users_discount_restriction
+#: model:ir.model.fields,field_description:price_security.field_sale_order_discount__discount_restriction
 msgid "Discount Restriction"
 msgstr "Restricción de Descuento"
 
@@ -50,6 +58,11 @@ msgstr "Restricción de Descuento"
 #: model:ir.model.fields,field_description:price_security.field_res_users__discount_restriction_ids
 msgid "Discount Restrictions"
 msgstr ""
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_sale_order_discount
+msgid "Discount Wizard"
+msgstr "Asistente de descuentos"
 
 #. module: price_security
 #: model_terms:ir.ui.view,arch_db:price_security.view_price_security_users_form
@@ -218,8 +231,7 @@ msgstr ""
 #. module: price_security
 #. odoo-python
 #: code:addons/price_security/wizard/sale_order_discount.py:0
-#, python-format
 msgid ""
 "You do not have permission to apply this type of discount with the current "
 "pricelist."
-msgstr "No tienes permiso para aplicar este tipo de descuento con la lista de precios actual."
+msgstr ""
