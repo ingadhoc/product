@@ -35,9 +35,13 @@ class ProductTemplate(models.Model):
 
             # robamos metodo de calculo de costo de product_extended
             price = 0.0
-            bom = self.env["mrp.bom"]._bom_find(rec.with_context(active_test=False).product_variant_ids[0])[
-                rec.with_context(active_test=False).product_variant_ids[0]
-            ]
+            bom = (
+                self.env["mrp.bom"]._bom_find(rec.product_variant_ids[:1])[rec.product_variant_ids[:1]]
+                if self.env["mrp.bom"]._bom_find(rec.product_variant_ids[:1])[rec.product_variant_ids[:1]]
+                else self.env["mrp.bom"]._bom_find(rec.with_context(active_test=False).product_variant_ids[:1])[
+                    rec.with_context(active_test=False).product_variant_ids[:1]
+                ]
+            )
             if not bom:
                 rec.update({"replenishment_base_cost_on_currency": 0.0, "replenishment_cost": 0.0})
                 continue
