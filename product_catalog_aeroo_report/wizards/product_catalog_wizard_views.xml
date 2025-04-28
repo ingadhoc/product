@@ -10,9 +10,13 @@
                     <field name="product_catalog_report_id"/>
                     <field name="taxes_included"/>
                     <field name="use_planned_price"/>
+                    <field name="estimated_time"/>
+                    <field name="pricelist_count"/>
+                    <field name="product_count"/>
                 </group>
                 <footer>
                     <button name="generate_report" string="Print" type="object" class="oe_highlight"/>
+                    <!-- <button name="compute_estimated_info" string="calcular tiempos" type="object" class="oe_highlight"/> -->
                         or
                     <button string="Cancel" special="cancel" class="oe_link"/>
                 </footer>
