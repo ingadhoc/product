@@ -38,7 +38,7 @@ class ProductProduct(models.Model):
             order.with_company(order.company_id)._update_order_line_info(rec.id, rec.product_catalog_qty)
 
     def increase_quantity(self):
-        for rec in self:
+        for rec in self.sudo():
             rec.product_catalog_qty += 1
 
     @api.model
