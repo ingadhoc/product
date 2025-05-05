@@ -14,7 +14,7 @@
 Product Catalog Tree
 ====================
 
-Incorporates the possibility to search the Pricelist Price of products in the tree view.
+Adds the posibility to search and add products to the SO and PO catalogs from the tree view.
 
 Installation
 ============
