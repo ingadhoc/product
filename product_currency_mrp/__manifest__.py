@@ -19,7 +19,7 @@
 ##############################################################################
 {
     'name': 'Product Currency MRP',
-    'version': "17.0.1.0.0",
+    'version': "17.0.1.1.0",
     'category': 'Products',
     'sequence': 14,
     'summary': '',
@@ -30,13 +30,13 @@
     ],
     'depends': [
         'product_currency',
-        'mrp',
+        'mrp_subcontracting',
     ],
     'data': [
     ],
     'demo': [
     ],
     'installable': True,
-    'auto_install': True,
+    'auto_install': False,
     'application': False,
 }
