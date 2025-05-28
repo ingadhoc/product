@@ -7,7 +7,7 @@ class ProductCatalogMixin(models.AbstractModel):
 
     def action_add_from_catalog(self):
         action = super().action_add_from_catalog()
-        if self.is_rental_order:
+        if self._name == "sale.order" and self.is_rental_order:
             tree_view_id = self.env.ref("product_catalog_tree.product_view_tree_catalog").id
             action["views"] = [view for view in action["views"] if view != (tree_view_id, "list")]
         return action
