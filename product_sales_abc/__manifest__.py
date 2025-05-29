@@ -20,7 +20,7 @@
 
 {
     "name": "Product Sales ABC",
-    "version": "16.0.1.0.0",
+    "version": "18.0.1.0.0",
     "category": "Tools",
     "sequence": 14,
     "author": "ADHOC SA",
@@ -36,7 +36,7 @@
     ],
     "demo": [],
     "test": [],
-    "installable": False,
+    "installable": True,
     "auto_install": False,
     "application": False,
 }
