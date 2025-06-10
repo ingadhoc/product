@@ -16,7 +16,9 @@ class ProductUpdateFromPlannedPriceWizard(models.TransientModel):
         active_model = self._context.get('active_model')
         if active_model != 'product.template':
             raise ValidationError(_(
-                'Update from planned price must be called from product '
-                'template'))
-        return self.env[active_model].browse(
-            active_ids)._update_prices_from_planned()
+                'Update from planned price must be called from product template'))
+        products = self.env[active_model].browse(active_ids)
+        # Hacemos esto para forzar el recomputo antes de llamar la metodo, presumimos que tiene que ver con los depends del _compute_computed_list_price Pero no lo queremos tocar en v16 
+        for prod in products:
+            prod._compute_computed_list_price()
+        products._update_prices_from_planned()
