@@ -6,10 +6,19 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
 
     @api.model
     def _get_component_data(
-        self, parent_bom, warehouse, bom_line, line_quantity, level, index, product_info, ignore_stock=False
+        self,
+        parent_bom,
+        parent_product,
+        warehouse,
+        bom_line,
+        line_quantity,
+        level,
+        index,
+        product_info,
+        ignore_stock=False,
     ):
         res = super()._get_component_data(
-            parent_bom, warehouse, bom_line, line_quantity, level, index, product_info, ignore_stock
+            parent_bom, parent_product, warehouse, bom_line, line_quantity, level, index, product_info, ignore_stock
         )
         currency = self.env.context.get("force_currency") or self.env.company.currency_id
         company = parent_bom.company_id or self.env.company
