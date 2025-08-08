@@ -17,6 +17,10 @@
         <field name="priority">30</field>
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
+        <field name="image_1920" position="attributes">
+                <attribute name="options">{'preview_image': 'image_128'}</attribute>
+        </field>
+        <!-- TODO: Ver si Odoo Corrige este problema y lo sacamos -->
             <group name="group_general">
                 <label for="warranty" invisible="0"/>
                 <div invisible="0">
@@ -37,5 +41,4 @@
             </field>
         </field>
     </record>
-
 </odoo>
