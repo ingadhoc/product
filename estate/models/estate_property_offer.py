@@ -8,7 +8,7 @@ class EstatePropertyTag(models.Model):
     _description = "Offers received for properties"
 
     price = fields.Float()
-    status = fields.Selection(string="Status", selection=[("accepted", "Accepted"), ("refused", "Refused")])
+    status = fields.Selection(selection=[("accepted", "Accepted"), ("refused", "Refused")])
     partner_id = fields.Many2one("res.partner", string="Partner", required=True)
     property_id = fields.Many2one("real_estate", required=True)
     validity = fields.Integer(default=7)
