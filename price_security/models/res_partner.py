@@ -28,8 +28,10 @@ class ResPartner(models.Model):
                 )
                 for node in readonly_fields:
                     node.set("readonly", "1")
+                    node.set("force_save", "1")
                     modifiers = json.loads(node.get("modifiers") or "{}")
                     modifiers["readonly"] = True
+                    modifiers["force_save"] = True
                     node.set("modifiers", json.dumps(modifiers))
                 for node in arch.xpath("//group[@name='sale']/div/button[@name='action_company_properties']"):
                     node.set("invisible", "1")
