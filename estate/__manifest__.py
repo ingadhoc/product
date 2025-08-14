@@ -10,4 +10,6 @@
         "views/estate_property_views.xml",
         "views/estate_property_menus.xml",
     ],
+    "license": "AGPL-3",
+    "installable": True,
 }
