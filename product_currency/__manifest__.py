@@ -28,7 +28,7 @@
     "license": "AGPL-3",
     "images": [],
     "depends": [
-        "product",
+        "product"
     ],
     "data": [
         "views/product_template_views.xml",
