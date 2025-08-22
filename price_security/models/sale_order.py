@@ -16,19 +16,32 @@ class SaleOrder(models.Model):
         if not self.env.user.has_group("price_security.group_only_view"):
             return True
         if (
-            self.partner_id.property_product_pricelist
-            and self.pricelist_id
-            and self.partner_id.property_product_pricelist.sequence < self.pricelist_id.sequence
-        ):
-            raise UserError(_("Selected pricelist priority can not be higher than pircelist " "configured on partner"))
-        if (
             self.partner_id.property_payment_term_id
             and self.payment_term_id
             and self.partner_id.property_payment_term_id.sequence < self.payment_term_id.sequence
         ):
             raise UserError(
-                _("Selected payment term priority can not be higher than " "payment term configured on partner")
+                _("Selected payment term priority can not be higher than payment term configured on partner")
             )
+
+    @api.constrains("pricelist_id", "partner_id")
+    def check_allowed_pricelist(self):
+        for order in self:
+            if not self.env.user.has_group("price_security.group_only_view"):
+                continue
+
+            partner_pricelist = order.partner_id.property_product_pricelist
+            if not partner_pricelist or not order.pricelist_id:
+                continue
+
+            allowed = partner_pricelist.pricelist_allowed_ids
+
+            if order.pricelist_id not in allowed and order.pricelist_id != partner_pricelist:
+                raise UserError(
+                    _(
+                        "You are not allowed to select this pricelist according to the restrictions configured on the partner"
+                    )
+                )
 
     @api.onchange("partner_id")
     def check_partner_pricelist_change(self):
@@ -38,7 +51,7 @@ class SaleOrder(models.Model):
         if self.order_line and pricelist != self._origin.pricelist_id:
             if self.env.user.has_group("price_security.group_only_view"):
                 self.partner_id = self._origin.partner_id
-                msj = _("You can not change partner if there are sale lines" " and pricelist is going to be changed")
+                msj = _("You can not change partner if there are sale lines and pricelist is going to be changed")
             else:
                 msj = _(
                     "The change of the customer generates a  change in the"
