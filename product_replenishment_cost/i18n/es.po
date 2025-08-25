@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-27 02:20+0000\n"
+"POT-Creation-Date: 2025-07-03 21:49+0000\n"
 "PO-Revision-Date: 2024-01-16 16:36+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
@@ -289,6 +289,11 @@ msgid "Purchase Order Line"
 msgstr "Línea de pedido de compra"
 
 #. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__rating_ids
+msgid "Ratings"
+msgstr ""
+
+#. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_product__replenishment_base_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_template__replenishment_base_cost
 msgid "Replanishment Cost expressed in 'Replenishment Base Cost Currency'."
@@ -451,11 +456,9 @@ msgid "Update Accounting Cost from Replenishment Cost"
 msgstr "Actualizar el costo contable desde el  costo de reposición."
 
 #. module: product_replenishment_cost
-#: model:ir.actions.server,name:product_replenishment_cost.ir_cron_update_cost_from_replenishment_cost
-#: model:ir.cron,cron_name:product_replenishment_cost.ir_cron_update_cost_from_replenishment_cost
+#: model:ir.actions.server,name:product_replenishment_cost.ir_cron_update_cost_from_replenishment_cost_ir_actions_server
 msgid "Update Cost from Replenishment Cost"
 msgstr "Actualización del costo desde el costo de reposición"
-
 
 #. module: product_replenishment_cost
 #. odoo-python
