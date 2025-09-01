@@ -11,18 +11,22 @@ from odoo.exceptions import UserError
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    @api.constrains("pricelist_id", "payment_term_id", "partner_id")
-    def check_priority(self):
-        if not self.env.user.has_group("price_security.group_only_view"):
-            return True
-        if (
-            self.partner_id.property_payment_term_id
-            and self.payment_term_id
-            and self.partner_id.property_payment_term_id.sequence < self.payment_term_id.sequence
-        ):
-            raise UserError(
-                _("Selected payment term priority can not be higher than payment term configured on partner")
-            )
+    @api.constrains("payment_term_id", "partner_id")
+    def check_allowed_payment_term(self):
+        for order in self:
+            if not self.env.user.has_group("price_security.group_only_view"):
+                continue
+
+            partner_payment_term = order.partner_id.property_payment_term_id
+            if not partner_payment_term or not order.payment_term_id:
+                continue
+
+            allowed = partner_payment_term.payment_term_allowed_ids
+
+            if order.payment_term_id not in allowed and order.payment_term_id != partner_payment_term:
+                raise UserError(
+                    _("You are not allowed to select this payment term according to the restrictions configured")
+                )
 
     @api.constrains("pricelist_id", "partner_id")
     def check_allowed_pricelist(self):
@@ -38,9 +42,7 @@ class SaleOrder(models.Model):
 
             if order.pricelist_id not in allowed and order.pricelist_id != partner_pricelist:
                 raise UserError(
-                    _(
-                        "You are not allowed to select this pricelist according to the restrictions configured on the partner"
-                    )
+                    _("You are not allowed to select this pricelist according to the restrictions configured")
                 )
 
     @api.onchange("partner_id")
