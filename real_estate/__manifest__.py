@@ -18,24 +18,24 @@
 #
 ##############################################################################
 {
-    "name": "Product Currency",
+    "name": "Real Estate Management",
     "version": "18.0.1.0.0",
-    "category": "Products",
-    "sequence": 14,
-    "summary": "",
     "author": "ADHOC SA",
     "website": "www.adhoc.com.ar",
     "license": "AGPL-3",
-    "images": [],
-    "depends": ["product"],
+    "depends": [
+        "sale_management",
+    ],
     "data": [
-        "views/product_template_views.xml",
-        "security/product_currency_security.xml",
+        "security/ir.model.access.csv",
+        "views/estate_property_views.xml",
+        "views/estate_property_types_views.xml",
+        "views/estate_property_tags_views.xml",
+        "views/estate_property_offer_views.xml",
+        "views/estate_menus.xml",
     ],
-    "demo": [
-        "demo/product_product_demo.xml",
-    ],
+    "demo": [],
     "installable": True,
     "auto_install": False,
-    "application": False,
+    "application": True,
 }
