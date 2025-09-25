@@ -40,6 +40,6 @@
         "views/sale_order_views.xml",
         "views/product_pricelist_views.xml",
     ],
-    "installable": True,
+    'installable': False,
     "post_init_hook": "post_init_hook",
 }

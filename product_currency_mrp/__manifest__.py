@@ -33,7 +33,7 @@
     ],
     "data": [],
     "demo": [],
-    "installable": True,
+    'installable': False,
     "auto_install": False,
     "application": False,
 }

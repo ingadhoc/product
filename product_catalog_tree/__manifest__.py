@@ -39,7 +39,7 @@
             "product_catalog_tree/static/src/*.xml",
         ],
     },
-    "installable": True,
+    'installable': False,
     "auto_install": False,
     "application": False,
 }

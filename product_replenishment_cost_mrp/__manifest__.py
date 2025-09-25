@@ -9,5 +9,5 @@
         "mrp",
     ],
     "data": ["views/mrp_bom_views.xml", "views/product_template_views.xml", "report/mrp_report_bom_structure.xml"],
-    "installable": True,
+    'installable': False,
 }
