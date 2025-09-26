@@ -9,5 +9,5 @@
         "sale_margin",
     ],
     "data": [],
-    'installable': False,
+    "installable": False,
 }

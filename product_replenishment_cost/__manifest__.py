@@ -22,5 +22,5 @@
     "demo": [
         "demo/replenishment_cost_demo.xml",
     ],
-    'installable': False,
+    "installable": False,
 }

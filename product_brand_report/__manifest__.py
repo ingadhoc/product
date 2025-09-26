@@ -33,7 +33,7 @@
         "reports/report_invoice_document.xml",
         "views/res_config_settings_view.xml",
     ],
-    'installable': False,
+    "installable": False,
     "auto_install": False,
     "application": False,
 }

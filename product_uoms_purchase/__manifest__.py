@@ -36,7 +36,7 @@
         "views/purchase_order_views.xml",
         "security/ir.model.access.csv",
     ],
-    'installable': False,
+    "installable": False,
     "auto_install": True,
     "application": False,
 }

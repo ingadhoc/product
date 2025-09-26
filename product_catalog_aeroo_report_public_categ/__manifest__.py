@@ -35,7 +35,7 @@
         "views/product_catalog_report_views.xml",
     ],
     "demo": [],
-    'installable': False,
+    "installable": False,
     "auto_install": True,
     "application": False,
 }

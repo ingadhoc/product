@@ -9,6 +9,6 @@
         "purchase_stock",
     ],
     "data": [],
-    'installable': False,
+    "installable": False,
     "auto_install": True,
 }
