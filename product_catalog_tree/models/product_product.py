@@ -33,8 +33,8 @@ class ProductProduct(models.Model):
         return super().write(vals)
 
     def _compute_catalog_values(self):
-        res_model = self._context.get("product_catalog_order_model")
-        order_id = self._context.get("order_id")
+        res_model = self.env.context.get("product_catalog_order_model")
+        order_id = self.env.context.get("order_id")
         order = self.env[res_model].browse(order_id)
         order_line_info = order.with_company(order.company_id)._get_product_catalog_order_line_info(
             product_ids=self.ids
@@ -44,8 +44,8 @@ class ProductProduct(models.Model):
             rec.product_catalog_price = order_line_info[rec.id].get("price")
 
     def _inverse_catalog_values(self, product_catalog_qty):
-        res_model = self._context.get("product_catalog_order_model")
-        order_id = self._context.get("order_id")
+        res_model = self.env.context.get("product_catalog_order_model")
+        order_id = self.env.context.get("order_id")
         order = self.env[res_model].browse(order_id)
         for rec in self:
             order.with_company(order.company_id)._update_order_line_info(rec.id, product_catalog_qty)
