@@ -27,7 +27,7 @@ class Users(models.Model):
             tmp_line_vals = {
                 "product_id": so_line.product_id.id,
                 "order_id": so_line.order_id.id,
-                "product_uom": so_line.product_uom.id,
+                "product_uom": so_line.product_uom_id.id,
                 "product_uom_qty": so_line.product_uom_qty,
             }
             # for compatibility with product_pack
@@ -48,14 +48,14 @@ class Users(models.Model):
                 disc_restriction = disc_restriction_env.search(domain, limit=1)
             # User can not make any discount
             if not disc_restriction:
-                error = _("You can not give any discount greater than pricelist " "discounts")
+                error = _("You can not give any discount greater than pricelist discounts")
                 # if pricelist_disc then we have a so line and a product
                 if pricelist_disc:
                     error += ' (%s%% for product "%s")' % (pricelist_disc, so_line.product_id.name)
             else:
                 if net_discount < disc_restriction.min_discount or net_discount > disc_restriction.max_discount:
                     error = _(
-                        "The applied discount is not allowed. Discount must be" 'between %s and %s for pricelist "%s"'
+                        'The applied discount is not allowed. Discount must bebetween %s and %s for pricelist "%s"'
                     ) % (
                         disc_restriction.min_discount + pricelist_disc,
                         disc_restriction.max_discount + pricelist_disc,
