@@ -30,7 +30,7 @@ class ProductPricesUpdateWizard(models.TransientModel):
     check = fields.Boolean("Check before changing")
 
     def change_prices(self):
-        active_ids = self._context.get("active_ids", [])
+        active_ids = self.env.context.get("active_ids", [])
         products_vals = []
         if not active_ids:
             raise UserError(_("You must select at least one product"))
@@ -113,11 +113,11 @@ class ProductPricesUpdateWizardResult(models.TransientModel):
     @api.model
     def _get_details(self):
         ret = []
-        price_discount = self._context.get("price_discount", 0.0)
-        price_surcharge = self._context.get("price_surcharge", 0.0)
-        price_round = self._context.get("price_round", 0.0)
-        product_tmpl_ids = self._context.get("product_tmpl_ids", [])
-        price_type = self._context.get("price_type", False)
+        price_discount = self.env.context.get("price_discount", 0.0)
+        price_surcharge = self.env.context.get("price_surcharge", 0.0)
+        price_round = self.env.context.get("price_round", 0.0)
+        product_tmpl_ids = self.env.context.get("product_tmpl_ids", [])
+        price_type = self.env.context.get("price_type", False)
         for product_tmpl in self.env["product.template"].browse(product_tmpl_ids):
             if price_type == "list_price":
                 old_price = product_tmpl.list_price
@@ -137,7 +137,7 @@ class ProductPricesUpdateWizardResult(models.TransientModel):
 
     def confirm(self):
         products_vals = []
-        price_type = self._context.get("price_type", False)
+        price_type = self.env.context.get("price_type", False)
         for line in self.detail_ids:
             vals = {
                 "product_tmpl": line.product_tmpl_id,

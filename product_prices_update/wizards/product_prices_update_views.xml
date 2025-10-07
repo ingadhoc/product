@@ -67,7 +67,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">product.prices_update_wizard_result</field>
         <field name="view_mode">form</field>
-        <field name="target">inline</field>
+        <field name="target">current</field>
     </record>
 
 </odoo>
