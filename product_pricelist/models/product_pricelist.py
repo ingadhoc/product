@@ -21,11 +21,11 @@ class ProductPricelist(models.Model):
     def _compute_price(self):
         self = self.sudo()
         active_id = model = False
-        if "pricelist_product_id" in self._context:
-            active_id = self._context.get("pricelist_product_id")
+        if "pricelist_product_id" in self.env.context:
+            active_id = self.env.context.get("pricelist_product_id")
             model = "product.product"
-        elif "pricelist_template_id" in self._context:
-            active_id = self._context.get("pricelist_template_id")
+        elif "pricelist_template_id" in self.env.context:
+            active_id = self.env.context.get("pricelist_template_id")
             model = "product.template"
         else:
             self.price = 0.0
