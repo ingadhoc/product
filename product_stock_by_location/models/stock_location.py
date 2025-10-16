@@ -71,10 +71,10 @@ class StockLocation(models.Model):
     def _compute_product_available(self):
         template_id = []
         product_id = []
-        if self._context.get("active_model", False) == "product.template":
-            template_id = self._context.get("active_id", False)
-        elif self._context.get("active_model", False) == "product.product":
-            product_id = self._context.get("active_id", False)
+        if self.env.context.get("active_model", False) == "product.template":
+            template_id = self.env.context.get("active_id", False)
+        elif self.env.context.get("active_model", False) == "product.product":
+            product_id = self.env.context.get("active_id", False)
         if template_id:
             product_variants = self.env["product.template"].browse(template_id).product_variant_ids
         elif product_id:
