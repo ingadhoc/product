@@ -35,6 +35,10 @@ class ProductProduct(models.Model):
     def _compute_catalog_values(self):
         res_model = self._context.get("product_catalog_order_model")
         order_id = self._context.get("order_id")
+
+        if not res_model or not order_id:
+            return
+
         order = self.env[res_model].browse(order_id)
         order_line_info = order.with_company(order.company_id)._get_product_catalog_order_line_info(
             product_ids=self.ids
@@ -46,6 +50,10 @@ class ProductProduct(models.Model):
     def _inverse_catalog_values(self, product_catalog_qty):
         res_model = self._context.get("product_catalog_order_model")
         order_id = self._context.get("order_id")
+
+        if not res_model or not order_id:
+            return
+
         order = self.env[res_model].browse(order_id)
         for rec in self:
             order.with_company(order.company_id)._update_order_line_info(rec.id, product_catalog_qty)
