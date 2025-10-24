@@ -22,15 +22,16 @@ class SaleOrder(models.Model):
                     modifiers["readonly"] = True
                     node.set("modifiers", json.dumps(modifiers))
             if self.env.user.has_group("price_security.group_only_view_sale_price"):
-                invisible_fields = (
-                    arch.xpath("//field[@name='purchase_price']")
-                    + arch.xpath("//field[@name='margin']")
-                    + arch.xpath("//field[@name='margin_percent']")
-                    + arch.xpath("//field[@name='margin_percent']/..")
+                invisible_fields = arch.xpath(
+                    "//field[@name='purchase_price']"
+                    "|//field[@name='order_line']//field[@name='margin']"
+                    "|//field[@name='order_line']//field[@name='margin_percent']"
+                    "|//div[@class='d-flex float-end']"
                 )
                 for node in invisible_fields:
+                    node.set("invisible", "1")
                     node.set("column_invisible", "1")
                     modifiers = json.loads(node.get("modifiers") or "{}")
-                    modifiers["column_invisible"] = True
+                    modifiers["invisible"] = True
                     node.set("modifiers", json.dumps(modifiers))
         return arch, view
