@@ -15,7 +15,7 @@ class ProductReplenishmentCostRuleItem(models.Model):
         "Rule",
         required=True,
         ondelete="cascade",
-        auto_join=True,
+        bypass_search_access=True,
     )
 
     sequence = fields.Integer(

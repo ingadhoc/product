@@ -20,7 +20,7 @@ class ProductReplenishmentCostRule(models.Model):
         "product.replenishment_cost.rule.item",
         "replenishment_cost_rule_id",
         "Items",
-        auto_join=True,
+        bypass_search_access=True,
         copy=True,
     )
 
@@ -28,13 +28,13 @@ class ProductReplenishmentCostRule(models.Model):
         "product.template",
         "replenishment_cost_rule_id",
         "Products",
-        auto_join=True,
+        bypass_search_access=True,
     )
     product_supplierinfo_ids = fields.One2many(
         "product.supplierinfo",
         "replenishment_cost_rule_id",
         "Supplierinfo",
-        auto_join=True,
+        bypass_search_access=True,
     )
 
     description = fields.Char(compute="_compute_description", store=True, tracking=True)
