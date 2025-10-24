@@ -12,8 +12,8 @@ class ProductUpdateFromReplenishmentCostWizard(models.TransientModel):
 
     def confirm(self):
         self.ensure_one()
-        active_ids = self._context.get("active_ids")
-        active_model = self._context.get("active_model")
+        active_ids = self.env.context.get("active_ids")
+        active_model = self.env.context.get("active_model")
         if active_model != "product.template":
             raise UserError(_("Update from replenishment cost must be called from product " "template"))
         return self.env[active_model].browse(active_ids)._update_cost_from_replenishment_cost()

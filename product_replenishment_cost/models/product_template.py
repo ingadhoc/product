@@ -44,19 +44,19 @@ class ProductTemplate(models.Model):
     replenishment_base_cost = fields.Float(
         digits="Product Price",
         tracking=True,
-        help="Replanishment Cost expressed in 'Replenishment Base Cost " "Currency'.",
+        help="Replanishment Cost expressed in 'Replenishment Base Cost Currency'.",
     )
     replenishment_base_cost_currency_id = fields.Many2one(
         "res.currency",
         "Replenishment Base Cost Currency",
-        auto_join=True,
+        bypass_search_access=True,
         tracking=True,
         help="Currency used for the Replanishment Base Cost.",
         default=lambda self: self.env.company.currency_id.id,
     )
     replenishment_cost_rule_id = fields.Many2one(
         "product.replenishment_cost.rule",
-        auto_join=True,
+        bypass_search_access=True,
         index=True,
         tracking=True,
     )
@@ -112,7 +112,7 @@ class ProductTemplate(models.Model):
         """
 
         # allow force_company for backward compatibility
-        force_company = self._context.get("force_company", False)
+        force_company = self.env.context.get("force_company", False)
         if force_company and company_ids:
             raise ValidationError(
                 _("The argument 'company_ids' and the key 'force_company' on the context can't be used together")
@@ -238,13 +238,6 @@ class ProductTemplate(models.Model):
             replenishment_base_cost_on_currency = replenishment_cost
             if replenishment_cost_rule:
                 replenishment_cost = replenishment_cost_rule.compute_rule(replenishment_base_cost_on_currency, rec)
-
-            if (
-                rec.uom_po_id != rec.uom_id
-                and rec.uom_id.category_id == rec.uom_po_id.category_id
-                and rec.uom_po_id.factor_inv != 0
-            ):
-                replenishment_cost = replenishment_cost * (rec.uom_id.factor_inv / rec.uom_po_id.factor_inv)
 
             rec.update(
                 {

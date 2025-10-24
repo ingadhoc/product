@@ -13,10 +13,8 @@ class TestCostPriceUpdate(common.TransactionCase):
         # Create a wine A product
         self.product_product_a = obj_product.create(
             {
-                "categ_id": self.env.ref("product.product_category_1").id,
                 "name": "Wine A01",
                 "uom_id": self.env.ref("uom.product_uom_unit").id,
-                "uom_po_id": self.env.ref("uom.product_uom_unit").id,
                 "company_id": 1,
                 "standard_price": 50.0,
                 "list_price": 75.0,

@@ -17,7 +17,7 @@ class ProductSupplierinfo(models.Model):
 
     replenishment_cost_rule_id = fields.Many2one(
         "product.replenishment_cost.rule",
-        auto_join=True,
+        bypass_search_access=True,
         index=True,
         string="Replenishment Cost Rule",
     )
