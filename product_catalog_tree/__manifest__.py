@@ -19,7 +19,13 @@
 ##############################################################################
 {
     "name": "Product Catalog Tree",
+<<<<<<< a21ec1d436aa46caf56f09c7c72d8029cf2e9556
     "version": "19.0.1.0.0",
+||||||| e5ec0b4d80fcfc8140e3544efd6f34e9bc82cb8d
+    "version": "18.0.1.2.0",
+=======
+    "version": "18.0.1.3.0",
+>>>>>>> d2d84b2c60e1879653b8d2be20a349dcaac6d6d4
     "category": "Products",
     "sequence": 14,
     "summary": "",

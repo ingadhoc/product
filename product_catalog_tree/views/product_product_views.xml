@@ -24,4 +24,16 @@
         </field>
     </record>
 
+    <record id="product_search_form_view_supplier" model="ir.ui.view">
+        <field name="name">product.product.search.form.supplier</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_search_form_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="seller_ids" string="Supplier"
+                       filter_domain="[('seller_ids.partner_id', 'ilike', self)]"/>
+            </field>
+        </field>
+    </record>
+
 </odoo>
