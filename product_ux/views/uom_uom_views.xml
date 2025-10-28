@@ -29,10 +29,6 @@
         <field name="arch" type="xml">
             <search>
                 <field name="name" filter_domain="['|', ('name','ilike', self), ('description', 'ilike', self)]"/>
-                <field name="category_id"/>
-                <group>
-                    <filter string="Category" context="{'group_by':'category_id'}" name="group_category_id"/>
-                </group>
             </search>
         </field>
     </record>
