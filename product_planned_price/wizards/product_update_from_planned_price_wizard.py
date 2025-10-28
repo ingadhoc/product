@@ -20,5 +20,5 @@ class ProductUpdateFromPlannedPriceWizard(models.TransientModel):
         products = self.env[active_model].browse(active_ids)
         # Hacemos esto para forzar el recomputo antes de llamar la metodo, presumimos que tiene que ver con los depends del _compute_computed_list_price Pero no lo queremos tocar en v16 
         for prod in products:
-            prod._compute_computed_list_price()
+            prod.with_context(silent_compute=True)._compute_computed_list_price()
         products._update_prices_from_planned()
