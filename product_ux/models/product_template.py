@@ -34,7 +34,7 @@ class ProductTemplate(models.Model):
         Luego, si ese elemento es string buscamos a traves de name search.
         Para otros casos devolvemos super (debería ser un ID)
         """
-        pricelist_id_or_name = self._context.get("pricelist")
+        pricelist_id_or_name = self.env.context.get("pricelist")
         if isinstance(pricelist_id_or_name, list):
             pricelist_id_or_name = pricelist_id_or_name[0]
             # Si viene una lista en pricelist actualizamos contexto para que si se llama super, este reciba un entero

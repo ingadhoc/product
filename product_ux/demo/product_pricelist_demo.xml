@@ -3,7 +3,6 @@
     <!-- Price list -->
     <record id="list0" model="product.pricelist">
         <field name="name">Public Pricelist</field>
-        <field name="sequence">1</field>
     </record>
 
     <record id="item1" model="product.pricelist.item">
