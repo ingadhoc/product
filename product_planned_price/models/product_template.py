@@ -132,8 +132,9 @@ class ProductTemplate(models.Model):
         recs = self.filtered(
             lambda x: x.list_price_type in [
                 'manual', 'by_margin', 'other_currency'])
-        _logger.info('Get computed_list_price for %s "manual", "by_margin"'
-                     ' and "other_currency" products' % (len(recs)))
+        if not self.env.context.get('silent_compute'):
+            _logger.info('Get computed_list_price for %s "manual", "by_margin"'
+                        ' and "other_currency" products' % (len(recs)))
         company = self.env.company
         date = fields.Date.today()
         (self - recs).computed_list_price = 0.0
