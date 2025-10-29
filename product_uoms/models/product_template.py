@@ -9,9 +9,6 @@ from odoo.exceptions import ValidationError
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    uom_category_id = fields.Many2one(
-        related="uom_id.category_id",
-    )
     uom_ids = fields.One2many(
         "product.uoms",
         "product_tmpl_id",
@@ -25,6 +22,13 @@ class ProductTemplate(models.Model):
     @api.constrains("uom_ids", "uom_id")
     def _check_uoms(self):
         for rec in self:
-            uom_categories = rec.uom_ids.mapped("uom_id.category_id")
-            if len(uom_categories) > 1 or (uom_categories and uom_categories != rec.uom_id.category_id):
-                raise ValidationError(_("UOMs Category must be of the same " "UOM Category as Product Unit of Measure"))
+            # Use _has_common_reference() to check if UoMs are compatible
+            product_uom = rec.uom_id
+            for uom_line in rec.uom_ids:
+                if not product_uom._has_common_reference(uom_line.uom_id):
+                    raise ValidationError(
+                        _(
+                            "UOMs must have the same reference unit as the Product Unit of Measure (%s)",
+                            product_uom.name,
+                        )
+                    )
