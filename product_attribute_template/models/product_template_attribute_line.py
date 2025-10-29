@@ -12,6 +12,6 @@ class ProductTemplateAttributeLine(models.Model):
     def _check_valid_values(self):
         # We do this to avoid the constrains when you try to generarate attributes by the button in product attribute
         # template, that it's only to initialize attribute then the user add values to this
-        if self._context.get("non_create_values", False):
+        if self.env.context.get("non_create_values", False):
             return True
         super()._check_valid_values()
