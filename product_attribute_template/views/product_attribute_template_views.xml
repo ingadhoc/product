@@ -61,10 +61,10 @@
                     </group>
                     <group>
                         <field name="line_ids">
-                            <list editable="bottom">
-                                <field name="product_tmpl_id" group_by="product_tmpl_id"/>
-                                <field name="attribute_id" />
-                                <field name="value_ids" widget="many2many_tags" options="{'no_create_edit': True}" domain="[('attribute_id', '=', attribute_id)]" context="{'default_attribute_id': attribute_id}"/>
+                            <list editable="bottom" create="false" delete="false">
+                                <field name="product_tmpl_id" readonly="1"/>
+                                <field name="attribute_id" readonly="1" no_open="True"/>
+                                <field name="value_ids" widget="many2many_tags" domain="[('attribute_id', '=', attribute_id)]" context="{'default_attribute_id': attribute_id}"/>
                             </list>
                         </field>
                     </group>
