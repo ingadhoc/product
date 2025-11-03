@@ -56,17 +56,7 @@ class ProductProduct(models.Model):
 
         order = self.env[res_model].browse(order_id)
         for rec in self:
-            # Actualizar la información de la línea de orden
             order.with_company(order.company_id)._update_order_line_info(rec.id, product_catalog_qty)
-
-            # Si la cantidad es mayor a 0, recalcular precios y descuentos
-            if product_catalog_qty > 0:
-                order_lines = order.order_line.filtered(lambda line: line.product_id.id == rec.id)
-                if order_lines:
-                    # Tomamos la última línea en caso de que haya varias
-                    order_line = order_lines[-1]
-                    # Ejecutar el método que recalcula linea
-                    order_line._compute_price_unit_and_date_planned_and_name()
 
     def increase_quantity(self):
         for rec in self:
