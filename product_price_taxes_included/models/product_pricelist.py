@@ -16,8 +16,8 @@ class ProductPricelist(models.Model):
         * pricelist could be based on fixed prices so product price is not used
         """
         res = super()._get_products_price(products, quantity, date=date, uom_id=uom_id, **kwargs)
-        if self._context.get("taxes_included"):
-            company_id = self._context.get("company_id") or self.env.company.id
+        if self.env.context.get("taxes_included"):
+            company_id = self.env.context.get("company_id") or self.env.company.id
             for product in products:
                 # for compatibility with product_pack
                 if "pack_ok" in product._fields and self.check_for_product_pack_parent(product):
@@ -47,8 +47,8 @@ class ProductPricelist(models.Model):
 
     def _get_product_price(self, product, *args, **kwargs):
         res = super(ProductPricelist, self.with_context(is_recursive=True))._get_product_price(product, *args, **kwargs)
-        if self._context.get("taxes_included") and not self._context.get("is_recursive"):
-            company_id = self._context.get("company_id") or self.env.company.id
+        if self.env.context.get("taxes_included") and not self.env.context.get("is_recursive"):
+            company_id = self.env.context.get("company_id") or self.env.company.id
             res = product.taxes_id.filtered(lambda x: x.company_id.id == company_id).compute_all(res, product=product)[
                 "total_included"
             ]

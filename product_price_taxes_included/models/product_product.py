@@ -18,7 +18,7 @@ class ProductProduct(models.Model):
     @api.depends_context("company", "company_id")
     def _compute_taxed_lst_price(self):
         """if taxes_included lst_price already has taxes included"""
-        company_id = self._context.get("company_id", self.env.company.id)
+        company_id = self.env.context.get("company_id", self.env.company.id)
         for product in self:
             product.taxed_lst_price = (
                 product.taxes_id.filtered(lambda x: x.company_id.id == company_id)

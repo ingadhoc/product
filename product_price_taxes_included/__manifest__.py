@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Product Price Taxes Included or Not",
-    "version": "18.0.1.0.0",
+    "version": "19.0.1.0.0",
     "category": "Product",
     "sequence": 14,
     "summary": "",
@@ -35,7 +35,7 @@
         "wizards/res_config_settings_views.xml",
     ],
     "demo": [],
-    "installable": False,
+    "installable": True,
     "auto_install": False,
     "application": False,
 }
