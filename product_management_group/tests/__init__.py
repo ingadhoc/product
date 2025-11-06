@@ -3,6 +3,7 @@
 # directory
 ##############################################################################
 from odoo.addons.product.tests.common import ProductCommon
+from . import test_product_management_group
 
 
 # We made this monkey patch to avoid issue with other test like account and debit note that creates products
