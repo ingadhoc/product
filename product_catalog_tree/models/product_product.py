@@ -56,7 +56,6 @@ class ProductProduct(models.Model):
 
         order = self.env[res_model].browse(order_id)
         for rec in self:
-            # Actualizar la información de la línea de orden
             order.with_company(order.company_id)._update_order_line_info(rec.id, product_catalog_qty)
 
     def increase_quantity(self):
