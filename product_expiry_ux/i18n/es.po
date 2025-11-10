@@ -3,15 +3,15 @@
 # 	* product_expiry_ux
 # 
 # Translators:
-# Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024
+# ADHOC - Bot <transbot@adhoc.com.ar>, 2025
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0+e\n"
+"Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-03 05:14+0000\n"
-"PO-Revision-Date: 2024-11-20 18:36+0000\n"
-"Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024\n"
+"POT-Creation-Date: 2025-11-10 12:28+0000\n"
+"PO-Revision-Date: 2025-11-10 12:28+0000\n"
+"Last-Translator: ADHOC - Bot <transbot@adhoc.com.ar>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,6 +34,18 @@ msgid ""
 msgstr "Alerta de Vencimiento"
 
 #. module: product_expiry_ux
+#: model:ir.model.fields,field_description:product_expiry_ux.field_stock_lot__display_name
+#: model:ir.model.fields,field_description:product_expiry_ux.field_stock_move_line__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: product_expiry_ux
+#: model:ir.model.fields,field_description:product_expiry_ux.field_stock_lot__id
+#: model:ir.model.fields,field_description:product_expiry_ux.field_stock_move_line__id
+msgid "ID"
+msgstr ""
+
+#. module: product_expiry_ux
 #: model:ir.model.fields,field_description:product_expiry_ux.field_stock_lot__is_alert_date
 msgid "Is Alert Date"
 msgstr "Es la Fecha de Alerta"
@@ -41,7 +53,7 @@ msgstr "Es la Fecha de Alerta"
 #. module: product_expiry_ux
 #: model:ir.model,name:product_expiry_ux.model_stock_lot
 msgid "Lot/Serial"
-msgstr "Lote/serie "
+msgstr "Lote/serie"
 
 #. module: product_expiry_ux
 #: model:ir.model,name:product_expiry_ux.model_stock_move_line
