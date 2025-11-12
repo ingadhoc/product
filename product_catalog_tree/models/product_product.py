@@ -37,6 +37,8 @@ class ProductProduct(models.Model):
         order_id = self._context.get("order_id")
 
         if not res_model or not order_id:
+            self.product_catalog_qty = 0
+            self.product_catalog_price = 0
             return
 
         order = self.env[res_model].browse(order_id)
