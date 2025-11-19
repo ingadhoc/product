@@ -5,6 +5,31 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
     _inherit = "report.mrp.report_bom_structure"
 
     @api.model
+    def _get_subcontracting_line(self, bom, seller, level, bom_quantity):
+        """Override to convert seller price to the proper currency"""
+        res = super()._get_subcontracting_line(bom, seller, level, bom_quantity)
+        currency = self.env.context.get("force_currency") or self.env.company.currency_id
+
+        # Convert the seller price to the proper currency
+        if bom.product_uom_id.ratio == 0:
+            raise ValueError(
+                "El ratio de la unidad de medida del producto en el BOM es cero. "
+                "Esto provocaría una división por cero. Verifique la configuración de la UoM."
+            )
+        ratio_uom_seller = seller.product_uom.ratio / bom.product_uom_id.ratio
+        price = seller.currency_id._convert(seller.price, currency, self.env.company, fields.Date.today(), round=True)
+        res.update(
+            {
+                "prod_cost": price / ratio_uom_seller * bom_quantity,
+                "bom_cost": price / ratio_uom_seller * bom_quantity,
+                "currency": currency,
+                "currency_id": currency.id,
+            }
+        )
+
+        return res
+
+    @api.model
     def _get_bom_data(
         self,
         bom,
@@ -22,7 +47,7 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
     ):
         """Here we use the replenishment cost for the uom unit"""
         if not self.env.context.get("force_currency"):
-            self = self.with_context(force_currency=product.currency_id)
+            self = self.with_context(force_currency=product.currency_id if product else bom.product_tmpl_id.currency_id)
         res = super(ReportReplenishmentBomStructure, self)._get_bom_data(
             bom,
             warehouse,
@@ -43,6 +68,9 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
         current_quantity = line_qty
         if bom_line:
             current_quantity = bom_line.product_uom_id._compute_quantity(line_qty, bom.product_uom_id) or 0
+
+        # Only update prod_cost (costo del producto final), not bom_cost
+        # bom_cost is automatically calculated as: components + operations + subcontracting
         if not is_minimized:
             if product:
                 price = product.uom_id._compute_price(product.replenishment_cost, bom.product_uom_id) * current_quantity
@@ -79,10 +107,13 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
             parent_bom, parent_product, warehouse, bom_line, line_quantity, level, index, product_info, ignore_stock
         )
         currency = self.env.context.get("force_currency") or self.env.company.currency_id
-        price = (
-            bom_line.product_id.uom_id._compute_price(bom_line.product_id.replenishment_cost, bom_line.product_uom_id)
-            * line_quantity
-        )
+
+        # Use replenishment_cost, if not defined use standard_price as fallback
+        component_cost = bom_line.product_id.replenishment_cost
+        if not component_cost:
+            component_cost = bom_line.product_id.standard_price
+
+        price = bom_line.product_id.uom_id._compute_price(component_cost, bom_line.product_uom_id) * line_quantity
         price = bom_line.product_id.currency_id._convert(
             price, currency, self.env.company, fields.Date.today(), round=True
         )
