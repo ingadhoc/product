@@ -46,7 +46,11 @@ class ProductTemplate(models.Model):
                 rec.update({"replenishment_base_cost_on_currency": 0.0, "replenishment_cost": 0.0})
                 continue
             # el explode es para product.product, tomamos la primer variante
-            result, result2 = bom.explode(rec.with_context(active_test=rec.active).product_variant_ids[0], 1)
+            product_variant = rec.with_context(active_test=rec.active).product_variant_ids[:1]
+            if not product_variant:
+                rec.update({"replenishment_base_cost_on_currency": 0.0, "replenishment_cost": 0.0})
+                continue
+            result, result2 = bom.explode(product_variant, 1)
             for sbom, sbom_data in result2:
                 sbom_rep_cost = (
                     sbom.product_id.uom_id._compute_price(
@@ -57,6 +61,36 @@ class ProductTemplate(models.Model):
                 price += sbom.product_id.product_tmpl_id.currency_id._convert(
                     sbom_rep_cost, product_currency, company, date, round=False
                 )
+
+            # Add subcontracting cost if bom type is 'subcontract'
+            if bom.type == "subcontract":
+                # Look for the seller/subcontractor set in the BOM
+                product = rec.product_variant_ids[:1]
+                if product:
+                    seller = product._select_seller(
+                        quantity=1, uom_id=bom.product_uom_id, params={"subcontractor_ids": bom.subcontractor_ids}
+                    )
+                else:
+                    # If no product variant, look for sellers in the template
+                    seller = rec.seller_ids.filtered(lambda s: s.partner_id in bom.subcontractor_ids)[:1]
+
+                if seller:
+                    if bom.product_uom_id.ratio == 0:
+                        raise ValueError(
+                            _(
+                                "El ratio de la unidad de medida del producto '%s' en el BOM es cero. "
+                                "Esto provocaría una división por cero. Verifique la configuración de la UoM."
+                            )
+                            % bom.display_name
+                        )
+                    # Calculate the subcontracting cost
+                    ratio_uom_seller = seller.product_uom.ratio / bom.product_uom_id.ratio
+                    subcontract_price = seller.currency_id._convert(
+                        seller.price, product_currency, company, date, round=False
+                    )
+                    # Add the subcontract price to the total price
+                    price += subcontract_price / ratio_uom_seller
+
             # NO implementamos total va a ser borrado. Ver si implementamos mas adelante (tener en cuenta convertir
             # moneda)
             # if bom.routing_id:
