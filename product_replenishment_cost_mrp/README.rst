@@ -14,8 +14,9 @@
 Integration between Replenishment Cost and Manufacture
 ======================================================
 
-#. Agregado de método para cálculo de costo de reposición utilizando el costo de reposición de la LdM.
-#. Modifica el reporte de "Estructura de Lista de Materiales" para que utilice el costo de reposición.
+#. Add a method to compute the replenishment cost using the BoM's replenishment cost.
+#. Modify the "Bill of Materials Structure" report to use the replenishment cost
+#. Support for replenishment cost calculation in subcontracted BOMs, adding the supplier/subcontractor cost to the components' cost
 
 Installation
 ============
