@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-17 17:14+0000\n"
+"POT-Creation-Date: 2025-11-22 08:30+0000\n"
 "PO-Revision-Date: 2025-10-24 16:47+0000\n"
 "Last-Translator: ADHOC - Bot <transbot@adhoc.com.ar>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
@@ -195,12 +195,12 @@ msgstr ""
 #. module: price_security
 #: model:ir.model,name:price_security.model_sale_order
 msgid "Sales Order"
-msgstr "Pedido de venta"
+msgstr "Pedidos de venta"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Línea de pedido de venta"
+msgstr "Línea de pedidos de venta"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_account_payment_term__sequence
