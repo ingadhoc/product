@@ -1,0 +1,92 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_price_taxes_included
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-25 17:03+0000\n"
+"PO-Revision-Date: 2025-11-25 17:03+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_price_taxes_included
+#: model_terms:ir.ui.view,arch_db:product_price_taxes_included.product_template_kanban_view
+msgid ""
+"<span groups=\"product_price_taxes_included.group_prices_with_tax\"> "
+"/</span>"
+msgstr ""
+
+#. module: product_price_taxes_included
+#: model:ir.model,name:product_price_taxes_included.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: product_price_taxes_included
+#: model:ir.model.fields,field_description:product_price_taxes_included.field_product_pricelist__display_name
+#: model:ir.model.fields,field_description:product_price_taxes_included.field_product_product__display_name
+#: model:ir.model.fields,field_description:product_price_taxes_included.field_product_template__display_name
+#: model:ir.model.fields,field_description:product_price_taxes_included.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: product_price_taxes_included
+#: model:ir.model.fields,field_description:product_price_taxes_included.field_product_pricelist__id
+#: model:ir.model.fields,field_description:product_price_taxes_included.field_product_product__id
+#: model:ir.model.fields,field_description:product_price_taxes_included.field_product_template__id
+#: model:ir.model.fields,field_description:product_price_taxes_included.field_res_config_settings__id
+msgid "ID"
+msgstr ""
+
+#. module: product_price_taxes_included
+#: model_terms:ir.ui.view,arch_db:product_price_taxes_included.res_config_settings_view_form
+msgid ""
+"In the product kanban view, in addition to showing the price without taxes, "
+"add the price of the product with taxes."
+msgstr ""
+
+#. module: product_price_taxes_included
+#: model_terms:ir.ui.view,arch_db:product_price_taxes_included.product_template_search_view
+msgid "Include Taxes on Pricelist price"
+msgstr ""
+
+#. module: product_price_taxes_included
+#: model:ir.model,name:product_price_taxes_included.model_product_pricelist
+msgid "Pricelist"
+msgstr ""
+
+#. module: product_price_taxes_included
+#: model_terms:ir.ui.view,arch_db:product_price_taxes_included.product_template_search_view
+msgid "Pricelist w/ taxes"
+msgstr ""
+
+#. module: product_price_taxes_included
+#: model:ir.model.fields,field_description:product_price_taxes_included.field_res_config_settings__group_kanban_prices_with_tax
+msgid "Prices with tax on products kanban view"
+msgstr ""
+
+#. module: product_price_taxes_included
+#: model:ir.model,name:product_price_taxes_included.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: product_price_taxes_included
+#: model:ir.model,name:product_price_taxes_included.model_product_product
+msgid "Product Variant"
+msgstr ""
+
+#. module: product_price_taxes_included
+#: model:res.groups,name:product_price_taxes_included.group_prices_with_tax
+msgid "Products: see the price with tax"
+msgstr ""
+
+#. module: product_price_taxes_included
+#: model:ir.model.fields,field_description:product_price_taxes_included.field_product_product__taxed_lst_price
+#: model:ir.model.fields,field_description:product_price_taxes_included.field_product_template__taxed_lst_price
+msgid "Taxed Sale Price"
+msgstr ""
