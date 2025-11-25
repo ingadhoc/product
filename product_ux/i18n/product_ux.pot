@@ -1,0 +1,157 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_ux
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-25 17:03+0000\n"
+"PO-Revision-Date: 2025-11-25 17:03+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_ux
+#: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_view
+msgid "<span class=\"o_stat_text\">Elementos de tarifa</span>"
+msgstr ""
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_product_product__active
+#: model:ir.model.fields,field_description:product_ux.field_product_template__active
+msgid "Active"
+msgstr ""
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_product_pricelist_item__applied_description
+msgid "Applied Description"
+msgstr ""
+
+#. module: product_ux
+#: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_item_search_view
+msgid "Apply On"
+msgstr ""
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_uom_uom__description
+msgid "Description"
+msgstr ""
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_product_pricelist_item__display_name
+#: model:ir.model.fields,field_description:product_ux.field_product_product__display_name
+#: model:ir.model.fields,field_description:product_ux.field_product_template__display_name
+#: model:ir.model.fields,field_description:product_ux.field_uom_uom__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_product_pricelist_item__id
+#: model:ir.model.fields,field_description:product_ux.field_product_product__id
+#: model:ir.model.fields,field_description:product_ux.field_product_template__id
+#: model:ir.model.fields,field_description:product_ux.field_uom_uom__id
+msgid "ID"
+msgstr ""
+
+#. module: product_ux
+#: model:ir.model.fields,help:product_ux.field_product_product__active
+#: model:ir.model.fields,help:product_ux.field_product_template__active
+msgid ""
+"If unchecked, it will allow you to hide the product without removing it."
+msgstr ""
+
+#. module: product_ux
+#: model:ir.model.fields,help:product_ux.field_product_product__warranty
+#: model:ir.model.fields,help:product_ux.field_product_template__warranty
+msgid ""
+"Informative field to define the warranty months of the product. Do not have "
+"relation with other models."
+msgstr ""
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_product_product__pricelist_id
+#: model:ir.model.fields,field_description:product_ux.field_product_template__pricelist_id
+msgid "Pricelist"
+msgstr ""
+
+#. module: product_ux
+#: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_item_search_view
+msgid "Pricelist Items"
+msgstr ""
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_product_product__pricelist_price
+#: model:ir.model.fields,field_description:product_ux.field_product_template__pricelist_price
+#: model_terms:ir.ui.view,arch_db:product_ux.product_template_tree_view
+msgid "Pricelist Price"
+msgstr ""
+
+#. module: product_ux
+#: model:ir.model,name:product_ux.model_product_pricelist_item
+msgid "Pricelist Rule"
+msgstr ""
+
+#. module: product_ux
+#: model:ir.actions.act_window,name:product_ux.product_pricelist_item_action
+msgid "Pricelists Items"
+msgstr ""
+
+#. module: product_ux
+#: model:ir.model,name:product_ux.model_product_template
+#: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_item_search_view
+msgid "Product"
+msgstr ""
+
+#. module: product_ux
+#: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_item_search_view
+msgid "Product Category"
+msgstr ""
+
+#. module: product_ux
+#: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_item_search_view
+msgid "Product Template"
+msgstr ""
+
+#. module: product_ux
+#: model:ir.model,name:product_ux.model_uom_uom
+msgid "Product Unit of Measure"
+msgstr ""
+
+#. module: product_ux
+#: model:ir.model,name:product_ux.model_product_product
+msgid "Product Variant"
+msgstr ""
+
+#. module: product_ux
+#: model:product.pricelist,name:product_ux.list0
+msgid "Public Pricelist"
+msgstr ""
+
+#. module: product_ux
+#: model:ir.model.fields,help:product_ux.field_product_product__sellers_product_code
+#: model:ir.model.fields,help:product_ux.field_product_template__sellers_product_code
+msgid ""
+"This vendor's product code will be used when printing a request for "
+"quotation. Keep empty to use the internal one."
+msgstr ""
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_product_product__sellers_product_code
+#: model:ir.model.fields,field_description:product_ux.field_product_template__sellers_product_code
+msgid "Vendor Product Code"
+msgstr ""
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_product_product__warranty
+#: model:ir.model.fields,field_description:product_ux.field_product_template__warranty
+msgid "Warranty"
+msgstr ""
+
+#. module: product_ux
+#: model_terms:ir.ui.view,arch_db:product_ux.product_template_only_form_view
+msgid "months"
+msgstr ""
