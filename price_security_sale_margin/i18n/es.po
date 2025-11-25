@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-28 15:48+0000\n"
+"POT-Creation-Date: 2025-11-25 17:25+0000\n"
 "PO-Revision-Date: 2025-10-27 18:06+0000\n"
 "Last-Translator: ADHOC - Bot <transbot@adhoc.com.ar>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
@@ -29,7 +29,7 @@ msgstr "Nombre para mostrar"
 #: model:ir.model.fields,field_description:price_security_sale_margin.field_sale_order__id
 #: model:ir.model.fields,field_description:price_security_sale_margin.field_sale_order_line__id
 msgid "ID"
-msgstr ""
+msgstr "ID (identificación)"
 
 #. module: price_security_sale_margin
 #: model:ir.model,name:price_security_sale_margin.model_sale_order
