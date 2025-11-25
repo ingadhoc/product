@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-25 17:03+0000\n"
-"PO-Revision-Date: 2025-11-25 17:03+0000\n"
+"POT-Creation-Date: 2025-11-25 17:22+0000\n"
+"PO-Revision-Date: 2025-11-25 17:22+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,6 +16,7 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_currency
+#: model:ir.model.fields,field_description:product_currency.field_product_product__company_currency_id
 #: model:ir.model.fields,field_description:product_currency.field_product_template__company_currency_id
 msgid "Company Currency"
 msgstr ""
@@ -47,19 +48,7 @@ msgid "Product with forced currency (EUR)"
 msgstr ""
 
 #. module: product_currency
-#: model:ir.model.fields,help:product_currency.field_product_product__company_currency_id
-msgid ""
-"Technical field to correctly show the currently selected company's currency "
-"that corresponds to the totaled value of the product's valuation layers"
-msgstr ""
-
-#. module: product_currency
 #: model:ir.model.fields,help:product_currency.field_product_product__force_currency_id
 #: model:ir.model.fields,help:product_currency.field_product_template__force_currency_id
 msgid "Use this currency instead of the product company currency"
-msgstr ""
-
-#. module: product_currency
-#: model:ir.model.fields,field_description:product_currency.field_product_product__company_currency_id
-msgid "Valuation Currency"
 msgstr ""
