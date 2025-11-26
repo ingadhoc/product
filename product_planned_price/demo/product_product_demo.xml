@@ -2,7 +2,6 @@
 <odoo noupdate="1">
     <record id="computed_manual" model="product.product">
         <field name="name">Computed Manual Product</field>
-        <field name="categ_id" ref="product.product_category_4"/>
         <field name="standard_price">20.5</field>
         <field name="computed_list_price_manual">100</field>
         <field name="list_price_type">manual</field>
@@ -10,7 +9,6 @@
     </record>
     <record id="computed_by_margin" model="product.product">
         <field name="name">Computed by Margin Product</field>
-        <field name="categ_id" ref="product.product_category_4"/>
         <field name="replenishment_base_cost">50</field>
         <field name="replenishment_base_cost_currency_id" ref="base.USD"/>
         <field name="standard_price">60</field>
@@ -21,7 +19,6 @@
     </record>
     <record id="computed_other_currency" model="product.product">
             <field name="name">Computed Other Currency Product</field>
-            <field name="categ_id" ref="product.product_category_4"/>
             <field name="standard_price">60</field>
             <field name="other_currency_list_price">100</field>
             <field name="other_currency_id" ref="base.USD"/>
