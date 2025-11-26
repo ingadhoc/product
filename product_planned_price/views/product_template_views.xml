@@ -11,7 +11,7 @@
             <group name="sale" position="before">
                 <group name="pricing">
                     <group name="planned_price" string="Planned Price">
-                        <div class="m-0" name="warnings_price" invisible="not warnings_price">
+                        <div class="m-0" name="warnings_price" invisible="not warnings_price" colspan="2">
                             <field name="warnings_price" class="o_field_html w-100" widget="actionable_errors"/>
                         </div>
                         <field name="list_price_type" string="Based on"/>

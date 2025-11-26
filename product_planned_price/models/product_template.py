@@ -25,7 +25,11 @@ class ProductTemplate(models.Model):
         help='Planned Price. This value depends on Planned Price Type" an other parameters.',
     )
     list_price_type = fields.Selection(
-        [("manual", "Fixed value"), ("by_margin", "By Margin"), ("other_currency", "Currency exchange")],
+        [
+            ("manual", "Fixed value"),
+            ("by_margin", "By Margin"),
+            ("other_currency", "Currency exchange"),
+        ],
         string="Planned Price Type",
         # we make it optional
         # required=True,
@@ -94,7 +98,10 @@ class ProductTemplate(models.Model):
             last_updated_param = self.env["ir.config_parameter"].sudo().create({"key": parameter_name, "value": "0"})
 
         # Obtiene los registros ordenados por id
-        domain = [("list_price_type", "!=", False), ("id", ">", int(last_updated_param.value))]
+        domain = [
+            ("list_price_type", "!=", False),
+            ("id", ">", int(last_updated_param.value)),
+        ]
         records = self.with_context(prefetch_fields=False).search(domain, order="id asc")
 
         records[:batch_size].with_context(bypass_base_automation=True)._update_prices_from_planned()
@@ -105,7 +112,8 @@ class ProductTemplate(models.Model):
             last_updated_id = 0
 
         self.env.cr.execute(
-            "UPDATE ir_config_parameter set value = %s where id = %s", (str(last_updated_id), last_updated_param.id)
+            "UPDATE ir_config_parameter set value = %s where id = %s",
+            (str(last_updated_id), last_updated_param.id),
         )
         # Uso directo de cr.commit(). Buscar alternativa menos riesgosa
         self.env.cr.commit()  # pragma pylint: disable=invalid-commit
@@ -127,7 +135,7 @@ class ProductTemplate(models.Model):
         """
         prec = self.env["decimal.precision"].precision_get("Product Price")
 
-        cr = self._cr
+        cr = self.env.cr
         for rec in self.with_context(prefetch_fields=False).filtered(
             lambda x: x.list_price_type
             and x.computed_list_price
@@ -135,7 +143,8 @@ class ProductTemplate(models.Model):
         ):
             # es mucho mas rapido hacerlo por sql directo
             cr.execute(
-                "UPDATE product_template SET list_price=%s WHERE id=%s", (rec.computed_list_price or 0.0, rec.id)
+                "UPDATE product_template SET list_price=%s WHERE id=%s",
+                (rec.computed_list_price or 0.0, rec.id),
             )
         return True
 
@@ -161,7 +170,11 @@ class ProductTemplate(models.Model):
                 )
             elif rec.list_price_type == "other_currency" and rec.currency_id:
                 computed_list_price = rec.other_currency_id.sudo()._convert(
-                    rec.other_currency_list_price, rec.currency_id, rec.main_company_id, date, round=False
+                    rec.other_currency_list_price,
+                    rec.currency_id,
+                    rec.main_company_id,
+                    date,
+                    round=False,
                 )
 
             # if product has taxes with price_include, add the tax to the
@@ -169,7 +182,10 @@ class ProductTemplate(models.Model):
             inc_taxes = rec.taxes_id.filtered("price_include")
             if inc_taxes:
                 computed_list_price = inc_taxes.compute_all(
-                    computed_list_price, rec.currency_id, product=rec, handle_price_include=False
+                    computed_list_price,
+                    rec.currency_id,
+                    product=rec,
+                    handle_price_include=False,
                 )["total_included"]
 
             rec.update(
@@ -184,25 +200,26 @@ class ProductTemplate(models.Model):
         be based on the planned, you can do it by sending use_planned_price
         in the context
         """
-        if self._context.get("use_planned_price") and price_type == "list_price":
+        if self.env.context.get("use_planned_price") and price_type == "list_price":
             price_type = "computed_list_price"
         return super().price_compute(price_type, uom=uom, currency=currency, company=company, date=date)
 
     @api.onchange("list_price_type")
     def _compute_warnings_price(self):
         if self.env["res.company"].sudo().search_count([]) > 1:
-            msg = _("The values correspond to the replenishment cost to the company: %s.", self.main_company_id.name)
-            warnings = {
-                "company_info": {
+            msg = _(
+                "The values correspond to the replenishment cost to the company: %s.",
+                self.main_company_id.name,
+            )
+            warnings = [
+                {
                     "message": msg,
-                    "action_text": False,
-                    "action": False,
                     "level": "info",
                 }
-            }
+            ]
             fixed = self.filtered(lambda x: x.list_price_type == "manual")
             # para los fixed no damos warning ya que no suma valor
-            fixed.warnings_price = {}
+            fixed.warnings_price = False
             (self - fixed).warnings_price = warnings
         else:
-            self.warnings_price = {}
+            self.warnings_price = False
