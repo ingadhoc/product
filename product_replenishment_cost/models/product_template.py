@@ -2,10 +2,13 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import models, fields, api, _
-from odoo.tools import float_compare
-from odoo.exceptions import ValidationError
 import logging
+
+from odoo.exceptions import ValidationError
+from odoo.tools import float_compare
+
+from odoo import _, api, fields, models
+
 _logger = logging.getLogger(__name__)
 
 
@@ -133,7 +136,6 @@ class ProductTemplate(models.Model):
         self.env.cr.commit()
         # si setamos last updated es porque todavia quedan por procesar, volvemos a llamar al cron
         if last_updated_id:
-            # para obtener el job_id se requiere este PR https://github.com/odoo/odoo/pull/146147
             cron = self.env.ref('product_replenishment_cost.ir_cron_update_cost_from_replenishment_cost')
             cron._trigger()
             
