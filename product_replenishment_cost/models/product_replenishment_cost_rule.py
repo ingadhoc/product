@@ -72,7 +72,6 @@ class ProductReplenishmentCostRule(models.Model):
         if not obj and self.env.context.get('active_id') \
                 and self.env.context.get('active_model') == 'product.template':
             obj = model.browse(self.env.context['active_id'])
-
         return {
             'env': env,
             'model': model,
