@@ -1,10 +1,9 @@
-from odoo import api, fields, models
+from odoo import fields, models
 
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
-    @api.depends("product_id.replenishment_cost")
     def _compute_purchase_price(self):
         super()._compute_purchase_price()
         for line in self.filtered("product_id"):
