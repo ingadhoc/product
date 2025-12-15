@@ -4,7 +4,6 @@ from odoo import models, api, fields
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    @api.depends('product_id.replenishment_cost')
     def _compute_purchase_price(self):
         super()._compute_purchase_price()
         for line in self.filtered('product_id'):
@@ -20,7 +19,6 @@ class SaleOrderLine(models.Model):
                 line.purchase_price = frm_cur._convert(
                     purchase_price, to_cur, order_id.company_id or self.env.company,
                     order_id.date_order or fields.Date.today(), round=False)
-                
 
     def _convert_price(self, product_cost, from_uom):
         if not product_cost:
