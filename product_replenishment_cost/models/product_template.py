@@ -188,13 +188,11 @@ class ProductTemplate(models.Model):
         # rule
         # 'replenishment_base_cost_currency_id',
         # # because of being stored
-        'replenishment_base_cost_currency_id.rate_ids.rate',
+        'replenishment_base_cost_currency_id',
         # # and this if we change de date (name field)
         # 'replenishment_base_cost_currency_id.rate_ids.name',
         # rule items
-        'replenishment_cost_rule_id.item_ids.sequence',
-        'replenishment_cost_rule_id.item_ids.percentage_amount',
-        'replenishment_cost_rule_id.item_ids.fixed_amount',
+        'replenishment_cost_rule_id',
     )
     @api.depends_context('company')
     def _compute_replenishment_cost(self):
