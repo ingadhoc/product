@@ -14,6 +14,7 @@
 # C) Sobre multicompañía: este cron actualiza por defecto el costo contable de todas las compañías de su base de datos. Si por alguna razon
 #    (por ejemplo performance) desea actualizar solo algunas, puede pasar el argumento "company_ids"
 
+# IMPORTANTE: No eliminar cron ni duplicar, debe ser único para un correcto funcionamiento del mismo.
 model.cron_update_cost_from_replenishment_cost(company_ids=None)
         </field>
         <field name="interval_type">months</field>
