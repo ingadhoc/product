@@ -134,7 +134,7 @@ class ProductTemplate(models.Model):
         # si setamos last updated es porque todavia quedan por procesar, volvemos a llamar al cron
         if last_updated_id:
             # para obtener el job_id se requiere este PR https://github.com/odoo/odoo/pull/146147
-            cron = self.env['ir.cron'].browse(self.env.context.get('job_id')) or self.env.ref('product_replenishment_cost.ir_cron_update_cost_from_replenishment_cost')
+            cron = self.env.ref('product_replenishment_cost.ir_cron_update_cost_from_replenishment_cost')
             cron._trigger()
             
         
