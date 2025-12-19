@@ -58,7 +58,17 @@ class ProductProduct(models.Model):
 
         order = self.env[res_model].browse(order_id)
         for rec in self:
-            order.with_company(order.company_id)._update_order_line_info(rec.id, product_catalog_qty)
+            # Actualizar la información de la línea de orden
+            # Call the order method with a cleared context to avoid errors on creating move line
+            minimal_context = {
+                "lang": self._context.get("lang"),
+                "tz": self._context.get("tz"),
+                "uid": self._context.get("uid"),
+                "allowed_company_ids": self._context.get("allowed_company_ids"),
+            }
+            order.with_company(order.company_id).with_env(self.env(context=minimal_context))._update_order_line_info(
+                rec.id, product_catalog_qty
+            )
 
     def increase_quantity(self):
         for rec in self:
