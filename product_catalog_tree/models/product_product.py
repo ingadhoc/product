@@ -60,9 +60,7 @@ class ProductProduct(models.Model):
         for rec in self:
             # Actualizar la información de la línea de orden
             # Call the order method with a cleared context to avoid errors on creating move line
-            order.with_company(order.company_id).with_context(clear_context=True)._update_order_line_info(
-                rec.id, product_catalog_qty
-            )
+            order.with_company(order.company_id).with_context(**{})._update_order_line_info(rec.id, product_catalog_qty)
 
     def increase_quantity(self):
         for rec in self:
