@@ -14,7 +14,7 @@
 Product UOMS Purchase
 =====================
 
-* This module extend product Uoms to Purchase Order.
+* This module extend product packagings to Purchase Order.
 
 
 Installation
@@ -30,7 +30,9 @@ Configuration
 
 To configure this module, you need to:
 
-#. Enter to product, add item in UOMs and set UOM and "Purchase Ok".
+#. Enter to product and go to the purchase window.
+#. In the purchase packagings field, you will define the purchase UoMs for the product.
+#. Also, you can add the product uom with the use product uom checkbox.
 
 Usage
 =====
