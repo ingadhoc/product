@@ -11,4 +11,9 @@ class ProductCatalogMixin(models.AbstractModel):
         search_view_id = self.env.ref("product.product_search_form_view").id
         action["views"] = [(tree_view_id, "list")] + action["views"]
         action["search_view_id"] = (search_view_id, "search")
+        # add warehouse location filter if order has warehouse
+        context = action.get("context", {})
+        if "order_id" in context and self._name == "sale.order":
+            if self._fields.get("warehouse_id") and self.warehouse_id:
+                action["context"]["search_default_location_id"] = self.warehouse_id.lot_stock_id.id
         return action
