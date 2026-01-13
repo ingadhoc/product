@@ -6,11 +6,12 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="purchase.view_product_supplier_inherit"/>
         <field name="arch" type="xml">
-            <group name="purchase">
+            <group name="purchase" position="inside">
                 <field name="supplier_currency_id" invisible="1"/>
-                <group name="replenishment_cost" string="Replenishment Cost">
-                    <div class="m-0" name="warnings_cost" invisible="not warnings_cost" groups="base.group_multi_company">
-                        <field name="warnings_cost" class="o_field_html w-100" widget="actionable_errors"/>
+                <group col="2" colspan="1">
+                    <group name="replenishment_cost" string="Replenishment Cost" colspan="2">
+                     <div class="mb-3" role="alert" name="warnings_cost" invisible="not warnings_cost" groups="base.group_multi_company" colspan="2">
+                        <field name="warnings_cost" class="o_field_html w-100 mb-0" widget="actionable_errors"/>
                     </div>
                     <field name="replenishment_cost_type"/>
                     <field name="replenishment_cost_last_update" string="Last Update" readonly="1"/>
@@ -30,6 +31,7 @@
                             <field name="uom_name" class="oe_inline"/>
                         </span>
                     </div>
+                </group>
                 </group>
             </group>
         </field>
