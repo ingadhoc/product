@@ -13,7 +13,8 @@ class PurchaseOrderLine(models.Model):
         super()._compute_price_unit_and_date_planned_and_name()
 
         for line in self:
-            if not line.product_id:
+            # Skip if manually modified (Odoo way: technical_price_unit != price_unit)
+            if not line.product_id or (line.technical_price_unit != line.price_unit):
                 continue
 
             seller = line.product_id._select_seller(
@@ -39,7 +40,9 @@ class PurchaseOrderLine(models.Model):
 
             if seller and line.product_uom_id and seller.product_uom_id != line.product_uom_id:
                 price_unit = seller.product_uom_id._compute_price(price_unit, line.product_uom_id)
-            line.price_unit = price_unit
+
+            # Update both price_unit and technical_price_unit
+            line.price_unit = line.technical_price_unit = price_unit
 
     @api.model
     def _prepare_purchase_order_line(self, product_id, product_qty, product_uom, company_id, supplier, po):
