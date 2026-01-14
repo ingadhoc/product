@@ -1,0 +1,79 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_uoms_purchase
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-14 15:35+0000\n"
+"PO-Revision-Date: 2026-01-14 15:35+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_uoms_purchase
+#: model:ir.model.fields,help:product_uoms_purchase.field_product_product__uom_po_ids
+#: model:ir.model.fields,help:product_uoms_purchase.field_product_template__uom_po_ids
+msgid "Additional packagings for this product which can be used for purchase"
+msgstr ""
+
+#. module: product_uoms_purchase
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_product_template__display_name
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_stock_rule__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: product_uoms_purchase
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_product_template__id
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_stock_rule__id
+msgid "ID"
+msgstr ""
+
+#. module: product_uoms_purchase
+#: model_terms:ir.ui.view,arch_db:product_uoms_purchase.product_template_only_form_view
+msgid "Packaging"
+msgstr ""
+
+#. module: product_uoms_purchase
+#: model:ir.model,name:product_uoms_purchase.model_product_template
+msgid "Product"
+msgstr ""
+
+#. module: product_uoms_purchase
+#: model:ir.model,name:product_uoms_purchase.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr ""
+
+#. module: product_uoms_purchase
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_product_product__uom_po_ids
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_product_template__uom_po_ids
+msgid "Purchase Packagings"
+msgstr ""
+
+#. module: product_uoms_purchase
+#: model:ir.model,name:product_uoms_purchase.model_stock_rule
+msgid "Stock Rule"
+msgstr ""
+
+#. module: product_uoms_purchase
+#: model_terms:ir.ui.view,arch_db:product_uoms_purchase.product_template_only_form_view
+msgid "Use Product UoM for Purchase"
+msgstr ""
+
+#. module: product_uoms_purchase
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_product_product__use_product_uom
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_product_template__use_product_uom
+msgid "Use Product Uom"
+msgstr ""
+
+#. module: product_uoms_purchase
+#: model:ir.model.fields,help:product_uoms_purchase.field_product_product__use_product_uom
+#: model:ir.model.fields,help:product_uoms_purchase.field_product_template__use_product_uom
+msgid "When enabled, it allows to use the product uom in the purchase order."
+msgstr ""
