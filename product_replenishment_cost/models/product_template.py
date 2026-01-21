@@ -2,10 +2,11 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import models, fields, api, _
-from odoo.tools import float_compare
-from odoo.exceptions import ValidationError
 import logging
+
+from odoo import api, fields, models
+from odoo.tools import float_compare
+
 _logger = logging.getLogger(__name__)
 
 
@@ -76,11 +77,10 @@ class ProductTemplate(models.Model):
         """ Lo ideal seria utilizar campo related para que segun los permisos
          del usuario tome el seller_id que corresponda, pero el tema es que el
          cron se corre con admin y entonces siempre va a tomar el primer seller
-        sin importar si estamos usando un force_company para poder definir rel
-         costo en distintas compañias.
+        sin importar la compañía actual para poder definir el costo en distintas compañías.
         Basicamente usamos regla analoga a la que viene por defecto para los
-         sellers donde se puede ver si
-        no tiene cia o es cia del usuario.
+         sellers donde se puede ver si no tiene cia o es cia del usuario.
+        Usamos with_company() para cambiar el contexto de compañía (Odoo v16+).
         """
         company_id = self.env.company.id
         for rec in self:
@@ -101,11 +101,6 @@ class ProductTemplate(models.Model):
         tampoco podemos usar get_param porque justamente no se va a refrescar el valor
         """
 
-        # allow force_company for backward compatibility
-        force_company = self._context.get('force_company', False)
-        if force_company and company_ids:
-            raise ValidationError(_(
-                "The argument 'company_ids' and the key 'force_company' on the context can't be used together"))
          # buscamos cual fue el ultimo registro actualziado
         parameter_name = 'product_replenishment_cost.last_updated_record_id'
         last_updated_param = self.env['ir.config_parameter'].sudo().search([('key', '=', parameter_name)], limit=1)
@@ -115,10 +110,8 @@ class ProductTemplate(models.Model):
         domain = [('id', '>', int(last_updated_param.value))]
         records = self.with_context(prefetch_fields=False).search(domain, order='id asc')
 
-        # use company_ids or force_company or search for all companies
-        if force_company:
-            company_ids = [force_company]
-        elif not company_ids:
+        # use company_ids or search for all companies
+        if not company_ids:
             company_ids = self.env['res.company'].search([]).ids
 
         for company_id in company_ids:
