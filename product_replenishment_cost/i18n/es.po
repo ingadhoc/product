@@ -1,23 +1,24 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* product_replenishment_cost
-# 
+#
 # Translators:
 # ADHOC - Bot <transbot@adhoc.com.ar>, 2025
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-26 13:09+0000\n"
+"POT-Creation-Date: 2026-02-04 16:02+0000\n"
 "PO-Revision-Date: 2025-11-26 13:01+0000\n"
 "Last-Translator: ADHOC - Bot <transbot@adhoc.com.ar>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
+"1 : 2;\n"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__standard_price
@@ -435,24 +436,14 @@ msgid "Supplierinfo"
 msgstr "Información del Proveedor"
 
 #. module: product_replenishment_cost
-#. odoo-python
-#: code:addons/product_replenishment_cost/models/product_template.py:0
-msgid ""
-"The argument 'company_ids' and the key 'force_company' on the context can't "
-"be used together"
-msgstr ""
-"El argumento 'company_ids' y la clave 'force_company'  en el contexto no "
-"pueden usarse juntos"
-
-#. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.view_update_from_replenishment_cost_wizard_form
 msgid ""
 "This will apply to all the selected products across company with costing "
 "method \"Standard Price\" and with Replenishment Cost different from 0."
 msgstr ""
 "Esto se aplicará a todos los productos seleccionados de la compañía con el "
-"método de costo \"Precio estándar\" y con un costo de reposición diferente a"
-" 0."
+"método de costo \"Precio estándar\" y con un costo de reposición diferente a "
+"0."
 
 #. module: product_replenishment_cost
 #: model:ir.actions.act_window,name:product_replenishment_cost.action_update_from_replenishment_cost_wizard
@@ -481,11 +472,13 @@ msgstr "Actualizar el costo del producto desde el costo de reposición"
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_template__standard_price
 msgid ""
 "Value of the product (automatically computed in AVCO).\n"
-"        Used to value the product when the purchase cost is not known (e.g. inventory adjustment).\n"
+"        Used to value the product when the purchase cost is not known (e.g. "
+"inventory adjustment).\n"
 "        Used to compute margins on sale orders."
 msgstr ""
 "El valor del producto (calculado automáticamente con AVCO).\n"
-"        Se utiliza para valorar el producto cuando se desconoce el coste de compra (por ejemplo, en un ajuste de inventario).\n"
+"        Se utiliza para valorar el producto cuando se desconoce el coste de "
+"compra (por ejemplo, en un ajuste de inventario).\n"
 "        Se utiliza para calcular los márgenes de los pedidos de venta."
 
 #. module: product_replenishment_cost
@@ -528,3 +521,10 @@ msgstr ""
 #: model:ir.model,name:product_replenishment_cost.model_product_replenishment_cost_rule_item
 msgid "product.replenishment_cost.rule.item"
 msgstr ""
+
+#~ msgid ""
+#~ "The argument 'company_ids' and the key 'force_company' on the context "
+#~ "can't be used together"
+#~ msgstr ""
+#~ "El argumento 'company_ids' y la clave 'force_company'  en el contexto no "
+#~ "pueden usarse juntos"
