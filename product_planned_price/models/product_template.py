@@ -209,7 +209,7 @@ class ProductTemplate(models.Model):
         if self.env["res.company"].sudo().search_count([]) > 1:
             msg = _(
                 "The values correspond to the replenishment cost to the company: %s.",
-                self.main_company_id.name,
+                self.main_company_id.sudo().name,
             )
             warnings = [
                 {
@@ -217,7 +217,7 @@ class ProductTemplate(models.Model):
                     "level": "info",
                 }
             ]
-            fixed = self.filtered(lambda x: x.list_price_type == "manual")
+            fixed = self.filtered(lambda x: x.list_price_type == "manual" or not x.list_price_type)
             # para los fixed no damos warning ya que no suma valor
             fixed.warnings_price = False
             (self - fixed).warnings_price = warnings
