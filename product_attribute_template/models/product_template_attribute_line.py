@@ -14,4 +14,10 @@ class ProductTemplateAttributeLine(models.Model):
         # template, that it's only to initialize attribute then the user add values to this
         if self._context.get("non_create_values", False):
             return True
+
         super()._check_valid_values()
+
+    @api.onchange("attribute_id")
+    def _onchange_attribute_id(self):
+        # Same behavior for all attribute types: do not auto-select values
+        self.value_ids = self.value_ids.filtered(lambda pav: pav.attribute_id == self.attribute_id)
