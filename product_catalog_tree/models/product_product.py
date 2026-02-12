@@ -83,17 +83,32 @@ class ProductProduct(models.Model):
 
         order = self.env[res_model].browse(order_id)
         for rec in self:
-            # Actualizar la información de la línea de orden
-            # Call the order method with a cleared context to avoid errors on creating move line
-            minimal_context = {
-                "lang": self._context.get("lang"),
-                "tz": self._context.get("tz"),
-                "uid": self._context.get("uid"),
-                "allowed_company_ids": self._context.get("allowed_company_ids"),
-            }
-            order.with_company(order.company_id).with_env(self.env(context=minimal_context))._update_order_line_info(
-                rec.id, product_catalog_qty
-            )
+            existing_lines = order.order_line.filtered(lambda line: line.product_id.id == rec.id)
+            if len(existing_lines) > 1 and product_catalog_qty > 0:
+                total_current_qty = sum(existing_lines.mapped("product_uom_qty"))
+                qty_difference = product_catalog_qty - total_current_qty
+                if qty_difference >= 0:
+                    existing_lines[0].product_uom_qty += qty_difference
+                else:
+                    remaining_to_reduce = abs(qty_difference)
+                    for line in existing_lines:
+                        if remaining_to_reduce <= 0:
+                            break
+                        can_reduce = min(line.product_uom_qty, remaining_to_reduce)
+                        line.product_uom_qty -= can_reduce
+                        remaining_to_reduce -= can_reduce
+            else:
+                # Actualizar la información de la línea de orden
+                # Call the order method with a cleared context to avoid errors on creating move line
+                minimal_context = {
+                    "lang": self._context.get("lang"),
+                    "tz": self._context.get("tz"),
+                    "uid": self._context.get("uid"),
+                    "allowed_company_ids": self._context.get("allowed_company_ids"),
+                }
+                order.with_company(order.company_id).with_env(
+                    self.env(context=minimal_context)
+                )._update_order_line_info(rec.id, product_catalog_qty)
 
     def increase_quantity(self):
         for rec in self:
