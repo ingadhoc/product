@@ -2,6 +2,8 @@
     "name": "Real Estate Management",
     "depends": ["base"],
     "version": "19.0.0.0.1",
+    "author": "ADHOC SA",
+    "license": "AGPL-3",
     "installable": True,
     "auto_install": False,
     "application": True,
