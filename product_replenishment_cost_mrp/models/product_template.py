@@ -75,16 +75,16 @@ class ProductTemplate(models.Model):
                     seller = rec.seller_ids.filtered(lambda s: s.partner_id in bom.subcontractor_ids)[:1]
 
                 if seller:
-                    if bom.product_uom_id.ratio == 0:
+                    if not bom.product_uom_id.factor:
                         raise ValueError(
                             _(
-                                "El ratio de la unidad de medida del producto '%s' en el BOM es cero. "
+                                "El factor de la unidad de medida del producto '%s' en el BOM no esta seteado. "
                                 "Esto provocaría una división por cero. Verifique la configuración de la UoM."
                             )
                             % bom.display_name
                         )
                     # Calculate the subcontracting cost
-                    ratio_uom_seller = seller.product_uom.ratio / bom.product_uom_id.ratio
+                    ratio_uom_seller = seller.product_uom.factor / bom.product_uom_id.factor
                     subcontract_price = seller.currency_id._convert(
                         seller.price, product_currency, company, date, round=False
                     )
