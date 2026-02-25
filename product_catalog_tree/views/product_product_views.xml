@@ -21,7 +21,7 @@
             </field>
             <!-- Agregar Order Price y UoM del proveedor -->
             <field name="standard_price" position="after">
-                <field name="product_catalog_price"/>
+                <field name="product_catalog_price" optional="hide"/>
                 <field name="product_catalog_supplier_uom" optional="show" string="Supplier UoM"/>
             </field>
             <!-- Asegurar que existan los campos de UoM -->
