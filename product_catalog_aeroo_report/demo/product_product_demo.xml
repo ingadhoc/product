@@ -7,6 +7,5 @@
         <field name="include_sub_categories" eval="True"/>
         <field name="product_type">product.product</field>
         <field name="report_id" ref="report_product_catalog_by_categories_odt"/>
-        <field name="category_ids" eval="[(4, ref('product.product_category_all'))]"/>
     </record>
 </odoo>
