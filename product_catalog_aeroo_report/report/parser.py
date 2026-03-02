@@ -3,6 +3,7 @@
 # directory
 ##############################################################################
 from odoo import _, api, fields, models
+from odoo.tools import formatLang
 
 
 class Parser(models.AbstractModel):
@@ -13,20 +14,20 @@ class Parser(models.AbstractModel):
 
     @api.model
     def aeroo_report(self, docids, data):
-        self.env.print_product_uom = self._context.get("print_product_uom", False)
-        self.env.product_type = self._context.get("product_type", "product.product")
-        self.env.prod_display_type = self._context.get("prod_display_type", False)
-        pricelist_ids = self._context.get("pricelist_ids", [])
-        categories_order = self._context.get("categories_order", "")
+        self.env.print_product_uom = self.env.context.get("print_product_uom", False)
+        self.env.product_type = self.env.context.get("product_type", "product.product")
+        self.env.prod_display_type = self.env.context.get("prod_display_type", False)
+        pricelist_ids = self.env.context.get("pricelist_ids", [])
+        categories_order = self.env.context.get("categories_order", "")
         pricelists = self.env["product.pricelist"].browse(pricelist_ids)
 
         # Get categories ordered
-        category_type = self._context.get("category_type", False)
+        category_type = self.env.context.get("category_type", False)
         if category_type == "public_category":
             categories = self.env["product.public.category"]
         else:
             categories = self.env["product.category"]
-        category_ids = self._context.get("category_ids", [])
+        category_ids = self.env.context.get("category_ids", [])
         categories = categories.search([("id", "in", category_ids)], order=categories_order)
         products = self.get_products(category_ids)
         self = self.with_context(
@@ -39,9 +40,10 @@ class Parser(models.AbstractModel):
             prod_display_type=self.env.prod_display_type,
             today=fields.Date.today(),
             get_price=self.get_price,
+            get_formatted_price=self.get_formatted_price,
             get_description=self.get_description,
             get_products=self.get_products,
-            context=self._context,
+            context=self.env.context,
             field_value_get=self.field_value_get,
         )
         return super().aeroo_report(docids, data)
@@ -61,6 +63,10 @@ class Parser(models.AbstractModel):
             product_obj = product_obj.with_context(uom=product.sale_uom_ids[0].uom_id.id)
         price = product_obj.browse([product.id])._get_contextual_price()
         return price
+
+    def get_formatted_price(self, product, pricelist):
+        price = self.get_price(product, pricelist)
+        return formatLang(self.env, price, currency_obj=pricelist.currency_id)
 
     def get_description(self, product, print_product_uom):
         sale_uom = self.env["product.template"].fields_get(["sale_uom_ids"])
@@ -84,9 +90,9 @@ class Parser(models.AbstractModel):
     def get_products(self, category_ids):
         if not isinstance(category_ids, list):
             category_ids = [category_ids]
-        order = self._context.get("products_order", "")
-        only_with_stock = self._context.get("only_with_stock", False)
-        category_type = self._context.get("category_type", False)
+        order = self.env.context.get("products_order", "")
+        only_with_stock = self.env.context.get("only_with_stock", False)
+        category_type = self.env.context.get("category_type", False)
         if category_type == "public_category":
             domain = [("public_categ_ids", "in", category_ids)]
         else:

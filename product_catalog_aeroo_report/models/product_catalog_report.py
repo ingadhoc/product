@@ -76,7 +76,7 @@ class ProductCatalogReport(models.Model):
     )
 
     def prepare_report(self):
-        context = dict(self._context.copy())
+        context = dict(self.env.context.copy())
         categories = self.category_ids
         # because this value usually cames from wizard, if we call report from
         # this model, we add taxes_included parameter
