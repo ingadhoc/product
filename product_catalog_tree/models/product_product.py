@@ -58,7 +58,10 @@ class ProductProduct(models.Model):
 
         order = self.env[res_model].browse(order_id)
         for rec in self:
-            existing_lines = order.order_line.filtered(lambda line: line.product_id.id == rec.id)
+            if res_model == "account.move":
+                existing_lines = order.invoice_line_ids.filtered(lambda line: line.product_id.id == rec.id)
+            else:
+                existing_lines = order.order_line.filtered(lambda line: line.product_id.id == rec.id)
             if len(existing_lines) > 1 and product_catalog_qty > 0:
                 total_current_qty = sum(existing_lines.mapped("product_uom_qty"))
                 qty_difference = product_catalog_qty - total_current_qty
@@ -75,9 +78,8 @@ class ProductProduct(models.Model):
             else:
                 # Actualizar la información de la línea de orden
                 # Call the order method with a cleared context to avoid errors on creating move line
-                order.with_company(order.company_id).with_context(**{})._update_order_line_info(
-                    rec.id, product_catalog_qty
-                )
+                order = order.with_env(self.env(context={})).with_company(order.company_id)
+                order._update_order_line_info(rec.id, product_catalog_qty)
 
     def increase_quantity(self):
         for rec in self:
