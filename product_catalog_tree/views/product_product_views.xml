@@ -22,6 +22,7 @@
             <!-- Agregar Order Price y UoM del proveedor -->
             <field name="standard_price" position="after">
                 <field name="product_catalog_price" optional="hide"/>
+                <field name="product_catalog_price_taxed" optional="show"/>
                 <field name="product_catalog_supplier_uom" optional="show" string="Supplier UoM"/>
             </field>
             <!-- Asegurar que existan los campos de UoM -->
@@ -32,6 +33,25 @@
             <xpath expr="//field[@name='virtual_available']" position="attributes">
                 <attribute name="optional">show</attribute>
             </xpath>
+        </field>
+    </record>
+
+    <record id="product_view_kanban_catalog" model="ir.ui.view">
+        <field name="name">product.view.kanban.catalog</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_view_kanban_catalog"/>
+        <field name="arch" type="xml">
+            <!-- Agregar campos de precio del catálogo -->
+            <field name="id" position="after">
+                <field name="product_catalog_price"/>
+                <field name="product_catalog_price_taxed"/>
+            </field>
+            <!-- Agregar precio con impuestos después del div de precio -->
+            <div name="o_kanban_price" position="after">
+                <div class="text-muted small" t-if="record.product_catalog_price_taxed.raw_value">
+                    With taxes: <t t-out="record.product_catalog_price_taxed.raw_value"/>
+                </div>
+            </div>
         </field>
     </record>
 
