@@ -23,4 +23,7 @@ class ProductTemplate(models.Model):
         forced_products = self.filtered("force_currency_id")
         for rec in forced_products:
             rec.currency_id = rec.force_currency_id
-        super(ProductTemplate, self - forced_products)._compute_currency_id()
+        # Llamar al super solo para los que no tienen force_currency_id
+        normal_products = self - forced_products
+        if normal_products:
+            super(ProductTemplate, normal_products)._compute_currency_id()
