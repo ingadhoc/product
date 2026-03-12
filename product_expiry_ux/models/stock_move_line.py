@@ -24,13 +24,12 @@ class StockMoveLine(models.Model):
                     "expiration_date": self.expiration_date,
                 }
             )
-            dates_to_update = {}
-            if prod.removal_time:
-                dates_to_update["removal_date"] = lot.expiration_date - datetime.timedelta(days=prod.removal_time)
-            if prod.use_time:
-                dates_to_update["use_date"] = lot.expiration_date - datetime.timedelta(days=prod.use_time)
-
-            if dates_to_update:
-                lot.write(dates_to_update)
-            if not lot.alert_date and prod.alert_time:
-                lot.write({"alert_date": lot.expiration_date - datetime.timedelta(days=prod.alert_time)})
+            if lot.expiration_date:
+                lot.write(
+                    {
+                        "removal_date": lot.expiration_date - datetime.timedelta(days=prod.removal_time),
+                        "use_date": lot.expiration_date - datetime.timedelta(days=prod.use_time),
+                    }
+                )
+                if not lot.alert_date:
+                    lot.write({"alert_date": lot.expiration_date - datetime.timedelta(days=prod.alert_time)})
