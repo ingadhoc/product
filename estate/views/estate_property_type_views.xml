@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <!--Vista basica-->
+    <record id="estate_property_type_action" model="ir.actions.act_window">
+        <field name="name">Property Types</field>
+        <field name="res_model">estate.property.type</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Vista de Lista -->
+    <record id="estate_property_type_list_view" model="ir.ui.view">
+        <field name="name">estate.property.type.list</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <list string="Property Types">
+                <field name="sequence" widget="handle" string="Sequence"/>
+                <field name="name" string="Title"/>
+                <field name="offer_count" string="Offers Count"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Vista de Formulario -->
+    <record id="estate_property_type_form_view" model="ir.ui.view">
+        <field name="name">estate.property.type.form</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <form string="Property Type">
+                <header>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(estate.estate_property_offer_action)d"
+                                type="action"
+                                class="oe_stat_button"
+                                icon="fa-file-text-o"
+                                widget="statinfo"
+                                context="{'active_id': id}">
+                            <field name="offer_count" string="Offers"/>
+                        </button>
+                    </div>
+                </header>
+                <sheet>
+                    <div>
+                        <h1>
+                            <field name="name" placeholder="Title"/>
+                        </h1>
+                        <h3>
+                            <field name="sequence"/>
+                        </h3>
+                        <field name="property_ids">
+                            <list>
+                                <field name="name"/>
+                                <field name="expected_price"/>
+                                <field name="state"/>
+                            </list>
+                        </field>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vista de Busqueda -->
+    <record id="estate_property_type_search_view" model="ir.ui.view">
+        <field name="name">estate.property.type.search</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Title"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>
