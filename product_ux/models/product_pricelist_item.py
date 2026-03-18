@@ -17,3 +17,9 @@ class PicelistItem(models.Model):
                 rec.applied_description = rec.categ_id.display_name
             else:
                 rec.applied_description = False
+
+    @api.onchange("compute_price")
+    def _onchange_compute_price(self):
+        super()._onchange_compute_price()
+        if self.compute_price == "formula":
+            self.price_round = 10 ** -self.env["decimal.precision"].sudo().precision_get("Product Price")
