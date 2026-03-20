@@ -52,11 +52,11 @@ class ProductProduct(models.Model):
                         rec.product_catalog_supplier_uom = seller.product_uom_id.name
 
     @api.depends("product_tmpl_id.taxes_id", "product_catalog_price")
-    @api.depends_context("company", "company_id", "order_id")
+    @api.depends_context("company", "company_id", "order_id", "product_catalog_order_model")
     def _compute_product_catalog_price_taxed(self):
         """Calcula product_catalog_price con impuestos incluidos.
-        Toma los impuestos de las líneas de orden si están disponibles, de lo contrario
-        usa los impuestos por defecto del producto aplicando la posición fiscal.
+        Usa los impuestos del producto aplicando la posición fiscal si existe,
+        igual que el resto de los campos de precio en Odoo.
         """
         res_model = self.env.context.get("product_catalog_order_model")
         order_id = self.env.context.get("order_id")
@@ -73,21 +73,10 @@ class ProductProduct(models.Model):
                 partner = order.partner_id if hasattr(order, "partner_id") else self.env["res.partner"]
                 company_id = order.company_id.id if hasattr(order, "company_id") else self.env.company.id
 
-                # Intentar obtener impuestos de las líneas de orden existentes para este producto
-                taxes = self.env["account.tax"]
-                if hasattr(order, "order_line"):
-                    order_lines = order.order_line.filtered(lambda l: l.product_id.id == rec.id and not l.display_type)
-                    if order_lines:
-                        # Usar impuestos de la primera línea de orden (deberían ser iguales para el mismo producto)
-                        if hasattr(order_lines[0], "tax_ids"):
-                            taxes = order_lines[0].tax_ids
-
-                # Si no existen líneas de orden aún, obtener impuestos del producto y aplicar posición fiscal
-                if not taxes:
-                    taxes = rec.taxes_id.filtered(lambda x: x.company_id.id == company_id)
-                    # Aplicar posición fiscal si existe
-                    if hasattr(order, "fiscal_position_id") and order.fiscal_position_id:
-                        taxes = order.fiscal_position_id.map_tax(taxes)
+                # Obtener impuestos del producto y aplicar posición fiscal (patrón estándar de Odoo)
+                taxes = rec.taxes_id.filtered(lambda x: x.company_id.id == company_id)
+                if hasattr(order, "fiscal_position_id") and order.fiscal_position_id:
+                    taxes = order.fiscal_position_id.map_tax(taxes)
             else:
                 currency = self.env.company.currency_id
                 partner = self.env["res.partner"]
