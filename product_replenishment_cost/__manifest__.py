@@ -8,7 +8,6 @@
         "purchase",  # for page in product form
         "sales_team",  # for access rights
         "sale",  # only for menu for cost rules
-        "account_multicompany_ux",  # for usability in multicompany environments
     ],
     "data": [
         "security/product_replenishment_cost_security.xml",
