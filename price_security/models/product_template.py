@@ -46,17 +46,6 @@ class ProductTemplate(models.Model):
                     modifiers = json.loads(node.get("modifiers") or "{}")
                     modifiers["readonly"] = True
                     node.set("modifiers", json.dumps(modifiers))
-                # por compatibilidad con account_multicompany_ux
-                # no agregamos dependencias explicita porque no seria necesario pero eventualmente no seria un problema
-                # ya que todos los que tiene price_security tienen account_multicompany_ux
-                nodes = arch.xpath(
-                    "//div[@name='standard_price_uom']//button[@name='action_company_properties']"
-                ) + arch.xpath("//div[@name='standard_price_ids']//button[@name='action_company_properties']")
-                for node in nodes:
-                    node.set("invisible", "1")
-                    modifiers = json.loads(node.get("modifiers") or "{}")
-                    modifiers["invisible"] = True
-                    node.set("modifiers", json.dumps(modifiers))
             if self.env.user.has_group("price_security.group_only_view_sale_price"):
                 invisible_fields = (
                     arch.xpath("//div[@name='standard_price_uom']")
