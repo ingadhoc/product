@@ -81,3 +81,59 @@ class ProductTemplate(models.Model):
                 }
             )
         return res
+
+    def _update_cost_from_replenishment_cost(self):
+        """ Override para procesar productos BOM en el orden correcto.
+        Si un producto BOM tiene componentes que también están en el batch,
+        primero se actualizan los componentes (hojas) y luego los padres.
+        Esto es necesario porque replenishment_cost (store=False) se computa
+        al vuelo y necesita ver el standard_price ya actualizado de sus
+        componentes.
+        """
+        bom_templates = self.filtered(lambda t: t.replenishment_cost_type == 'bom')
+        non_bom_templates = self - bom_templates
+
+        # Los non-bom no dependen de otros, se procesan juntos normalmente
+        if non_bom_templates:
+            super(ProductTemplate, non_bom_templates)._update_cost_from_replenishment_cost()
+
+        if not bom_templates:
+            return True
+
+        # Obtener los componentes BOM de cada template (solo los que están en nuestro batch)
+        bom_tmpl_ids = set(bom_templates.ids)
+        bom_components = {}  # {template_id: set of component template_ids in batch}
+        for tmpl in bom_templates:
+            comp_ids = set()
+            for line in tmpl.bom_ids[:1].bom_line_ids:
+                comp_tmpl_id = line.product_id.product_tmpl_id.id
+                if comp_tmpl_id in bom_tmpl_ids:
+                    comp_ids.add(comp_tmpl_id)
+            bom_components[tmpl.id] = comp_ids
+
+        # Ordenar: primero los que no dependen de nadie del batch (componentes),
+        # luego los que dependen de ellos
+        processed = set()
+        sorted_templates = self.browse()
+        # Iterar hasta procesar todos (máx N iteraciones para evitar loop infinito en ciclos)
+        for _i in range(len(bom_templates) + 1):
+            if len(processed) == len(bom_tmpl_ids):
+                break
+            # En cada pasada, agregar los que ya tienen todas sus dependencias procesadas
+            ready = [
+                tid for tid in bom_tmpl_ids - processed
+                if bom_components[tid] <= processed
+            ]
+            if not ready:
+                # Dependencia circular: agregar los restantes y loguear warning
+                ready = list(bom_tmpl_ids - processed)
+            sorted_templates |= self.browse(ready)
+            processed.update(ready)
+
+        # Procesar de a uno invalidando cache entre cada uno para que
+        # el siguiente vea el standard_price actualizado de sus componentes
+        for tmpl in sorted_templates:
+            super(ProductTemplate, tmpl)._update_cost_from_replenishment_cost()
+            tmpl.invalidate_recordset(['replenishment_cost', 'replenishment_base_cost_on_currency'])
+
+        return True
