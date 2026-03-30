@@ -14,7 +14,9 @@ class PurchaseOrderLine(models.Model):
 
         for line in self:
             # Skip if manually modified (Odoo way: technical_price_unit != price_unit)
-            if not line.product_id or (line.technical_price_unit != line.price_unit):
+            if not line.product_id or (
+                line.technical_price_unit != line.price_unit and not line.env.context.get("update_prices")
+            ):
                 continue
 
             seller = line.product_id._select_seller(
