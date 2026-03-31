@@ -21,7 +21,7 @@ class SaleOrder(models.Model):
     @api.model
     def _get_view(self, view_id=None, view_type="form", **options):
         arch, view = super()._get_view(view_id, view_type, **options)
-        if view_type == "tree":
+        if view_type == "list":
             if self.env.user.has_group("price_security.group_only_view"):
                 readonly_fields = (
                     arch.xpath("//field[@name='purchase_price']")
