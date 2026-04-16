@@ -1,23 +1,24 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* product_ux
-# 
+#
 # Translators:
 # ADHOC - Bot <transbot@adhoc.com.ar>, 2025
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-03 18:47+0000\n"
+"POT-Creation-Date: 2026-04-16 20:49+0000\n"
 "PO-Revision-Date: 2025-11-03 17:41+0000\n"
 "Last-Translator: ADHOC - Bot <transbot@adhoc.com.ar>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
+"1 : 2;\n"
 
 #. module: product_ux
 #: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_view
@@ -52,6 +53,16 @@ msgstr "Descripción"
 #: model:ir.model.fields,field_description:product_ux.field_uom_uom__display_name
 msgid "Display Name"
 msgstr "Nombre para mostrar"
+
+#. module: product_ux
+#. odoo-python
+#: code:addons/product_ux/migrations/18.0.1.4.0/post-migration.py:0
+msgid ""
+"Hicimos una actualización automática para mejorar la precisión de las listas "
+"de precios. En las reglas de listas de precio tipo \"fórmula\" que no tenían "
+"una precisión de redondeo definida, aplicamos la precisión de precios "
+"configurada en su base de datos. Se ajustaron %(count)s reglas de precios."
+msgstr ""
 
 #. module: product_ux
 #: model:ir.model.fields,field_description:product_ux.field_product_pricelist_item__id
