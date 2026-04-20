@@ -30,6 +30,8 @@
     "depends": [
         "product",
         "stock",
+        "account",
+        "sale",
     ],
     "data": [
         "views/product_product_views.xml",
