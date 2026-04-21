@@ -84,7 +84,7 @@ class ProductTemplate(models.Model):
                             % bom.display_name
                         )
                     # Calculate the subcontracting cost
-                    ratio_uom_seller = seller.product_uom.factor / bom.product_uom_id.factor
+                    ratio_uom_seller = seller.product_uom_id.factor / bom.product_uom_id.factor
                     subcontract_price = seller.currency_id._convert(
                         seller.price, product_currency, company, date, round=False
                     )
