@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Product Catalog Tree",
-    "version": "19.0.1.1.0",
+    "version": "19.0.1.2.0",
     "category": "Products",
     "sequence": 14,
     "summary": "",
@@ -29,7 +29,6 @@
     "images": [],
     "depends": [
         "product",
-        "stock",
     ],
     "data": [
         "views/product_product_views.xml",
