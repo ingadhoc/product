@@ -2,7 +2,7 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import api, fields, models
+from odoo import _, api, fields, models
 
 
 class ProductTemplate(models.Model):
@@ -46,3 +46,12 @@ class ProductTemplate(models.Model):
             else:
                 return self.env["product.pricelist"]
         return super()._get_contextual_pricelist()
+
+    @api.model
+    def get_import_templates(self):
+        return [
+            {
+                "label": _("Import Template for Products"),
+                "template": "/product_ux/static/xls/product_template.xlsx",
+            }
+        ]
