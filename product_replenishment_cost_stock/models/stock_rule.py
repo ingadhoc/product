@@ -13,7 +13,7 @@ class StockRule(models.Model):
         po = line.order_id
         price_unit = (
             self.env["account.tax"]._fix_tax_included_price_company(
-                supplier.net_price, product_id.supplier_taxes_id, line.taxes_id, company_id
+                supplier.net_price, product_id.supplier_taxes_id, line.tax_ids, company_id
             )
             if supplier
             else 0.0
