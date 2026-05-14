@@ -25,6 +25,7 @@
     "website": "www.adhoc.com.ar",
     "license": "AGPL-3",
     "depends": [
+        "product_uoms",
         "purchase_stock",
     ],
     "demo": [],

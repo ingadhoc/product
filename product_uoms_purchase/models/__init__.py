@@ -3,5 +3,6 @@
 # directory
 ##############################################################################
 from . import product_template
+from . import product_uoms
 from . import purchase_order_line
 from . import stock_rule
