@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<odoo>
+    <template id="report_product_catalog_qweb_simple_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>
+                            <span t-field="o.name"/>
+                        </h2>
+                        <p t-if="o.env.context.get('taxes_included', o.taxes_included)">
+                            <strong>Prices include taxes</strong>
+                        </p>
+                        <table class="table table-sm table-striped" style="page-break-inside: auto;">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Description</th>
+                                    <th t-if="o.print_product_uom">UoM</th>
+                                    <t t-foreach="o.pricelist_ids" t-as="pricelist">
+                                        <th>
+                                            <span t-field="pricelist.name"/>
+                                        </th>
+                                    </t>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.get_all_products()" t-as="line">
+                                    <tr style="page-break-inside: avoid;">
+                                        <td>
+                                            <span t-field="line.default_code"/>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <span t-esc="o.get_description(line)"/>
+                                            </div>
+                                            <t t-set="variant_details" t-value="o.get_variant_details(line)"/>
+                                            <ul t-if="variant_details" style="margin: 0; padding-left: 16px;">
+                                                <t t-foreach="variant_details" t-as="variant_detail">
+                                                    <li>
+                                                        <span t-esc="variant_detail"/>
+                                                    </li>
+                                                </t>
+                                            </ul>
+                                        </td>
+                                        <td t-if="o.print_product_uom">
+                                            <span t-field="line.uom_id"/>
+                                        </td>
+                                        <t t-foreach="o.pricelist_ids" t-as="pricelist">
+                                            <td>
+                                                <span t-esc="o.get_formatted_price(line, pricelist)"/>
+                                            </td>
+                                        </t>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_product_catalog_qweb_by_categories_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>
+                            <span t-field="o.name"/>
+                        </h2>
+                        <p t-if="o.env.context.get('taxes_included', o.taxes_included)">
+                            <strong>Prices include taxes</strong>
+                        </p>
+                        <table class="table table-sm table-striped" style="page-break-inside: auto;">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Description</th>
+                                    <th t-if="o.print_product_uom">UoM</th>
+                                    <t t-foreach="o.pricelist_ids" t-as="pricelist">
+                                        <th>
+                                            <span t-field="pricelist.name"/>
+                                        </th>
+                                    </t>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.get_categories()" t-as="category">
+                                    <tr>
+                                        <td colspan="99">
+                                            <strong>
+                                                <span t-field="category.display_name"/>
+                                            </strong>
+                                        </td>
+                                    </tr>
+                                    <t t-foreach="o.get_report_products(category)" t-as="line">
+                                        <tr style="page-break-inside: avoid;">
+                                            <td>
+                                                <span t-field="line.default_code"/>
+                                            </td>
+                                            <td>
+                                                <span t-esc="o.get_description(line)"/>
+                                            </td>
+                                            <td t-if="o.print_product_uom">
+                                                <span t-field="line.uom_id"/>
+                                            </td>
+                                            <t t-foreach="o.pricelist_ids" t-as="pricelist">
+                                                <td>
+                                                    <span t-esc="o.get_formatted_price(line, pricelist)"/>
+                                                </td>
+                                            </t>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_product_catalog_qweb_simple">
+        <t t-call="product_catalog_aeroo_report.report_product_catalog_qweb_simple_document"/>
+    </template>
+
+    <template id="report_product_catalog_qweb_by_categories">
+        <t t-call="product_catalog_aeroo_report.report_product_catalog_qweb_by_categories_document"/>
+    </template>
+</odoo>

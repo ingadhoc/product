@@ -5,12 +5,12 @@
         <field name="model">product.product_catalog_report</field>
         <field name="inherit_id" ref="product_catalog_aeroo_report.view_product_catalog_report_form"/>
         <field name="arch" type="xml">
-            <field name="product_type" position="after">
+            <field name="prod_display_type" position="after">
                 <field name="category_type"/>
             </field>
             <field name="category_ids" position="replace">
-                <field name="category_ids" invisible="category_type == 'public_category'"/>
-                <field name="public_category_ids" invisible="category_type == 'product_category'"/>
+                <field name="category_ids" invisible="category_type == 'public_category'" widget="many2many_tags"/>
+                <field name="public_category_ids" invisible="category_type == 'product_category'" widget="many2many_tags"/>
             </field>
         </field>
     </record>

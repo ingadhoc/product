@@ -7,17 +7,19 @@ from odoo import api, fields, models
 
 class ProductCatalog(models.TransientModel):
     _name = "product.product_catalog.wizard"
-    _description = "Wizard to generate the Product Catalog Report with Aeroo"
+    _description = "Wizard to generate the Product Catalog Report"
 
     product_catalog_report_id = fields.Many2one(
         "product.product_catalog_report",
         "Product Catalog",
         required=True,
+        help="Select the catalog configuration to use. Each catalog defines its categories, pricelists, and report format.",
     )
-    taxes_included = fields.Boolean()
+    taxes_included = fields.Boolean(
+        help="When enabled, prices will include applicable taxes.",
+    )
     use_planned_price = fields.Boolean(
-        help="Use planned price instead of list price (if planned price module"
-        " is not installed, nothing is going to change)",
+        help="Use planned price instead of list price (has no effect if the planned price module is not installed).",
     )
 
     @api.onchange("product_catalog_report_id")

@@ -20,7 +20,7 @@
 {
     "name": "Product Catalog Aeroo Report",
     "version": "19.0.1.0.0",
-    "category": "Aeroo Reporting",
+    "category": "Reporting",
     "sequence": 14,
     "summary": "",
     "author": "ADHOC SA",
@@ -29,7 +29,6 @@
     "images": [],
     "depends": [
         "product_price_taxes_included",
-        "report_aeroo",
         "sale",
         "stock",
     ],
@@ -38,6 +37,7 @@
         "security/ir.model.access.csv",
         "views/product_catalog_report_views.xml",
         "report/product_catalog_report_data.xml",
+        "report/product_catalog_report_templates.xml",
     ],
     "demo": [
         "demo/product_template_demo.xml",
