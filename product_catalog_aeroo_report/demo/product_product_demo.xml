@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <odoo noupdate="1">
     <record id="catalog_demo4" model="product.product_catalog_report">
-        <field name="name">Odt categ, Product</field>
+        <field name="name">By categories PDF, Product</field>
         <field name="products_order">name desc</field>
         <field name="categories_order">name desc</field>
         <field name="include_sub_categories" eval="True"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <odoo noupdate="1">
     <record id="catalog_demo1" model="product.product_catalog_report">
-        <field name="name">Ods, Template, one prod per line</field>
+        <field name="name">Detailed XLSX, Template, one prod per line</field>
         <field name="products_order">name desc</field>
         <field name="categories_order">name desc</field>
         <field name="include_sub_categories" eval="True"/>
@@ -11,7 +11,7 @@
     </record>
 
     <record id="catalog_demo2" model="product.product_catalog_report">
-        <field name="name">Odt simple, Template, prod list</field>
+        <field name="name">Simple PDF, Template, prod list</field>
         <field name="products_order">name desc</field>
         <field name="categories_order">name desc</field>
         <field name="include_sub_categories" eval="True"/>
@@ -21,7 +21,7 @@
     </record>
 
     <record id="catalog_demo3" model="product.product_catalog_report">
-        <field name="name">Odt categ, Template, variants</field>
+        <field name="name">By categories PDF, Template, variants</field>
         <field name="products_order">name desc</field>
         <field name="categories_order">name desc</field>
         <field name="include_sub_categories" eval="True"/>

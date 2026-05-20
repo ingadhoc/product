@@ -1,43 +1,30 @@
 <?xml version="1.0"?>
 <odoo>
-<!-- ODS Catalog -->
     <record id="report_product_catalog_ods" model="ir.actions.report">
-        <field name="name">Product Catalog Report - ODS</field>
+        <field name="name">Product Catalog Detailed Report (XLSX)</field>
         <field name="model">product.product_catalog_report</field>
-        <field name="report_name">report_product_catalog_ods</field>
-        <field name="report_type">aeroo</field>
-        <field name="in_format">oo-ods</field>
-        <field name="out_format" ref="report_aeroo.report_mimetypes_xls_odt"/>
-        <field name="report_file">product_catalog_aeroo_report/report/product_catalog.ods</field>
-        <field name="parser_model">report.product_catalog_parser</field>
-        <field name="tml_source">file</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">product_catalog_aeroo_report.report_product_catalog_xlsx</field>
+        <field name="report_file">product_catalog_aeroo_report.report_product_catalog_xlsx</field>
+        <field name="print_report_name">'Product Catalog - %s' % (object.name)</field>
     </record>
 
-
-<!-- ODT Catalog Simple -->
     <record id="report_product_catalog_simple_odt" model="ir.actions.report">
-        <field name="name">Product Catalog Simple Report - ODT</field>
+        <field name="name">Product Catalog Simple Report</field>
         <field name="model">product.product_catalog_report</field>
-        <field name="report_name">report_product_catalog_simple_odt</field>
-        <field name="report_type">aeroo</field>
-        <field name="in_format">oo-odt</field>
-        <field name="out_format" ref="report_aeroo.report_mimetypes_pdf_odt"/>
-        <field name="report_file">product_catalog_aeroo_report/report/product_catalog_simple.odt</field>
-        <field name="parser_model">report.product_catalog_parser</field>
-        <field name="tml_source">file</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">product_catalog_aeroo_report.report_product_catalog_qweb_simple</field>
+        <field name="report_file">product_catalog_aeroo_report.report_product_catalog_qweb_simple</field>
+        <field name="print_report_name">'Product Catalog - %s' % (object.name)</field>
     </record>
 
-<!-- ODT Catalog By Categories -->
     <record id="report_product_catalog_by_categories_odt" model="ir.actions.report">
-        <field name="name">Product Catalog By Categories Report - ODT</field>
+        <field name="name">Product Catalog By Categories Report</field>
         <field name="model">product.product_catalog_report</field>
-        <field name="report_name">report_product_catalog_by_categories_odt</field>
-        <field name="report_type">aeroo</field>
-        <field name="in_format">oo-odt</field>
-        <field name="out_format" ref="report_aeroo.report_mimetypes_pdf_odt"/>
-        <field name="report_file">product_catalog_aeroo_report/report/product_catalog_by_categories.odt</field>
-        <field name="parser_model">report.product_catalog_parser</field>
-        <field name="tml_source">file</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">product_catalog_aeroo_report.report_product_catalog_qweb_by_categories</field>
+        <field name="report_file">product_catalog_aeroo_report.report_product_catalog_qweb_by_categories</field>
+        <field name="print_report_name">'Product Catalog - %s' % (object.name)</field>
     </record>
 
 </odoo>
