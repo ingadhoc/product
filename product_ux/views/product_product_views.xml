@@ -8,7 +8,7 @@
         <field name="inherit_id" ref="product.product_product_tree_view"/>
         <field name="arch" type="xml">
             <field name="standard_price" position="after">
-                <field name="pricelist_price"/>
+                <field name="pricelist_price" optional="hide"/>
             </field>
         </field>
     </record>

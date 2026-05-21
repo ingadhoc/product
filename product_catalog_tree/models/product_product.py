@@ -3,9 +3,12 @@
 # directory
 ##############################################################################
 import json
+import logging
 
 from lxml import etree
 from odoo import api, fields, models
+
+_logger = logging.getLogger(__name__)
 
 
 class ProductProduct(models.Model):
@@ -20,6 +23,74 @@ class ProductProduct(models.Model):
         compute="_compute_catalog_values",
         readonly=True,
     )
+    product_catalog_supplier_uom = fields.Char(
+        string="Supplier UoM",
+        compute="_compute_catalog_supplier_uom",
+        readonly=True,
+    )
+    product_catalog_price_taxed = fields.Float(
+        string="Order Price with taxes",
+        compute="_compute_product_catalog_price_taxed",
+        readonly=True,
+    )
+
+    def _get_order_context_data(self):
+        res_model = self.env.context.get("product_catalog_order_model")
+        order_id = self.env.context.get("order_id")
+        if not res_model or not order_id:
+            return None
+        order = self.env[res_model].browse(order_id)
+        return order if order.exists() else None
+
+    def _compute_catalog_supplier_uom(self):
+        res_model = self.env.context.get("product_catalog_order_model")
+        order = self._get_order_context_data()
+
+        for rec in self:
+            rec.product_catalog_supplier_uom = ""
+            if res_model == "purchase.order" and order and order.partner_id:
+                seller = rec.seller_ids.filtered(lambda s: s.partner_id == order.partner_id)[:1]
+                if seller and seller.product_uom_id:
+                    rec.product_catalog_supplier_uom = seller.product_uom_id.name
+
+    @api.depends("product_tmpl_id.taxes_id", "product_catalog_price")
+    @api.depends_context("company", "company_id", "order_id", "product_catalog_order_model")
+    def _compute_product_catalog_price_taxed(self):
+        order = self._get_order_context_data()
+
+        for rec in self:
+            if not rec.product_catalog_price:
+                rec.product_catalog_price_taxed = 0.0
+                continue
+
+            currency = self.env.company.currency_id
+            partner = self.env["res.partner"]
+            company_id = self.env.context.get("company_id", self.env.company.id)
+            taxes = rec.taxes_id.filtered(lambda x: x.company_id.id == company_id)
+
+            if order:
+                currency = order.currency_id or currency
+                partner = order.partner_id
+                company_id = (order.company_id or self.env.company).id
+                taxes = rec.taxes_id.filtered(lambda x: x.company_id.id == company_id)
+                if order.fiscal_position_id:
+                    taxes = order.fiscal_position_id.map_tax(taxes)
+
+            if taxes:
+                try:
+                    tax_result = taxes.sudo().compute_all(
+                        rec.product_catalog_price, currency=currency, quantity=1.0, product=rec, partner=partner
+                    )
+                    rec.product_catalog_price_taxed = tax_result["total_included"]
+                except Exception:
+                    _logger.warning(
+                        "Failed to compute taxed price for product %s, falling back to base price",
+                        rec.id,
+                        exc_info=True,
+                    )
+                    rec.product_catalog_price_taxed = rec.product_catalog_price
+            else:
+                rec.product_catalog_price_taxed = rec.product_catalog_price
 
     def write(self, vals):
         """
