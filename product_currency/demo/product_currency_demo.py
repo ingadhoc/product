@@ -20,6 +20,7 @@ class ProductTemplate(models.Model):
     def _product_currency_demo_records(self, env):
         """Retorna lista de (xml_name, model, values)."""
         usd_id = env.ref("base.USD").id
+        eur_id = env.ref("base.EUR").id
         return [
             (
                 "demo_product_usd",
@@ -30,6 +31,19 @@ class ProductTemplate(models.Model):
                     "list_price": 100.0,
                     "currency_id": usd_id,
                     "force_currency_id": usd_id,
+                },
+            ),
+            (
+                "product_with_forced_currency",
+                "product.template",
+                {
+                    "name": "Product with forced currency (EUR)",
+                    "categ_id": env.ref("product.product_category_goods").id,
+                    "standard_price": 50.0,
+                    "list_price": 100.0,
+                    "currency_id": usd_id,
+                    "force_currency_id": eur_id,
+                    "type": "consu",
                 },
             ),
         ]
