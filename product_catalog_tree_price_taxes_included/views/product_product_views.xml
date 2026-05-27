@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_view_tree_catalog_price_taxed" model="ir.ui.view">
+        <field name="name">product.view.list.catalog.price.taxed</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product_catalog_tree.product_view_tree_catalog"/>
+        <field name="arch" type="xml">
+            <field name="product_catalog_price" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </field>
+            <field name="product_catalog_price" position="after">
+                <field name="product_catalog_price_taxed" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_view_kanban_catalog_price_taxed" model="ir.ui.view">
+        <field name="name">product.view.kanban.catalog.price.taxed</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_view_kanban_catalog"/>
+        <field name="arch" type="xml">
+            <field name="id" position="after">
+                <field name="product_catalog_price_taxed"/>
+            </field>
+            <div name="o_kanban_price" position="after">
+                <div class="text-muted small" t-if="record.product_catalog_price_taxed.raw_value">
+                    With taxes: <t t-out="record.product_catalog_price_taxed.raw_value"/>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>
