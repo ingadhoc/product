@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_category_property_form" model="ir.ui.view">
+        <field name="name">product.category.cost.revaluation.form.inherit</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="stock_account.view_category_property_form"/>
+        <field name="arch" type="xml">
+            <field name="property_stock_valuation_account_id" position="after">
+                <field name="property_cost_revaluation_account_id"
+                       options="{'no_create': True}"
+                       invisible="property_valuation != 'real_time' or property_cost_method not in ['standard', 'average']"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
