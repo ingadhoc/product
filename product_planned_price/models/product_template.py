@@ -70,12 +70,13 @@ class ProductTemplate(models.Model):
     warnings_price = fields.Json(compute="_compute_warnings_price")
 
     @api.depends("company_id")
+    @api.depends_context("company")
     def _compute_main_company(self):
-        main_company = self.env["res.company"]._get_main_company()
         for rec in self:
-            rec.main_company_id = rec.company_id or main_company
+            rec.main_company_id = rec.company_id or self.env.company
 
     @api.depends("replenishment_cost", "company_id")
+    @api.depends_context("company")
     def _compute_replenishment_cost_main_company(self):
         for rec in self:
             rec.replenishment_cost_main_company = rec.sudo().with_company(rec.main_company_id.id).replenishment_cost
@@ -157,6 +158,7 @@ class ProductTemplate(models.Model):
         "other_currency_list_price",
         "other_currency_id",
     )
+    @api.depends_context("company")
     def _compute_computed_list_price(self):
         recs = self.filtered(lambda x: x.list_price_type in ["manual", "by_margin", "other_currency"])
         _logger.info('Get computed_list_price for %s "manual", "by_margin" and "other_currency" products' % (len(recs)))
