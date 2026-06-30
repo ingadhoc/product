@@ -20,6 +20,11 @@ class ProductProduct(models.Model):
         compute="_compute_catalog_values",
         readonly=True,
     )
+    product_catalog_min_qty = fields.Float(
+        string="Supplier Min Qty",
+        compute="_compute_catalog_values",
+        readonly=True,
+    )
 
     def write(self, vals):
         """
@@ -39,6 +44,7 @@ class ProductProduct(models.Model):
         if not res_model or not order_id:
             self.product_catalog_qty = 0
             self.product_catalog_price = 0
+            self.product_catalog_min_qty = 0
             return
 
         order = self.env[res_model].browse(order_id)
@@ -48,6 +54,7 @@ class ProductProduct(models.Model):
         for rec in self:
             rec.product_catalog_qty = order_line_info[rec.id].get("quantity")
             rec.product_catalog_price = order_line_info[rec.id].get("price")
+            rec.product_catalog_min_qty = order_line_info[rec.id].get("min_qty", 0)
 
     def _inverse_catalog_values(self, product_catalog_qty):
         res_model = self._context.get("product_catalog_order_model")
@@ -84,6 +91,22 @@ class ProductProduct(models.Model):
     def increase_quantity(self):
         for rec in self:
             rec._inverse_catalog_values(rec.product_catalog_qty + 1)
+
+    def add_catalog_min_qty(self):
+        """Add the product using the vendor's minimum quantity.
+
+        Mirrors the kanban catalog behaviour (see purchase
+        ``product_catalog/kanban_record.js`` ``addProduct``): when the product is
+        not on the order yet and the vendor defines a minimum quantity, add it
+        with that ``min_qty`` so the vendor pricelist price applies instead of
+        falling back to the product cost. If the product is already on the order
+        it just adds one, like the ``+`` button.
+        """
+        for rec in self:
+            if not rec.product_catalog_qty and rec.product_catalog_min_qty:
+                rec._inverse_catalog_values(rec.product_catalog_min_qty)
+            else:
+                rec._inverse_catalog_values(rec.product_catalog_qty + 1)
 
     @api.model
     def get_view(self, view_id=None, view_type="form", **options):
