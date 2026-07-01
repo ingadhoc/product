@@ -27,7 +27,7 @@ class Users(models.Model):
             tmp_line_vals = {
                 "product_id": so_line.product_id.id,
                 "order_id": so_line.order_id.id,
-                "product_uom": so_line.product_uom_id.id,
+                "product_uom_id": so_line.product_uom_id.id,
                 "product_uom_qty": so_line.product_uom_qty,
             }
             # for compatibility with product_pack
