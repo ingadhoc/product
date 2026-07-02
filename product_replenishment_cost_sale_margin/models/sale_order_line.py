@@ -9,7 +9,7 @@ class SaleOrderLine(models.Model):
         for line in self.filtered("product_id"):
             order_id = line.order_id
             product_id = line.product_id
-            product_uom_id = line.product_uom
+            product_uom_id = line.product_uom_id
             if product_id.replenishment_cost:
                 frm_cur = product_id.currency_id
                 to_cur = order_id.currency_id
@@ -32,8 +32,8 @@ class SaleOrderLine(models.Model):
             frm_cur = self.product_id.currency_id
             to_cur = self.currency_id or self.order_id.currency_id
             purchase_price = self.product_id.replenishment_cost
-            if self.product_uom != from_uom:
-                purchase_price = from_uom._compute_price(purchase_price, self.product_uom)
+            if self.product_uom_id != from_uom:
+                purchase_price = from_uom._compute_price(purchase_price, self.product_uom_id)
             return frm_cur._convert(
                 purchase_price,
                 to_cur,
