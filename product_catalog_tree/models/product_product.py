@@ -92,21 +92,20 @@ class ProductProduct(models.Model):
         for rec in self:
             rec._inverse_catalog_values(rec.product_catalog_qty + 1)
 
-    def add_catalog_min_qty(self):
-        """Add the product using the vendor's minimum quantity.
+    def set_catalog_min_qty(self):
+        """Set the order quantity to the vendor's minimum quantity.
 
-        Mirrors the kanban catalog behaviour (see purchase
-        ``product_catalog/kanban_record.js`` ``addProduct``): when the product is
-        not on the order yet and the vendor defines a minimum quantity, add it
-        with that ``min_qty`` so the vendor pricelist price applies instead of
-        falling back to the product cost. If the product is already on the order
-        it just adds one, like the ``+`` button.
+        The list catalog ``+`` button (:meth:`increase_quantity`) always adds
+        one unit, so a line can stay below the vendor ``min_qty`` and fall back
+        to the product cost instead of the vendor pricelist price. This
+        dedicated button always sets the quantity to the vendor ``min_qty`` --
+        whether the product is already on the order or not -- so the vendor
+        price applies. The button is only shown when the vendor defines a
+        ``min_qty`` greater than 1.
         """
         for rec in self:
-            if not rec.product_catalog_qty and rec.product_catalog_min_qty:
+            if rec.product_catalog_min_qty:
                 rec._inverse_catalog_values(rec.product_catalog_min_qty)
-            else:
-                rec._inverse_catalog_values(rec.product_catalog_qty + 1)
 
     @api.model
     def get_view(self, view_id=None, view_type="form", **options):

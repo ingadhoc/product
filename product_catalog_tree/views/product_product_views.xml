@@ -18,8 +18,8 @@
                 <field name="product_catalog_qty"/>
                 <field name="product_catalog_min_qty" column_invisible="1"/>
                 <button name="increase_quantity" type="object" icon="fa-plus" title="Add one"/>
-                <button name="add_catalog_min_qty" type="object" icon="fa-truck"
-                        title="Add supplier minimum quantity"
+                <button name="set_catalog_min_qty" type="object" icon="fa-truck"
+                        title="Set supplier minimum quantity"
                         invisible="not product_catalog_min_qty or product_catalog_min_qty &lt;= 1"/>
             </field>
             <field name="standard_price" position="after">
