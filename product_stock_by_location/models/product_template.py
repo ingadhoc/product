@@ -18,7 +18,9 @@ class ProductTemplate(models.Model):
     @api.depends("name")
     def _compute_location_ids(self):
         for rec in self:
-            rec.location_ids = rec.location_ids.search([("show_stock_on_products", "=", True)])
+            rec.location_ids = rec.location_ids.search(
+                [("show_stock_on_products", "=", True), ("usage", "=", "internal")]
+            )
 
     def view_stock_detail(self):
         self.ensure_one()

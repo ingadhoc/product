@@ -9,7 +9,11 @@ class StockLocation(models.Model):
     _inherit = "stock.location"
 
     show_stock_on_products = fields.Boolean(
-        help="If true, this location will be shown on the pop up window opened" "from products kanban and list view"
+        default=True,
+        help="If set, this location's stock is shown on products: the stock detail on"
+        " sale order lines and the pop up window opened from the products kanban and"
+        " list view. Enabled by default; uncheck it on locations you do not want to"
+        " expose (e.g. scrap/discard locations modelled as internal).",
     )
     qty_available = fields.Float(
         compute="_compute_product_available",
