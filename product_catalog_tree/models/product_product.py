@@ -20,6 +20,11 @@ class ProductProduct(models.Model):
         compute="_compute_catalog_values",
         readonly=True,
     )
+    product_catalog_min_qty = fields.Float(
+        string="Supplier Min Qty",
+        compute="_compute_catalog_values",
+        readonly=True,
+    )
 
     def write(self, vals):
         """
@@ -39,6 +44,7 @@ class ProductProduct(models.Model):
         if not res_model or not order_id:
             self.product_catalog_qty = 0
             self.product_catalog_price = 0
+            self.product_catalog_min_qty = 0
             return
 
         order = self.env[res_model].browse(order_id)
@@ -48,6 +54,7 @@ class ProductProduct(models.Model):
         for rec in self:
             rec.product_catalog_qty = order_line_info[rec.id].get("quantity")
             rec.product_catalog_price = order_line_info[rec.id].get("price")
+            rec.product_catalog_min_qty = order_line_info[rec.id].get("min_qty", 0)
 
     def _inverse_catalog_values(self, product_catalog_qty):
         res_model = self.env.context.get("product_catalog_order_model")
@@ -92,6 +99,21 @@ class ProductProduct(models.Model):
     def increase_quantity(self):
         for rec in self:
             rec._inverse_catalog_values(rec.product_catalog_qty + 1)
+
+    def set_catalog_min_qty(self):
+        """Set the order quantity to the vendor's minimum quantity.
+
+        The list catalog ``+`` button (:meth:`increase_quantity`) always adds
+        one unit, so a line can stay below the vendor ``min_qty`` and fall back
+        to the product cost instead of the vendor pricelist price. This
+        dedicated button always sets the quantity to the vendor ``min_qty`` --
+        whether the product is already on the order or not -- so the vendor
+        price applies. The button is only shown when the vendor defines a
+        ``min_qty`` greater than 1.
+        """
+        for rec in self:
+            if rec.product_catalog_min_qty:
+                rec._inverse_catalog_values(rec.product_catalog_min_qty)
 
     @api.model
     def get_view(self, view_id=None, view_type="form", **options):
