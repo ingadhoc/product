@@ -6,7 +6,7 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <form string="Product Catalog Report">
-                This will apply to all the selected products across company with costing method "Standard Price" and with Replenishment Cost different from 0.
+                This will apply to all the selected products across company with a Replenishment Cost different from 0.
                 <footer>
                     <button name="confirm" string="Confirm" type="object" class="oe_highlight"/>
                     or
