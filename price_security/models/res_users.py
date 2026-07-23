@@ -4,6 +4,7 @@
 ##############################################################################
 from odoo import _, fields, models
 from odoo.exceptions import UserError
+from odoo.tools import float_compare, float_is_zero
 
 
 class Users(models.Model):
@@ -39,7 +40,7 @@ class Users(models.Model):
         discount_precision_digits = self.env["decimal.precision"].precision_get("Discount")
         net_discount = discount - round(pricelist_disc, discount_precision_digits)
 
-        if net_discount and net_discount != 0.0:
+        if not float_is_zero(net_discount, precision_digits=discount_precision_digits):
             disc_restriction_env = self.env["res.users.discount_restriction"]
             domain = [("pricelist_id", "=", pricelist_id), ("user_id", "=", self.id)]
             disc_restriction = disc_restriction_env.search(domain, limit=1)
@@ -53,7 +54,16 @@ class Users(models.Model):
                 if pricelist_disc:
                     error += ' (%s%% for product "%s")' % (pricelist_disc, so_line.product_id.name)
             else:
-                if net_discount < disc_restriction.min_discount or net_discount > disc_restriction.max_discount:
+                if (
+                    float_compare(
+                        net_discount, disc_restriction.min_discount, precision_digits=discount_precision_digits
+                    )
+                    < 0
+                    or float_compare(
+                        net_discount, disc_restriction.max_discount, precision_digits=discount_precision_digits
+                    )
+                    > 0
+                ):
                     error = _(
                         'The applied discount is not allowed. Discount must bebetween %s and %s for pricelist "%s"'
                     ) % (
