@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-27 15:00+0000\n"
+"POT-Creation-Date: 2026-07-22 14:00+0000\n"
 "PO-Revision-Date: 2025-11-26 13:01+0000\n"
 "Last-Translator: ADHOC - Bot <transbot@adhoc.com.ar>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
@@ -445,12 +445,9 @@ msgstr "Información del Proveedor"
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.view_update_from_replenishment_cost_wizard_form
 msgid ""
-"This will apply to all the selected products across company with costing "
-"method \"Standard Price\" and with Replenishment Cost different from 0."
+"This will apply to all the selected products across company with a "
+"Replenishment Cost different from 0."
 msgstr ""
-"Esto se aplicará a todos los productos seleccionados de la compañía con el "
-"método de costo \"Precio estándar\" y con un costo de reposición diferente a "
-"0."
 
 #. module: product_replenishment_cost
 #: model:ir.actions.act_window,name:product_replenishment_cost.action_update_from_replenishment_cost_wizard
@@ -528,6 +525,14 @@ msgstr ""
 #: model:ir.model,name:product_replenishment_cost.model_product_replenishment_cost_rule_item
 msgid "product.replenishment_cost.rule.item"
 msgstr ""
+
+#~ msgid ""
+#~ "This will apply to all the selected products across company with costing "
+#~ "method \"Standard Price\" and with Replenishment Cost different from 0."
+#~ msgstr ""
+#~ "Esto se aplicará a todos los productos seleccionados de la compañía con "
+#~ "el método de costo \"Precio estándar\" y con un costo de reposición "
+#~ "diferente a 0."
 
 #~ msgid ""
 #~ "The argument 'company_ids' and the key 'force_company' on the context "
