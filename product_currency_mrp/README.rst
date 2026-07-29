@@ -37,6 +37,9 @@ Usage
 To use this module, you need to:
 
 #. Define a different currency from the default one on the product.
+#. Open the BoM structure report of that product. Every line (components,
+   operations, by-products and subcontracting) is expressed in the product
+   currency, so the total is a single-currency amount.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
