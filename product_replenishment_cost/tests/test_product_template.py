@@ -1,3 +1,7 @@
+from unittest.mock import patch
+
+import psycopg2
+from odoo.service.model import MAX_TRIES_ON_CONCURRENCY_FAILURE
 from odoo.tests.common import TransactionCase
 
 
@@ -104,3 +108,55 @@ class TestUpdateCostFromReplenishmentCost(TransactionCase):
         self.product_template._update_cost_from_replenishment_cost()
 
         self.assertEqual(product.standard_price, 80.0)
+
+
+class TestCronUpdateCostRetry(TransactionCase):
+    """Reintento del cron ante errores de concurrencia de PostgreSQL.
+
+    No se puede provocar un SerializationFailure real de forma determinística, así que
+    inyectamos la falla parcheando el helper propio ``_cron_update_cost_from_replenishment_cost``
+    (no primitivas del ORM). La escritura real del batch ya está cubierta por
+    ``TestUpdateCostFromReplenishmentCost``; acá validamos solo el control de reintentos.
+    Además parcheamos ``cr.rollback`` (el framework de tests lo prohíbe) y ``time.sleep``
+    para no penalizar la corrida.
+    """
+
+    def test_cron_retries_and_succeeds_on_serialization_failure(self):
+        ProductTemplate = self.env["product.template"]
+        calls = {"n": 0}
+
+        def _flaky(*args, **kwargs):
+            calls["n"] += 1
+            if calls["n"] == 1:
+                raise psycopg2.errors.SerializationFailure()
+            return True
+
+        with patch.object(
+            type(ProductTemplate),
+            "_cron_update_cost_from_replenishment_cost",
+            side_effect=_flaky,
+        ), patch.object(self.env.cr, "rollback", lambda: None), patch("time.sleep", lambda *args: None):
+            result = ProductTemplate.cron_update_cost_from_replenishment_cost(company_ids=[self.env.company.id])
+
+        # un fallo transitorio + un reintento exitoso
+        self.assertEqual(calls["n"], 2)
+        self.assertTrue(result)
+
+    def test_cron_reraises_after_max_retries(self):
+        ProductTemplate = self.env["product.template"]
+        calls = {"n": 0}
+
+        def _always_fail(*args, **kwargs):
+            calls["n"] += 1
+            raise psycopg2.errors.SerializationFailure()
+
+        with patch.object(
+            type(ProductTemplate),
+            "_cron_update_cost_from_replenishment_cost",
+            side_effect=_always_fail,
+        ), patch.object(self.env.cr, "rollback", lambda: None), patch("time.sleep", lambda *args: None):
+            with self.assertRaises(psycopg2.errors.SerializationFailure):
+                ProductTemplate.cron_update_cost_from_replenishment_cost(company_ids=[self.env.company.id])
+
+        # se agotan los MAX_TRIES intentos antes de relanzar
+        self.assertEqual(calls["n"], MAX_TRIES_ON_CONCURRENCY_FAILURE)

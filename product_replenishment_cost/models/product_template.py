@@ -3,8 +3,11 @@
 # directory
 ##############################################################################
 import logging
+import random
+import time
 
 from odoo import _, api, fields, models
+from odoo.service.model import MAX_TRIES_ON_CONCURRENCY_FAILURE, PG_CONCURRENCY_EXCEPTIONS_TO_RETRY
 from odoo.tools import float_compare
 
 _logger = logging.getLogger(__name__)
@@ -103,6 +106,51 @@ class ProductTemplate(models.Model):
 
     @api.model
     def cron_update_cost_from_replenishment_cost(self, limit=None, company_ids=None, batch_size=1000):
+        """Reintenta el batch ante errores de concurrencia de PostgreSQL.
+
+        A diferencia de las peticiones HTTP, que Odoo reintenta automáticamente ante un
+        error de serialización/deadlock (ver ``odoo.service.model.retrying``), los crons
+        propagan la excepción y el job queda marcado como fallido. Como el UPDATE masivo
+        sobre ``product_product.standard_price`` puede chocar con otro proceso que escriba
+        las mismas filas, envolvemos el batch en un loop de reintentos con backoff
+        exponencial, replicando el mismo conjunto de errores y la misma cantidad de
+        intentos que usa el core. Si se agotan los intentos, se relanza la excepción para
+        que el cron quede en estado fallido en lugar de silenciarla.
+
+        NOTA: esto mitiga locks transitorios; una colisión sostenida contra el mismo
+        proceso escritor necesita resolverse en el origen del lock, no acá.
+        """
+        for attempt in range(1, MAX_TRIES_ON_CONCURRENCY_FAILURE + 1):
+            try:
+                return self._cron_update_cost_from_replenishment_cost(
+                    limit=limit, company_ids=company_ids, batch_size=batch_size
+                )
+            except PG_CONCURRENCY_EXCEPTIONS_TO_RETRY as exc:
+                # la transacción quedó abortada: rollback y reset de caché del ORM antes
+                # de reintentar, para releer estado limpio (igual que el core).
+                self.env.cr.rollback()
+                self.env.transaction.reset()
+                if attempt == MAX_TRIES_ON_CONCURRENCY_FAILURE:
+                    _logger.error(
+                        "cron_update_cost_from_replenishment_cost: error de concurrencia (%s) "
+                        "tras %s intentos, se aborta y el job queda fallido.",
+                        exc.__class__.__name__,
+                        MAX_TRIES_ON_CONCURRENCY_FAILURE,
+                    )
+                    raise
+                wait_time = random.uniform(0.0, 2**attempt)
+                _logger.warning(
+                    "cron_update_cost_from_replenishment_cost: error de concurrencia (%s), "
+                    "intento %s/%s, reintentando en %.2fs",
+                    exc.__class__.__name__,
+                    attempt,
+                    MAX_TRIES_ON_CONCURRENCY_FAILURE,
+                    wait_time,
+                )
+                time.sleep(wait_time)
+
+    @api.model
+    def _cron_update_cost_from_replenishment_cost(self, limit=None, company_ids=None, batch_size=1000):
         """vamos a actualizar de a batches y guardar en un parametro cual es el ultimo que se actualizó.
         si hay mas por actualizar llamamos con trigger al mismo cron para que siga con el prox batch
         si terminamos, resetamos el parametro a 0 para que en proxima corrida arranque desde abajo
