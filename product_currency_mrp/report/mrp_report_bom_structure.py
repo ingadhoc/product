@@ -91,8 +91,74 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
             {
                 "currency": currency,
                 "currency_id": currency.id,
+<<<<<<< 99b7e647a9fec7bb01db4c8327cb674b27257505
                 "prod_cost": price,
                 "bom_cost": price,
+||||||| e72a0eaafbc558fb820dcae0053a768a96246ac4
+                "prod_cost": rounded_price,
+=======
+                "prod_cost": price,
+                "bom_cost": price,
+            }
+        )
+        return res
+
+    @api.model
+    def _get_byproducts_lines(self, product, bom, bom_quantity, level, total, index):
+        byproducts, byproduct_cost_portion = super()._get_byproducts_lines(
+            product, bom, bom_quantity, level, total, index
+        )
+        currency = self.env.context.get("force_currency") or self.env.company.currency_id
+        for byproduct in byproducts:
+            byproduct_id = self.env["mrp.bom.byproduct"].browse(byproduct["id"])
+            line_quantity = (bom_quantity / (bom.product_qty or 1.0)) * byproduct_id.product_qty
+            price = (
+                byproduct_id.product_id.uom_id._compute_price(
+                    byproduct_id.product_id.standard_price, byproduct_id.product_uom_id
+                )
+                * line_quantity
+            )
+            price = byproduct_id.product_id.currency_id._convert(
+                price, currency, self.env.company, fields.Date.today(), round=True
+            )
+            byproduct.update(
+                {
+                    "currency_id": currency.id,
+                    "prod_cost": price,
+                }
+            )
+        return byproducts, byproduct_cost_portion
+
+    @api.model
+    def _get_operation_line(self, product, bom, qty, level, index, bom_report_line, simulated_leaves_per_workcenter):
+        operations = super()._get_operation_line(
+            product, bom, qty, level, index, bom_report_line, simulated_leaves_per_workcenter
+        )
+        currency = self.env.context.get("force_currency") or self.env.company.currency_id
+        for operation in operations:
+            bom_cost = self.env.company.currency_id._convert(
+                operation["bom_cost"], currency, self.env.company, fields.Date.today(), round=True
+            )
+            operation.update(
+                {
+                    "currency_id": currency.id,
+                    "bom_cost": bom_cost,
+                }
+            )
+        return operations
+
+    def _get_subcontracting_line(self, bom, seller, level, bom_quantity):
+        res = super()._get_subcontracting_line(bom, seller, level, bom_quantity)
+        ratio_uom_seller = seller.product_uom.ratio / bom.product_uom_id.ratio
+        currency = self.env.context.get("force_currency") or self.env.company.currency_id
+        price = seller.currency_id._convert(
+            seller.price, currency, (bom.company_id or self.env.company), fields.Date.today()
+        )
+        res.update(
+            {
+                "prod_cost": price / ratio_uom_seller * bom_quantity,
+                "bom_cost": price / ratio_uom_seller * bom_quantity,
+>>>>>>> 6a7956c79345cbfb9ab1f040edd748c599e4f9a9
             }
         )
         return res

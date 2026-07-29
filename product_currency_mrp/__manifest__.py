@@ -19,7 +19,13 @@
 ##############################################################################
 {
     "name": "Product Currency MRP",
+<<<<<<< 99b7e647a9fec7bb01db4c8327cb674b27257505
     "version": "19.0.1.1.0",
+||||||| e72a0eaafbc558fb820dcae0053a768a96246ac4
+    "version": "18.0.1.0.0",
+=======
+    "version": "18.0.1.1.0",
+>>>>>>> 6a7956c79345cbfb9ab1f040edd748c599e4f9a9
     "category": "Products",
     "sequence": 14,
     "summary": "",
