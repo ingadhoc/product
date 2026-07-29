@@ -1,6 +1,6 @@
 {
     "name": "Products Expiration Date UX",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "Inventory/Inventory",
     "author": "ADHOC SA",
     "website": "www.adhoc.com.ar",

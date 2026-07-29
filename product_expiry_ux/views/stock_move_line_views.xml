@@ -11,7 +11,7 @@
                 <field name="expiration_date" readonly="0"/>
             </field>
             <field name="product_id" position="after">
-                <field name="lots_visible" invisible="1"/>
+                <field name="lots_visible" column_invisible="True"/>
             </field>
             <field name="expiration_date" position="attributes">
                 <attribute name="invisible">lots_visible == False</attribute>
