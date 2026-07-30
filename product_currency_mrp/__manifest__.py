@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Product Currency MRP",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "Products",
     "sequence": 14,
     "summary": "",
@@ -29,7 +29,7 @@
     "images": [],
     "depends": [
         "product_currency",
-        "mrp",
+        "mrp_subcontracting",
     ],
     "data": [],
     "demo": [],
