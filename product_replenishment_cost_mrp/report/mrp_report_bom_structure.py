@@ -11,12 +11,12 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
         currency = self.env.context.get("force_currency") or self.env.company.currency_id
 
         # Convert the seller price to the proper currency
-        if bom.product_uom_id.ratio == 0:
+        if bom.product_uom_id.factor == 0:
             raise ValueError(
                 "El ratio de la unidad de medida del producto en el BOM es cero. "
                 "Esto provocaría una división por cero. Verifique la configuración de la UoM."
             )
-        ratio_uom_seller = seller.product_uom.ratio / bom.product_uom_id.ratio
+        ratio_uom_seller = seller.product_uom_id.factor / bom.product_uom_id.factor
         price = seller.currency_id._convert(seller.price, currency, self.env.company, fields.Date.today(), round=True)
         res.update(
             {
