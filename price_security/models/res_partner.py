@@ -23,8 +23,10 @@ class ResPartner(models.Model):
         arch, view = super()._get_view(view_id, view_type, **options)
         if view_type == "form":
             if self.env.user.has_group("price_security.group_only_view"):
-                readonly_fields = arch.xpath("//field[@name='property_product_pricelist']") + arch.xpath(
-                    "//field[@name='property_payment_term_id']"
+                readonly_fields = (
+                    arch.xpath("//field[@name='property_product_pricelist']")
+                    + arch.xpath("//field[@name='specific_property_product_pricelist']")
+                    + arch.xpath("//field[@name='property_payment_term_id']")
                 )
                 for node in readonly_fields:
                     node.set("readonly", "1")
