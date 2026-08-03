@@ -64,23 +64,27 @@ class ProductProduct(models.Model):
             return
 
         order = self.env[res_model].browse(order_id)
+        # Distintos modelos de orden (sale.order, purchase.order, account.move,
+        # repair.order, ...) exponen sus líneas con nombres de campo distintos, por
+        # lo que usamos el hook estándar del catálogo de productos en lugar de
+        # asumir "order_line" (repair.order, por ejemplo, no lo tiene).
+        qty_field = "quantity" if res_model == "account.move" else "product_uom_qty"
+        record_lines = order._get_product_catalog_record_lines(self.ids)
         for rec in self:
-            if res_model == "account.move":
-                existing_lines = order.invoice_line_ids.filtered(lambda line: line.product_id.id == rec.id)
-            else:
-                existing_lines = order.order_line.filtered(lambda line: line.product_id.id == rec.id)
+            existing_lines = record_lines[rec]
             if len(existing_lines) > 1 and product_catalog_qty > 0:
-                total_current_qty = sum(existing_lines.mapped("product_uom_qty"))
+                total_current_qty = sum(existing_lines.mapped(qty_field))
                 qty_difference = product_catalog_qty - total_current_qty
                 if qty_difference >= 0:
-                    existing_lines[0].product_uom_qty += qty_difference
+                    setattr(existing_lines[0], qty_field, getattr(existing_lines[0], qty_field) + qty_difference)
                 else:
                     remaining_to_reduce = abs(qty_difference)
                     for line in existing_lines:
                         if remaining_to_reduce <= 0:
                             break
-                        can_reduce = min(line.product_uom_qty, remaining_to_reduce)
-                        line.product_uom_qty -= can_reduce
+                        current_qty = getattr(line, qty_field)
+                        can_reduce = min(current_qty, remaining_to_reduce)
+                        setattr(line, qty_field, current_qty - can_reduce)
                         remaining_to_reduce -= can_reduce
             else:
                 # Actualizar la información de la línea de orden
