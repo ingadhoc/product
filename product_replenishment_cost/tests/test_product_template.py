@@ -165,3 +165,50 @@ class TestCronUpdateCostRetry(TransactionCase):
 
         # se agotan los MAX_TRIES intentos antes de relanzar
         self.assertEqual(calls["n"], MAX_TRIES_ON_CONCURRENCY_FAILURE)
+
+
+class TestCronUpdateCostAllBatches(TransactionCase):
+    """Una corrida del cron tiene que recorrer todos los batches pendientes.
+
+    Antes procesaba uno solo y encolaba el resto con un trigger, así que una pasada completa
+    dependía de N corridas encadenadas.
+    """
+
+    PARAMETER = "product_replenishment_cost.last_updated_record_id"
+
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.company = cls.env.company
+        cls.products = cls.env["product.template"].create(
+            [
+                {
+                    "name": "CRON BATCH %s" % index,
+                    "replenishment_cost_type": "manual",
+                    "replenishment_base_cost": 10.0 + index,
+                    "replenishment_base_cost_currency_id": cls.company.currency_id.id,
+                }
+                for index in range(4)
+            ]
+        )
+
+    def test_cron_processes_every_pending_batch(self):
+        self.products.product_variant_ids.with_company(self.company).standard_price = 0.0
+        # arrancamos el cursor justo antes de nuestros productos, que son los últimos creados
+        self.env["ir.config_parameter"].sudo().set_param(self.PARAMETER, str(min(self.products.ids) - 1))
+        self.env.invalidate_all()
+
+        # batch_size=1 fuerza un batch por producto. El commit por batch lo neutralizamos porque
+        # el framework de tests lo prohíbe.
+        with patch.object(self.env.cr, "commit", lambda: None):
+            self.env["product.template"]._cron_update_cost_from_replenishment_cost(
+                company_ids=[self.company.id], batch_size=1
+            )
+
+        for index, template in enumerate(self.products):
+            self.assertEqual(template.product_variant_id.with_company(self.company).standard_price, 10.0 + index)
+        self.assertEqual(
+            self.env["ir.config_parameter"].sudo().search([("key", "=", self.PARAMETER)], limit=1).value,
+            "0",
+            "al terminar de recorrer todos los productos el cursor tiene que volver a 0",
+        )
