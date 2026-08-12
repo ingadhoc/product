@@ -12,6 +12,10 @@ from odoo.tools import float_compare
 
 _logger = logging.getLogger(__name__)
 
+# Tope de batches por corrida del cron. Si quedan pendientes encolamos la continuacion con un
+# trigger para no pasarnos del limite de tiempo del cron en bases con muchos productos.
+MAX_BATCHES_PER_CRON_RUN = 50
+
 
 class ProductTemplate(models.Model):
     _inherit = "product.template"
@@ -143,48 +147,82 @@ class ProductTemplate(models.Model):
 
     @api.model
     def _cron_update_cost_from_replenishment_cost(self, limit=None, company_ids=None, batch_size=1000):
-        """vamos a actualizar de a batches y guardar en un parametro cual es el ultimo que se actualizó.
-        si hay mas por actualizar llamamos con trigger al mismo cron para que siga con el prox batch
-        si terminamos, resetamos el parametro a 0 para que en proxima corrida arranque desde abajo
-        no usamos set_param porque refresca caché y en este caso preferimos evitarlo, al no usar set_param
-        tampoco podemos usar get_param porque justamente no se va a refrescar el valor
-        """
+        """Actualiza todos los productos pendientes, de a batches y commiteando cada uno.
 
-        # buscamos cual fue el ultimo registro actualziado
+        Antes una pasada completa dependia de N corridas encadenadas: cada corrida procesaba un
+        batch y encolaba la siguiente con un trigger del cron. Si un batch fallaba la cadena se
+        interrumpia y el resto quedaba sin procesar hasta la proxima corrida programada, y no
+        habia un punto observable donde la pasada estuviera completa. Ahora recorremos todos los
+        batches en la misma corrida; el commit por batch sigue igual, asi que la transaccion no
+        queda mas larga que antes. Si tras MAX_BATCHES_PER_CRON_RUN todavia quedan pendientes,
+        encolamos la continuacion para no pasarnos del limite de tiempo del cron.
+        """
+        if not company_ids:
+            company_ids = self.env["res.company"].search([]).ids
+
+        last_updated_param = self._get_last_updated_cost_param()
+        last_updated_id = int(last_updated_param.value)
+        for batch_number in range(1, MAX_BATCHES_PER_CRON_RUN + 1):
+            last_updated_id = self._update_cost_from_replenishment_cost_batch(
+                last_updated_param, last_updated_id, company_ids, batch_size
+            )
+            if not last_updated_id:
+                _logger.info("Update cost from replenishment cost finished after %s batch/es", batch_number)
+                return
+        _logger.info(
+            "Update cost from replenishment cost processed %s batches and there are still products pending, "
+            "triggering the cron again to continue",
+            MAX_BATCHES_PER_CRON_RUN,
+        )
+        self._trigger_update_cost_from_replenishment_cost()
+
+    @api.model
+    def _get_last_updated_cost_param(self):
         parameter_name = "product_replenishment_cost.last_updated_record_id"
         last_updated_param = self.env["ir.config_parameter"].sudo().search([("key", "=", parameter_name)], limit=1)
         if not last_updated_param:
             last_updated_param = self.env["ir.config_parameter"].sudo().create({"key": parameter_name, "value": "0"})
-        # Obtiene los registros ordenados por id
-        domain = [("id", ">", int(last_updated_param.value))]
-        records = self.with_context(prefetch_fields=False).search(domain, order="id asc")
+        return last_updated_param
 
-        # use company_ids or search for all companies
-        if not company_ids:
-            company_ids = self.env["res.company"].search([]).ids
+    @api.model
+    def _update_cost_from_replenishment_cost_batch(self, last_updated_param, last_updated_id, company_ids, batch_size):
+        """Actualiza un batch de productos y devuelve el id desde donde seguir, 0 si no quedan mas.
+
+        El cursor lo vamos pasando en memoria y no lo releemos del parametro en cada batch: lo
+        guardamos con SQL directo (set_param refrescaria la cache del registry y preferimos
+        evitarlo), asi que el valor del record queda desactualizado en la cache del ORM. Igual lo
+        persistimos batch a batch para que, si la corrida se corta, la siguiente retome donde iba.
+        """
+        # pedimos un registro mas que el batch para saber si quedan pendientes sin traer toda la tabla
+        records = self.with_context(prefetch_fields=False).search(
+            [("id", ">", last_updated_id)], order="id asc", limit=batch_size + 1
+        )
+        batch = records[:batch_size]
 
         for company_id in company_ids:
             _logger.info("Running cron update cost from replenishment for company %s", company_id)
-            records[:batch_size].with_company(company=company_id).with_context(
+            batch.with_company(company=company_id).with_context(
                 bypass_base_automation=True
             )._update_cost_from_replenishment_cost()
 
-        if len(records) > batch_size:
-            last_updated_id = records[batch_size - 1].id
-        else:
-            last_updated_id = 0
+        last_updated_id = batch[-1].id if len(records) > batch_size else 0
         self.env.cr.execute(
             "UPDATE ir_config_parameter set value = %s where id = %s", (str(last_updated_id), last_updated_param.id)
         )
+        # el UPDATE directo no refresca la cache del ORM, invalidamos solo este record para que
+        # cualquiera que lea el parametro despues no se lleve el valor viejo
+        last_updated_param.invalidate_recordset(["value"])
         # Uso directo de cr.commit(). Buscar alternativa menos riesgosa
         self.env.cr.commit()  # pragma pylint: disable=invalid-commit
-        # si setamos last updated es porque todavia quedan por procesar, volvemos a llamar al cron
-        if last_updated_id:
-            # para obtener el job_id se requiere este PR https://github.com/odoo/odoo/pull/146147
-            cron = self.env["ir.cron"].browse(self.env.context.get("job_id")) or self.env.ref(
-                "product_replenishment_cost.ir_cron_update_cost_from_replenishment_cost"
-            )
-            cron._trigger()
+        return last_updated_id
+
+    @api.model
+    def _trigger_update_cost_from_replenishment_cost(self):
+        # para obtener el job_id se requiere este PR https://github.com/odoo/odoo/pull/146147
+        cron = self.env["ir.cron"].browse(self.env.context.get("job_id")) or self.env.ref(
+            "product_replenishment_cost.ir_cron_update_cost_from_replenishment_cost"
+        )
+        cron._trigger()
 
     def _update_cost_from_replenishment_cost(self):
         """

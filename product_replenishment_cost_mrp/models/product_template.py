@@ -35,13 +35,12 @@ class ProductTemplate(models.Model):
 
             # robamos metodo de calculo de costo de product_extended
             price = 0.0
-            bom = (
-                self.env["mrp.bom"]._bom_find(rec.product_variant_ids[:1])[rec.product_variant_ids[:1]]
-                if self.env["mrp.bom"]._bom_find(rec.product_variant_ids[:1])[rec.product_variant_ids[:1]]
-                else self.env["mrp.bom"]._bom_find(rec.with_context(active_test=False).product_variant_ids[:1])[
-                    rec.with_context(active_test=False).product_variant_ids[:1]
-                ]
-            )
+            variant = rec.product_variant_ids[:1]
+            bom = self.env["mrp.bom"]._bom_find(variant)[variant]
+            if not bom:
+                # si el producto esta archivado no tiene variantes activas, buscamos igual
+                variant = rec.with_context(active_test=False).product_variant_ids[:1]
+                bom = self.env["mrp.bom"]._bom_find(variant)[variant]
             if not bom:
                 rec.update({"replenishment_base_cost_on_currency": 0.0, "replenishment_cost": 0.0})
                 continue
