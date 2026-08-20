@@ -8,6 +8,10 @@ class ProductTemplate(models.Model):
     replenishment_cost_type = fields.Selection(
         selection_add=[("bom", "Basado en Ldm")], ondelete={"bom": "set default"}
     )
+    # computed record by record: the cost of a "Based on BoM" product reads the replenishment cost
+    # of its components, and the ORM returns 0 for the records of the batch being computed
+    replenishment_cost = fields.Float(recursive=True)
+    replenishment_base_cost_on_currency = fields.Float(recursive=True)
 
     @api.onchange("replenishment_cost_type")
     def onchange_replenishment_cost_type(self):
