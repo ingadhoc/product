@@ -50,6 +50,15 @@ For users with price restriction, it restricts:
 #. on invoice lines: change unit price and set limits on discount (limits configured on user)
 #. on product: change price
 
+For users with "Only see: sale price", it also hides the cost from the lists they can
+reach: the accounting cost and the inventory valuation columns (unit cost and total
+value) on the product and stock report lists, the value on the quant lists, and the
+valuation fields on the lot form. The secondary currency counterparts added by
+stock_currency_valuation are hidden too when that module is installed.
+
+Note that this is interface level security: the fields are hidden from the views, but
+the data can still be reached through exports, filters or groupings.
+
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: http://runbot.adhoc.com.ar/
