@@ -2,6 +2,21 @@ import json
 
 from odoo import api, models
 
+from .price_security_utils import hide_cost_fields
+
+# the accounting cost, plus the inventory valuation columns that stock_account
+# adds to the stock report lists. The "in currency" ones come from
+# stock_currency_valuation, which we do not depend on: the xpath is a no-op when
+# the module is not installed
+LIST_COST_FIELDS = (
+    "standard_price",
+    "avg_cost",
+    "total_value",
+    "standard_price_in_currency",
+    "avg_cost_in_currency",
+    "total_value_in_currency",
+)
+
 
 class ProductProduct(models.Model):
     _inherit = "product.product"
@@ -45,6 +60,8 @@ class ProductProduct(models.Model):
                     + arch.xpath("//field[@name='uom_po_id']")
                     + arch.xpath("//label[@for='standard_price']")
                     + arch.xpath("//field[@name='standard_price']")
+                    + arch.xpath("//label[@for='standard_price_in_currency']")
+                    + arch.xpath("//field[@name='standard_price_in_currency']")
                 )
                 for node in invisible_fields:
                     node.set("invisible", "1")
@@ -53,9 +70,5 @@ class ProductProduct(models.Model):
                     node.set("modifiers", json.dumps(modifiers))
         if view_type == "list":
             if self.env.user.has_group("price_security.group_only_view_sale_price"):
-                for node in arch.xpath("//field[@name='standard_price']"):
-                    node.set("invisible", "1")
-                    modifiers = json.loads(node.get("modifiers") or "{}")
-                    modifiers["invisible"] = True
-                    node.set("modifiers", json.dumps(modifiers))
+                hide_cost_fields(arch, view_type, LIST_COST_FIELDS)
         return arch, view
