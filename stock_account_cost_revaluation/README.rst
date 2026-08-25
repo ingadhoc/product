@@ -28,6 +28,10 @@ Características
   cuenta de una ubicación de scrap/ajuste: sin cuenta, sin asiento). No se usa la
   cuenta de variación de stock (pertenece al cierre continental) ni la de
   diferencia de precio (se usa para la diferencia de precio de compras / PPV).
+- El asiento queda **vinculado al ``product.value``** que el estándar registra por
+  el cambio de costo (campo ``account_move_id``, que aporta ``stock_account_ux``).
+  Sin ese vínculo el ajuste sigue figurando como pendiente en el reporte de
+  valuación y el cierre de inventario lo vuelve a contabilizar.
 - **No** genera asiento (por diseño): productos con costeo FIFO
   (``standard_price`` es informativo), categorías con valoración periódica (lo
   materializa el cierre de inventario), productos sin stock on hand y categorías
@@ -38,9 +42,10 @@ Detalles Técnicos
 
 - Modelos heredados:
 
-  - ``product.product``: override de ``_change_standard_price`` y método
+  - ``product.product``: override de ``_change_standard_price``, método
     ``_create_cost_revaluation_entry`` que arma y postea el ``account.move`` de
-    revaluación.
+    revaluación, y ``_link_cost_revaluation_entry`` que lo deja apuntado en el
+    ``product.value`` del cambio de costo.
   - ``product.category``: campo nuevo ``property_cost_revaluation_account_id``
     ("Cost Revaluation Account"), Many2one a ``account.account``,
     company-dependent.
