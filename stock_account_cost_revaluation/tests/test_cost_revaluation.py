@@ -160,3 +160,30 @@ class TestCostRevaluation(TransactionCase):
         before = self._journal_moves_count()
         product.standard_price = 15.0
         self.assertEqual(self._journal_moves_count(), before, "Sin stock on hand no debe generar asiento")
+
+    def test_revaluation_entry_is_linked_to_the_product_value(self):
+        """The price change is recorded as a ``product.value`` and this entry is what
+        booked it. Without the link the adjustment stays "pending" for the valuation
+        report and the closing books it a second time (functional feedback, task
+        64440)."""
+        product = self._product(self._categ("standard", "real_time"))
+        product.standard_price = 15.0
+
+        product_value = self.env["product.value"].search(
+            [("product_id", "=", product.id), ("move_id", "=", False)], order="id desc", limit=1
+        )
+        move = self.env["account.move"].search([("journal_id", "=", self.stock_journal.id)], order="id desc", limit=1)
+        self.assertTrue(move, "The price change has to post the revaluation entry")
+        self.assertEqual(product_value.account_move_id, move)
+
+    def test_product_value_stays_pending_without_entry(self):
+        """No entry, nothing to link: the adjustment stays pending, which is exactly what
+        the valuation report has to keep showing."""
+        product = self._product(self._categ("standard", "real_time", revaluation_account=False))
+        product.standard_price = 15.0
+
+        product_value = self.env["product.value"].search(
+            [("product_id", "=", product.id), ("move_id", "=", False)], order="id desc", limit=1
+        )
+        self.assertTrue(product_value, "The standard records the price change anyway")
+        self.assertFalse(product_value.account_move_id)

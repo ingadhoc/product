@@ -34,8 +34,43 @@ class ProductProduct(models.Model):
         for product in self:
             if product not in old_price:
                 continue
-            product._create_cost_revaluation_entry(old_price[product])
+            entry = product._create_cost_revaluation_entry(old_price[product])
+            product._link_cost_revaluation_entry(entry)
         return res
+
+    def _link_cost_revaluation_entry(self, entry):
+        """Point the price change's ``product.value`` at the entry that booked it.
+
+        The standard records every price change as a ``product.value`` and leaves the
+        accounting to the inventory closing, so ``stock_account_ux`` reads "no entry" as
+        "still part of the difference to adjust". An adjustment this module already
+        booked has to say so: otherwise it shows up as pending in the valuation report
+        and the closing books it a second time (functional feedback, task 64440).
+
+        The record is the one the standard ``_change_standard_price`` just created for
+        this product: the most recent price change of the company still without an
+        entry. Lot price changes are left out —they get their own ``product.value``—
+        because this entry values the product's on-hand stock, not a lot's.
+        """
+        self.ensure_one()
+        if not entry:
+            return
+        product_value = (
+            self.env["product.value"]
+            .sudo()
+            .search(
+                [
+                    ("product_id", "=", self.id),
+                    ("move_id", "=", False),
+                    ("lot_id", "=", False),
+                    ("company_id", "=", entry.company_id.id),
+                    ("account_move_id", "=", False),
+                ],
+                order="date desc, id desc",
+                limit=1,
+            )
+        )
+        product_value.account_move_id = entry
 
     def _create_cost_revaluation_entry(self, old_price):
         """Contabiliza la diferencia de valuación de inventario por el cambio de

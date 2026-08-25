@@ -8,7 +8,10 @@
     "contable (standard_price) de productos con categoría de valoración perpetua "
     "(real_time), en costeo estándar o promedio (AVCO).",
     "depends": [
-        "stock_account",
+        # ``product.value.account_move_id``, the field this module writes the
+        # revaluation entry into. It is ``auto_install`` over ``stock_account``, so
+        # declaring it costs nothing and makes the field guaranteed.
+        "stock_account_ux",
     ],
     "data": [
         "views/product_category_views.xml",
