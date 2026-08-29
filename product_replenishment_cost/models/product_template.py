@@ -81,7 +81,12 @@ class ProductTemplate(models.Model):
     warnings_cost = fields.Json(compute="_compute_warnings_cost")
 
     @api.depends_context("company")
-    @api.depends("seller_ids.net_price", "seller_ids.currency_id", "seller_ids.company_id", "replenishment_cost_type")
+    @api.depends(
+        "seller_ids.net_price",
+        "seller_ids.currency_id",
+        "seller_ids.company_id",
+        "replenishment_cost_type",
+    )
     def _compute_supplier_data(self):
         """Lo ideal seria utilizar campo related para que segun los permisos
          del usuario tome el seller_id que corresponda, pero el tema es que el
@@ -174,14 +179,14 @@ class ProductTemplate(models.Model):
         else:
             last_updated_id = 0
         self.env.cr.execute(
-            "UPDATE ir_config_parameter set value = %s where id = %s", (str(last_updated_id), last_updated_param.id)
+            "UPDATE ir_config_parameter set value = %s where id = %s",
+            (str(last_updated_id), last_updated_param.id),
         )
         # Uso directo de cr.commit(). Buscar alternativa menos riesgosa
         self.env.cr.commit()  # pragma pylint: disable=invalid-commit
         # si setamos last updated es porque todavia quedan por procesar, volvemos a llamar al cron
         if last_updated_id:
-            # para obtener el job_id se requiere este PR https://github.com/odoo/odoo/pull/146147
-            cron = self.env["ir.cron"].browse(self.env.context.get("job_id")) or self.env.ref(
+            cron = self.env["ir.cron"].browse(self.env.context.get("cron_id")) or self.env.ref(
                 "product_replenishment_cost.ir_cron_update_cost_from_replenishment_cost"
             )
             cron._trigger()
