@@ -23,7 +23,4 @@ class StockRule(models.Model):
                 price_unit, po.currency_id, po.company_id, po.date_order or fields.Date.today()
             )
         vals["price_unit"] = price_unit
-        if vals["price_unit"] == 0:
-            vals["price_unit"] = product_id.standard_price
-
         return vals
