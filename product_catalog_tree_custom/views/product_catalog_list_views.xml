@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="gg_product_view_list_catalog_ext" model="ir.ui.view">
+        <field name="name">gg.product.view.list.catalog.ext</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product_catalog_tree.product_view_tree_catalog"/>
+        <field name="mode">extension</field>
+        <field name="priority">50</field>
+        <field name="arch" type="xml">
+
+            <!-- Sitio web: oculto por defecto -->
+            <xpath expr="//field[@name='website_id']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+
+            <!-- Tipo de producto: oculto por defecto-->
+            <xpath expr="//field[@name='type']" position="attributes">
+                <attribute name="optional">hide</attribute>
+            </xpath>
+
+            <!-- Valores de variantes SIEMPRE visibles -->
+            <xpath expr="//field[@name='product_template_variant_value_ids']" position="attributes">
+                <attribute name="optional">show</attribute>
+            </xpath>
+
+            <!-- Campos de precios: opcionales -->
+            <xpath expr="//field[@name='lst_price']" position="attributes">
+                <attribute name="optional">show</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='taxed_lst_price']" position="attributes">
+                <attribute name="optional">show</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='standard_price']" position="attributes">
+                <attribute name="optional">show</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='product_catalog_price']" position="attributes">
+                <attribute name="optional">show</attribute>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
