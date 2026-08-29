@@ -8,6 +8,9 @@
             <field name="name" position="after">
                 <field name="sequence" invisible="1"/>
             </field>
+            <xpath expr="//group/field[@name='company_id']" position="after">
+                <field name="payment_term_allowed_ids" widget="many2many_tags" domain="[('id', '!=', id)]"/>
+            </xpath>
         </field>
     </record>
     <record id="view_payment_term_tree" model="ir.ui.view">
@@ -17,6 +20,9 @@
         <field name="arch" type="xml">
             <field name="company_id" position="after">
                 <field name="sequence" optional="hide"/>
+            </field>
+            <field name="name" position="after">
+                <field name="payment_term_allowed_ids" widget="many2many_tags"/>
             </field>
         </field>
     </record>
