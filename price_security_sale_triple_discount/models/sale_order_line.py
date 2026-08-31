@@ -18,5 +18,6 @@ class SaleOrderLine(models.Model):
         super()._price_security_settle_discount(vals_list)
         discount_fields = {"discount", "discount1", "discount2", "discount3"}
         to_settle = self.browse(line.id for line, vals in zip(self, vals_list) if not discount_fields & vals.keys())
-        for fname in to_settle and ("discount1", "discount2", "discount3", "discount") or ():
+        amount_fields = ("price_subtotal", "price_total", "price_reduce_taxexcl", "price_reduce_taxinc")
+        for fname in to_settle and ("discount1", "discount2", "discount3", "discount") + amount_fields or ():
             self.env.add_to_compute(self._fields[fname], to_settle)
