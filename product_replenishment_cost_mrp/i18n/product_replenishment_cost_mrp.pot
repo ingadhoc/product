@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-25 18:13+0000\n"
-"PO-Revision-Date: 2026-02-25 18:13+0000\n"
+"POT-Creation-Date: 2026-09-02 18:55+0000\n"
+"PO-Revision-Date: 2026-09-02 18:55+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,31 @@ msgid "Product"
 msgstr ""
 
 #. module: product_replenishment_cost_mrp
+#: model:ir.model.fields,field_description:product_replenishment_cost_mrp.field_product_product__replenishment_base_cost_on_currency
+#: model:ir.model.fields,field_description:product_replenishment_cost_mrp.field_product_template__replenishment_base_cost_on_currency
+msgid "Replenishment Base Cost On Currency"
+msgstr ""
+
+#. module: product_replenishment_cost_mrp
+#: model:ir.model.fields,field_description:product_replenishment_cost_mrp.field_product_product__replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost_mrp.field_product_template__replenishment_cost
+msgid "Replenishment Cost"
+msgstr ""
+
+#. module: product_replenishment_cost_mrp
 #: model:ir.model.fields,field_description:product_replenishment_cost_mrp.field_product_product__replenishment_cost_type
 #: model:ir.model.fields,field_description:product_replenishment_cost_mrp.field_product_template__replenishment_cost_type
 msgid "Replenishment Cost Type"
+msgstr ""
+
+#. module: product_replenishment_cost_mrp
+#: model:ir.model.fields,help:product_replenishment_cost_mrp.field_product_product__replenishment_base_cost_on_currency
+#: model:ir.model.fields,help:product_replenishment_cost_mrp.field_product_template__replenishment_base_cost_on_currency
+msgid "Replenishment cost on replenishment base cost currency"
+msgstr ""
+
+#. module: product_replenishment_cost_mrp
+#: model:ir.model.fields,help:product_replenishment_cost_mrp.field_product_product__replenishment_cost
+#: model:ir.model.fields,help:product_replenishment_cost_mrp.field_product_template__replenishment_cost
+msgid "Replenishment cost on the currency of the product"
 msgstr ""
