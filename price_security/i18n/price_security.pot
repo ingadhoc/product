@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-22 21:36+0000\n"
-"PO-Revision-Date: 2025-11-22 21:36+0000\n"
+"POT-Creation-Date: 2026-09-02 18:17+0000\n"
+"PO-Revision-Date: 2026-09-02 18:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -88,6 +88,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:price_security.field_sale_order__display_name
 #: model:ir.model.fields,field_description:price_security.field_sale_order_discount__display_name
 #: model:ir.model.fields,field_description:price_security.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:price_security.field_stock_lot__display_name
+#: model:ir.model.fields,field_description:price_security.field_stock_quant__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -104,6 +106,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:price_security.field_sale_order__id
 #: model:ir.model.fields,field_description:price_security.field_sale_order_discount__id
 #: model:ir.model.fields,field_description:price_security.field_sale_order_line__id
+#: model:ir.model.fields,field_description:price_security.field_stock_lot__id
+#: model:ir.model.fields,field_description:price_security.field_stock_quant__id
 msgid "ID"
 msgstr ""
 
@@ -135,6 +139,11 @@ msgstr ""
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__write_date
 msgid "Last Updated on"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_stock_lot
+msgid "Lot/Serial"
 msgstr ""
 
 #. module: price_security
@@ -181,6 +190,11 @@ msgstr ""
 #. module: price_security
 #: model:ir.model,name:price_security.model_product_product
 msgid "Product Variant"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_stock_quant
+msgid "Quants"
 msgstr ""
 
 #. module: price_security
