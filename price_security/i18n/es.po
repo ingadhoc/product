@@ -1,15 +1,15 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # 	* price_security
-# 
+#
 # Translators:
 # ADHOC - Bot <transbot@adhoc.com.ar>, 2025
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-25 17:25+0000\n"
+"POT-Creation-Date: 2026-09-02 18:17+0000\n"
 "PO-Revision-Date: 2026-01-15 20:10+0000\n"
 "Last-Translator: Nicolas Col <nco@adhoc.inc>\n"
 "Language-Team: Spanish <https://translation.dev-adhoc.com/projects/"
@@ -18,8 +18,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ((n != 0 && n % 1000000 == 0)"
-" ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ((n != 0 && n % 1000000 == "
+"0) ? 1 : 2);\n"
 "X-Generator: Weblate 5.10.4\n"
 
 #. module: price_security
@@ -95,6 +95,8 @@ msgstr ""
 #: model:ir.model.fields,field_description:price_security.field_sale_order__display_name
 #: model:ir.model.fields,field_description:price_security.field_sale_order_discount__display_name
 #: model:ir.model.fields,field_description:price_security.field_sale_order_line__display_name
+#: model:ir.model.fields,field_description:price_security.field_stock_lot__display_name
+#: model:ir.model.fields,field_description:price_security.field_stock_quant__display_name
 msgid "Display Name"
 msgstr "Nombre para mostrar"
 
@@ -111,6 +113,8 @@ msgstr "Nombre para mostrar"
 #: model:ir.model.fields,field_description:price_security.field_sale_order__id
 #: model:ir.model.fields,field_description:price_security.field_sale_order_discount__id
 #: model:ir.model.fields,field_description:price_security.field_sale_order_line__id
+#: model:ir.model.fields,field_description:price_security.field_stock_lot__id
+#: model:ir.model.fields,field_description:price_security.field_stock_quant__id
 msgid "ID"
 msgstr "ID (identificación)"
 
@@ -120,8 +124,8 @@ msgstr "ID (identificación)"
 #: model:ir.model.fields,help:price_security.field_product_template__can_modify_prices
 #: model:ir.model.fields,help:price_security.field_sale_order_line__product_can_modify_prices
 msgid ""
-"If checked all users can modify the price of this product in a sale order or"
-" invoice."
+"If checked all users can modify the price of this product in a sale order or "
+"invoice."
 msgstr ""
 "Si está marcado, todos los usuarios pueden modificar el precio de este "
 "producto en una orden de venta o factura."
@@ -144,6 +148,11 @@ msgstr ""
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__write_date
 msgid "Last Updated on"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_stock_lot
+msgid "Lot/Serial"
 msgstr ""
 
 #. module: price_security
@@ -191,6 +200,11 @@ msgstr ""
 #: model:ir.model,name:price_security.model_product_product
 msgid "Product Variant"
 msgstr "Variante de producto"
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_stock_quant
+msgid "Quants"
+msgstr ""
 
 #. module: price_security
 #: model:res.groups.privilege,name:price_security.module_prices_management
@@ -265,8 +279,8 @@ msgstr ""
 #. odoo-python
 #: code:addons/price_security/models/sale_order.py:0
 msgid ""
-"You can not change partner if there are sale lines and pricelist is going to"
-" be changed"
+"You can not change partner if there are sale lines and pricelist is going to "
+"be changed"
 msgstr ""
 
 #. module: price_security
