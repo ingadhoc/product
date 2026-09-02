@@ -1,6 +1,6 @@
 {
     "name": "Integration between Replenishment Cost and Manufacture",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "author": "ADHOC SA, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Products",
