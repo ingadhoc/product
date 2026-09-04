@@ -22,6 +22,7 @@ Several Improvements to products:
 #. Add product warranty field that was deprecated by odoo.
 #. Add new field "Description" on product UOMs.
 #. Incorporates the possibility to search the Pricelist Price of products in the tree view.
+#. Renders the Dymo product label report in batches so large print jobs (thousands of labels) do not crash wkhtmltopdf by memory.
 
 Installation
 ============
@@ -35,7 +36,7 @@ Configuration
 
 To configure this module, you need to:
 
-#. No configuration nedeed.
+#. Optionally set the system parameter ``product_ux.dymo_label_batch_size`` (default 200) to tune how many Dymo labels are rendered per wkhtmltopdf call.
 
 Usage
 =====
