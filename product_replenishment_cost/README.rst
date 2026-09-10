@@ -27,6 +27,22 @@ Add Replenshiment cost rules to supplierinfo.
 You can select "Replenishment Cost Type" to use Replenshiment cost rules in the product or use rules in supplierinfo for the first seller.
 Now when create an Purchase Order the price that suggest in the line is the replanishment cost.
 
+Replenishment Cost Updates (run log)
+Every run of the "Update Cost from Replenishment Cost" scheduled action and every manual update
+from the wizard is logged on "Replenishment Cost Updates" (menu next to the cost rules): when it
+started and finished, who launched it, how many products were processed and, for each product whose
+accounting cost actually changed, the previous and the new cost.
+
+* A scheduled run processes the products in batches that chain one after the other; all of them
+  share the same run record, so "when did it finish" has an answer. When it finishes, a summary is
+  posted on the run chatter.
+* If the run fails or is interrupted, it is closed with the "Error" state instead of leaving the
+  traceback only on the server log.
+* The manual wizard shows the result (updated / without changes) as a notification.
+* System parameter ``product_replenishment_cost.run_line_retention_days`` (90 by default, zero to
+  keep everything): a daily scheduled action deletes the detail lines older than that. The run
+  header is always kept.
+
 Installation
 ============
 
