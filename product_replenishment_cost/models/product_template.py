@@ -61,6 +61,7 @@ class ProductTemplate(models.Model):
         bypass_search_access=True,
         index=True,
         tracking=True,
+        help="Rule of surcharges and discounts applied on the base cost to compute the " "final replenishment cost.",
     )
     replenishment_base_cost_on_currency = fields.Float(
         compute="_compute_replenishment_cost",
@@ -76,6 +77,8 @@ class ProductTemplate(models.Model):
         ],
         default="manual",
         required=True,
+        help="Source of the replenishment cost: the main supplier's price, the last "
+        "recorded supplier price, or a value entered manually.",
     )
 
     warnings_cost = fields.Json(compute="_compute_warnings_cost")
