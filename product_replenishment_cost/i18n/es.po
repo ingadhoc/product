@@ -270,6 +270,11 @@ msgid "Percentage Amount"
 msgstr "Importe en porcentaje"
 
 #. module: product_replenishment_cost
+#: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule_item__percentage_amount
+msgid "Percentage applied over the cost accumulated up to this line."
+msgstr "Porcentaje que se aplica sobre el costo acumulado hasta esta línea."
+
+#. module: product_replenishment_cost
 #: model:ir.model,name:product_replenishment_cost.model_product_template
 msgid "Product"
 msgstr "Producto"
@@ -338,6 +343,24 @@ msgid "Replenishment Cost Last Update"
 msgstr "Ultima actualización del costo de reposición"
 
 #. module: product_replenishment_cost
+#: model:ir.model.fields,help:product_replenishment_cost.field_product_supplierinfo__replenishment_cost_rule_id
+msgid ""
+"Rule applied to this supplier's price to obtain the net price used in purchase "
+"orders."
+msgstr ""
+"Regla que se aplica al precio de este proveedor para obtener el precio neto "
+"usado en las órdenes de compra."
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,help:product_replenishment_cost.field_product_template__replenishment_cost_rule_id
+msgid ""
+"Rule of surcharges and discounts applied on the base cost to compute the final "
+"replenishment cost."
+msgstr ""
+"Regla de recargos y descuentos que se aplica sobre el costo base para calcular "
+"el costo de reposición final."
+
+#. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product__replenishment_cost_rule_id
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_supplierinfo__replenishment_cost_rule_id
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__replenishment_cost_rule_id
@@ -358,6 +381,15 @@ msgstr "Reglas de costo de reposición"
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__replenishment_cost_type
 msgid "Replenishment Cost Type"
 msgstr "Tipo de costo de reposición"
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,help:product_replenishment_cost.field_product_template__replenishment_cost_type
+msgid ""
+"Source of the replenishment cost: the main supplier's price, the last recorded "
+"supplier price, or a value entered manually."
+msgstr ""
+"Origen del costo de reposición: el precio del proveedor principal, el último "
+"precio de proveedor cargado, o un valor ingresado manualmente."
 
 #. module: product_replenishment_cost
 #. odoo-python

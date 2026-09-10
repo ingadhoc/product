@@ -11,6 +11,7 @@ class ProductProduct(models.Model):
     internal_code = fields.Char(
         copy=False,
         index="btree_not_null",
+        help="Unique internal code of the product; if left empty it is generated " "automatically from a sequence.",
     )
 
     _internal_code_uniq = models.Constraint(
