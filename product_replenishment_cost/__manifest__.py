@@ -1,6 +1,6 @@
 {
     "name": "Replenishment Cost",
-    "version": "19.0.1.4.0",
+    "version": "19.0.1.5.0",
     "author": "ADHOC SA, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Products",
@@ -14,6 +14,7 @@
         "data/ir_cron_data.xml",
         "views/product_template_views.xml",
         "views/product_replenishment_cost_rule_views.xml",
+        "views/product_replenishment_cost_run_views.xml",
         "views/product_supplierinfo_views.xml",
         "wizards/product_update_from_replenishment_cost_wizard_views.xml",
         "security/ir.model.access.csv",

@@ -139,7 +139,9 @@ class TestCronUpdateCostRetry(TransactionCase):
             type(ProductTemplate),
             "_cron_update_cost_from_replenishment_cost",
             side_effect=_flaky,
-        ), patch.object(self.env.cr, "rollback", lambda: None), patch("time.sleep", lambda *args: None):
+        ), patch.object(self.env.cr, "rollback", lambda: None), patch(
+            "time.sleep", lambda *args: None
+        ), self.enter_registry_test_mode():
             result = ProductTemplate.cron_update_cost_from_replenishment_cost(company_ids=[self.env.company.id])
 
         # un fallo transitorio + un reintento exitoso
@@ -159,7 +161,9 @@ class TestCronUpdateCostRetry(TransactionCase):
             type(ProductTemplate),
             "_cron_update_cost_from_replenishment_cost",
             side_effect=_always_fail,
-        ), patch.object(self.env.cr, "rollback", lambda: None), patch("time.sleep", lambda *args: None):
+        ), patch.object(self.env.cr, "rollback", lambda: None), patch(
+            "time.sleep", lambda *args: None
+        ), self.enter_registry_test_mode():
             with self.assertRaises(psycopg2.errors.SerializationFailure):
                 ProductTemplate.cron_update_cost_from_replenishment_cost(company_ids=[self.env.company.id])
 
