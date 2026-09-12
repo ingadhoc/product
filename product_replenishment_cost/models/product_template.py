@@ -242,7 +242,7 @@ class ProductTemplate(models.Model):
     )
     @api.depends_context("company")
     def _compute_replenishment_cost(self):
-        _logger.info("Getting replenishment cost for %s products" % len(self.ids))
+        _logger.debug("Getting replenishment cost for %s products", len(self.ids))
         company = self.env.company
         date = fields.Date.today()
         for rec in self:
