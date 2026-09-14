@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-15 12:26+0000\n"
-"PO-Revision-Date: 2025-11-25 11:39+0000\n"
+"POT-Creation-Date: 2026-09-14 21:44+0000\n"
+"PO-Revision-Date: 2026-09-14 21:44+0000\n"
 "Last-Translator: ADHOC - Bot <transbot@adhoc.com.ar>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "Language: es\n"
@@ -94,6 +94,11 @@ msgid ""
 "view. Enabled by default; uncheck it on locations you do not want to expose "
 "(e.g. scrap/discard locations modelled as internal)."
 msgstr ""
+"Si está marcado, el stock de esta ubicación se muestra en los productos: el "
+"detalle de stock en las líneas del pedido de venta y la ventana emergente que "
+"se abre desde las vistas kanban y de lista de productos. Está habilitado por "
+"defecto; desmárquelo en las ubicaciones que no quiera exponer (por ejemplo, "
+"ubicaciones de descarte modeladas como internas)."
 
 #. module: product_stock_by_location
 #: model:ir.model.fields,field_description:product_stock_by_location.field_stock_location__incoming_qty
@@ -181,8 +186,8 @@ msgstr ""
 
 #. module: product_stock_by_location
 #: model:ir.model.fields,field_description:product_stock_by_location.field_stock_location__show_stock_on_products
-msgid "Show Stock On Products"
-msgstr "Mostrar stock en productos"
+msgid "Show stock on products and sales"
+msgstr "Mostrar stock en productos y ventas"
 
 #. module: product_stock_by_location
 #. odoo-python
@@ -202,10 +207,3 @@ msgstr "Ver detalle de stock"
 #: model_terms:ir.ui.view,arch_db:product_stock_by_location.product_template_kanban_stock_view
 msgid "View Stock Detail <span class=\"btn btn-group fa fa-search-plus\"/>"
 msgstr "Ver detalle de stock"
-
-#~ msgid ""
-#~ "If true, this location will be shown on the pop up window openedfrom "
-#~ "products kanban and list view"
-#~ msgstr ""
-#~ "Si es verdadero, esta ubicación se mostrará en la ventana emergente "
-#~ "abierta desde la producción kanban y vista de árbol"

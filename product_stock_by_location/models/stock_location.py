@@ -9,6 +9,7 @@ class StockLocation(models.Model):
     _inherit = "stock.location"
 
     show_stock_on_products = fields.Boolean(
+        string="Show stock on products and sales",
         default=True,
         help="If set, this location's stock is shown on products: the stock detail on"
         " sale order lines and the pop up window opened from the products kanban and"
