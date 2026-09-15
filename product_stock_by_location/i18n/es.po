@@ -95,10 +95,10 @@ msgid ""
 "(e.g. scrap/discard locations modelled as internal)."
 msgstr ""
 "Si está marcado, el stock de esta ubicación se muestra en los productos: el "
-"detalle de stock en las líneas del pedido de venta y la ventana emergente que "
-"se abre desde las vistas kanban y de lista de productos. Está habilitado por "
-"defecto; desmárquelo en las ubicaciones que no quiera exponer (por ejemplo, "
-"ubicaciones de descarte modeladas como internas)."
+"detalle de stock en las líneas del pedido de venta y la ventana emergente "
+"que se abre desde las vistas kanban y de lista de productos. Está habilitado "
+"por defecto; desmárquelo en las ubicaciones que no quiera exponer (por "
+"ejemplo, ubicaciones de descarte modeladas como internas)."
 
 #. module: product_stock_by_location
 #: model:ir.model.fields,field_description:product_stock_by_location.field_stock_location__incoming_qty
