@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-16 20:49+0000\n"
+"POT-Creation-Date: 2026-09-15 18:15+0000\n"
 "PO-Revision-Date: 2025-11-03 17:41+0000\n"
 "Last-Translator: ADHOC - Bot <transbot@adhoc.com.ar>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
@@ -47,6 +47,7 @@ msgid "Description"
 msgstr "Descripción"
 
 #. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_ir_actions_report__display_name
 #: model:ir.model.fields,field_description:product_ux.field_product_pricelist_item__display_name
 #: model:ir.model.fields,field_description:product_ux.field_product_product__display_name
 #: model:ir.model.fields,field_description:product_ux.field_product_template__display_name
@@ -65,6 +66,7 @@ msgid ""
 msgstr ""
 
 #. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_ir_actions_report__id
 #: model:ir.model.fields,field_description:product_ux.field_product_pricelist_item__id
 #: model:ir.model.fields,field_description:product_ux.field_product_product__id
 #: model:ir.model.fields,field_description:product_ux.field_product_template__id
@@ -146,6 +148,11 @@ msgstr "Variante de producto"
 #. module: product_ux
 #: model:product.pricelist,name:product_ux.list0
 msgid "Public Pricelist"
+msgstr ""
+
+#. module: product_ux
+#: model:ir.model,name:product_ux.model_ir_actions_report
+msgid "Report Action"
 msgstr ""
 
 #. module: product_ux
