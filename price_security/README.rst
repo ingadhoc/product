@@ -49,6 +49,7 @@ For users with price restriction, it restricts:
 #. on invoices: change unit price
 #. on invoice lines: change unit price and set limits on discount (limits configured on user)
 #. on product: change price
+#. on pricelists: change the pricelist and its rules, which are what actually sets the price
 
 For users with "Only see: sale price", it also hides the cost from the lists they can
 reach: the accounting cost and the inventory valuation columns (unit cost and total
