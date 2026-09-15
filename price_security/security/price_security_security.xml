@@ -38,4 +38,13 @@
         <field name="groups" eval="[(4, ref('price_security.group_only_view'))]"/>
         <field name="perm_read" eval="False"/>
     </record>
+
+    <!-- hacemos readonly a las reglas de los pricelists -->
+    <record id="restrict_price_read_only_pricelist_item" model="ir.rule">
+        <field name="name">Restrict Price Read Only on Pricelist Item</field>
+        <field name="model_id" ref="product.model_product_pricelist_item" />
+        <field name="domain_force">[(0, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('price_security.group_only_view'))]"/>
+        <field name="perm_read" eval="False"/>
+    </record>
 </odoo>
