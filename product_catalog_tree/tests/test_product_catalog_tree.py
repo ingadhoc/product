@@ -125,3 +125,23 @@ class TestProductCatalogTree(TransactionCase):
         catalog_product.increase_quantity()
         line = order.order_line.filtered(lambda line: line.product_id == product)
         self.assertEqual(line.product_qty, 1)
+
+    def test_increase_quantity_on_repair_order_does_not_crash(self):
+        """Regression test: unlike sale/purchase orders, repair.order does not
+        expose an ``order_line`` field (it uses ``move_ids``), which used to
+        crash the catalog's ``+`` button with an AttributeError."""
+        if "repair.order" not in self.env:
+            self.skipTest("repair is not installed")
+
+        product_to_repair = self.env["product.product"].create({"name": "Broken widget"})
+        component = self.env["product.product"].create({"name": "Spare part"})
+        repair = self.env["repair.order"].create({"product_id": product_to_repair.id})
+        catalog_product = component.with_context(
+            product_catalog_order_model="repair.order",
+            order_id=repair.id,
+        )
+
+        catalog_product.increase_quantity()
+
+        move = repair.move_ids.filtered(lambda m: m.product_id == component)
+        self.assertEqual(move.product_uom_qty, 1)
