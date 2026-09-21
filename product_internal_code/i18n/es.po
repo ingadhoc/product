@@ -38,6 +38,15 @@ msgid "Internal Code"
 msgstr "Código Interno"
 
 #. module: product_internal_code
+#: model:ir.model.fields,help:product_internal_code.field_product_product__internal_code
+msgid ""
+"Unique internal code of the product; if left empty it is generated "
+"automatically from a sequence."
+msgstr ""
+"Código interno único del producto; si se deja vacío se genera automáticamente "
+"por secuencia."
+
+#. module: product_internal_code
 #: model:ir.model.constraint,message:product_internal_code.constraint_product_product_internal_code_uniq
 msgid "Internal Code must be unique!"
 msgstr "El Código Interno debe ser único!"
