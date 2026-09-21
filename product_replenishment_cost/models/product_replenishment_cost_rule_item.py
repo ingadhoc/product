@@ -29,6 +29,7 @@ class ProductReplenishmentCostRuleItem(models.Model):
 
     percentage_amount = fields.Float(
         digits="Discount",
+        help="Percentage applied over the cost accumulated up to this line.",
     )
 
     fixed_amount = fields.Float(

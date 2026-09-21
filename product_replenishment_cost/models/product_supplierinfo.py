@@ -20,6 +20,7 @@ class ProductSupplierinfo(models.Model):
         bypass_search_access=True,
         index=True,
         string="Replenishment Cost Rule",
+        help="Rule applied to this supplier's price to obtain the net price used in " "purchase orders.",
     )
     net_price = fields.Float(
         inverse="_inverse_net_price",
