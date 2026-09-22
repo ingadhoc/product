@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-20 18:53+0000\n"
+"POT-Creation-Date: 2026-09-22 18:35+0000\n"
 "PO-Revision-Date: 2025-11-20 18:49+0000\n"
 "Last-Translator: ADHOC - Bot <transbot@adhoc.com.ar>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
@@ -39,15 +39,6 @@ msgid "Internal Code"
 msgstr "Código Interno"
 
 #. module: product_internal_code
-#: model:ir.model.fields,help:product_internal_code.field_product_product__internal_code
-msgid ""
-"Unique internal code of the product; if left empty it is generated "
-"automatically from a sequence."
-msgstr ""
-"Código interno único del producto; si se deja vacío se genera "
-"automáticamente por secuencia."
-
-#. module: product_internal_code
 #: model:ir.model.constraint,message:product_internal_code.constraint_product_product_internal_code_uniq
 msgid "Internal Code must be unique!"
 msgstr "El Código Interno debe ser único!"
@@ -61,3 +52,13 @@ msgstr "Producto"
 #: model:ir.model,name:product_internal_code.model_product_product
 msgid "Product Variant"
 msgstr "Variante de producto"
+
+#. module: product_internal_code
+#: model:ir.model.fields,help:product_internal_code.field_product_product__internal_code
+#: model:ir.model.fields,help:product_internal_code.field_product_template__internal_code
+msgid ""
+"Unique internal code of the product; if left empty it is generated "
+"automatically from a sequence."
+msgstr ""
+"Código interno único del producto; si se deja vacío se genera "
+"automáticamente por secuencia."
