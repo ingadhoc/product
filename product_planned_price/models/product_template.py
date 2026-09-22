@@ -25,7 +25,11 @@ class ProductTemplate(models.Model):
         help='Planned Price. This value depends on Planned Price Type" an other parameters.',
     )
     list_price_type = fields.Selection(
-        [("manual", "Fixed value"), ("by_margin", "By Margin"), ("other_currency", "Currency exchange")],
+        [
+            ("manual", "Fixed value"),
+            ("by_margin", "By Margin"),
+            ("other_currency", "Currency exchange"),
+        ],
         string="Planned Price Type",
         # we make it optional
         # required=True,
@@ -94,7 +98,10 @@ class ProductTemplate(models.Model):
             last_updated_param = self.env["ir.config_parameter"].sudo().create({"key": parameter_name, "value": "0"})
 
         # Obtiene los registros ordenados por id
-        domain = [("list_price_type", "!=", False), ("id", ">", int(last_updated_param.value))]
+        domain = [
+            ("list_price_type", "!=", False),
+            ("id", ">", int(last_updated_param.value)),
+        ]
         records = self.with_context(prefetch_fields=False).search(domain, order="id asc")
 
         records[:batch_size].with_context(bypass_base_automation=True)._update_prices_from_planned()
@@ -105,15 +112,15 @@ class ProductTemplate(models.Model):
             last_updated_id = 0
 
         self.env.cr.execute(
-            "UPDATE ir_config_parameter set value = %s where id = %s", (str(last_updated_id), last_updated_param.id)
+            "UPDATE ir_config_parameter set value = %s where id = %s",
+            (str(last_updated_id), last_updated_param.id),
         )
         # Uso directo de cr.commit(). Buscar alternativa menos riesgosa
         self.env.cr.commit()  # pragma pylint: disable=invalid-commit
 
         # si setamos last updated es porque todavia quedan por procesar, volvemos a llamar al cron
         if last_updated_id:
-            # para obtener el job_id se requiere este PR https://github.com/odoo/odoo/pull/146147
-            cron = self.env["ir.cron"].browse(self.env.context.get("job_id")) or self.env.ref(
+            cron = self.env["ir.cron"].browse(self.env.context.get("cron_id")) or self.env.ref(
                 "product_planned_price.ir_cron_update_price_from_planned"
             )
             cron._trigger()
@@ -135,7 +142,8 @@ class ProductTemplate(models.Model):
         ):
             # es mucho mas rapido hacerlo por sql directo
             cr.execute(
-                "UPDATE product_template SET list_price=%s WHERE id=%s", (rec.computed_list_price or 0.0, rec.id)
+                "UPDATE product_template SET list_price=%s WHERE id=%s",
+                (rec.computed_list_price or 0.0, rec.id),
             )
         return True
 
@@ -161,7 +169,11 @@ class ProductTemplate(models.Model):
                 )
             elif rec.list_price_type == "other_currency" and rec.currency_id:
                 computed_list_price = rec.other_currency_id.sudo()._convert(
-                    rec.other_currency_list_price, rec.currency_id, rec.main_company_id, date, round=False
+                    rec.other_currency_list_price,
+                    rec.currency_id,
+                    rec.main_company_id,
+                    date,
+                    round=False,
                 )
 
             # if product has taxes with price_include, add the tax to the
@@ -169,7 +181,10 @@ class ProductTemplate(models.Model):
             inc_taxes = rec.taxes_id.filtered("price_include")
             if inc_taxes:
                 computed_list_price = inc_taxes.compute_all(
-                    computed_list_price, rec.currency_id, product=rec, handle_price_include=False
+                    computed_list_price,
+                    rec.currency_id,
+                    product=rec,
+                    handle_price_include=False,
                 )["total_included"]
 
             rec.update(
@@ -191,7 +206,10 @@ class ProductTemplate(models.Model):
     @api.onchange("list_price_type")
     def _compute_warnings_price(self):
         if self.env["res.company"].sudo().search_count([]) > 1:
-            msg = _("The values correspond to the replenishment cost to the company: %s.", self.main_company_id.name)
+            msg = _(
+                "The values correspond to the replenishment cost to the company: %s.",
+                self.main_company_id.name,
+            )
             warnings = {
                 "company_info": {
                     "message": msg,
