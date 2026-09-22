@@ -48,24 +48,32 @@ class PurchaseOrderLine(models.Model):
 
     @api.model
     def _prepare_purchase_order_line(self, product_id, product_qty, product_uom, company_id, supplier, po):
-        # Para casos como cuando se viene de reabastecimientos, usamos el nuevo net_price en vez de price
+        # Use net_price instead of raw price (net_price includes replenishment cost rules)
         res = super()._prepare_purchase_order_line(product_id, product_qty, product_uom, company_id, supplier, po)
 
-        # Check if supplier is a product.supplierinfo or res.partner
-        # When called from procurement, supplier is res.partner (supplier.partner_id from core)
-        # When called directly, supplier is product.supplierinfo
-        if supplier and supplier._name == "product.supplierinfo":
-            price_unit = (
-                self.env["account.tax"]._fix_tax_included_price_company(
-                    supplier.net_price, product_id.supplier_taxes_id, self.tax_ids, company_id
-                )
-                if supplier
-                else 0.0
+        today = fields.Date.today()
+        # supplier can be product.supplierinfo (direct call) or res.partner (from procurement via purchase_stock)
+        if supplier._name == "product.supplierinfo":
+            seller = supplier
+        else:
+            seller = product_id.with_company(company_id)._select_seller(
+                partner_id=supplier,
+                quantity=product_qty,
+                date=po.date_order and po.date_order.date() or today,
+                uom_id=product_uom,
             )
-            if price_unit and supplier and po.currency_id and supplier.currency_id != po.currency_id:
-                price_unit = supplier.currency_id._convert(
-                    price_unit, po.currency_id, po.company_id, po.date_order or fields.Date.today()
-                )
-            res["price_unit"] = price_unit
+        if not seller:
+            return res
 
+        tax_domain = self.env["account.tax"]._check_company_domain(company_id)
+        product_taxes = product_id.supplier_taxes_id.filtered_domain(tax_domain)
+        taxes = po.fiscal_position_id.map_tax(product_taxes)
+        price_unit = self.env["account.tax"]._fix_tax_included_price_company(
+            seller.net_price, product_taxes, taxes, company_id
+        )
+        if price_unit and po.currency_id and seller.currency_id != po.currency_id:
+            price_unit = seller.currency_id._convert(price_unit, po.currency_id, po.company_id, po.date_order or today)
+        if product_uom and seller.product_uom_id and seller.product_uom_id != product_uom:
+            price_unit = seller.product_uom_id._compute_price(price_unit, product_uom)
+        res["price_unit"] = price_unit
         return res
