@@ -8,6 +8,20 @@
             <field name="company_id" position="after">
                 <field name="sequence" optional="hide"/>
             </field>
+            <field name="country_group_ids" position="after">
+                <field name="pricelist_allowed_ids" widget="many2many_tags"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_pricelist_view" model="ir.ui.view">
+        <field name="name">product.pricelist.list</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view"/>
+        <field name="arch" type="xml">
+            <field name="country_group_ids" position="after">
+                <field name="pricelist_allowed_ids" widget="many2many_tags" domain="[('id', '!=', id)]"/>
+            </field>
         </field>
     </record>
 </odoo>
