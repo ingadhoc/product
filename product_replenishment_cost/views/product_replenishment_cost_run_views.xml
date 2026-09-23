@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="product_replenishment_cost_run_form" model="ir.ui.view">
+        <field name="name">product.replenishment_cost.run.form</field>
+        <field name="model">product.replenishment_cost.run</field>
+        <field name="arch" type="xml">
+            <form string="Replenishment Cost Update" create="false" edit="false">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_lines" type="object" class="oe_stat_button" icon="fa-list">
+                            <field name="line_ids" widget="statinfo" string="Updated Costs"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Error" bg_color="text-bg-danger" invisible="state != 'error'"/>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="state"/>
+                            <field name="trigger"/>
+                            <field name="user_id"/>
+                            <field name="company_ids" widget="many2many_tags" groups="base.group_multi_company"/>
+                        </group>
+                        <group>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="duration" widget="float_time"/>
+                            <field name="batch_count"/>
+                        </group>
+                    </group>
+                    <group string="Results">
+                        <group>
+                            <field name="template_count"/>
+                            <field name="evaluated_count"/>
+                        </group>
+                        <group>
+                            <field name="updated_count"/>
+                            <field name="unchanged_count"/>
+                        </group>
+                    </group>
+                    <field name="error_message" invisible="not error_message" readonly="1"/>
+                    <notebook>
+                        <page string="Updated Costs" name="lines">
+                            <field name="line_ids">
+                                <list string="Updated Costs" create="false" edit="false">
+                                    <field name="product_id"/>
+                                    <field name="company_id" groups="base.group_multi_company"/>
+                                    <field name="previous_cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="new_cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="currency_id" column_invisible="True"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_replenishment_cost_run_tree" model="ir.ui.view">
+        <field name="name">product.replenishment_cost.run.list</field>
+        <field name="model">product.replenishment_cost.run</field>
+        <field name="arch" type="xml">
+            <list string="Replenishment Cost Updates" create="false" edit="false"
+                  decoration-danger="state == 'error'" decoration-muted="state == 'running'">
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="trigger"/>
+                <field name="user_id" optional="show"/>
+                <field name="template_count" optional="show" sum="Products Processed"/>
+                <field name="updated_count" sum="Costs Updated"/>
+                <field name="unchanged_count" optional="hide"/>
+                <field name="duration" widget="float_time" optional="hide"/>
+                <field name="state" widget="badge" decoration-success="state == 'done'" decoration-danger="state == 'error'"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="product_replenishment_cost_run_filter" model="ir.ui.view">
+        <field name="name">product.replenishment_cost.run.search</field>
+        <field name="model">product.replenishment_cost.run</field>
+        <field name="arch" type="xml">
+            <search string="Replenishment Cost Updates">
+                <field name="name"/>
+                <field name="user_id"/>
+                <filter string="Done" name="done" domain="[('state', '=', 'done')]"/>
+                <filter string="With Errors" name="error" domain="[('state', '=', 'error')]"/>
+                <separator/>
+                <filter string="Scheduled Action" name="cron" domain="[('trigger', '=', 'cron')]"/>
+                <filter string="Manual Update" name="wizard" domain="[('trigger', '=', 'wizard')]"/>
+                <group>
+                    <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Trigger" name="group_trigger" context="{'group_by': 'trigger'}"/>
+                    <filter string="Start Date" name="group_date" context="{'group_by': 'date_start'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="product_replenishment_cost_run_line_tree" model="ir.ui.view">
+        <field name="name">product.replenishment_cost.run.line.list</field>
+        <field name="model">product.replenishment_cost.run.line</field>
+        <field name="arch" type="xml">
+            <list string="Updated Costs" create="false" edit="false">
+                <field name="date"/>
+                <field name="run_id"/>
+                <field name="product_id"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+                <field name="previous_cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="new_cost" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                <field name="currency_id" column_invisible="True"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="product_replenishment_cost_run_line_filter" model="ir.ui.view">
+        <field name="name">product.replenishment_cost.run.line.search</field>
+        <field name="model">product.replenishment_cost.run.line</field>
+        <field name="arch" type="xml">
+            <search string="Updated Costs">
+                <field name="product_id"/>
+                <field name="run_id"/>
+                <group>
+                    <filter string="Product" name="group_product" context="{'group_by': 'product_id'}"/>
+                    <filter string="Run" name="group_run" context="{'group_by': 'run_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_product_replenishment_cost_run" model="ir.actions.act_window">
+        <field name="name">Replenishment Cost Updates</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.replenishment_cost.run</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No replenishment cost update was run yet</p>
+            <p>Here you will find, for each run of the "Update Cost from Replenishment Cost" scheduled action
+               or of the manual update, when it ran, how many products it went through and which costs changed.</p>
+        </field>
+    </record>
+
+    <menuitem action="action_product_replenishment_cost_run"
+        id="menu_product_replenishment_cost_run"
+        parent="sale.prod_config_main" sequence="41"/>
+
+</odoo>
