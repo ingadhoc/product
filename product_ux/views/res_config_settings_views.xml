@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.product.ux</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="product.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='product_general_settings']" position="after">
+                <block title="Search" id="product_ux_search_settings">
+                    <setting id="product_search_fields_setting" string="Advanced Search Fields"
+                             help="Also find products by the fields you choose, both in the autocomplete and in the Search... box of the product lists.">
+                        <field name="product_extend_search_fields"/>
+                        <div class="content-group" invisible="not product_extend_search_fields">
+                            <field name="product_search_model" invisible="1"/>
+                            <div class="row mt16">
+                                <label for="product_search_field_1" class="o_light_label col-lg-3"/>
+                                <field name="product_search_field_1" widget="field_selector"
+                                       options="{'model': 'product_search_model'}" placeholder="Select a field"/>
+                            </div>
+                            <div class="row">
+                                <label for="product_search_field_2" class="o_light_label col-lg-3"/>
+                                <field name="product_search_field_2" widget="field_selector"
+                                       options="{'model': 'product_search_model'}" placeholder="Select a field"/>
+                            </div>
+                            <div class="row">
+                                <label for="product_search_field_3" class="o_light_label col-lg-3"/>
+                                <field name="product_search_field_3" widget="field_selector"
+                                       options="{'model': 'product_search_model'}" placeholder="Select a field"/>
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
