@@ -2,6 +2,8 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
+from collections import defaultdict
+
 from odoo import _, fields, models
 from odoo.tools import formatLang
 
@@ -169,28 +171,68 @@ class ProductCatalogReport(models.Model):
             ]
         return []
 
+    def _get_pricelist_prices(self, products, pricelist):
+        """Prices of several products in one pricelist call, {product_id: price}.
+
+        Products are grouped by sale uom because the pricelist takes a single
+        uom per call.
+        """
+        self.ensure_one()
+        # product_price_taxes_included adds the taxes inside the pricelist
+        # computation, so taxes must not be added again here
+        taxes_included = self.env.context.get("taxes_included", self.taxes_included)
+        pricelist = pricelist.with_context(taxes_included=taxes_included, whole_pack_price=True)
+        quantity = self.env.context.get("quantity", 1.0)
+        date = self.env.context.get("date")
+        sale_uom = self.env["product.template"].fields_get(["sale_uom_ids"])
+        groups = defaultdict(list)
+        for product in products:
+            uom = product.sale_uom_ids[0].uom_id if sale_uom and product.sale_uom_ids else None
+            groups[uom].append(product.id)
+        prices = {}
+        for uom, product_ids in groups.items():
+            prices.update(pricelist._get_products_price(products.browse(product_ids), quantity, uom=uom, date=date))
+        return prices
+
+    def get_prices(self, products):
+        """Prices of the given products for every pricelist of the catalog,
+        {pricelist_id: {product_id: price}}."""
+        self.ensure_one()
+        return {pricelist.id: self._get_pricelist_prices(products, pricelist) for pricelist in self.pricelist_ids}
+
+    def get_formatted_prices(self, products):
+        """Same as get_prices, with the prices already formatted for printing."""
+        self.ensure_one()
+        return {
+            pricelist_id: {
+                product_id: formatLang(
+                    self.env, price, currency_obj=self.pricelist_ids.browse(pricelist_id).currency_id
+                )
+                for product_id, price in prices.items()
+            }
+            for pricelist_id, prices in self.get_prices(products).items()
+        }
+
     def get_price(self, product, pricelist):
         self.ensure_one()
-        product_obj = self.env[self.product_type].with_context(pricelist=pricelist.id, whole_pack_price=True)
-        sale_uom = self.env["product.template"].fields_get(["sale_uom_ids"])
-        if sale_uom and product.sale_uom_ids:
-            product_obj = product_obj.with_context(uom=product.sale_uom_ids[0].uom_id.id)
-        price = product_obj.browse([product.id])._get_contextual_price()
-        taxes_included = self.env.context.get("taxes_included", self.taxes_included)
-        if taxes_included:
-            taxes = product.taxes_id.filtered(lambda tax: tax.company_id == self.env.company)
-            price = taxes.compute_all(
-                price,
-                currency=pricelist.currency_id,
-                quantity=1.0,
-                product=product,
-            )["total_included"]
-        return price
+        return self._get_pricelist_prices(product, pricelist)[product.id]
 
     def get_formatted_price(self, product, pricelist):
         self.ensure_one()
         price = self.get_price(product, pricelist)
         return formatLang(self.env, price, currency_obj=pricelist.currency_id)
+
+    def get_image(self, product):
+        """Product image as a data uri, embedded so the pdf engine does not
+        fetch one url per row.
+
+        image_sale_order comes from sale_ux, which is not a dependency, so the
+        standard image is used when that field is not there.
+        """
+        self.ensure_one()
+        image = product.image_sale_order if "image_sale_order" in product._fields else False
+        image = image or product.image_128
+        return image and self.env["ir.qweb"]._get_converted_image_data_uri(image)
 
     def get_description(self, product):
         self.ensure_one()
