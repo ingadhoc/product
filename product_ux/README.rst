@@ -23,6 +23,7 @@ Several Improvements to products:
 #. Add new field "Description" on product UOMs.
 #. Incorporates the possibility to search the Pricelist Price of products in the tree view.
 #. Renders the Dymo product label report in batches so large print jobs (thousands of labels) do not crash wkhtmltopdf by memory.
+#. Lets a consultant choose up to 3 extra product fields in Settings, so the autocomplete of the product field also finds by them. Several words, in any order and spread across those fields, are resolved in a single query. Without configuration the search behaves exactly like Odoo. Fields that cannot be sustained (HTML, attachments, not stored, restricted by groups, or paths into the variants) are rejected when saving.
 
 Installation
 ============
