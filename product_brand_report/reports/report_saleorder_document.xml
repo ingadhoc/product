@@ -1,13 +1,26 @@
 <odoo>
     <template id="report_saleorder" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//t[@t-set='display_discount']" position="after">
+            <t t-set="show_brand" t-value="doc.env['ir.config_parameter'].sudo().get_param('product_brand_report.show_brand_sales_report')"/>
+        </xpath>
         <xpath expr="//th[@name='th_description']" position="after">
-            <th class="text-center" t-if="doc.env['ir.config_parameter'].sudo().get_param('product_brand_report.show_brand_sales_report')">Brand</th>
+            <th class="text-center" t-if="show_brand">Brand</th>
         </xpath>
         <xpath expr="//td[@name='td_product_name']" position="after">
-            <td name="td_product_brand" class="text-center" t-if="doc.env['ir.config_parameter'].sudo().get_param('product_brand_report.show_brand_sales_report')">
+            <td name="td_product_brand" class="text-center" t-if="show_brand">
                 <span t-field="line.product_id.product_brand_id.display_name" />
             </td>
         </xpath>
+        <!-- empty brand cells keep section rows aligned without depending on the header colspan counter -->
+        <td name="td_section_name" position="after">
+            <td name="td_section_brand" t-if="show_brand and show_section_total"/>
+        </td>
+        <td name="td_combo_name" position="after">
+            <td name="td_combo_brand" t-if="show_brand"/>
+        </td>
+        <td name="td_section_group_name" position="after">
+            <td name="td_section_group_brand" t-if="show_brand"/>
+        </td>
     </template>
 
     <template id="report_saleorder_portal" inherit_id="sale.sale_order_portal_content">
