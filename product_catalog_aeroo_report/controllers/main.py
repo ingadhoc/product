@@ -36,7 +36,9 @@ class ProductCatalogXlsxController(http.Controller):
         worksheet.write_row(0, 0, headers)
         column_widths = [len(h) for h in headers]
 
-        for row_idx, product in enumerate(catalog.get_all_products(), start=1):
+        products = catalog.get_all_products()
+        prices = catalog.get_prices(products)
+        for row_idx, product in enumerate(products, start=1):
             row = [
                 product.barcode or "",
                 product.default_code or "",
@@ -46,7 +48,7 @@ class ProductCatalogXlsxController(http.Controller):
                 product.virtual_available,
             ]
             for pricelist in catalog.pricelist_ids:
-                row.append(catalog.get_price(product, pricelist))
+                row.append(prices[pricelist.id][product.id])
             worksheet.write_row(row_idx, 0, row)
             for col_idx, value in enumerate(row):
                 column_widths[col_idx] = max(column_widths[col_idx], len(str(value)))

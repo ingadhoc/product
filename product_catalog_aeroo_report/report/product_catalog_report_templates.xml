@@ -25,7 +25,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <t t-foreach="o.get_all_products()" t-as="line">
+                                <t t-set="products" t-value="o.get_all_products()"/>
+                                <t t-set="prices" t-value="o.get_formatted_prices(products)"/>
+                                <t t-foreach="products" t-as="line">
                                     <tr style="page-break-inside: avoid;">
                                         <td>
                                             <span t-field="line.default_code"/>
@@ -48,7 +50,7 @@
                                         </td>
                                         <t t-foreach="o.pricelist_ids" t-as="pricelist">
                                             <td>
-                                                <span t-esc="o.get_formatted_price(line, pricelist)"/>
+                                                <span t-esc="prices[pricelist.id][line.id]"/>
                                             </td>
                                         </t>
                                     </tr>
@@ -75,6 +77,7 @@
                         <table class="table table-sm table-striped" style="page-break-inside: auto;">
                             <thead>
                                 <tr>
+                                    <th style="width: 74px;">Image</th>
                                     <th>Code</th>
                                     <th>Description</th>
                                     <th t-if="o.print_product_uom">UoM</th>
@@ -94,20 +97,26 @@
                                             </strong>
                                         </td>
                                     </tr>
-                                    <t t-foreach="o.get_report_products(category)" t-as="line">
+                                    <t t-set="products" t-value="o.get_report_products(category)"/>
+                                    <t t-set="prices" t-value="o.get_formatted_prices(products)"/>
+                                    <t t-foreach="products" t-as="line">
                                         <tr style="page-break-inside: avoid;">
-                                            <td>
+                                            <td style="vertical-align: middle; text-align: center;">
+                                                <t t-set="image" t-value="o.get_image(line)"/>
+                                                <img t-if="image" t-att-src="image" style="max-width: 64px; max-height: 48px;"/>
+                                            </td>
+                                            <td style="vertical-align: middle;">
                                                 <span t-field="line.default_code"/>
                                             </td>
-                                            <td>
+                                            <td style="vertical-align: middle;">
                                                 <span t-esc="o.get_description(line)"/>
                                             </td>
-                                            <td t-if="o.print_product_uom">
+                                            <td t-if="o.print_product_uom" style="vertical-align: middle;">
                                                 <span t-field="line.uom_id"/>
                                             </td>
                                             <t t-foreach="o.pricelist_ids" t-as="pricelist">
-                                                <td>
-                                                    <span t-esc="o.get_formatted_price(line, pricelist)"/>
+                                                <td style="vertical-align: middle;">
+                                                    <span t-esc="prices[pricelist.id][line.id]"/>
                                                 </td>
                                             </t>
                                         </tr>
