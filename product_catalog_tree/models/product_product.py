@@ -19,6 +19,9 @@ class ProductProduct(models.Model):
         string="Order Price",
         compute="_compute_catalog_values",
         readonly=True,
+        help="Unit price this order charges for the product. If the product is already on the order, it is the "
+        "price of its line, with any manual price and discount. If not, it is the price of the order's pricelist "
+        "for one unit.",
     )
     product_catalog_min_qty = fields.Float(
         string="Supplier Min Qty",
