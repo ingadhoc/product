@@ -16,7 +16,12 @@ class ProductTemplate(models.Model):
     warranty = fields.Float(
         help="Informative field to define the warranty months of the product. Do not have relation with other models."
     )
-    pricelist_price = fields.Float(compute="_compute_product_pricelist_price", digits="Product Price")
+    pricelist_price = fields.Float(
+        compute="_compute_product_pricelist_price",
+        digits="Product Price",
+        help="Price of the product with the pricelist in use, for one unit, before any manual price or "
+        "discount of an order line.",
+    )
     pricelist_id = fields.Many2one(
         "product.pricelist",
         store=False,

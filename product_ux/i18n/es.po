@@ -110,6 +110,16 @@ msgid "Pricelist Price"
 msgstr "Precio Tarifa"
 
 #. module: product_ux
+#: model:ir.model.fields,help:product_ux.field_product_product__pricelist_price
+#: model:ir.model.fields,help:product_ux.field_product_template__pricelist_price
+msgid ""
+"Price of the product with the pricelist in use, for one unit, before any "
+"manual price or discount of an order line."
+msgstr ""
+"Precio del producto con la tarifa en uso, para una unidad, antes del precio "
+"cargado a mano o el descuento de una línea de la orden."
+
+#. module: product_ux
 #: model:ir.model,name:product_ux.model_product_pricelist_item
 msgid "Pricelist Rule"
 msgstr "Regla de la lista de precios"
