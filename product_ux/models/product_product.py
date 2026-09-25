@@ -9,7 +9,12 @@ class ProductProduct(models.Model):
     _inherit = "product.product"
 
     active = fields.Boolean(tracking=True)
-    pricelist_price = fields.Float(compute="_compute_product_pricelist_price", digits="Product Price")
+    pricelist_price = fields.Float(
+        compute="_compute_product_pricelist_price",
+        digits="Product Price",
+        help="Price of the product with the pricelist in use, for one unit, before any manual price or "
+        "discount of an order line.",
+    )
 
     @api.depends_context("pricelist", "quantity", "uom", "date", "no_variant_attributes_price_extra")
     def _compute_product_pricelist_price(self):
