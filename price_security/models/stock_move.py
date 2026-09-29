@@ -4,12 +4,13 @@
 ##############################################################################
 from odoo import models
 
-# inventory valuation fields added by stock_account on the lot form
-COST_FIELDS = ("total_value", "avg_cost", "standard_price")
+# since 19.0 the inventory valuation lives on the move instead of
+# stock.valuation.layer
+COST_FIELDS = ("value", "remaining_value", "value_manual", "standard_price")
 
 
-class StockLot(models.Model):
-    _name = "stock.lot"
-    _inherit = ["stock.lot", "price.security.cost.mixin"]
+class StockMove(models.Model):
+    _name = "stock.move"
+    _inherit = ["stock.move", "price.security.cost.mixin"]
 
     _price_security_cost_fields = COST_FIELDS

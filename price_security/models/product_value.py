@@ -4,12 +4,11 @@
 ##############################################################################
 from odoo import models
 
-# inventory valuation fields added by stock_account on the lot form
-COST_FIELDS = ("total_value", "avg_cost", "standard_price")
+COST_FIELDS = ("value", "current_value")
 
 
-class StockLot(models.Model):
-    _name = "stock.lot"
-    _inherit = ["stock.lot", "price.security.cost.mixin"]
+class ProductValue(models.Model):
+    _name = "product.value"
+    _inherit = ["product.value", "price.security.cost.mixin"]
 
     _price_security_cost_fields = COST_FIELDS

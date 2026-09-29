@@ -2,9 +2,14 @@ import json
 
 from odoo import api, models
 
+from .sale_order_line import MARGIN_FIELDS
+
 
 class SaleOrder(models.Model):
-    _inherit = "sale.order"
+    _name = "sale.order"
+    _inherit = ["sale.order", "price.security.precomputed.cost.mixin"]
+
+    _price_security_cost_fields = MARGIN_FIELDS
 
     @api.model
     def _get_view(self, view_id=None, view_type="form", **options):
@@ -22,18 +27,7 @@ class SaleOrder(models.Model):
                     modifiers["readonly"] = True
                     node.set("modifiers", json.dumps(modifiers))
             if self.env.user.has_group("price_security.group_only_view_sale_price"):
-                invisible_fields = arch.xpath(
-                    "//field[@name='purchase_price']"
-                    "|//field[@name='order_line']//field[@name='margin']"
-                    "|//field[@name='order_line']//field[@name='margin_percent']"
-                    "|//div[@class='d-flex float-end']"
-                )
-                for node in invisible_fields:
+                # the margin block has no field left in it
+                for node in arch.xpath("//div[@class='d-flex float-end']"):
                     node.set("invisible", "1")
-                    node.set("column_invisible", "1")
-                    modifiers = json.loads(node.get("modifiers") or "{}")
-                    modifiers["invisible"] = True
-                    node.set("column_invisible", "1")
-                    modifiers["column_invisible"] = True
-                    node.set("modifiers", json.dumps(modifiers))
         return arch, view

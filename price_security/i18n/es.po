@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-02 18:17+0000\n"
+"POT-Creation-Date: 2026-10-02 11:40+0000\n"
 "PO-Revision-Date: 2026-01-15 20:10+0000\n"
 "Last-Translator: Nicolas Col <nco@adhoc.inc>\n"
 "Language-Team: Spanish <https://translation.dev-adhoc.com/projects/"
@@ -176,6 +176,21 @@ msgid "Payment terms that a user with restrictions can select"
 msgstr ""
 
 #. module: price_security
+#: model:ir.model,name:price_security.model_price_security_cost_mixin
+msgid "Price Security Cost Fields"
+msgstr "Campos de costo de restricción de precios"
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_price_security_hidden_cost_mixin
+msgid "Price Security Hidden Cost Fields"
+msgstr "Campos de costo ocultos de restricción de precios"
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_price_security_precomputed_cost_mixin
+msgid "Price Security Precomputed Cost Fields"
+msgstr "Campos de costo precalculados de restricción de precios"
+
+#. module: price_security
 #: model:ir.model,name:price_security.model_product_pricelist
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__pricelist_id
 msgid "Pricelist"
@@ -195,6 +210,11 @@ msgstr "Producto"
 #: model:ir.model.fields,field_description:price_security.field_account_move_line__product_can_modify_prices
 msgid "Product Can modify prices"
 msgstr ""
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_product_value
+msgid "Product Value"
+msgstr "Valor del producto"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_product_product
@@ -236,6 +256,11 @@ msgstr ""
 #: model:res.groups,name:price_security.group_only_view
 msgid "Solo ver: precio venta y compra"
 msgstr ""
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento de stock"
 
 #. module: price_security
 #. odoo-python
@@ -288,6 +313,16 @@ msgstr ""
 #: code:addons/price_security/models/res_users.py:0
 msgid "You can not give any discount greater than pricelist discounts"
 msgstr ""
+
+#. module: price_security
+#. odoo-python
+#: code:addons/price_security/models/price_security_mixins.py:0
+msgid ""
+"You do not have enough rights to access the field \"%(field)s\" on "
+"%(document_model)s."
+msgstr ""
+"No cuenta con los permisos necesarios para acceder al campo \"%(field)s\" en "
+"%(document_model)s."
 
 #. module: price_security
 #. odoo-python
