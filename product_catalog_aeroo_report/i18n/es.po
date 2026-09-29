@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-03 16:55+0000\n"
+"POT-Creation-Date: 2026-09-29 14:41+0000\n"
 "PO-Revision-Date: 2025-04-24 14:16+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
@@ -145,6 +145,11 @@ msgstr ""
 #. module: product_catalog_aeroo_report
 #: model:ir.model.fields,help:product_catalog_aeroo_report.field_product_product_catalog_report__print_product_uom
 msgid "If enabled, the unit of measure is printed next to each product name."
+msgstr ""
+
+#. module: product_catalog_aeroo_report
+#: model_terms:ir.ui.view,arch_db:product_catalog_aeroo_report.report_product_catalog_qweb_by_categories_document
+msgid "Image"
 msgstr ""
 
 #. module: product_catalog_aeroo_report
