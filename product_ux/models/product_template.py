@@ -6,7 +6,8 @@ from odoo import api, fields, models
 
 
 class ProductTemplate(models.Model):
-    _inherit = "product.template"
+    _name = "product.template"
+    _inherit = ["product.template", "product.search.mixin"]
 
     active = fields.Boolean(tracking=True)
     sellers_product_code = fields.Char(
@@ -46,3 +47,8 @@ class ProductTemplate(models.Model):
             else:
                 return self.env["product.pricelist"]
         return super()._get_contextual_pricelist()
+
+    @api.model
+    def name_search(self, name="", domain=None, operator="ilike", limit=100):
+        results = super().name_search(name, domain, operator, limit)
+        return self._extend_name_search(results, name, domain, operator, limit)
