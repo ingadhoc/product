@@ -24,6 +24,7 @@ Several Improvements to products:
 #. Add new field "Description" on product UOMs, shown in their list and form and used when searching them.
 #. Incorporates the possibility to search the Pricelist Price of products in the tree view.
 #. Renders the product labels (Dymo and sheets) in batches of pages so large print jobs (thousands of labels) do not crash wkhtmltopdf by memory.
+#. Lets a consultant choose up to 3 extra product fields in Settings, so the autocomplete of the product field also finds by them. Several words, in any order and spread across those fields, are resolved in a single query. Without configuration the search behaves exactly like Odoo. Fields that Odoo cannot search (HTML, attachments, neither stored nor searchable, or that the user configuring them cannot read, on any step of the path) are rejected when saving, and a path that reaches a model the user cannot read is skipped for that user instead of breaking the autocomplete. Be careful on a very large catalogue: the extra query reads it whole, so measure before turning this on.
 
 Installation
 ============
