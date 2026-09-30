@@ -1,0 +1,90 @@
+##############################################################################
+# For copyright and license notices, see __manifest__.py file in module root
+# directory
+##############################################################################
+from ast import literal_eval
+
+from odoo import api, models
+from odoo.fields import Domain
+from odoo.tools.misc import str2bool
+
+LIKE_OPERATORS = ("ilike", "like")
+# below three characters a trigram index cannot serve the query
+MIN_CHARS = 3
+MAX_FIELDS = 3
+# always searched, so a word of the term can match the product itself
+NATIVE_PATHS = ("name", "default_code")
+PARAM_ENABLED = "product_ux.extend_search_fields"
+PARAM_FIELDS = "product_ux.search_fields"
+
+
+def parse_paths(value):
+    """The parameter as a list of paths. Content nobody can read is no configuration."""
+    try:
+        paths = literal_eval(value or "[]")
+    except (ValueError, SyntaxError):
+        return []
+    if not isinstance(paths, list):
+        return []
+    return [path.strip() for path in paths if isinstance(path, str) and path.strip()]
+
+
+def configured_paths(env):
+    """Paths from product.template the consultant configured, or nothing."""
+    params = env["ir.config_parameter"].sudo()
+    if not str2bool(params.get_param(PARAM_ENABLED), default=False):
+        return ()
+    # the boxes cap it, so a hand edited parameter cannot widen the search either
+    return tuple(parse_paths(params.get_param(PARAM_FIELDS))[:MAX_FIELDS])
+
+
+class ProductSearchMixin(models.AbstractModel):
+    _name = "product.search.mixin"
+    _description = "Extended Product Search"
+
+    # prefix needed to reach a product.template field from this model
+    _search_path_prefix = ""
+
+    @api.model
+    def _extended_search_paths(self):
+        paths = tuple(path for path in configured_paths(self.env) if self._can_search_path(path))
+        if not paths:
+            return ()
+        return NATIVE_PATHS + tuple(self._search_path_prefix + path for path in paths)
+
+    @api.model
+    def _can_search_path(self, path):
+        """A path this user cannot reach is skipped, never raised: the rights are of whoever searches."""
+        model = self.env["product.template"]
+        names = path.split(".")
+        for index, name in enumerate(names):
+            field = model._fields.get(name)
+            if field is None or not model._has_field_access(field, "read"):
+                return False
+            if not field.comodel_name:
+                return index == len(names) - 1
+            model = self.env[field.comodel_name]
+            if not model.has_access("read"):
+                return False
+        return True
+
+    @api.model
+    def _extended_search_domain(self, term):
+        """Every word, in any order and on any of the paths, in a single domain."""
+        paths = self._extended_search_paths()
+        if not paths or not isinstance(term, str) or len(term.strip()) < MIN_CHARS:
+            return None
+        return Domain.AND([Domain.OR([Domain(path, "ilike", word) for path in paths]) for word in term.split()])
+
+    @api.model
+    def _extend_name_search(self, results, term, domain, operator, limit):
+        """Complete the native result, only if it did not fill the limit."""
+        if operator not in LIKE_OPERATORS or (limit and len(results) >= limit):
+            return results
+        extra = self._extended_search_domain(term)
+        if extra is None:
+            return results
+        ids = [res[0] for res in results]
+        full_domain = Domain.AND([Domain(domain or Domain.TRUE), extra, Domain("id", "not in", ids)])
+        records = self.browse(self._search(full_domain, limit=limit and limit - len(ids)))
+        return results + [(record.id, record.display_name) for record in records]
