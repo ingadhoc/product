@@ -31,6 +31,7 @@
         "product",
     ],
     "data": [
+        "views/res_config_settings_views.xml",
         "views/product_template_views.xml",
         "views/product_product_views.xml",
         "views/product_pricelist_item_view.xml",

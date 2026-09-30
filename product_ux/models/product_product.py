@@ -18,8 +18,12 @@ DEFAULT_CODE_TRIGRAM_INDEX = "product_product__default_code_trgm_index"
 
 
 class ProductProduct(models.Model):
-    _inherit = "product.product"
+    _name = "product.product"
+    _inherit = ["product.product", "product.search.mixin"]
     _order = "default_code, name, id"
+
+    # the configured paths start at product.template
+    _search_path_prefix = "product_tmpl_id."
 
     def init(self):
         super().init()
@@ -106,3 +110,8 @@ class ProductProduct(models.Model):
     def _compute_product_pricelist_price(self):
         for product in self:
             product.pricelist_price = product._get_contextual_price()
+
+    @api.model
+    def name_search(self, name="", args=None, operator="ilike", limit=100):
+        results = super().name_search(name, args, operator, limit)
+        return self._extend_name_search(results, name, args, operator, limit)
