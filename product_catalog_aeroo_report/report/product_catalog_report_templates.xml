@@ -1,21 +1,29 @@
 <?xml version="1.0"?>
 <odoo>
+    <template id="report_product_catalog_heading">
+        <!-- class="header" so the report engine repeats it on every page,
+             as the odt master-page header did -->
+        <div class="header">
+            <h2>Price list</h2>
+            <p class="text-muted">
+                <span t-out="o.get_report_date()"/>
+            </p>
+            <p t-if="o.env.context.get('taxes_included', o.taxes_included)" class="text-muted">Prices include taxes</p>
+            <p t-else="" class="text-muted">Prices do not include taxes</p>
+        </div>
+    </template>
+
     <template id="report_product_catalog_qweb_simple_document">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
                     <div class="page">
-                        <h2>
-                            <span t-field="o.name"/>
-                        </h2>
-                        <p t-if="o.env.context.get('taxes_included', o.taxes_included)">
-                            <strong>Prices include taxes</strong>
-                        </p>
+                        <t t-call="product_catalog_aeroo_report.report_product_catalog_heading"/>
                         <table class="table table-sm table-striped" style="page-break-inside: auto;">
                             <thead>
                                 <tr>
                                     <th>Code</th>
-                                    <th>Description</th>
+                                    <th>Product</th>
                                     <th t-if="o.print_product_uom">UoM</th>
                                     <t t-foreach="o.pricelist_ids" t-as="pricelist">
                                         <th>
@@ -68,18 +76,13 @@
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.external_layout">
                     <div class="page">
-                        <h2>
-                            <span t-field="o.name"/>
-                        </h2>
-                        <p t-if="o.env.context.get('taxes_included', o.taxes_included)">
-                            <strong>Prices include taxes</strong>
-                        </p>
+                        <t t-call="product_catalog_aeroo_report.report_product_catalog_heading"/>
                         <table class="table table-sm table-striped" style="page-break-inside: auto;">
                             <thead>
                                 <tr>
                                     <th style="width: 74px;">Image</th>
                                     <th>Code</th>
-                                    <th>Description</th>
+                                    <th>Product</th>
                                     <th t-if="o.print_product_uom">UoM</th>
                                     <t t-foreach="o.pricelist_ids" t-as="pricelist">
                                         <th>
