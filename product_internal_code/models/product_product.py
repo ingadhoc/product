@@ -4,6 +4,8 @@
 ##############################################################################
 from odoo import api, fields, models
 
+from .internal_code_search import prepend_internal_code_match
+
 
 class ProductProduct(models.Model):
     _inherit = "product.product"
@@ -25,3 +27,8 @@ class ProductProduct(models.Model):
             if not vals.get("internal_code", False) and not self.env.context.get("default_internal_code", False):
                 vals["internal_code"] = self.env["ir.sequence"].next_by_code("product.internal.code")
         return super().create(vals_list)
+
+    @api.model
+    def name_search(self, name="", domain=None, operator="ilike", limit=100):
+        results = super().name_search(name, domain, operator, limit)
+        return prepend_internal_code_match(self, results, name, domain, operator, limit)
