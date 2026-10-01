@@ -2,7 +2,4 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-
-from . import internal_code_search
-from . import product_product
-from . import product_template
+from . import test_product_internal_code
