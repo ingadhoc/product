@@ -28,6 +28,6 @@
         "price_security",
         "sale_triple_discount",
     ],
-    "installable": True,
+    "installable": False,
     "auto_install": True,
 }

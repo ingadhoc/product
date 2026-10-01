@@ -32,7 +32,7 @@
         "purchase",
     ],
     "data": [],
-    "installable": True,
+    "installable": False,
     "auto_install": True,
     "application": False,
 }

@@ -31,7 +31,7 @@
     "data": [
         "views/product_template_views.xml",
     ],
-    "installable": True,
+    "installable": False,
     "auto_install": True,
     "application": False,
 }
