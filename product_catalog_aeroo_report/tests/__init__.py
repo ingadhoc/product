@@ -3,3 +3,4 @@
 # directory
 ##############################################################################
 from . import test_product_catalog_price
+from . import test_product_catalog_heading
