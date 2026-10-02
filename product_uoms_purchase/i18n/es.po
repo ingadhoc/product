@@ -63,3 +63,37 @@ msgstr "Regla de inventario"
 #: model:ir.model.fields,field_description:product_uoms_purchase.field_purchase_order_line__uom_unit_ids
 msgid "Uom Unit"
 msgstr "Unidad de Medida"
+
+#. module: product_uoms_purchase
+#: model:ir.model.fields,help:product_uoms_purchase.field_product_product__uom_po_ids
+#: model:ir.model.fields,help:product_uoms_purchase.field_product_template__uom_po_ids
+msgid "Additional packagings for this product which can be used for purchase"
+msgstr "Embalajes adicionales de este producto que se pueden usar en compras"
+
+#. module: product_uoms_purchase
+#: model_terms:ir.ui.view,arch_db:product_uoms_purchase.product_template_only_form_view
+msgid "Packaging"
+msgstr "Embalajes"
+
+#. module: product_uoms_purchase
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_product_product__uom_po_ids
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_product_template__uom_po_ids
+msgid "Purchase Packagings"
+msgstr "Embalajes de compra"
+
+#. module: product_uoms_purchase
+#: model_terms:ir.ui.view,arch_db:product_uoms_purchase.product_template_only_form_view
+msgid "Use Product UoM for Purchase"
+msgstr "Usar la UdM del producto en compras"
+
+#. module: product_uoms_purchase
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_product_product__use_product_uom
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_product_template__use_product_uom
+msgid "Use Product Uom"
+msgstr "Usar UdM del producto"
+
+#. module: product_uoms_purchase
+#: model:ir.model.fields,help:product_uoms_purchase.field_product_product__use_product_uom
+#: model:ir.model.fields,help:product_uoms_purchase.field_product_template__use_product_uom
+msgid "When enabled, it allows to use the product uom in the purchase order."
+msgstr "Si está activo, permite usar la UdM del producto en la orden de compra."
