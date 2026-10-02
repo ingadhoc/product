@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-02 18:17+0000\n"
-"PO-Revision-Date: 2026-09-02 18:17+0000\n"
+"POT-Creation-Date: 2026-10-02 11:41+0000\n"
+"PO-Revision-Date: 2026-10-02 11:41+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -79,9 +79,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:price_security.field_account_move__display_name
 #: model:ir.model.fields,field_description:price_security.field_account_move_line__display_name
 #: model:ir.model.fields,field_description:price_security.field_account_payment_term__display_name
+#: model:ir.model.fields,field_description:price_security.field_price_security_cost_mixin__display_name
+#: model:ir.model.fields,field_description:price_security.field_price_security_hidden_cost_mixin__display_name
+#: model:ir.model.fields,field_description:price_security.field_price_security_precomputed_cost_mixin__display_name
 #: model:ir.model.fields,field_description:price_security.field_product_pricelist__display_name
 #: model:ir.model.fields,field_description:price_security.field_product_product__display_name
 #: model:ir.model.fields,field_description:price_security.field_product_template__display_name
+#: model:ir.model.fields,field_description:price_security.field_product_value__display_name
 #: model:ir.model.fields,field_description:price_security.field_res_partner__display_name
 #: model:ir.model.fields,field_description:price_security.field_res_users__display_name
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__display_name
@@ -89,6 +93,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:price_security.field_sale_order_discount__display_name
 #: model:ir.model.fields,field_description:price_security.field_sale_order_line__display_name
 #: model:ir.model.fields,field_description:price_security.field_stock_lot__display_name
+#: model:ir.model.fields,field_description:price_security.field_stock_move__display_name
 #: model:ir.model.fields,field_description:price_security.field_stock_quant__display_name
 msgid "Display Name"
 msgstr ""
@@ -97,9 +102,13 @@ msgstr ""
 #: model:ir.model.fields,field_description:price_security.field_account_move__id
 #: model:ir.model.fields,field_description:price_security.field_account_move_line__id
 #: model:ir.model.fields,field_description:price_security.field_account_payment_term__id
+#: model:ir.model.fields,field_description:price_security.field_price_security_cost_mixin__id
+#: model:ir.model.fields,field_description:price_security.field_price_security_hidden_cost_mixin__id
+#: model:ir.model.fields,field_description:price_security.field_price_security_precomputed_cost_mixin__id
 #: model:ir.model.fields,field_description:price_security.field_product_pricelist__id
 #: model:ir.model.fields,field_description:price_security.field_product_product__id
 #: model:ir.model.fields,field_description:price_security.field_product_template__id
+#: model:ir.model.fields,field_description:price_security.field_product_value__id
 #: model:ir.model.fields,field_description:price_security.field_res_partner__id
 #: model:ir.model.fields,field_description:price_security.field_res_users__id
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__id
@@ -107,6 +116,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:price_security.field_sale_order_discount__id
 #: model:ir.model.fields,field_description:price_security.field_sale_order_line__id
 #: model:ir.model.fields,field_description:price_security.field_stock_lot__id
+#: model:ir.model.fields,field_description:price_security.field_stock_move__id
 #: model:ir.model.fields,field_description:price_security.field_stock_quant__id
 msgid "ID"
 msgstr ""
@@ -167,6 +177,21 @@ msgid "Payment terms that a user with restrictions can select"
 msgstr ""
 
 #. module: price_security
+#: model:ir.model,name:price_security.model_price_security_cost_mixin
+msgid "Price Security Cost Fields"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_price_security_hidden_cost_mixin
+msgid "Price Security Hidden Cost Fields"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_price_security_precomputed_cost_mixin
+msgid "Price Security Precomputed Cost Fields"
+msgstr ""
+
+#. module: price_security
 #: model:ir.model,name:price_security.model_product_pricelist
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__pricelist_id
 msgid "Pricelist"
@@ -185,6 +210,11 @@ msgstr ""
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_account_move_line__product_can_modify_prices
 msgid "Product Can modify prices"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_product_value
+msgid "Product Value"
 msgstr ""
 
 #. module: price_security
@@ -226,6 +256,11 @@ msgstr ""
 #. module: price_security
 #: model:res.groups,name:price_security.group_only_view
 msgid "Solo ver: precio venta y compra"
+msgstr ""
+
+#. module: price_security
+#: model:ir.model,name:price_security.model_stock_move
+msgid "Stock Move"
 msgstr ""
 
 #. module: price_security
@@ -278,6 +313,14 @@ msgstr ""
 #. odoo-python
 #: code:addons/price_security/models/res_users.py:0
 msgid "You can not give any discount greater than pricelist discounts"
+msgstr ""
+
+#. module: price_security
+#. odoo-python
+#: code:addons/price_security/models/price_security_mixins.py:0
+msgid ""
+"You do not have enough rights to access the field \"%(field)s\" on "
+"%(document_model)s."
 msgstr ""
 
 #. module: price_security
