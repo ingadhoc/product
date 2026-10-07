@@ -102,7 +102,7 @@ class ProductTemplate(models.Model):
             ("list_price_type", "!=", False),
             ("id", ">", int(last_updated_param.value)),
         ]
-        records = self.with_context(prefetch_fields=False).search(domain, order="id asc")
+        records = self.with_context(prefetch_fields=False).search(domain, order="id asc", limit=batch_size + 1)
 
         records[:batch_size].with_context(bypass_base_automation=True)._update_prices_from_planned()
 
