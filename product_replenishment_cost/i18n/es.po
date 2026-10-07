@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-22 19:16+0000\n"
+"POT-Creation-Date: 2026-10-07 16:51+0000\n"
 "PO-Revision-Date: 2025-11-26 13:01+0000\n"
 "Last-Translator: ADHOC - Bot <transbot@adhoc.com.ar>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
@@ -21,12 +21,21 @@ msgstr ""
 "1 : 2;\n"
 
 #. module: product_replenishment_cost
+#. odoo-python
+#: code:addons/product_replenishment_cost/wizards/product_update_from_replenishment_cost_wizard.py:0
+msgid ""
+"%(updated)s costs updated, %(unchanged)s without changes (%(templates)s "
+"products processed)."
+msgstr ""
+
+#. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__standard_price
 msgid "Accounting Cost"
 msgstr "Coste"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_needaction
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__message_needaction
 msgid "Action Needed"
 msgstr "Necesita Acción"
 
@@ -42,6 +51,7 @@ msgstr "Permitir expresiones en reglas de costo de reposición"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_attachment_count
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__message_attachment_count
 msgid "Attachment Count"
 msgstr "Contar Adjunto"
 
@@ -51,9 +61,24 @@ msgid "Base Cost"
 msgstr "Costo Base"
 
 #. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__batch_count
+msgid "Batch Count"
+msgstr ""
+
+#. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.view_update_from_replenishment_cost_wizard_form
 msgid "Cancel"
 msgstr "Cancelar"
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__company_ids
+msgid "Companies"
+msgstr ""
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run_line__company_id
+msgid "Company"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.view_update_from_replenishment_cost_wizard_form
@@ -66,8 +91,16 @@ msgid "Cost Rule"
 msgstr "Regla de Costo"
 
 #. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__updated_count
+#: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_tree
+msgid "Costs Updated"
+msgstr ""
+
+#. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__create_uid
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__create_uid
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__create_uid
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run_line__create_uid
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_update_from_replenishment_cost_wizard__create_uid
 msgid "Created by"
 msgstr "Creado por"
@@ -75,15 +108,38 @@ msgstr "Creado por"
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__create_date
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__create_date
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__create_date
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run_line__create_date
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_update_from_replenishment_cost_wizard__create_date
 msgid "Created on"
 msgstr "Creado el"
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run_line__currency_id
+msgid "Currency"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_product__replenishment_base_cost_currency_id
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_template__replenishment_base_cost_currency_id
 msgid "Currency used for the Replanishment Base Cost."
 msgstr "Moneda utilizada para el Costo Base de Reposición."
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__cursor_template_id
+msgid "Cursor"
+msgstr ""
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__date_end
+msgid "Date End"
+msgstr ""
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__date_start
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run_line__date
+msgid "Date Start"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_product__replenishment_cost_last_update
@@ -101,6 +157,8 @@ msgstr "Descripción"
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__display_name
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__display_name
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__display_name
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run_line__display_name
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_supplierinfo__display_name
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__display_name
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_update_from_replenishment_cost_wizard__display_name
@@ -108,6 +166,28 @@ msgstr "Descripción"
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_purchase_order_line__display_name
 msgid "Display Name"
 msgstr "Nombre mostrado"
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields.selection,name:product_replenishment_cost.selection__product_replenishment_cost_run__state__done
+#: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_filter
+msgid "Done"
+msgstr ""
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__duration
+msgid "Duration (min)"
+msgstr ""
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields.selection,name:product_replenishment_cost.selection__product_replenishment_cost_run__state__error
+#: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_form
+msgid "Error"
+msgstr ""
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__error_message
+msgid "Error Message"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__expr
@@ -121,22 +201,36 @@ msgstr "Importe fijo"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_follower_ids
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__message_follower_ids
 msgid "Followers"
 msgstr "Seguidores"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_partner_ids
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Seguidores (Canales)"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__has_message
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__has_message
 msgid "Has Message"
 msgstr "Tiene Mensaje"
 
 #. module: product_replenishment_cost
+#: model_terms:ir.actions.act_window,help:product_replenishment_cost.action_product_replenishment_cost_run
+msgid ""
+"Here you will find, for each run of the \"Update Cost from Replenishment "
+"Cost\" scheduled action\n"
+"               or of the manual update, when it ran, how many products it "
+"went through and which costs changed."
+msgstr ""
+
+#. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__id
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__id
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__id
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run_line__id
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_supplierinfo__id
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__id
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_update_from_replenishment_cost_wizard__id
@@ -146,13 +240,23 @@ msgid "ID"
 msgstr "ID (identificación)"
 
 #. module: product_replenishment_cost
+#: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_run__cursor_template_id
+msgid ""
+"Id of the last product template processed. Zero means the run went through "
+"all of them."
+msgstr ""
+
+#. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__message_needaction
+#: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_run__message_needaction
 msgid "If checked, new messages require your attention."
 msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__message_has_error
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__message_has_sms_error
+#: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_run__message_has_error
+#: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_run__message_has_sms_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 
@@ -167,6 +271,7 @@ msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_is_follower
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__message_is_follower
 msgid "Is Follower"
 msgstr "Es un seguidor"
 
@@ -189,6 +294,8 @@ msgstr "Ultima Actulizacion"
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__write_uid
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__write_uid
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__write_uid
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run_line__write_uid
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_update_from_replenishment_cost_wizard__write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
@@ -196,6 +303,8 @@ msgstr "Última actualización por"
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__write_date
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__write_date
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__write_date
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run_line__write_date
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_update_from_replenishment_cost_wizard__write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
@@ -206,28 +315,48 @@ msgid "Last date price updated"
 msgstr "Última actualización de precios"
 
 #. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__user_id
+msgid "Launched by"
+msgstr ""
+
+#. module: product_replenishment_cost
 #: model:ir.model.fields.selection,name:product_replenishment_cost.selection__product_template__replenishment_cost_type__supplier_price
 msgid "Main Supplier Price"
 msgstr "Precio de Proveedor Principal"
 
 #. module: product_replenishment_cost
+#: model:ir.model.fields.selection,name:product_replenishment_cost.selection__product_replenishment_cost_run__trigger__manual
 #: model:ir.model.fields.selection,name:product_replenishment_cost.selection__product_template__replenishment_cost_type__manual
 msgid "Manual"
 msgstr ""
 
 #. module: product_replenishment_cost
+#: model:ir.model.fields.selection,name:product_replenishment_cost.selection__product_replenishment_cost_run__trigger__wizard
+#: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_filter
+msgid "Manual Update"
+msgstr ""
+
+#. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_has_error
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__message_has_error
 msgid "Message Delivery error"
 msgstr "Error de Envío de Mensaje"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_ids
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__message_ids
 msgid "Messages"
 msgstr "Mensajes"
 
 #. module: product_replenishment_cost
+#: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_run__duration
+msgid "Minutes between the start and the end of the run."
+msgstr ""
+
+#. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__name
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__name
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__name
 msgid "Name"
 msgstr "Nombre"
 
@@ -245,22 +374,42 @@ msgid "Net Price"
 msgstr "Precio neto"
 
 #. module: product_replenishment_cost
+#. odoo-python
+#: code:addons/product_replenishment_cost/models/product_replenishment_cost_run.py:0
+msgid "New"
+msgstr ""
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run_line__new_cost
+msgid "New Cost"
+msgstr ""
+
+#. module: product_replenishment_cost
+#: model_terms:ir.actions.act_window,help:product_replenishment_cost.action_product_replenishment_cost_run
+msgid "No replenishment cost update was run yet"
+msgstr ""
+
+#. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_needaction_counter
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__message_needaction_counter
 msgid "Number of Actions"
 msgstr "Número de acciones"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_has_error_counter
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__message_has_error_counter
 msgid "Number of errors"
 msgstr "Número de error"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__message_needaction_counter
+#: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_run__message_needaction_counter
 msgid "Number of messages requiring action"
 msgstr "Número de mensajes que requieren una acción"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__message_has_error_counter
+#: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_run__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Número de mensajes con error de envío"
 
@@ -275,7 +424,14 @@ msgid "Percentage applied over the cost accumulated up to this line."
 msgstr "Porcentaje que se aplica sobre el costo acumulado hasta esta línea."
 
 #. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run_line__previous_cost
+msgid "Previous Cost"
+msgstr ""
+
+#. module: product_replenishment_cost
 #: model:ir.model,name:product_replenishment_cost.model_product_template
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run_line__product_id
+#: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_line_filter
 msgid "Product"
 msgstr "Producto"
 
@@ -291,6 +447,12 @@ msgid "Products"
 msgstr "Productos"
 
 #. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__template_count
+#: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_tree
+msgid "Products Processed"
+msgstr ""
+
+#. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_template_search_view
 msgid "Products Without Replenishment Rule"
 msgstr "Productos sin regla de reposición"
@@ -304,6 +466,11 @@ msgstr ""
 #: model:ir.model,name:product_replenishment_cost.model_purchase_order_line
 msgid "Purchase Order Line"
 msgstr "Línea de pedido de compra"
+
+#. module: product_replenishment_cost
+#: model:ir.actions.server,name:product_replenishment_cost.ir_cron_purge_replenishment_cost_run_lines_ir_actions_server
+msgid "Purge Replenishment Cost Update Detail"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_product__replenishment_base_cost
@@ -365,6 +532,29 @@ msgid "Replenishment Cost Type"
 msgstr "Tipo de costo de reposición"
 
 #. module: product_replenishment_cost
+#: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_form
+msgid "Replenishment Cost Update"
+msgstr ""
+
+#. module: product_replenishment_cost
+#: model:ir.model,name:product_replenishment_cost.model_product_replenishment_cost_run
+msgid "Replenishment Cost Update Run"
+msgstr ""
+
+#. module: product_replenishment_cost
+#: model:ir.model,name:product_replenishment_cost.model_product_replenishment_cost_run_line
+msgid "Replenishment Cost Update Run Line"
+msgstr ""
+
+#. module: product_replenishment_cost
+#: model:ir.actions.act_window,name:product_replenishment_cost.action_product_replenishment_cost_run
+#: model:ir.ui.menu,name:product_replenishment_cost.menu_product_replenishment_cost_run
+#: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_filter
+#: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_tree
+msgid "Replenishment Cost Updates"
+msgstr ""
+
+#. module: product_replenishment_cost
 #. odoo-python
 #: code:addons/product_replenishment_cost/models/product_template.py:0
 msgid "Replenishment cost based on company: %s."
@@ -381,6 +571,28 @@ msgstr "Costo de reposición en la moneda del costo base de reposición"
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_template__replenishment_cost
 msgid "Replenishment cost on the currency of the product"
 msgstr "Coste de reposición en la moneda del producto"
+
+#. module: product_replenishment_cost
+#. odoo-python
+#: code:addons/product_replenishment_cost/wizards/product_update_from_replenishment_cost_wizard.py:0
+msgid "Replenishment cost update"
+msgstr ""
+
+#. module: product_replenishment_cost
+#. odoo-python
+#: code:addons/product_replenishment_cost/models/product_replenishment_cost_run.py:0
+msgid ""
+"Replenishment cost update finished.\n"
+"Products processed: %(templates)s\n"
+"Costs updated: %(updated)s\n"
+"Without changes: %(unchanged)s\n"
+"Companies: %(companies)s"
+msgstr ""
+
+#. module: product_replenishment_cost
+#: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_form
+msgid "Results"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__replenishment_cost_rule_id
@@ -407,9 +619,27 @@ msgstr ""
 "calcular el costo de reposición final."
 
 #. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run_line__run_id
+#: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_line_filter
+msgid "Run"
+msgstr ""
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields.selection,name:product_replenishment_cost.selection__product_replenishment_cost_run__state__running
+msgid "Running"
+msgstr ""
+
+#. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__message_has_sms_error
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__message_has_sms_error
 msgid "SMS Delivery error"
 msgstr "Error de entrega de SMS"
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields.selection,name:product_replenishment_cost.selection__product_replenishment_cost_run__trigger__cron
+#: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_filter
+msgid "Scheduled Action"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__sequence
@@ -455,6 +685,21 @@ msgstr ""
 "calculado con el porcentaje."
 
 #. module: product_replenishment_cost
+#: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_filter
+msgid "Start Date"
+msgstr ""
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__state
+msgid "State"
+msgstr ""
+
+#. module: product_replenishment_cost
+#: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_filter
+msgid "Status"
+msgstr ""
+
+#. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product__supplier_currency_id
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__supplier_currency_id
 msgid "Supplier Currency"
@@ -477,10 +722,29 @@ msgid "Supplierinfo"
 msgstr "Información del Proveedor"
 
 #. module: product_replenishment_cost
+#. odoo-python
+#: code:addons/product_replenishment_cost/models/product_replenishment_cost_run.py:0
+msgid "The replenishment cost update failed: %s"
+msgstr ""
+
+#. module: product_replenishment_cost
+#. odoo-python
+#: code:addons/product_replenishment_cost/models/product_replenishment_cost_run.py:0
+msgid ""
+"The run was interrupted: it did not report progress for more than %s hours."
+msgstr ""
+
+#. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.view_update_from_replenishment_cost_wizard_form
 msgid ""
 "This will apply to all the selected products across company with a "
 "Replenishment Cost different from 0."
+msgstr ""
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__trigger
+#: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_filter
+msgid "Trigger"
 msgstr ""
 
 #. module: product_replenishment_cost
@@ -507,6 +771,21 @@ msgid "Update product cost from replenishment cost"
 msgstr "Actualizar el costo del producto desde el costo de reposición"
 
 #. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__line_count
+msgid "Updated Cost Lines"
+msgstr ""
+
+#. module: product_replenishment_cost
+#. odoo-python
+#: code:addons/product_replenishment_cost/models/product_replenishment_cost_run.py:0
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__line_ids
+#: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_form
+#: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_line_filter
+#: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_line_tree
+msgid "Updated Costs"
+msgstr ""
+
+#. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_template__standard_price
 msgid ""
 "Value of the product (automatically computed in AVCO).\n"
@@ -520,6 +799,11 @@ msgstr ""
 "        Se utiliza para calcular los márgenes de los pedidos de venta."
 
 #. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__evaluated_count
+msgid "Variants Evaluated"
+msgstr ""
+
+#. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product__warnings_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__warnings_cost
 msgid "Warnings Cost"
@@ -527,13 +811,25 @@ msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__website_message_ids
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__website_message_ids
 msgid "Website Messages"
 msgstr "Mensajes del sitio web"
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__website_message_ids
+#: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_run__website_message_ids
 msgid "Website communication history"
 msgstr "Historial de comunicación del sitio web"
+
+#. module: product_replenishment_cost
+#: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_filter
+msgid "With Errors"
+msgstr ""
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__unchanged_count
+msgid "Without Changes"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_template_search_view
@@ -558,6 +854,12 @@ msgstr ""
 #. module: product_replenishment_cost
 #: model:ir.model,name:product_replenishment_cost.model_product_replenishment_cost_rule_item
 msgid "product.replenishment_cost.rule.item"
+msgstr ""
+
+#. module: product_replenishment_cost
+#. odoo-python
+#: code:addons/product_replenishment_cost/models/product_replenishment_cost_run.py:0
+msgid "run_id"
 msgstr ""
 
 #~ msgid ""
