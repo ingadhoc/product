@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Product UX",
-    "version": "19.0.1.2.0",
+    "version": "20.0.1.0.0",
     "category": "Products",
     "sequence": 14,
     "summary": "",
@@ -40,7 +40,7 @@
     "demo": [
         "demo/product_pricelist_demo.xml",
     ],
-    "installable": False,
+    "installable": True,
     "auto_install": False,
     "application": False,
 }

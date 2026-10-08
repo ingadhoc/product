@@ -29,20 +29,17 @@ class ProductTemplate(models.Model):
 
     def _get_contextual_pricelist(self):
         """Re agregamos compatibilidad con que la lista de precios se mande como name o como lista en el contexto
-        Basicamente esto de acá https://github.com/odoo/odoo/blob/13.0/addons/product/models/product_template.py#L213
-        Si viene lista obtenemos el primer elemento
-        Luego, si ese elemento es string buscamos a traves de name search.
-        Para otros casos devolvemos super (debería ser un ID)
+        (la vista de búsqueda manda lo que escribe el usuario), como hasta 13.0:
+        https://github.com/odoo/odoo/blob/13.0/addons/product/models/product_template.py#L213
+        Si viene lista tomamos el primer elemento; si es string, la buscamos por nombre.
+        Para otros casos devolvemos super (debería ser un ID).
         """
-        pricelist_id_or_name = self.env.context.get("pricelist")
-        if isinstance(pricelist_id_or_name, list):
-            pricelist_id_or_name = pricelist_id_or_name[0]
-            # Si viene una lista en pricelist actualizamos contexto para que si se llama super, este reciba un entero
-            self = self.with_context(pricelist=pricelist_id_or_name)
-        if isinstance(pricelist_id_or_name, str):
-            pricelist_data = self.env["product.pricelist"].name_search(pricelist_id_or_name, operator="=", limit=1)
-            if pricelist_data:
-                return self.env["product.pricelist"].browse(pricelist_data[0][0])
-            else:
-                return self.env["product.pricelist"]
+        pricelist = self.env.context.get("pricelist")
+        if isinstance(pricelist, list):
+            pricelist = pricelist and pricelist[0]
+            # super espera un entero en el contexto
+            self = self.with_context(pricelist=pricelist)
+        if isinstance(pricelist, str):
+            found = self.env["product.pricelist"].name_search(pricelist, operator="=", limit=1)
+            return self.env["product.pricelist"].browse(found and found[0][0])
         return super()._get_contextual_pricelist()

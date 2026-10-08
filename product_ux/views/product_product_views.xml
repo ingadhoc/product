@@ -13,26 +13,15 @@
         </field>
     </record>
 
-    <!-- TODO: Ver si Odoo Corrige este problema y lo sacamos -->
-    <record id="product_variant_easy_edit_view_no_webp" model="ir.ui.view">
-        <field name="name">product.product.view.form.easy.no_webp</field>
-        <field name="model">product.product</field>
-        <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
-        <field name="arch" type="xml">
-            <field name="image_1920" position="attributes">
-                <attribute name="options">{'preview_image': 'image_128'}</attribute>
-            </field>
-        </field>
-    </record>
-
-    <!-- TODO: Ver si Odoo Corrige este problema y lo sacamos -->
+    <!-- Sin convert_to_webp: la imagen convertida sale con fondo negro en los PDF (ticket 97157).
+         TODO: Ver si Odoo corrige este problema y lo sacamos -->
     <record id="product_product_view_form_normalized_no_webp" model="ir.ui.view">
         <field name="name">product.product.view.form.normalized.no_webp</field>
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_product_view_form_normalized"/>
         <field name="arch" type="xml">
             <field name="image_1920" position="attributes">
-                <attribute name="options">{'preview_image': 'image_128'}</attribute>
+                <attribute name="options">{'preview_image': 'image_128', 'zoom': True}</attribute>
             </field>
         </field>
     </record>

@@ -17,13 +17,14 @@
         <field name="priority">30</field>
         <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
-        <field name="image_1920" position="attributes">
-                <attribute name="options">{'preview_image': 'image_128'}</attribute>
-        </field>
-        <!-- TODO: Ver si Odoo Corrige este problema y lo sacamos -->
-            <group name="group_general">
-                <label for="warranty" invisible="0"/>
-                <div invisible="0">
+            <!-- Sin convert_to_webp: la imagen convertida sale con fondo negro en los PDF (ticket 97157).
+                 TODO: Ver si Odoo corrige este problema y lo sacamos -->
+            <field name="image_1920" position="attributes">
+                <attribute name="options">{'preview_image': 'image_128', 'size': [90, 90], 'zoom': True, 'img_class': 'border rounded h-100 object-fit-contain'}</attribute>
+            </field>
+            <group name="group_general" position="inside">
+                <label for="warranty"/>
+                <div>
                     <field name="warranty" class="oe_inline"/>
  months
                 </div>
