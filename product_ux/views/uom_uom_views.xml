@@ -4,7 +4,7 @@
     <record id="product_uom_tree_view" model="ir.ui.view">
         <field name="name">uom.uom.list</field>
         <field name="model">uom.uom</field>
-        <field name="inherit_id" ref="uom.product_uom_tree_view"/>
+        <field name="inherit_id" ref="uom.uom_uom_view_list"/>
         <field name="arch" type="xml">
             <field name="name" position="after">
                 <field name="description"/>
@@ -15,7 +15,7 @@
     <record id="product_uom_form_view" model="ir.ui.view">
         <field name="name">uom.uom.form</field>
         <field name="model">uom.uom</field>
-        <field name="inherit_id" ref="uom.product_uom_form_view"/>
+        <field name="inherit_id" ref="uom.uom_uom_view_form"/>
         <field name="arch" type="xml">
             <field name="name" position="after">
                 <field name="description"/>
@@ -26,10 +26,11 @@
     <record id="product_uom_search_view" model="ir.ui.view">
         <field name="name">uom.uom.search</field>
         <field name="model">uom.uom</field>
+        <field name="inherit_id" ref="uom.uom_uom_view_search"/>
         <field name="arch" type="xml">
-            <search>
-                <field name="name" filter_domain="['|', ('name','ilike', self), ('description', 'ilike', self)]"/>
-            </search>
+            <field name="name" position="attributes">
+                <attribute name="filter_domain">['|', ('name', 'ilike', self), ('description', 'ilike', self)]</attribute>
+            </field>
         </field>
     </record>
 

@@ -1,25 +1,14 @@
-from odoo import api, fields, models
+from odoo import api, models
 
 
-class PicelistItem(models.Model):
+class ProductPricelistItem(models.Model):
     _inherit = "product.pricelist.item"
-
-    applied_description = fields.Char(compute="_compute_applied_description")
-
-    @api.depends("applied_on", "product_tmpl_id", "product_id", "categ_id")
-    def _compute_applied_description(self):
-        for rec in self:
-            if rec.applied_on == "0_product_variant":
-                rec.applied_description = rec.product_id.display_name
-            elif rec.applied_on == "1_product":
-                rec.applied_description = rec.product_tmpl_id.display_name
-            elif rec.applied_on == "2_product_category":
-                rec.applied_description = rec.categ_id.display_name
-            else:
-                rec.applied_description = False
 
     @api.onchange("compute_price")
     def _onchange_compute_price(self):
+        """Surcharge rules round by default to the price precision, unless a
+        rounding was already set. Discount rules are left as in Odoo: a rounded
+        discount is no longer a plain discount, and sales stop showing it."""
         super()._onchange_compute_price()
-        if self.compute_price == "formula":
+        if self.compute_price == "markup" and not self.price_round:
             self.price_round = 10 ** -self.env["decimal.precision"].sudo().precision_get("Product Price")
