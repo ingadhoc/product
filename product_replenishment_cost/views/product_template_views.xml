@@ -18,10 +18,16 @@
                     <label for="replenishment_base_cost" string="Base Cost"/>
                     <div name="replenishment_base_cost" class="o_row">
                         <field name="supplier_price" widget="monetary" options="{'currency_field': 'supplier_currency_id','field_digits': True}" invisible="replenishment_cost_type not in ['supplier_price', 'last_supplier_price']"/>
+                        <span groups="uom.group_uom" invisible="replenishment_cost_type not in ['supplier_price', 'last_supplier_price'] or not supplier_uom_id"> por
+                            <field name="supplier_uom_id" class="oe_inline" options="{'no_open': True}"/>
+                        </span>
                         <field name="replenishment_base_cost" class="oe_inline" widget="monetary" options="{'currency_field': 'replenishment_base_cost_currency_id','field_digits': True}" invisible="replenishment_cost_type != 'manual'"/>
                         <field name="replenishment_base_cost_currency_id" class="oe_inline oe_edit_only" options="{'no_open': True, 'no_create': True}" invisible="replenishment_cost_type != 'manual'"/>
                         <label for="replenishment_base_cost_on_currency" string="/"/>
                         <field name="replenishment_base_cost_on_currency" class="oe_inline" widget="monetary" options="{'currency_field': 'currency_id','field_digits': True}"/>
+                        <span groups="uom.group_uom"> por
+                            <field name="uom_name" class="oe_inline"/>
+                        </span>
                     </div>
                         <field name="replenishment_cost_rule_id" string="Cost Rule" context="{'default_product_id': id}"/>
                     <label for="replenishment_cost"/>
