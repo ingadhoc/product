@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-07 16:51+0000\n"
+"POT-Creation-Date: 2026-10-09 17:33+0000\n"
 "PO-Revision-Date: 2025-11-26 13:01+0000\n"
 "Last-Translator: ADHOC - Bot <transbot@adhoc.com.ar>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
@@ -715,6 +715,12 @@ msgstr "Precio del proveedor"
 #: model:ir.model,name:product_replenishment_cost.model_product_supplierinfo
 msgid "Supplier Pricelist"
 msgstr "Lista de precios de proveedor"
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product__supplier_uom_id
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__supplier_uom_id
+msgid "Supplier Uom"
+msgstr ""
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__product_supplierinfo_ids
