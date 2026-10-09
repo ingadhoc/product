@@ -1,6 +1,6 @@
 {
     "name": "Replenishment Cost",
-    "version": "19.0.1.5.0",
+    "version": "19.0.1.6.0",
     "author": "ADHOC SA, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "category": "Products",
