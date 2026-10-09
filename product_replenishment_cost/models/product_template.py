@@ -26,6 +26,11 @@ class ProductTemplate(models.Model):
         compute_sudo=True,
         digits="Product Price",
     )
+    supplier_uom_id = fields.Many2one(
+        "uom.uom",
+        compute="_compute_supplier_data",
+        compute_sudo=True,
+    )
     standard_price = fields.Float(
         string="Accounting Cost",
     )
@@ -84,7 +89,13 @@ class ProductTemplate(models.Model):
     warnings_cost = fields.Json(compute="_compute_warnings_cost")
 
     @api.depends_context("company")
-    @api.depends("seller_ids.net_price", "seller_ids.currency_id", "seller_ids.company_id", "replenishment_cost_type")
+    @api.depends(
+        "seller_ids.net_price",
+        "seller_ids.currency_id",
+        "seller_ids.product_uom_id",
+        "seller_ids.company_id",
+        "replenishment_cost_type",
+    )
     def _compute_supplier_data(self):
         """Lo ideal seria utilizar campo related para que segun los permisos
          del usuario tome el seller_id que corresponda, pero el tema es que el
@@ -104,6 +115,7 @@ class ProductTemplate(models.Model):
                 {
                     "supplier_price": seller_ids and seller_ids[0].net_price or 0.0,
                     "supplier_currency_id": seller_ids and seller_ids[0].currency_id or self.env["res.currency"],
+                    "supplier_uom_id": seller_ids and seller_ids[0].product_uom_id or self.env["uom.uom"],
                 }
             )
 
@@ -238,6 +250,8 @@ class ProductTemplate(models.Model):
         "currency_id",
         "supplier_price",
         "supplier_currency_id",
+        "supplier_uom_id",
+        "uom_id",
         "replenishment_cost_type",
         "replenishment_base_cost",
         "replenishment_base_cost_currency_id",
@@ -254,7 +268,10 @@ class ProductTemplate(models.Model):
             rec.replenishment_cost = 0.0
             base_cost_currency = False
             if rec.replenishment_cost_type in ["supplier_price", "last_supplier_price"]:
+                # supplier price is in the supplier UoM, rules apply on the product UoM
                 replenishment_base_cost = rec.supplier_price
+                if rec.supplier_uom_id and rec.uom_id:
+                    replenishment_base_cost = rec.supplier_uom_id._compute_price(replenishment_base_cost, rec.uom_id)
                 base_cost_currency = rec.supplier_currency_id
             elif rec.replenishment_cost_type == "manual":
                 replenishment_base_cost = rec.replenishment_base_cost
