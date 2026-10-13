@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="stock.view_stock_product_template_tree"/>
             <field name="arch" type="xml">
                 <field name="virtual_available" position="after">
-                    <button type="object" name="view_stock_detail" invisible="type not in ('product', 'consu')" icon="fa-search-plus" groups="base.group_user" title="View Stock Detail"/>
+                    <button type="object" name="view_stock_detail" invisible="type not in ('product', 'consu')" icon="zoom_in" groups="base.group_user" title="View Stock Detail"/>
                 </field>
             </field>
         </record>
@@ -21,7 +21,7 @@
                 <xpath expr="//field[@name='uom_id']" position="after">
                     <div>Forecasted: <field name="virtual_available"/> <field name="uom_id"/></div>
                         <a type="object" name="view_stock_detail" string="View Stock Detail">
-                            View Stock Detail <span class="btn btn-group fa fa-search-plus"/>
+                            View Stock Detail <span class="oi btn btn-group" data-icon="zoom_in"/>
                         </a>
                 </xpath>
             </field>
@@ -49,7 +49,7 @@
             <field name="arch" type="xml">
                 <field name="virtual_available" position="after">
                     <field name="type" invisible="1"/>
-                    <button type="object" name="view_stock_detail" invisible="type not in ('product', 'consu')" icon="fa-search-plus" groups="base.group_user" title="View Stock Detail"/>
+                    <button type="object" name="view_stock_detail" invisible="type not in ('product', 'consu')" icon="zoom_in" groups="base.group_user" title="View Stock Detail"/>
                 </field>
             </field>
         </record>
