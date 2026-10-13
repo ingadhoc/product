@@ -31,8 +31,8 @@
         "product",
     ],
     "data": [
-        "security/ir.model.access.csv",
         "wizards/product_prices_update_views.xml",
+        "security/ir.access.csv",
     ],
     "demo": [],
     "installable": True,
