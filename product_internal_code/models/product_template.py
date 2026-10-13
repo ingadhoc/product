@@ -14,10 +14,14 @@ class ProductTemplate(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
+        if not any(vals.get("internal_code") for vals in vals_list):
+            return super().create(vals_list)
+        # The variant reads its code from the context, so each template is created on its own
+        templates = self.browse()
         for vals in vals_list:
-            if vals.get("internal_code"):
-                self = self.with_context(default_internal_code=vals.get("internal_code"))
-        return super().create(vals_list)
+            template_self = self.with_context(default_internal_code=vals.get("internal_code") or False)
+            templates += super(ProductTemplate, template_self).create([vals])
+        return templates.with_env(self.env)
 
     @api.model
     def name_search(self, name="", domain=None, operator="ilike", limit=100):

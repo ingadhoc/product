@@ -13,8 +13,6 @@ class TestProductInternalCode(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.sequence = cls.env.ref("product_internal_code.sequence")
-        # created one by one on purpose: a single create() of several coded
-        # templates hits an unrelated defect of the module
         template = cls.env["product.template"]
         cls.coded = template.create({"name": "Internal Code Product", "internal_code": "IC-5432"})
         # its name carries the code of the one above, so the native search finds it first
@@ -78,3 +76,22 @@ class TestProductInternalCode(TransactionCase):
         expected = self._next_code()
         duplicate = product.copy()
         self.assertEqual(duplicate.internal_code, expected)
+
+    def test_batch_template_create(self):
+        templates = self.env["product.template"].create(
+            [
+                {"name": "Batch A", "internal_code": "BATCH-A"},
+                {"name": "Batch B"},
+                {"name": "Batch C", "internal_code": "BATCH-C"},
+            ]
+        )
+        self.assertEqual(templates.mapped("name"), ["Batch A", "Batch B", "Batch C"])
+        self.assertEqual(templates[0].product_variant_ids.internal_code, "BATCH-A")
+        self.assertNotIn(templates[1].product_variant_ids.internal_code, (False, "BATCH-A", "BATCH-C"))
+        self.assertEqual(templates[2].product_variant_ids.internal_code, "BATCH-C")
+
+    def test_template_create_does_not_leak_code(self):
+        template = self.env["product.template"].create({"name": "Leak", "internal_code": "LEAK-01"})
+        self.assertNotIn("default_internal_code", template.env.context)
+        duplicate = template.copy()
+        self.assertNotEqual(duplicate.product_variant_ids.internal_code, "LEAK-01")
