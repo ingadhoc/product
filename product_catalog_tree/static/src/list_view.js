@@ -8,6 +8,7 @@ import { ProductCatalogListController } from "./list_controller";
 export const productCatalogListView = {
     ...listView,
     Controller: ProductCatalogListController,
+    buttonTemplate: "ProductCatalogListController.Buttons",
 };
 
 
