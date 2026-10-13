@@ -15,7 +15,6 @@ class ProductProduct(models.Model):
             "name": _("Stock By Locations"),
             "target": "new",
             "res_id": self.id,
-            "view_type": "form",
             "view_mode": "form",
             "res_model": self._name,
             "view_id": self.env.ref(view).id,
