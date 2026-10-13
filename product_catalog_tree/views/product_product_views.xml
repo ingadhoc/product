@@ -14,11 +14,11 @@
                 <attribute name="decoration-bf">product_catalog_qty &gt; 0</attribute>
                 <attribute name="decoration-muted">product_catalog_qty == 0</attribute>
             </list>
-            <field name="is_favorite" position="after">
+            <field name="default_code" position="before">
                 <field name="product_catalog_qty"/>
                 <field name="product_catalog_min_qty" column_invisible="1"/>
-                <button name="increase_quantity" type="object" icon="fa-plus" title="Add one"/>
-                <button name="set_catalog_min_qty" type="object" icon="fa-truck"
+                <button name="increase_quantity" type="object" icon="add" title="Add one"/>
+                <button name="set_catalog_min_qty" type="object" icon="local_shipping"
                         title="Set supplier minimum quantity"
                         invisible="not product_catalog_min_qty or product_catalog_min_qty &lt;= 1"/>
             </field>

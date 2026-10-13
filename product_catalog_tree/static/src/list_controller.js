@@ -6,8 +6,6 @@ import { useService } from "@web/core/utils/hooks";
 import { _t } from "@web/core/l10n/translation";
 
 export class ProductCatalogListController extends ListController {
-    static template = "ProductCatalogListController";
-
     setup() {
         super.setup();
         this.action = useService("action");
