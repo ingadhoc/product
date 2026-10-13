@@ -72,29 +72,18 @@ class StockLocation(models.Model):
         "Location with 'internal' type.",
     )
 
-    @api.depends_context("product_id", "template_id")
+    @api.depends_context("active_model", "active_id")
     def _compute_product_available(self):
-        template_id = []
-        product_id = []
-        if self.env.context.get("active_model", False) == "product.template":
-            template_id = self.env.context.get("active_id", False)
-        elif self.env.context.get("active_model", False) == "product.product":
-            product_id = self.env.context.get("active_id", False)
-        if template_id:
-            product_variants = self.env["product.template"].browse(template_id).product_variant_ids
-        elif product_id:
-            product_variants = self.env["product.product"].browse(product_id)
-        else:
-            # it not template_id or product_id on context, return True
-            for rec in self:
-                rec.qty_available = 0
-                rec.virtual_available = 0
-                rec.incoming_qty = 0
-                rec.outgoing_qty = 0
-            return True
+        active_model = self.env.context.get("active_model")
+        active_id = self.env.context.get("active_id")
+        products = self.env["product.product"]
+        if active_id and active_model == "product.template":
+            products = self.env["product.template"].browse(active_id).product_variant_ids
+        elif active_id and active_model == "product.product":
+            products = products.browse(active_id)
         for rec in self:
-            product_variants = [p.with_context(location=rec.id) for p in product_variants]
-            rec.qty_available = sum(p.qty_available for p in product_variants)
-            rec.virtual_available = sum(p.virtual_available for p in product_variants)
-            rec.incoming_qty = sum(p.incoming_qty for p in product_variants)
-            rec.outgoing_qty = sum(p.outgoing_qty for p in product_variants)
+            located = products.with_context(location=rec.id)
+            rec.qty_available = sum(located.mapped("qty_available"))
+            rec.virtual_available = sum(located.mapped("virtual_available"))
+            rec.incoming_qty = sum(located.mapped("incoming_qty"))
+            rec.outgoing_qty = sum(located.mapped("outgoing_qty"))

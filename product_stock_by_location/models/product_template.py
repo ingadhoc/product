@@ -2,7 +2,7 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo import _, api, fields, models
+from odoo import _, fields, models
 
 
 class ProductTemplate(models.Model):
@@ -14,13 +14,10 @@ class ProductTemplate(models.Model):
         string="Locations",
     )
 
-    # dummy depends it is computed
-    @api.depends("name")
     def _compute_location_ids(self):
-        for rec in self:
-            rec.location_ids = rec.location_ids.search(
-                [("show_stock_on_products", "=", True), ("usage", "=", "internal")]
-            )
+        self.location_ids = self.env["stock.location"].search(
+            [("show_stock_on_products", "=", True), ("usage", "=", "internal")]
+        )
 
     def view_stock_detail(self):
         self.ensure_one()
@@ -29,10 +26,8 @@ class ProductTemplate(models.Model):
             "name": _("Stock By Locations"),
             "target": "new",
             "res_id": self.id,
-            "view_type": "form",
             "view_mode": "form",
             "res_model": self._name,
             "view_id": self.env.ref(view).id,
-            "flags": {"initial_mode": "view"},
             "type": "ir.actions.act_window",
         }

@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="stock.view_stock_product_template_tree"/>
             <field name="arch" type="xml">
                 <field name="qty_available" position="after">
-                    <button type="object" name="view_stock_detail" invisible="type not in ('product', 'consu')" icon="zoom_in" groups="base.group_user" title="View Stock Detail"/>
+                    <button type="object" name="view_stock_detail" invisible="type != 'consu'" icon="zoom_in" groups="base.group_user" title="View Stock Detail"/>
                 </field>
             </field>
         </record>
@@ -50,8 +50,7 @@
             <field name="inherit_id" ref="stock.view_stock_product_tree"/>
             <field name="arch" type="xml">
                 <field name="qty_available" position="after">
-                    <field name="type" invisible="1"/>
-                    <button type="object" name="view_stock_detail" invisible="type not in ('product', 'consu')" icon="zoom_in" groups="base.group_user" title="View Stock Detail"/>
+                    <button type="object" name="view_stock_detail" invisible="type != 'consu'" icon="zoom_in" groups="base.group_user" title="View Stock Detail"/>
                 </field>
             </field>
         </record>
