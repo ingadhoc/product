@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-14 21:44+0000\n"
-"PO-Revision-Date: 2026-09-14 21:44+0000\n"
+"POT-Creation-Date: 2026-10-13 16:52+0000\n"
+"PO-Revision-Date: 2026-10-13 16:52+0000\n"
 "Last-Translator: ADHOC - Bot <transbot@adhoc.com.ar>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "Language: es\n"
@@ -19,6 +19,82 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
 "1 : 2;\n"
+
+#. module: product_stock_by_location
+#: model:ir.module.module,description:base.module_product_stock_by_location
+msgid ""
+".. |company| replace:: ADHOC SA\n"
+"\n"
+".. |company_logo| image:: https://raw.githubusercontent.com/ingadhoc/maintainer-tools/master/resources/adhoc-logo.png\n"
+"   :alt: ADHOC SA\n"
+"   :target: https://www.adhoc.com.ar\n"
+"\n"
+".. |icon| image:: https://raw.githubusercontent.com/ingadhoc/maintainer-tools/master/resources/adhoc-icon.png\n"
+"\n"
+".. image:: https://img.shields.io/badge/license-AGPL--3-blue.png\n"
+"   :target: https://www.gnu.org/licenses/agpl\n"
+"   :alt: License: AGPL-3\n"
+"\n"
+"=========================\n"
+"Product Stock By Location\n"
+"=========================\n"
+"\n"
+"#. Add new option \"Show Stock on Products\" on stock locations\n"
+"#. Add buttons on products tree and kanban view to open a window with product stock chosen locations\n"
+"\n"
+"Installation\n"
+"============\n"
+"\n"
+"To install this module, you need to:\n"
+"\n"
+"#. Just install the module.\n"
+"\n"
+"Configuration\n"
+"=============\n"
+"\n"
+"To configure this module, you need to:\n"
+"\n"
+"#. No configuration needed.\n"
+"\n"
+"Usage\n"
+"=====\n"
+"\n"
+"To use this module, you need to:\n"
+"\n"
+"#. In product add secuencial number to internal code field When you create a product.product.\n"
+"\n"
+".. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas\n"
+"   :alt: Try me on Runbot\n"
+"   :target: https://runbot.adhoc.com.ar/\n"
+"\n"
+"Bug Tracker\n"
+"===========\n"
+"\n"
+"Bugs are tracked on `GitHub Issues\n"
+"<https://github.com/ingadhoc/{project_repo}/issues>`_. In case of trouble, please\n"
+"check there if your issue has already been reported. If you spotted it first,\n"
+"help us smashing it by providing a detailed and welcomed feedback.\n"
+"\n"
+"Credits\n"
+"=======\n"
+"\n"
+"Images\n"
+"------\n"
+"\n"
+"* |company| |icon|\n"
+"\n"
+"Contributors\n"
+"------------\n"
+"\n"
+"Maintainer\n"
+"----------\n"
+"\n"
+"|company_logo|\n"
+"\n"
+"This module is maintained by the |company|.\n"
+"\n"
+"To contribute to this module, please visit https://www.adhoc.com.ar.\n"
+msgstr ""
 
 #. module: product_stock_by_location
 #: model:ir.model.fields,help:product_stock_by_location.field_stock_location__qty_available
@@ -48,7 +124,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_stock_by_location.field_product_template__display_name
 #: model:ir.model.fields,field_description:product_stock_by_location.field_stock_location__display_name
 msgid "Display Name"
-msgstr "Nombre para mostrar"
+msgstr "Nombre en pantalla"
 
 #. module: product_stock_by_location
 #: model:ir.model.fields,field_description:product_stock_by_location.field_stock_location__virtual_available
@@ -107,8 +183,8 @@ msgstr "Ingreso"
 
 #. module: product_stock_by_location
 #: model:ir.model,name:product_stock_by_location.model_stock_location
-msgid "Inventory Locations"
-msgstr "Ubicaciones de inventario"
+msgid "Inventory Location"
+msgstr "Ubicación de inventario"
 
 #. module: product_stock_by_location
 #: model_terms:ir.ui.view,arch_db:product_stock_by_location.view_location_stock_tree
@@ -132,6 +208,11 @@ msgid "Product"
 msgstr "Producto"
 
 #. module: product_stock_by_location
+#: model:ir.module.module,shortdesc:base.module_product_stock_by_location
+msgid "Product Stock By Location"
+msgstr "Stock de productos por ubicación"
+
+#. module: product_stock_by_location
 #: model_terms:ir.ui.view,arch_db:product_stock_by_location.view_template_stock_by_location_form
 msgid "Product Stock by Locations"
 msgstr "Stock de producto por localizaciones"
@@ -139,7 +220,7 @@ msgstr "Stock de producto por localizaciones"
 #. module: product_stock_by_location
 #: model:ir.model,name:product_stock_by_location.model_product_product
 msgid "Product Variant"
-msgstr "Variante de producto"
+msgstr "Variante del producto"
 
 #. module: product_stock_by_location
 #: model:ir.model.fields,field_description:product_stock_by_location.field_stock_location__qty_available
@@ -205,5 +286,5 @@ msgstr "Ver detalle de stock"
 
 #. module: product_stock_by_location
 #: model_terms:ir.ui.view,arch_db:product_stock_by_location.product_template_kanban_stock_view
-msgid "View Stock Detail <span class=\"btn btn-group fa fa-search-plus\"/>"
-msgstr "Ver detalle de stock"
+msgid "View Stock Detail <span class=\"oi btn btn-group\" data-icon=\"zoom_in\"/>"
+msgstr "Ver detalle de stock <span class=\"oi btn btn-group\" data-icon=\"zoom_in\"/>"
