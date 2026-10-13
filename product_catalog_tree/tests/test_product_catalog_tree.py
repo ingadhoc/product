@@ -36,6 +36,7 @@ class TestProductCatalogTree(TransactionCase):
         catalog_product = product.with_context(
             product_catalog_order_model="purchase.order",
             order_id=order.id,
+            child_field="order_line",
         )
 
         # the vendor minimum quantity is exposed on the catalog row
@@ -79,6 +80,7 @@ class TestProductCatalogTree(TransactionCase):
         catalog_product = product.with_context(
             product_catalog_order_model="purchase.order",
             order_id=order.id,
+            child_field="order_line",
         )
 
         # the product already has a quantity below the vendor minimum
@@ -120,6 +122,7 @@ class TestProductCatalogTree(TransactionCase):
         catalog_product = product.with_context(
             product_catalog_order_model="purchase.order",
             order_id=order.id,
+            child_field="order_line",
         )
 
         catalog_product.increase_quantity()

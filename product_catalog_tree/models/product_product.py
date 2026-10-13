@@ -40,8 +40,9 @@ class ProductProduct(models.Model):
     def _compute_catalog_values(self):
         res_model = self.env.context.get("product_catalog_order_model")
         order_id = self.env.context.get("order_id")
+        child_field = self.env.context.get("child_field")
 
-        if not res_model or not order_id:
+        if not res_model or not order_id or not child_field:
             self.product_catalog_qty = 0
             self.product_catalog_price = 0
             self.product_catalog_min_qty = 0
@@ -49,7 +50,7 @@ class ProductProduct(models.Model):
 
         order = self.env[res_model].browse(order_id)
         order_line_info = order.with_company(order.company_id)._get_product_catalog_order_line_info(
-            product_ids=self.ids
+            product_ids=self.ids, child_field=child_field
         )
         for rec in self:
             rec.product_catalog_qty = order_line_info[rec.id].get("quantity")
@@ -59,8 +60,9 @@ class ProductProduct(models.Model):
     def _inverse_catalog_values(self, product_catalog_qty):
         res_model = self.env.context.get("product_catalog_order_model")
         order_id = self.env.context.get("order_id")
+        child_field = self.env.context.get("child_field")
 
-        if not res_model or not order_id:
+        if not res_model or not order_id or not child_field:
             return
 
         order = self.env[res_model].browse(order_id)
@@ -87,14 +89,22 @@ class ProductProduct(models.Model):
                 # Actualizar la información de la línea de orden
                 # Call the order method with a cleared context to avoid errors on creating move line
                 minimal_context = {
-                    "lang": self._context.get("lang"),
-                    "tz": self._context.get("tz"),
-                    "uid": self._context.get("uid"),
-                    "allowed_company_ids": self._context.get("allowed_company_ids"),
+                    "lang": self.env.context.get("lang"),
+                    "tz": self.env.context.get("tz"),
+                    "uid": self.env.context.get("uid"),
+                    "allowed_company_ids": self.env.context.get("allowed_company_ids"),
                 }
-                order.with_company(order.company_id).with_env(
-                    self.env(context=minimal_context)
-                )._update_order_line_info(rec.id, product_catalog_qty)
+                order = order.with_company(order.company_id)
+                # Keep the unit of the existing line (or the one the catalog offers for a new
+                # one): passing the product unit would change the line unit without converting
+                # its quantity.
+                uom_id = order._get_product_catalog_order_line_info(rec.ids, child_field=child_field)[rec.id].get(
+                    "uomId"
+                )
+                uom = self.env["uom.uom"].browse(uom_id) or rec.uom_id
+                order.with_env(self.env(context=minimal_context))._update_order_line_info(
+                    rec, product_catalog_qty, uom, child_field
+                )
 
     def increase_quantity(self):
         for rec in self:
