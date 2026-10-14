@@ -128,3 +128,35 @@ class TestProductCatalogTree(TransactionCase):
         catalog_product.increase_quantity()
         line = order.order_line.filtered(lambda line: line.product_id == product)
         self.assertEqual(line.product_qty, 1)
+
+
+@tagged("post_install", "-at_install")
+class TestProductCatalogTreeModels(TransactionCase):
+    """The list is only offered where it knows how to write."""
+
+    def test_the_list_opens_first_on_sale_orders_and_invoices(self):
+        list_view = self.env.ref("product_catalog_tree.product_view_tree_catalog")
+        partner = self.env["res.partner"].create({"name": "Catalog list models"})
+        records = []
+        if "sale.order" in self.env:
+            records.append((self.env["sale.order"].create({"partner_id": partner.id}), "order_line"))
+        if "account.move" in self.env:
+            records.append(
+                (self.env["account.move"].create({"move_type": "out_invoice", "partner_id": partner.id}), "line_ids")
+            )
+        if not records:
+            self.skipTest("neither sale nor account is installed")
+        for record, child_field in records:
+            action = record.with_context(order_id=record.id, child_field=child_field).action_add_from_catalog()
+            self.assertEqual(action["views"][0], (list_view.id, "list"), record._name)
+
+    def test_a_quotation_template_keeps_its_own_catalog(self):
+        if "sale.order.template" not in self.env:
+            self.skipTest("sale_management is not installed")
+        list_view = self.env.ref("product_catalog_tree.product_view_tree_catalog")
+        template = self.env["sale.order.template"].create({"name": "Catalog list template"})
+        action = template.with_context(
+            order_id=template.id, child_field="sale_order_template_line_ids"
+        ).action_add_from_catalog()
+        self.assertNotIn((list_view.id, "list"), action["views"])
+        self.assertEqual(action["views"][0][1], "kanban")
