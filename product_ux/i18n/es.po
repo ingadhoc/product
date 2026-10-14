@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-15 18:15+0000\n"
-"PO-Revision-Date: 2025-11-03 17:41+0000\n"
+"POT-Creation-Date: 2026-10-09 16:42+0000\n"
+"PO-Revision-Date: 2026-10-09 16:42+0000\n"
 "Last-Translator: ADHOC - Bot <transbot@adhoc.com.ar>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "Language: es\n"
@@ -19,6 +19,52 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
 "1 : 2;\n"
+
+#. module: product_ux
+#. odoo-python
+#: code:addons/product_ux/models/res_config_settings.py:0
+msgid ""
+"\"%(name)s\" is a %(type)s field. Only text fields and relations can be "
+"searched."
+msgstr ""
+"\"%(name)s\" es un campo %(type)s. Solo se pueden buscar campos de texto y "
+"relaciones."
+
+#. module: product_ux
+#. odoo-python
+#: code:addons/product_ux/models/res_config_settings.py:0
+msgid "\"%s\" cannot be searched: it is neither stored nor has a search method."
+msgstr ""
+"\"%s\" no se puede buscar: no está almacenado ni tiene un método de "
+"búsqueda."
+
+#. module: product_ux
+#. odoo-python
+#: code:addons/product_ux/models/res_config_settings.py:0
+msgid ""
+"\"%s\" is an HTML field. Searching inside HTML is the main cause of slow "
+"searches: use a text field."
+msgstr ""
+"\"%s\" es un campo HTML. Buscar dentro de HTML es la principal causa de las "
+"búsquedas lentas: use un campo de texto."
+
+#. module: product_ux
+#. odoo-python
+#: code:addons/product_ux/models/res_config_settings.py:0
+msgid "\"%s\" is an attachment, it cannot be searched."
+msgstr "\"%s\" es un adjunto, no se puede buscar."
+
+#. module: product_ux
+#. odoo-python
+#: code:addons/product_ux/models/res_config_settings.py:0
+msgid "\"%s\" is not a relational field, the path cannot be followed."
+msgstr "\"%s\" no es un campo relacional, no se puede seguir el camino."
+
+#. module: product_ux
+#. odoo-python
+#: code:addons/product_ux/models/res_config_settings.py:0
+msgid "\"%s\" is restricted by groups you do not have."
+msgstr "\"%s\" está restringido por grupos que usted no tiene."
 
 #. module: product_ux
 #: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_view
@@ -32,6 +78,11 @@ msgid "Active"
 msgstr "Activo"
 
 #. module: product_ux
+#: model_terms:ir.ui.view,arch_db:product_ux.res_config_settings_view_form
+msgid "Advanced Search Fields"
+msgstr "Campos de búsqueda avanzada"
+
+#. module: product_ux
 #: model:ir.model.fields,field_description:product_ux.field_product_pricelist_item__applied_description
 msgid "Applied Description"
 msgstr "Descripción aplicada"
@@ -40,6 +91,11 @@ msgstr "Descripción aplicada"
 #: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_item_search_view
 msgid "Apply On"
 msgstr "Aplicar en"
+
+#. module: product_ux
+#: model:ir.model,name:product_ux.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
 
 #. module: product_ux
 #: model:ir.model.fields,field_description:product_ux.field_uom_uom__description
@@ -54,6 +110,32 @@ msgstr "Descripción"
 #: model:ir.model.fields,field_description:product_ux.field_uom_uom__display_name
 msgid "Display Name"
 msgstr "Nombre para mostrar"
+
+#. module: product_ux
+#: model:ir.model,name:product_ux.model_product_search_mixin
+msgid "Extended Product Search"
+msgstr "Búsqueda extendida de productos"
+
+#. module: product_ux
+#. odoo-python
+#: code:addons/product_ux/models/res_config_settings.py:0
+msgid "Field \"%(path)s\" does not exist on %(model)s."
+msgstr "El campo \"%(path)s\" no existe en %(model)s."
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_res_config_settings__product_search_field_1
+msgid "Field 1"
+msgstr "Campo 1"
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_res_config_settings__product_search_field_2
+msgid "Field 2"
+msgstr "Campo 2"
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_res_config_settings__product_search_field_3
+msgid "Field 3"
+msgstr "Campo 3"
 
 #. module: product_ux
 #. odoo-python
@@ -131,6 +213,21 @@ msgid "Product Category"
 msgstr "Categoría de producto"
 
 #. module: product_ux
+#: model_terms:ir.ui.view,arch_db:product_ux.res_config_settings_view_form
+msgid "Product Search"
+msgstr "Búsqueda de productos"
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_res_config_settings__product_search_fields
+msgid "Product Search Fields"
+msgstr "Campos de búsqueda de productos"
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_res_config_settings__product_search_model
+msgid "Product Search Model"
+msgstr "Modelo de búsqueda de productos"
+
+#. module: product_ux
 #: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_item_search_view
 msgid "Product Template"
 msgstr "Plantilla de producto"
@@ -153,7 +250,17 @@ msgstr ""
 #. module: product_ux
 #: model:ir.model,name:product_ux.model_ir_actions_report
 msgid "Report Action"
-msgstr ""
+msgstr "Reportar acción"
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_res_config_settings__product_extend_search_fields
+msgid "Search products by more fields"
+msgstr "Buscar productos por más campos"
+
+#. module: product_ux
+#: model_terms:ir.ui.view,arch_db:product_ux.res_config_settings_view_form
+msgid "Select a field"
+msgstr "Seleccione un campo"
 
 #. module: product_ux
 #: model:ir.model.fields,help:product_ux.field_product_product__sellers_product_code
@@ -176,6 +283,17 @@ msgstr "Código de producto del proveedor"
 #: model:ir.model.fields,field_description:product_ux.field_product_template__warranty
 msgid "Warranty"
 msgstr "Garantía"
+
+#. module: product_ux
+#: model_terms:ir.ui.view,arch_db:product_ux.res_config_settings_view_form
+msgid ""
+"When picking a product in a sales or purchase line, also find it by the "
+"fields you choose. It does not change the Search... box of the product "
+"lists."
+msgstr ""
+"Al elegir un producto en una línea de venta o de compra, también lo "
+"encuentra por los campos que elija. No cambia el cuadro Buscar... de las "
+"listas de productos."
 
 #. module: product_ux
 #: model_terms:ir.ui.view,arch_db:product_ux.product_template_only_form_view
