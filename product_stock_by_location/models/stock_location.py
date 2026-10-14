@@ -18,7 +18,7 @@ class StockLocation(models.Model):
     )
     qty_available = fields.Float(
         compute="_compute_product_available",
-        digits="Product Unit of Measure",
+        digits="Product Unit",
         string="Quantity On Hand",
         help="Current quantity of products.\n"
         "In a context with a single Stock Location, this includes "
@@ -33,7 +33,7 @@ class StockLocation(models.Model):
     )
     virtual_available = fields.Float(
         compute="_compute_product_available",
-        digits="Product Unit of Measure",
+        digits="Product Unit",
         string="Forecast Quantity",
         help="Forecast quantity (computed as Quantity On Hand "
         "- Outgoing + Incoming)\n"
@@ -47,7 +47,7 @@ class StockLocation(models.Model):
     )
     incoming_qty = fields.Float(
         compute="_compute_product_available",
-        digits="Product Unit of Measure",
+        digits="Product Unit",
         string="Incoming",
         help="Quantity of products that are planned to arrive.\n"
         "In a context with a single Stock Location, this includes "
@@ -60,7 +60,7 @@ class StockLocation(models.Model):
     )
     outgoing_qty = fields.Float(
         compute="_compute_product_available",
-        digits="Product Unit of Measure",
+        digits="Product Unit",
         string="Outgoing",
         help="Quantity of products that are planned to leave.\n"
         "In a context with a single Stock Location, this includes "
