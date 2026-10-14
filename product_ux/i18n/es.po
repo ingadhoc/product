@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-09 16:42+0000\n"
+"POT-Creation-Date: 2026-10-09 16:41+0000\n"
 "PO-Revision-Date: 2026-10-09 16:42+0000\n"
 "Last-Translator: ADHOC - Bot <transbot@adhoc.com.ar>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
@@ -33,10 +33,10 @@ msgstr ""
 #. module: product_ux
 #. odoo-python
 #: code:addons/product_ux/models/res_config_settings.py:0
-msgid "\"%s\" cannot be searched: it is neither stored nor has a search method."
+msgid ""
+"\"%s\" cannot be searched: it is neither stored nor has a search method."
 msgstr ""
-"\"%s\" no se puede buscar: no está almacenado ni tiene un método de "
-"búsqueda."
+"\"%s\" no se puede buscar: no está almacenado ni tiene un método de búsqueda."
 
 #. module: product_ux
 #. odoo-python
@@ -106,7 +106,9 @@ msgstr "Descripción"
 #: model:ir.model.fields,field_description:product_ux.field_ir_actions_report__display_name
 #: model:ir.model.fields,field_description:product_ux.field_product_pricelist_item__display_name
 #: model:ir.model.fields,field_description:product_ux.field_product_product__display_name
+#: model:ir.model.fields,field_description:product_ux.field_product_search_mixin__display_name
 #: model:ir.model.fields,field_description:product_ux.field_product_template__display_name
+#: model:ir.model.fields,field_description:product_ux.field_res_config_settings__display_name
 #: model:ir.model.fields,field_description:product_ux.field_uom_uom__display_name
 msgid "Display Name"
 msgstr "Nombre para mostrar"
@@ -151,7 +153,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_ux.field_ir_actions_report__id
 #: model:ir.model.fields,field_description:product_ux.field_product_pricelist_item__id
 #: model:ir.model.fields,field_description:product_ux.field_product_product__id
+#: model:ir.model.fields,field_description:product_ux.field_product_search_mixin__id
 #: model:ir.model.fields,field_description:product_ux.field_product_template__id
+#: model:ir.model.fields,field_description:product_ux.field_res_config_settings__id
 #: model:ir.model.fields,field_description:product_ux.field_uom_uom__id
 msgid "ID"
 msgstr ""
@@ -288,8 +292,7 @@ msgstr "Garantía"
 #: model_terms:ir.ui.view,arch_db:product_ux.res_config_settings_view_form
 msgid ""
 "When picking a product in a sales or purchase line, also find it by the "
-"fields you choose. It does not change the Search... box of the product "
-"lists."
+"fields you choose. It does not change the Search... box of the product lists."
 msgstr ""
 "Al elegir un producto en una línea de venta o de compra, también lo "
 "encuentra por los campos que elija. No cambia el cuadro Buscar... de las "
