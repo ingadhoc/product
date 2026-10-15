@@ -8,7 +8,7 @@
             <field name="inherit_id" ref="stock.view_stock_product_template_tree"/>
             <field name="arch" type="xml">
                 <field name="qty_available" position="after">
-                    <button type="object" name="view_stock_detail" invisible="type != 'consu'" icon="zoom_in" groups="base.group_user" title="View Stock Detail"/>
+                    <button type="object" name="view_stock_detail" invisible="not show_on_hand_qty_status_button" icon="zoom_in" groups="stock.group_stock_user" title="View Stock Detail"/>
                 </field>
             </field>
         </record>
@@ -37,7 +37,7 @@
                 <form string="Product Stock by Locations" create="false" edit="false">
                     <field name="id" invisible="1"/>
                     <field name="name" readonly="1"/>
-                    <field name="location_ids" context="{'list_view_ref': 'product_stock_by_location.view_location_stock_tree', 'template_id': id}"/>
+                    <field name="location_ids" context="{'list_view_ref': 'product_stock_by_location.view_location_stock_tree'}"/>
                 </form>
             </field>
         </record>
@@ -50,7 +50,8 @@
             <field name="inherit_id" ref="stock.view_stock_product_tree"/>
             <field name="arch" type="xml">
                 <field name="qty_available" position="after">
-                    <button type="object" name="view_stock_detail" invisible="type != 'consu'" icon="zoom_in" groups="base.group_user" title="View Stock Detail"/>
+                    <field name="show_on_hand_qty_status_button" column_invisible="True" groups="stock.group_stock_user"/>
+                    <button type="object" name="view_stock_detail" invisible="not show_on_hand_qty_status_button" icon="zoom_in" groups="stock.group_stock_user" title="View Stock Detail"/>
                 </field>
             </field>
         </record>
@@ -63,7 +64,7 @@
             <field name="priority">99</field>
             <field name="arch" type="xml">
                 <field name="location_ids" position="attributes">
-                    <attribute name="context">{'list_view_ref': 'product_stock_by_location.view_location_stock_tree', 'product_id': id}</attribute>
+                    <attribute name="context">{'list_view_ref': 'product_stock_by_location.view_location_stock_tree'}</attribute>
                 </field>
             </field>
         </record>
