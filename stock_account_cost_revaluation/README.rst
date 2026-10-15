@@ -1,99 +1,136 @@
+.. |company| replace:: ADHOC SA
+
+.. |company_logo| image:: https://raw.githubusercontent.com/ingadhoc/maintainer-tools/master/resources/adhoc-logo.png
+   :alt: ADHOC SA
+   :target: https://www.adhoc.com.ar
+
+.. |icon| image:: https://raw.githubusercontent.com/ingadhoc/maintainer-tools/master/resources/adhoc-icon.png
+
+.. image:: https://img.shields.io/badge/license-AGPL--3-blue.png
+   :target: https://www.gnu.org/licenses/agpl
+   :alt: License: AGPL-3
+
 =======================================
 Stock Account - Cost Change Revaluation
 =======================================
 
-Postea el asiento de revaluación de inventario al cambiar el costo contable
-(``standard_price``) de productos con categoría de valoración perpetua
-(``real_time``), en costeo estándar o promedio (AVCO).
+Since Odoo 19, changing the cost of a product no longer posts the inventory
+revaluation entry: the standard records the price change as a value adjustment
+(``product.value``) and leaves the accounting to the inventory valuation closing.
+That closing is not run automatically for companies with automated (perpetual)
+valuation, so for those products the revaluation never reaches the books on its
+own.
 
-Características
-===============
+This module posts the revaluation entry at the moment the cost changes, for
+products whose category uses **automated (perpetual) valuation** with **standard**
+or **average (AVCO)** costing:
 
-- Al cambiar el costo contable (``standard_price``) de un producto con
-  **categoría de valoración perpetua** (``real_time``) y costeo **estándar** o
-  **promedio (AVCO)**, genera automáticamente el asiento de revaluación de
-  inventario por la diferencia sobre el stock on hand:
-  ``qty_on_hand × (costo_nuevo − costo_viejo)``.
-- Aplica a cualquier origen del cambio de costo, ya que engancha en el punto
-  común de todo cambio de ``standard_price``: edición manual del costo en la
-  ficha, actualización desde el costo de reposición (módulo
-  ``product_replenishment_cost`` cuando está instalado, incluida la diferencia
-  de tipo de cambio con costo en moneda secundaria), importaciones, etc.
-- El signo del asiento (Debe/Haber) lo maneja la misma lógica del cierre de
-  inventario nativo (``res.company._prepare_inventory_aml_vals``).
-- **Contrapartida = la cuenta de revaluación de inventario de la categoría**
-  (``property_cost_revaluation_account_id``, campo nuevo "Cost Revaluation
-  Account"), que es la cuenta de resultado de la revaluación. Si esa cuenta **no
-  está configurada, no se postea** el asiento (misma lógica que el core con la
-  cuenta de una ubicación de scrap/ajuste: sin cuenta, sin asiento). No se usa la
-  cuenta de variación de stock (pertenece al cierre continental) ni la de
-  diferencia de precio (se usa para la diferencia de precio de compras / PPV).
-- El asiento queda **vinculado al ``product.value``** que el estándar registra por
-  el cambio de costo (campo ``account_move_id``, que aporta ``stock_account_ux``).
-  Sin ese vínculo el ajuste sigue figurando como pendiente en el reporte de
-  valuación y el cierre de inventario lo vuelve a contabilizar.
-- **No** genera asiento (por diseño): productos con costeo FIFO
-  (``standard_price`` es informativo), categorías con valoración periódica (lo
-  materializa el cierre de inventario), productos sin stock on hand y categorías
-  sin cuenta de revaluación.
+#. **Every cost change books the entry, whatever its origin.** The Cost field on
+   the product form, the update from the replenishment cost
+   (``product_replenishment_cost``: the monthly cron "Update Cost from
+   Replenishment Cost", exchange rate difference included when the replenishment
+   cost is in another currency), an import, or any other write on the cost.
+#. **The entry books the difference on the stock on hand** of the company the user
+   is working in: ``quantity on hand × (new cost − previous cost)``. A higher cost
+   debits the stock valuation account and credits the cost revaluation account; a
+   lower cost does the opposite. The entry is posted in the stock journal of the
+   category, with the reference "Revaluación de costo: <product>", and its
+   valuation line names the product, so the journal items can be filtered per
+   product.
+#. **The counterpart is the "Cost Revaluation Account" of the product category**, a
+   new field shown right after the Stock Valuation Account, only for automated
+   valuation with standard or average costing. It is the profit or loss account of
+   the revaluation. It is on purpose neither the stock variation account (that one
+   belongs to the periodic closing) nor the price difference account (used for the
+   purchase price difference).
+#. **Without that account, no entry is posted**, the same way the standard books no
+   entry for a scrap or adjustment location without an account. The price change is
+   still recorded as a value adjustment, so the Inventory Valuation report keeps
+   showing it as pending and the next inventory valuation closing books it.
+#. **The entry is linked to the value adjustment** that the standard records for the
+   price change (field "Journal Entry" of ``product.value``), so whoever reads that
+   link can tell the adjustment is already booked. With ``stock_account_ux``
+   installed, the Inventory Valuation report stops showing it as pending and the
+   inventory valuation closing does not book it a second time.
+#. **No entry is posted, by design, for:** FIFO products (there the cost is
+   informative and the revaluation is done by adjusting the value of the move),
+   categories with periodic valuation (*Periodic (at closing)*: the closing books it), non-storable
+   products, products without stock on hand in the company, and a cost that stays
+   the same. If the category has no stock valuation account or no stock journal
+   the entry is skipped and a warning is written to the server log.
 
-Detalles Técnicos
-=================
-
-- Modelos heredados:
-
-  - ``product.product``: override de ``_change_standard_price``, método
-    ``_create_cost_revaluation_entry`` que arma y postea el ``account.move`` de
-    revaluación, y ``_link_cost_revaluation_entry`` que lo deja apuntado en el
-    ``product.value`` del cambio de costo.
-  - ``product.category``: campo nuevo ``property_cost_revaluation_account_id``
-    ("Cost Revaluation Account"), Many2one a ``account.account``,
-    company-dependent.
-
-- Vistas incluidas:
-
-  - ``view_category_property_form``: hereda
-    ``stock_account.view_category_property_form`` y agrega el campo
-    ``property_cost_revaluation_account_id`` en el formulario de categoría de
-    producto (visible solo para valoración ``real_time`` y costeo
-    ``standard``/``average``).
-
-Uso
-===
-
-1. En la **categoría de producto**, configurar método de costeo *Estándar* o
-   *Promedio (AVCO)* y valoración de inventario *Automática (perpetua)*, junto
-   con las cuentas y el diario de stock (como toda valoración automática).
-2. Definir la **Cuenta de revaluación de inventario** ("Cost Revaluation Account")
-   en la categoría (es la cuenta de resultado de la revaluación). Si no se define,
-   el módulo no postea el asiento.
-3. Al cambiar el costo contable de un producto con stock — manualmente en la
-   ficha o por la actualización desde el costo de reposición — el módulo postea
-   automáticamente el asiento de revaluación por la diferencia.
-
-Arquitectura
+Installation
 ============
 
-La lógica se engancha en ``product.product._change_standard_price``, el punto
-por el que pasa todo cambio de ``standard_price`` en Odoo. Tras el
-comportamiento estándar, para los productos elegibles (categoría ``real_time``,
-costeo estándar o promedio, almacenable y con stock on hand) se calcula la
-diferencia de valuación y se postea el asiento entre la cuenta de valuación y la
-**cuenta de revaluación de inventario** de la categoría. Si esa cuenta de
-resultado no está configurada no se genera asiento, igual que el core no valoriza
-un movimiento hacia una ubicación sin cuenta de valuación.
+To install this module, you need to:
 
-Dependencias
-============
+#. Just install this module.
 
-- ``stock_account``
+Configuration
+=============
 
-Autor
+To configure this module, you need to:
+
+#. Go to *Inventory > Configuration > Product Categories* and open the category.
+   Set the *Costing Method* to *Standard Price* or *Average Cost (AVCO)* and the
+   *Inventory Valuation* to *Perpetual (at invoicing)*, with its stock valuation
+   account and stock journal, as for any perpetual category.
+#. Fill in the *Cost Revaluation Account* that appears after the *Stock Valuation
+   Account* with the profit or loss account of the revaluation. The field is per
+   company: set it in each company that revalues. While it is empty no entry is
+   posted.
+
+Usage
 =====
 
-ADHOC SA
+To use this module, you need to:
 
-Licencia
-========
+#. **Change the cost by hand.** Open the product, edit the *Cost* field (shown as
+   *Accounting Cost* when ``product_replenishment_cost`` is installed) and save.
+   If the product has stock on hand, a posted entry appears in the stock journal
+   under *Accounting > Journal Entries*, with the reference
+   "Revaluación de costo: <product>".
+#. **Update the cost from the replenishment cost.** With
+   ``product_replenishment_cost`` installed, the cron "Update Cost from
+   Replenishment Cost" writes the replenishment cost into the cost of every
+   product that has one. Each product whose cost changed books its own entry, so
+   keep the cron monthly as it comes: running it daily posts an entry per product
+   and per change.
+#. **Check the Inventory Valuation report** (*Accounting > Reporting > Review >
+   Inventory > Inventory Valuation*, Enterprise, with ``stock_account_ux``
+   installed). The price change appears in the variation with its journal entry
+   and is not part of the pending difference. If the category had no Cost
+   Revaluation Account when the cost changed, the adjustment stays pending there
+   until the next inventory valuation closing.
 
-AGPL-3
+.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
+   :alt: Try me on Runbot
+   :target: http://runbot.adhoc.com.ar/
+
+Bug Tracker
+===========
+
+Bugs are tracked on `GitHub Issues
+<https://github.com/ingadhoc/product/issues>`_. In case of trouble, please
+check there if your issue has already been reported. If you spotted it first,
+help us smashing it by providing a detailed and welcomed feedback.
+
+Credits
+=======
+
+Images
+------
+
+* |company| |icon|
+
+Contributors
+------------
+
+Maintainer
+----------
+
+|company_logo|
+
+This module is maintained by the |company|.
+
+To contribute to this module, please visit https://www.adhoc.com.ar.

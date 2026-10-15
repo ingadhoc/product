@@ -101,13 +101,10 @@ class TestCostRevaluation(TransactionCase):
             "Sin cuenta de revaluación no debe generar asiento",
         )
 
-    def _pending_variation(self, product):
-        # diferencia que el reporte/cierre de Valoración de inventario sugeriría postear
-        # sobre la cuenta de valuación: valuación teórica (total_value) vs. saldo contable.
-        company = self.company
-        accounts_by_product = company._get_accounts_by_product(products=product)
-        inventory = company.stock_value(accounts_by_product)
-        accounting = company.stock_accounting_value(accounts_by_product)
+    def _pending_variation(self):
+        # company-wide pending variation per valuation account: inventory value vs. booked balance
+        inventory = self.company.get_inventory_value()
+        accounting = self.company.get_inventory_accounting_value()
         return {acc: inventory.get(acc, 0.0) - accounting.get(acc, 0.0) for acc in inventory.keys() | accounting.keys()}
 
     def test_no_suggested_entry_on_valuation_account(self):
@@ -115,11 +112,11 @@ class TestCostRevaluation(TransactionCase):
         # así que la variación pendiente sobre la cuenta de valuación queda igual que antes
         # (no aparece variación nueva en esa pata del cierre/reporte).
         product = self._product(self._categ("standard", "real_time"))  # costo 10, qty 10
-        pending_before = self._pending_variation(product)
+        pending_before = self._pending_variation()
 
         product.standard_price = 15.0  # +50 sobre la cuenta de valuación
 
-        pending_after = self._pending_variation(product)
+        pending_after = self._pending_variation()
         for acc in set(pending_before) | set(pending_after):
             delta = pending_after.get(acc, 0.0) - pending_before.get(acc, 0.0)
             self.assertTrue(
