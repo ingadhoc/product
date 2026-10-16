@@ -14,7 +14,11 @@
 Product Currency
 ================
 
-This module allow to define on products a different currency from the default one (which is company currency were this product is defined).
+#. Adds the field "Force Currency" on products. When it is set, it becomes the product currency
+   everywhere (product form, searches, filters, group by and sorting by currency). When it is
+   empty, the product uses the currency of its company.
+#. Shows the "Currency" field on the product form, to make clear which currency the product uses.
+#. Enables multi-currency for internal users, if it is not enabled yet.
 
 Installation
 ============
@@ -30,18 +34,14 @@ To configure this module, you need to:
 
 #. No configuration needed.
 
-
 Usage
 =====
 
 To use this module, you need to:
 
-#. If you want to force a currency different from the company which the product is, then set this field.
-#. If you want to use the same currency of the company then just remove the value in "Force Currency" field.
-
-.. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
-   :alt: Try me on Runbot
-   :target: http://runbot.adhoc.com.ar/
+#. Go to a product form.
+#. To use a currency other than the company one, set it in the "Force Currency" field.
+#. To use the company currency again, clear the "Force Currency" field.
 
 Bug Tracker
 ===========
