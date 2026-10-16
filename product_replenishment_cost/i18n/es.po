@@ -414,6 +414,16 @@ msgid "Number of messages with delivery error"
 msgstr "Número de mensajes con error de envío"
 
 #. module: product_replenishment_cost
+#. odoo-python
+#: code:addons/product_replenishment_cost/models/product_replenishment_cost_rule_item.py:0
+msgid ""
+"Only users allowed to use expressions on replenishment cost rules can set an"
+" expression."
+msgstr ""
+"Solo los usuarios habilitados para usar expresiones en las reglas de costo de "
+"reposición pueden definir una expresión."
+
+#. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__percentage_amount
 msgid "Percentage Amount"
 msgstr "Importe en porcentaje"
