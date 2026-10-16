@@ -32,7 +32,11 @@ class PurchaseOrderLine(models.Model):
 
             price_unit = (
                 line.env["account.tax"]._fix_tax_included_price_company(
-                    seller.net_price, line.product_id.supplier_taxes_id, line.tax_ids, line.company_id
+                    seller.net_price,
+                    line.product_id.supplier_taxes_id,
+                    line.tax_ids,
+                    line.company_id,
+                    document_tax_mode=line.document_tax_mode,
                 )
                 if seller
                 else 0.0
@@ -43,6 +47,11 @@ class PurchaseOrderLine(models.Model):
 
             if seller and line.uom_id and seller.uom_id != line.uom_id:
                 price_unit = seller.uom_id._compute_price(price_unit, line.uom_id)
+
+            # since 20.0 the order can be tax included: adapt the price as core does with the vendor price
+            price_unit = line.product_id._adapt_price_unit_to_document_tax_mode(
+                price_unit, line.product_id.supplier_taxes_id, line.uom_id, line.document_tax_mode
+            )
 
             # Update both price_unit and technical_price_unit
             line.price_unit = line.technical_price_unit = price_unit

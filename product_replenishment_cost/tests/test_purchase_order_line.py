@@ -117,3 +117,39 @@ class TestPurchaseOrderLine(TransactionCase):
 
         # Verify the price is set (currency conversion handled internally)
         self.assertTrue(po_line.price_unit > 0)
+
+
+class TestPurchaseOrderLineTaxMode(TransactionCase):
+    def test_net_price_follows_document_tax_mode(self):
+        """The net price is adapted to the order tax mode, as core does with the vendor price."""
+        company = self.env.company
+        company.account_price_include = "tax_excluded"
+        tax = self.env["account.tax"].create(
+            {"name": "VAT 21", "amount": 21.0, "type_tax_use": "purchase", "company_id": company.id}
+        )
+        rule = self.env["product.replenishment_cost.rule"].create(
+            {"name": "Freight", "item_ids": [(0, 0, {"name": "Freight", "percentage_amount": 10.0})]}
+        )
+        partner = self.env["res.partner"].create({"name": "Tax Mode Supplier"})
+        product = self.env["product.product"].create(
+            {"name": "Tax Mode Product", "purchase_ok": True, "supplier_taxes_id": [(6, 0, tax.ids)]}
+        )
+        self.env["product.supplierinfo"].create(
+            {
+                "partner_id": partner.id,
+                "product_tmpl_id": product.product_tmpl_id.id,
+                "price": 100.0,
+                "replenishment_cost_rule_id": rule.id,
+            }
+        )
+        for document_tax_mode, expected in (("tax_excluded", 110.0), ("tax_included", 133.1)):
+            order = self.env["purchase.order"].create(
+                {
+                    "partner_id": partner.id,
+                    "document_tax_mode": document_tax_mode,
+                    "order_line": [(0, 0, {"product_id": product.id, "product_qty": 1.0})],
+                }
+            )
+            with self.subTest(document_tax_mode=document_tax_mode):
+                self.assertAlmostEqual(order.order_line.price_unit, expected, places=2)
+                self.assertAlmostEqual(order.order_line.price_subtotal, 110.0, places=2)
