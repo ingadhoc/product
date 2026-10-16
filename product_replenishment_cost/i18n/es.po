@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-16 12:21+0000\n"
-"PO-Revision-Date: 2026-10-16 12:21+0000\n"
+"POT-Creation-Date: 2026-10-16 13:14+0000\n"
+"PO-Revision-Date: 2026-10-16 13:14+0000\n"
 "Last-Translator: ADHOC - Bot <transbot@adhoc.com.ar>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "Language: es\n"
@@ -520,6 +520,16 @@ msgstr "Número de mensajes que requieren una acción"
 #: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_run__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Número de mensajes con error de envío"
+
+#. module: product_replenishment_cost
+#. odoo-python
+#: code:addons/product_replenishment_cost/models/product_replenishment_cost_rule_item.py:0
+msgid ""
+"Only users allowed to use expressions on replenishment cost rules can set an"
+" expression."
+msgstr ""
+"Solo los usuarios habilitados para usar expresiones en las reglas de costo de "
+"reposición pueden definir una expresión."
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule_item__percentage_amount
