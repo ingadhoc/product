@@ -31,7 +31,8 @@ Replenishment Cost Updates (run log)
 ====================================
 
 Every run of the "Update Cost from Replenishment Cost" scheduled action and every manual update
-from the wizard is logged on "Replenishment Cost Updates" (menu next to the cost rules): when it
+from the wizard is logged on "Replenishment Cost Updates" (Sales > Configuration, next to the
+"Replenishment Cost Rules" menu): when it
 started and finished, who launched it, how many products were processed and, for each product whose
 accounting cost actually changed, the previous and the new cost.
 
@@ -57,7 +58,9 @@ Configuration
 
 To configure this module, you need to:
 
-#. No configuration needed.
+#. Replenishment cost rules are managed from Sales > Configuration > Replenishment Cost Rules.
+#. The "Update Cost from Replenishment Cost" scheduled action is inactive by default: activate it
+   to update the accounting cost monthly from the replenishment cost.
 
 Usage
 =====
