@@ -178,8 +178,14 @@ class ProductTemplate(models.Model):
                 )
 
             # if product has taxes with price_include, add the tax to the
-            # sale price
-            inc_taxes = rec.taxes_id.filtered("price_include")
+            # sale price. Only the taxes of the product main company are taken
+            # into account: taxes_id can hold the sale taxes of every company
+            # the product is shared with (one per company) and adding all of
+            # them would add the tax as many times as companies share it.
+            company_taxes = rec.taxes_id.filtered_domain(
+                self.env["account.tax"]._check_company_domain(rec.main_company_id)
+            )
+            inc_taxes = company_taxes.filtered("price_include")
             if inc_taxes:
                 computed_list_price = inc_taxes.compute_all(
                     computed_list_price,
