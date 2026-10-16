@@ -8,7 +8,7 @@
             <form string="Replenishment Cost Update" create="false" edit="false">
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button name="action_view_lines" type="object" class="oe_stat_button" icon="fa-list">
+                        <button name="action_view_lines" type="object" class="oe_stat_button" icon="format_list_bulleted">
                             <field name="line_count" widget="statinfo" string="Updated Costs"/>
                         </button>
                     </div>
