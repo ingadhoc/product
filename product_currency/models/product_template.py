@@ -3,6 +3,7 @@
 # directory
 ##############################################################################
 from odoo import api, fields, models
+from odoo.tools import SQL
 
 
 class ProductTemplate(models.Model):
@@ -24,3 +25,6 @@ class ProductTemplate(models.Model):
         for rec in forced_products:
             rec.currency_id = rec.force_currency_id
         super(ProductTemplate, self - forced_products)._compute_currency_id()
+
+    def _compute_sql_currency_id(self, table):
+        return SQL("COALESCE(%s, %s)", table.force_currency_id, super()._compute_sql_currency_id(table))
