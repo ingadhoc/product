@@ -15,9 +15,8 @@ class TestDiscountRestriction(TransactionCase):
                 "item_ids": [
                     Command.create(
                         {
-                            "applied_on": "3_global",
-                            "compute_price": "percentage",
-                            "percent_price": 30.0,
+                            "compute_price": "discount",
+                            "price_discount": 30.0,
                         }
                     )
                 ],

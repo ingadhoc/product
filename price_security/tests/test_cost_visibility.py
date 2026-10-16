@@ -53,7 +53,9 @@ class TestCostVisibility(TransactionCase):
         view = self.env.ref("stock.view_production_lot_form")
         arch = self.env["stock.lot"].with_user(self.restricted_user).get_view(view.id, "form")["arch"]
         arch = etree.fromstring(arch)
-        for field_name in ("total_value", "avg_cost", "standard_price"):
+        # avg_cost left the lot form in 20.0; the module still hides it in case
+        # another module puts it back
+        for field_name in ("total_value", "standard_price"):
             nodes = arch.xpath("//field[@name='%s']" % field_name)
             self.assertTrue(nodes, "%s is expected on the lot form" % field_name)
             for node in nodes:

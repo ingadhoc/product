@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-02 18:17+0000\n"
-"PO-Revision-Date: 2026-01-15 20:10+0000\n"
+"POT-Creation-Date: 2026-10-16 19:18+0000\n"
+"PO-Revision-Date: 2026-10-16 19:18+0000\n"
 "Last-Translator: Nicolas Col <nco@adhoc.inc>\n"
 "Language-Team: Spanish <https://translation.dev-adhoc.com/projects/"
 "product-19-0/product-19-0-price_security/es/>\n"
@@ -21,6 +21,143 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ((n != 0 && n % 1000000 == "
 "0) ? 1 : 2);\n"
 "X-Generator: Weblate 5.10.4\n"
+
+#. module: price_security
+#: model:ir.module.module,description:base.module_price_security
+msgid ""
+".. |company| replace:: ADHOC SA\n"
+"\n"
+".. |company_logo| image:: https://raw.githubusercontent.com/ingadhoc/maintainer-tools/master/resources/adhoc-logo.png\n"
+"   :alt: ADHOC SA\n"
+"   :target: https://www.adhoc.com.ar\n"
+"\n"
+".. |icon| image:: https://raw.githubusercontent.com/ingadhoc/maintainer-tools/master/resources/adhoc-icon.png\n"
+"\n"
+".. image:: https://img.shields.io/badge/license-AGPL--3-blue.png\n"
+"   :target: https://www.gnu.org/licenses/agpl\n"
+"   :alt: License: AGPL-3\n"
+"\n"
+"==============\n"
+"Price Security\n"
+"==============\n"
+"\n"
+"Keep prices under control when not everyone in the company may set them.\n"
+"\n"
+"The module adds two permissions. The first one, *Solo ver: precio venta y\n"
+"compra* (only view sale and purchase price), stops a user from changing prices,\n"
+"discounts, pricelists and payment terms. The second one, *Solo ver: precio de\n"
+"venta* (only view sale price), also hides the cost from the screens that show\n"
+"it.\n"
+"\n"
+"Features\n"
+"========\n"
+"\n"
+"* **A discount range per user and per pricelist.** Each user gets a list of\n"
+"  pricelists with the minimum and the maximum discount allowed on each one. The\n"
+"  range applies to what the user adds *on top of* the pricelist discount, both\n"
+"  on sale orders and on customer invoices.\n"
+"* **Prices in read only.** Unit price, cost, sales price, unit of measure and\n"
+"  vendors become read only for restricted users, on the product, on the sale\n"
+"  order lines and on the customer invoice lines.\n"
+"* **Products that anyone may reprice.** A product marked with *Can modify\n"
+"  prices* is left out: any user may set its price on a sale order or an\n"
+"  invoice.\n"
+"* **Pricelists and payment terms in read only.** A restricted user cannot\n"
+"  create or change a pricelist, a pricelist rule or a payment term.\n"
+"* **A restricted choice of pricelist and payment term.** Each pricelist and\n"
+"  each payment term carries the list of the ones a restricted user may pick\n"
+"  instead of it. On a sale order the user may only choose the one of the\n"
+"  customer or one from that list. Both also get a sequence field, so the lists\n"
+"  can be ordered.\n"
+"* **The cost out of sight.** For users with *Solo ver: precio de venta*, the\n"
+"  cost is hidden on the product form and on the lists that reach it: the\n"
+"  accounting cost and the inventory valuation columns on the product and stock\n"
+"  report lists, the value on the quant lists, and the valuation fields on the\n"
+"  lot form. The secondary currency columns added by ``stock_currency_valuation``\n"
+"  are hidden too when that module is installed.\n"
+"\n"
+"Installation\n"
+"============\n"
+"\n"
+"To install this module, you need to:\n"
+"\n"
+"#. Just install this module.\n"
+"\n"
+"Configuration\n"
+"=============\n"
+"\n"
+"To configure this module, you need to:\n"
+"\n"
+"#. Give the users you want to restrict one of the two permissions, under the\n"
+"   *Restricción de precios* privilege.\n"
+"#. For the same users, set the discount ranges on the *Discounts Permissions*\n"
+"   tab of their user form.\n"
+"#. On each pricelist and payment term, fill in *Allowed Pricelists* and\n"
+"   *Allowed Payment Terms* with the ones a restricted user may pick instead.\n"
+"#. Tick *Can modify prices* on the products whose price anyone may change.\n"
+"\n"
+"Usage\n"
+"=====\n"
+"\n"
+"A user with *Solo ver: precio venta y compra* cannot:\n"
+"\n"
+"#. change the unit price on a sale order line or on a customer invoice line;\n"
+"#. apply a discount outside the range configured for them, on those same lines;\n"
+"#. apply a global discount or a fixed amount from the discount wizard of a sale\n"
+"   order, when the pricelist of the order is one of their restricted ones;\n"
+"#. pick a pricelist or a payment term that is neither the one of the customer\n"
+"   nor one of the allowed ones, on the sale order and on the contact;\n"
+"#. change the sales price, the cost, the unit of measure or the vendors of a\n"
+"   product;\n"
+"#. create or change a pricelist, a pricelist rule or a payment term.\n"
+"\n"
+"On the sale order form there is one more guard, and it is only a guard: when a\n"
+"restricted user picks another customer on an order that already has lines, and\n"
+"that customer would bring another pricelist, the form warns and puts the\n"
+"previous customer back. Being an onchange, it lives in the form only — a write,\n"
+"an import or another module still changes the customer, and the order then\n"
+"takes the pricelist of the new one.\n"
+"\n"
+"A user with *Solo ver: precio de venta* cannot do any of the above, and on top\n"
+"of that does not see the cost anywhere: product form and lists, stock report,\n"
+"quant lists and lot form.\n"
+"\n"
+"Note that hiding the cost is interface level security: the fields are out of\n"
+"the views, but the data can still be reached through exports, filters or\n"
+"groupings.\n"
+"\n"
+".. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas\n"
+"   :alt: Try me on Runbot\n"
+"   :target: http://runbot.adhoc.com.ar/\n"
+"\n"
+"Bug Tracker\n"
+"===========\n"
+"\n"
+"Bugs are tracked on `GitHub Issues\n"
+"<https://github.com/ingadhoc/product/issues>`_. In case of trouble, please\n"
+"check there if your issue has already been reported. If you spotted it first,\n"
+"help us smashing it by providing a detailed and welcomed feedback.\n"
+"\n"
+"Credits\n"
+"=======\n"
+"\n"
+"Images\n"
+"------\n"
+"\n"
+"* |company| |icon|\n"
+"\n"
+"Contributors\n"
+"------------\n"
+"\n"
+"Maintainer\n"
+"----------\n"
+"\n"
+"|company_logo|\n"
+"\n"
+"This module is maintained by the |company|.\n"
+"\n"
+"To contribute to this module, please visit https://www.adhoc.com.ar.\n"
+msgstr ""
 
 #. module: price_security
 #: model_terms:ir.ui.view,arch_db:price_security.sale_order_line_wizard_form
@@ -54,12 +191,12 @@ msgstr "Contacto"
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado el"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_res_users_discount_restriction
@@ -80,7 +217,7 @@ msgstr "Asistente de descuentos"
 #. module: price_security
 #: model_terms:ir.ui.view,arch_db:price_security.view_price_security_users_form
 msgid "Discounts Permissions"
-msgstr ""
+msgstr "Permisos de descuentos"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_account_move__display_name
@@ -98,7 +235,7 @@ msgstr ""
 #: model:ir.model.fields,field_description:price_security.field_stock_lot__display_name
 #: model:ir.model.fields,field_description:price_security.field_stock_quant__display_name
 msgid "Display Name"
-msgstr "Nombre para mostrar"
+msgstr "Nombre en pantalla"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_account_move__id
@@ -143,27 +280,32 @@ msgstr "Apunte contable"
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__write_uid
 msgid "Last Updated by"
-msgstr ""
+msgstr "Última actualización por"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__write_date
 msgid "Last Updated on"
-msgstr ""
+msgstr "Última actualización el"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_stock_lot
 msgid "Lot/Serial"
-msgstr ""
+msgstr "Número de serie/lote"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__max_discount
 msgid "Max. Discount"
-msgstr ""
+msgstr "Descuento máx."
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_res_users_discount_restriction__min_discount
 msgid "Min. Discount"
-msgstr ""
+msgstr "Descuento mín."
+
+#. module: price_security
+#: model:res.groups.privilege,placeholder:price_security.module_prices_management
+msgid "No"
+msgstr "No"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_account_payment_term
@@ -173,7 +315,12 @@ msgstr "Condiciones de pago"
 #. module: price_security
 #: model:ir.model.fields,help:price_security.field_account_payment_term__payment_term_allowed_ids
 msgid "Payment terms that a user with restrictions can select"
-msgstr ""
+msgstr "Condiciones de pago que puede seleccionar un usuario con restricciones"
+
+#. module: price_security
+#: model:ir.module.module,shortdesc:base.module_price_security
+msgid "Price Security"
+msgstr "Seguridad de precios"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_product_pricelist
@@ -185,6 +332,8 @@ msgstr "Lista de precios"
 #: model:ir.model.fields,help:price_security.field_product_pricelist__pricelist_allowed_ids
 msgid "Pricelists that a user with price restriction can select"
 msgstr ""
+"Listas de precios que puede seleccionar un usuario con restricción de "
+"precios"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_product_template
@@ -194,17 +343,17 @@ msgstr "Producto"
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_account_move_line__product_can_modify_prices
 msgid "Product Can modify prices"
-msgstr ""
+msgstr "El producto permite modificar precios"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_product_product
 msgid "Product Variant"
-msgstr "Variante de producto"
+msgstr "Variante del producto"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_stock_quant
-msgid "Quants"
-msgstr ""
+msgid "Quant"
+msgstr "Cant"
 
 #. module: price_security
 #: model:res.groups.privilege,name:price_security.module_prices_management
@@ -214,12 +363,12 @@ msgstr ""
 #. module: price_security
 #: model:ir.model,name:price_security.model_sale_order
 msgid "Sales Order"
-msgstr "Pedido de venta"
+msgstr "Orden de venta"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Línea de pedido de venta"
+msgstr "Línea de la orden de venta"
 
 #. module: price_security
 #: model:ir.model.fields,field_description:price_security.field_account_payment_term__sequence
@@ -244,6 +393,8 @@ msgid ""
 "The applied discount is not allowed. Discount must bebetween %s and %s for "
 "pricelist \"%s\""
 msgstr ""
+"El descuento aplicado no está permitido. El descuento debe estar entre "
+"%s y %s para la lista de precios \"%s\""
 
 #. module: price_security
 #. odoo-python
@@ -252,6 +403,8 @@ msgid ""
 "The change of the customer generates a  change in the price list, remember "
 "to check / update the prices"
 msgstr ""
+"El cambio del cliente genera un cambio en la lista de precios, recuerde "
+"revisar / actualizar los precios"
 
 #. module: price_security
 #: model:ir.model,name:price_security.model_res_users
@@ -266,6 +419,8 @@ msgid ""
 "You are not allowed to select this payment term according to the "
 "restrictions configured"
 msgstr ""
+"No tiene permiso para seleccionar esta condición de pago según las "
+"restricciones configuradas"
 
 #. module: price_security
 #. odoo-python
@@ -274,6 +429,8 @@ msgid ""
 "You are not allowed to select this pricelist according to the restrictions "
 "configured"
 msgstr ""
+"No tiene permiso para seleccionar esta lista de precios según las "
+"restricciones configuradas"
 
 #. module: price_security
 #. odoo-python
@@ -282,12 +439,16 @@ msgid ""
 "You can not change partner if there are sale lines and pricelist is going to "
 "be changed"
 msgstr ""
+"No puede cambiar el cliente si hay líneas de venta y la lista de precios"
+" va a cambiar"
 
 #. module: price_security
 #. odoo-python
 #: code:addons/price_security/models/res_users.py:0
 msgid "You can not give any discount greater than pricelist discounts"
 msgstr ""
+"No puede aplicar un descuento mayor que los descuentos de la lista de "
+"precios"
 
 #. module: price_security
 #. odoo-python
@@ -296,3 +457,5 @@ msgid ""
 "You do not have permission to apply this type of discount with the current "
 "pricelist."
 msgstr ""
+"No tiene permiso para aplicar este tipo de descuento con la lista de "
+"precios actual."
