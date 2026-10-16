@@ -1,7 +1,7 @@
 from unittest.mock import patch
 
 import psycopg2
-from odoo.service.model import MAX_TRIES_ON_CONCURRENCY_FAILURE
+from odoo.http.retrying import MAX_TRIES_ON_CONCURRENCY_FAILURE
 from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
 
@@ -113,6 +113,44 @@ class TestUpdateCostFromReplenishmentCost(TransactionCase):
         self.assertEqual(product.standard_price, 80.0)
 
 
+class TestReplenishmentCostUom(TransactionCase):
+    def test_supplier_price_converted_to_product_uom_before_rule(self):
+        uom_kg = self.env.ref("uom.product_uom_kgm")
+        uom_lb = self.env.ref("uom.product_uom_lb")
+        rule = self.env["product.replenishment_cost.rule"].create(
+            {
+                "name": "Freight",
+                "item_ids": [(0, 0, {"name": "Freight", "percentage_amount": 40.0, "fixed_amount": 2.0})],
+            }
+        )
+        product = self.env["product.template"].create(
+            {
+                "name": "Product in kg bought in lb",
+                "uom_id": uom_kg.id,
+                "replenishment_cost_type": "supplier_price",
+                "replenishment_cost_rule_id": rule.id,
+                "seller_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "partner_id": self.env["res.partner"].create({"name": "Lb Supplier"}).id,
+                            "price": 9.01,
+                            "uom_id": uom_lb.id,
+                            "currency_id": self.env.company.currency_id.id,
+                        },
+                    )
+                ],
+            }
+        )
+
+        self.assertEqual(product.supplier_price, 9.01)
+        self.assertEqual(product.supplier_uom_id, uom_lb)
+        # 9.01 per lb = 19.86 per kg; the rule (fixed amount included) applies per kg
+        self.assertAlmostEqual(product.replenishment_base_cost_on_currency, 19.86, places=2)
+        self.assertAlmostEqual(product.replenishment_cost, 19.8637 * 1.4 + 2.0, places=2)
+
+
 class TestCronUpdateCostRetry(TransactionCase):
     """Reintento del cron ante errores de concurrencia de PostgreSQL.
 
@@ -139,7 +177,9 @@ class TestCronUpdateCostRetry(TransactionCase):
             type(ProductTemplate),
             "_cron_update_cost_from_replenishment_cost",
             side_effect=_flaky,
-        ), patch.object(self.env.cr, "rollback", lambda: None), patch("time.sleep", lambda *args: None):
+        ), patch.object(self.env.cr, "rollback", lambda: None), patch(
+            "time.sleep", lambda *args: None
+        ), self.enter_registry_test_mode():
             result = ProductTemplate.cron_update_cost_from_replenishment_cost(company_ids=[self.env.company.id])
 
         # un fallo transitorio + un reintento exitoso
@@ -159,7 +199,9 @@ class TestCronUpdateCostRetry(TransactionCase):
             type(ProductTemplate),
             "_cron_update_cost_from_replenishment_cost",
             side_effect=_always_fail,
-        ), patch.object(self.env.cr, "rollback", lambda: None), patch("time.sleep", lambda *args: None):
+        ), patch.object(self.env.cr, "rollback", lambda: None), patch(
+            "time.sleep", lambda *args: None
+        ), self.enter_registry_test_mode():
             with self.assertRaises(psycopg2.errors.SerializationFailure):
                 ProductTemplate.cron_update_cost_from_replenishment_cost(company_ids=[self.env.company.id])
 

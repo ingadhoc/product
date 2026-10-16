@@ -64,5 +64,5 @@
 
     <menuitem action="action_product_replenshiment_cost_rule"
         id="menu_product_replenshiment_cost_rule"
-        parent="sale.prod_config_main" sequence="40"/>
+        parent="sale.menu_sale_config" sequence="50"/>
 </odoo>

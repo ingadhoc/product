@@ -1,0 +1,12 @@
+id,name,model_id,group_id/id,operation,domain
+access_product_replenishment_cost_rule_user,product_replenishment_cost_rule_user,product.replenishment_cost.rule,base.group_user,r,
+access_product_replenishment_cost_rule_manager,product_replenishment_cost_rule_manager,product.replenishment_cost.rule,sales_team.group_sale_manager,crud,
+access_product_replenishment_cost_rule_item_public,product_replenishment_cost_rule_item_public,product.replenishment_cost.rule.item,base.group_user,r,
+access_product_replenishment_cost_rule_item_manager,product_replenishment_cost_rule_item_manager,product.replenishment_cost.rule.item,sales_team.group_sale_manager,crud,
+access_product_update_from_replenishment_cost_wizard_public,product_replenishment_cost_product_update_from_replenishment_cost_wizard,product.update_from_replenishment_cost.wizard,base.group_user,cru,
+access_product_replenishment_cost_run_user,product_replenishment_cost_run_user,product.replenishment_cost.run,base.group_user,r,
+access_product_replenishment_cost_run_manager,product_replenishment_cost_run_manager,product.replenishment_cost.run,sales_team.group_sale_manager,crud,
+replenishment_cost_run_company_rule,Replenishment Cost Update: multi-company,product.replenishment_cost.run,,crud,"['|', ('company_ids', '=', False), ('company_ids', 'in', company_ids)]"
+access_product_replenishment_cost_run_line_user,product_replenishment_cost_run_line_user,product.replenishment_cost.run.line,base.group_user,r,
+access_product_replenishment_cost_run_line_manager,product_replenishment_cost_run_line_manager,product.replenishment_cost.run.line,sales_team.group_sale_manager,crud,
+replenishment_cost_run_line_company_rule,Replenishment Cost Update Line: multi-company,product.replenishment_cost.run.line,,crud,"['|', ('company_id', '=', False), ('company_id', 'in', company_ids)]"
