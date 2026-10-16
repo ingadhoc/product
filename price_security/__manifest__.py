@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Price Security",
-    "version": "19.0.1.3.0",
+    "version": "20.0.1.0.0",
     "category": "Sales Management",
     "author": "ADHOC SA, Odoo Community Association (OCA)",
     "website": "http://www.adhoc.com.ar/",
@@ -31,7 +31,7 @@
     ],
     "data": [
         "security/price_security_security.xml",
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "wizard/sale_order_discount_views.xml",
         "views/account_move_views.xml",
         "views/account_payment_term_views.xml",
@@ -40,6 +40,6 @@
         "views/sale_order_views.xml",
         "views/product_pricelist_views.xml",
     ],
-    "installable": False,
+    "installable": True,
     "post_init_hook": "post_init_hook",
 }
