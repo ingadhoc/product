@@ -98,11 +98,19 @@ class ProductTemplate(models.Model):
             last_updated_param = self.env["ir.config_parameter"].sudo().create({"key": parameter_name, "value": "0"})
 
         # Obtiene los registros ordenados por id
+<<<<<<< 815acd962503eba301990ffc74172fe88159e580
         domain = [
             ("list_price_type", "!=", False),
             ("id", ">", int(last_updated_param.value)),
         ]
         records = self.with_context(prefetch_fields=False).search(domain, order="id asc")
+||||||| ca608f7969feffcaf6915e43ed88c497e3c51c82
+        domain = [("list_price_type", "!=", False), ("id", ">", int(last_updated_param.value))]
+        records = self.with_context(prefetch_fields=False).search(domain, order="id asc")
+=======
+        domain = [("list_price_type", "!=", False), ("id", ">", int(last_updated_param.value))]
+        records = self.with_context(prefetch_fields=False).search(domain, order="id asc", limit=batch_size + 1)
+>>>>>>> b8c83ea0771d3a282d3b81be5c96a2a3f768468d
 
         records[:batch_size].with_context(bypass_base_automation=True)._update_prices_from_planned()
 
