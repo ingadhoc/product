@@ -35,7 +35,7 @@ class TestPurchaseOrderLine(TransactionCase):
                 "order_id": self.po.id,
                 "product_id": self.product.id,
                 "product_qty": 1.0,
-                "product_uom_id": self.uom.id,
+                "uom_id": self.uom.id,
                 "price_unit": 10.0,
             }
         )
@@ -76,7 +76,7 @@ class TestPurchaseOrderLine(TransactionCase):
                 "order_id": self.po.id,
                 "product_id": self.product.id,
                 "product_qty": 1.0,
-                "product_uom_id": self.uom.id,
+                "uom_id": self.uom.id,
             }
         )
         # The price should be taken from the supplierinfo
@@ -111,7 +111,7 @@ class TestPurchaseOrderLine(TransactionCase):
                 "order_id": po.id,
                 "product_id": self.product.id,
                 "product_qty": 1.0,
-                "product_uom_id": self.uom.id,
+                "uom_id": self.uom.id,
             }
         )
 

@@ -8,7 +8,7 @@ from odoo import api, fields, models
 class PurchaseOrderLine(models.Model):
     _inherit = "purchase.order.line"
 
-    @api.depends("product_qty", "product_uom_id")
+    @api.depends("product_qty", "uom_id")
     def _compute_price_unit_and_date_planned_and_name(self):
         super()._compute_price_unit_and_date_planned_and_name()
 
@@ -19,12 +19,13 @@ class PurchaseOrderLine(models.Model):
             ):
                 continue
 
+            # since 20.0 _select_seller returns the seller info dict, not the supplierinfo
             seller = line.product_id._select_seller(
                 partner_id=line.partner_id,
                 quantity=line.product_qty,
                 date=line.order_id.date_order and line.order_id.date_order.date(),
-                uom_id=line.product_uom_id,
-            )
+                uom_id=line.uom_id,
+            ).get("supplierinfo")
 
             if not seller:
                 continue
@@ -40,8 +41,8 @@ class PurchaseOrderLine(models.Model):
                 price_unit, line.currency_id, line.company_id, line.date_order or fields.Date.today()
             )
 
-            if seller and line.product_uom_id and seller.product_uom_id != line.product_uom_id:
-                price_unit = seller.product_uom_id._compute_price(price_unit, line.product_uom_id)
+            if seller and line.uom_id and seller.uom_id != line.uom_id:
+                price_unit = seller.uom_id._compute_price(price_unit, line.uom_id)
 
             # Update both price_unit and technical_price_unit
             line.price_unit = line.technical_price_unit = price_unit

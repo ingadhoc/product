@@ -145,6 +145,6 @@
 
     <menuitem action="action_product_replenishment_cost_run"
         id="menu_product_replenishment_cost_run"
-        parent="sale.prod_config_main" sequence="41"/>
+        parent="sale.menu_sale_config" sequence="51"/>
 
 </odoo>
