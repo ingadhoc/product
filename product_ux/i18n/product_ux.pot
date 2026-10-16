@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0+e\n"
+"Project-Id-Version: Odoo Server 20.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-15 18:15+0000\n"
-"PO-Revision-Date: 2026-09-15 18:15+0000\n"
+"POT-Creation-Date: 2026-10-08 20:15+0000\n"
+"PO-Revision-Date: 2026-10-08 20:15+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,19 +16,92 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: product_ux
-#: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_view
-msgid "<span class=\"o_stat_text\">Elementos de tarifa</span>"
+#: model:ir.module.module,description:base.module_product_ux
+msgid ""
+".. |company| replace:: ADHOC SA\n"
+"\n"
+".. |company_logo| image:: https://raw.githubusercontent.com/ingadhoc/maintainer-tools/master/resources/adhoc-logo.png\n"
+"   :alt: ADHOC SA\n"
+"   :target: https://www.adhoc.com.ar\n"
+"\n"
+".. |icon| image:: https://raw.githubusercontent.com/ingadhoc/maintainer-tools/master/resources/adhoc-icon.png\n"
+"\n"
+".. image:: https://img.shields.io/badge/license-AGPL--3-blue.png\n"
+"   :target: https://www.gnu.org/licenses/agpl\n"
+"   :alt: License: AGPL-3\n"
+"\n"
+"=================\n"
+"Product Usability\n"
+"=================\n"
+"\n"
+"Several Improvements to products:\n"
+"\n"
+"#. Now the field \"Active\" (Archive) keeps tracking in chatter.\n"
+"#. Incorporates the possibility to search a product by the vendor product code in the product.template and product.product models.\n"
+"#. Add smart button from pricelist to pricelists items, with the number of items, and search and group the items by what they apply on and by product category.\n"
+"#. Surcharge pricelist rules are rounded by default to the \"Product Price\" precision (discount rules are not, so sales keep showing the discount).\n"
+"#. Add product warranty field that was deprecated by odoo.\n"
+"#. Add new field \"Description\" on product UOMs, shown in their list and form and used when searching them.\n"
+"#. Incorporates the possibility to search the Pricelist Price of products in the tree view.\n"
+"#. Renders the product labels (Dymo and sheets) in batches of pages so large print jobs (thousands of labels) do not crash wkhtmltopdf by memory.\n"
+"\n"
+"Installation\n"
+"============\n"
+"\n"
+"To install this module, you need to:\n"
+"\n"
+"#. Just install this module.\n"
+"\n"
+"Configuration\n"
+"=============\n"
+"\n"
+"To configure this module, you need to:\n"
+"\n"
+"#. Optionally set the system parameter ``product_ux.dymo_label_batch_size`` (default 200) to tune how many labels are rendered per wkhtmltopdf call (on sheets it is rounded down to whole pages, at least one). Set it to 0 to render the labels in a single call.\n"
+"\n"
+"Usage\n"
+"=====\n"
+"\n"
+"To use this module, you need to:\n"
+"\n"
+"\n"
+".. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas\n"
+"   :alt: Try me on Runbot\n"
+"   :target: http://runbot.adhoc.com.ar/\n"
+"\n"
+"Bug Tracker\n"
+"===========\n"
+"\n"
+"Bugs are tracked on `GitHub Issues\n"
+"<https://github.com/ingadhoc/product/issues>`_. In case of trouble, please\n"
+"check there if your issue has already been reported. If you spotted it first,\n"
+"help us smashing it by providing a detailed and welcomed feedback.\n"
+"\n"
+"Credits\n"
+"=======\n"
+"\n"
+"Images\n"
+"------\n"
+"\n"
+"* |company| |icon|\n"
+"\n"
+"Contributors\n"
+"------------\n"
+"\n"
+"Maintainer\n"
+"----------\n"
+"\n"
+"|company_logo|\n"
+"\n"
+"This module is maintained by the |company|.\n"
+"\n"
+"To contribute to this module, please visit https://www.adhoc.com.ar.\n"
 msgstr ""
 
 #. module: product_ux
 #: model:ir.model.fields,field_description:product_ux.field_product_product__active
 #: model:ir.model.fields,field_description:product_ux.field_product_template__active
 msgid "Active"
-msgstr ""
-
-#. module: product_ux
-#: model:ir.model.fields,field_description:product_ux.field_product_pricelist_item__applied_description
-msgid "Applied Description"
 msgstr ""
 
 #. module: product_ux
@@ -43,6 +116,7 @@ msgstr ""
 
 #. module: product_ux
 #: model:ir.model.fields,field_description:product_ux.field_ir_actions_report__display_name
+#: model:ir.model.fields,field_description:product_ux.field_product_pricelist__display_name
 #: model:ir.model.fields,field_description:product_ux.field_product_pricelist_item__display_name
 #: model:ir.model.fields,field_description:product_ux.field_product_product__display_name
 #: model:ir.model.fields,field_description:product_ux.field_product_template__display_name
@@ -51,17 +125,8 @@ msgid "Display Name"
 msgstr ""
 
 #. module: product_ux
-#. odoo-python
-#: code:addons/product_ux/migrations/18.0.1.4.0/post-migration.py:0
-msgid ""
-"Hicimos una actualización automática para mejorar la precisión de las listas"
-" de precios. En las reglas de listas de precio tipo \"fórmula\" que no "
-"tenían una precisión de redondeo definida, aplicamos la precisión de precios"
-" configurada en su base de datos. Se ajustaron %(count)s reglas de precios."
-msgstr ""
-
-#. module: product_ux
 #: model:ir.model.fields,field_description:product_ux.field_ir_actions_report__id
+#: model:ir.model.fields,field_description:product_ux.field_product_pricelist__id
 #: model:ir.model.fields,field_description:product_ux.field_product_pricelist_item__id
 #: model:ir.model.fields,field_description:product_ux.field_product_product__id
 #: model:ir.model.fields,field_description:product_ux.field_product_template__id
@@ -85,13 +150,19 @@ msgid ""
 msgstr ""
 
 #. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_product_pricelist__item_count
+msgid "Item Count"
+msgstr ""
+
+#. module: product_ux
+#: model:ir.model,name:product_ux.model_product_pricelist
 #: model:ir.model.fields,field_description:product_ux.field_product_product__pricelist_id
 #: model:ir.model.fields,field_description:product_ux.field_product_template__pricelist_id
 msgid "Pricelist"
 msgstr ""
 
 #. module: product_ux
-#: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_item_search_view
+#: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_view
 msgid "Pricelist Items"
 msgstr ""
 
@@ -114,7 +185,6 @@ msgstr ""
 
 #. module: product_ux
 #: model:ir.model,name:product_ux.model_product_template
-#: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_item_search_view
 msgid "Product"
 msgstr ""
 
@@ -124,8 +194,8 @@ msgid "Product Category"
 msgstr ""
 
 #. module: product_ux
-#: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_item_search_view
-msgid "Product Template"
+#: model:ir.module.module,shortdesc:base.module_product_ux
+msgid "Product UX"
 msgstr ""
 
 #. module: product_ux
