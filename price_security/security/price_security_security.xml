@@ -18,33 +18,30 @@
             <field name="implied_ids" eval="[(4, ref('group_only_view'))]"/>
             <field name="name">Solo ver: precio de venta</field>
         </record>
-
-<!-- reglas -->
+<!-- reglas: en 20 una restriccion global con el dominio condicionado al grupo,
+     porque los permisos de ir.access se suman por grupo y no se pueden restar -->
 
     <!-- hacemos readonly a lo payment terms -->
-    <record id="restrict_price_read_only_payment_term" model="ir.rule">
+    <record id="restrict_price_read_only_payment_term" model="ir.access">
         <field name="name">Restrict Price Read Only on Payment Term</field>
         <field name="model_id" ref="account.model_account_payment_term" />
-        <field name="domain_force">[('name', '=', False)]</field>
-        <field name="groups" eval="[(4, ref('price_security.group_only_view'))]"/>
-        <field name="perm_read" eval="False"/>
+        <field name="operation">cud</field>
+        <field name="domain">[('name', '=', False)] if user.has_group('price_security.group_only_view') else []</field>
     </record>
 
     <!-- hacemos readonly a los pricelists -->
-    <record id="restrict_price_read_only_pricelist" model="ir.rule">
+    <record id="restrict_price_read_only_pricelist" model="ir.access">
         <field name="name">Restrict Price Read Only on Pricelist</field>
         <field name="model_id" ref="product.model_product_pricelist" />
-        <field name="domain_force">[('name', '=', False)]</field>
-        <field name="groups" eval="[(4, ref('price_security.group_only_view'))]"/>
-        <field name="perm_read" eval="False"/>
+        <field name="operation">cud</field>
+        <field name="domain">[('name', '=', False)] if user.has_group('price_security.group_only_view') else []</field>
     </record>
 
     <!-- hacemos readonly a las reglas de los pricelists -->
-    <record id="restrict_price_read_only_pricelist_item" model="ir.rule">
+    <record id="restrict_price_read_only_pricelist_item" model="ir.access">
         <field name="name">Restrict Price Read Only on Pricelist Item</field>
         <field name="model_id" ref="product.model_product_pricelist_item" />
-        <field name="domain_force">[(0, '=', 1)]</field>
-        <field name="groups" eval="[(4, ref('price_security.group_only_view'))]"/>
-        <field name="perm_read" eval="False"/>
+        <field name="operation">cud</field>
+        <field name="domain">[(0, '=', 1)] if user.has_group('price_security.group_only_view') else []</field>
     </record>
 </odoo>

@@ -14,13 +14,40 @@
 Price Security
 ==============
 
-#. Creates a new permission to restrict the users that can modify the prices
-of the products.
-#. Asociate to each user a list of pricelist and the correspoding discounts they
-can apply to sale orders and invoices. This discount is for all pricelist even though only one is configured.
-#. Allow the posibility to mark products so that anyone can modify their price in
-a sale order.
-#. Add a sequence field on pricelist and payment term (you can only assign pricelist or terms of lower priority than partner default one).
+Keep prices under control when not everyone in the company may set them.
+
+The module adds two permissions. The first one, *Solo ver: precio venta y
+compra* (only view sale and purchase price), stops a user from changing prices,
+discounts, pricelists and payment terms. The second one, *Solo ver: precio de
+venta* (only view sale price), also hides the cost from the screens that show
+it.
+
+Features
+========
+
+* **A discount range per user and per pricelist.** Each user gets a list of
+  pricelists with the minimum and the maximum discount allowed on each one. The
+  range applies to what the user adds *on top of* the pricelist discount, both
+  on sale orders and on customer invoices.
+* **Prices in read only.** Unit price, cost, sales price, unit of measure and
+  vendors become read only for restricted users, on the product, on the sale
+  order lines and on the customer invoice lines.
+* **Products that anyone may reprice.** A product marked with *Can modify
+  prices* is left out: any user may set its price on a sale order or an
+  invoice.
+* **Pricelists and payment terms in read only.** A restricted user cannot
+  create or change a pricelist, a pricelist rule or a payment term.
+* **A restricted choice of pricelist and payment term.** Each pricelist and
+  each payment term carries the list of the ones a restricted user may pick
+  instead of it. On a sale order the user may only choose the one of the
+  customer or one from that list. Both also get a sequence field, so the lists
+  can be ordered.
+* **The cost out of sight.** For users with *Solo ver: precio de venta*, the
+  cost is hidden on the product form and on the lists that reach it: the
+  accounting cost and the inventory valuation columns on the product and stock
+  report lists, the value on the quant lists, and the valuation fields on the
+  lot form. The secondary currency columns added by ``stock_currency_valuation``
+  are hidden too when that module is installed.
 
 Installation
 ============
@@ -34,31 +61,43 @@ Configuration
 
 To configure this module, you need to:
 
-#. Set 'Restrict Prices' for users you want to restrict.
-#. For the same users, configure discounts range on "Discounts Permissions" users tab.
+#. Give the users you want to restrict one of the two permissions, under the
+   *Restricción de precios* privilege.
+#. For the same users, set the discount ranges on the *Discounts Permissions*
+   tab of their user form.
+#. On each pricelist and payment term, fill in *Allowed Pricelists* and
+   *Allowed Payment Terms* with the ones a restricted user may pick instead.
+#. Tick *Can modify prices* on the products whose price anyone may change.
 
 Usage
 =====
 
-To use this module, you need to:
+A user with *Solo ver: precio venta y compra* cannot:
 
-For users with price restriction, it restricts:
-#. on sales orders: change payment term or pricelist
-#. on sales order lines: change unit price and set limits on discount (limits configured on user)
-#. on partners: change payment term or pricelist
-#. on invoices: change unit price
-#. on invoice lines: change unit price and set limits on discount (limits configured on user)
-#. on product: change price
-#. on pricelists: change the pricelist and its rules, which are what actually sets the price
+#. change the unit price on a sale order line or on a customer invoice line;
+#. apply a discount outside the range configured for them, on those same lines;
+#. apply a global discount or a fixed amount from the discount wizard of a sale
+   order, when the pricelist of the order is one of their restricted ones;
+#. pick a pricelist or a payment term that is neither the one of the customer
+   nor one of the allowed ones, on the sale order and on the contact;
+#. change the sales price, the cost, the unit of measure or the vendors of a
+   product;
+#. create or change a pricelist, a pricelist rule or a payment term.
 
-For users with "Only see: sale price", it also hides the cost from the lists they can
-reach: the accounting cost and the inventory valuation columns (unit cost and total
-value) on the product and stock report lists, the value on the quant lists, and the
-valuation fields on the lot form. The secondary currency counterparts added by
-stock_currency_valuation are hidden too when that module is installed.
+On the sale order form there is one more guard, and it is only a guard: when a
+restricted user picks another customer on an order that already has lines, and
+that customer would bring another pricelist, the form warns and puts the
+previous customer back. Being an onchange, it lives in the form only — a write,
+an import or another module still changes the customer, and the order then
+takes the pricelist of the new one.
 
-Note that this is interface level security: the fields are hidden from the views, but
-the data can still be reached through exports, filters or groupings.
+A user with *Solo ver: precio de venta* cannot do any of the above, and on top
+of that does not see the cost anywhere: product form and lists, stock report,
+quant lists and lot form.
+
+Note that hiding the cost is interface level security: the fields are out of
+the views, but the data can still be reached through exports, filters or
+groupings.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
