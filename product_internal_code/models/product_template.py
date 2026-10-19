@@ -14,10 +14,18 @@ class ProductTemplate(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
-        for vals in vals_list:
-            if vals.get("internal_code"):
-                self = self.with_context(default_internal_code=vals.get("internal_code"))
-        return super().create(vals_list)
+        if not any(vals.get("internal_code") for vals in vals_list):
+            return super().create(vals_list)
+        vals_list = [dict(vals) for vals in vals_list]
+        codes = [vals.pop("internal_code", False) for vals in vals_list]
+        # Variants exist only after the template create, so they get their code afterwards
+        templates = super(ProductTemplate, self.with_context(skip_internal_code_sequence=True)).create(vals_list)
+        templates = templates.with_env(self.env)
+        for template, code in zip(templates, codes):
+            if code:
+                template.product_variant_ids[:1].internal_code = code
+        templates.product_variant_ids.filtered(lambda product: not product.internal_code)._assign_internal_code()
+        return templates
 
     @api.model
     def name_search(self, name="", domain=None, operator="ilike", limit=100):

@@ -2,6 +2,7 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
+from odoo import Command
 from odoo.tests import TransactionCase, tagged
 from odoo.tools import mute_logger
 from psycopg2 import IntegrityError
@@ -13,8 +14,6 @@ class TestProductInternalCode(TransactionCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.sequence = cls.env.ref("product_internal_code.sequence")
-        # created one by one on purpose: a single create() of several coded
-        # templates hits an unrelated defect of the module
         template = cls.env["product.template"]
         cls.coded = template.create({"name": "Internal Code Product", "internal_code": "IC-5432"})
         # its name carries the code of the one above, so the native search finds it first
@@ -78,3 +77,41 @@ class TestProductInternalCode(TransactionCase):
         expected = self._next_code()
         duplicate = product.copy()
         self.assertEqual(duplicate.internal_code, expected)
+
+    def test_batch_template_create(self):
+        templates = self.env["product.template"].create(
+            [
+                {"name": "Batch A", "internal_code": "BATCH-A"},
+                {"name": "Batch B"},
+                {"name": "Batch C", "internal_code": "BATCH-C"},
+            ]
+        )
+        self.assertEqual(templates.mapped("name"), ["Batch A", "Batch B", "Batch C"])
+        self.assertEqual(templates[0].product_variant_ids.internal_code, "BATCH-A")
+        self.assertNotIn(templates[1].product_variant_ids.internal_code, (False, "BATCH-A", "BATCH-C"))
+        self.assertEqual(templates[2].product_variant_ids.internal_code, "BATCH-C")
+
+    def test_template_create_does_not_leak_code(self):
+        template = self.env["product.template"].create({"name": "Leak", "internal_code": "LEAK-01"})
+        self.assertNotIn("skip_internal_code_sequence", template.env.context)
+        duplicate = template.copy()
+        self.assertNotIn(duplicate.product_variant_ids.internal_code, (False, "LEAK-01"))
+
+    def test_template_code_with_variants(self):
+        attribute = self.env["product.attribute"].create(
+            {"name": "Size", "value_ids": [Command.create({"name": "S"}), Command.create({"name": "M"})]}
+        )
+        expected_next = self._next_code()
+        template = self.env["product.template"].create(
+            {
+                "name": "Template with variants",
+                "internal_code": "VAR-01",
+                "attribute_line_ids": [
+                    Command.create({"attribute_id": attribute.id, "value_ids": [Command.set(attribute.value_ids.ids)]})
+                ],
+            }
+        )
+        self.assertEqual(template.product_variant_ids.mapped("internal_code"), ["VAR-01", expected_next])
+        self.assertEqual(
+            self.sequence.number_next_actual, int(expected_next) + 1, "Only the variant without code uses the sequence"
+        )
