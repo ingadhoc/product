@@ -14,7 +14,15 @@
 Product Attribute Template
 ==========================
 
-This module add new class to create attributes templates
+This module adds product attribute templates: a named set of attributes (for
+example, "T-shirts" with Size and Color) that is assigned to products, so the
+attribute lines of all of them can be created at once.
+
+* Create the missing attribute lines, without values, on every product of the
+  template.
+* Fill the values of those lines from the template form, for all its products.
+* See how many products use the template and how many still have attribute
+  lines without values.
 
 Installation
 ============
@@ -27,15 +35,29 @@ To install this module, you need to:
 Configuration
 =============
 
-No configuration needed.
+#. Enable Variants in Sales > Configuration > Settings. Without it, the
+   Attributes & Variants tab of the product, where the template is set, is
+   hidden.
 
 Usage
 =====
 
 To use this module, you need to:
 
-#. Go to Sales > Products > Products attributes templates.
-#. Create product attribute templates.
+#. Go to Sales > Products > Products attributes templates and create a
+   template with its attributes.
+#. On each product, in the Attributes & Variants tab, set the template in
+   "Product attributes template".
+#. Back on the template, press "Update attributes on products". The button
+   adds to each product the attribute lines it is missing, without values.
+   Lines that already exist are kept as they are. Opening the template form
+   also adds them, because its lines list every product and attribute pair.
+#. Fill the values in the template lines, or in each product. The "Not
+   configured" button opens the products that still have lines without
+   values; the same filter, "Attributes not configured", is available in the
+   product search.
+
+The menu is only visible to sales administrators.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
