@@ -17,8 +17,8 @@
         <field name="view_id" ref="product_attribute_template_tree_view"/>
     </record>
 
-    <menuitem id="menu_product_attribute_template" parent="sale.prod_config_main" sequence="10"
-          action="attribute_template_action_view"/>
+    <menuitem id="menu_product_attribute_template" parent="sale.product_menu_catalog" sequence="35"
+          action="attribute_template_action_view" groups="sales_team.group_sale_manager"/>
 
 
     <record id="product_attribute_template_form_view" model="ir.ui.view">
@@ -33,7 +33,7 @@
                     <div class="oe_button_box" name="button_box">
                         <button class="oe_stat_button"
                             name="%(product.product_template_action)d"
-                            icon="fa-th-list"
+                            icon="view_list"
                             type="action"
                             context="{'search_default_product_attribute_template_id': id}">
                             <div class="o_field_widget o_stat_info">
@@ -43,7 +43,7 @@
                         </button>
                          <button class="oe_stat_button"
                             name="%(product.product_template_action)d"
-                            icon="fa-th-list"
+                            icon="view_list"
                             type="action"
                             context="{'search_default_product_attribute_template_id': id, 'search_default_attributes_not_configured': 1}">
                             <div class="o_field_widget o_stat_info">
