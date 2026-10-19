@@ -27,25 +27,23 @@
         <field name="arch" type="xml">
             <form string="">
                 <header>
-                    <button string="Actualizar atributos en productos" type="object" name="update_attributes" confirm="Al confirmar se van a crear las líneas de productos faltantes en todos los productos con esta plantilla. Esta opción no puede deshacerse. Seguro que desea continuar?"/>
+                    <button string="Update attributes on products" type="object" name="update_attributes" confirm="The missing attribute lines will be created on every product of this template. This cannot be undone. Do you want to continue?"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
                         <button class="oe_stat_button"
-                            name="%(product.product_template_action)d"
+                            name="action_view_products"
                             icon="view_list"
-                            type="action"
-                            context="{'search_default_product_attribute_template_id': id}">
+                            type="object">
                             <div class="o_field_widget o_stat_info">
                                 <span class="o_stat_value"><field name="product_qty"/></span>
                                 <span class="o_stat_text">Products</span>
                             </div>
                         </button>
                          <button class="oe_stat_button"
-                            name="%(product.product_template_action)d"
+                            name="action_view_not_configured_products"
                             icon="view_list"
-                            type="action"
-                            context="{'search_default_product_attribute_template_id': id, 'search_default_attributes_not_configured': 1}">
+                            type="object">
                             <div class="o_field_widget o_stat_info">
                                 <span class="o_stat_value"><field name="not_configured_product_qty"/></span>
                                 <span class="o_stat_text">Not configured</span>
@@ -53,8 +51,8 @@
                         </button>
                     </div>
                     <div class="oe_title">
-                        <label class="oe_edit_only" for="name" string="Product Name"/>
-                        <h1><field name="name" placeholder="Product Name"/></h1>
+                        <label for="name" string="Template Name"/>
+                        <h1><field name="name" placeholder="Template Name"/></h1>
                     </div>
                     <group>
                         <field name="product_attribute_ids" widget="many2many_tags"/>
