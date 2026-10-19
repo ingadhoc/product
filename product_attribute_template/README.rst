@@ -34,7 +34,7 @@ Usage
 
 To use this module, you need to:
 
-#. Go to Sales > Configuration > Product attribute templates.
+#. Go to Sales > Products > Products attributes templates.
 #. Create product attribute templates.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
