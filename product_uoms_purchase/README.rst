@@ -15,6 +15,7 @@ Product UOMS Purchase
 =====================
 
 * This module extend product packagings to Purchase Order.
+* Purchase order lines only allow the product purchase packagings and the vendor UoMs, plus the product UoM when "Use Product UoM for Purchase" is enabled.
 
 
 Installation
@@ -30,9 +31,10 @@ Configuration
 
 To configure this module, you need to:
 
-#. Enter to product and go to the purchase window.
+#. Enable "Units of Measure & Packagings" in the settings.
+#. Enter to product and go to the purchase tab.
 #. In the purchase packagings field, you will define the purchase UoMs for the product.
-#. Also, you can add the product uom with the use product uom checkbox.
+#. Also, you can add the product uom with the use product uom checkbox (enabled by default).
 
 Usage
 =====
