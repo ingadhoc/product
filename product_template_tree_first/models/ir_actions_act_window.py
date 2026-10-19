@@ -14,11 +14,14 @@ class IrActionsActWindow(models.Model):
         for act in product_template.with_context(from_config=True):
             modes = act.view_mode.split(",")
             modes.remove("list")
-            modes = ["list"] + modes
-            act.view_mode = ",".join(modes)
-            for item in act.views:
+            view_mode = ",".join(["list"] + modes)
+            # assigning a stored field writes and clears the ormcache, even with the same value
+            if act.view_mode != view_mode:
+                act.view_mode = view_mode
+            # views is a Json field: reading it returns a copy
+            views = act.views
+            for item in views:
                 if item[1] == "list":
-                    list_view = item
-                    act.views.remove(item)
-                    act.views = [list_view] + act.views
+                    views.remove(item)
+                    act.views = [item] + views
                     break
