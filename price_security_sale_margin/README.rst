@@ -29,8 +29,7 @@ Configuration
 
 To configure this module, you need to:
 
-#. Set 'Restrict Prices' for users you want to restrict.
-#. For the same users, configure discounts range on "Discounts Permissions" users tab.
+#. On the user, set one of the Price Security groups: "Solo ver: precio venta y compra" (view only sale and purchase prices) or "Solo ver: precio de venta" (view only the sale price).
 
 
 Usage
@@ -38,14 +37,12 @@ Usage
 
 To use this module, you need to:
 
-For users with price restriction, it restricts:
+On the lines of a sales order, the cost (``purchase_price``), the margin and the margin percentage follow the user's Price Security group:
 
-* on sales orders: change payment term or pricelist
-* on sales order lines: change unit price and set limits on discount (limits configured on user)
-* on partners: change payment term or pricelist
-* on invoices: change unit price
-* on invoice lines: change unit price and set limits on discount (limits configured on user)
-* on product: change price
+* "Solo ver: precio venta y compra": the three fields are shown but read only.
+* "Solo ver: precio de venta": the three fields are hidden, and so is the order margin shown in the order totals.
+
+The same applies to any list view of sales order lines that shows those fields.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
