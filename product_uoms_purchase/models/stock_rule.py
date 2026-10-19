@@ -18,7 +18,7 @@ class StockRule(models.Model):
         """
         res = super()._prepare_purchase_order_line(product_id, product_qty, product_uom, company_id, values, po)
 
-        supplier_uoms = product_id.seller_ids.mapped("product_uom_id")
+        supplier_uoms = product_id.seller_ids.mapped("uom_id")
 
         if product_id.product_tmpl_id.use_product_uom:
             allowed_uoms = product_id.uom_id | product_id.uom_po_ids | supplier_uoms
