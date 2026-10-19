@@ -14,7 +14,9 @@
 Product Template Tree First
 ===========================
 
-After installing this module, all product template views will always be displayed using a tree view by default.
+After installing this module, window actions on product templates put the list view first,
+no matter the order configured in the action. Actions without a list view are not changed.
+On small screens the action still opens in its mobile view (kanban by default).
 
 Installation
 ============
@@ -45,7 +47,7 @@ Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues
-<https://github.com/ingadhoc/{project_repo}/issues>`_. In case of trouble, please
+<https://github.com/ingadhoc/product/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
 help us smashing it by providing a detailed and welcomed feedback.
 
