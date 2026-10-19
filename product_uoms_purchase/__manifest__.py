@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Product UOMS Purchase",
-    "version": "19.0.1.1.0",
+    "version": "20.0.1.0.0",
     "category": "base.module_category_knowledge_management",
     "author": "ADHOC SA",
     "website": "www.adhoc.com.ar",
@@ -31,7 +31,7 @@
     "data": [
         "views/product_template_views.xml",
     ],
-    "installable": False,
+    "installable": True,
     "auto_install": True,
     "application": False,
 }

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-03 05:16+0000\n"
-"PO-Revision-Date: 2024-11-20 18:36+0000\n"
+"POT-Creation-Date: 2026-10-19 17:18+0000\n"
+"PO-Revision-Date: 2026-10-19 17:18+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2024\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
@@ -20,49 +20,85 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #. module: product_uoms_purchase
-#. odoo-python
-#: code:addons/product_uoms_purchase/models/purchase_order_line.py:0
+#: model:ir.module.module,description:base.module_product_uoms_purchase
 msgid ""
-"%s unit of measure is not valid for purchase, please change %s product line "
-"with the proper uom in order to continue"
+".. |company| replace:: ADHOC SA\n"
+"\n"
+".. |company_logo| image:: https://raw.githubusercontent.com/ingadhoc/maintainer-tools/master/resources/adhoc-logo.png\n"
+"   :alt: ADHOC SA\n"
+"   :target: https://www.adhoc.com.ar\n"
+"\n"
+".. |icon| image:: https://raw.githubusercontent.com/ingadhoc/maintainer-tools/master/resources/adhoc-icon.png\n"
+"\n"
+".. image:: https://img.shields.io/badge/license-AGPL--3-blue.png\n"
+"   :target: https://www.gnu.org/licenses/agpl\n"
+"   :alt: License: AGPL-3\n"
+"\n"
+"=====================\n"
+"Product UOMS Purchase\n"
+"=====================\n"
+"\n"
+"* This module extend product packagings to Purchase Order.\n"
+"* Purchase order lines only allow the product purchase packagings and the vendor UoMs, plus the product UoM when \"Use Product UoM for Purchase\" is enabled.\n"
+"\n"
+"\n"
+"Installation\n"
+"============\n"
+"\n"
+"To install this module, you need to:\n"
+"\n"
+"#. Just install this module.\n"
+"\n"
+"\n"
+"Configuration\n"
+"=============\n"
+"\n"
+"To configure this module, you need to:\n"
+"\n"
+"#. Enable \"Units of Measure & Packagings\" in the settings.\n"
+"#. Enter to product and go to the purchase tab.\n"
+"#. In the purchase packagings field, you will define the purchase UoMs for the product.\n"
+"#. Also, you can add the product uom with the use product uom checkbox (enabled by default).\n"
+"\n"
+"Usage\n"
+"=====\n"
+"\n"
+"To use this module, you need to:\n"
+"\n"
+"#. No usage needed.\n"
+"\n"
+".. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas\n"
+"   :alt: Try me on Runbot\n"
+"   :target: http://runbot.adhoc.com.ar/\n"
+"\n"
+"Bug Tracker\n"
+"===========\n"
+"\n"
+"Bugs are tracked on `GitHub Issues\n"
+"<https://github.com/ingadhoc/product/issues>`_. In case of trouble, please\n"
+"check there if your issue has already been reported. If you spotted it first,\n"
+"help us smashing it by providing a detailed and welcomed feedback.\n"
+"\n"
+"Credits\n"
+"=======\n"
+"\n"
+"Images\n"
+"------\n"
+"\n"
+"* |company| |icon|\n"
+"\n"
+"Contributors\n"
+"------------\n"
+"\n"
+"Maintainer\n"
+"----------\n"
+"\n"
+"|company_logo|\n"
+"\n"
+"This module is maintained by the |company|.\n"
+"\n"
+"To contribute to this module, please visit https://www.adhoc.com.ar.\n"
 msgstr ""
-"La unidad de medida %s no es válida para la compra, por favor cambia la "
-"línea de producto %s con la unidad de medida correcta para continuar"
-
-#. module: product_uoms_purchase
-#: model:ir.model,name:product_uoms_purchase.model_product_template
-msgid "Product"
-msgstr "Producto"
-
-#. module: product_uoms_purchase
-#: model:ir.model,name:product_uoms_purchase.model_product_uoms
-msgid "Product Uoms"
-msgstr "UdM del producto"
-
-#. module: product_uoms_purchase
-#: model:ir.model,name:product_uoms_purchase.model_product_product
-msgid "Product Variant"
-msgstr "Variante de producto"
-
-#. module: product_uoms_purchase
-#: model:ir.model.fields,field_description:product_uoms_purchase.field_product_uoms__purchase_ok
-msgid "Purchase Ok"
-msgstr "Compra Ok"
-
-#. module: product_uoms_purchase
-#: model:ir.model,name:product_uoms_purchase.model_purchase_order_line
-msgid "Purchase Order Line"
-msgstr "Línea de pedido de compra"
-
-#. module: product_uoms_purchase
-#: model:ir.model,name:product_uoms_purchase.model_stock_rule
-msgid "Stock Rule"
-msgstr "Regla de inventario"
-
-#. module: product_uoms_purchase
-#: model:ir.model.fields,field_description:product_uoms_purchase.field_purchase_order_line__uom_unit_ids
-msgid "Uom Unit"
-msgstr "Unidad de Medida"
 
 #. module: product_uoms_purchase
 #: model:ir.model.fields,help:product_uoms_purchase.field_product_product__uom_po_ids
@@ -71,9 +107,38 @@ msgid "Additional packagings for this product which can be used for purchase"
 msgstr "Embalajes adicionales de este producto que se pueden usar en compras"
 
 #. module: product_uoms_purchase
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_product_template__display_name
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_purchase_order_line__display_name
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_stock_rule__display_name
+msgid "Display Name"
+msgstr "Nombre en pantalla"
+
+#. module: product_uoms_purchase
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_product_template__id
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_purchase_order_line__id
+#: model:ir.model.fields,field_description:product_uoms_purchase.field_stock_rule__id
+msgid "ID"
+msgstr ""
+
+#. module: product_uoms_purchase
 #: model_terms:ir.ui.view,arch_db:product_uoms_purchase.product_template_only_form_view
 msgid "Packaging"
 msgstr "Embalajes"
+
+#. module: product_uoms_purchase
+#: model:ir.model,name:product_uoms_purchase.model_product_template
+msgid "Product"
+msgstr "Producto"
+
+#. module: product_uoms_purchase
+#: model:ir.module.module,shortdesc:base.module_product_uoms_purchase
+msgid "Product UOMS Purchase"
+msgstr "Unidades de medida de compra del producto"
+
+#. module: product_uoms_purchase
+#: model:ir.model,name:product_uoms_purchase.model_purchase_order_line
+msgid "Purchase Order Line"
+msgstr "Línea de la orden de compra"
 
 #. module: product_uoms_purchase
 #: model:ir.model.fields,field_description:product_uoms_purchase.field_product_product__uom_po_ids
