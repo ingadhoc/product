@@ -1,10 +1,37 @@
 import json
 
 from odoo import api, models
+from odoo.tools.translate import get_translation
 
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
+
+    @api.depends("margin")
+    @api.depends_context("uid")
+    def _compute_extra_total_fields(self):
+        super()._compute_extra_total_fields()
+        if not self.env.user.has_group("price_security.group_only_view_sale_price"):
+            return
+        lang = self.env.lang or "en_US"
+        for order in self:
+            if not order.margin:
+                continue
+            # same label sale_margin adds, translated in its own module
+            label = get_translation(
+                "sale_margin" if lang != "en_US" else "base",
+                lang,
+                "Margin (%(percent).0f%%)",
+                {"percent": order.margin_percent * 100},
+            )
+            groups = order.extra_total_fields
+            for group in groups:
+                group["lines"] = [
+                    line
+                    for line in group.get("lines", [])
+                    if not (line.get("label") == label and line.get("value") == order.margin)
+                ]
+            order.extra_total_fields = groups
 
     @api.model
     def _get_view(self, view_id=None, view_type="form", **options):
@@ -26,7 +53,6 @@ class SaleOrder(models.Model):
                     "//field[@name='purchase_price']"
                     "|//field[@name='order_line']//field[@name='margin']"
                     "|//field[@name='order_line']//field[@name='margin_percent']"
-                    "|//div[@class='d-flex float-end']"
                 )
                 for node in invisible_fields:
                     node.set("invisible", "1")
