@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-16 18:21+0000\n"
-"PO-Revision-Date: 2026-10-16 18:21+0000\n"
+"POT-Creation-Date: 2026-10-20 18:19+0000\n"
+"PO-Revision-Date: 2026-10-20 18:19+0000\n"
 "Last-Translator: ADHOC - Bot <transbot@adhoc.com.ar>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
@@ -105,7 +105,7 @@ msgstr "Divisa de la valoración"
 #. module: product_currency
 #: model:ir.model.fields,field_description:product_currency.field_product_template__display_name
 msgid "Display Name"
-msgstr "Nombre para mostrar"
+msgstr "Nombre en pantalla"
 
 #. module: product_currency
 #: model:ir.model.fields,field_description:product_currency.field_product_product__force_currency_id
@@ -116,7 +116,7 @@ msgstr "Forzar Moneda"
 #. module: product_currency
 #: model:ir.model.fields,field_description:product_currency.field_product_template__id
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #. module: product_currency
 #: model:ir.model,name:product_currency.model_product_template
@@ -131,7 +131,7 @@ msgstr "Moneda del producto"
 #. module: product_currency
 #: model:product.template,name:product_currency.product_with_forced_currency_product_template
 msgid "Product with forced currency (EUR)"
-msgstr ""
+msgstr "Producto con moneda forzada (EUR)"
 
 #. module: product_currency
 #: model:ir.model.fields,help:product_currency.field_product_product__force_currency_id
