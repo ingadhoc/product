@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 16:30+0000\n"
-"PO-Revision-Date: 2026-10-19 16:30+0000\n"
+"POT-Creation-Date: 2026-10-20 18:17+0000\n"
+"PO-Revision-Date: 2026-10-20 18:17+0000\n"
 "Last-Translator: ADHOC - Bot <transbot@adhoc.com.ar>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
@@ -156,14 +156,14 @@ msgstr "Creado el"
 #: model:ir.model.fields,field_description:product_attribute_template.field_product_template__display_name
 #: model:ir.model.fields,field_description:product_attribute_template.field_product_template_attribute_line__display_name
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr "Nombre en pantalla"
 
 #. module: product_attribute_template
 #: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template__id
 #: model:ir.model.fields,field_description:product_attribute_template.field_product_template__id
 #: model:ir.model.fields,field_description:product_attribute_template.field_product_template_attribute_line__id
 msgid "ID"
-msgstr "ID (identificación)"
+msgstr "ID"
 
 #. module: product_attribute_template
 #: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template__write_uid
@@ -173,7 +173,7 @@ msgstr "Última actualización por"
 #. module: product_attribute_template
 #: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template__write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Última actualización el"
 
 #. module: product_attribute_template
 #: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template__line_ids
