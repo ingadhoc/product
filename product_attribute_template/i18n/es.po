@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-21 12:30+0000\n"
-"PO-Revision-Date: 2025-11-21 12:19+0000\n"
+"POT-Creation-Date: 2026-10-20 18:17+0000\n"
+"PO-Revision-Date: 2026-10-20 18:17+0000\n"
 "Last-Translator: ADHOC - Bot <transbot@adhoc.com.ar>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
@@ -30,6 +30,103 @@ msgid "# Products Not Configured"
 msgstr "# Productos No Configurados"
 
 #. module: product_attribute_template
+#: model:ir.module.module,description:base.module_product_attribute_template
+msgid ""
+".. |company| replace:: ADHOC SA\n"
+"\n"
+".. |company_logo| image:: https://raw.githubusercontent.com/ingadhoc/maintainer-tools/master/resources/adhoc-logo.png\n"
+"   :alt: ADHOC SA\n"
+"   :target: https://www.adhoc.com.ar\n"
+"\n"
+".. |icon| image:: https://raw.githubusercontent.com/ingadhoc/maintainer-tools/master/resources/adhoc-icon.png\n"
+"\n"
+".. image:: https://img.shields.io/badge/license-AGPL--3-blue.png\n"
+"   :target: https://www.gnu.org/licenses/agpl\n"
+"   :alt: License: AGPL-3\n"
+"\n"
+"==========================\n"
+"Product Attribute Template\n"
+"==========================\n"
+"\n"
+"This module adds product attribute templates: a named set of attributes (for\n"
+"example, \"T-shirts\" with Size and Color) that is assigned to products, so the\n"
+"attribute lines of all of them can be created at once.\n"
+"\n"
+"* Create the missing attribute lines, without values, on every product of the\n"
+"  template.\n"
+"* Fill the values of those lines from the template form, for all its products.\n"
+"* See how many products use the template and how many still have attribute\n"
+"  lines without values.\n"
+"\n"
+"Installation\n"
+"============\n"
+"\n"
+"To install this module, you need to:\n"
+"\n"
+"#. Just install this module.\n"
+"\n"
+"\n"
+"Configuration\n"
+"=============\n"
+"\n"
+"#. Enable Variants in Sales > Configuration > Settings. Without it, the\n"
+"   Attributes & Variants tab of the product, where the template is set, is\n"
+"   hidden.\n"
+"\n"
+"Usage\n"
+"=====\n"
+"\n"
+"To use this module, you need to:\n"
+"\n"
+"#. Go to Sales > Products > Products attributes templates and create a\n"
+"   template with its attributes.\n"
+"#. On each product, in the Attributes & Variants tab, set the template in\n"
+"   \"Product attributes template\".\n"
+"#. Back on the template, press \"Update attributes on products\". The button\n"
+"   adds to each product the attribute lines it is missing, without values.\n"
+"   Lines that already exist are kept as they are. Opening the template form\n"
+"   also adds them, because its lines list every product and attribute pair.\n"
+"#. Fill the values in the template lines, or in each product. The \"Not\n"
+"   configured\" button opens the products that still have lines without\n"
+"   values; the same filter, \"Attributes not configured\", is available in the\n"
+"   product search.\n"
+"\n"
+"The menu is only visible to sales administrators.\n"
+"\n"
+".. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas\n"
+"   :alt: Try me on Runbot\n"
+"   :target: http://runbot.adhoc.com.ar/\n"
+"\n"
+"Bug Tracker\n"
+"===========\n"
+"\n"
+"Bugs are tracked on `GitHub Issues\n"
+"<https://github.com/ingadhoc/product/issues>`_. In case of trouble, please\n"
+"check there if your issue has already been reported. If you spotted it first,\n"
+"help us smashing it by providing a detailed and welcomed feedback.\n"
+"\n"
+"Credits\n"
+"=======\n"
+"\n"
+"Images\n"
+"------\n"
+"\n"
+"* |company| |icon|\n"
+"\n"
+"Contributors\n"
+"------------\n"
+"\n"
+"Maintainer\n"
+"----------\n"
+"\n"
+"|company_logo|\n"
+"\n"
+"This module is maintained by the |company|.\n"
+"\n"
+"To contribute to this module, please visit https://www.adhoc.com.ar.\n"
+msgstr ""
+
+#. module: product_attribute_template
 #: model_terms:ir.ui.view,arch_db:product_attribute_template.product_attribute_template_form_view
 msgid "<span class=\"o_stat_text\">Not configured</span>"
 msgstr "<span class=\"o_stat_text\">No Configurados</span>"
@@ -38,19 +135,6 @@ msgstr "<span class=\"o_stat_text\">No Configurados</span>"
 #: model_terms:ir.ui.view,arch_db:product_attribute_template.product_attribute_template_form_view
 msgid "<span class=\"o_stat_text\">Products</span>"
 msgstr "<span class=\"o_stat_text\">Productos</span>"
-
-#. module: product_attribute_template
-#: model_terms:ir.ui.view,arch_db:product_attribute_template.product_attribute_template_form_view
-msgid "Actualizar atributos en productos"
-msgstr ""
-
-#. module: product_attribute_template
-#: model_terms:ir.ui.view,arch_db:product_attribute_template.product_attribute_template_form_view
-msgid ""
-"Al confirmar se van a crear las líneas de productos faltantes en todos los "
-"productos con esta plantilla. Esta opción no puede deshacerse. Seguro que "
-"desea continuar?"
-msgstr ""
 
 #. module: product_attribute_template
 #: model_terms:ir.ui.view,arch_db:product_attribute_template.product_template_attribute_template_search_inherit
@@ -72,14 +156,14 @@ msgstr "Creado el"
 #: model:ir.model.fields,field_description:product_attribute_template.field_product_template__display_name
 #: model:ir.model.fields,field_description:product_attribute_template.field_product_template_attribute_line__display_name
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr "Nombre en pantalla"
 
 #. module: product_attribute_template
 #: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template__id
 #: model:ir.model.fields,field_description:product_attribute_template.field_product_template__id
 #: model:ir.model.fields,field_description:product_attribute_template.field_product_template_attribute_line__id
 msgid "ID"
-msgstr "ID (identificación)"
+msgstr "ID"
 
 #. module: product_attribute_template
 #: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template__write_uid
@@ -89,7 +173,7 @@ msgstr "Última actualización por"
 #. module: product_attribute_template
 #: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template__write_date
 msgid "Last Updated on"
-msgstr "Última actualización en"
+msgstr "Última actualización el"
 
 #. module: product_attribute_template
 #: model:ir.model.fields,field_description:product_attribute_template.field_product_attribute_template__line_ids
@@ -117,11 +201,6 @@ msgid "Product Attribute Template"
 msgstr "Plantilla de Atributos de Producto"
 
 #. module: product_attribute_template
-#: model_terms:ir.ui.view,arch_db:product_attribute_template.product_attribute_template_form_view
-msgid "Product Name"
-msgstr "Nombre de Producto"
-
-#. module: product_attribute_template
 #: model:ir.model,name:product_attribute_template.model_product_template_attribute_line
 msgid "Product Template Attribute Line"
 msgstr "Línea de atributo de la plantilla de producto"
@@ -142,6 +221,25 @@ msgstr "Plantilla de atributos de Producto"
 #: model:ir.ui.menu,name:product_attribute_template.menu_product_attribute_template
 msgid "Products attributes templates"
 msgstr "Plantillas de atributos de Productos"
+
+#. module: product_attribute_template
+#: model_terms:ir.ui.view,arch_db:product_attribute_template.product_attribute_template_form_view
+msgid "Template Name"
+msgstr "Nombre de la plantilla"
+
+#. module: product_attribute_template
+#: model_terms:ir.ui.view,arch_db:product_attribute_template.product_attribute_template_form_view
+msgid ""
+"The missing attribute lines will be created on every product of this "
+"template. This cannot be undone. Do you want to continue?"
+msgstr ""
+"Se van a crear las líneas de atributo faltantes en todos los productos de "
+"esta plantilla. Esta acción no se puede deshacer. ¿Desea continuar?"
+
+#. module: product_attribute_template
+#: model_terms:ir.ui.view,arch_db:product_attribute_template.product_attribute_template_form_view
+msgid "Update attributes on products"
+msgstr "Actualizar atributos en productos"
 
 #. module: product_attribute_template
 #: model:ir.model,name:product_attribute_template.model_product_attribute_template
