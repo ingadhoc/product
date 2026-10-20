@@ -40,6 +40,7 @@ class TestMarginVisibility(TransactionCase):
             for node in nodes:
                 self.assertNotEqual(node.get("readonly"), "1", "%s must not be forced readonly" % field_name)
                 self.assertNotEqual(node.get("column_invisible"), "1", "%s must stay visible" % field_name)
+                self.assertTrue(node.get("optional"), "%s must stay in the optional columns toggle" % field_name)
 
     def test_only_view_makes_margin_fields_readonly(self):
         for field_name, nodes in self._order_form_margin_nodes(self.only_view_user).items():
@@ -52,6 +53,8 @@ class TestMarginVisibility(TransactionCase):
         for field_name, nodes in nodes_by_field.items():
             for node in nodes:
                 self.assertEqual(node.get("invisible"), "1", "%s must not be shown" % field_name)
+                # without optional the field is left out of the optional columns toggle
+                self.assertIsNone(node.get("optional"), "%s must not be offered as an optional column" % field_name)
         # purchase_price is a column of its own: column_invisible drops it.
         # margin and margin_percent sit inside the price_unit column, where the
         # web client ignores column_invisible on children and only invisible counts

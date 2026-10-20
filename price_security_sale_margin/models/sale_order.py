@@ -62,4 +62,5 @@ class SaleOrder(models.Model):
                     node.set("column_invisible", "1")
                     modifiers["column_invisible"] = True
                     node.set("modifiers", json.dumps(modifiers))
+                    node.attrib.pop("optional", None)
         return arch, view
