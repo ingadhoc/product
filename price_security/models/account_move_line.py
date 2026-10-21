@@ -23,7 +23,7 @@ class AccountMoveLine(models.Model):
     def check_discount(self):
         if not self.env.user.has_group("price_security.group_only_view"):
             return True
-        precision = self.env["decimal.precision"].precision_get("Product Unit of Measure")
+        precision = self.env["decimal.precision"].precision_get("Product Unit")
         for il in self:
             # only customer invoices
             if (
