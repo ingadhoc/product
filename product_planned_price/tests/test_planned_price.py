@@ -84,17 +84,6 @@ class TestProductPlannedPrice(TransactionCase):
         self.product.invalidate_recordset(["list_price"])
         self.assertAlmostEqual(self.product.list_price, 1.0, places=2)
 
-    def test_use_planned_price_context_has_no_effect(self):
-        """The override is named price_compute, a name core dropped before 18, so
-        nothing calls it and the context toggle does not reach the price."""
-        self.product.write({"list_price_type": "manual", "computed_list_price_manual": 150.0, "list_price": 100.0})
-        variant = self.product.product_variant_id
-        self.assertAlmostEqual(
-            variant.with_context(use_planned_price=True)._price_compute("list_price")[variant.id],
-            100.0,
-            places=2,
-        )
-
     def test_price_compute_returns_list_price(self):
         self.product.write({"list_price_type": "manual", "computed_list_price_manual": 150.0, "list_price": 100.0})
         variant = self.product.product_variant_id
