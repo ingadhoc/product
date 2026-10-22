@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Product Planned Price",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Product",
     "sequence": 14,
     "author": "ADHOC SA,Odoo Community Association (OCA)",
@@ -34,12 +34,12 @@
         "wizards/product_update_from_planned_price_wizard_views.xml",
         "data/ir_cron_data.xml",
         "security/product_planned_price_security.xml",
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
     ],
     "demo": [
         "demo/product_product_demo.xml",
     ],
-    "installable": False,
+    "installable": True,
     "auto_install": False,
     "application": False,
 }
