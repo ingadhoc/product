@@ -4,8 +4,7 @@
         <field name="name">Product Catalog Detailed Report (XLSX)</field>
         <field name="model">product.product_catalog_report</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">product_catalog_aeroo_report.report_product_catalog_xlsx</field>
-        <field name="report_file">product_catalog_aeroo_report.report_product_catalog_xlsx</field>
+        <field name="report_name">product_catalog_report.report_product_catalog_xlsx</field>
         <field name="print_report_name">'Product Catalog - %s' % (object.name)</field>
     </record>
 
@@ -13,8 +12,7 @@
         <field name="name">Product Catalog Simple Report</field>
         <field name="model">product.product_catalog_report</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">product_catalog_aeroo_report.report_product_catalog_qweb_simple</field>
-        <field name="report_file">product_catalog_aeroo_report.report_product_catalog_qweb_simple</field>
+        <field name="report_name">product_catalog_report.report_product_catalog_qweb_simple</field>
         <field name="print_report_name">'Product Catalog - %s' % (object.name)</field>
     </record>
 
@@ -22,8 +20,7 @@
         <field name="name">Product Catalog By Categories Report</field>
         <field name="model">product.product_catalog_report</field>
         <field name="report_type">qweb-pdf</field>
-        <field name="report_name">product_catalog_aeroo_report.report_product_catalog_qweb_by_categories</field>
-        <field name="report_file">product_catalog_aeroo_report.report_product_catalog_qweb_by_categories</field>
+        <field name="report_name">product_catalog_report.report_product_catalog_qweb_by_categories</field>
         <field name="print_report_name">'Product Catalog - %s' % (object.name)</field>
     </record>
 

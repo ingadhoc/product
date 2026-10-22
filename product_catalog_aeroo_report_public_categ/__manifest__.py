@@ -29,7 +29,7 @@
     "images": [],
     "depends": [
         "website_sale",
-        "product_catalog_aeroo_report",
+        "product_catalog_report",
     ],
     "data": [
         "views/product_catalog_report_views.xml",

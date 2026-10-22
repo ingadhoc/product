@@ -1,0 +1,401 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_catalog_report
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-29 14:41+0000\n"
+"PO-Revision-Date: 2026-09-29 14:41+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_catalog_report
+#. odoo-python
+#: code:addons/product_catalog_report/models/product_catalog_report.py:0
+msgid "%s. Also available in %s"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.actions.report,print_report_name:product_catalog_report.report_product_catalog_by_categories_odt
+#: model:ir.actions.report,print_report_name:product_catalog_report.report_product_catalog_ods
+#: model:ir.actions.report,print_report_name:product_catalog_report.report_product_catalog_simple_odt
+msgid "'Product Catalog - %s' % (object.name)"
+msgstr ""
+
+#. module: product_catalog_report
+#: model_terms:ir.ui.view,arch_db:product_catalog_report.report_product_catalog_qweb_by_categories_document
+#: model_terms:ir.ui.view,arch_db:product_catalog_report.report_product_catalog_qweb_simple_document
+msgid "<strong>Prices include taxes</strong>"
+msgstr ""
+
+#. module: product_catalog_report
+#: model_terms:ir.ui.view,arch_db:product_catalog_report.view_product_catalog
+msgid "Cancel"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_report__categories_order
+msgid "Categories Order Sintax"
+msgstr ""
+
+#. module: product_catalog_report
+#. odoo-python
+#: code:addons/product_catalog_report/controllers/main.py:0
+msgid "Category"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_report__category_type
+msgid "Category Type"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,help:product_catalog_report.field_product_product_catalog_report__product_type
+msgid ""
+"Choose whether the catalog is based on product templates (variants grouped) "
+"or individual product variants."
+msgstr ""
+
+#. module: product_catalog_report
+#: model_terms:ir.ui.view,arch_db:product_catalog_report.report_product_catalog_qweb_by_categories_document
+#: model_terms:ir.ui.view,arch_db:product_catalog_report.report_product_catalog_qweb_simple_document
+msgid "Code"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,help:product_catalog_report.field_product_product_catalog_report__prod_display_type
+msgid ""
+"Controls how variants appear in the report: one per line lists each variant "
+"separately, product list shows a summary, variants shows attributes."
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_report__create_uid
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_wizard__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_report__create_date
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_wizard__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: product_catalog_report
+#: model_terms:ir.ui.view,arch_db:product_catalog_report.report_product_catalog_qweb_by_categories_document
+#: model_terms:ir.ui.view,arch_db:product_catalog_report.report_product_catalog_qweb_simple_document
+msgid "Description"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_report__display_name
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: product_catalog_report
+#. odoo-python
+#: code:addons/product_catalog_report/controllers/main.py:0
+msgid "EAN"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,help:product_catalog_report.field_product_product_catalog_report__category_ids
+msgid ""
+"Filter the catalog to products from these categories. Leave empty to include"
+" all categories."
+msgstr ""
+
+#. module: product_catalog_report
+#: model_terms:ir.ui.view,arch_db:product_catalog_report.view_product_catalog_report_form
+msgid "Filters and Content"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_report__id
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_wizard__id
+msgid "ID"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,help:product_catalog_report.field_product_product_catalog_report__only_with_stock
+msgid ""
+"If enabled, only products with available stock will be included in the "
+"catalog."
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,help:product_catalog_report.field_product_product_catalog_report__include_sub_categories
+msgid ""
+"If enabled, products from all subcategories of the selected categories will "
+"also be included."
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,help:product_catalog_report.field_product_product_catalog_report__print_product_uom
+msgid "If enabled, the unit of measure is printed next to each product name."
+msgstr ""
+
+#. module: product_catalog_report
+#: model_terms:ir.ui.view,arch_db:product_catalog_report.report_product_catalog_qweb_by_categories_document
+msgid "Image"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_report__include_sub_categories
+msgid "Include Subcategories?"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_report__write_uid
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_wizard__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_report__write_date
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_wizard__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: product_catalog_report
+#. odoo-python
+#: code:addons/product_catalog_report/controllers/main.py:0
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_report__name
+msgid "Name"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields.selection,name:product_catalog_report.selection__product_product_catalog_report__prod_display_type__prod_per_line
+msgid "One Product Per Line"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_report__only_with_stock
+msgid "Only With Stock Products?"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,help:product_catalog_report.field_product_product_catalog_report__categories_order
+msgid ""
+"Order expression for categories (e.g. 'name asc', 'sequence desc'). Leave "
+"empty to use default order."
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,help:product_catalog_report.field_product_product_catalog_report__products_order
+msgid ""
+"Order expression for products (e.g. 'name asc', 'default_code'). Leave empty"
+" to use default order."
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_report__pricelist_ids
+msgid "Pricelist"
+msgstr ""
+
+#. module: product_catalog_report
+#: model_terms:ir.ui.view,arch_db:product_catalog_report.view_product_catalog
+#: model_terms:ir.ui.view,arch_db:product_catalog_report.view_product_catalog_report_form
+msgid "Print"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_report__print_product_uom
+msgid "Print Product UOM?"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields.selection,name:product_catalog_report.selection__product_product_catalog_report__product_type__product_product
+msgid "Product"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.actions.act_window,name:product_catalog_report.action_product_catalog
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_wizard__product_catalog_report_id
+#: model:ir.ui.menu,name:product_catalog_report.menu_product_catalog
+msgid "Product Catalog"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.actions.report,name:product_catalog_report.report_product_catalog_by_categories_odt
+msgid "Product Catalog By Categories Report"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.actions.report,name:product_catalog_report.report_product_catalog_ods
+msgid "Product Catalog Detailed Report (XLSX)"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model,name:product_catalog_report.model_product_product_catalog_report
+#: model_terms:ir.ui.view,arch_db:product_catalog_report.view_product_catalog
+msgid "Product Catalog Report"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.actions.act_window,name:product_catalog_report.action_product_catalog_reports
+#: model:ir.ui.menu,name:product_catalog_report.menu_product_catalog_reports
+#: model_terms:ir.ui.view,arch_db:product_catalog_report.view_product_catalog_report_form
+#: model_terms:ir.ui.view,arch_db:product_catalog_report.view_product_catalog_report_tree
+msgid "Product Catalog Reports"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.actions.report,name:product_catalog_report.report_product_catalog_simple_odt
+msgid "Product Catalog Simple Report"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_report__category_ids
+msgid "Product Categories"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields.selection,name:product_catalog_report.selection__product_product_catalog_report__category_type__product_category
+msgid "Product Category"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_report__prod_display_type
+msgid "Product Display Type"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields.selection,name:product_catalog_report.selection__product_product_catalog_report__prod_display_type__prod_list
+msgid "Product List"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields.selection,name:product_catalog_report.selection__product_product_catalog_report__product_type__product_template
+msgid "Product Template"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_report__product_type
+msgid "Product Type"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_report__products_order
+msgid "Products Order Sintax"
+msgstr ""
+
+#. module: product_catalog_report
+#. odoo-python
+#: code:addons/product_catalog_report/controllers/main.py:0
+msgid "Real Stock"
+msgstr ""
+
+#. module: product_catalog_report
+#. odoo-python
+#: code:addons/product_catalog_report/controllers/main.py:0
+msgid "Ref"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_report__report_id
+msgid "Report"
+msgstr ""
+
+#. module: product_catalog_report
+#: model_terms:ir.ui.view,arch_db:product_catalog_report.view_product_catalog_report_form
+msgid "Report Output"
+msgstr ""
+
+#. module: product_catalog_report
+#: model_terms:ir.ui.view,arch_db:product_catalog_report.view_product_catalog_report_form
+msgid "Report Scope"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,help:product_catalog_report.field_product_product_catalog_wizard__product_catalog_report_id
+msgid ""
+"Select the catalog configuration to use. Each catalog defines its "
+"categories, pricelists, and report format."
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,help:product_catalog_report.field_product_product_catalog_report__pricelist_ids
+msgid ""
+"Select the pricelists whose prices will appear as columns in the catalog."
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,help:product_catalog_report.field_product_product_catalog_report__report_id
+msgid ""
+"Select the report format to use when printing this catalog (PDF simple, PDF "
+"by categories, or XLSX export)."
+msgstr ""
+
+#. module: product_catalog_report
+#: model_terms:ir.ui.view,arch_db:product_catalog_report.view_product_catalog_report_form
+msgid "Sorting"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_wizard__taxes_included
+msgid "Taxes Included"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_report__taxes_included
+msgid "Taxes Included?"
+msgstr ""
+
+#. module: product_catalog_report
+#: model_terms:ir.ui.view,arch_db:product_catalog_report.report_product_catalog_qweb_by_categories_document
+#: model_terms:ir.ui.view,arch_db:product_catalog_report.report_product_catalog_qweb_simple_document
+msgid "UoM"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,field_description:product_catalog_report.field_product_product_catalog_wizard__use_planned_price
+msgid "Use Planned Price"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,help:product_catalog_report.field_product_product_catalog_wizard__use_planned_price
+msgid ""
+"Use planned price instead of list price (has no effect if the planned price "
+"module is not installed)."
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields.selection,name:product_catalog_report.selection__product_product_catalog_report__prod_display_type__variants
+msgid "Variants"
+msgstr ""
+
+#. module: product_catalog_report
+#. odoo-python
+#: code:addons/product_catalog_report/controllers/main.py:0
+msgid "Virtual Stock"
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,help:product_catalog_report.field_product_product_catalog_wizard__taxes_included
+msgid "When enabled, prices will include applicable taxes."
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model.fields,help:product_catalog_report.field_product_product_catalog_report__taxes_included
+msgid ""
+"When enabled, prices will include applicable taxes. This value is used as "
+"default when printing."
+msgstr ""
+
+#. module: product_catalog_report
+#: model:ir.model,name:product_catalog_report.model_product_product_catalog_wizard
+msgid "Wizard to generate the Product Catalog Report"
+msgstr ""
+
+#. module: product_catalog_report
+#: model_terms:ir.ui.view,arch_db:product_catalog_report.view_product_catalog
+msgid "or"
+msgstr ""
