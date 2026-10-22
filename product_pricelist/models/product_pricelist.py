@@ -27,14 +27,17 @@ class ProductPricelist(models.Model):
         elif "pricelist_template_id" in self._context:
             active_id = self._context.get("pricelist_template_id")
             model = "product.template"
-        else:
-            self.price = 0.0
 
-        if active_id and model:
+        # this compute is also called explicitly, so price must be protected for the
+        # assignment to only fill the cache. An actual write() bumps write_date, and
+        # website_sale overrides write() to clear the whole registry cache
+        with self.env.protecting([self._fields["price"]], self):
+            if not (active_id and model):
+                self.price = 0.0
+                return
             product = self.env[model].browse(active_id)
             for rec in self:
-                contextual_price = product.with_context(pricelist=rec.id)._get_contextual_price()
-                rec.sudo().write({"price": contextual_price})
+                rec.price = product.with_context(pricelist=rec.id)._get_contextual_price()
 
     @api.model
     def _get_view(self, view_id=None, view_type="form", **options):
