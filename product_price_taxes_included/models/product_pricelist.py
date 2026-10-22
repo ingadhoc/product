@@ -17,12 +17,12 @@ class ProductPricelist(models.Model):
         """
         res = super()._get_products_price(products, quantity, date=date, uom_id=uom_id, **kwargs)
         if self.env.context.get("taxes_included"):
-            company_id = self.env.context.get("company_id") or self.env.company.id
+            company = self.env["res.company"].browse(self.env.context.get("company_id")) or self.env.company
             for product in products:
                 # for compatibility with product_pack
                 if "pack_ok" in product._fields and self.check_for_product_pack_parent(product):
                     continue
-                res[product.id] = product.taxes_id.filtered(lambda x: x.company_id.id == company_id).compute_all(
+                res[product.id] = product.taxes_id._filter_taxes_by_company(company).compute_all(
                     res[product.id], product=product
                 )["total_included"]
         return res
@@ -48,8 +48,6 @@ class ProductPricelist(models.Model):
     def _get_product_price(self, product, *args, **kwargs):
         res = super(ProductPricelist, self.with_context(is_recursive=True))._get_product_price(product, *args, **kwargs)
         if self.env.context.get("taxes_included") and not self.env.context.get("is_recursive"):
-            company_id = self.env.context.get("company_id") or self.env.company.id
-            res = product.taxes_id.filtered(lambda x: x.company_id.id == company_id).compute_all(res, product=product)[
-                "total_included"
-            ]
+            company = self.env["res.company"].browse(self.env.context.get("company_id")) or self.env.company
+            res = product.taxes_id._filter_taxes_by_company(company).compute_all(res, product=product)["total_included"]
         return res
