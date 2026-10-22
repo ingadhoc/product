@@ -2,10 +2,11 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
+import io
 from unittest.mock import patch
 
 from odoo.tests import TransactionCase, tagged
-from odoo.tools.image import image_to_base64
+from odoo.tools import BinaryBytes
 from PIL import Image
 
 
@@ -31,7 +32,7 @@ class TestProductCatalogPrice(TransactionCase):
         cls.pricelist = cls.env["product.pricelist"].create(
             {
                 "name": "Catalog pricelist",
-                "item_ids": [(0, 0, {"applied_on": "3_global", "compute_price": "formula", "base": "list_price"})],
+                "item_ids": [(0, 0, {"applied_on": "3_global", "compute_price": "discount", "base": "list_price"})],
             }
         )
         cls.catalog = cls.env["product.product_catalog_report"].create(
@@ -40,7 +41,7 @@ class TestProductCatalogPrice(TransactionCase):
                 "product_type": "product.template",
                 "prod_display_type": "prod_per_line",
                 "pricelist_ids": [(6, 0, cls.pricelist.ids)],
-                "report_id": cls.env.ref("product_catalog_aeroo_report.report_product_catalog_simple_odt").id,
+                "report_id": cls.env.ref("product_catalog_report.report_product_catalog_simple_odt").id,
             }
         )
 
@@ -95,7 +96,9 @@ class TestProductCatalogPrice(TransactionCase):
     def test_image_is_embedded_as_data_uri(self):
         """The catalog embeds the image instead of pointing at a url, so the
         pdf engine does not fetch one image per row."""
-        self.product.image_1920 = image_to_base64(Image.new("RGB", (10, 10)), "PNG")
+        png = io.BytesIO()
+        Image.new("RGB", (10, 10)).save(png, "PNG")
+        self.product.image_1920 = BinaryBytes(png.getvalue())
         self.assertTrue(self.catalog.get_image(self.product).startswith("data:image/"))
 
     def test_product_without_image(self):

@@ -18,7 +18,7 @@
 #
 ##############################################################################
 {
-    "name": "Product Catalog Aeroo Report",
+    "name": "Product Catalog Report",
     "version": "20.0.1.0.0",
     "category": "Reporting",
     "sequence": 14,
