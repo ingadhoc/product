@@ -27,7 +27,13 @@ class ProductProduct(models.Model):
     @api.depends_context("company", "company_id", "order_id", "product_catalog_order_model")
     def _compute_product_catalog_price_taxed(self):
         order = self._get_catalog_order()
-        company_id = self.env.context.get("company_id", self.env.company.id)
+        company = self.env["res.company"].browse(self.env.context.get("company_id")) or self.env.company
+        currency = self.env.company.currency_id
+        partner = self.env["res.partner"]
+        if order:
+            currency = order.currency_id or currency
+            partner = order.partner_id
+            company = order.company_id or self.env.company
 
         for rec in self:
             price = rec.product_catalog_price
@@ -35,17 +41,9 @@ class ProductProduct(models.Model):
                 rec.product_catalog_price_taxed = 0.0
                 continue
 
-            currency = self.env.company.currency_id
-            partner = self.env["res.partner"]
-            taxes = rec.taxes_id.filtered(lambda x: x.company_id.id == company_id)
-
-            if order:
-                currency = order.currency_id or currency
-                partner = order.partner_id
-                company_id = (order.company_id or self.env.company).id
-                taxes = rec.taxes_id.filtered(lambda x: x.company_id.id == company_id)
-                if order.fiscal_position_id:
-                    taxes = order.fiscal_position_id.map_tax(taxes)
+            taxes = rec.taxes_id._filter_taxes_by_company(company)
+            if order and order.fiscal_position_id:
+                taxes = order.fiscal_position_id.map_tax(taxes)
 
             tax_result = taxes.sudo().compute_all(price, currency=currency, quantity=1.0, product=rec, partner=partner)
             rec.product_catalog_price_taxed = tax_result["total_included"]
