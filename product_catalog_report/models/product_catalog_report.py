@@ -264,7 +264,7 @@ class ProductCatalogReport(models.Model):
         self.ensure_one()
         self = self.prepare_report()
         xlsx_report = self.env.ref(
-            "product_catalog_aeroo_report.report_product_catalog_ods",
+            "product_catalog_report.report_product_catalog_ods",
             raise_if_not_found=False,
         )
         if xlsx_report and self.report_id == xlsx_report:

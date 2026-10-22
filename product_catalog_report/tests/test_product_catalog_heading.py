@@ -27,7 +27,7 @@ class TestProductCatalogHeading(TransactionCase):
                 "prod_display_type": "prod_per_line",
                 "category_ids": [(6, 0, cls.category.ids)],
                 "pricelist_ids": [(6, 0, cls.pricelist.ids)],
-                "report_id": cls.env.ref("product_catalog_aeroo_report.report_product_catalog_simple_odt").id,
+                "report_id": cls.env.ref("product_catalog_report.report_product_catalog_simple_odt").id,
             }
         )
 
@@ -35,7 +35,7 @@ class TestProductCatalogHeading(TransactionCase):
         html, _report_type = (
             self.env["ir.actions.report"]
             .with_env(catalog.env)
-            ._render_qweb_html("product_catalog_aeroo_report.%s" % report, catalog.ids)
+            ._render_qweb_html("product_catalog_report.%s" % report, catalog.ids)
         )
         return html.decode() if isinstance(html, bytes) else html
 
