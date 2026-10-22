@@ -29,8 +29,9 @@ Configuration
 
 To configure this module, you need to:
 
-#. Set 'Restrict Prices' for users you want to restrict.
-#. For the same users, configure discounts range on "Discounts Permissions" users tab.
+#. On Settings > Users, give the user one of the groups of the "Price
+   restriction" privilege that Price Security adds: "Only view: sale and
+   purchase price" or "Only view: sale price".
 
 
 Usage
@@ -38,14 +39,15 @@ Usage
 
 To use this module, you need to:
 
-For users with price restriction, it restricts:
+Open a product. On both the product template form and the product variant
+form, the planned price fields that Product Planned Price adds are restricted
+by group:
 
-* on sales orders: change payment term or pricelist
-* on sales order lines: change unit price and set limits on discount (limits configured on user)
-* on partners: change payment term or pricelist
-* on invoices: change unit price
-* on invoice lines: change unit price and set limits on discount (limits configured on user)
-* on product: change price
+* "Only view: sale and purchase price" leaves the planned price fields
+  readonly: based on, margin, surcharge, price in another currency, its
+  currency, and the manual planned price
+* "Only view: sale price" (which implies the group above) also hides the whole
+  Planned Price block
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
