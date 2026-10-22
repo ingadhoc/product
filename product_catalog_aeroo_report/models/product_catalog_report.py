@@ -5,7 +5,7 @@
 from collections import defaultdict
 
 from odoo import _, fields, models
-from odoo.tools import formatLang
+from odoo.tools import format_date, formatLang
 
 
 class ProductCatalogReport(models.Model):
@@ -235,6 +235,11 @@ class ProductCatalogReport(models.Model):
         image = product.image_sale_order if "image_sale_order" in product._fields else False
         image = image or product.image_128
         return image and self.env["ir.qweb"]._get_converted_image_data_uri(image)
+
+    def get_report_date(self):
+        """Date the catalog is printed, in the format of the user language."""
+        self.ensure_one()
+        return format_date(self.env, fields.Date.context_today(self))
 
     def get_description(self, product):
         self.ensure_one()
