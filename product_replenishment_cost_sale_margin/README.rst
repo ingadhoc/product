@@ -15,6 +15,7 @@ Use Replenishment Cost on Sale Margin
 =====================================
 
 #. When computing cost and margin on sales orders, use replenishment cost instead of accounting cost (standard_price)
+#. Delivery, down payment and discount lines keep no cost, as in the standard sale margin
 
 Installation
 ============

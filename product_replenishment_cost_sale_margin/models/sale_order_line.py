@@ -6,7 +6,8 @@ class SaleOrderLine(models.Model):
 
     def _compute_purchase_price(self):
         super()._compute_purchase_price()
-        for line in self.filtered("product_id"):
+        # since 20.0 core leaves no cost on delivery, down payment and discount lines
+        for line in self.filtered(lambda line: line.product_id and line._is_product_line()):
             order_id = line.order_id
             product_id = line.product_id
             product_uom_id = line.product_uom_id
