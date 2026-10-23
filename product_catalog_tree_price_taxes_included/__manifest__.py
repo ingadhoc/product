@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Product Catalog Tree Price Taxes Included",
-    "version": "19.0.1.1.0",
+    "version": "20.0.1.0.0",
     "category": "Products",
     "sequence": 14,
     "summary": "Show order price with taxes included in the product catalog",
@@ -34,7 +34,7 @@
     "data": [
         "views/product_product_views.xml",
     ],
-    "installable": False,
+    "installable": True,
     "auto_install": True,
     "application": False,
 }
