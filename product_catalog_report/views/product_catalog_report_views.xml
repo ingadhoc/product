@@ -72,5 +72,5 @@
         <field name="view_mode">list,form</field>
     </record>
 
-    <menuitem id="menu_product_catalog_reports" action="action_product_catalog_reports" parent="sale.prod_config_main" sequence="10"/>
+    <menuitem id="menu_product_catalog_reports" action="action_product_catalog_reports" parent="sale.product_menu_catalog" sequence="10"/>
 </odoo>

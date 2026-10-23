@@ -6,7 +6,8 @@
 import io
 
 from odoo import _, http
-from odoo.http import content_disposition, request
+from odoo.http import request
+from odoo.http.stream import content_disposition
 
 
 class ProductCatalogXlsxController(http.Controller):
@@ -18,7 +19,7 @@ class ProductCatalogXlsxController(http.Controller):
     )
     def export_catalog_xlsx(self, catalog_id, taxes_included="0", use_planned_price="0"):
         catalog = request.env["product.product_catalog_report"].browse(catalog_id)
-        catalog.check_access_rights("read")
+        catalog.check_access("read")
         catalog = catalog.with_context(
             taxes_included=taxes_included == "1",
             use_planned_price=use_planned_price == "1",

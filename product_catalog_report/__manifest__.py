@@ -18,8 +18,8 @@
 #
 ##############################################################################
 {
-    "name": "Product Catalog Aeroo Report",
-    "version": "19.0.1.2.0",
+    "name": "Product Catalog Report",
+    "version": "20.0.1.0.0",
     "category": "Reporting",
     "sequence": 14,
     "summary": "",
@@ -34,7 +34,7 @@
     ],
     "data": [
         "wizards/product_catalog_wizard_views.xml",
-        "security/ir.model.access.csv",
+        "security/ir.access.csv",
         "views/product_catalog_report_views.xml",
         "report/product_catalog_report_data.xml",
         "report/product_catalog_report_templates.xml",
@@ -43,7 +43,7 @@
         "demo/product_template_demo.xml",
         "demo/product_product_demo.xml",
     ],
-    "installable": False,
+    "installable": True,
     "auto_install": False,
     "application": True,
 }
