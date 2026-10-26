@@ -19,7 +19,13 @@
 ##############################################################################
 {
     "name": "Price Security",
+<<<<<<< 6c723596f09c8f30199a2c1f41d8957fc3de327f
     "version": "20.0.1.1.0",
+||||||| 8a4a183cf00c41be5daf05bba8c8dddb276309fc
+    "version": "19.0.1.3.0",
+=======
+    "version": "19.0.1.4.0",
+>>>>>>> e542e534e8df3dc24f1b4e9f75da5a82274b350d
     "category": "Sales Management",
     "author": "ADHOC SA, Odoo Community Association (OCA)",
     "website": "http://www.adhoc.com.ar/",
