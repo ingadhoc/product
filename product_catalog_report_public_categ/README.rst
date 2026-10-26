@@ -29,14 +29,14 @@ Configuration
 
 To configure this module, you need to:
 
-#. Go to Sale/Configuration/Products/Product Catalog Reports
+#. Go to Sales/Products/Product Catalog Reports
 
 Usage
 =====
 
 To use this module, you need to:
 
-#. Go to Sale/Product Catalog and print the report.
+#. Go to Sales/Products/Product Catalog Reports and print the report.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
