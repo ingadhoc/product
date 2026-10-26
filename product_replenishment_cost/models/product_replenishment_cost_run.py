@@ -250,13 +250,8 @@ class ProductReplenishmentCostRun(models.Model):
     @api.model
     def _cron_purge_run_lines(self):
         """Delete old run detail in batches; the run header is light and always kept."""
-        try:
-            days = int(
-                self.env["ir.config_parameter"].sudo().get_param(LINE_RETENTION_PARAM, DEFAULT_LINE_RETENTION_DAYS)
-            )
-        except (TypeError, ValueError):
-            _logger.warning("Invalid %s, falling back to %s days", LINE_RETENTION_PARAM, DEFAULT_LINE_RETENTION_DAYS)
-            days = DEFAULT_LINE_RETENTION_DAYS
+        # get_int falls back to the default when the value is missing or not an integer
+        days = self.env["ir.config_parameter"].sudo().get_int(LINE_RETENTION_PARAM, DEFAULT_LINE_RETENTION_DAYS)
         if days <= 0:
             return True
         limit_date = fields.Datetime.now() - relativedelta(days=days)

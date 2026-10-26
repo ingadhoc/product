@@ -7,7 +7,8 @@ import random
 import time
 
 from odoo import _, api, fields, models
-from odoo.service.model import MAX_TRIES_ON_CONCURRENCY_FAILURE, PG_CONCURRENCY_EXCEPTIONS_TO_RETRY
+from odoo.http.retrying import MAX_TRIES_ON_CONCURRENCY_FAILURE
+from odoo.sql_db import PG_CONCURRENCY_EXCEPTIONS_TO_RETRY
 from odoo.tools import float_compare
 
 _logger = logging.getLogger(__name__)
@@ -92,7 +93,7 @@ class ProductTemplate(models.Model):
     @api.depends(
         "seller_ids.net_price",
         "seller_ids.currency_id",
-        "seller_ids.product_uom_id",
+        "seller_ids.uom_id",
         "seller_ids.company_id",
         "replenishment_cost_type",
     )
@@ -115,7 +116,7 @@ class ProductTemplate(models.Model):
                 {
                     "supplier_price": seller_ids and seller_ids[0].net_price or 0.0,
                     "supplier_currency_id": seller_ids and seller_ids[0].currency_id or self.env["res.currency"],
-                    "supplier_uom_id": seller_ids and seller_ids[0].product_uom_id or self.env["uom.uom"],
+                    "supplier_uom_id": seller_ids and seller_ids[0].uom_id or self.env["uom.uom"],
                 }
             )
 
