@@ -2,10 +2,15 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
+import io
 from collections import defaultdict
 
 from odoo import _, fields, models
-from odoo.tools import format_date, formatLang
+from odoo.tools import BinaryBytes, format_date, formatLang
+
+# Odoo freezes the PIL plugin registry on the formats of preinit(), so the webp
+# one is imported here to register it.
+from PIL import Image, WebPImagePlugin
 
 
 class ProductCatalogReport(models.Model):
@@ -227,14 +232,29 @@ class ProductCatalogReport(models.Model):
     def get_image(self, product):
         """Product image as a data uri, embedded so the pdf engine does not
         fetch one url per row.
-
-        image_sale_order comes from sale_ux, which is not a dependency, so the
-        standard image is used when that field is not there.
         """
         self.ensure_one()
-        image = product.image_sale_order if "image_sale_order" in product._fields else False
-        image = image or product.image_128
-        return image and self.env["ir.qweb"]._get_converted_image_data_uri(image)
+        image = product.image_128
+        if not image:
+            return False
+        if "webp" in image.mimetype:
+            image = self._image_as_jpeg(image)
+        return self.env["ir.qweb"]._get_converted_image_data_uri(image)
+
+    def _image_as_jpeg(self, image):
+        """wkhtmltopdf does not render webp, and Odoo only swaps it for a jpeg
+        when the image widget stored that variant, so it is converted here."""
+        source = WebPImagePlugin.WebPImageFile(image.open())
+        if source.mode in ("RGBA", "LA") or (source.mode == "P" and "transparency" in source.info):
+            background = Image.new("RGB", source.size, (255, 255, 255))
+            source = source.convert("RGBA")
+            background.paste(source, (0, 0), source)
+            source = background
+        else:
+            source = source.convert("RGB")
+        output = io.BytesIO()
+        source.save(output, "JPEG")
+        return BinaryBytes(output.getvalue())
 
     def get_report_date(self):
         """Date the catalog is printed, in the format of the user language."""

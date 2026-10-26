@@ -101,5 +101,13 @@ class TestProductCatalogPrice(TransactionCase):
         self.product.image_1920 = BinaryBytes(png.getvalue())
         self.assertTrue(self.catalog.get_image(self.product).startswith("data:image/"))
 
+    def test_webp_image_is_converted_to_jpeg(self):
+        """wkhtmltopdf does not render webp, so the catalog converts it."""
+        webp = io.BytesIO()
+        Image.new("RGBA", (10, 10), (255, 0, 0, 128)).save(webp, "WEBP")
+        self.product.image_1920 = BinaryBytes(webp.getvalue())
+        self.assertEqual(self.product.image_128.mimetype, "image/webp")
+        self.assertTrue(self.catalog.get_image(self.product).startswith("data:image/jpg;"))
+
     def test_product_without_image(self):
         self.assertFalse(self.catalog.get_image(self.other_product))
