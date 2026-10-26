@@ -19,11 +19,29 @@ class ProductCatalogReport(models.Model):
         "Product Categories Public",
     )
 
+    def _public_categories(self):
+        """The public categories of the report, with their children if asked."""
+        self.ensure_one()
+        categories = self.public_category_ids
+        if self.include_sub_categories and categories:
+            categories = self.env["product.public.category"].search([("id", "child_of", categories.ids)])
+        return categories
+
     def prepare_report(self):
         self = super().prepare_report()
         if self.category_type == "public_category":
-            categories = self.public_category_ids
-            if self.include_sub_categories and categories:
-                categories = self.env["product.public.category"].search([("id", "child_of", categories.ids)])
-            self = self.with_context(category_ids=categories.ids)
+            self = self.with_context(category_ids=self._public_categories().ids)
         return self
+
+    def get_categories(self):
+        # The parent resolves the categories out of category_ids, which holds
+        # product categories and stays empty when the public ones are used.
+        if self.category_type != "public_category":
+            return super().get_categories()
+        self.ensure_one()
+        categories = self._public_categories()
+        if not categories:
+            return self.env["product.public.category"]
+        return self.env["product.public.category"].search(
+            [("id", "in", categories.ids)], order=self.categories_order or "id"
+        )
