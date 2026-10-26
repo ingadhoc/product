@@ -1,7 +1,7 @@
 from unittest.mock import patch
 
 import psycopg2
-from odoo.service.model import MAX_TRIES_ON_CONCURRENCY_FAILURE
+from odoo.http.retrying import MAX_TRIES_ON_CONCURRENCY_FAILURE
 from odoo.tests.common import TransactionCase
 from odoo.tools import mute_logger
 
@@ -136,7 +136,7 @@ class TestReplenishmentCostUom(TransactionCase):
                         {
                             "partner_id": self.env["res.partner"].create({"name": "Lb Supplier"}).id,
                             "price": 9.01,
-                            "product_uom_id": uom_lb.id,
+                            "uom_id": uom_lb.id,
                             "currency_id": self.env.company.currency_id.id,
                         },
                     )
