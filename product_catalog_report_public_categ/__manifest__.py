@@ -18,9 +18,9 @@
 #
 ##############################################################################
 {
-    "name": "Product Catalog Aeroo Report with public Category",
+    "name": "Product Catalog Report with public Category",
     "version": "20.0.1.0.0",
-    "category": "Aeroo Reporting",
+    "category": "Reporting",
     "sequence": 14,
     "summary": "",
     "author": "ADHOC SA",
