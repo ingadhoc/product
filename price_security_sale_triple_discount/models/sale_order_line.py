@@ -19,5 +19,7 @@ class SaleOrderLine(models.Model):
         discount_fields = {"discount", "discount1", "discount2", "discount3"}
         to_settle = self.browse(line.id for line, vals in zip(self, vals_list) if not discount_fields & vals.keys())
         amount_fields = ("price_subtotal", "price_total", "price_reduce_taxexcl", "price_reduce_taxinc")
-        for fname in to_settle and ("discount1", "discount2", "discount3", "discount") + amount_fields or ():
+        # discount2 and discount3 come from triple.discount.mixin as plain stored fields: they are
+        # written, never computed, so only the computed ones can be marked for recompute.
+        for fname in to_settle and ("discount1", "discount") + amount_fields or ():
             self.env.add_to_compute(self._fields[fname], to_settle)
