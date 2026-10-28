@@ -65,12 +65,16 @@ class TestDiscountRestriction(TransactionCase):
     def _assert_restriction_blocks(self, apply_discount):
         if self.deferred_check:
             apply_discount()
-            self.order.with_user(self.seller).action_confirm()
+            # Since 20.0 base_exception raises (BaseExceptionError, a UserError)
+            # instead of returning the exceptions, so the confirmation is what
+            # fails. The class is not imported: base_exception is not a
+            # dependency of this module. What exception_ids ends up holding
+            # cannot be checked from a test either -- the detection writes it
+            # inside `with registry.cursor()`, a savepoint that a TestCursor
+            # rolls back on close.
+            with self.assertRaises(UserError):
+                self.order.with_user(self.seller).action_confirm()
             self.assertEqual(self.order.state, "draft")
-            self.assertIn(
-                self.env.ref("sale_exception_price_security.discount_restriction"),
-                self.order.exception_ids,
-            )
         else:
             with self.assertRaises(UserError):
                 apply_discount()
