@@ -27,7 +27,7 @@ class ProductTemplate(models.Model):
         # TODO ver si encontramos otra alternativa a este depends ya que esto lo hace bastante malo a nivel performance
         # antes usabamos un invalidate cache pero nos dejó de funcionar
         "bom_ids.bom_line_ids.product_qty",
-        "bom_ids.bom_line_ids.product_uom_id",
+        "bom_ids.bom_line_ids.uom_id",
     )
     def _compute_replenishment_cost(self):
         bom_costs = self.filtered(lambda x: x.replenishment_cost_type == "bom")
@@ -58,7 +58,7 @@ class ProductTemplate(models.Model):
             for sbom, sbom_data in result2:
                 sbom_rep_cost = (
                     sbom.product_id.uom_id._compute_price(
-                        sbom.product_id.product_tmpl_id.replenishment_cost, sbom.product_uom_id
+                        sbom.product_id.product_tmpl_id.replenishment_cost, sbom.uom_id
                     )
                     * sbom_data["qty"]
                 )
@@ -71,15 +71,16 @@ class ProductTemplate(models.Model):
                 # Look for the seller/subcontractor set in the BOM
                 product = rec.product_variant_ids[:1]
                 if product:
+                    # since 20.0 _select_seller returns the seller info dict, not the supplierinfo
                     seller = product._select_seller(
-                        quantity=1, uom_id=bom.product_uom_id, params={"subcontractor_ids": bom.subcontractor_ids}
-                    )
+                        quantity=1, uom_id=bom.uom_id, params={"subcontractor_ids": bom.subcontractor_ids}
+                    ).get("supplierinfo")
                 else:
                     # If no product variant, look for sellers in the template
                     seller = rec.seller_ids.filtered(lambda s: s.partner_id in bom.subcontractor_ids)[:1]
 
                 if seller:
-                    if not bom.product_uom_id.factor:
+                    if not bom.uom_id.factor:
                         raise ValueError(
                             _(
                                 "El factor de la unidad de medida del producto '%s' en el BOM no esta seteado. "
@@ -88,7 +89,7 @@ class ProductTemplate(models.Model):
                             % bom.display_name
                         )
                     # Calculate the subcontracting cost
-                    ratio_uom_seller = seller.product_uom_id.factor / bom.product_uom_id.factor
+                    ratio_uom_seller = seller.uom_id.factor / bom.uom_id.factor
                     subcontract_price = seller.currency_id._convert(
                         seller.price, product_currency, company, date, round=False
                     )
@@ -106,7 +107,7 @@ class ProductTemplate(models.Model):
             #         price += bom.product_uom_id._compute_price(total_cost, bom.product_id.uom_id)
             # Convert on product UoM quantities
             if price > 0:
-                price = bom.product_uom_id._compute_price(price / bom.product_qty, rec.uom_id)
+                price = bom.uom_id._compute_price(price / bom.product_qty, rec.uom_id)
 
             replenishment_base_cost_on_currency = replenishment_cost = price
             if rec.replenishment_cost_rule_id:
