@@ -37,6 +37,10 @@ Usage
 
 To use this module, you need to:
 
+#. On a product with a bill of materials, set the replenishment cost type to "Basado en Ldm" (based on BoM).
+#. The replenishment cost of the product is the sum of the replenishment cost of its BoM components, plus the subcontractor price on subcontracted BoMs, converted to the product currency and unit of measure. If the product has a replenishment cost rule, it is applied on top.
+#. On the bill of materials, the "BoM Overview" button shows the BoM structure costed with the replenishment cost of the components, or their cost when they have none.
+
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
