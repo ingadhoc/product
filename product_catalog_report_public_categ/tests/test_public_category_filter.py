@@ -32,7 +32,7 @@ class TestPublicCategoryFilter(TransactionCase):
                 "product_type": "product.template",
                 "prod_display_type": "prod_per_line",
                 "category_type": "public_category",
-                "report_id": self.env.ref("product_catalog_aeroo_report.report_product_catalog_simple_odt").id,
+                "report_id": self.env.ref("product_catalog_report.report_product_catalog_simple_odt").id,
                 "public_category_ids": [(6, 0, categories.ids)],
                 "include_sub_categories": include_sub_categories,
             }
