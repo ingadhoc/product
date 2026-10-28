@@ -90,3 +90,77 @@ class TestReplenishmentCostBom(TransactionCase):
         no_bom.replenishment_cost_type = "bom"
         self.env.invalidate_all()
         self.assertEqual(no_bom.replenishment_cost, 0.0)
+
+    def test_bom_line_in_another_uom(self):
+        """Una linea de la LdM en docenas convierte el costo de reposicion del componente, en el costo
+        del producto y en el reporte de estructura."""
+        dozen = self.env.ref("uom.product_uom_dozen")
+        template = self.env["product.template"].create({"name": "DOZEN", "default_code": "DOZEN"})
+        bom = self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": template.id,
+                "product_qty": 1,
+                "type": "normal",
+                "bom_line_ids": [
+                    (0, 0, {"product_id": self.raw_1.product_variant_id.id, "product_qty": 1, "uom_id": dozen.id})
+                ],
+            }
+        )
+        template.replenishment_cost_type = "bom"
+        self.env.invalidate_all()
+        self.assertEqual(template.replenishment_cost, 120.0)
+
+        lines = self.env["report.mrp.report_bom_structure"]._get_report_data(bom.id, searchQty=1)["lines"]
+        self.assertEqual([component["bom_cost"] for component in lines["components"]], [120.0])
+        self.assertEqual(lines["bom_cost"], 120.0)
+        self.assertEqual(lines["currency"], template.currency_id)
+
+    def test_subcontracted_bom(self):
+        """En una LdM subcontratada se suma el precio del subcontratista, convertido a la unidad de la LdM."""
+        if "subcontractor_ids" not in self.env["mrp.bom"]._fields:
+            self.skipTest("mrp_subcontracting is not installed")
+        subcontractor = self.env["res.partner"].create({"name": "Subcontractor"})
+        template = self.env["product.template"].create(
+            {
+                "name": "SUBCONTRACTED",
+                "default_code": "SUBCONTRACTED",
+                "seller_ids": [
+                    (
+                        0,
+                        0,
+                        {
+                            "partner_id": subcontractor.id,
+                            "price": 60.0,
+                            # since 20.0 min_qty defaults to 1, which in dozens filters out a 1 unit purchase
+                            "min_qty": 0.0,
+                            "currency_id": self.currency.id,
+                            "uom_id": self.env.ref("uom.product_uom_dozen").id,
+                        },
+                    )
+                ],
+            }
+        )
+        bom = self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": template.id,
+                "product_qty": 1,
+                "type": "subcontract",
+                "subcontractor_ids": [(6, 0, subcontractor.ids)],
+                "bom_line_ids": [(0, 0, {"product_id": self.raw_1.product_variant_id.id, "product_qty": 2})],
+            }
+        )
+        template.replenishment_cost_type = "bom"
+        self.env.invalidate_all()
+        self.assertEqual(template.replenishment_cost, 25.0)
+
+        lines = self.env["report.mrp.report_bom_structure"]._get_report_data(bom.id, searchQty=1)["lines"]
+        self.assertEqual(lines["subcontracting"]["bom_cost"], 5.0)
+        self.assertEqual(lines["bom_cost"], 25.0)
+
+    def test_bom_overview_button_help(self):
+        """La ayuda queda en el boton del resumen de la LdM y no en otro boton de la caja."""
+        action = self.env.ref("mrp.action_report_mrp_bom")
+        arch = self.env.ref("mrp.mrp_bom_form_view")._get_combined_arch()
+        helps = {button.get("name"): button.get("help") for button in arch.xpath("//div[@name='button_box']/button")}
+        self.assertEqual(helps.pop(str(action.id)), "Estructura y costo según costo de reposición")
+        self.assertFalse(any(helps.values()))
