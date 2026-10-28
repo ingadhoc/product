@@ -5,19 +5,21 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
     _inherit = "report.mrp.report_bom_structure"
 
     @api.model
-    def _get_subcontracting_line(self, bom, seller, level, bom_quantity):
+    def _get_subcontracting_line(self, bom, seller_info, level, bom_quantity):
         """Override to convert seller price to the proper currency"""
-        res = super()._get_subcontracting_line(bom, seller, level, bom_quantity)
+        res = super()._get_subcontracting_line(bom, seller_info, level, bom_quantity)
         currency = self.env.context.get("force_currency") or self.env.company.currency_id
 
         # Convert the seller price to the proper currency
-        if bom.product_uom_id.factor == 0:
+        if bom.uom_id.factor == 0:
             raise ValueError(
                 "El ratio de la unidad de medida del producto en el BOM es cero. "
                 "Esto provocaría una división por cero. Verifique la configuración de la UoM."
             )
-        ratio_uom_seller = seller.product_uom_id.factor / bom.product_uom_id.factor
-        price = seller.currency_id._convert(seller.price, currency, self.env.company, fields.Date.today(), round=True)
+        ratio_uom_seller = seller_info["uom_id"].factor / bom.uom_id.factor
+        price = seller_info["currency_id"]._convert(
+            seller_info["price"], currency, self.env.company, fields.Date.today(), round=True
+        )
         res.update(
             {
                 "prod_cost": price / ratio_uom_seller * bom_quantity,
@@ -67,22 +69,20 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
         is_minimized = self.env.context.get("minimized", False)
         current_quantity = line_qty
         if bom_line:
-            current_quantity = bom_line.product_uom_id._compute_quantity(line_qty, bom.product_uom_id) or 0
+            current_quantity = bom_line.uom_id._compute_quantity(line_qty, bom.uom_id) or 0
 
         # Only update prod_cost (costo del producto final), not bom_cost
         # bom_cost is automatically calculated as: components + operations + subcontracting
         if not is_minimized:
             if product:
-                price = product.uom_id._compute_price(product.replenishment_cost, bom.product_uom_id) * current_quantity
+                price = product.uom_id._compute_price(product.replenishment_cost, bom.uom_id) * current_quantity
                 res["prod_cost"] = product.currency_id._convert(
                     price, currency, self.env.company, fields.Date.today(), round=True
                 )
             else:
                 # Use the product template instead of the variant
                 price = (
-                    bom.product_tmpl_id.uom_id._compute_price(
-                        bom.product_tmpl_id.replenishment_cost, bom.product_uom_id
-                    )
+                    bom.product_tmpl_id.uom_id._compute_price(bom.product_tmpl_id.replenishment_cost, bom.uom_id)
                     * current_quantity
                 )
                 res["prod_cost"] = bom.product_tmpl_id.currency_id._convert(
@@ -113,7 +113,7 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
         if not component_cost:
             component_cost = bom_line.product_id.standard_price
 
-        price = bom_line.product_id.uom_id._compute_price(component_cost, bom_line.product_uom_id) * line_quantity
+        price = bom_line.product_id.uom_id._compute_price(component_cost, bom_line.uom_id) * line_quantity
         price = bom_line.product_id.currency_id._convert(
             price, currency, self.env.company, fields.Date.today(), round=True
         )
@@ -138,7 +138,7 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
             line_quantity = (bom_quantity / (bom.product_qty or 1.0)) * byproduct_id.product_qty
             price = (
                 byproduct_id.product_id.uom_id._compute_price(
-                    byproduct_id.product_id.replenishment_cost, byproduct_id.product_uom_id
+                    byproduct_id.product_id.replenishment_cost, byproduct_id.uom_id
                 )
                 * line_quantity
             )
