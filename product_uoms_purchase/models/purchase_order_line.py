@@ -14,7 +14,7 @@ class PurchaseOrderLine(models.Model):
         for line in self:
             product = line.product_id
             if product:
-                supplier_uoms = product.seller_ids.mapped("product_uom_id")
+                supplier_uoms = product.seller_ids.mapped("uom_id")
                 if product.product_tmpl_id.use_product_uom:
                     line.allowed_uom_ids = product.uom_id | product.uom_po_ids | supplier_uoms
                 else:
