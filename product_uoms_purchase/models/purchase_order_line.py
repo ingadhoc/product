@@ -12,10 +12,5 @@ class PurchaseOrderLine(models.Model):
     def _compute_allowed_uom_ids(self):
         super()._compute_allowed_uom_ids()
         for line in self:
-            product = line.product_id
-            if product:
-                supplier_uoms = product.seller_ids.mapped("uom_id")
-                if product.product_tmpl_id.use_product_uom:
-                    line.allowed_uom_ids = product.uom_id | product.uom_po_ids | supplier_uoms
-                else:
-                    line.allowed_uom_ids = product.uom_po_ids | supplier_uoms
+            if line.product_id:
+                line.allowed_uom_ids = line.product_id._get_purchase_uoms()
