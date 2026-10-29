@@ -9,7 +9,8 @@ class StockRule(models.Model):
 
     def _update_purchase_order_line(self, product_id, product_qty, product_uom, company_id, values, line):
         vals = super()._update_purchase_order_line(product_id, product_qty, product_uom, company_id, values, line)
-        supplier = values["supplier"]
+        # since 20.0 the procurement supplier is the seller info dict, not the supplierinfo
+        supplier = values["supplier"].get("supplierinfo")
         po = line.order_id
         price_unit = (
             self.env["account.tax"]._fix_tax_included_price_company(
