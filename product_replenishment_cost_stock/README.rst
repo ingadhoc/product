@@ -14,7 +14,8 @@
 Integration between Replenishment Cost and purchase stock
 =========================================================
 
-#. Agregado de método para cálculo de precio de lineas de compra cuando viene de un reabastecimiento.
+#. When a replenishment updates an existing purchase order line, the unit price is the vendor net price (after its replenishment cost rule), converted to the order currency. Without a vendor pricelist, the line keeps the price Odoo proposes, such as the last purchase price.
+#. When a replenishment creates or updates a purchase order line and there is no price, the line takes the product cost.
 
 Installation
 ============
@@ -35,6 +36,7 @@ Usage
 
 To use this module, you need to:
 
+#. Run a replenishment (for example, a reordering rule) for a product with the Buy route: the purchase order line it creates or updates takes the price described above.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
