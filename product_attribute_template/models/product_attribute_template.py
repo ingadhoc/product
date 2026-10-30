@@ -9,7 +9,7 @@ class ProductAttributeTemplate(models.Model):
     _name = "product.attribute.template"
     _description = "product.attribute.template"
 
-    name = fields.Char(required=True)
+    name = fields.Char(required=True, copy=True)
     product_attribute_ids = fields.Many2many(
         "product.attribute",
     )
