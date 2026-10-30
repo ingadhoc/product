@@ -24,10 +24,14 @@ class ProductTemplate(models.Model):
             )
 
     @api.depends(
-        # TODO ver si encontramos otra alternativa a este depends ya que esto lo hace bastante malo a nivel performance
-        # antes usabamos un invalidate cache pero nos dejó de funcionar
-        "bom_ids.bom_line_ids.product_qty",
-        "bom_ids.bom_line_ids.uom_id",
+        lambda self: [
+            # TODO ver si encontramos otra alternativa a este depends ya que esto lo hace bastante malo a nivel
+            # performance antes usabamos un invalidate cache pero nos dejó de funcionar
+            "bom_ids.bom_line_ids.product_qty",
+            "bom_ids.bom_line_ids.uom_id",
+        ]
+        # extra_cost comes from mrp_account, which is not a dependency of this module
+        + (["bom_ids.extra_cost"] if "extra_cost" in self.env["mrp.bom"]._fields else [])
     )
     def _compute_replenishment_cost(self):
         bom_costs = self.filtered(lambda x: x.replenishment_cost_type == "bom")
@@ -95,6 +99,12 @@ class ProductTemplate(models.Model):
                     )
                     # Add the subcontract price to the total price
                     price += subcontract_price / ratio_uom_seller
+
+            # since 20.0 a normal BoM can have an extra cost per manufactured unit, in the BoM currency
+            if bom.type == "normal" and "extra_cost" in bom._fields and bom.extra_cost:
+                price += (bom.currency_id or company.currency_id)._convert(
+                    bom.extra_cost * bom.product_qty, product_currency, company, date, round=False
+                )
 
             # NO implementamos total va a ser borrado. Ver si implementamos mas adelante (tener en cuenta convertir
             # moneda)

@@ -115,6 +115,32 @@ class TestReplenishmentCostBom(TransactionCase):
         self.assertEqual(lines["bom_cost"], 120.0)
         self.assertEqual(lines["currency"], template.currency_id)
 
+    def test_bom_extra_cost(self):
+        """El costo adicional de la LdM se suma por unidad fabricada, igual que en el reporte de estructura."""
+        if "extra_cost" not in self.env["mrp.bom"]._fields:
+            self.skipTest("mrp_account is not installed")
+        template = self.env["product.template"].create({"name": "EXTRA", "default_code": "EXTRA"})
+        bom = self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": template.id,
+                "product_qty": 2,
+                "type": "normal",
+                "extra_cost": 5.0,
+                "bom_line_ids": [(0, 0, {"product_id": self.raw_1.product_variant_id.id, "product_qty": 1})],
+            }
+        )
+        template.replenishment_cost_type = "bom"
+        self.env.invalidate_all()
+        # 10 / 2 of the component plus 5 of extra cost per unit
+        self.assertEqual(template.replenishment_cost, 10.0)
+
+        lines = self.env["report.mrp.report_bom_structure"]._get_report_data(bom.id, searchQty=1)["lines"]
+        self.assertEqual(lines["bom_cost"], 10.0)
+
+        # without invalidating: the change has to reach the product through the depends
+        bom.extra_cost = 7.0
+        self.assertEqual(template.replenishment_cost, 12.0)
+
     def test_subcontracted_bom(self):
         """En una LdM subcontratada se suma el precio del subcontratista, convertido a la unidad de la LdM."""
         if "subcontractor_ids" not in self.env["mrp.bom"]._fields:
