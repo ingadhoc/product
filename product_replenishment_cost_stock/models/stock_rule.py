@@ -11,20 +11,18 @@ class StockRule(models.Model):
         vals = super()._update_purchase_order_line(product_id, product_qty, product_uom, company_id, values, line)
         # since 20.0 the procurement supplier is the seller info dict, not the supplierinfo
         supplier = values["supplier"].get("supplierinfo")
-        po = line.order_id
-        price_unit = (
-            self.env["account.tax"]._fix_tax_included_price_company(
+        # without a vendor pricelist keep the price from super(), e.g. the last purchase price
+        if supplier:
+            po = line.order_id
+            price_unit = self.env["account.tax"]._fix_tax_included_price_company(
                 supplier.net_price, product_id.supplier_taxes_id, line.tax_ids, company_id
             )
-            if supplier
-            else 0.0
-        )
-        if price_unit and supplier and po.currency_id and supplier.currency_id != po.currency_id:
-            price_unit = supplier.currency_id._convert(
-                price_unit, po.currency_id, po.company_id, po.date_order or fields.Date.today()
-            )
-        vals["price_unit"] = price_unit
-        if vals["price_unit"] == 0:
+            if price_unit and po.currency_id and supplier.currency_id != po.currency_id:
+                price_unit = supplier.currency_id._convert(
+                    price_unit, po.currency_id, po.company_id, po.date_order or fields.Date.today()
+                )
+            vals["price_unit"] = price_unit
+        if not vals["price_unit"]:
             vals["price_unit"] = product_id.standard_price
 
         return vals
