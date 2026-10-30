@@ -63,11 +63,14 @@ class TestReplenishmentPurchasePrice(TransactionCase):
                 )
             ]
         )
-        return self.env["purchase.order.line"].search([("product_id", "=", product.id)])
+        return self.env["purchase.order.line"].search(
+            [("product_id", "=", product.id), ("order_id.state", "=", "draft")]
+        )
 
     def test_replenishment_purchase_price(self):
         """The purchase line a replenishment creates or updates takes the vendor
-        net price, or the product cost when it is zero."""
+        net price, the last purchase price without vendor pricelist, or the
+        product cost when there is no price."""
         product = self._create_product(seller_price=0.0)
         with self.subTest("new line, vendor without price"):
             # Replenish a product whose vendor has no price
@@ -88,3 +91,21 @@ class TestReplenishmentPurchasePrice(TransactionCase):
             self.assertEqual(len(line), 1)
             self.assertEqual(line.product_qty, 2.0)
             self.assertEqual(line.price_unit, 115.0)
+        with self.subTest("updated line, no vendor pricelist but a previous purchase"):
+            product = self._create_product(seller_price=0.0)
+            product.seller_ids.unlink()
+            # A confirmed purchase at 70 acts as the vendor price since 20.0
+            previous = self.env["purchase.order"].create(
+                {
+                    "partner_id": self.vendor.id,
+                    "order_line": [Command.create({"product_id": product.id, "product_qty": 1.0, "price_unit": 70.0})],
+                }
+            )
+            previous.button_confirm()
+            line = self._replenish(product)
+            self.assertEqual(line.price_unit, 70.0)
+            # The update keeps the last purchase price instead of the product cost
+            line = self._replenish(product)
+            self.assertEqual(len(line), 1)
+            self.assertEqual(line.product_qty, 2.0)
+            self.assertEqual(line.price_unit, 70.0)

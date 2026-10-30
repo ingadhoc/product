@@ -14,8 +14,8 @@
 Integration between Replenishment Cost and purchase stock
 =========================================================
 
-#. When a replenishment updates an existing purchase order line, the unit price is the vendor net price (after its replenishment cost rule), converted to the order currency.
-#. When a replenishment creates or updates a purchase order line and that price is zero, the line takes the product cost.
+#. When a replenishment updates an existing purchase order line, the unit price is the vendor net price (after its replenishment cost rule), converted to the order currency. Without a vendor pricelist, the line keeps the price Odoo proposes, such as the last purchase price.
+#. When a replenishment creates or updates a purchase order line and there is no price, the line takes the product cost.
 
 Installation
 ============
