@@ -9,7 +9,7 @@ class ProductAttributeTemplate(models.Model):
     _name = "product.attribute.template"
     _description = "product.attribute.template"
 
-    name = fields.name = fields.Char(required=True)
+    name = fields.Char(required=True, copy=True)
     product_attribute_ids = fields.Many2many(
         "product.attribute",
     )
@@ -37,6 +37,18 @@ class ProductAttributeTemplate(models.Model):
             rec.not_configured_product_qty = rec.product_tmpl_ids.search_count(
                 [("attribute_line_ids.value_ids", "=", False), ("id", "in", rec.product_tmpl_ids.ids)]
             )
+
+    def action_view_products(self):
+        self.ensure_one()
+        action = self.env["ir.actions.act_window"]._for_xml_id("product.product_template_action")
+        # replace the action context so the list matches the counters (no "To sell" filter)
+        action["context"] = {"search_default_product_attribute_template_id": self.id}
+        return action
+
+    def action_view_not_configured_products(self):
+        action = self.action_view_products()
+        action["context"]["search_default_attributes_not_configured"] = 1
+        return action
 
     def update_attributes(self):
         self.ensure_one()
