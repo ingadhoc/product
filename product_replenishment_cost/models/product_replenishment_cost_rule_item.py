@@ -62,7 +62,7 @@ class ProductReplenishmentCostRuleItem(models.Model):
         return super().create(vals_list)
 
     def write(self, vals):
-        if vals.get("expr"):
+        if "expr" in vals:
             self._check_expr_access()
         return super().write(vals)
 
