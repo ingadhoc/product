@@ -34,6 +34,8 @@ class TestRuleItemSecurity(TransactionCase):
         with self.assertRaises(AccessError):
             self.item.with_user(self.manager).write({"expr": "1.0"})
         with self.assertRaises(AccessError):
+            self.item.with_user(self.manager).write({"expr": False})
+        with self.assertRaises(AccessError):
             self.env["product.replenishment_cost.rule.item"].with_user(self.manager).create(
                 {"name": "Extra", "replenishment_cost_rule_id": self.rule.id, "expr": "1.0"}
             )
