@@ -20,6 +20,10 @@ Change lots expiration tags.
 
 #. "Expiration Alert" according to alert date
 
+When the expiration date changes on a move line, the lot of that line takes it
+and its removal and best before dates are computed again from the product
+times. The alert date is only filled when the lot had none.
+
 Installation
 ============
 
