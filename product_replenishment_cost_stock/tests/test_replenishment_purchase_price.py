@@ -45,6 +45,17 @@ class TestReplenishmentPurchasePrice(TransactionCase):
             }
         )
 
+    def _confirm_purchase(self, product, price_unit):
+        order = self.env["purchase.order"].create(
+            {
+                "partner_id": self.vendor.id,
+                "order_line": [
+                    Command.create({"product_id": product.id, "product_qty": 1.0, "price_unit": price_unit})
+                ],
+            }
+        )
+        order.button_confirm()
+
     def _replenish(self, product):
         self.env["stock.rule"].run(
             [
@@ -95,13 +106,7 @@ class TestReplenishmentPurchasePrice(TransactionCase):
             product = self._create_product(seller_price=0.0)
             product.seller_ids.unlink()
             # A confirmed purchase at 70 acts as the vendor price since 20.0
-            previous = self.env["purchase.order"].create(
-                {
-                    "partner_id": self.vendor.id,
-                    "order_line": [Command.create({"product_id": product.id, "product_qty": 1.0, "price_unit": 70.0})],
-                }
-            )
-            previous.button_confirm()
+            self._confirm_purchase(product, 70.0)
             line = self._replenish(product)
             self.assertEqual(line.price_unit, 70.0)
             # The update keeps the last purchase price instead of the product cost
@@ -109,3 +114,12 @@ class TestReplenishmentPurchasePrice(TransactionCase):
             self.assertEqual(len(line), 1)
             self.assertEqual(line.product_qty, 2.0)
             self.assertEqual(line.price_unit, 70.0)
+        with self.subTest("vendor pricelist at zero and a previous purchase"):
+            product = self._create_product(seller_price=0.0)
+            self._confirm_purchase(product, 70.0)
+            # The vendor pricelist wins over the last purchase, and its zero price falls back to the cost
+            line = self._replenish(product)
+            self.assertEqual(line.price_unit, 40.0)
+            line = self._replenish(product)
+            self.assertEqual(len(line), 1)
+            self.assertEqual(line.price_unit, 40.0)
