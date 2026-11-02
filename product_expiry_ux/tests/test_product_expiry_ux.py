@@ -6,6 +6,14 @@ from odoo.tests import Form, tagged
 
 @tagged("post_install", "-at_install")
 class TestProductExpiryUx(TestStockCommon):
+    # Since 20.0 every test runs as the user built from _test_user_groups, and
+    # the parent only grants the product manager group: creating lots and
+    # receipts needs the inventory one too.
+    _test_user_groups = (
+        "product.group_product_manager",
+        "stock.group_stock_manager",
+    )
+
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
