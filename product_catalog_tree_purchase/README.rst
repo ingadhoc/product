@@ -36,8 +36,8 @@ Usage
 
 To use this module, you need to:
 
-#. Go to Purchase Orders and click "Add from catalog"
-#. The catalog will open with the list view first, then kanban view
+#. Go to a purchase order and click "Catalog" on the order lines
+#. The catalog opens on the list view first, and the purchase kanban stays available
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
