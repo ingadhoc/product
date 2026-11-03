@@ -14,3 +14,18 @@ class TestProductCurrency(TransactionCase):
         self.assertEqual(self.env["product.template"].search(domain + [("currency_id", "=", currency.id)]), forced)
         groups = dict(self.env["product.template"]._read_group(domain, ["currency_id"], ["__count"]))
         self.assertEqual(groups, {currency: 1, self.env.company.currency_id: 1})
+
+    def test_currency_follows_the_forced_one(self):
+        """The 19.0 behaviour: the forced currency is the product currency, and without it the company one."""
+        currency = self.env["res.currency"].create({"name": "TSD", "symbol": "TSD"})
+        forced = self.env["product.template"].create({"name": "Forced", "force_currency_id": currency.id})
+        plain = self.env["product.template"].create({"name": "Not forced"})
+        company_currency = self.env.company.currency_id
+
+        self.assertEqual(forced.currency_id, currency)
+        self.assertEqual(forced.product_variant_id.currency_id, currency)
+        self.assertEqual(plain.currency_id, company_currency)
+        self.assertEqual(plain.product_variant_id.currency_id, company_currency)
+
+        forced.force_currency_id = False
+        self.assertEqual(forced.currency_id, company_currency)
