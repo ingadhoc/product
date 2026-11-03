@@ -153,3 +153,55 @@ class TestPurchaseOrderLineTaxMode(TransactionCase):
             with self.subTest(document_tax_mode=document_tax_mode):
                 self.assertAlmostEqual(order.order_line.price_unit, expected, places=2)
                 self.assertAlmostEqual(order.order_line.price_subtotal, 110.0, places=2)
+
+    def test_net_price_ignores_taxes_of_other_companies(self):
+        """Only the vendor taxes of the order company adapt the net price, as core does."""
+        company = self.env.company
+        company.account_price_include = "tax_excluded"
+        other_company = self.env["res.company"].create(
+            {
+                "name": "Other Company",
+                "country_id": self.env.ref("base.ar").id,
+                "currency_id": self.env.ref("base.ARS").id,
+            }
+        )
+        tax = self.env["account.tax"].create(
+            {"name": "VAT 21", "amount": 21.0, "type_tax_use": "purchase", "company_id": company.id}
+        )
+        other_tax_group = self.env["account.tax.group"].create({"name": "Other VAT", "company_id": other_company.id})
+        other_tax = self.env["account.tax"].create(
+            {
+                "name": "VAT 10 other",
+                "amount": 10.0,
+                "type_tax_use": "purchase",
+                "company_id": other_company.id,
+                "tax_group_id": other_tax_group.id,
+            }
+        )
+        rule = self.env["product.replenishment_cost.rule"].create(
+            {"name": "Freight", "item_ids": [(0, 0, {"name": "Freight", "percentage_amount": 10.0})]}
+        )
+        partner = self.env["res.partner"].create({"name": "Multi Company Supplier"})
+        product = self.env["product.product"].create(
+            {
+                "name": "Multi Company Product",
+                "purchase_ok": True,
+                "supplier_taxes_id": [(6, 0, (tax | other_tax).ids)],
+            }
+        )
+        self.env["product.supplierinfo"].create(
+            {
+                "partner_id": partner.id,
+                "product_tmpl_id": product.product_tmpl_id.id,
+                "price": 100.0,
+                "replenishment_cost_rule_id": rule.id,
+            }
+        )
+        order = self.env["purchase.order"].create(
+            {
+                "partner_id": partner.id,
+                "document_tax_mode": "tax_included",
+                "order_line": [(0, 0, {"product_id": product.id, "product_qty": 1.0})],
+            }
+        )
+        self.assertAlmostEqual(order.order_line.price_unit, 133.1, places=2)
