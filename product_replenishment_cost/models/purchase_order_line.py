@@ -50,7 +50,10 @@ class PurchaseOrderLine(models.Model):
 
             # since 20.0 the order can be tax included: adapt the price as core does with the vendor price
             price_unit = line.product_id._adapt_price_unit_to_document_tax_mode(
-                price_unit, line.product_id.supplier_taxes_id, line.uom_id, line.document_tax_mode
+                price_unit,
+                line.product_id.supplier_taxes_id._filter_taxes_by_company(line.company_id),
+                line.uom_id,
+                line.document_tax_mode,
             )
 
             # Update both price_unit and technical_price_unit
