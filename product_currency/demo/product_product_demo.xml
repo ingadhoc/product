@@ -5,7 +5,6 @@
         <field name="categ_id" ref="product.product_category_goods"/>
         <field name="standard_price">50</field>
         <field name="list_price">100</field>
-        <field name="currency_id" ref="base.USD"/>
         <field name="force_currency_id" ref="base.EUR"/>
         <field name="type">consu</field>
     </record>
