@@ -31,12 +31,28 @@ class TestProductExpiryUx(TestStockCommon):
                 "alert_time": 6,
             }
         )
+        # A second expiring product, to hold a lot with the same name.
+        cls.other_product = cls.ProductObj.create(
+            {
+                "name": "Queso",
+                "is_storable": True,
+                "tracking": "lot",
+                "use_expiration_date": True,
+                "expiration_time": 40,
+                "use_time": 20,
+                "removal_time": 10,
+                "alert_time": 15,
+            }
+        )
         # The expiration date is only editable on the line when the operation
         # type does not force picking an existing lot.
         cls.picking_type_in.use_existing_lots = False
 
     def _new_lot(self, name):
         return self.LotObj.create({"name": name, "product_id": self.expiry_product.id})
+
+    def _dates(self, lot):
+        return (lot.expiration_date, lot.use_date, lot.removal_date, lot.alert_date)
 
     def _new_receipt_line(self, lot):
         picking = self.PickingObj.create(
@@ -101,12 +117,9 @@ class TestProductExpiryUx(TestStockCommon):
         """
         lot = self._new_lot("L-ONCHANGE")
         untouched = self._new_lot("L-UNTOUCHED")
-        untouched_dates = (
-            untouched.expiration_date,
-            untouched.use_date,
-            untouched.removal_date,
-            untouched.alert_date,
-        )
+        twin = self.LotObj.create({"name": lot.name, "product_id": self.other_product.id})
+        untouched_dates = self._dates(untouched)
+        twin_dates = self._dates(twin)
         move, _line = self._new_receipt_line(lot)
         expiration = self.now + relativedelta(days=30)
 
@@ -127,15 +140,10 @@ class TestProductExpiryUx(TestStockCommon):
             self._set_expiration_on_line(move, later)
             self.assertEqual(lot.alert_date, later - relativedelta(days=6))
 
-        with self.subTest("el lote del nombre es uno solo y los demás quedan intactos"):
+        with self.subTest("el lote del nombre es uno solo y otro nombre queda intacto"):
             same_name = self.LotObj.search([("name", "=", lot.name), ("product_id", "=", self.expiry_product.id)])
             self.assertEqual(len(same_name), 1)
-            self.assertEqual(
-                (
-                    untouched.expiration_date,
-                    untouched.use_date,
-                    untouched.removal_date,
-                    untouched.alert_date,
-                ),
-                untouched_dates,
-            )
+            self.assertEqual(self._dates(untouched), untouched_dates)
+
+        with self.subTest("el lote con el mismo nombre de otro producto queda intacto"):
+            self.assertEqual(self._dates(twin), twin_dates)
