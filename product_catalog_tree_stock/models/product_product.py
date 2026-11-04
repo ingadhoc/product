@@ -34,8 +34,8 @@ class ProductProduct(models.Model):
                     # Buscar el seller_id para este proveedor
                     seller = rec.seller_ids.filtered(lambda s: s.partner_id == partner)[:1]
 
-                    if seller and seller.product_uom_id:
-                        rec.product_catalog_supplier_uom = seller.product_uom_id.name
+                    if seller and seller.uom_id:
+                        rec.product_catalog_supplier_uom = seller.uom_id.name
 
     @api.model
     def get_view(self, view_id=None, view_type="form", **options):
