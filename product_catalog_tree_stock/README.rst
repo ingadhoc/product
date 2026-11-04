@@ -20,8 +20,7 @@ When both modules are installed, it adds:
 
 * A **Supplier UoM** column in the product catalog list view, showing the unit of measure
   configured for the supplier in purchase orders.
-* Makes the **UoM** and **Forecasted Quantity** (virtual_available) columns optional/visible
-  in the catalog view.
+* Makes the **UoM** column optional/visible in the catalog view.
 * Hides irrelevant columns (website fields, brand, category, type, currency) from the catalog view.
 
 Installation
