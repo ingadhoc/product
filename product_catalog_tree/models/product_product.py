@@ -73,17 +73,23 @@ class ProductProduct(models.Model):
             else:
                 existing_lines = order.order_line.filtered(lambda line: line.product_id.id == rec.id)
             if len(existing_lines) > 1 and product_catalog_qty > 0:
-                total_current_qty = sum(existing_lines.mapped("product_uom_qty"))
-                qty_difference = product_catalog_qty - total_current_qty
+                # The quantity field is model-specific (``product_qty`` on a purchase
+                # line, ``quantity`` on an invoice one) and the catalog sums it in its
+                # own unit: both come from the core hooks, so the write lands on the
+                # field the catalog reads back.
+                catalog_uom = existing_lines._get_product_uom()
+                current_qty = {line.id: line._catalog_qty(catalog_uom) for line in existing_lines}
+                qty_difference = product_catalog_qty - sum(current_qty.values())
                 if qty_difference >= 0:
-                    existing_lines[0].product_uom_qty += qty_difference
+                    first_line = existing_lines[0]
+                    first_line._set_catalog_qty(current_qty[first_line.id] + qty_difference, catalog_uom)
                 else:
                     remaining_to_reduce = abs(qty_difference)
                     for line in existing_lines:
                         if remaining_to_reduce <= 0:
                             break
-                        can_reduce = min(line.product_uom_qty, remaining_to_reduce)
-                        line.product_uom_qty -= can_reduce
+                        can_reduce = min(current_qty[line.id], remaining_to_reduce)
+                        line._set_catalog_qty(current_qty[line.id] - can_reduce, catalog_uom)
                         remaining_to_reduce -= can_reduce
             else:
                 # Actualizar la información de la línea de orden

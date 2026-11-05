@@ -94,6 +94,47 @@ class TestProductCatalogTree(TransactionCase):
         self.assertEqual(line.product_qty, 100)
         self.assertEqual(line.price_unit, 99.0)
 
+    def test_catalog_qty_with_several_lines_of_the_product(self):
+        """With more than one line of the product, the quantity typed in the list
+        lands on the field the model stores it in (``product_qty`` on purchase)."""
+        if "purchase.order" not in self.env:
+            self.skipTest("purchase is not installed")
+
+        vendor = self.env["res.partner"].create({"name": "Vendor several lines"})
+        product = self.env["product.product"].create(
+            {
+                "name": "Cable roll several lines",
+                "standard_price": 50.0,
+                "purchase_ok": True,
+            }
+        )
+        order = self.env["purchase.order"].create(
+            {
+                "partner_id": vendor.id,
+                "order_line": [
+                    (0, 0, {"product_id": product.id, "product_qty": 1}),
+                    (0, 0, {"product_id": product.id, "product_qty": 1}),
+                ],
+            }
+        )
+        catalog_product = product.with_context(
+            product_catalog_order_model="purchase.order",
+            order_id=order.id,
+            child_field="order_line",
+        )
+        self.assertEqual(catalog_product.product_catalog_qty, 2)
+
+        # the list asks for 5: the difference goes to the first line, and the
+        # catalog reads the new quantity back
+        catalog_product.write({"product_catalog_qty": 5})
+        self.assertEqual(sum(order.order_line.mapped("product_qty")), 5)
+        catalog_product.invalidate_recordset(["product_catalog_qty"])
+        self.assertEqual(catalog_product.product_catalog_qty, 5)
+
+        # and down again, taking from the lines in order
+        catalog_product.write({"product_catalog_qty": 1})
+        self.assertEqual(sum(order.order_line.mapped("product_qty")), 1)
+
     def test_increase_quantity_keeps_adding_one(self):
         """The ``+`` button keeps its original behaviour (adds one)."""
         if "purchase.order" not in self.env:
