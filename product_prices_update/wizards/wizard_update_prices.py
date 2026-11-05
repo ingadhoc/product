@@ -4,6 +4,7 @@
 ##############################################################################
 from odoo import _, api, fields, models, tools
 from odoo.exceptions import UserError
+from odoo.fields import Command
 
 
 class ProductPricesUpdateWizard(models.TransientModel):
@@ -132,7 +133,7 @@ class ProductPricesUpdateWizardResult(models.TransientModel):
                     old_price, price_discount, price_surcharge, price_round
                 ),
             }
-            ret.append(vals)
+            ret.append(Command.create(vals))
         return ret
 
     def confirm(self):
