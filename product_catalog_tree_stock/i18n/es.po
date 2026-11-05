@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 19.0+e\n"
+"Project-Id-Version: Odoo Server 20.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-21 16:27+0000\n"
-"PO-Revision-Date: 2026-04-21 16:27+0000\n"
+"POT-Creation-Date: 2026-11-04 14:27+0000\n"
+"PO-Revision-Date: 2026-11-04 14:27+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -17,9 +17,63 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #. module: product_catalog_tree_stock
+#: model:ir.module.module,description:base.module_product_catalog_tree_stock
+msgid ""
+".. |company| replace:: ADHOC SA\n"
+"\n"
+".. |company_logo| image:: https://raw.githubusercontent.com/ingadhoc/maintainer-tools/master/resources/adhoc-logo.png\n"
+"   :alt: ADHOC SA\n"
+"   :target: https://www.adhoc.com.ar\n"
+"\n"
+".. |icon| image:: https://raw.githubusercontent.com/ingadhoc/maintainer-tools/master/resources/adhoc-icon.png\n"
+"\n"
+".. image:: https://img.shields.io/badge/license-AGPL--3-blue.png\n"
+"   :target: https://www.gnu.org/licenses/agpl\n"
+"   :alt: License: AGPL-3\n"
+"\n"
+"==============================\n"
+"Product Catalog Tree Stock\n"
+"==============================\n"
+"\n"
+"This module provides compatibility between product_catalog_tree and stock modules.\n"
+"\n"
+"When both modules are installed, it adds:\n"
+"\n"
+"* A **Supplier UoM** column in the product catalog list view, showing the unit of measure\n"
+"  configured for the supplier in purchase orders.\n"
+"* Makes the **UoM** column optional/visible in the catalog view.\n"
+"* Hides irrelevant columns (website fields, brand, category, type, currency) from the catalog view.\n"
+"\n"
+"Installation\n"
+"============\n"
+"\n"
+"To install this module, you need to:\n"
+"\n"
+"#. This module is auto-installed when both product_catalog_tree and stock modules are present.\n"
+"\n"
+"Configuration\n"
+"=============\n"
+"\n"
+"No additional configuration is required.\n"
+"\n"
+"Bug Tracker\n"
+"===========\n"
+"\n"
+"Bugs are tracked on `GitHub Issues <https://github.com/ingadhoc/product/issues>`_.\n"
+"\n"
+"Credits\n"
+"=======\n"
+"\n"
+"Authors\n"
+"~~~~~~~\n"
+"\n"
+"* ADHOC SA\n"
+msgstr ""
+
+#. module: product_catalog_tree_stock
 #: model:ir.model.fields,field_description:product_catalog_tree_stock.field_product_product__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Mostrar nombre"
 
 #. module: product_catalog_tree_stock
 #: model:ir.model.fields,field_description:product_catalog_tree_stock.field_product_product__id
@@ -27,12 +81,17 @@ msgid "ID"
 msgstr ""
 
 #. module: product_catalog_tree_stock
+#: model:ir.module.module,shortdesc:base.module_product_catalog_tree_stock
+msgid "Product Catalog Tree Stock"
+msgstr "Catálogo de productos en lista con stock"
+
+#. module: product_catalog_tree_stock
 #: model:ir.model,name:product_catalog_tree_stock.model_product_product
 msgid "Product Variant"
-msgstr ""
+msgstr "Variante del producto"
 
 #. module: product_catalog_tree_stock
 #: model:ir.model.fields,field_description:product_catalog_tree_stock.field_product_product__product_catalog_supplier_uom
 #: model_terms:ir.ui.view,arch_db:product_catalog_tree_stock.product_view_tree_catalog_stock
 msgid "Supplier UoM"
-msgstr ""
+msgstr "Unidad del proveedor"
