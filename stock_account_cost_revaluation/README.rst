@@ -30,8 +30,11 @@ or **average (AVCO)** costing:
    (``product_replenishment_cost``: the monthly cron "Update Cost from
    Replenishment Cost", exchange rate difference included when the replenishment
    cost is in another currency), an import, or any other write on the cost.
-#. **The entry books the difference on the stock on hand** of the company the user
-   is working in: ``quantity on hand × (new cost − previous cost)``. A higher cost
+#. **The entry books the difference on the stock the company values**: the stock it
+   owns in its own internal and transit locations, the same quantity the inventory
+   value uses. Stock owned by a third party (consignment) and stock of other
+   companies are left out, even with several companies selected:
+   ``valued quantity × (new cost − previous cost)``. A higher cost
    debits the stock valuation account and credits the cost revaluation account; a
    lower cost does the opposite. The entry is posted in the stock journal of the
    category, with the reference "Revaluación de costo: <product>", and its

@@ -55,8 +55,10 @@ class ProductProduct(models.Model):
         ``product.value`` — su revaluación se hace ajustando el valor del
         movimiento/capa, que es otro mecanismo.
 
-        Cantidad, ajuste, compañía y fecha salen del ``product.value`` que el core
-        registró por este cambio, y el asiento queda apuntado ahí
+        Costos, compañía y fecha salen del ``product.value`` que el core registró
+        por este cambio. La cantidad no: el core usa todo ``qty_available``, y acá
+        se toma solo el stock que valoriza la compañía (propio, en sus ubicaciones
+        valorizadas), igual que el valor de inventario. El asiento queda apuntado ahí
         (``account_move_id``) para que no se contabilice dos veces.
 
         La contrapartida es la **cuenta de revaluación de inventario** configurada
@@ -74,11 +76,20 @@ class ProductProduct(models.Model):
         # a la compañía); gateamos en real_time para excluir las periódicas.
         if product.valuation != "real_time" or product.cost_method not in ("standard", "average"):
             return self.env["account.move"]
-        if self.uom_id.is_zero(product_value.quantity):
+        # product.value counts all of qty_available: keep only the stock valued in this company
+        quantity = (
+            self.sudo()
+            .with_company(company)
+            .with_context(allowed_company_ids=company.ids)
+            ._with_valuation_context()
+            .with_context(to_date=product_value.date)
+            .qty_available
+        )
+        if self.uom_id.is_zero(quantity):
             return self.env["account.move"]
 
         # delta > 0 (sube el costo) => aumenta el activo de inventario
-        delta_value = company.currency_id.round(product_value.adjustment)
+        delta_value = company.currency_id.round(quantity * (product_value.new_cost - (product_value.old_cost or 0.0)))
         if company.currency_id.is_zero(delta_value):
             return self.env["account.move"]
 
