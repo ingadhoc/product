@@ -101,13 +101,10 @@ class TestCostRevaluation(TransactionCase):
             "Sin cuenta de revaluación no debe generar asiento",
         )
 
-    def _pending_variation(self, product):
-        # diferencia que el reporte/cierre de Valoración de inventario sugeriría postear
-        # sobre la cuenta de valuación: valuación teórica (total_value) vs. saldo contable.
-        company = self.company
-        accounts_by_product = company._get_accounts_by_product(products=product)
-        inventory = company.stock_value(accounts_by_product)
-        accounting = company.stock_accounting_value(accounts_by_product)
+    def _pending_variation(self):
+        # company-wide pending variation per valuation account: inventory value vs. booked balance
+        inventory = self.company.get_inventory_value()
+        accounting = self.company.get_inventory_accounting_value()
         return {acc: inventory.get(acc, 0.0) - accounting.get(acc, 0.0) for acc in inventory.keys() | accounting.keys()}
 
     def test_no_suggested_entry_on_valuation_account(self):
@@ -115,17 +112,45 @@ class TestCostRevaluation(TransactionCase):
         # así que la variación pendiente sobre la cuenta de valuación queda igual que antes
         # (no aparece variación nueva en esa pata del cierre/reporte).
         product = self._product(self._categ("standard", "real_time"))  # costo 10, qty 10
-        pending_before = self._pending_variation(product)
+        pending_before = self._pending_variation()
 
         product.standard_price = 15.0  # +50 sobre la cuenta de valuación
 
-        pending_after = self._pending_variation(product)
+        pending_after = self._pending_variation()
         for acc in set(pending_before) | set(pending_after):
             delta = pending_after.get(acc, 0.0) - pending_before.get(acc, 0.0)
             self.assertTrue(
                 self.company.currency_id.is_zero(delta),
                 "El cambio de costo no debe agregar variación pendiente en %s (delta %s)" % (acc.code, delta),
             )
+
+    def _valuation_debit(self, before):
+        moves = self.env["account.move"].search([("journal_id", "=", self.stock_journal.id)], order="id")
+        self.assertEqual(len(moves) - before, 1, "The price change has to post the revaluation entry")
+        return moves[-1].line_ids.filtered(lambda l: l.account_id == self.acc_valuation).debit
+
+    def test_revaluation_skips_consigned_stock(self):
+        # stock owned by a third party is not valued, so it is not revalued either
+        product = self._product(self._categ("standard", "real_time"))  # 10 own units at 10
+        owner = self.env["res.partner"].create({"name": "Consignor"})
+        self.env["stock.quant"]._update_available_quantity(product, self.stock_location, 5.0, owner_id=owner)
+        before = self._journal_moves_count()
+
+        product.standard_price = 15.0
+
+        self.assertAlmostEqual(self._valuation_debit(before), 50.0, 2)
+
+    def test_revaluation_skips_other_selected_companies(self):
+        # the replenishment cost cron runs with_company(c) and keeps the other companies selected
+        product = self._product(self._categ("standard", "real_time"))  # 10 units at 10
+        other_company = self.env["res.company"].create({"name": "Other Company REV"})
+        other_location = self.env["stock.warehouse"].search([("company_id", "=", other_company.id)]).lot_stock_id
+        self.env["stock.quant"].with_company(other_company)._update_available_quantity(product, other_location, 10.0)
+        before = self._journal_moves_count()
+
+        product.with_context(allowed_company_ids=[self.company.id, other_company.id]).standard_price = 15.0
+
+        self.assertAlmostEqual(self._valuation_debit(before), 50.0, 2)
 
     def test_no_entry_fifo_realtime(self):
         # FIFO: standard_price es informativo, no revalúa => sin asiento
