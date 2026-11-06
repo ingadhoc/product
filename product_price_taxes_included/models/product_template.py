@@ -24,9 +24,9 @@ class ProductTemplate(models.Model):
         """compute it from list_price and not for lst_price for performance
         (avoid using dummy related field)
         """
-        company_id = self.env.context.get("company_id", self.env.company.id)
+        company = self.env["res.company"].browse(self.env.context.get("company_id")) or self.env.company
         for product in self:
-            product.taxed_lst_price = product.taxes_id.filtered(lambda x: x.company_id.id == company_id).compute_all(
+            product.taxed_lst_price = product.taxes_id._filter_taxes_by_company(company).compute_all(
                 product.list_price, self.env.company.currency_id, product=product
             )["total_included"]
 
