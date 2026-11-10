@@ -2,6 +2,8 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
+from unittest.mock import patch
+
 from odoo.tests.common import TransactionCase
 
 
@@ -90,3 +92,31 @@ class TestReplenishmentCostBom(TransactionCase):
         no_bom.replenishment_cost_type = "bom"
         self.env.invalidate_all()
         self.assertEqual(no_bom.replenishment_cost, 0.0)
+
+
+class TestBomReportStandardPriceFallback(TransactionCase):
+    def test_standard_price_fallback_converts_from_cost_currency(self):
+        company = self.env.company
+        foreign = self.env["res.currency"].create({"name": "TSC", "symbol": "TSC", "rounding": 0.01})
+        self.env["res.currency.rate"].create(
+            {"name": "2000-01-01", "currency_id": foreign.id, "company_id": company.id, "inverse_company_rate": 10.0}
+        )
+        component = self.env["product.template"].create({"name": "COMP"})
+        component.product_variant_id.standard_price = 100.0
+        finished = self.env["product.template"].create({"name": "FIN"})
+        bom = self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": finished.id,
+                "bom_line_ids": [(0, 0, {"product_id": component.product_variant_id.id, "product_qty": 3})],
+            }
+        )
+
+        def compute_currency(templates):
+            templates.currency_id = foreign
+
+        # product_currency forces the product currency; the cost stays in the company one
+        with patch.object(type(self.env["product.template"]), "_compute_currency_id", compute_currency):
+            self.env.invalidate_all()
+            data = self.env["report.mrp.report_bom_structure"]._get_report_data(bom.id)
+        # 3 x 100 company currency = 30 TSC
+        self.assertEqual(data["lines"]["components"][0]["bom_cost"], 30.0)

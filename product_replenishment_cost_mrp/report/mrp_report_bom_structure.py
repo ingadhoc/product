@@ -108,15 +108,15 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
         )
         currency = self.env.context.get("force_currency") or self.env.company.currency_id
 
-        # Use replenishment_cost, if not defined use standard_price as fallback
-        component_cost = bom_line.product_id.replenishment_cost
-        if not component_cost:
-            component_cost = bom_line.product_id.standard_price
+        # Use replenishment_cost (product currency), fall back to standard_price (cost currency)
+        product = bom_line.product_id
+        if product.replenishment_cost:
+            component_cost, cost_currency = product.replenishment_cost, product.currency_id
+        else:
+            component_cost, cost_currency = product.standard_price, product.cost_currency_id
 
-        price = bom_line.product_id.uom_id._compute_price(component_cost, bom_line.product_uom_id) * line_quantity
-        price = bom_line.product_id.currency_id._convert(
-            price, currency, self.env.company, fields.Date.today(), round=True
-        )
+        price = product.uom_id._compute_price(component_cost, bom_line.product_uom_id) * line_quantity
+        price = cost_currency._convert(price, currency, self.env.company, fields.Date.today(), round=True)
         res.update(
             {
                 "bom_cost": price,
