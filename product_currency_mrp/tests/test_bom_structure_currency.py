@@ -134,3 +134,29 @@ class TestBomStructureCurrency(TransactionCase):
             2,
             "Total must add up amounts expressed in the same currency",
         )
+
+    def test_extra_cost_uses_product_currency(self):
+        """The BoM extra cost (mrp_account) is set in the company currency.
+
+        6000 company currency units are 6 TSC: with a 10 TSC component the BoM
+        costs 16 TSC, and the 20% by-product share is taken from that total.
+        """
+        byproduct = self.env["product.product"].create({"name": "By-product", "is_storable": True})
+        bom = self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": self.finished.product_tmpl_id.id,
+                "product_qty": 1.0,
+                "type": "normal",
+                "extra_cost": 6.0 * self.rate,
+                "bom_line_ids": [(0, 0, {"product_id": self.component.id, "product_qty": 1.0})],
+            }
+        )
+        report = self._bom_report(bom)
+        self.assertAlmostEqual(report["lines"]["bom_extra_cost"], 6.0, 2)
+        self.assertAlmostEqual(report["lines"]["bom_cost"], 16.0, 2)
+        self.assertAlmostEqual(report["lines"]["bom_unit_cost"], 16.0, 2)
+
+        bom.byproduct_ids = [(0, 0, {"product_id": byproduct.id, "product_qty": 1.0, "cost_share": 20.0})]
+        report = self._bom_report(bom)
+        self.assertAlmostEqual(report["lines"]["byproducts"][0]["bom_cost"], 3.2, 2)
+        self.assertAlmostEqual(report["lines"]["bom_cost"], 12.8, 2)

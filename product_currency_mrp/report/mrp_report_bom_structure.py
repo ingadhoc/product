@@ -44,16 +44,16 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
         is_minimized = self.env.context.get("minimized", False)
         current_quantity = line_qty
         if bom_line:
-            current_quantity = bom_line.product_uom_id._compute_quantity(line_qty, bom.product_uom_id) or 0
+            current_quantity = bom_line.uom_id._compute_quantity(line_qty, bom.uom_id) or 0
         if not is_minimized:
             if product:
-                price = product.uom_id._compute_price(product.standard_price, bom.product_uom_id) * current_quantity
+                price = product.uom_id._compute_price(product.standard_price, bom.uom_id) * current_quantity
                 res["prod_cost"] = product.currency_id._convert(
                     price, currency, self.env.company, fields.Date.today(), round=True
                 )
             else:
                 price = (
-                    bom.product_tmpl_id.uom_id._compute_price(bom.product_tmpl_id.standard_price, bom.product_uom_id)
+                    bom.product_tmpl_id.uom_id._compute_price(bom.product_tmpl_id.standard_price, bom.uom_id)
                     * current_quantity
                 )
                 res["prod_cost"] = bom.product_tmpl_id.currency_id._convert(
@@ -81,7 +81,7 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
         company = parent_bom.company_id or self.env.company
         price = (
             bom_line.product_id.uom_id._compute_price(
-                bom_line.product_id.with_company(company).standard_price, bom_line.product_uom_id
+                bom_line.product_id.with_company(company).standard_price, bom_line.uom_id
             )
             * line_quantity
         )
@@ -108,7 +108,7 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
             line_quantity = (bom_quantity / (bom.product_qty or 1.0)) * byproduct_id.product_qty
             price = (
                 byproduct_id.product_id.uom_id._compute_price(
-                    byproduct_id.product_id.standard_price, byproduct_id.product_uom_id
+                    byproduct_id.product_id.standard_price, byproduct_id.uom_id
                 )
                 * line_quantity
             )
@@ -141,14 +141,14 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
             )
         return operations
 
-    def _get_subcontracting_line(self, bom, seller, level, bom_quantity):
-        res = super()._get_subcontracting_line(bom, seller, level, bom_quantity)
-        # 19.0 renamed seller.product_uom -> product_uom_id and uom ratio -> factor,
-        # and the native line no longer carries prod_cost.
-        ratio_uom_seller = seller.product_uom_id.factor / bom.product_uom_id.factor
+    def _get_subcontracting_line(self, bom, seller_info, level, bom_quantity):
+        res = super()._get_subcontracting_line(bom, seller_info, level, bom_quantity)
+        # 20.0 passes the seller as the dict of _get_seller_info, not a record,
+        # and the native line still carries no prod_cost.
+        ratio_uom_seller = seller_info["uom_id"].factor / bom.uom_id.factor
         currency = self.env.context.get("force_currency") or self.env.company.currency_id
-        price = seller.currency_id._convert(
-            seller.price, currency, (bom.company_id or self.env.company), fields.Date.today()
+        price = seller_info["currency_id"]._convert(
+            seller_info["price"], currency, (bom.company_id or self.env.company), fields.Date.today()
         )
         res.update({"bom_cost": price / ratio_uom_seller * bom_quantity})
         return res
