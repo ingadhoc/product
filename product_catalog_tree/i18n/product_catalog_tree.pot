@@ -51,6 +51,14 @@ msgid "Order Price"
 msgstr ""
 
 #. module: product_catalog_tree
+#: model:ir.model.fields,help:product_catalog_tree.field_product_product__product_catalog_price
+msgid ""
+"Unit price this order charges for the product. If the product is already on "
+"the order, it is the price of its line, with any manual price and discount. "
+"If not, it is the price of the order's pricelist for one unit."
+msgstr ""
+
+#. module: product_catalog_tree
 #: model:ir.model,name:product_catalog_tree.model_product_catalog_mixin
 msgid "Product Catalog Mixin"
 msgstr ""
