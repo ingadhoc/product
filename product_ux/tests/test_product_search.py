@@ -5,6 +5,7 @@
 from unittest.mock import patch
 
 from odoo.exceptions import ValidationError
+from odoo.tests import Form
 from odoo.tests.common import TransactionCase, new_test_user, tagged
 
 from ..models.product_search_mixin import PARAM_ENABLED, PARAM_FIELDS
@@ -54,6 +55,15 @@ class TestProductSearch(TransactionCase):
         reopened = self.Settings.create({})
         self.assertEqual(reopened.product_search_field_1, "product_tag_ids.name")
         self.assertFalse(reopened.product_search_field_3)
+
+    def test_settings_page_keeps_the_fields(self):
+        """Opening and saving the Settings page shows the paths and does not wipe them."""
+        self._configure("product_tag_ids.name", "seller_ids.product_code")
+        form = Form(self.Settings)
+        self.assertEqual(form.product_search_field_1, "product_tag_ids.name")
+        form.save().execute()
+        param = self.env["ir.config_parameter"].sudo().get_param(PARAM_FIELDS)
+        self.assertEqual(param, repr(["product_tag_ids.name", "seller_ids.product_code"]))
 
     def test_bad_parameter_does_not_break_the_settings(self):
         """A hand edited parameter must not stop the Settings page from rendering."""
