@@ -22,9 +22,6 @@ class ProductProduct(models.Model):
     _inherit = ["product.product", "product.search.mixin"]
     _order = "default_code, name, id"
 
-    # the configured paths start at product.template
-    _search_path_prefix = "product_tmpl_id."
-
     def init(self):
         super().init()
         create_index(
@@ -115,3 +112,14 @@ class ProductProduct(models.Model):
     def name_search(self, name="", args=None, operator="ilike", limit=100):
         results = super().name_search(name, args, operator, limit)
         return self._extend_name_search(results, name, args, operator, limit)
+
+    @api.model
+    def _search_path(self, path):
+        """A field of the variant itself is searched here, or it would match its sibling variants."""
+        field = self._fields.get(path.split(".")[0])
+        return path if field is not None and not field.inherited else "product_tmpl_id." + path
+
+    @api.model
+    def _search_resolved_exactly(self, results, term):
+        products = self.browse([res[0] for res in results]).sudo()
+        return any(term in (product.default_code, product.barcode) for product in products)

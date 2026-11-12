@@ -30,6 +30,22 @@ class TestProductSearch(TransactionCase):
         )
         cls.other = cls.Product.create({"name": "Fixed Grinder", "default_code": "GRI-02"})
 
+    def _two_variants(self):
+        attribute = self.env["product.attribute"].create(
+            {"name": "Color", "value_ids": [(0, 0, {"name": "Red"}), (0, 0, {"name": "Blue"})]}
+        )
+        template = self.env["product.template"].create(
+            {
+                "name": "Bench Grinder",
+                "product_tag_ids": self.tag.ids,
+                "attribute_line_ids": [(0, 0, {"attribute_id": attribute.id, "value_ids": attribute.value_ids.ids})],
+            }
+        )
+        red, blue = template.product_variant_ids
+        red.write({"default_code": "V1-AAA", "barcode": "7790111"})
+        blue.write({"default_code": "V2-BBB", "barcode": "7790222"})
+        return template, red, blue
+
     def _configure(self, *paths):
         params = self.env["ir.config_parameter"].sudo()
         params.set_param(PARAM_ENABLED, bool(paths))
@@ -87,6 +103,20 @@ class TestProductSearch(TransactionCase):
         self.assertIn(self.product.id, self._name_search_ids("product.product", "chica angular"))
         self.assertNotIn(self.product.id, self._name_search_ids("product.product", "chica missing"))
 
+    def test_variants(self):
+        """A field of the variant matches that variant only, and the template finds it by a variant code."""
+        template, red, blue = self._two_variants()
+        self._configure("barcode")
+        self.assertEqual(self._name_search_ids("product.product", "0111"), red.ids)
+        self._configure("product_tag_ids.name")
+        self.assertIn(template.id, self._name_search_ids("product.template", "V1-AAA amoladora"))
+
+    def test_exact_code_stays_alone(self):
+        """The native search picks an exact code on purpose: nothing is added to it."""
+        self._configure("product_tag_ids.name")
+        self.Product.create({"name": "Grinder Disc", "default_code": "GRI-010"})
+        self.assertEqual(self._name_search_ids("product.product", "GRI-01"), self.product.ids)
+
     def test_accepts_what_odoo_can_search(self):
         """Not stored but searchable, and a relation as the last step, both work."""
         for path, term in [
@@ -104,6 +134,11 @@ class TestProductSearch(TransactionCase):
         self.assertIn(self.product.id, self._name_search_ids("product.product", "Angular"))
         self._configure("product_tag_ids.name")
         self.assertNotIn(self.product.id, self._name_search_ids("product.product", "am"))
+        # a short word is left out of the extra query instead of scanning every path with it
+        self.assertIn(self.product.id, self._name_search_ids("product.product", "amoladora zz"))
+        # "like" keeps telling upper from lower case, as the native search does
+        self.assertNotIn(self.product.id, self._name_search_ids("product.product", "AMOLADORA", operator="like"))
+        self.assertIn(self.product.id, self._name_search_ids("product.product", "amoladora", operator="like"))
         self.assertFalse(self._name_search_ids("product.product", "amoladora chica", operator="="))
         with patch.object(type(self.Product), "_extended_search_domain", autospec=True) as spy:
             self.Product.name_search("Grinder", limit=1)
@@ -157,6 +192,15 @@ class TestProductSearch(TransactionCase):
             with self.assertRaises(ValidationError):
                 self._settings_with("seller_ids.product_code", user=user)
 
+    def test_settings_check_only_what_changes(self):
+        """A path nobody touched, or a search that is off, does not block saving."""
+        self._configure("seller_ids.product_code")
+        user = new_test_user(self.env, login="product_search_editor", groups="base.group_system")
+        seller_ids = self.env["product.template"]._fields["seller_ids"]
+        with patch.object(seller_ids, "groups", "base.group_multi_company"):
+            self._settings_with("seller_ids.product_code", "product_tag_ids.name", user=user)
+        self.Settings.create({"product_extend_search_fields": False, "product_search_field_1": "description"})
+
     def test_skips_a_path_this_user_cannot_search(self):
         """What the user cannot reach is skipped, never raised, and the other paths keep working."""
         self._configure("product_tag_ids.name", "seller_ids.product_code")
@@ -174,7 +218,7 @@ class TestProductSearch(TransactionCase):
         self.env["ir.model.access"].search([("model_id.model", "=", "product.tag")]).unlink()
         self.assertFalse(ids("amoladora chica"))
         self.assertIn(self.product.id, ids("V-778"))
-        # a path the parameter kept but the model no longer has never reaches the SQL either
-        for path in ["no_such_field", "warranty.no_such_field"]:
+        # a path the parameter kept but Odoo cannot search never reaches the SQL either
+        for path in ["no_such_field", "warranty.no_such_field", "pricelist_price"]:
             self._configure(path)
             self.assertFalse(ids("amoladora chica"))

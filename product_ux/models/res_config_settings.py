@@ -7,9 +7,6 @@ from odoo.exceptions import ValidationError
 
 from .product_search_mixin import MAX_FIELDS, PARAM_ENABLED, PARAM_FIELDS, parse_paths
 
-# a relation as the last step searches by the display name of its records
-SEARCHABLE_TYPES = ("char", "text")
-
 
 class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
@@ -56,67 +53,18 @@ class ResConfigSettings(models.TransientModel):
         for rec in self:
             boxes = [rec["product_search_field_%s" % (index + 1)] for index in range(MAX_FIELDS)]
             paths = [path.strip() for path in boxes if path and path.strip()]
+            previous = rec._search_fields_list()
             # a parameter nobody edited here is left alone, so saving any other setting never fails
-            if paths == rec._search_fields_list()[:MAX_FIELDS]:
+            if paths == previous[:MAX_FIELDS]:
                 continue
-            for path in paths:
-                rec._check_search_path(path)
+            # only what changed, and only when it is going to be searched
+            if rec.product_extend_search_fields:
+                for path in set(paths) - set(previous):
+                    rec._check_search_path(path)
             rec.product_search_fields = repr(paths)
 
     def _check_search_path(self, path):
-        """Reject what Odoo cannot search, or what would degrade the search."""
-        model = self.env["product.template"]
-        parts = path.split(".")
-        for index, name in enumerate(parts):
-            field = model._fields.get(name)
-            if field is None:
-                raise ValidationError(
-                    self.env._(
-                        'Field "%(path)s" does not exist on %(model)s.',
-                        path=path,
-                        model=model._name,
-                    )
-                )
-            self._check_searchable(model, field)
-            if field.type == "properties":
-                # the selector offers them, but a property cannot be confirmed to exist
-                raise ValidationError(self.env._('"%s" holds properties, they cannot be searched.', field.string))
-            if index == len(parts) - 1:
-                self._check_last_step(field)
-            elif not field.comodel_name:
-                raise ValidationError(self.env._('"%s" is not a relational field, the path cannot be followed.', name))
-            else:
-                model = self.env[field.comodel_name]
-
-    def _check_searchable(self, model, field):
-        """Every step has to be searchable on its own, or the domain breaks in SQL."""
-        if not field._description_searchable:
-            raise ValidationError(
-                self.env._(
-                    '"%s" cannot be searched: it is neither stored nor has a search method.',
-                    field.string,
-                )
-            )
-        # the same criterion as the search: a field this user cannot read is not configurable
-        if not field.is_accessible(self.env):
-            raise ValidationError(self.env._('"%s" is restricted by groups you do not have.', field.string))
-
-    def _check_last_step(self, field):
-        if field.type == "html":
-            raise ValidationError(
-                self.env._(
-                    '"%s" is an HTML field. Searching inside HTML is the main cause of '
-                    "slow searches: use a text field.",
-                    field.string,
-                )
-            )
-        if field.type in ("binary", "image"):
-            raise ValidationError(self.env._('"%s" is an attachment, it cannot be searched.', field.string))
-        if field.type not in SEARCHABLE_TYPES and not field.comodel_name:
-            raise ValidationError(
-                self.env._(
-                    '"%(name)s" is a %(type)s field. Only text fields and relations can be searched.',
-                    name=field.string,
-                    type=field.type,
-                )
-            )
+        """Reject what this user could not search, with the same criterion as the search."""
+        error = self.env["product.template"]._search_path_error(path)
+        if error:
+            raise ValidationError(error)
