@@ -1,3 +1,4 @@
+<<<<<<< 13e2d2f1c2fb0d8925efc0d6a663966c20d7dd12
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="res_config_settings_view_form" model="ir.ui.view">
@@ -34,3 +35,43 @@
         </field>
     </record>
 </odoo>
+||||||| 20a98de6f8dababd58d0de573b0e41da633d2dc3
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.product.ux</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="product.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@id='product_general_settings']" position="after">
+                <block title="Product Search" id="product_ux_search_settings">
+                    <setting id="product_search_fields_setting" string="Advanced Search Fields"
+                             help="When picking a product in a sales or purchase line, also find it by the fields you choose. It does not change the Search... box of the product lists.">
+                        <field name="product_extend_search_fields"/>
+                        <div class="content-group" invisible="not product_extend_search_fields">
+                            <field name="product_search_fields" invisible="1"/>
+                            <field name="product_search_model" invisible="1"/>
+                            <div class="row mt16">
+                                <label for="product_search_field_1" class="o_light_label col-lg-3"/>
+                                <field name="product_search_field_1" widget="DynamicModelFieldSelectorChar"
+                                       options="{'model': 'product_search_model', 'only_searchable': True}" placeholder="Select a field"/>
+                            </div>
+                            <div class="row">
+                                <label for="product_search_field_2" class="o_light_label col-lg-3"/>
+                                <field name="product_search_field_2" widget="DynamicModelFieldSelectorChar"
+                                       options="{'model': 'product_search_model', 'only_searchable': True}" placeholder="Select a field"/>
+                            </div>
+                            <div class="row">
+                                <label for="product_search_field_3" class="o_light_label col-lg-3"/>
+                                <field name="product_search_field_3" widget="DynamicModelFieldSelectorChar"
+                                       options="{'model': 'product_search_model', 'only_searchable': True}" placeholder="Select a field"/>
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+>>>>>>> 2dd56d98370fcab6b829592dd1b7b8048841e3b5
