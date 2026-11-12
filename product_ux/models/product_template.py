@@ -9,6 +9,9 @@ class ProductTemplate(models.Model):
     _name = "product.template"
     _inherit = ["product.template", "product.search.mixin"]
 
+    # the template keeps no code when it has several variants
+    _search_native_paths = ("name", "product_variant_ids.default_code")
+
     active = fields.Boolean(tracking=True)
     sellers_product_code = fields.Char(
         "Vendor Product Code",

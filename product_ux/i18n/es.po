@@ -21,7 +21,7 @@ msgstr ""
 
 #. module: product_ux
 #. odoo-python
-#: code:addons/product_ux/models/res_config_settings.py:0
+#: code:addons/product_ux/models/product_search_mixin.py:0
 msgid ""
 "\"%(name)s\" is a %(type)s field. Only text fields and relations can be "
 "searched."
@@ -31,7 +31,7 @@ msgstr ""
 
 #. module: product_ux
 #. odoo-python
-#: code:addons/product_ux/models/res_config_settings.py:0
+#: code:addons/product_ux/models/product_search_mixin.py:0
 msgid "\"%s\" cannot be searched: it is neither stored nor has a search method."
 msgstr ""
 "\"%s\" no se puede buscar: no está almacenado ni tiene un método de "
@@ -39,13 +39,13 @@ msgstr ""
 
 #. module: product_ux
 #. odoo-python
-#: code:addons/product_ux/models/res_config_settings.py:0
+#: code:addons/product_ux/models/product_search_mixin.py:0
 msgid "\"%s\" holds properties, they cannot be searched."
 msgstr "\"%s\" contiene propiedades, no se pueden buscar."
 
 #. module: product_ux
 #. odoo-python
-#: code:addons/product_ux/models/res_config_settings.py:0
+#: code:addons/product_ux/models/product_search_mixin.py:0
 msgid ""
 "\"%s\" is an HTML field. Searching inside HTML is the main cause of slow "
 "searches: use a text field."
@@ -55,19 +55,19 @@ msgstr ""
 
 #. module: product_ux
 #. odoo-python
-#: code:addons/product_ux/models/res_config_settings.py:0
+#: code:addons/product_ux/models/product_search_mixin.py:0
 msgid "\"%s\" is an attachment, it cannot be searched."
 msgstr "\"%s\" es un adjunto, no se puede buscar."
 
 #. module: product_ux
 #. odoo-python
-#: code:addons/product_ux/models/res_config_settings.py:0
+#: code:addons/product_ux/models/product_search_mixin.py:0
 msgid "\"%s\" is not a relational field, the path cannot be followed."
 msgstr "\"%s\" no es un campo relacional, no se puede seguir el camino."
 
 #. module: product_ux
 #. odoo-python
-#: code:addons/product_ux/models/res_config_settings.py:0
+#: code:addons/product_ux/models/product_search_mixin.py:0
 msgid "\"%s\" is restricted by groups you do not have."
 msgstr "\"%s\" está restringido por grupos que usted no tiene."
 
@@ -119,7 +119,7 @@ msgstr "Búsqueda extendida de productos"
 
 #. module: product_ux
 #. odoo-python
-#: code:addons/product_ux/models/res_config_settings.py:0
+#: code:addons/product_ux/models/product_search_mixin.py:0
 msgid "Field \"%(path)s\" does not exist on %(model)s."
 msgstr "El campo \"%(path)s\" no existe en %(model)s."
 
@@ -271,6 +271,12 @@ msgstr ""
 "Al elegir un producto en una línea de venta o de compra, también lo "
 "encuentra por los campos que elija. No cambia el cuadro Buscar... de las "
 "listas de productos."
+
+#. module: product_ux
+#. odoo-python
+#: code:addons/product_ux/models/product_search_mixin.py:0
+msgid "You cannot read \"%s\"."
+msgstr "No tiene permiso para leer \"%s\"."
 
 #. module: product_ux
 #: model_terms:ir.ui.view,arch_db:product_ux.product_template_only_form_view
