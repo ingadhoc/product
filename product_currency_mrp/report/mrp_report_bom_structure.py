@@ -48,7 +48,7 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
         if not is_minimized:
             if product:
                 price = product.uom_id._compute_price(product.standard_price, bom.product_uom_id) * current_quantity
-                res["prod_cost"] = product.currency_id._convert(
+                res["prod_cost"] = product.cost_currency_id._convert(
                     price, currency, self.env.company, fields.Date.today(), round=True
                 )
             else:
@@ -56,7 +56,7 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
                     bom.product_tmpl_id.uom_id._compute_price(bom.product_tmpl_id.standard_price, bom.product_uom_id)
                     * current_quantity
                 )
-                res["prod_cost"] = bom.product_tmpl_id.currency_id._convert(
+                res["prod_cost"] = bom.product_tmpl_id.cost_currency_id._convert(
                     price, currency, self.env.company, fields.Date.today(), round=True
                 )
         return res
@@ -85,7 +85,7 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
             )
             * line_quantity
         )
-        price = bom_line.product_id.currency_id._convert(price, currency, company, fields.Date.today())
+        price = bom_line.product_id.cost_currency_id._convert(price, currency, company, fields.Date.today())
         price = currency.round(price)
         res.update(
             {
@@ -112,7 +112,7 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
                 )
                 * line_quantity
             )
-            price = byproduct_id.product_id.currency_id._convert(
+            price = byproduct_id.product_id.cost_currency_id._convert(
                 price, currency, self.env.company, fields.Date.today(), round=True
             )
             byproduct.update(
