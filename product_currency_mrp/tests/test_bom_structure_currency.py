@@ -37,7 +37,8 @@ class TestBomStructureCurrency(TransactionCase):
             {
                 "name": "Component costed in TSC",
                 "is_storable": True,
-                "standard_price": 10.0,
+                # standard_price is in the cost (company) currency: 10 TSC
+                "standard_price": 10.0 * cls.rate,
                 "force_currency_id": cls.currency.id,
             }
         )
@@ -56,8 +57,8 @@ class TestBomStructureCurrency(TransactionCase):
     def test_component_cost_uses_product_currency(self):
         """A component costed at 10 TSC must be reported as 10 in a TSC BoM.
 
-        Without the currency overrides the report falls back to the company
-        currency, so the 10 is silently taken as 10 company currency units.
+        standard_price is stored in the company currency, so it has to be
+        converted to TSC, not taken as already expressed in TSC.
         """
         bom = self.env["mrp.bom"].create(
             {
