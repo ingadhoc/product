@@ -2,9 +2,7 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from unittest.mock import patch
-
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase, tagged
 
 
 class TestReplenishmentCostBom(TransactionCase):
@@ -94,29 +92,45 @@ class TestReplenishmentCostBom(TransactionCase):
         self.assertEqual(no_bom.replenishment_cost, 0.0)
 
 
+@tagged("post_install", "-at_install")
 class TestBomReportStandardPriceFallback(TransactionCase):
+    """A component with no replenishment cost falls back to standard_price, which is
+    stored in the cost (company) currency and must be converted from it.
+
+    Runs post_install so product_currency_mrp, which overrides the same report, is
+    loaded too: both modules must agree on the amount (the case that broke
+    ci/runbot-oba). Needs product_currency to force a product currency other than
+    the cost one, so it skips when that module is not installed.
+    """
+
     def test_standard_price_fallback_converts_from_cost_currency(self):
-        company = self.env.company
+        if "force_currency_id" not in self.env["product.template"]._fields:
+            self.skipTest("product_currency is not installed")
+        rate = 10.0  # 1 TSC = 10 company currency units
         foreign = self.env["res.currency"].create({"name": "TSC", "symbol": "TSC", "rounding": 0.01})
         self.env["res.currency.rate"].create(
-            {"name": "2000-01-01", "currency_id": foreign.id, "company_id": company.id, "inverse_company_rate": 10.0}
+            {
+                "name": "2000-01-01",
+                "currency_id": foreign.id,
+                "company_id": self.env.company.id,
+                "inverse_company_rate": rate,
+            }
         )
-        component = self.env["product.template"].create({"name": "COMP"})
-        component.product_variant_id.standard_price = 100.0
-        finished = self.env["product.template"].create({"name": "FIN"})
+        # No replenishment cost, so the report falls back to standard_price (company currency);
+        # force_currency_id makes the product currency TSC, different from the cost currency.
+        component = self.env["product.product"].create(
+            {"name": "COMP", "is_storable": True, "standard_price": 100.0, "force_currency_id": foreign.id}
+        )
+        finished = self.env["product.product"].create(
+            {"name": "FIN", "is_storable": True, "force_currency_id": foreign.id}
+        )
         bom = self.env["mrp.bom"].create(
             {
-                "product_tmpl_id": finished.id,
-                "bom_line_ids": [(0, 0, {"product_id": component.product_variant_id.id, "product_qty": 3})],
+                "product_tmpl_id": finished.product_tmpl_id.id,
+                "bom_line_ids": [(0, 0, {"product_id": component.id, "product_qty": 3})],
             }
         )
 
-        def compute_currency(templates):
-            templates.currency_id = foreign
-
-        # product_currency forces the product currency; the cost stays in the company one
-        with patch.object(type(self.env["product.template"]), "_compute_currency_id", compute_currency):
-            self.env.invalidate_all()
-            data = self.env["report.mrp.report_bom_structure"]._get_report_data(bom.id)
-        # 3 x 100 company currency = 30 TSC
+        data = self.env["report.mrp.report_bom_structure"]._get_report_data(bom.id)
+        # 3 x 100 company currency = 30 TSC, not 300 (standard_price taken as if already in TSC)
         self.assertEqual(data["lines"]["components"][0]["bom_cost"], 30.0)
