@@ -44,9 +44,16 @@ class Users(models.Model):
             disc_restriction_env = self.env["res.users.discount_restriction"]
             domain = [("pricelist_id", "=", pricelist_id), ("user_id", "=", self.id)]
             disc_restriction = disc_restriction_env.search(domain, limit=1)
+            inherited_from = disc_restriction_env.browse()
             if not disc_restriction:
-                domain = [("user_id", "=", self.id)]
-                disc_restriction = disc_restriction_env.search(domain, limit=1)
+                # A restriction with no pricelist is the default for every pricelist
+                # without a row of its own; falling back to any other row keeps the
+                # documented behaviour, and `order` makes that pick deterministic
+                # when the user has rows for several pricelists.
+                disc_restriction = disc_restriction_env.search(
+                    [("user_id", "=", self.id), ("pricelist_id", "=", False)], limit=1
+                ) or disc_restriction_env.search([("user_id", "=", self.id)], order="id", limit=1)
+                inherited_from = disc_restriction.pricelist_id
             # User can not make any discount
             if not disc_restriction:
                 error = _("You can not give any discount greater than pricelist discounts")
@@ -64,13 +71,26 @@ class Users(models.Model):
                     )
                     > 0
                 ):
-                    error = _(
-                        'The applied discount is not allowed. Discount must bebetween %s and %s for pricelist "%s"'
-                    ) % (
-                        disc_restriction.min_discount + pricelist_disc,
-                        disc_restriction.max_discount + pricelist_disc,
-                        pricelist.name,
-                    )
+                    min_allowed = disc_restriction.min_discount + pricelist_disc
+                    max_allowed = disc_restriction.max_discount + pricelist_disc
+                    if inherited_from:
+                        # Saying which pricelist the range comes from: it is not the
+                        # one on the order, and that is not guessable from the screen.
+                        error = _(
+                            "The applied discount is not allowed. Discount must be between %(min)s and %(max)s. "
+                            'That range is configured for pricelist "%(source)s" and also applies to "%(used)s", '
+                            "which has no discount restriction of its own."
+                        ) % {
+                            "min": min_allowed,
+                            "max": max_allowed,
+                            "source": inherited_from.name,
+                            "used": pricelist.name,
+                        }
+                    else:
+                        error = _(
+                            "The applied discount is not allowed. Discount must be between %(min)s and %(max)s "
+                            'for pricelist "%(used)s"'
+                        ) % {"min": min_allowed, "max": max_allowed, "used": pricelist.name}
                     # if pricelist_disc then we have a soline and e product
                     if pricelist_disc:
                         error += ' and product "%s"' % (so_line.product_id.name)

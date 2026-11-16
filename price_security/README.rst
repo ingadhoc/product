@@ -17,7 +17,10 @@ Price Security
 #. Creates a new permission to restrict the users that can modify the prices
 of the products.
 #. Asociate to each user a list of pricelist and the correspoding discounts they
-can apply to sale orders and invoices. This discount is for all pricelist even though only one is configured.
+can apply to sale orders and invoices. A line with a pricelist applies to that
+pricelist; a line with no pricelist is the default for every pricelist without a
+line of its own. If neither exists, the limits of one of the configured lines are
+applied, so a discount set for a single pricelist still restricts all the others.
 #. Allow the posibility to mark products so that anyone can modify their price in
 a sale order.
 #. Add a sequence field on pricelist and payment term (you can only assign pricelist or terms of lower priority than partner default one).

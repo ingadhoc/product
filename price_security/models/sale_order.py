@@ -41,8 +41,14 @@ class SaleOrder(models.Model):
             allowed = partner_pricelist.pricelist_allowed_ids
 
             if order.pricelist_id not in allowed and order.pricelist_id != partner_pricelist:
+                # Naming the field that blocks it: the message used to be read as a
+                # discount cap, which is a different restriction of this module.
                 raise UserError(
-                    _("You are not allowed to select this pricelist according to the restrictions configured")
+                    _(
+                        'You are not allowed to select the pricelist "%(selected)s" for this customer. '
+                        'Allowed ones are "%(partner)s" and whatever is listed in its "Allowed Pricelists" field.'
+                    )
+                    % {"selected": order.pricelist_id.name, "partner": partner_pricelist.name}
                 )
 
     @api.onchange("partner_id")
