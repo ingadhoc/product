@@ -94,13 +94,10 @@ class TestReplenishmentCostBom(TransactionCase):
 
 @tagged("post_install", "-at_install")
 class TestBomReportStandardPriceFallback(TransactionCase):
-    """A component with no replenishment cost falls back to standard_price, which is
-    stored in the cost (company) currency and must be converted from it.
+    """Without a replenishment cost the report converts standard_price from the cost currency.
 
-    Runs post_install so product_currency_mrp, which overrides the same report, is
-    loaded too: both modules must agree on the amount (the case that broke
-    ci/runbot-oba). Needs product_currency to force a product currency other than
-    the cost one, so it skips when that module is not installed.
+    post_install so product_currency_mrp's override of the report loads too; skips without
+    product_currency, which is what forces a product currency other than the cost one.
     """
 
     def test_standard_price_fallback_converts_from_cost_currency(self):
@@ -116,13 +113,12 @@ class TestBomReportStandardPriceFallback(TransactionCase):
                 "inverse_company_rate": rate,
             }
         )
-        # No replenishment cost, so the report falls back to standard_price (company currency);
-        # force_currency_id makes the product currency TSC, different from the cost currency.
+        # No replenishment cost: both fall back to standard_price (company currency).
         component = self.env["product.product"].create(
             {"name": "COMP", "is_storable": True, "standard_price": 100.0, "force_currency_id": foreign.id}
         )
         finished = self.env["product.product"].create(
-            {"name": "FIN", "is_storable": True, "force_currency_id": foreign.id}
+            {"name": "FIN", "is_storable": True, "standard_price": 50.0, "force_currency_id": foreign.id}
         )
         bom = self.env["mrp.bom"].create(
             {
@@ -132,5 +128,7 @@ class TestBomReportStandardPriceFallback(TransactionCase):
         )
 
         data = self.env["report.mrp.report_bom_structure"]._get_report_data(bom.id)
-        # 3 x 100 company currency = 30 TSC, not 300 (standard_price taken as if already in TSC)
+        # component via _get_component_data: 3 x 100 company = 30 TSC (not 300)
         self.assertEqual(data["lines"]["components"][0]["bom_cost"], 30.0)
+        # finished product via _get_bom_data prod_cost: 50 company = 5 TSC
+        self.assertEqual(data["lines"]["prod_cost"], 5.0)
