@@ -46,19 +46,13 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
         if bom_line:
             current_quantity = bom_line.uom_id._compute_quantity(line_qty, bom.uom_id) or 0
         if not is_minimized:
-            if product:
-                price = product.uom_id._compute_price(product.standard_price, bom.uom_id) * current_quantity
-                res["prod_cost"] = product.cost_currency_id._convert(
-                    price, currency, self.env.company, fields.Date.today(), round=True
-                )
-            else:
-                price = (
-                    bom.product_tmpl_id.uom_id._compute_price(bom.product_tmpl_id.standard_price, bom.uom_id)
-                    * current_quantity
-                )
-                res["prod_cost"] = bom.product_tmpl_id.cost_currency_id._convert(
-                    price, currency, self.env.company, fields.Date.today(), round=True
-                )
+            # Read standard_price in the BoM company; fall back to the template when the variant is not given
+            company = bom.company_id or self.env.company
+            cost_product = (product or bom.product_tmpl_id).with_company(company)
+            price = cost_product.uom_id._compute_price(cost_product.standard_price, bom.uom_id) * current_quantity
+            res["prod_cost"] = cost_product.cost_currency_id._convert(
+                price, currency, company, fields.Date.today(), round=True
+            )
         return res
 
     @api.model
@@ -85,7 +79,9 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
             )
             * line_quantity
         )
-        price = bom_line.product_id.cost_currency_id._convert(price, currency, company, fields.Date.today())
+        price = bom_line.product_id.with_company(company).cost_currency_id._convert(
+            price, currency, company, fields.Date.today()
+        )
         price = currency.round(price)
         res.update(
             {
@@ -103,18 +99,13 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
             product, bom, bom_quantity, level, total, index
         )
         currency = self.env.context.get("force_currency") or self.env.company.currency_id
+        company = bom.company_id or self.env.company
         for byproduct in byproducts:
             byproduct_id = self.env["mrp.bom.byproduct"].browse(byproduct["id"])
             line_quantity = (bom_quantity / (bom.product_qty or 1.0)) * byproduct_id.product_qty
-            price = (
-                byproduct_id.product_id.uom_id._compute_price(
-                    byproduct_id.product_id.standard_price, byproduct_id.uom_id
-                )
-                * line_quantity
-            )
-            price = byproduct_id.product_id.cost_currency_id._convert(
-                price, currency, self.env.company, fields.Date.today(), round=True
-            )
+            product = byproduct_id.product_id.with_company(company)
+            price = product.uom_id._compute_price(product.standard_price, byproduct_id.uom_id) * line_quantity
+            price = product.cost_currency_id._convert(price, currency, company, fields.Date.today(), round=True)
             byproduct.update(
                 {
                     "currency_id": currency.id,
