@@ -36,14 +36,31 @@ class ProductProduct(models.Model):
         new_values = ProductValue.search(
             [("id", ">", last_id), ("product_id", "in", self.ids), ("move_id", "=", False), ("lot_id", "=", False)]
         )
-        values_by_product_id = {pv.product_id.id: pv for pv in new_values}
+        # one quantity read per company and date: the cron and imports change many costs at once
+        to_post = {}
+        for (company, date), values in new_values.grouped(lambda pv: (pv.company_id, pv.date)).items():
+            # ``valuation`` se resuelve desde categ_id.property_valuation (con fallback
+            # a la compañía); gateamos en real_time para excluir las periódicas.
+            products = values.product_id.with_company(company).filtered(
+                lambda p: p.valuation == "real_time" and p.cost_method in ("standard", "average")
+            )
+            # product.value counts all of qty_available: keep only the stock valued in this company
+            valued_products = (
+                products.sudo()
+                .with_context(allowed_company_ids=company.ids)
+                ._with_valuation_context()
+                .with_context(to_date=date)
+            )
+            quantities = {product.id: product.qty_available for product in valued_products}
+            for product_value in values.filtered(lambda pv: pv.product_id in products):
+                to_post[product_value.product_id.id] = (product_value, quantities[product_value.product_id.id])
+        # iterate self to keep the prefetch across products
         for product in self:
-            product_value = values_by_product_id.get(product.id)
-            if product_value:
-                product._create_cost_revaluation_entry(product_value)
+            if product.id in to_post:
+                product._create_cost_revaluation_entry(*to_post[product.id])
         return res
 
-    def _create_cost_revaluation_entry(self, product_value):
+    def _create_cost_revaluation_entry(self, product_value, quantity):
         """Contabiliza la diferencia de valuación de inventario por el cambio de
         ``standard_price`` (costo nuevo vs. previo) sobre el stock on hand.
 
@@ -56,9 +73,10 @@ class ProductProduct(models.Model):
         movimiento/capa, que es otro mecanismo.
 
         Costos, compañía y fecha salen del ``product.value`` que el core registró
-        por este cambio. La cantidad no: el core usa todo ``qty_available``, y acá
-        se toma solo el stock que valoriza la compañía (propio, en sus ubicaciones
-        valorizadas), igual que el valor de inventario. El asiento queda apuntado ahí
+        por este cambio. La cantidad no: el core usa todo ``qty_available``, y
+        ``_change_standard_price`` pasa solo el stock que valoriza la compañía
+        (propio, en sus ubicaciones valorizadas), igual que el valor de inventario,
+        y solo para los productos que filtra arriba. El asiento queda apuntado ahí
         (``account_move_id``) para que no se contabilice dos veces.
 
         La contrapartida es la **cuenta de revaluación de inventario** configurada
@@ -72,19 +90,6 @@ class ProductProduct(models.Model):
         company = product_value.company_id
         product = self.with_company(company)
 
-        # ``valuation`` se resuelve desde categ_id.property_valuation (con fallback
-        # a la compañía); gateamos en real_time para excluir las periódicas.
-        if product.valuation != "real_time" or product.cost_method not in ("standard", "average"):
-            return self.env["account.move"]
-        # product.value counts all of qty_available: keep only the stock valued in this company
-        quantity = (
-            self.sudo()
-            .with_company(company)
-            .with_context(allowed_company_ids=company.ids)
-            ._with_valuation_context()
-            .with_context(to_date=product_value.date)
-            .qty_available
-        )
         if self.uom_id.is_zero(quantity):
             return self.env["account.move"]
 
