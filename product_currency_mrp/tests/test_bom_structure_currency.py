@@ -96,10 +96,9 @@ class TestBomStructureCurrency(TransactionCase):
     def test_subcontracting_and_components_share_one_currency(self):
         """Ticket 122531: subcontracted BoM whose supplier price is in TSC.
 
-        The native subcontracting line converts the supplier price to the
-        company currency (5 TSC -> 5000) while the component keeps its nominal
-        10. Adding them up gives 5010, an amount in no currency at all. Both
-        must land in the product currency: 5 + 10 = 15 TSC.
+        The supplier price (5 TSC) and the component cost (standard_price in company
+        currency, 10 TSC once converted) must both land in the product currency:
+        5 + 10 = 15 TSC, not a mix of both currencies.
         """
         subcontractor = self.env["res.partner"].create({"name": "Subcontractor"})
         self.env["product.supplierinfo"].create(
