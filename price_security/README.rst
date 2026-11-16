@@ -28,7 +28,10 @@ Features
 * **A discount range per user and per pricelist.** Each user gets a list of
   pricelists with the minimum and the maximum discount allowed on each one. The
   range applies to what the user adds *on top of* the pricelist discount, both
-  on sale orders and on customer invoices.
+  on sale orders and on customer invoices. A line with no pricelist is the
+  default for every pricelist without a line of its own; when there is neither,
+  the limits of one of the configured lines are applied, so a discount set for
+  a single pricelist still restricts all the others.
 * **Prices in read only.** Unit price, cost, sales price, unit of measure and
   vendors become read only for restricted users, on the product, on the sale
   order lines and on the customer invoice lines.
