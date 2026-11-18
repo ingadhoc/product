@@ -15,7 +15,7 @@ class TestCostPriceUpdate(common.TransactionCase):
             {
                 "name": "Wine A01",
                 "uom_id": self.env.ref("uom.product_uom_unit").id,
-                "company_id": 1,
+                "company_id": self.env.ref("base.main_company").id,
                 "standard_price": 50.0,
                 "list_price": 75.0,
             }
