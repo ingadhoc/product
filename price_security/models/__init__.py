@@ -6,12 +6,15 @@ from . import account_move
 from . import account_move_line
 from . import account_payment_term
 from . import discount_restriction
+from . import price_security_mixins
 from . import product_pricelist
 from . import product_product
 from . import product_template
+from . import product_value
 from . import res_partner
 from . import res_users
 from . import sale_order
 from . import sale_order_line
 from . import stock_lot
+from . import stock_move
 from . import stock_quant
