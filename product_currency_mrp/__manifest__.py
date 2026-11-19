@@ -30,6 +30,7 @@
     "depends": [
         "product_currency",
         "mrp_subcontracting",
+        "mrp_account",
     ],
     "data": [],
     "demo": [],
