@@ -14,10 +14,6 @@
             <xpath expr="//field[@name='uom_id']" position="attributes">
                 <attribute name="optional">show</attribute>
             </xpath>
-            <!-- Asegurar que virtual_available esté visible si existe -->
-            <xpath expr="//field[@name='virtual_available']" position="attributes">
-                <attribute name="optional">show</attribute>
-            </xpath>
         </field>
     </record>
 
