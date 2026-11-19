@@ -191,7 +191,9 @@ class ProductTemplate(models.Model):
     @api.onchange("list_price_type")
     def _compute_warnings_price(self):
         if self.env["res.company"].sudo().search_count([]) > 1:
-            msg = _("The values correspond to the replenishment cost to the company: %s.", self.main_company_id.name)
+            msg = _(
+                "The values correspond to the replenishment cost to the company: %s.", self.main_company_id.sudo().name
+            )
             warnings = {
                 "company_info": {
                     "message": msg,
