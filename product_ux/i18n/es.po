@@ -67,6 +67,58 @@ msgid "\"%s\" is restricted by groups you do not have."
 msgstr "\"%s\" está restringido por grupos que usted no tiene."
 
 #. module: product_ux
+#. odoo-python
+#: code:addons/product_ux/models/product_search_mixin.py:0
+msgid ""
+"\"%(name)s\" is a %(type)s field. Only text fields and relations can be "
+"searched."
+msgstr ""
+"\"%(name)s\" es un campo %(type)s. Solo se pueden buscar campos de texto y "
+"relaciones."
+
+#. module: product_ux
+#. odoo-python
+#: code:addons/product_ux/models/product_search_mixin.py:0
+msgid "\"%s\" cannot be searched: it is neither stored nor has a search method."
+msgstr ""
+"\"%s\" no se puede buscar: no está almacenado ni tiene un método de "
+"búsqueda."
+
+#. module: product_ux
+#. odoo-python
+#: code:addons/product_ux/models/product_search_mixin.py:0
+msgid "\"%s\" holds properties, they cannot be searched."
+msgstr "\"%s\" contiene propiedades, no se pueden buscar."
+
+#. module: product_ux
+#. odoo-python
+#: code:addons/product_ux/models/product_search_mixin.py:0
+msgid ""
+"\"%s\" is an HTML field. Searching inside HTML is the main cause of slow "
+"searches: use a text field."
+msgstr ""
+"\"%s\" es un campo HTML. Buscar dentro de HTML es la principal causa de las "
+"búsquedas lentas: use un campo de texto."
+
+#. module: product_ux
+#. odoo-python
+#: code:addons/product_ux/models/product_search_mixin.py:0
+msgid "\"%s\" is an attachment, it cannot be searched."
+msgstr "\"%s\" es un adjunto, no se puede buscar."
+
+#. module: product_ux
+#. odoo-python
+#: code:addons/product_ux/models/product_search_mixin.py:0
+msgid "\"%s\" is not a relational field, the path cannot be followed."
+msgstr "\"%s\" no es un campo relacional, no se puede seguir el camino."
+
+#. module: product_ux
+#. odoo-python
+#: code:addons/product_ux/models/product_search_mixin.py:0
+msgid "\"%s\" is restricted by groups you do not have."
+msgstr "\"%s\" está restringido por grupos que usted no tiene."
+
+#. module: product_ux
 #: model_terms:ir.ui.view,arch_db:product_ux.product_pricelist_view
 msgid "<span class=\"o_stat_text\">Elementos de tarifa</span>"
 msgstr ""
@@ -98,11 +150,17 @@ msgid "Config Settings"
 msgstr "Ajustes de configuración"
 
 #. module: product_ux
+#: model:ir.model,name:product_ux.model_res_config_settings
+msgid "Config Settings"
+msgstr "Ajustes de configuración"
+
+#. module: product_ux
 #: model:ir.model.fields,field_description:product_ux.field_uom_uom__description
 msgid "Description"
 msgstr "Descripción"
 
 #. module: product_ux
+<<<<<<< 13e2d2f1c2fb0d8925efc0d6a663966c20d7dd12
 #: model:ir.model.fields,field_description:product_ux.field_ir_actions_report__display_name
 #: model:ir.model.fields,field_description:product_ux.field_product_pricelist_item__display_name
 #: model:ir.model.fields,field_description:product_ux.field_product_product__display_name
@@ -161,6 +219,35 @@ msgid "ID"
 msgstr ""
 
 #. module: product_ux
+||||||| 20a98de6f8dababd58d0de573b0e41da633d2dc3
+=======
+#: model:ir.model,name:product_ux.model_product_search_mixin
+msgid "Extended Product Search"
+msgstr "Búsqueda extendida de productos"
+
+#. module: product_ux
+#. odoo-python
+#: code:addons/product_ux/models/product_search_mixin.py:0
+msgid "Field \"%(path)s\" does not exist on %(model)s."
+msgstr "El campo \"%(path)s\" no existe en %(model)s."
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_res_config_settings__product_search_field_1
+msgid "Field 1"
+msgstr "Campo 1"
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_res_config_settings__product_search_field_2
+msgid "Field 2"
+msgstr "Campo 2"
+
+#. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_res_config_settings__product_search_field_3
+msgid "Field 3"
+msgstr "Campo 3"
+
+#. module: product_ux
+>>>>>>> 2dd56d98370fcab6b829592dd1b7b8048841e3b5
 #: model:ir.model.fields,help:product_ux.field_product_product__active
 #: model:ir.model.fields,help:product_ux.field_product_template__active
 msgid ""
@@ -267,6 +354,16 @@ msgid "Select a field"
 msgstr "Seleccione un campo"
 
 #. module: product_ux
+#: model:ir.model.fields,field_description:product_ux.field_res_config_settings__product_extend_search_fields
+msgid "Search products by more fields"
+msgstr "Buscar productos por más campos"
+
+#. module: product_ux
+#: model_terms:ir.ui.view,arch_db:product_ux.res_config_settings_view_form
+msgid "Select a field"
+msgstr "Seleccione un campo"
+
+#. module: product_ux
 #: model:ir.model.fields,help:product_ux.field_product_product__sellers_product_code
 #: model:ir.model.fields,help:product_ux.field_product_template__sellers_product_code
 msgid ""
@@ -289,6 +386,7 @@ msgid "Warranty"
 msgstr "Garantía"
 
 #. module: product_ux
+<<<<<<< 13e2d2f1c2fb0d8925efc0d6a663966c20d7dd12
 #: model_terms:ir.ui.view,arch_db:product_ux.res_config_settings_view_form
 msgid ""
 "When picking a product in a sales or purchase line, also find it by the "
@@ -299,6 +397,26 @@ msgstr ""
 "listas de productos."
 
 #. module: product_ux
+||||||| 20a98de6f8dababd58d0de573b0e41da633d2dc3
+=======
+#: model_terms:ir.ui.view,arch_db:product_ux.res_config_settings_view_form
+msgid ""
+"When picking a product in a sales or purchase line, also find it by the "
+"fields you choose. It does not change the Search... box of the product "
+"lists."
+msgstr ""
+"Al elegir un producto en una línea de venta o de compra, también lo "
+"encuentra por los campos que elija. No cambia el cuadro Buscar... de las "
+"listas de productos."
+
+#. module: product_ux
+#. odoo-python
+#: code:addons/product_ux/models/product_search_mixin.py:0
+msgid "You cannot read \"%s\"."
+msgstr "No tiene permiso para leer \"%s\"."
+
+#. module: product_ux
+>>>>>>> 2dd56d98370fcab6b829592dd1b7b8048841e3b5
 #: model_terms:ir.ui.view,arch_db:product_ux.product_template_only_form_view
 msgid "months"
 msgstr "meses"

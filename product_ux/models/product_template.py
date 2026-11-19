@@ -6,8 +6,18 @@ from odoo import api, fields, models
 
 
 class ProductTemplate(models.Model):
+<<<<<<< 13e2d2f1c2fb0d8925efc0d6a663966c20d7dd12
     _name = "product.template"
     _inherit = ["product.template", "product.search.mixin"]
+||||||| 20a98de6f8dababd58d0de573b0e41da633d2dc3
+    _inherit = "product.template"
+=======
+    _name = "product.template"
+    _inherit = ["product.template", "product.search.mixin"]
+
+    # the template keeps no code when it has several variants
+    _search_native_paths = ("name", "product_variant_ids.default_code")
+>>>>>>> 2dd56d98370fcab6b829592dd1b7b8048841e3b5
 
     active = fields.Boolean(tracking=True)
     sellers_product_code = fields.Char(
@@ -47,8 +57,17 @@ class ProductTemplate(models.Model):
             else:
                 return self.env["product.pricelist"]
         return super()._get_contextual_pricelist()
+<<<<<<< 13e2d2f1c2fb0d8925efc0d6a663966c20d7dd12
 
     @api.model
     def name_search(self, name="", domain=None, operator="ilike", limit=100):
         results = super().name_search(name, domain, operator, limit)
         return self._extend_name_search(results, name, domain, operator, limit)
+||||||| 20a98de6f8dababd58d0de573b0e41da633d2dc3
+=======
+
+    @api.model
+    def name_search(self, name="", args=None, operator="ilike", limit=100):
+        results = super().name_search(name, args, operator, limit)
+        return self._extend_name_search(results, name, args, operator, limit)
+>>>>>>> 2dd56d98370fcab6b829592dd1b7b8048841e3b5
