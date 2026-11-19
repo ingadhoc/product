@@ -49,9 +49,7 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
             # Read standard_price in the BoM company; fall back to the template when the variant is not given
             company = bom.company_id or self.env.company
             cost_product = (product or bom.product_tmpl_id).with_company(company)
-            price = (
-                cost_product.uom_id._compute_price(cost_product.standard_price, bom.uom_id) * current_quantity
-            )
+            price = cost_product.uom_id._compute_price(cost_product.standard_price, bom.uom_id) * current_quantity
             res["prod_cost"] = cost_product.cost_currency_id._convert(
                 price, currency, company, fields.Date.today(), round=True
             )
