@@ -5,6 +5,13 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
     _inherit = "report.mrp.report_bom_structure"
 
     @api.model
+    def _replenishment_cost_and_currency(self, product):
+        """Replenishment cost (product currency), falling back to standard_price (cost currency)."""
+        if product.replenishment_cost:
+            return product.replenishment_cost, product.currency_id
+        return product.standard_price, product.cost_currency_id
+
+    @api.model
     def _get_subcontracting_line(self, bom, seller_info, level, bom_quantity):
         """Override to convert seller price to the proper currency"""
         res = super()._get_subcontracting_line(bom, seller_info, level, bom_quantity)
@@ -74,20 +81,12 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
         # Only update prod_cost (costo del producto final), not bom_cost
         # bom_cost is automatically calculated as: components + operations + subcontracting
         if not is_minimized:
-            if product:
-                price = product.uom_id._compute_price(product.replenishment_cost, bom.uom_id) * current_quantity
-                res["prod_cost"] = product.currency_id._convert(
-                    price, currency, self.env.company, fields.Date.today(), round=True
-                )
-            else:
-                # Use the product template instead of the variant
-                price = (
-                    bom.product_tmpl_id.uom_id._compute_price(bom.product_tmpl_id.replenishment_cost, bom.uom_id)
-                    * current_quantity
-                )
-                res["prod_cost"] = bom.product_tmpl_id.currency_id._convert(
-                    price, currency, self.env.company, fields.Date.today(), round=True
-                )
+            # Read the cost in the BoM company; fall back to the template when the variant is not given
+            company = bom.company_id or self.env.company
+            cost_product = (product or bom.product_tmpl_id).with_company(company)
+            cost, cost_currency = self._replenishment_cost_and_currency(cost_product)
+            price = cost_product.uom_id._compute_price(cost, bom.uom_id) * current_quantity
+            res["prod_cost"] = cost_currency._convert(price, currency, company, fields.Date.today(), round=True)
         return res
 
     @api.model
@@ -108,15 +107,11 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
         )
         currency = self.env.context.get("force_currency") or self.env.company.currency_id
 
-        # Use replenishment_cost, if not defined use standard_price as fallback
-        component_cost = bom_line.product_id.replenishment_cost
-        if not component_cost:
-            component_cost = bom_line.product_id.standard_price
-
-        price = bom_line.product_id.uom_id._compute_price(component_cost, bom_line.uom_id) * line_quantity
-        price = bom_line.product_id.currency_id._convert(
-            price, currency, self.env.company, fields.Date.today(), round=True
-        )
+        company = parent_bom.company_id or self.env.company
+        product = bom_line.product_id.with_company(company)
+        component_cost, cost_currency = self._replenishment_cost_and_currency(product)
+        price = product.uom_id._compute_price(component_cost, bom_line.uom_id) * line_quantity
+        price = cost_currency._convert(price, currency, company, fields.Date.today(), round=True)
         res.update(
             {
                 "bom_cost": price,
@@ -133,18 +128,14 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
             product, bom, bom_quantity, level, total, index
         )
         currency = self.env.context.get("force_currency") or self.env.company.currency_id
+        company = bom.company_id or self.env.company
         for byproduct in byproducts:
             byproduct_id = self.env["mrp.bom.byproduct"].browse(byproduct["id"])
             line_quantity = (bom_quantity / (bom.product_qty or 1.0)) * byproduct_id.product_qty
-            price = (
-                byproduct_id.product_id.uom_id._compute_price(
-                    byproduct_id.product_id.replenishment_cost, byproduct_id.uom_id
-                )
-                * line_quantity
-            )
-            price = byproduct_id.product_id.currency_id._convert(
-                price, currency, self.env.company, fields.Date.today(), round=True
-            )
+            product = byproduct_id.product_id.with_company(company)
+            cost, cost_currency = self._replenishment_cost_and_currency(product)
+            price = product.uom_id._compute_price(cost, byproduct_id.uom_id) * line_quantity
+            price = cost_currency._convert(price, currency, company, fields.Date.today(), round=True)
             byproduct.update(
                 {
                     "currency_id": currency.id,
