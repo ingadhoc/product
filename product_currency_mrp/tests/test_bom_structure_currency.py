@@ -37,7 +37,8 @@ class TestBomStructureCurrency(TransactionCase):
             {
                 "name": "Component costed in TSC",
                 "is_storable": True,
-                "standard_price": 10.0,
+                # standard_price is in the cost (company) currency: 10 TSC
+                "standard_price": 10.0 * cls.rate,
                 "force_currency_id": cls.currency.id,
             }
         )
@@ -56,8 +57,8 @@ class TestBomStructureCurrency(TransactionCase):
     def test_component_cost_uses_product_currency(self):
         """A component costed at 10 TSC must be reported as 10 in a TSC BoM.
 
-        Without the currency overrides the report falls back to the company
-        currency, so the 10 is silently taken as 10 company currency units.
+        standard_price is stored in the company currency, so it has to be
+        converted to TSC, not taken as already expressed in TSC.
         """
         bom = self.env["mrp.bom"].create(
             {
@@ -95,10 +96,9 @@ class TestBomStructureCurrency(TransactionCase):
     def test_subcontracting_and_components_share_one_currency(self):
         """Ticket 122531: subcontracted BoM whose supplier price is in TSC.
 
-        The native subcontracting line converts the supplier price to the
-        company currency (5 TSC -> 5000) while the component keeps its nominal
-        10. Adding them up gives 5010, an amount in no currency at all. Both
-        must land in the product currency: 5 + 10 = 15 TSC.
+        The supplier price (5 TSC) and the component cost (standard_price in company
+        currency, 10 TSC once converted) must both land in the product currency:
+        5 + 10 = 15 TSC, not a mix of both currencies.
         """
         subcontractor = self.env["res.partner"].create({"name": "Subcontractor"})
         self.env["product.supplierinfo"].create(
@@ -134,3 +134,29 @@ class TestBomStructureCurrency(TransactionCase):
             2,
             "Total must add up amounts expressed in the same currency",
         )
+
+    def test_extra_cost_uses_product_currency(self):
+        """The BoM extra cost (mrp_account) is set in the company currency.
+
+        6000 company currency units are 6 TSC: with a 10 TSC component the BoM
+        costs 16 TSC, and the 20% by-product share is taken from that total.
+        """
+        byproduct = self.env["product.product"].create({"name": "By-product", "is_storable": True})
+        bom = self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": self.finished.product_tmpl_id.id,
+                "product_qty": 1.0,
+                "type": "normal",
+                "extra_cost": 6.0 * self.rate,
+                "bom_line_ids": [(0, 0, {"product_id": self.component.id, "product_qty": 1.0})],
+            }
+        )
+        report = self._bom_report(bom)
+        self.assertAlmostEqual(report["lines"]["bom_extra_cost"], 6.0, 2)
+        self.assertAlmostEqual(report["lines"]["bom_cost"], 16.0, 2)
+        self.assertAlmostEqual(report["lines"]["bom_unit_cost"], 16.0, 2)
+
+        bom.byproduct_ids = [(0, 0, {"product_id": byproduct.id, "product_qty": 1.0, "cost_share": 20.0})]
+        report = self._bom_report(bom)
+        self.assertAlmostEqual(report["lines"]["byproducts"][0]["bom_cost"], 3.2, 2)
+        self.assertAlmostEqual(report["lines"]["bom_cost"], 12.8, 2)

@@ -4,6 +4,15 @@ from odoo import api, fields, models
 class ReportReplenishmentBomStructure(models.AbstractModel):
     _inherit = "report.mrp.report_bom_structure"
 
+    def _extra_cost_delta(self, bom, amount):
+        """Difference between amount in the forced currency and in the company currency.
+
+        mrp_account adds the BoM extra cost in the company currency.
+        """
+        currency = self.env.context.get("force_currency") or self.env.company.currency_id
+        company = bom.company_id or self.env.company
+        return company.currency_id._convert(amount, currency, company, fields.Date.today()) - amount
+
     @api.model
     def _get_bom_data(
         self,
@@ -44,21 +53,20 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
         is_minimized = self.env.context.get("minimized", False)
         current_quantity = line_qty
         if bom_line:
-            current_quantity = bom_line.product_uom_id._compute_quantity(line_qty, bom.product_uom_id) or 0
+            current_quantity = bom_line.uom_id._compute_quantity(line_qty, bom.uom_id) or 0
         if not is_minimized:
-            if product:
-                price = product.uom_id._compute_price(product.standard_price, bom.product_uom_id) * current_quantity
-                res["prod_cost"] = product.currency_id._convert(
-                    price, currency, self.env.company, fields.Date.today(), round=True
-                )
-            else:
-                price = (
-                    bom.product_tmpl_id.uom_id._compute_price(bom.product_tmpl_id.standard_price, bom.product_uom_id)
-                    * current_quantity
-                )
-                res["prod_cost"] = bom.product_tmpl_id.currency_id._convert(
-                    price, currency, self.env.company, fields.Date.today(), round=True
-                )
+            # Read standard_price in the BoM company; fall back to the template when the variant is not given
+            company = bom.company_id or self.env.company
+            cost_product = (product or bom.product_tmpl_id).with_company(company)
+            price = cost_product.uom_id._compute_price(cost_product.standard_price, bom.uom_id) * current_quantity
+            res["prod_cost"] = cost_product.cost_currency_id._convert(
+                price, currency, company, fields.Date.today(), round=True
+            )
+        if bom.type == "normal" and bom.extra_cost:
+            delta = self._extra_cost_delta(bom, bom.extra_cost * res["quantity"] * res.get("cost_share", 1))
+            res["bom_cost"] += delta
+            res["bom_unit_cost"] += bom.uom_id._compute_price(delta, res["product"].uom_id)
+            res["bom_extra_cost"] = bom.extra_cost + self._extra_cost_delta(bom, bom.extra_cost)
         return res
 
     @api.model
@@ -81,11 +89,13 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
         company = parent_bom.company_id or self.env.company
         price = (
             bom_line.product_id.uom_id._compute_price(
-                bom_line.product_id.with_company(company).standard_price, bom_line.product_uom_id
+                bom_line.product_id.with_company(company).standard_price, bom_line.uom_id
             )
             * line_quantity
         )
-        price = bom_line.product_id.currency_id._convert(price, currency, company, fields.Date.today())
+        price = bom_line.product_id.with_company(company).cost_currency_id._convert(
+            price, currency, company, fields.Date.today()
+        )
         price = currency.round(price)
         res.update(
             {
@@ -99,22 +109,19 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
 
     @api.model
     def _get_byproducts_lines(self, product, bom, bom_quantity, level, total, index):
+        if bom.type == "normal" and bom.extra_cost:
+            total += self._extra_cost_delta(bom, bom.extra_cost * bom_quantity)
         byproducts, byproduct_cost_portion = super()._get_byproducts_lines(
             product, bom, bom_quantity, level, total, index
         )
         currency = self.env.context.get("force_currency") or self.env.company.currency_id
+        company = bom.company_id or self.env.company
         for byproduct in byproducts:
             byproduct_id = self.env["mrp.bom.byproduct"].browse(byproduct["id"])
             line_quantity = (bom_quantity / (bom.product_qty or 1.0)) * byproduct_id.product_qty
-            price = (
-                byproduct_id.product_id.uom_id._compute_price(
-                    byproduct_id.product_id.standard_price, byproduct_id.product_uom_id
-                )
-                * line_quantity
-            )
-            price = byproduct_id.product_id.currency_id._convert(
-                price, currency, self.env.company, fields.Date.today(), round=True
-            )
+            product = byproduct_id.product_id.with_company(company)
+            price = product.uom_id._compute_price(product.standard_price, byproduct_id.uom_id) * line_quantity
+            price = product.cost_currency_id._convert(price, currency, company, fields.Date.today(), round=True)
             byproduct.update(
                 {
                     "currency_id": currency.id,
@@ -141,14 +148,14 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
             )
         return operations
 
-    def _get_subcontracting_line(self, bom, seller, level, bom_quantity):
-        res = super()._get_subcontracting_line(bom, seller, level, bom_quantity)
-        # 19.0 renamed seller.product_uom -> product_uom_id and uom ratio -> factor,
-        # and the native line no longer carries prod_cost.
-        ratio_uom_seller = seller.product_uom_id.factor / bom.product_uom_id.factor
+    def _get_subcontracting_line(self, bom, seller_info, level, bom_quantity):
+        res = super()._get_subcontracting_line(bom, seller_info, level, bom_quantity)
+        # 20.0 passes the seller as the dict of _get_seller_info, not a record,
+        # and the native line still carries no prod_cost.
+        ratio_uom_seller = seller_info["uom_id"].factor / bom.uom_id.factor
         currency = self.env.context.get("force_currency") or self.env.company.currency_id
-        price = seller.currency_id._convert(
-            seller.price, currency, (bom.company_id or self.env.company), fields.Date.today()
+        price = seller_info["currency_id"]._convert(
+            seller_info["price"], currency, (bom.company_id or self.env.company), fields.Date.today()
         )
         res.update({"bom_cost": price / ratio_uom_seller * bom_quantity})
         return res
