@@ -2,7 +2,7 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo.tests.common import TransactionCase
+from odoo.tests.common import TransactionCase, tagged
 
 
 class TestReplenishmentCostBom(TransactionCase):
@@ -190,3 +190,45 @@ class TestReplenishmentCostBom(TransactionCase):
         helps = {button.get("name"): button.get("help") for button in arch.xpath("//div[@name='button_box']/button")}
         self.assertEqual(helps.pop(str(action.id)), "Estructura y costo según costo de reposición")
         self.assertFalse(any(helps.values()))
+
+
+@tagged("post_install", "-at_install")
+class TestBomReportStandardPriceFallback(TransactionCase):
+    """Without a replenishment cost the report converts standard_price from the cost currency.
+
+    post_install so product_currency_mrp's override of the report loads too; skips without
+    product_currency, which is what forces a product currency other than the cost one.
+    """
+
+    def test_standard_price_fallback_converts_from_cost_currency(self):
+        if "force_currency_id" not in self.env["product.template"]._fields:
+            self.skipTest("product_currency is not installed")
+        rate = 10.0  # 1 TSC = 10 company currency units
+        foreign = self.env["res.currency"].create({"name": "TSC", "symbol": "TSC", "rounding": 0.01})
+        self.env["res.currency.rate"].create(
+            {
+                "name": "2000-01-01",
+                "currency_id": foreign.id,
+                "company_id": self.env.company.id,
+                "inverse_company_rate": rate,
+            }
+        )
+        # No replenishment cost: both fall back to standard_price (company currency).
+        component = self.env["product.product"].create(
+            {"name": "COMP", "is_storable": True, "standard_price": 100.0, "force_currency_id": foreign.id}
+        )
+        finished = self.env["product.product"].create(
+            {"name": "FIN", "is_storable": True, "standard_price": 50.0, "force_currency_id": foreign.id}
+        )
+        bom = self.env["mrp.bom"].create(
+            {
+                "product_tmpl_id": finished.product_tmpl_id.id,
+                "bom_line_ids": [(0, 0, {"product_id": component.id, "product_qty": 3})],
+            }
+        )
+
+        data = self.env["report.mrp.report_bom_structure"]._get_report_data(bom.id)
+        # component via _get_component_data: 3 x 100 company = 30 TSC (not 300)
+        self.assertEqual(data["lines"]["components"][0]["bom_cost"], 30.0)
+        # finished product via _get_bom_data prod_cost: 50 company = 5 TSC
+        self.assertEqual(data["lines"]["prod_cost"], 5.0)
