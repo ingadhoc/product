@@ -4,6 +4,15 @@ from odoo import api, fields, models
 class ReportReplenishmentBomStructure(models.AbstractModel):
     _inherit = "report.mrp.report_bom_structure"
 
+    def _extra_cost_delta(self, bom, amount):
+        """Difference between amount in the forced currency and in the company currency.
+
+        mrp_account adds the BoM extra cost in the company currency.
+        """
+        currency = self.env.context.get("force_currency") or self.env.company.currency_id
+        company = bom.company_id or self.env.company
+        return company.currency_id._convert(amount, currency, company, fields.Date.today()) - amount
+
     @api.model
     def _get_bom_data(
         self,
@@ -53,6 +62,11 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
             res["prod_cost"] = cost_product.cost_currency_id._convert(
                 price, currency, company, fields.Date.today(), round=True
             )
+        if bom.type == "normal" and bom.extra_cost:
+            delta = self._extra_cost_delta(bom, bom.extra_cost * res["quantity"] * res.get("cost_share", 1))
+            res["bom_cost"] += delta
+            res["bom_unit_cost"] += bom.uom_id._compute_price(delta, res["product"].uom_id)
+            res["bom_extra_cost"] = bom.extra_cost + self._extra_cost_delta(bom, bom.extra_cost)
         return res
 
     @api.model
@@ -95,6 +109,8 @@ class ReportReplenishmentBomStructure(models.AbstractModel):
 
     @api.model
     def _get_byproducts_lines(self, product, bom, bom_quantity, level, total, index):
+        if bom.type == "normal" and bom.extra_cost:
+            total += self._extra_cost_delta(bom, bom.extra_cost * bom_quantity)
         byproducts, byproduct_cost_portion = super()._get_byproducts_lines(
             product, bom, bom_quantity, level, total, index
         )
