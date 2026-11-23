@@ -14,7 +14,4 @@ class PurchaseOrderLine(models.Model):
         vals = super()._prepare_purchase_order_line_from_procurement(
             product_id, product_qty, product_uom, location_dest_id, name, origin, company_id, values, po
         )
-        if vals["price_unit"] == 0:
-            vals["price_unit"] = product_id.standard_price
-
         return vals
