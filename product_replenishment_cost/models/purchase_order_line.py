@@ -33,9 +33,10 @@ class PurchaseOrderLine(models.Model):
                 if seller
                 else 0.0
             )
-            price_unit = seller.currency_id._convert(
-                price_unit, line.currency_id, line.company_id, line.date_order or fields.Date.today()
-            )
+            if seller.currency_id and line.currency_id and seller.currency_id != line.currency_id:
+                price_unit = seller.currency_id._convert(
+                    price_unit, line.currency_id, line.company_id, line.date_order or fields.Date.today()
+                )
 
             if seller and line.product_uom and seller.product_uom != line.product_uom:
                 price_unit = seller.product_uom._compute_price(price_unit, line.product_uom)
