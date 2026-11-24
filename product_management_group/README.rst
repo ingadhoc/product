@@ -14,10 +14,13 @@
 Products Management Group
 =========================
 
-This module creates a new group called "Products Management". Only users on that group can create, edit or archive products.
+This module creates a new group called "Products Management". Only users on that group can create, edit, archive or delete products (product templates and variants).
 
-IMPORTANT: this module overwrite rules on ir.model.access (except for the
-"read" mode)
+Users outside the group get an access error when they try to change a product, even if a native group (for example "Product / Create" or an Inventory administrator) would allow it. Users in the group can manage products without any other product group. Reading products is not affected, and the superuser is never restricted.
+
+IMPORTANT: this module overrides the access domain of ``product.template`` and
+``product.product`` (except for the "read" operation), and adds ``ir.access``
+permissions for the group on both models.
 
 Installation
 ============
@@ -35,11 +38,12 @@ To configure this module, you need to:
 
 Usage
 =====
-Once the module is installed, go to the user settings and disable the checkbox "Product Management" to remove to the user the possibility of creating products.
+Once the module is installed, the superuser and the administrator are in the "Products Management" group.
 
 To use this module, you need to:
 
-#. Go to ...
+#. Go to the user settings and add the user to the "Products Management" group to let them create, edit, archive or delete products.
+#. Remove the user from the group to take that possibility away.
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
