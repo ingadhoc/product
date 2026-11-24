@@ -29,6 +29,7 @@
     ],
     "data": [
         "security/product_management_security.xml",
+        "security/ir.access.csv",
     ],
     "installable": True,
 }
