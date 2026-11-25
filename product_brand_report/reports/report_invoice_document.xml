@@ -1,12 +1,22 @@
 <odoo>
     <template id="report_invoice_document" inherit_id="account.report_invoice_document">
+        <xpath expr="//t[@t-set='display_discount']" position="after">
+            <t t-set="show_brand" t-value="o.env['ir.config_parameter'].sudo().get_bool('product_brand_report.show_brand_invoice_report')"/>
+        </xpath>
         <xpath expr="//th[@name='th_description']" position="after">
-            <th class="text-center" t-if="o.env['ir.config_parameter'].sudo().get_param('product_brand_report.show_brand_invoice_report')">Brand</th>
+            <th class="text-center" t-if="show_brand">Brand</th>
         </xpath>
         <xpath expr="//td[@name='account_invoice_line_name']" position="after">
-            <td name="td_product_brand" class="text-center" t-if="o.env['ir.config_parameter'].sudo().get_param('product_brand_report.show_brand_invoice_report')">
+            <td name="td_product_brand" class="text-center" t-if="show_brand">
                 <span t-field="line.product_id.product_brand_id.display_name" />
             </td>
         </xpath>
+        <!-- empty brand cells keep section and grouped rows aligned with the header -->
+        <xpath expr="//t[@name='account_invoice_line_section']/td[@name='line_name_td']/following-sibling::td[1]" position="after">
+            <td name="td_section_brand" t-if="show_brand"/>
+        </xpath>
+        <td name="account_invoice_line_name_grouped" position="after">
+            <td name="td_grouped_brand" t-if="show_brand"/>
+        </td>
     </template>
 </odoo>

@@ -15,6 +15,7 @@ Product Brand Report
 ====================
 
 * This module incorporates the possibility of displaying the products brand in the Quotations, Sale Orders and Invoices.
+* When enabled for quotations & sale orders, the brand is also shown in the sale order of the customer portal.
 
 
 Installation
