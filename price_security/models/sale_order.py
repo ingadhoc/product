@@ -86,14 +86,19 @@ class SaleOrder(models.Model):
             if self.env.user.has_group("price_security.group_only_view"):
                 fields = (
                     arch.xpath("//field[@name='order_line']/list//field[@name='price_unit']")
-                    + arch.xpath("//field[@name='order_line']/list//field[@name='tax_id']")
+                    + arch.xpath("//field[@name='order_line']/list//field[@name='tax_ids']")
                     + arch.xpath("//field[@name='order_line']/form//field[@name='price_unit']")
-                    + arch.xpath("//field[@name='order_line']/form//field[@name='tax_id']")
+                    + arch.xpath("//field[@name='order_line']/form//field[@name='tax_ids']")
                 )
                 for node in fields:
-                    node.set("readonly", "product_can_modify_prices == False")
+                    # keep the readonly condition core already sets (e.g. invoiced lines, downpayments)
+                    condition = "product_can_modify_prices == False"
+                    existing = node.get("readonly")
+                    if existing:
+                        condition = "(%s) or (%s)" % (existing, condition)
+                    node.set("readonly", condition)
                     modifiers = json.loads(node.get("modifiers") or "{}")
-                    modifiers["readonly"] = "product_can_modify_prices == False"
+                    modifiers["readonly"] = condition
                     node.set("modifiers", json.dumps(modifiers))
                     node.set("force_save", "1")
                     modifiers = json.loads(node.get("modifiers") or "{}")
