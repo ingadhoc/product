@@ -19,7 +19,7 @@
 ##############################################################################
 {
     "name": "Product Catalog Tree Purchase",
-    "version": "20.0.1.0.0",
+    "version": "20.0.1.1.0",
     "category": "Products",
     "sequence": 14,
     "summary": "",
@@ -31,7 +31,9 @@
         "product_catalog_tree",
         "purchase",
     ],
-    "data": [],
+    "data": [
+        "views/product_product_views.xml",
+    ],
     "installable": True,
     "auto_install": True,
     "application": False,
