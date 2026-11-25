@@ -12,7 +12,7 @@ GROUP_XMLID = "product_management_group.group_products_management"
 
 
 def _in_foreign_test():
-    # Since 20.0 tests run as a non-superuser test user: keep other modules' tests unaffected
+    # Other modules' BaseCommon tests run as a test user without the group
     test = odoo_module.current_test
     return bool(test) and not type(test).__module__.startswith("odoo.addons.product_management_group.")
 
