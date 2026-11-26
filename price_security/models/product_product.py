@@ -2,12 +2,11 @@ import json
 
 from odoo import api, models
 
-from .price_security_utils import hide_cost_fields
-
 # the accounting cost, plus the inventory valuation columns that stock_account
 # adds to the stock report lists. The "in currency" ones come from
-# stock_currency_valuation, which we do not depend on: the xpath is a no-op when
-# the module is not installed
+# stock_currency_valuation and "parent_standard_price" from
+# stock_account_multicompany_ux, which we do not depend on: listing a field that
+# does not exist is harmless
 LIST_COST_FIELDS = (
     "standard_price",
     "avg_cost",
@@ -15,11 +14,15 @@ LIST_COST_FIELDS = (
     "standard_price_in_currency",
     "avg_cost_in_currency",
     "total_value_in_currency",
+    "parent_standard_price",
 )
 
 
 class ProductProduct(models.Model):
-    _inherit = "product.product"
+    _name = "product.product"
+    _inherit = ["product.product", "price.security.cost.mixin"]
+
+    _price_security_cost_fields = LIST_COST_FIELDS
 
     @api.model
     def _get_view_cache_key(self, view_id=None, view_type="form", **options):
@@ -27,11 +30,7 @@ class ProductProduct(models.Model):
         makes the view cache dependent on the fact the user has the group price security or not
         """
         key = super()._get_view_cache_key(view_id, view_type, **options)
-        return (
-            key
-            + (self.env.user.has_group("price_security.group_only_view"),)
-            + (self.env.user.has_group("price_security.group_only_view_sale_price"),)
-        )
+        return key + (self.env.user.has_group("price_security.group_only_view"),)
 
     @api.model
     def _get_view(self, view_id=None, view_type="form", **options):
@@ -58,17 +57,10 @@ class ProductProduct(models.Model):
                     + arch.xpath("//field[@name='seller_ids']")
                     + arch.xpath("//field[@name='variant_seller_ids']")
                     + arch.xpath("//field[@name='uom_po_id']")
-                    + arch.xpath("//label[@for='standard_price']")
-                    + arch.xpath("//field[@name='standard_price']")
-                    + arch.xpath("//label[@for='standard_price_in_currency']")
-                    + arch.xpath("//field[@name='standard_price_in_currency']")
                 )
                 for node in invisible_fields:
                     node.set("invisible", "1")
                     modifiers = json.loads(node.get("modifiers") or "{}")
                     modifiers["invisible"] = True
                     node.set("modifiers", json.dumps(modifiers))
-        if view_type == "list":
-            if self.env.user.has_group("price_security.group_only_view_sale_price"):
-                hide_cost_fields(arch, view_type, LIST_COST_FIELDS)
         return arch, view
