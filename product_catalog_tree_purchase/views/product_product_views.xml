@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="product_catalog_tree.product_view_tree_catalog"/>
         <field name="arch" type="xml">
             <field name="product_catalog_price" position="after">
-                <field name="product_catalog_supplier_uom" optional="show" string="Supplier UoM"/>
+                <field name="product_catalog_supplier_uom" optional="show"/>
             </field>
         </field>
     </record>
