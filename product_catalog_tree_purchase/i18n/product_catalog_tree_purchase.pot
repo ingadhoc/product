@@ -123,6 +123,5 @@ msgstr ""
 
 #. module: product_catalog_tree_purchase
 #: model:ir.model.fields,field_description:product_catalog_tree_purchase.field_product_product__product_catalog_supplier_uom
-#: model_terms:ir.ui.view,arch_db:product_catalog_tree_purchase.product_view_tree_catalog_purchase
 msgid "Supplier UoM"
 msgstr ""
