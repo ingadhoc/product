@@ -26,6 +26,7 @@ msgstr ""
 msgid ""
 "%(updated)s costs updated, %(unchanged)s without changes (%(templates)s "
 "products processed)."
+<<<<<<< 9034b4e5defa98102db02c30a83f935d7a17dcea
 msgstr "%(updated)s costos actualizados, %(unchanged)s sin cambios (%(templates)s productos procesados)."
 
 #. module: product_replenishment_cost
@@ -133,6 +134,11 @@ msgid ""
 "\n"
 "To contribute to this module, please visit https://www.adhoc.com.ar.\n"
 msgstr ""
+||||||| e65585b1df3374c083d9e3a687228133815f544e
+msgstr ""
+=======
+msgstr "%(updated)s costos actualizados, %(unchanged)s sin cambios (%(templates)s productos procesados)."
+>>>>>>> dbc998572ae8012adec766de5a82d9f41ff48042
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__standard_price
@@ -329,8 +335,14 @@ msgid ""
 "Here you will find, for each run of the \"Update Cost from Replenishment Cost\" scheduled action\n"
 "               or of the manual update, when it ran, how many products it went through and which costs changed."
 msgstr ""
+<<<<<<< 9034b4e5defa98102db02c30a83f935d7a17dcea
 "Aquí encontrará, por cada ejecución de la acción planificada \"Actualización del costo desde el costo de reposición\"\n"
 "               o de la actualización manual, cuándo se ejecutó, cuántos productos recorrió y qué costos cambiaron."
+||||||| e65585b1df3374c083d9e3a687228133815f544e
+=======
+"Acá vas a encontrar, por cada ejecución de la acción planificada \"Actualización del costo desde el costo de reposición\"\n"
+"               o de la actualización manual, cuándo corrió, cuántos productos recorrió y qué costos cambiaron."
+>>>>>>> dbc998572ae8012adec766de5a82d9f41ff48042
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__id
@@ -423,7 +435,13 @@ msgstr "Última actualización de precios"
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__user_id
 msgid "Launched by"
+<<<<<<< 9034b4e5defa98102db02c30a83f935d7a17dcea
 msgstr "Ejecutado por"
+||||||| e65585b1df3374c083d9e3a687228133815f544e
+msgstr ""
+=======
+msgstr "Ejecutada por"
+>>>>>>> dbc998572ae8012adec766de5a82d9f41ff48042
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields.selection,name:product_replenishment_cost.selection__product_template__replenishment_cost_type__supplier_price
@@ -483,7 +501,13 @@ msgstr "Precio neto"
 #. odoo-python
 #: code:addons/product_replenishment_cost/models/product_replenishment_cost_run.py:0
 msgid "New"
+<<<<<<< 9034b4e5defa98102db02c30a83f935d7a17dcea
 msgstr "Nuevo"
+||||||| e65585b1df3374c083d9e3a687228133815f544e
+msgstr ""
+=======
+msgstr "Nueva"
+>>>>>>> dbc998572ae8012adec766de5a82d9f41ff48042
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run_line__new_cost
@@ -661,7 +685,13 @@ msgstr "Ejecución de la actualización del costo de reposición"
 #. module: product_replenishment_cost
 #: model:ir.model,name:product_replenishment_cost.model_product_replenishment_cost_run_line
 msgid "Replenishment Cost Update Run Line"
+<<<<<<< 9034b4e5defa98102db02c30a83f935d7a17dcea
 msgstr "Línea de la ejecución de la actualización del costo de reposición"
+||||||| e65585b1df3374c083d9e3a687228133815f544e
+msgstr ""
+=======
+msgstr "Línea de ejecución de la actualización del costo de reposición"
+>>>>>>> dbc998572ae8012adec766de5a82d9f41ff48042
 
 #. module: product_replenishment_cost
 #: model:ir.actions.act_window,name:product_replenishment_cost.action_product_replenishment_cost_run
@@ -705,11 +735,20 @@ msgid ""
 "Without changes: %(unchanged)s\n"
 "Companies: %(companies)s"
 msgstr ""
+<<<<<<< 9034b4e5defa98102db02c30a83f935d7a17dcea
 "Finalizó la actualización del costo de reposición.\n"
 "Productos procesados: %(templates)s\n"
 "Costos actualizados: %(updated)s\n"
 "Sin cambios: %(unchanged)s\n"
 "Compañías: %(companies)s"
+||||||| e65585b1df3374c083d9e3a687228133815f544e
+=======
+"Actualización del costo de reposición finalizada.\n"
+"Productos procesados: %(templates)s\n"
+"Costos actualizados: %(updated)s\n"
+"Sin cambios: %(unchanged)s\n"
+"Compañías: %(companies)s"
+>>>>>>> dbc998572ae8012adec766de5a82d9f41ff48042
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_form
@@ -860,14 +899,26 @@ msgstr "Falló la actualización del costo de reposición: %s"
 #: code:addons/product_replenishment_cost/models/product_replenishment_cost_run.py:0
 msgid ""
 "The run was interrupted: it did not report progress for more than %s hours."
+<<<<<<< 9034b4e5defa98102db02c30a83f935d7a17dcea
 msgstr "La ejecución se interrumpió: no informó avances durante más de %s horas."
+||||||| e65585b1df3374c083d9e3a687228133815f544e
+msgstr ""
+=======
+msgstr "La ejecución se interrumpió: no informó avance durante más de %s horas."
+>>>>>>> dbc998572ae8012adec766de5a82d9f41ff48042
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.view_update_from_replenishment_cost_wizard_form
 msgid ""
 "This will apply to all the selected products across company with a "
 "Replenishment Cost different from 0."
+<<<<<<< 9034b4e5defa98102db02c30a83f935d7a17dcea
 msgstr "Esto se aplicará a todos los productos seleccionados de la compañía con un costo de reposición distinto de 0."
+||||||| e65585b1df3374c083d9e3a687228133815f544e
+msgstr ""
+=======
+msgstr "Se aplicará a todos los productos seleccionados, en todas las compañías, que tengan un costo de reposición distinto de 0."
+>>>>>>> dbc998572ae8012adec766de5a82d9f41ff48042
 
 #. module: product_replenishment_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__trigger
@@ -933,7 +984,37 @@ msgstr "Variantes evaluadas"
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_product__warnings_cost
 #: model:ir.model.fields,field_description:product_replenishment_cost.field_product_template__warnings_cost
 msgid "Warnings Cost"
+<<<<<<< 9034b4e5defa98102db02c30a83f935d7a17dcea
 msgstr "Advertencias de costo"
+||||||| e65585b1df3374c083d9e3a687228133815f544e
+msgstr ""
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__website_message_ids
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__website_message_ids
+#: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_run__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+=======
+msgstr "Advertencias de costo"
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_rule__website_message_ids
+#: model:ir.model.fields,field_description:product_replenishment_cost.field_product_replenishment_cost_run__website_message_ids
+msgid "Website Messages"
+msgstr "Mensajes del sitio web"
+
+#. module: product_replenishment_cost
+#: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_rule__website_message_ids
+#: model:ir.model.fields,help:product_replenishment_cost.field_product_replenishment_cost_run__website_message_ids
+msgid "Website communication history"
+msgstr "Historial de comunicación del sitio web"
+>>>>>>> dbc998572ae8012adec766de5a82d9f41ff48042
 
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_replenishment_cost_run_filter
@@ -958,17 +1039,17 @@ msgstr "o"
 #. module: product_replenishment_cost
 #: model_terms:ir.ui.view,arch_db:product_replenishment_cost.product_template_form_view
 msgid "por"
-msgstr ""
+msgstr "por"
 
 #. module: product_replenishment_cost
 #: model:ir.model,name:product_replenishment_cost.model_product_replenishment_cost_rule
 msgid "product.replenishment_cost.rule"
-msgstr ""
+msgstr "Regla de costo de reposición"
 
 #. module: product_replenishment_cost
 #: model:ir.model,name:product_replenishment_cost.model_product_replenishment_cost_rule_item
 msgid "product.replenishment_cost.rule.item"
-msgstr ""
+msgstr "Ítem de regla de costo de reposición"
 
 #. module: product_replenishment_cost
 #. odoo-python
