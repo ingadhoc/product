@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 20.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-02 19:34+0000\n"
-"PO-Revision-Date: 2026-11-02 19:34+0000\n"
+"POT-Creation-Date: 2026-11-25 20:18+0000\n"
+"PO-Revision-Date: 2026-11-25 20:18+0000\n"
 "Last-Translator: Juan José Scarafía <scarafia.juanjose@gmail.com>, 2025\n"
 "Language-Team: Spanish (https://app.transifex.com/adhoc/teams/46451/es/)\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,8 @@ msgid ""
 "==============================\n"
 "\n"
 "This module provides compatibility between product_catalog_tree and purchase modules.\n"
-"It ensures that the list view is shown first in the product catalog.\n"
+"It ensures that the list view is shown first in the product catalog, and adds a\n"
+"**Supplier UoM** column with the unit of measure of the vendor pricelist of the order.\n"
 "\n"
 "Installation\n"
 "============\n"
@@ -62,6 +63,7 @@ msgid ""
 "\n"
 "#. Go to a purchase order and click \"Catalog\" on the order lines\n"
 "#. The catalog opens on the list view first, and the purchase kanban stays available\n"
+"#. The **Supplier UoM** column shows the unit of the vendor pricelist of the order, if the product has one\n"
 "\n"
 ".. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas\n"
 "   :alt: Try me on Runbot\n"
@@ -112,6 +114,16 @@ msgid "Product Catalog Tree Purchase"
 msgstr "Catálogo de productos en lista para compras"
 
 #. module: product_catalog_tree_purchase
+#: model:ir.model,name:product_catalog_tree_purchase.model_product_product
+msgid "Product Variant"
+msgstr "Variante del producto"
+
+#. module: product_catalog_tree_purchase
 #: model:ir.model,name:product_catalog_tree_purchase.model_purchase_order
 msgid "Purchase Order"
 msgstr "Orden de compra"
+
+#. module: product_catalog_tree_purchase
+#: model:ir.model.fields,field_description:product_catalog_tree_purchase.field_product_product__product_catalog_supplier_uom
+msgid "Supplier UoM"
+msgstr "Unidad del proveedor"

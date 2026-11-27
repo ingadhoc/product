@@ -2,7 +2,10 @@
 # For copyright and license notices, see __manifest__.py file in module root
 # directory
 ##############################################################################
-from odoo.tests import TransactionCase, tagged
+from datetime import timedelta
+
+from odoo import fields
+from odoo.tests import Form, TransactionCase, tagged
 
 
 @tagged("post_install", "-at_install")
@@ -26,3 +29,55 @@ class TestProductCatalogTreePurchase(TransactionCase):
         self.assertEqual(
             [view_id for view_id, view_type in action["views"] if view_type == "kanban"], [purchase_kanban.id]
         )
+
+
+@tagged("post_install", "-at_install")
+class TestProductCatalogSupplierUom(TransactionCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.vendor = cls.env["res.partner"].create({"name": "Vendor Supplier UoM"})
+        cls.box = cls.env["uom.uom"].create(
+            {
+                "name": "Caja test",
+                "relative_factor": 12,
+                "relative_uom_id": cls.env.ref("uom.product_uom_unit").id,
+            }
+        )
+        cls.product = cls.env["product.product"].create({"name": "Bottle", "purchase_ok": True})
+        cls.env.user.group_ids |= cls.env.ref("uom.group_uom")
+        with Form(cls.env["product.supplierinfo"].with_context(visible_product_tmpl_id=False)) as seller:
+            seller.partner_id = cls.vendor
+            seller.product_tmpl_id = cls.product.product_tmpl_id
+            seller.uom_id = cls.box
+
+    def test_supplier_uom_is_the_unit_of_the_vendor_pricelist(self):
+        """The catalog shows the unit of the vendor pricelist of the order."""
+        order = self.env["purchase.order"].create({"partner_id": self.vendor.id})
+        catalog_product = self.product.with_context(
+            product_catalog_order_model="purchase.order",
+            order_id=order.id,
+        )
+        self.assertEqual(catalog_product.product_catalog_supplier_uom, "Caja test")
+
+    def test_supplier_uom_comes_from_the_pricelist_of_the_price(self):
+        """An expired pricelist is skipped, as purchase does for the price of the catalog."""
+        unit = self.env.ref("uom.product_uom_unit")
+        self.product.seller_ids.date_end = fields.Date.today() - timedelta(days=1)
+        self.env["product.supplierinfo"].create(
+            {
+                "partner_id": self.vendor.id,
+                "product_tmpl_id": self.product.product_tmpl_id.id,
+                "uom_id": unit.id,
+            }
+        )
+        order = self.env["purchase.order"].create({"partner_id": self.vendor.id})
+        catalog_product = self.product.with_context(
+            product_catalog_order_model="purchase.order",
+            order_id=order.id,
+        )
+        self.assertEqual(catalog_product.product_catalog_supplier_uom, unit.name)
+
+    def test_supplier_uom_is_empty_without_a_purchase_order(self):
+        """Outside a purchase order catalog the column has no value."""
+        self.assertFalse(self.product.product_catalog_supplier_uom)

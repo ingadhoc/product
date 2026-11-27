@@ -15,7 +15,8 @@ Product Catalog Tree Purchase
 ==============================
 
 This module provides compatibility between product_catalog_tree and purchase modules.
-It ensures that the list view is shown first in the product catalog.
+It ensures that the list view is shown first in the product catalog, and adds a
+**Supplier UoM** column with the unit of measure of the vendor pricelist of the order.
 
 Installation
 ============
@@ -38,6 +39,7 @@ To use this module, you need to:
 
 #. Go to a purchase order and click "Catalog" on the order lines
 #. The catalog opens on the list view first, and the purchase kanban stays available
+#. The **Supplier UoM** column shows the unit of the vendor pricelist of the order, if the product has one
 
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
